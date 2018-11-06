@@ -74,8 +74,8 @@
 
 
 			<div class="navbar-nav ml-md-auto">
-				<a class="nav-item nav-link" href="#" target="_blank">회원가입</a> <a
-					class="nav-item nav-link" href="#" target="_blank">로그인</a> &nbsp;
+				<a class="nav-item nav-link" href="member/join.gom" target="_blank">회원가입</a> <a
+					class="nav-item nav-link" href="member/login.gom" target="_blank">로그인</a> &nbsp;
 
 
 

@@ -8,5 +8,5 @@
 >
 
 
-<bean class="controller.CommentController"></bean>
+<bean class="controller.MemberController"></bean>
 </beans>

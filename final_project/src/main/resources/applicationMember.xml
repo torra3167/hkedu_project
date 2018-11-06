@@ -12,7 +12,7 @@
 <context:annotation-config></context:annotation-config>
 
 
-<bean id="cs" class="service.CommentService"></bean>
-<bean id="csr" class="repository.CommentSessionRepository"></bean>
+<bean id="ms" class="service.MemberService"></bean>
+
 
 </beans>
