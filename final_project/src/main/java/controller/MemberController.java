@@ -28,7 +28,7 @@ public class MemberController {
 	@RequestMapping(value="/member/join.gom", method=RequestMethod.POST)
 	public String joinSubmit(MemberJoinCommand memberJoinCommand,  HttpSession session, HttpServletResponse response) {
 		
-		return "";
+		return "index";
 	}
 	
 	@RequestMapping(value="/member/login.gom", method=RequestMethod.GET)
