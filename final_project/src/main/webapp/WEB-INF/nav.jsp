@@ -18,7 +18,7 @@
 
 
 		<a class="navbar-brand" href="#"><img alt="logo"
-			src="images/logo.png" width="40" height="40"></a>
+			src="../images/logo.png" width="40" height="40"></a>
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#mainNavBar">

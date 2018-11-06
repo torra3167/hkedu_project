@@ -32,8 +32,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/login.gom", method=RequestMethod.GET)
-	public String LoginForm(MemberLoginCommand memberloginCommand) {
+	public String LoginForm(Model model) {
 		
-		return "member/member_login";
+		model.addAttribute("iPage", "member/member_login.jsp");
+		return "index";
 	}
 }

@@ -14,9 +14,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="nav.jsp"></jsp:include>
-<jsp:include page="<%= iPage %>"></jsp:include>
-<jsp:include page="footer.jsp"></jsp:include>
+<div>
+	<jsp:include page="nav.jsp"></jsp:include>
+	
+</div>
+<div>
+	<jsp:include page="<%= iPage %>"></jsp:include>
+	
+</div>
+<div>
+	<jsp:include page="footer.jsp"></jsp:include>
+</div>
 
 
 </body>
