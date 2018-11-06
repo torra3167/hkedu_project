@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis-org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="repository.mapper.commentMapper">
+<cache></cache>
+
+<sql id="col">
+comment_no, user_id, comment_content, reg_date
+</sql>
+
+<insert id="insertComment" parameterType="Comment">
+ insert into comment1
+ (<include refid="col"></include>) 
+ values (#{commentNo}, #{userId}, #{commentContent}, #{regDate})
+</insert>
+
+<resultMap type="Comment" id="baseResultMap">
+	<id column="comment_no" property="commentNo" jdbcType="BIGINT"/>
+	<result column="user_id" property="userId" jdbcType="VARCHAR"/>
+	<result column="comment_content" property="commentContent" jdbcType="VARCHAR"/>
+	<result column="reg_date" property="regDate" jdbcType="DATE"/>
+</resultMap>
+
+<select id="selectCommentByCondtion" parameterType="Comment" resultMap="baseResultMap">
+	select <include refid="col"></include>
+	from comment1
+	<where>
+	
+		<if test="commentNo != null">
+			comment_no = #{commentNo}
+		</if>
+	</where>
+	
+</select>
+
+<update id="updateComment">
+	update comment1
+	<!-- <set>
+		<if test="commentContent != null">
+			comment_content = #{commentContent}, 
+		</if>
+	
+		<if test="userId != null">
+			user_id = #{userId}
+		</if>
+		
+		set하는중에 comma 를 찍어줘야하기때문에 잘 쓰지않는것을 맨 마지막에 배치
+		
+		
+	</set> -->
+	
+	<trim prefix="set" suffixOverrides=","> <!-- Suffix Overrides를 통해 뒷 글자들을 지울수있음  -->
+		<if test="commentContent != null">
+			comment_content = #{commentContent}, 
+		</if>
+	
+		<if test="userId != null">
+			user_id = #{userId},
+		</if>
+	</trim>
+	<where>
+		comment_no = #{commentNo}
+	</where>
+</update>
+
+<delete id="deleteComment">
+	delete from comment1
+	<where>
+		<if test="commentNo != null">
+			comment_no = #{commentNo}
+		</if>
+	</where>
+</delete>
+
+
+<select id="ajaxSelect" resultMap="baseResultMap">
+
+		select <include refid="col"></include>
+	from comment1
+</select>
+
+<resultMap type="Reply" id="replyMap">
+	<id column="reply_no"  jdbcType="BIGINT"  property="replyNo"/>
+	<result column="user_id"  jdbcType="VARCHAR"  property="userId"/>
+	<result column="comment_no"  jdbcType="BIGINT"  property="commentNo"/>
+	<result column="reply_content"  jdbcType="VARCHAR"  property="replyContent"/>
+	<result column="reg_date"  jdbcType="DATE"  property="regDate"/>
+</resultMap>
+
+<select id="ajaxSelect2" resultMap="replyMap">
+	select reply_no, comment_no, reply_content, reg_date, user_id
+	from reply
+</select>
+
+
+
+<resultMap type="Member" id="memberMap">
+	<constructor>
+		<idArg javaType="long" column="id" />
+		<arg javaType="string" column="email" />
+		<arg javaType="string" column="password" />
+		<arg javaType="string" column="name" />
+		<arg javaType="date" column="regdate" />
+	</constructor>
+	
+</resultMap>
+<select id="memberSelect" resultMap="memberMap" parameterType="Member">
+	select id, email, password, name, regdate
+	from member
+	where id = #{id}
+</select>
+
+<resultMap type="Aca" id="acaMap">
+	<id column="anum" jdbcType="BIGINT" property="anum"/>
+	<result column="aname" jdbcType="VARCHAR" property="aname"/>	
+</resultMap>
+
+<select id="acaSelect" resultMap="acaMap">
+ select ANUM, ANAME
+ from aca
+</select>
+
+
+<resultMap type="Bca" id="bcaMap">
+	<id column="bnum" jdbcType="BIGINT" property="bnum"/>
+	<result column="anum" jdbcType="BIGINT" property="anum"/>
+	<result column="bname" jdbcType="VARCHAR" property="bname"/>
+</resultMap>
+<select id="bcaSelect" resultMap="bcaMap" parameterType="Aca">
+ select BNUM, ANUM, BNAME
+ from bca
+ where anum = #{anum}
+</select>
+
+<resultMap type="Cca" id="CcaMap">
+	<id column="cnum" jdbcType="BIGINT" 
+	property="cnum"/>
+	<result column="bnum" jdbcType="BIGINT" 
+	property="bnum"/>
+	<result column="anum" jdbcType="BIGINT" 
+	property="anum"/>
+	<result column="cname" jdbcType="VARCHAR" 
+	property="cname"/>
+	
+	
+</resultMap>
+<select id="ccaSelect" parameterType="Bca" 
+resultMap="CcaMap">
+	select cnum, bnum, anum, cname
+	from ccar
+	where anum = #{anum} and bnum = #{bnum}
+	
+</select>
+
+</mapper>
+
