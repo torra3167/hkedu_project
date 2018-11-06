@@ -5,7 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,9 +20,9 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="/member/join.gom", method=RequestMethod.GET)
-	public String joinForm(MemberJoinCommand memberJoinCommand) {
-		
-		return "member/member_register";
+	public String joinForm(Model model) {
+		model.addAttribute("iPage", "member/member_register.jsp");
+		return "index";
 	}
 	
 	@RequestMapping(value="/member/join.gom", method=RequestMethod.POST)
