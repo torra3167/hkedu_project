@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-123132
+<% response.sendRedirect("index"); %>
 </body>
 </html>
