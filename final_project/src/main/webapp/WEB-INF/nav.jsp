@@ -17,7 +17,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
 
-		<a class="navbar-brand" href="#"><img alt="logo"
+		<a class="navbar-brand" href="index"><img alt="logo"
 			src="../images/logo.png" width="40" height="40"></a>
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -49,10 +49,10 @@
 				</li>
 
 				<li class="nav-item"><a class="nav-link"
-					href="admin/admin_menu.jsp">관리자메뉴</a></li>
-				<li class="nav-item"><a class="nav-link" href="seller/seller_menu.jsp">판매자메뉴</a></li>
+					href="admin/admin_menu.jsp">관리자로그인</a></li>
+				<li class="nav-item"><a class="nav-link" href="seller_login.jsp">판매자로그인</a></li>
 
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<div class="dropdown">
 						<a class="nav-link dropdown-toggle" id="dropdown"
 							data-toggle="dropdown"> 코치메뉴 </a>
@@ -61,13 +61,17 @@
 								class="dropdown-item" href="exercise/exercise_list.jsp">운동관리</a>
 						</div>
 					</div>
-				</li>
+				</li> -->
+				<li class="nav-item"><a class="nav-link" href="coach_login.gom">코치로그인</a></li>
+				
+				
 			</ul>
 
 
 			<div class="navbar-nav ml-md-auto">
-				<a class="nav-item nav-link" href="member/join.gom" target="_blank">회원가입</a> <a
-					class="nav-item nav-link" href="member/login.gom" target="_blank">로그인</a> &nbsp;
+				<a class="nav-item nav-link" href="member_join.gom" >회원가입</a> 
+				<a
+					class="nav-item nav-link" href="member_login.gom" >로그인</a> &nbsp;
 
 
 
@@ -85,6 +89,8 @@
 
 		</div>
 	</nav>
+	
+	
 	
 	
 <script src="js/jquery.min.js"></script>

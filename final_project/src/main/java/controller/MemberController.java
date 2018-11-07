@@ -19,19 +19,19 @@ public class MemberController {
 	private MemberService ms;
 	
 	
-	@RequestMapping(value="/member/join.gom", method=RequestMethod.GET)
+	@RequestMapping(value="/member_join.gom", method=RequestMethod.GET)
 	public String joinForm(Model model) {
 		model.addAttribute("iPage", "member/member_register.jsp");
 		return "index";
 	}
 	
-	@RequestMapping(value="/member/join.gom", method=RequestMethod.POST)
+	@RequestMapping(value="/member_join.gom", method=RequestMethod.POST)
 	public String joinSubmit(MemberJoinCommand memberJoinCommand,  HttpSession session, HttpServletResponse response) {
 		
 		return "index";
 	}
 	
-	@RequestMapping(value="/member/login.gom", method=RequestMethod.GET)
+	@RequestMapping(value="/member_login.gom", method=RequestMethod.GET)
 	public String LoginForm(Model model) {
 		
 		model.addAttribute("iPage", "member/member_login.jsp");
