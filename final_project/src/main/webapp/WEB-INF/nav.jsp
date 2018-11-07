@@ -51,7 +51,7 @@
 
 				<li class="nav-item"><a class="nav-link"
 					href="admin/admin_menu.jsp">관리자로그인</a></li>
-				<li class="nav-item"><a class="nav-link" href="seller_login.jsp">판매자로그인</a></li>
+				<li class="nav-item"><a class="nav-link" href="seller_login.gom">판매자로그인</a></li>
 
 				<!-- <li class="nav-item">
 					<div class="dropdown">

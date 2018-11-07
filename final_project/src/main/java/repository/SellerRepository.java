@@ -4,15 +4,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import command.SellerJoinCommand;
+import model.Coach;
 import model.Seller;
 
 @Repository
 public class SellerRepository extends AbstractRepository{
 	
+	SqlSession sqlSession;
+	
 	private final String namespace = "repository.mapper.sellerMapper";
 	
 	public Integer insertSeller(SellerJoinCommand sellerJoinCommand) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		sqlSession = getSqlSessionFactory().openSession();
 		String statement = namespace + ".insertSeller";
 		try {
 			System.out.println("repository " + sellerJoinCommand.getSellerEmail());
@@ -22,6 +25,18 @@ public class SellerRepository extends AbstractRepository{
 				sqlSession.commit();
 			}
 			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	
+	public Seller selectByEmail(String email) {
+		System.out.println("Repository selectByEmail Email " + email);
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			return (Seller)sqlSession.selectOne(namespace + ".selectByEmail", email);
+
 		} finally {
 			sqlSession.close();
 		}

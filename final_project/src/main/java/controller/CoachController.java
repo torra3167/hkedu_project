@@ -52,9 +52,6 @@ public class CoachController {
 		
 		response.addCookie(cookie);
 		
-		
 		return "index";
-		
-		
 	}
 }
