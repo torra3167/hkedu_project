@@ -19,7 +19,7 @@
 
 		<a class="navbar-brand" href="index"><img alt="logo"
 			src="images\logo.png"
-			 width="40" height="40"></a>s
+			 width="40" height="40"></a>
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#mainNavBar">
@@ -44,7 +44,7 @@
 							고객센터 </a>
 						<div class="dropdown-menu" aria-labelledby="dropdown">
 							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a> <a
-								class="dropdown-item" href="main/contact.jsp" target="_blank">1:1문의</a>
+								class="dropdown-item" href="main/contact.jsp" >1:1문의</a>
 						</div>
 					</div>
 				</li>
