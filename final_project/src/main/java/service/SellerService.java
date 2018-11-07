@@ -5,7 +5,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import command.SellerJoinCommand;
+import exception.IdPasswordNotMatchingException;
+import model.Coach;
+import model.CoachAuthInfo;
 import model.Seller;
+import model.SellerAuthInfo;
 import repository.SellerRepository;
 
 @Service
@@ -19,23 +23,19 @@ public class SellerService {
 		return sellerRepository.insertSeller(sellerJoinCommand);
 	}
 	
-	/*public void sellerSelect(Seller seller, Model model) {
-		System.out.println("service " + seller.getSellerEmail());
-		System.out.println("service " + seller.getSellerPw());
-		Seller sr = sellerRepository.sellerSelect(seller);
-		int result = 0;
-		if(sr != null) {
-			password媛� ��由� 寃쎌슦
-			if(!sr.getSellerPw().equals(seller.getSellerPw())) {
-				result = 2;
-			}else {
-				result = 4;
-			}
-		}else {
-			result = 1;
+	public SellerAuthInfo authenticate(String email, String pw) {
+		Seller seller = sellerRepository.selectByEmail(email);
+		System.out.println("Service  Seller " + seller);
+		// 이메일이 존재하지 않는경우
+		if(seller == null) {
+			throw new IdPasswordNotMatchingException("아이디가 존재하지않습니다");
 		}
-		model.addAttribute("result", result);
-	}*/
-	
+		//비밀번호 틀린경우
+		if(!seller.getSellerPw().equals(pw)) {
+			throw new IdPasswordNotMatchingException("패스워드가 일치하지 않습니다");
+		}
+		//일치하는 경우
+		return new SellerAuthInfo(seller.getSellerEmail(), seller.getSellerPw());
+	}
 	
 }

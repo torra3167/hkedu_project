@@ -5,12 +5,26 @@
 <cache></cache>
 
 <sql id="col">
-seller_email, seller_pw, seller_phone, seller_term
+	seller_email, seller_pw, seller_phone, seller_term
 </sql>
 
 <insert id="insertSeller" parameterType="Seller">
- insert into seller
+ INSERT INTO seller
  (<include refid="col"></include>) 
- values (#{sellerEmail}, #{sellerPw}, #{sellerPhone}, #{sellerTerm})
+ VALUES (#{sellerEmail}, #{sellerPw}, #{sellerPhone}, #{sellerTerm})
 </insert>
+
+<resultMap type="Seller" id="sellerMap">
+	<id column="SELLER_EMAIL" jdbcType="VARCHAR" property="sellerEmail" />
+	<result column="SELLER_PW" jdbcType="VARCHAR" property="sellerPw" />
+	<result column="SELLER_PHONE" jdbcType="BIGINT" property="sellerPhone" />
+	<result column="SELLER_TERM" jdbcType="VARCHAR" property="sellerTerm" />
+</resultMap>
+
+<select id="selectByEmail" resultMap="sellerMap" parameterType="String">
+	SELECT <include refid="col"></include>
+	FROM seller
+	WHERE seller_email = #{seller_email}
+</select>
+
 </mapper>
