@@ -21,7 +21,7 @@ public class SellerController {
 		@RequestMapping(value="/seller/join.gom", method=RequestMethod.GET)
 		public String joinForm(Model model) {
 			model.addAttribute("sellerJoinCommand", new SellerJoinCommand());
-			return "seller/seller_join.jsp";
+			return "seller/seller_join";
 		}
 		
 		@RequestMapping(value="/seller_join", method=RequestMethod.POST)
@@ -32,7 +32,7 @@ public class SellerController {
 			result = sellerService.insertSeller(sellerJoinCommand);
 			if(result>0) {
 				model.addAttribute("result", result);
-				return "seller/seller_join.jsp";
+				return "seller/seller_join";
 			}else {
 				return "redirect:/seller/join.gom";
 			}

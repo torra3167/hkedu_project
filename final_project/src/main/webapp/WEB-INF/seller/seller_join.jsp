@@ -24,7 +24,7 @@
 			<label>비밀번호</label> <form:input path="sellerPw" class="form-control" />
 		</div>
 		<div class="form-group">
-			<label>비밀번호 확인</label> <input type="password" name="sellerPw2" class="form-control"><!-- 속성추가 필요 -->
+			<label>비밀번호 확인</label> <form:input path="sellerConfirmPw" class="form-control" /><!-- 속성추가 필요 -->
 		</div>
 		<div class="form-group">
 			<label>휴대폰번호</label> <form:input path="sellerPhone" class="form-control" />
