@@ -13,10 +13,10 @@ COACH_EMAIL, COACH_PW, COACH_NAME, COACH_PHOTO, COACH_CAREER
 	<result column="COACH_PW"  jdbcType="VARCHAR"  property="coachPw"/>
 	<result column="COACH_NAME"  jdbcType="VARCHAR"  property="coachName"/>
 	<result column="COACH_PHOTO"  jdbcType="VARCHAR"  property="coachPhoto"/>
-	<result column="COACH_CAREER"  jdbcType="VARCHAR"  property="coachCareer"/>
+	<result column="COACH_CAREER"  jdbcType="CLOB"  property="coachCareer"/>
 </resultMap>
 
-<select id="selectByEmail" resultMap="coachMap" parameterType="Coach">
+<select id="selectByEmail" resultMap="coachMap" parameterType="string">
 	select <include refid="col"></include>
 	from coach
 	where COACH_EMAIL = #{COACH_EMAIL}

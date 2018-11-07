@@ -18,7 +18,8 @@
 
 
 		<a class="navbar-brand" href="index"><img alt="logo"
-			src="../images/logo.png" width="40" height="40"></a>
+			src="images\logo.png"
+			 width="40" height="40"></a>s
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#mainNavBar">
