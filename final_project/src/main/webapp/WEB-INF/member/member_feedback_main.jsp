@@ -16,31 +16,9 @@
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="#">
-<style type="text/css">
-	.container{
-		width:70%;
-	}
-	.nav-btn{
-		float:middle;
-	}
-	a{
-		text-decoration:none;
-		color:black;
-	}
-	a:hover{
-		text-decoration:none;
-		color:black;
-	}
-	a:visited{
-		text-decoration:none;
-		color:black;
-	}
-</style>
+
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="index.jsp">피드백 확인</a>
-	</nav>
 	<div class="container">
 		<table class="table table-striped text-center">
 			<thead>

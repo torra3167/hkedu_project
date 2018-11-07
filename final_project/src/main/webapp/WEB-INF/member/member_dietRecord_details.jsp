@@ -11,33 +11,9 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
-<style type="text/css">
-.container {
-	width: 70%;
-	align:center;
-}
-.content{
-	border: 1px solid black;
-	text-align:center;
-}
-.items{
-	padding:3px 3px;
-}
-#header{
-	border-bottom:1px solid black;
-}
-button{
-	float:right;
-}
-.value{
-	height:10%;
-}
-</style>
+
 <body>
 	<div class="container mt-3">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="">식단 기록</a>
-		</nav>
 		<div class="content">
 		<div class="total">
 			<label>총 칼로리</label>

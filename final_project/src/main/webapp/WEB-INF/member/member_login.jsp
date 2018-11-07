@@ -13,9 +13,6 @@
 <!-- function : 자동 로그인, 이메일/비밀번호 공란 체크 -->
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="">로그인</a>
-    </nav>
 <div class="container">
 		<div class="signInBox">
 	      <form class="form-signin">

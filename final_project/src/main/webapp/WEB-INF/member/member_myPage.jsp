@@ -13,15 +13,9 @@
 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<style type="text/css">
-	.container{
-		width:70%;
-	}
-</style>
 </head>
 <body>
  <div class="container">
-
       <div class="masthead">
         <h3 class="text-muted">MY PAGE</h3>
         <nav>
