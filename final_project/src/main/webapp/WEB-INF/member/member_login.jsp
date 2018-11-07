@@ -14,7 +14,7 @@
 
 <body>
 <div class="container">
-		<div class="signInBox">
+		<div class="form-group">
 	      <form class="form-signin">
 	        <label for="inputEmail" class="sr-only">이메일</label>
 	        <input type="email" id="inputEmail" class="form-control" placeholder="이메일" required="" autofocus="">

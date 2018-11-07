@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
   </head>
   <body>
-    <div class="container mt-3" style="max-width: 560px;">
+    <div class="container mt-3">
       <form method="post" action="">
         <div class="form-group">
           <label>이메일</label>
@@ -47,9 +47,6 @@
         <button type="button" class="btn btn-primary">뒤로가기</button>
       </form>
     </div>
-    <footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
-      Copyright ⓒ 2018 장정필 All Rights Reserved.
-    </footer>
     <script src="./js/jquery.min.js"></script>
     <script src="./js/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>

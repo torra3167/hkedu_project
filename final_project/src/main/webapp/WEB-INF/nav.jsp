@@ -33,7 +33,7 @@
 				<li class="nav-item"><a class="nav-link" href="#">식품관</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="#">운동관</a></li>
-				<li class="nav-item"><a class="nav-link" href="/member_write_survey1.gom">내게 맞는
+				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="Goods/goodsCartList.jsp">Cart</a></li>
