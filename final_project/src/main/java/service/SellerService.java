@@ -25,7 +25,7 @@ public class SellerService {
 		Seller sr = sellerRepository.sellerSelect(seller);
 		int result = 0;
 		if(sr != null) {
-			password가 틀린 경우
+			password媛� ��由� 寃쎌슦
 			if(!sr.getSellerPw().equals(seller.getSellerPw())) {
 				result = 2;
 			}else {

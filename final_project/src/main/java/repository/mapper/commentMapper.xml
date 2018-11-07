@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis-org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="repository.mapper.commentMapper">
@@ -35,7 +35,7 @@ comment_no, user_id, comment_content, reg_date
 
 <update id="updateComment">
 	update comment1
-	<!-- <set>
+	<set>
 		<if test="commentContent != null">
 			comment_content = #{commentContent}, 
 		</if>
@@ -47,9 +47,9 @@ comment_no, user_id, comment_content, reg_date
 		set하는중에 comma 를 찍어줘야하기때문에 잘 쓰지않는것을 맨 마지막에 배치
 		
 		
-	</set> -->
+	</set>
 	
-	<trim prefix="set" suffixOverrides=","> <!-- Suffix Overrides를 통해 뒷 글자들을 지울수있음  -->
+	<trim prefix="set" suffixOverrides=","> Suffix Overrides를 통해 뒷 글자들을 지울수있음 
 		<if test="commentContent != null">
 			comment_content = #{commentContent}, 
 		</if>
@@ -154,3 +154,4 @@ resultMap="CcaMap">
 
 </mapper>
 
+ -->

@@ -1,12 +1,14 @@
 package service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import exception.IdPasswordNotMatchingException;
 import model.Coach;
 import model.CoachAuthInfo;
 import repository.CoachRepository;
 
+@Service
 public class CoachService {
 	@Autowired
 	private CoachRepository cr;
