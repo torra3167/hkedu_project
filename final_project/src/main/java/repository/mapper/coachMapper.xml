@@ -5,7 +5,7 @@
 <cache></cache>
 
 <sql id="col">
-COACH_EMAIL, COACH_PW, COACH_NAME, COACH_PHOTO, COACH_CAREER
+	COACH_EMAIL, COACH_PW, COACH_NAME, COACH_PHOTO, COACH_CAREER
 </sql>
 
 <resultMap type="Coach" id="coachMap">
@@ -21,6 +21,5 @@ COACH_EMAIL, COACH_PW, COACH_NAME, COACH_PHOTO, COACH_CAREER
 	from coach
 	where COACH_EMAIL = #{COACH_EMAIL}
 </select>
-
 
 </mapper>

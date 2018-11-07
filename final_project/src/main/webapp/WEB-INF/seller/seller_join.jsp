@@ -7,11 +7,15 @@
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
 
 </head>
 <body>
 <div class="container mt-3" style="max-width: 560px;">
-	<form method="post" action="#">
+	<form method="post" action="">
 		<div class="form-group">
 			<label>이메일</label> <input type="text" name="sellerEmail" class="form-control">
 			<input type="button" class="btn btn-primary" name="sellerEmailDuplicate" value="중복 확인" onclick="">
@@ -41,8 +45,5 @@
 	</form>
 </div>
 
-<script src="../js/jquery.min.js"></script>
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

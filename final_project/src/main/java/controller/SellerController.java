@@ -4,17 +4,20 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import command.CoachLoginCommand;
 import command.SellerJoinCommand;
+import command.SellerLoginCommand;
 import model.CoachAuthInfo;
-import model.Seller;
+import model.SellerAuthInfo;
 import service.SellerService;
 
 
@@ -24,14 +27,13 @@ public class SellerController {
 		@Autowired
 		private SellerService sellerService;
 		
-//		123123123123
-		@RequestMapping(value="/seller/join.gom", method=RequestMethod.GET)
+		@RequestMapping(value="/seller_join.gom", method=RequestMethod.GET)
 		public String joinForm(Model model) {
-			model.addAttribute("sellerJoinCommand", new SellerJoinCommand());
-			return "seller/seller_join";
+			model.addAttribute("iPage", "seller/seller_join.jsp");
+			return "index";
 		}
 		
-		@RequestMapping(value="/seller/join.gom", method=RequestMethod.POST)
+		@RequestMapping(value="/seller_join.gom", method=RequestMethod.POST)
 		public String joinSubmit(SellerJoinCommand sellerJoinCommand,  Model model) {
 			Integer result = null;
 			//result값 받아오기 위해서 service(CommentService)가 필요하다.
@@ -39,31 +41,29 @@ public class SellerController {
 			result = sellerService.insertSeller(sellerJoinCommand);
 			if(result>0) {
 				model.addAttribute("result", result);
-				return "redirect:/index";
+				return "index";
 			}else {
-				return "redirect:/seller/join.gom";
+				return "redirect:/index";
 			}
 		}
 		
-		/*@RequestMapping(value="/seller_login.gom", method=RequestMethod.GET)
-		public String sellerLogin(sellerLoginCommand coachLoginCommand, Model model, @CookieValue(value="coachEmail", required=false)Cookie rememberCookie) {
-			if(rememberCookie != null) {
-				coachLoginCommand.setCoachEmail(rememberCookie.getValue());
-				coachLoginCommand.setRememberEmail(true);
-			}
-			
-			model.addAttribute("iPage", "coach/coach_login.jsp");
-			
+		@RequestMapping(value="/seller_login.gom", method=RequestMethod.GET)
+		public String sellerLogin(Model model) {
+			model.addAttribute("sellerLoginCommand", new SellerLoginCommand());
+			model.addAttribute("iPage", "seller/seller_login.jsp");
 			return "index";
 		}
 		
-		@RequestMapping(value="/coach_login.gom", method=RequestMethod.POST )
-		public String CoachSubmit(CoachLoginCommand coachLoginCommand, Model model, 
-				HttpSession session, HttpServletResponse response) {
+		
+		
+		@RequestMapping(value="/seller_login.gom", method=RequestMethod.POST)
+		public String sellerSubmit(SellerLoginCommand sellerLoginCommand, Model model, HttpSession session, HttpServletResponse response) {
 			
-			CoachAuthInfo cai = cs.authenticate(coachLoginCommand.getCoachEmail(), coachLoginCommand.getCoachPw());
-			session.setAttribute("coachAuthInfo", cai);
-			Cookie cookie = new Cookie("coachEmail", coachLoginCommand.getCoachEmail());
+			System.out.println("controller " + sellerLoginCommand.getSellerEmail() + "," + sellerLoginCommand.getSellerPw());
+			
+			SellerAuthInfo sai = sellerService.authenticate(sellerLoginCommand.getSellerEmail(), sellerLoginCommand.getSellerPw());
+			session.setAttribute("sellerAuthInfo", sai);
+			/*Cookie cookie = new Cookie("coachEmail", coachLoginCommand.getCoachEmail());
 			
 			if(coachLoginCommand.isRememberEmail()) {
 				cookie.setMaxAge(60 * 60 * 24 * 30);
@@ -71,11 +71,9 @@ public class SellerController {
 				cookie.setMaxAge(0);
 			}
 			
-			response.addCookie(cookie);
-			
+			response.addCookie(cookie);*/
 			
 			return "index";
-			
-			
-		}*/
+		}
+		
 }

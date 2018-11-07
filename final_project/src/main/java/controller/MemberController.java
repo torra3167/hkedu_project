@@ -39,9 +39,20 @@ public class MemberController {
 		return "member/member_login";
 	}
 	
-	@RequestMapping(value="/member_write_survey1.gom", method=RequestMethod.GET)
-	public String Survey1Form(Model model) {
-		model.addAttribute("iPage", "member/login/survey_1.jsp");
-		return "member/login/survey_1";
+	@RequestMapping(value="/member_findID.gom", method=RequestMethod.GET)
+	public String findID(Model model) {
+		model.addAttribute("iPage", "member/member_login.jsp");
+		return "member/login/findID";
 	}
+	
+//	@RequestMapping(value="/member_write_survey1.gom", method=RequestMethod.GET)
+//	public String Survey1Form(Model model) {
+//		model.addAttribute("iPage", "member/login/survey_1.jsp");
+//		return "member/login/survey_1";
+//	}
+//	@RequestMapping(value="/member_write_survey2.gom", method=RequestMethod.GET)
+//	public String Survey2Form(Model model) {
+//		model.addAttribute("iPage", "member/login/survey_1.jsp");
+//		return "member/login/survey_2";
+//	}
 }

@@ -8,4 +8,8 @@
 		insert into member(member_email, member_name, member_phone, member_pass, member_addr1, member_addr2, member_addrno)
 		values (#{memberEmail}, #{memberName}, #{memberPhone}, #{memberPass}, #{memberAddr1}, #{memberAddr2}, #{memberAddrNo})
 	</insert>
+	<insert id="insertSurv1" parameterType="MemberSurvey">
+		insert into survey(surv_no, member_email, surv_height, surv_weight, surv_eat, surv_bmi, surv_sex, surv_age, surv_lifestyle, surv_photo, surv_shape, surv_disease, surv_concern, surv_cause, surv_career)
+		values (#{survNo}, #{memberEmail}, #{survHeight}, #{survWeight}, #{survEat}, #{survSex}, #{survAge}, #{survLifestyle}, #{survPhoto}, #{survShape}, #{survDisease}, #{survConcern}, #{survCause}, #{survCareer})
+	</insert>
 </mapper>
