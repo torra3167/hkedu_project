@@ -1,9 +1,9 @@
-package command;
+package model;
 
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class MemberSurveyCommand implements Serializable {
+public class MemberSurvey implements Serializable {
 	private int survNo;
 	private String memberEmail;
 	private int survHeight;
@@ -20,7 +20,7 @@ public class MemberSurveyCommand implements Serializable {
 	private String survCause;
 	private String survCareer;
 	
-	public MemberSurveyCommand() {
+	public MemberSurvey() {
 		
 	}
 	

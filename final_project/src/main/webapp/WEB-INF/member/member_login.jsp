@@ -11,31 +11,7 @@
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <!-- function : 자동 로그인, 이메일/비밀번호 공란 체크 -->
-<style type="text/css">
-	.container{
-		width:70%;
-		max-width:410px;
-		text-align:center;
-	}
-	.btn {
-		font-size:13px;
-		text-align:center;
-		margin:5px 5px;
-	}
-	button[class]{
-		width:25%;
-		float:right;
-	}
-	a {
-		font-size:13px;
-		color:black;
-		text-decoration:none;
-	}
-	a:hover{
-		color:black;
-		text-decoration:none;
-	}
-	</style>
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="">로그인</a>
