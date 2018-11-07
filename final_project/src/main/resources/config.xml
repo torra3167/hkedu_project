@@ -6,9 +6,7 @@
 	<typeAliases>
 		<typeAlias type="model.Coach" alias="Coach"/>
 		<typeAlias type="model.Seller" alias="Seller"/>
-	<!-- 	<typeAlias type="model.Aca" alias="Aca"/>
-		<typeAlias type="model.Bca" alias="Bca"/>
-		<typeAlias type="model.Cca" alias="Cca"/> -->
+	
 	</typeAliases>
 	
 	<environments default="development">
@@ -24,7 +22,7 @@
 	</environments>
 	
 	<mappers>
-		<mapper resource="mapper/coachMapper.xml"/>
-		<mapper resource="mapper/sellerMapper.xml"/>
+		<mapper resource="repository/mapper/coachMapper.xml"/>
+		<mapper resource="repository/mapper/sellerMapper.xml"/>
 	</mappers>
 </configuration>
