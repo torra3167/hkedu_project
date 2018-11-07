@@ -18,10 +18,7 @@
 
 </head>
 
-
 <body>
-	
-
 	<!--carousel-->
 	<div id="carouselExampleIndicators" class="carousel slide"
 		data-ride="carousel">

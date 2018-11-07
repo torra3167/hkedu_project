@@ -16,7 +16,7 @@
   </head>
   <body>
     <div class="container mt-3">
-      <form method="post" action="">
+      <form method="post" action="member_register">
         <div class="form-group">
           <label>이메일</label>
           <input type="email" class="form-control">

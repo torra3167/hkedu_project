@@ -6,22 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<<<<<<< HEAD
 <link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css"
 	rel="stylesheet">
-=======
->>>>>>> edb70f711132ce0e1f529267fada9daef21b9541
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
-<<<<<<< HEAD
 <link rel="stylesheet" href="../css/1027.css">
 
 <!-- function : 자동 로그인, 이메일/비밀번호 공란 체크 -->
-=======
-
->>>>>>> edb70f711132ce0e1f529267fada9daef21b9541
 
 <body>
 <div class="container">
@@ -38,13 +31,13 @@
 	        </div>
 	        <div class="btn">
 	        <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
-	        <button class="btn btn-lg btn-primary btn-block" type="button">회원가입</button>
-	        <a href="" >아이디/비밀번호 찾기</a>
+	        <button class="btn btn-lg btn-primary btn-block" type="button" href="member_join.gom">회원가입</button>
+	        <a href="member_findID.gom" >아이디/비밀번호 찾기</a>
 	        </div>
 	      </form>
 		</div>
     </div>
-    <script src="../js/jquery.min.js"></script>
+       <script src="../js/jquery.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
 </body>
