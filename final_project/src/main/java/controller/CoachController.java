@@ -30,13 +30,15 @@ public class CoachController {
 		}
 		
 		model.addAttribute("iPage", "coach/coach_login.jsp");
-
+		
 		return "index";
 	}
 	
 	@RequestMapping(value="/coach_login.gom", method=RequestMethod.POST )
 	public String CoachSubmit(CoachLoginCommand coachLoginCommand, Model model, 
 			HttpSession session, HttpServletResponse response) {
+		
+		System.out.println(coachLoginCommand.getCoachEmail() + "," + coachLoginCommand.getCoachPw());
 		
 		CoachAuthInfo cai = cs.authenticate(coachLoginCommand.getCoachEmail(), coachLoginCommand.getCoachPw());
 		session.setAttribute("coachAuthInfo", cai);
