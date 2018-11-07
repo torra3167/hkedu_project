@@ -7,9 +7,6 @@
 <title>식단 기록</title>
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-       <script src="../js/jquery.min.js"></script>
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
     
 </head>    
 <body>
@@ -59,5 +56,9 @@
             </form>
           </div>
           </div>
+          
+       <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

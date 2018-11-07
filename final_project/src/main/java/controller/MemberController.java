@@ -40,6 +40,6 @@ public class MemberController {
 	
 	@RequestMapping(value="/member_write_servey1.gom", method=RequestMethod.GET)
 	public String Survey1Form(Model model) {
-		return "login/survey_1";
+		return "member/login/survey_1";
 	}
 }

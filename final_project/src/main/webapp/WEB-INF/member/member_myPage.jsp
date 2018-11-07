@@ -55,11 +55,10 @@
           <p><a class="btn btn-primary" href="#" role="button">더보기 »</a></p>
         </div>
       </div>
-
-     
-
     </div>
-
+       <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
 </body>
 </html>
