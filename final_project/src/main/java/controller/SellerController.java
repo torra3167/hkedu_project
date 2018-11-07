@@ -24,8 +24,8 @@ public class SellerController {
 		@Autowired
 		private SellerService sellerService;
 		
-//		123
-		@RequestMapping(value="/seller/join.gom", method=RequestMethod.GET)
+		
+		@RequestMapping(value="/seller_join.gom", method=RequestMethod.GET)
 		public String joinForm(Model model) {
 			model.addAttribute("sellerJoinCommand", new SellerJoinCommand());
 			return "seller/seller_join";
