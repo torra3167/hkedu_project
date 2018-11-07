@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="container mt-3" style="max-width: 560px;">
-	<form method="post" action="/seller/join.gom">
+	<form method="post" action="seller_join">
 		<div class="form-group">
 			<label>이메일</label> <input type="text" name="sellerEmail" class="form-control">
 			<input type="button" class="btn btn-primary" name="sellerEmailDuplicate" value="중복 확인" onclick="">

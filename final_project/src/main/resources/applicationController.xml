@@ -11,4 +11,5 @@
 <bean class="controller.MemberController"></bean>
 <bean class="controller.CoachController"></bean>
 <bean class="controller.ProgramController"></bean>
+<bean class="controller.SellerController"></bean>
 </beans>

@@ -23,7 +23,7 @@ public class SellerController {
 			return "seller/seller_join.jsp";
 		}
 		
-		@RequestMapping(value="/seller/join.gom", method=RequestMethod.POST)
+		@RequestMapping(value="/seller_join", method=RequestMethod.POST)
 		public String joinSubmit(SellerJoinCommand sellerJoinCommand,  Model model) {
 			Integer result = null;
 			//result값 받아오기 위해서 service(CommentService)가 필요하다.
@@ -33,7 +33,7 @@ public class SellerController {
 				model.addAttribute("result", result);
 				return "seller/seller_join.jsp";
 			}else {
-				return "redirect:/index";
+				return "redirect:/seller/join.gom";
 			}
 		}
 		
