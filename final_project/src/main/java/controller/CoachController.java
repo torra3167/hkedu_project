@@ -22,7 +22,7 @@ public class CoachController {
 	private CoachService cs;
 	
 	
-	@RequestMapping(value="/coach_login.gom", method=RequestMethod.GET )
+	@RequestMapping(value="/coach_login.gom", method=RequestMethod.GET)
 	public String CoachLogin(CoachLoginCommand coachLoginCommand, Model model, @CookieValue(value="coachEmail", required=false)Cookie rememberCookie) {
 		if(rememberCookie != null) {
 			coachLoginCommand.setCoachEmail(rememberCookie.getValue());
