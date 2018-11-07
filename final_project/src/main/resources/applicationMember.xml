@@ -15,5 +15,8 @@
 <bean id="ms" class="service.MemberService"></bean>
 <bean id="mr" class="repository.MemberRepository"></bean>
 
+<bean id="ms" class="service.SellerService"></bean>
+<bean id="mr" class="repository.SellerRepository"></bean>
+
 
 </beans>

@@ -9,4 +9,5 @@
 
 
 <bean class="controller.MemberController"></bean>
+<bean class="controller.SellerController"></bean>
 </beans>
