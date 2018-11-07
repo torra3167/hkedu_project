@@ -5,17 +5,14 @@
 <properties resource="database.properties"></properties>
 	<typeAliases>
 		<typeAlias type="model.Coach" alias="Coach"/>
-	<!-- 	<typeAlias type="model.Aca" alias="Aca"/>
-		<typeAlias type="model.Bca" alias="Bca"/>
-		<typeAlias type="model.Cca" alias="Cca"/> -->
+		<typeAlias type="model.Seller" alias="Seller"/>
+	
 	</typeAliases>
 	
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC"></transactionManager>
 			<dataSource type="POOLED">
-		
-				
 				<property name="driver" value="${driver}"/>
 				<property name="url" value="${url}"/>
 				<property name="username" value="${user}"/>
@@ -25,7 +22,7 @@
 	</environments>
 	
 	<mappers>
-		
-		<mapper resource="mapper/coachMapper.xml"/>
+		<mapper resource="repository/mapper/coachMapper.xml"/>
+		<mapper resource="repository/mapper/sellerMapper.xml"/>
 	</mappers>
 </configuration>
