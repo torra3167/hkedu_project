@@ -1,12 +1,26 @@
 package repository;
 
-import model.Member;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
-public class MemberRepository {
+import command.MemberJoinCommand;
 
-	public Integer insertMember(Member member) {
-		
-		return null;
+@Repository
+public class MemberRepository extends AbstractRepository {
+	private final String namespace="mapper.memberMapper";
+	public Integer insertMember(MemberJoinCommand memberJoinCommand) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		String statement=namespace+".instertMember";
+		try {
+			System.out.println("repository "+memberJoinCommand.getMemberEmail());
+			Integer result=sqlSession.insert(statement,memberJoinCommand);
+			if(result>0) {
+				sqlSession.commit();
+			}
+			return result;
+		} finally {
+			sqlSession.close();
+		}
 	}
 
 }

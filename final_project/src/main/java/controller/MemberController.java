@@ -16,7 +16,7 @@ import service.MemberService;
 @Controller
 public class MemberController {
 	@Autowired
-	private MemberService ms;
+	private MemberService memberService;
 	
 	
 	@RequestMapping(value="/member_join.gom", method=RequestMethod.GET)
@@ -26,9 +26,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member_join.gom", method=RequestMethod.POST)
-	public String joinSubmit(MemberJoinCommand memberJoinCommand,  HttpSession session, HttpServletResponse response) {
-		
-		return "index";
+	public String joinSubmit(MemberJoinCommand memberJoinCommand,  Model model) {
+		Integer result=null;
+		result=memberService.insertMember(memberJoinCommand);
+		if(result>0) {
+			model.addAttribute("result", result);
+			return "member/member_join.jsp";
+		}else {
+			return "redirect:/index";
+		}
 	}
 	
 	@RequestMapping(value="/member_login.gom", method=RequestMethod.GET)
