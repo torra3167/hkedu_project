@@ -35,11 +35,13 @@ public class MemberController {
 	
 	@RequestMapping(value="/member_login.gom", method=RequestMethod.GET)
 	public String LoginForm(Model model) {
+		model.addAttribute("iPage", "member/member_login.jsp");
 		return "member/member_login";
 	}
 	
-	@RequestMapping(value="/member_write_servey1.gom", method=RequestMethod.GET)
+	@RequestMapping(value="/member_write_survey1.gom", method=RequestMethod.GET)
 	public String Survey1Form(Model model) {
+		model.addAttribute("iPage", "member/login/survey_1.jsp");
 		return "member/login/survey_1";
 	}
 }
