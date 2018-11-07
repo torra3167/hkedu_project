@@ -10,17 +10,9 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../js/popper.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
-<style type="text/css">
-	.container{
-  		width:70%;
-  	}
-</style>
 </head>
 <body>
 	<div class="container" tabindex="-1" role="dialog">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="">문의하기</a>
-		</nav>
 		<button type="button" class="close" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>

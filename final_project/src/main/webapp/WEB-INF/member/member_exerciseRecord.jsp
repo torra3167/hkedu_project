@@ -10,18 +10,6 @@
        <script src="../js/jquery.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <style type="text/css">
-    	.container{
-    		width:70%;
-    	}
-    	.td{
-    		width:33%;
-    	}
-    	.records{
-    		border-color:1px solid #FAFAFA;
-    		width:80%;
-    	}
-    </style>
 </head>    
 <body>
 <div class="container">

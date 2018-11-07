@@ -11,25 +11,9 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
-<style type="text/css">
-.container {
-	width: 70%;
-	max-width: 560px;
-}
 
-.form-group {
-	width: 70%;
-}
-
-.form-control {
-	width: 70%;
-}
-</style>
 <body>
 	<div class="container mt-3">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="index.jsp">설문지</a>
-		</nav>
 		<form method="post" action="">
 			<div class="form-group">
 				<label>신장</label> <input type="text" class="form-control"

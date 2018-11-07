@@ -9,22 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
   </head>
-  <style type="text/css">
-  	.container{
-  		width:70%;
-  		max-width:560px;
-  	}
-  	.form-control{
-  		width:49%;
-  	}
-  	.form-button{
-  		float:center;
-  	}
-  </style>
+
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.jsp">설문지</a>
-    </nav>
     <div class="container mt-3">
       <form method="post" action="">
       <div class="form-group">

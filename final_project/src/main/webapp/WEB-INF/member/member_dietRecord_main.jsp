@@ -16,23 +16,6 @@
    integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
    crossorigin="anonymous">
 <link rel="stylesheet" href="#">
-<style type="text/css">
-	.pagination{
-		
-	}
-	a{
-		text-decoration:none;
-		color:black;
-	}
-	a:hover{
-		text-decoration:none;
-		color:black;
-	}
-	a:visited{
-		text-decoration:none;
-		color:black;
-	}
-</style>
 
 </head>
 
@@ -108,7 +91,7 @@
       <a class="btn btn-primary" href="#" role="button">기록하기</a>
 
 
-      <nav aria-label="Page navigation example">
+      <nav aria-label="Page navigation">
          <ul class="pagination">
             <li class="page-item"><a class="page-link" href="#">이전</a></li>
             <li class="page-item active"><a class="page-link" href="#">1</a></li>

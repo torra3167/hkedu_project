@@ -16,37 +16,8 @@
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="#">
-<style type="text/css">
-	.container{
-		width:70%;
-	}
-	.nav-btn{
-		float:middle;
-	}
-	a{
-		text-decoration:none;
-		color:black;
-	}
-	a:hover{
-		text-decoration:none;
-		color:black;
-	}
-	a:visited{
-		text-decoration:none;
-		color:black;
-	}
-	.nav-btn{
-		align:center;
-	}
-	.content{
-		height:500px;
-	}
-</style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="index.jsp">피드백 확인</a>
-	</nav>
 	<div class="container">
 		<label>보낸 사람</label>
 		<div class="form-content">

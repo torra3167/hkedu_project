@@ -9,18 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
   </head>
-  <style type="text/css">
-  	.container{
-  		width:70%;
-  	}
-  	.form-group{
-  		width:70%;
-  	}
-  </style>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.jsp">회원가입</a>
-    </nav>
     <div class="container mt-3" style="max-width: 560px;">
       <form method="post" action="">
         <div class="form-group">
@@ -48,9 +37,6 @@
         <button type="button" class="btn btn-primary">뒤로가기</button>
       </form>
     </div>
-    <footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
-      Copyright ⓒ 2018 장정필 All Rights Reserved.
-    </footer>
     <script src="./js/jquery.min.js"></script>
     <script src="./js/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
