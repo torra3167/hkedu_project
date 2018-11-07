@@ -19,7 +19,8 @@ public class SellerController {
 		
 		
 		@RequestMapping(value="/seller/join.gom", method=RequestMethod.GET)
-		public String joinForm(SellerJoinCommand sellerJoinCommand) {
+		public String joinForm(Model model) {
+			model.addAttribute("sellerJoinCommand", new SellerJoinCommand());
 			return "seller/seller_join.jsp";
 		}
 		

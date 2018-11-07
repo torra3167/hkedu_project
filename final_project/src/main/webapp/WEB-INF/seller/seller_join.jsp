@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,19 +15,19 @@
 </head>
 <body>
 <div class="container mt-3" style="max-width: 560px;">
-	<form method="post" action="seller_join">
+	<form:form commandName="sellerJoinCommand" action="seller_join">
 		<div class="form-group">
-			<label>이메일</label> <input type="text" name="sellerEmail" class="form-control">
+			<label>이메일</label> <form:input path="sellerEmail" class="form-control" />
 			<input type="button" class="btn btn-primary" name="sellerEmailDuplicate" value="중복 확인" onclick="">
 		</div>
 		<div class="form-group">
-			<label>비밀번호</label> <input type="password" name="sellerPw" class="form-control">
+			<label>비밀번호</label> <form:input path="sellerPw" class="form-control" />
 		</div>
 		<div class="form-group">
 			<label>비밀번호 확인</label> <input type="password" name="sellerPw2" class="form-control"><!-- 속성추가 필요 -->
 		</div>
 		<div class="form-group">
-			<label>휴대폰번호</label> <input type="text" name="sellerPhone" class="form-control">
+			<label>휴대폰번호</label> <form:input path="sellerPhone" class="form-control" />
 			<input type="button" class="btn btn-primary" name="sellerPhoneDuplicate" value="중복 확인" onclick="">
 		</div>
 		<textarea rows="4" cols="50" readonly>
@@ -39,7 +41,7 @@
 		<input type="checkbox" name="sellerTerm" value="agree"> 개인정보 수집 및 이용에 동의합니다.(필수)<br><br>
 		<button type="submit" class="btn btn-primary">확인</button>
 		<button type="reset" class="btn btn-primary">다시 작성</button>
-	</form>
+	</form:form>
 </div>
 </body>
 </html>
