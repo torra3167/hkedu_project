@@ -24,6 +24,4 @@
 <bean id="sellerRepository" class="repository.SellerRepository"></bean>
 
 
-
-
 </beans>
