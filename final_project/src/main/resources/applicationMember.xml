@@ -15,14 +15,13 @@
 <bean id="ms" class="service.MemberService"></bean>
 <bean id="cs" class="service.CoachService"></bean>
 <bean id="ps" class="service.ProgramService"></bean>
+<bean id="sellerService" class="service.SellerService"></bean>
 
 <!-- Repository  -->
 <bean id="mr" class="repository.MemberRepository"></bean>
 <bean id="cr" class="repository.CoachRepository"></bean>
 <bean id="pr" class="repository.ProgramRepository"></bean>
-
-<bean id="ms" class="service.SellerService"></bean>
-<bean id="mr" class="repository.SellerRepository"></bean>
+<bean id="sellerRepository" class="repository.SellerRepository"></bean>
 
 
 </beans>
