@@ -16,7 +16,7 @@ COACH_EMAIL, COACH_PW, COACH_NAME, COACH_PHOTO, COACH_CAREER
 	<result column="COACH_CAREER"  jdbcType="CLOB"  property="coachCareer"/>
 </resultMap>
 
-<select id="selectByEmail" resultMap="coachMap" parameterType="string">
+<select id="selectByEmail" resultMap="coachMap" parameterType="String">
 	select <include refid="col"></include>
 	from coach
 	where COACH_EMAIL = #{COACH_EMAIL}

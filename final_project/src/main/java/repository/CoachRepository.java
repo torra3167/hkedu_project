@@ -12,10 +12,10 @@ public class CoachRepository extends AbstractRepository {
 	private final String namespace = "repository.mapper.coachMapper";
 	
 	public Coach selectByEmail(String email) {
-		
+		System.out.println("selectByEmail Email " + email);
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-			return sqlSession.selectOne(namespace + ".selectByEmail", email);
+			return (Coach)sqlSession.selectOne(namespace + ".selectByEmail", email);
 
 		} finally {
 			sqlSession.close();
