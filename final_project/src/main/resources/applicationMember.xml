@@ -19,7 +19,7 @@
 <!-- Repository  -->
 <bean id="mr" class="repository.MemberRepository"></bean>
 <bean id="cr" class="repository.CoachRepository"></bean>
-<bean id="cr" class="repository.ProgramRepository"></bean>
+<bean id="pr" class="repository.ProgramRepository"></bean>
 
 
 </beans>
