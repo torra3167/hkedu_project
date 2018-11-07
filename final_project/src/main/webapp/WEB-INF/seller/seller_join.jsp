@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <script src="../js/jquery.min.js"></script>
 <script src="../js/popper.min.js"></script>
@@ -36,7 +37,7 @@
 			온라인 입점신청을 위해 동의받는 개인정보 수집 및 이용동의를 제외한 나머지 개인정보처리 관련 사항은 회사 사이트 정책의 개인정보처리방침과 동일하게 적용됩니다.
 		</textarea><br>
 		<input type="checkbox" name="sellerTerm" value="agree"> 개인정보 수집 및 이용에 동의합니다.(필수)<br><br>
-		<button type="submit" class="btn btn-primary">메뉴 등록</button>
+		<button type="submit" class="btn btn-primary">확인</button>
 		<button type="reset" class="btn btn-primary">다시 작성</button>
 	</form>
 </div>
