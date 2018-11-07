@@ -4,22 +4,17 @@
 <configuration>
 <properties resource="database.properties"></properties>
 	<typeAliases>
-		<typeAlias type="model.Comment" alias="Comment"/>
-		<typeAlias type="model.Reply" alias="Reply"/>
-		<typeAlias type="model.Member" alias="Member"/>
-		<typeAlias type="model.Aca" alias="Aca"/>
+		<typeAlias type="model.Coach" alias="Coach"/>
+	<!-- 	<typeAlias type="model.Aca" alias="Aca"/>
 		<typeAlias type="model.Bca" alias="Bca"/>
-		<typeAlias type="model.Cca" alias="Cca"/>
+		<typeAlias type="model.Cca" alias="Cca"/> -->
 	</typeAliases>
 	
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC"></transactionManager>
 			<dataSource type="POOLED">
-			<!-- 	<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-				<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
-				<property name="username" value="smrit"/>
-				<property name="password" value="oracle"/> -->
+		
 				
 				<property name="driver" value="${driver}"/>
 				<property name="url" value="${url}"/>
@@ -30,6 +25,7 @@
 	</environments>
 	
 	<mappers>
-		<mapper resource="repository/mapper/commentMapper.xml"/>
+		
+		<mapper resource="mapper/coachMapper.xml"/>
 	</mappers>
 </configuration>

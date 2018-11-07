@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis-org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.coachMapper">
+<cache></cache>
+
+<sql id="col">
+COACH_EMAIL, COACH_PW, COACH_NAME, COACH_PHOTO, COAGH_CAREER
+</sql>
+
+<select id="selectByEmail" resultMap="coachMap" parameterType="Member">
+	select <include refid="col"></include>
+	from coach
+	where COACH_EMAIL = #{COACH_EMAIL}
+</select>
+
+
+</mapper>
