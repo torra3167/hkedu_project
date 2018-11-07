@@ -5,7 +5,7 @@
 <cache></cache>
 
 <sql id="col">
-COACH_EMAIL, COACH_PW, COACH_NAME, COACH_PHOTO, COAGH_CAREER
+COACH_EMAIL, COACH_PW, COACH_NAME, COACH_PHOTO, COACH_CAREER
 </sql>
 
 <resultMap type="Coach" id="coachMap">
@@ -16,7 +16,7 @@ COACH_EMAIL, COACH_PW, COACH_NAME, COACH_PHOTO, COAGH_CAREER
 	<result column="COACH_CAREER"  jdbcType="VARCHAR"  property="coachCareer"/>
 </resultMap>
 
-<select id="selectByEmail" resultMap="coachMap" parameterType="Member">
+<select id="selectByEmail" resultMap="coachMap" parameterType="Coach">
 	select <include refid="col"></include>
 	from coach
 	where COACH_EMAIL = #{COACH_EMAIL}
