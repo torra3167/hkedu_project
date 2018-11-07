@@ -15,7 +15,7 @@ public class CoachService {
 	
 	public CoachAuthInfo authenticate(String email, String pw) {
 		Coach coach = cr.selectByEmail(email);
-		System.out.println("COACH " + coach);
+		System.out.println("COACH " + coach.getCoachName());
 		// 이메일이 존재하지 않는경우
 		if(coach == null) {
 			throw new IdPasswordNotMatchingException("아이디가 존재하지않습니다");

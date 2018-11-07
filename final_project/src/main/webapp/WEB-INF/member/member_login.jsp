@@ -6,15 +6,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<<<<<<< HEAD
 <link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css"
 	rel="stylesheet">
+=======
+>>>>>>> edb70f711132ce0e1f529267fada9daef21b9541
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
+<<<<<<< HEAD
 <link rel="stylesheet" href="../css/1027.css">
 
 <!-- function : 자동 로그인, 이메일/비밀번호 공란 체크 -->
+=======
+
+>>>>>>> edb70f711132ce0e1f529267fada9daef21b9541
 
 <body>
 <div class="container">
@@ -37,7 +44,7 @@
 	      </form>
 		</div>
     </div>
-       <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
 </body>
