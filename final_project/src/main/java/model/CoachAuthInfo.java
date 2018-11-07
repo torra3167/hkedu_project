@@ -1,6 +1,9 @@
 package model;
 
-public class CoachAuthInfo {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class CoachAuthInfo implements Serializable {
 	
 	private String coachEmail;
 	private String coachName;

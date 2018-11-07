@@ -30,7 +30,7 @@ public class CoachController {
 		}
 		
 		model.addAttribute("iPage", "coach/coach_login.jsp");
-
+		
 		return "index";
 	}
 	
