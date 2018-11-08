@@ -262,7 +262,7 @@
 
 		</div>
 	</nav>
-<% } else { %>	
+<% } else if(divide.equals("a")) { %>	
 	<!-- 관리자 페이지  -->
 	
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
