@@ -61,15 +61,6 @@ public class SellerController {
 			
 			SellerAuthInfo sai = sellerService.authenticate(sellerLoginCommand.getSellerEmail(), sellerLoginCommand.getSellerPw());
 			session.setAttribute("sellerAuthInfo", sai);
-			/*Cookie cookie = new Cookie("coachEmail", coachLoginCommand.getCoachEmail());
-			
-			if(coachLoginCommand.isRememberEmail()) {
-				cookie.setMaxAge(60 * 60 * 24 * 30);
-			} else {
-				cookie.setMaxAge(0);
-			}
-			
-			response.addCookie(cookie);*/
 			
 			return "index";
 		}
