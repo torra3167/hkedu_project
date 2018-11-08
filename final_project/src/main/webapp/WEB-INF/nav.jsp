@@ -183,7 +183,8 @@
 
 			<div class="navbar-nav ml-md-auto">
 				<a class="nav-item nav-link" href="member_join.gom" >코치페이지</a> 
-			 &nbsp;
+				<a class="nav-item nav-link" href="member_join.gom" >프로그램등록</a> 
+				<a class="nav-item nav-link" href="member_join.gom" >운동등록</a> 
 				<a class="nav-item nav-link" href="logout.gom" >로그아웃</a>	
 
 
