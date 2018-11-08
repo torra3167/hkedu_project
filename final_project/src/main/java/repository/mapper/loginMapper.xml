@@ -7,8 +7,10 @@
 
 
 <resultMap type="AuthInfo" id="authInfoMap">
-	<id column="member_email"  jdbcType="VARCHAR"  property="email" />
-	<result column="member_divide"  jdbcType="VARCHAR"  property="divide"/>
+<!-- 	<id column="member_email"  jdbcType="VARCHAR"  property="email" />
+	<result column="member_divide"  jdbcType="VARCHAR"  property="divide"/> -->
+	<id column="email"  jdbcType="VARCHAR"  property="email" />
+	<result column="divide"  jdbcType="VARCHAR"  property="divide"/>
 	
 </resultMap>
 
@@ -17,9 +19,13 @@
 	union select coach_email, coach_divide, coach_name  from coach where coach_email = #{coach_email}
 	union select seller_email, seller_divide, to_char(null) from seller where seller_email = #{seller_email} -->
 
-	select member_email, member_divide from member where member_email = #{member_email}
-	union select coach_email, coach_divide from coach where coach_email = #{coach_email}
-	union select seller_email, seller_divide from seller where seller_email = #{seller_email} 
+	select member_email as email, member_divide as divide from member where member_email = #{member_email}
+	union 
+	select coach_email as email, coach_divide as divide from coach where coach_email = #{coach_email}
+	union 
+	select seller_email as email, seller_divide as divide from seller where seller_email = #{seller_email}
+	union 
+	select manager_id as email, manager_divide as divide from manager where manager_id = #{manager_id}
 </select>
 
 </mapper>

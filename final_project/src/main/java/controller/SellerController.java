@@ -47,31 +47,6 @@ public class SellerController {
 			}
 		}
 		
-		@RequestMapping(value="/seller_login.gom", method=RequestMethod.GET)
-		public String sellerLogin(Model model) {
-			model.addAttribute("sellerLoginCommand", new SellerLoginCommand());
-			model.addAttribute("iPage", "seller/seller_login.jsp");
-			return "index";
-		}
 		
-		@RequestMapping(value="/seller_login.gom", method=RequestMethod.POST)
-		public String sellerSubmit(SellerLoginCommand sellerLoginCommand, Model model, HttpSession session, HttpServletResponse response) {
-			
-			System.out.println("controller " + sellerLoginCommand.getSellerEmail() + "," + sellerLoginCommand.getSellerPw());
-			
-			SellerAuthInfo sai = sellerService.authenticate(sellerLoginCommand.getSellerEmail(), sellerLoginCommand.getSellerPw());
-			session.setAttribute("sellerAuthInfo", sai);
-			/*Cookie cookie = new Cookie("coachEmail", coachLoginCommand.getCoachEmail());
-			
-			if(coachLoginCommand.isRememberEmail()) {
-				cookie.setMaxAge(60 * 60 * 24 * 30);
-			} else {
-				cookie.setMaxAge(0);
-			}
-			
-			response.addCookie(cookie);*/
-			
-			return "index";
-		}
 		
 }

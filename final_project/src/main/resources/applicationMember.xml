@@ -12,15 +12,15 @@
 <context:annotation-config></context:annotation-config>
 
 <!-- Service  -->
-<bean id="memberService" class="service.MemberService"></bean>
-<!-- <bean id="cs" class="service.CoachService"></bean> -->
+<bean id="ms" class="service.MemberService"></bean>
+<bean id="cs" class="service.CoachService"></bean>
 <bean id="ps" class="service.ProgramService"></bean>
 <bean id="sellerService" class="service.SellerService"></bean>
 <bean id="ls" class="service.LoginService"></bean>
 
 <!-- Repository  -->
-<bean id="memberRepository" class="repository.MemberRepository"></bean>
-<!-- <bean id="cr" class="repository.CoachRepository"></bean> -->
+<bean id="mr" class="repository.MemberRepository"></bean>
+ <bean id="cr" class="repository.CoachRepository"></bean> 
 <bean id="pr" class="repository.ProgramRepository"></bean>
 <bean id="lr" class="repository.LoginRepository"></bean>
 <bean id="sellerRepository" class="repository.SellerRepository"></bean>

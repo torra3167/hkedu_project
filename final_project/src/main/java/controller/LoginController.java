@@ -47,7 +47,9 @@ public class LoginController {
 		System.out.println(loginCommand.getPw());
 		
 		AuthInfo ai = ls.selectByEmailAndDivide(loginCommand.getEmail(), loginCommand.getPw());
-		
+		//구분
+		model.addAttribute("divide", ai.getDivide());
+		//인증
 		session.setAttribute("AuthInfo", ai);
 		
 		Cookie cookie = new Cookie("email", loginCommand.getEmail());
@@ -59,6 +61,13 @@ public class LoginController {
 		}
 		
 		response.addCookie(cookie);
+		
+		return "index";
+	}
+	
+	@RequestMapping(value="/logout.gom", method=RequestMethod.GET)
+	public String logout(HttpSession session) {		
+		session.invalidate();
 		
 		return "index";
 	}

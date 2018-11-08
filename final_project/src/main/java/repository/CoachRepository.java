@@ -22,17 +22,6 @@ public class CoachRepository extends AbstractRepository {
 		}
 	}
 	
-	/*public List<Comment> selectCommentByCondtion(Comment comment) {
-		// TODO Auto-generated method stub
-		sqlSession = getSqlSessionFactory().openSession();
-		try {
-			Long commentNo = comment.getCommentNo();
-			return sqlSession.selectList(namespace + ".selectCommentByCondtion", comment);
-
-		} finally {
-			sqlSession.close();
-		}
-		
-	}*/
+	
 
 }
