@@ -21,7 +21,6 @@
 
 <mvc:view-controller path="/index" view-name="index"/>
 
-
 <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 	<property name="basenames">
 		<list>

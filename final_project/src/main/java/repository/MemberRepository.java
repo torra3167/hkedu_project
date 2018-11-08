@@ -10,11 +10,11 @@ import model.Member;
 @Repository
 public class MemberRepository extends AbstractRepository {
 	
-	private final String namespace="mapper.memberMapper";
+	private final String namespace="repository.mapper.memberMapper";
 	
 	public Integer insertMember(MemberJoinCommand memberJoinCommand) {
 		SqlSession sqlSession=getSqlSessionFactory().openSession();
-		String statement=namespace+".instertMember";
+		String statement=namespace+".insertMember";
 		try {
 			System.out.println("repository "+memberJoinCommand.getMemberEmail());
 			Integer result=sqlSession.insert(statement,memberJoinCommand);

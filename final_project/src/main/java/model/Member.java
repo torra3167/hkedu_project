@@ -15,6 +15,18 @@ public class Member implements Serializable {
 	
 	public Member() {}
 	
+	public Member(String memberEmail, String memberName, int memberPhone, String memberPass, String memberAddr1,
+			String memberAddr2, int memberAddrNo) {
+		super();
+		this.memberEmail = memberEmail;
+		this.memberName = memberName;
+		this.memberPhone = memberPhone;
+		this.memberPass = memberPass;
+		this.memberAddr1 = memberAddr1;
+		this.memberAddr2 = memberAddr2;
+		this.memberAddrNo = memberAddrNo;
+	}
+
 	public String getMemberEmail() {
 		return memberEmail;
 	}

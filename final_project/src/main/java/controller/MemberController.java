@@ -18,25 +18,22 @@ public class MemberController {
 	@RequestMapping(value="/member_join.gom", method=RequestMethod.GET)
 	public String joinForm(Model model) {
 		model.addAttribute("iPage", "member/member_register.jsp");
+		model.addAttribute("memberJoinCommand",new MemberJoinCommand());
+		System.out.println("controller");
 		return "index";
 	}
 	
 	@RequestMapping(value="/member_join.gom", method=RequestMethod.POST)
 	public String joinSubmit(MemberJoinCommand memberJoinCommand,  Model model) {
 		Integer result=null;
+		System.out.println("controller");
 		result=memberService.insertMember(memberJoinCommand);
 		if(result>0) {
 			model.addAttribute("result", result);
-			return "member/member_join.jsp";
+			return "index";
 		}else {
 			return "redirect:/index";
 		}
-	}
-	
-	@RequestMapping(value="/member_login.gom", method=RequestMethod.GET)
-	public String LoginForm(Model model) {
-		model.addAttribute("iPage", "member/member_login.jsp");
-		return "member/member_login";
 	}
 	
 	@RequestMapping(value="/member_findID.gom", method=RequestMethod.GET)
