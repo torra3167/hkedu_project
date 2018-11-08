@@ -37,20 +37,20 @@
 						상품진단</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="Goods/goodsCartList.jsp">Cart</a></li>
+					
 				<li class="nav-item">
-					<div class="dropdown">
+					<div class="dropdown show">
 						<a class="nav-link dropdown-toggle" id="dropdown"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							고객센터 </a>
 						<div class="dropdown-menu" aria-labelledby="dropdown">
-							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a> <a
-								class="dropdown-item" href="main/contact.jsp" >1:1문의</a>
+							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a> 
+							<a class="dropdown-item" href="main/contact.jsp" >1:1문의</a>
 						</div>
 					</div>
 				</li>
 
-				<li class="nav-item"><a class="nav-link"
-					href="admin/admin_menu.jsp">관리자로그인</a></li>
+		
 				<li class="nav-item"><a class="nav-link" href="seller_login.gom">판매자로그인</a></li>
 
 				<!-- <li class="nav-item">
@@ -71,9 +71,7 @@
 
 			<div class="navbar-nav ml-md-auto">
 				<a class="nav-item nav-link" href="member_join.gom" >회원가입</a> 
-				<a
-					class="nav-item nav-link" href="member_login.gom" >로그인</a> &nbsp;
-
+				<a class="nav-item nav-link" href="member_login.gom" >로그인</a> &nbsp;
 
 
 
@@ -91,11 +89,11 @@
 		</div>
 	</nav>
 	
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 	
 	
-	
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>
