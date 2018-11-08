@@ -12,10 +12,10 @@ public class AuthInfo implements Serializable {
 	public  AuthInfo() {}
 	
 	
-	public AuthInfo(String email, String divide, String name) {
+	public AuthInfo(String email, String divide) {
 		this.email = email;
 		this.divide = divide;
-		this.name = name;
+	
 	}
 
 

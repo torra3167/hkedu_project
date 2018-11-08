@@ -48,30 +48,13 @@
 							<a class="dropdown-item" href="main/contact.jsp" >1:1문의</a>
 						</div>
 					</div>
-				</li>
-
-		
-				<li class="nav-item"><a class="nav-link" href="seller_login.gom">판매자로그인</a></li>
-
-				<!-- <li class="nav-item">
-					<div class="dropdown">
-						<a class="nav-link dropdown-toggle" id="dropdown"
-							data-toggle="dropdown"> 코치메뉴 </a>
-						<div class="dropdown-menu" aria-labelledby="dropdown">
-							<a class="dropdown-item" href="main/noticeBoard.jsp">회원관리</a> <a
-								class="dropdown-item" href="exercise/exercise_list.jsp">운동관리</a>
-						</div>
-					</div>
-				</li> -->
-				<li class="nav-item"><a class="nav-link" href="coach_login.gom">코치로그인</a></li>
-				
-				
+				</li>				
 			</ul>
 
 
 			<div class="navbar-nav ml-md-auto">
 				<a class="nav-item nav-link" href="member_join.gom" >회원가입</a> 
-				<a class="nav-item nav-link" href="member_login.gom" >로그인</a> &nbsp;
+				<a class="nav-item nav-link" href="login.gom" >로그인</a> &nbsp;
 
 
 

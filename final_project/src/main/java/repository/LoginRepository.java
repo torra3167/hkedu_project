@@ -1,9 +1,11 @@
 package repository;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import model.AuthInfo;
 
+@Repository
 public class LoginRepository extends AbstractRepository{
 	SqlSession sqlSession;
 	private final String namespace = "repository.mapper.loginMapper";
@@ -13,7 +15,9 @@ public class LoginRepository extends AbstractRepository{
 		System.out.println("selectByEmailAndDivide Email " + email);
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-			return (AuthInfo)sqlSession.selectOne(namespace + ".selectByEmailAndDivide",email);
+			AuthInfo authInfo = (AuthInfo)sqlSession.selectOne(namespace + ".selectByEmailAndDivide",email);
+			System.out.println("authInfo" + authInfo);
+			return authInfo;
 
 		} finally {
 			sqlSession.close();
