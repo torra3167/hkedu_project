@@ -6,7 +6,18 @@ import java.io.Serializable;
 public class SellerLoginCommand implements Serializable{
 	private String sellerEmail;
 	private String sellerPw;
+	private boolean rememberEmail;
 	
+	
+	
+	public boolean isRememberEmail() {
+		return rememberEmail;
+	}
+
+	public void setRememberEmail(boolean rememberEmail) {
+		this.rememberEmail = rememberEmail;
+	}
+
 	public SellerLoginCommand() {}
 
 	public SellerLoginCommand(String sellerEmail, String sellerPw) {
