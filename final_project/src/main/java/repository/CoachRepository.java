@@ -15,7 +15,6 @@ public class CoachRepository extends AbstractRepository {
 		System.out.println("selectByEmail Email " + email);
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-			System.out.println("LLLL");
 			return (Coach)sqlSession.selectOne(namespace + ".selectByEmail", email);
 
 		} finally {
