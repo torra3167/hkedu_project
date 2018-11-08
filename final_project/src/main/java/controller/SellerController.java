@@ -54,8 +54,6 @@ public class SellerController {
 			return "index";
 		}
 		
-		
-		
 		@RequestMapping(value="/seller_login.gom", method=RequestMethod.POST)
 		public String sellerSubmit(SellerLoginCommand sellerLoginCommand, Model model, HttpSession session, HttpServletResponse response) {
 			

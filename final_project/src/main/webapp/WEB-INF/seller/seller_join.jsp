@@ -15,6 +15,8 @@
 </head>
 <body>
 <div class="container mt-3" style="max-width: 560px;">
+	<div><h3><strong>판매자 회원가입</strong></h3></div>
+	<br>
 	<form method="post" action="">
 		<div class="form-group">
 			<label>이메일</label> <input type="text" name="sellerEmail" class="form-control">
