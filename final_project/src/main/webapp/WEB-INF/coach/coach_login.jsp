@@ -22,13 +22,13 @@
 	<div class="container">
 		<div class="signInBox">
 		
-	<form:form commandName="coachLoginCommand">
+	<form:form commandName="loginCommand">
 				<label for="inputEmail" class="sr-only">이메일</label> 
-				<form:input path="coachEmail" class="form-control" placeholder="이메일"/>
+				<form:input path="email" class="form-control" placeholder="이메일"/>
 				
 				<label for="inputPassword"
 					class="sr-only">비밀번호</label> 
-					<form:password path="coachPw" placeholder="비밀번호" class="form-control"/>
+					<form:password path="pw" placeholder="비밀번호" class="form-control"/>
 					
 				<div class="checkbox">
 					<label> 
