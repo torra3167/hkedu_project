@@ -18,4 +18,27 @@ insert into exerciseUpload (EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT
 values ()
 </insert>
 
+<resultMap type="ExerciseCatB" id="exerciseCatBMap">
+	<id column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>
+	<result column="EXERCISE_CAT_B_NAME" jdbcType="VARCHAR" property="exerciseCatBName"/>	
+</resultMap>
+
+
+<select id="exerciseCatBSelect" resultMap="exerciseCatBMap">
+	select EXERCISE_CAT_B_NUMBER, EXERCISE_CAT_B_NAME
+	from EXERCISE_CAT_B
+</select>
+
+<resultMap type="ExerciseCatA" id="exerciseCatAMap">
+	<id column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>
+	<result column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>
+	<result column="EXERCISE_CAT_A_NAME" jdbcType="VARCHAR" property="exerciseCatAName"/>	
+</resultMap>
+
+<select id="exerciseCatASelect" resultMap="exerciseCatAMap" parameterType="ExerciseCatB">
+ select EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER, EXERCISE_CAT_A_NAME
+ from EXERCISE_CAT_A
+ where EXERCISE_CAT_B_NUMBER = #{exerciseCatBNumber}
+</select>
+
 </mapper>

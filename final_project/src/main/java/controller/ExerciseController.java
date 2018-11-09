@@ -1,9 +1,7 @@
 package controller;
 
-import javax.servlet.http.Cookie;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import category.ExerciseCatB;
 import command.ExerciseCommand;
-
 import service.ExerciseService;
 
 @Controller
@@ -21,11 +19,15 @@ public class ExerciseController {
 	@Autowired
 	private ExerciseService es;
 	
+	
+	
 	@RequestMapping(value="/exercise_register.gom")
 	public String insertExercise(ExerciseCommand exerciseCommand, HttpServletRequest request, Model model) throws Exception{
-	     
-		model.addAttribute("iPage", "exercise/exercise_register.jsp");
-	    return "index";
+	    
+		es.exerciseCategoryB(model);
+/*		model.addAttribute("iPage", "exercise/exercise_register.jsp");
+*/	    return "exercise/exercise_register";
+
 	}
 
 	@RequestMapping(value="/exercise_register.gom", method=RequestMethod.POST )
@@ -48,6 +50,14 @@ public class ExerciseController {
 		
 		
 		
+	}
+	
+	@RequestMapping(value="/aca.gom", method=RequestMethod.POST)
+	public String bca(ExerciseCatB bca, Model model) {
+		System.out.println("B category " + bca.getExerciseCatBNumber());
+		es.exerciseCategoryA(bca, model);
+/*		model.addAttribute("iPage", "exercise/category/exercise_cat_a");
+*/		return "exercise/category/exercise_cat_a";
 	}
 
 }

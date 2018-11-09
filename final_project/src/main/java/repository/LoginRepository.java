@@ -16,8 +16,8 @@ public class LoginRepository extends AbstractRepository{
 */		sqlSession = getSqlSessionFactory().openSession();
 		try {
 			AuthInfo authInfo = (AuthInfo)sqlSession.selectOne(namespace + ".selectByEmailAndDivide",email);
-			System.out.println("authInfo" + authInfo);
-			return authInfo;
+/*			System.out.println("authInfo" + authInfo);
+*/			return authInfo;
 
 		} finally {
 			sqlSession.close();

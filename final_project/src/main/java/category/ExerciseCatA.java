@@ -8,7 +8,7 @@ public class ExerciseCatA implements Serializable {
 	private int exerciseCatBNumber;
 	private String exerciseCatAName;
 	
-	
+	public ExerciseCatA() {}
 	public int getExerciseCatANumber() {
 		return exerciseCatANumber;
 	}
@@ -27,6 +27,9 @@ public class ExerciseCatA implements Serializable {
 	public void setExerciseCatAName(String exerciseCatAName) {
 		this.exerciseCatAName = exerciseCatAName;
 	}
+	
+	
+	
 	
 	
 	

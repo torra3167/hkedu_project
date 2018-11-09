@@ -18,7 +18,7 @@ public class LoginService {
 	public AuthInfo selectByEmailAndDivide(String email, String pw) {
 		// TODO Auto-generated method stub
 		AuthInfo authinfo = lr.selectByEmailAndDivide(email);
-		System.out.println(authinfo);
+//		System.out.println(authinfo);
 		
 		if(authinfo == null) {
 			throw new IdPasswordNotMatchingException("아이디가 존재하지않습니다");

@@ -4,7 +4,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import command.SellerJoinCommand;
-import command.SellerUpdateCommand;
 import model.Coach;
 import model.Seller;
 
@@ -44,7 +43,7 @@ public class SellerRepository extends AbstractRepository{
 	}
 	
 	
-	public Integer updateSeller(SellerUpdateCommand sellerUpdateCommand) {
+	/*public Integer updateSeller(SellerUpdateCommand sellerUpdateCommand) {
 		System.out.println("Repo updateSeller email" + sellerUpdateCommand.getSellerEmail());
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
@@ -57,5 +56,5 @@ public class SellerRepository extends AbstractRepository{
 		} finally {
 			sqlSession.close();
 		}
-	}
+	}*/
 }

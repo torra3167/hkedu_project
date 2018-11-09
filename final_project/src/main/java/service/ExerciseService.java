@@ -1,14 +1,18 @@
 package service;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
+import category.ExerciseCatA;
+import category.ExerciseCatB;
 import command.ExerciseCommand;
 import model.ExerciseUpload;
+import model.MemberSurvey;
 import repository.ExerciseRepository;
 
 public class ExerciseService {
@@ -34,7 +38,6 @@ public class ExerciseService {
 		image = exerciseCommand.getExerciseImg();
 		video = exerciseCommand.getExerciseVideo();
 		name = exerciseCommand.getExerciseName();
-		
 		originalFile = multipartFile.getOriginalFilename();
 		originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
 		storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
@@ -68,6 +71,18 @@ public class ExerciseService {
 		}
 		
 		return false;
+	}
+
+	public void exerciseCategoryB(Model model) {
+		// TODO Auto-generated method stub
+		List<ExerciseCatB> list = er.exerciseCatBSelect();
+		model.addAttribute("list", list);
+	}
+	
+	public void exerciseCategoryA(ExerciseCatB bca, Model model) {
+		// TODO Auto-generated method stub
+		List<ExerciseCatA> list = er.exerciseCatASelect(bca);
+		model.addAttribute("list", list);
 	}
 	
 	
