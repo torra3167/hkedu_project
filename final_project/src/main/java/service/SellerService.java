@@ -2,12 +2,10 @@ package service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import command.SellerJoinCommand;
+import command.SellerUpdateCommand;
 import exception.IdPasswordNotMatchingException;
-import model.Coach;
-import model.CoachAuthInfo;
 import model.Seller;
 import model.SellerAuthInfo;
 import repository.SellerRepository;
@@ -25,7 +23,7 @@ public class SellerService {
 	
 	public SellerAuthInfo authenticate(String email, String pw) {
 		Seller seller = sellerRepository.selectByEmail(email);
-		System.out.println("Service  Seller " + seller);
+		System.out.println("Service  Seller " + seller.getSellerEmail());
 		// 이메일이 존재하지 않는경우
 		if(seller == null) {
 			throw new IdPasswordNotMatchingException("아이디가 존재하지않습니다");
@@ -37,5 +35,9 @@ public class SellerService {
 		//일치하는 경우
 		return new SellerAuthInfo(seller.getSellerEmail(), seller.getSellerPw());
 	}
-	
+
+	public Integer updateSeller(SellerUpdateCommand sellerUpdateCommand) {
+		System.out.println("Service updateSeller"+ sellerUpdateCommand.getSellerEmail());
+		return sellerRepository.updateSeller(sellerUpdateCommand);
+	}
 }

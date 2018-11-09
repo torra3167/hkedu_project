@@ -6,57 +6,69 @@ import java.io.Serializable;
 public class Seller implements Serializable{
 	private String sellerEmail;
 	private String sellerPw;
-	private String sellerConfirmPw;
-	private int sellerPhone;
+	private String sellerPhone;
 	private String sellerTerm;
+	private String sellerDivide;
 	
 	public Seller() {}
 
-	public Seller(String sellerEmail, String sellerPw, String sellerConfirmPw, int sellerPhone, String sellerTerm) {
+
+	public Seller(String sellerEmail, String sellerPw, String sellerPhone, String sellerTerm, String sellerDivide) {
 		this.sellerEmail = sellerEmail;
 		this.sellerPw = sellerPw;
-		this.sellerConfirmPw = sellerConfirmPw;
 		this.sellerPhone = sellerPhone;
 		this.sellerTerm = sellerTerm;
+		this.sellerDivide = sellerDivide;
 	}
-
+	
+	
+	
 	public String getSellerEmail() {
 		return sellerEmail;
 	}
+
 
 	public void setSellerEmail(String sellerEmail) {
 		this.sellerEmail = sellerEmail;
 	}
 
+
 	public String getSellerPw() {
 		return sellerPw;
 	}
+
 
 	public void setSellerPw(String sellerPw) {
 		this.sellerPw = sellerPw;
 	}
 
-	public String getSellerConfirmPw() {
-		return sellerConfirmPw;
-	}
 
-	public void setSellerConfirmPw(String sellerConfirmPw) {
-		this.sellerConfirmPw = sellerConfirmPw;
-	}
-
-	public int getSellerPhone() {
+	public String getSellerPhone() {
 		return sellerPhone;
 	}
 
-	public void setSellerPhone(int sellerPhone) {
+
+	public void setSellerPhone(String sellerPhone) {
 		this.sellerPhone = sellerPhone;
 	}
+
 
 	public String getSellerTerm() {
 		return sellerTerm;
 	}
 
+
 	public void setSellerTerm(String sellerTerm) {
 		this.sellerTerm = sellerTerm;
+	}
+
+
+	public String getSellerDivide() {
+		return sellerDivide;
+	}
+
+
+	public void setSellerDivide(String sellerDivide) {
+		this.sellerDivide = sellerDivide;
 	}
 }
