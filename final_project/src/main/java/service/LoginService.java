@@ -25,8 +25,8 @@ public class LoginService {
 		} else {
 		
 		//일치하는 경우
-			System.out.println("AUTHINFO EMAIL " + authinfo.getEmail());
-			System.out.println("AUTHINFO DIVIDE " + authinfo.getDivide());
+			/*System.out.println("AUTHINFO EMAIL " + authinfo.getEmail());
+			System.out.println("AUTHINFO DIVIDE " + authinfo.getDivide());*/
 			
 		return new AuthInfo(authinfo.getEmail(), authinfo.getDivide());
 		

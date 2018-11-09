@@ -4,21 +4,25 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import model.Coach;
+import model.ExerciseUpload;
 
 @Repository
 public class ExerciseRepository extends AbstractRepository {
 	SqlSession sqlSession;
-	private final String namespace = "repository.mapper.coachMapper";
+	private final String namespace = "repository.mapper.exerciseMapper";
 	
-	public Coach selectByEmail(String email) {
-		System.out.println("selectByEmail Email " + email);
+	
+
+	public int insertExercise(ExerciseUpload eu) {
+		// TODO Auto-generated method stub
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-			return (Coach)sqlSession.selectOne(namespace + ".selectByEmail", email);
+			return (Integer)sqlSession.insert(namespace + ".insertExercise", eu);
 
 		} finally {
 			sqlSession.close();
 		}
+		
 	}
 	
 	

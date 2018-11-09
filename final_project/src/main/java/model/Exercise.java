@@ -11,6 +11,7 @@ public class Exercise implements Serializable {
 	private String exerciseName;
 	private String exerciseImg;
 	private String exerciseVideo;
+
 	
 	public int getExerciseNumber() {
 		return exerciseNumber;

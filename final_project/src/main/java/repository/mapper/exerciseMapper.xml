@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis-org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="repository.mapper.exerciseMapper">
+<cache></cache>
+
+<sql id="col">
+	COACH_EMAIL, COACH_PW, COACH_NAME, COACH_PHOTO, COACH_CAREER
+</sql>
+
+
+
+
+
+<insert id="insertExercise" parameterType="ExerciseUpload">
+insert into exerciseUpload (EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER, EXERCISE_UPLOAD_ORIGINAL,
+							EXERCISE_UPLOAD_STORED, EXERCISE_UPLOAD_SIZE, EXERCISE_UPLOAD_DIVIDE) 
+values ()
+</insert>
+
+</mapper>

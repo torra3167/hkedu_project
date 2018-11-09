@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="container mt-3" style="max-width: 560px;">
-        <form name="frm" method="post" action="exercise_register.gom" enctype="multipart/form-data" id="exerciseForm">
+        <form  action="exercise_register.gom" enctype="multipart/form-data" method="post">
         	<div class="form-group">
 				<label>운동 이름</label> <input type="text" name="exerciseName" class="form-control">
 			</div>

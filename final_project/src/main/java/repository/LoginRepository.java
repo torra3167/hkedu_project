@@ -12,8 +12,8 @@ public class LoginRepository extends AbstractRepository{
 	
 	public AuthInfo selectByEmailAndDivide(String email) {
 		// TODO Auto-generated method stub
-		System.out.println("selectByEmailAndDivide Email " + email);
-		sqlSession = getSqlSessionFactory().openSession();
+/*		System.out.println("selectByEmailAndDivide Email " + email);
+*/		sqlSession = getSqlSessionFactory().openSession();
 		try {
 			AuthInfo authInfo = (AuthInfo)sqlSession.selectOne(namespace + ".selectByEmailAndDivide",email);
 			System.out.println("authInfo" + authInfo);

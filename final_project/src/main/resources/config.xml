@@ -9,6 +9,9 @@
 		<typeAlias type="model.AuthInfo" alias="AuthInfo"/>
 		<typeAlias type="model.Member" alias="Member"/>
 		<typeAlias type="model.MemberSurvey" alias="MemberSurvey"/>
+		<typeAlias type="model.ExerciseUpload" alias="ExerciseUpload"/>
+		<typeAlias type="model.Exercise" alias="Exercise"/>
+		
 	
 	</typeAliases>
 	
@@ -29,5 +32,6 @@
 		<mapper resource="repository/mapper/coachMapper.xml"/>
 		<mapper resource="repository/mapper/sellerMapper.xml"/>
 		<mapper resource="repository/mapper/loginMapper.xml"/>
+		<mapper resource="repository/mapper/exerciseMapper.xml"/>
 	</mappers>
 </configuration>

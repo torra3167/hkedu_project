@@ -13,18 +13,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import command.LoginCommand;
 import model.AuthInfo;
-import service.CoachService;
+
 import service.LoginService;
-import service.MemberService;
-import service.SellerService;
+
 @Controller
 public class LoginController {
 	
 	@Autowired
 	private LoginService ls;
-	private CoachService cs;
-	private MemberService ms;
-	private SellerService sellerService;
+
 	
 	
 	@RequestMapping(value="/login.gom", method=RequestMethod.GET)
@@ -43,8 +40,8 @@ public class LoginController {
 	public String CoachSubmit(LoginCommand loginCommand, Model model, 
 			HttpSession session, HttpServletResponse response) {
 		
-		System.out.println(loginCommand.getEmail());
-		System.out.println(loginCommand.getPw());
+		/*System.out.println(loginCommand.getEmail());
+		System.out.println(loginCommand.getPw());*/
 		
 		AuthInfo ai = ls.selectByEmailAndDivide(loginCommand.getEmail(), loginCommand.getPw());
 		//구분
@@ -68,6 +65,7 @@ public class LoginController {
 	@RequestMapping(value="/logout.gom", method=RequestMethod.GET)
 	public String logout(HttpSession session) {		
 		session.invalidate();
+		
 		
 		return "index";
 	}
