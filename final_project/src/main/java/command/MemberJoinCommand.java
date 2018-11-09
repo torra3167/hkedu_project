@@ -13,9 +13,25 @@ public class MemberJoinCommand implements Serializable {
 	private String memberAddr1;
 	private String memberAddr2;
 	private int memberAddrNo;
+	private String memberDivide;
 	
 	public MemberJoinCommand() {}
 	
+	
+	public MemberJoinCommand(String memberEmail, String memberName, String memberPhone, String memberPass,
+			String memberAddr1, String memberAddr2, int memberAddrNo, String memberDivide) {
+		super();
+		this.memberEmail = memberEmail;
+		this.memberName = memberName;
+		this.memberPhone = memberPhone;
+		this.memberPass = memberPass;
+		this.memberAddr1 = memberAddr1;
+		this.memberAddr2 = memberAddr2;
+		this.memberAddrNo = memberAddrNo;
+		this.memberDivide = memberDivide;
+	}
+
+
 	public String getMemberEmail() {
 		return memberEmail;
 	}
@@ -57,6 +73,14 @@ public class MemberJoinCommand implements Serializable {
 	}
 	public void setMemberAddrNo(int memberAddrNo) {
 		this.memberAddrNo = memberAddrNo;
+	}
+
+	public String getMemberDivide() {
+		return memberDivide;
+	}
+
+	public void setMemberDivide(String memberDivide) {
+		this.memberDivide = memberDivide;
 	}
 	
 	

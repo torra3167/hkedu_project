@@ -37,7 +37,7 @@
 				  
 				   <label>
 	            <form:checkbox path="rememberEmail"/>자동 로그인
-	            <a href="member_findID.gom" >아이디/비밀번호 찾기</a>
+	            <a href="findID.gom" >아이디/비밀번호 찾기</a>
 	        	  </label>
 				  <div class="row justify-content-center">
 	
