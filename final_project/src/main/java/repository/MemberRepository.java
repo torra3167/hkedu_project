@@ -12,7 +12,7 @@ public class MemberRepository extends AbstractRepository {
 	
 	private final String namespace="repository.mapper.memberMapper";
 	
-	public Integer insertMember(MemberJoinCommand memberJoinCommand) {
+	/*public Integer insertMember(MemberJoinCommand memberJoinCommand) {
 		SqlSession sqlSession=getSqlSessionFactory().openSession();
 		String statement=namespace+".insertMember";
 		try {
@@ -36,7 +36,7 @@ public class MemberRepository extends AbstractRepository {
 		} finally {
 			sqlSession.close();
 		}
-	}
+	}*/
 
 //	public Integer survey1Write(MemberSurveyCommand memberSurveyCommand) {
 //		SqlSession sqlSession=getSqlSessionFactory().openSession();

@@ -29,6 +29,7 @@ public class SellerController {
 		
 		@RequestMapping(value="/seller_join.gom", method=RequestMethod.GET)
 		public String joinForm(Model model) {
+			
 			model.addAttribute("iPage", "seller/seller_join.jsp");
 			return "index";
 		}
