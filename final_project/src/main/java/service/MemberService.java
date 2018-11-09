@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import command.MemberJoinCommand;
 import model.Member;
+import model.MemberSurvey;
 import repository.MemberRepository;
 @Service
 public class MemberService {
@@ -13,9 +13,9 @@ public class MemberService {
 	private MemberRepository memberRepository;
 	
 	
-	public Integer insertMember(MemberJoinCommand memberJoinCommand) {
-		System.out.println("service "+memberJoinCommand.getMemberEmail());
-		return memberRepository.insertMember(memberJoinCommand);
+	public Integer insertMember(Member member) {
+		System.out.println("service "+member.getMemberEmail());
+		return memberRepository.insertMember(member);
 	}
 	public void findID(Member member, Model model) {
 		System.out.println("service "+member.getMemberEmail());
@@ -32,12 +32,19 @@ public class MemberService {
 		}
 		model.addAttribute("result", result);
 	}
-//	public Integer survey1Write(MemberSurveyCommand memberSurveyCommand) {
-//		System.out.println("service "+memberSurveyCommand.getSurvNo());
-//		return memberRepository.survey1Write(memberSurveyCommand);
-//	}
+	
+	public Integer insertSurvey1(MemberSurvey memberSurvey) {
+		System.out.println("service "+memberSurvey.getSurvNo());
+		int i=memberRepository.countSurvey();
+		System.out.println("insertSurvey1 : " + i);
+		String email=memberSurvey.getMemberEmail();
+		memberSurvey.setSurvNo(i);
+		memberSurvey.setMemberEmail(email);
+		return memberRepository.insertSurvey1(memberSurvey);
+	}
 //	public Integer surveyWrite(MemberSurveyCommand memberSurveyCommand) {
 //		System.out.println("service "+memberSurveyCommand.getSurvNo());
 //		return memberRepository.survey2Write(memberSurveyCommand);
 //	}
+
 }

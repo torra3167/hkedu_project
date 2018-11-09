@@ -6,18 +6,19 @@ import org.springframework.stereotype.Repository;
 import command.MemberJoinCommand;
 import command.MemberSurveyCommand;
 import model.Member;
+import model.MemberSurvey;
 
 @Repository
 public class MemberRepository extends AbstractRepository {
 	
 	private final String namespace="repository.mapper.memberMapper";
 	
-	public Integer insertMember(MemberJoinCommand memberJoinCommand) {
+	public Integer insertMember(Member member) {
 		SqlSession sqlSession=getSqlSessionFactory().openSession();
 		String statement=namespace+".insertMember";
 		try {
-			System.out.println("repository "+memberJoinCommand.getMemberEmail());
-			Integer result=sqlSession.insert(statement,memberJoinCommand);
+			System.out.println("repository "+member.getMemberEmail());
+			Integer result=sqlSession.insert(statement,member);
 			if(result>0) {
 				sqlSession.commit();
 			}
@@ -33,6 +34,32 @@ public class MemberRepository extends AbstractRepository {
 		System.out.println("Repository "+member.getMemberEmail());
 		try {
 			return sqlSession.selectOne(statement, member);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public Integer countSurvey() {
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		String statement=namespace+".countSurvey";
+		System.out.println("Repository countSurvey1");
+		MemberSurvey i=null;
+		try {
+			i =  (MemberSurvey)sqlSession.selectOne(statement);
+			System.out.println("countSurvey : " + i);
+			return i.getSurvNo();
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public Integer insertSurvey1(MemberSurvey memberSurvey) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		String statement=namespace+".insertSurvey1";
+		try {
+			System.out.println("repository "+memberSurvey.getSurvNo());
+			Integer result=sqlSession.insert(statement, memberSurvey);
+			return result;
 		} finally {
 			sqlSession.close();
 		}

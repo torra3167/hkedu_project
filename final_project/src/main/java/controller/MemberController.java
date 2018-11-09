@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import command.MemberJoinCommand;
+import command.MemberSurveyCommand;
+import model.Member;
+import model.MemberSurvey;
 import service.MemberService;
 
 @Controller
@@ -24,10 +27,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member_join.gom", method=RequestMethod.POST)
-	public String joinSubmit(MemberJoinCommand memberJoinCommand,  Model model) {
+	public String joinSubmit(Member member,  Model model) {
 		Integer result=null;
 		System.out.println("controller");
-		result=memberService.insertMember(memberJoinCommand);
+		result=memberService.insertMember(member);
 		if(result>0) {
 			model.addAttribute("result", result);
 			return "index";
@@ -39,14 +42,35 @@ public class MemberController {
 	@RequestMapping(value="/findID.gom", method=RequestMethod.GET)
 	public String findID(Model model) {
 		model.addAttribute("iPage", "login/login.jsp");
-		return "login/findID";
+		return "index";
 	}
 	
-//	@RequestMapping(value="/member_write_survey1.gom", method=RequestMethod.GET)
-//	public String Survey1Form(Model model) {
-//		model.addAttribute("iPage", "member/login/survey_1.jsp");
-//		return "member/login/survey_1";
-//	}
+	@RequestMapping(value="/member_surveyform1.gom", method=RequestMethod.GET)
+	public String Survey1Form(Model model) {
+		System.out.println("controller survey1");
+		model.addAttribute("iPage", "survey/survey_1.jsp");
+		model.addAttribute("memberSurveyCommand",new MemberSurveyCommand());
+		return "index";
+	}
+	
+	@RequestMapping(value="/member_surveyform1.gom", method=RequestMethod.POST)
+	public String Survey1Submit(MemberSurvey memberSurvey, Model model) {
+		Integer result=null;
+		System.out.println("controller");
+		result=memberService.insertSurvey1(memberSurvey);
+		if(result>0) {
+			model.addAttribute("result", result);
+			return "index";
+		}else {
+			return "redirect:/index";
+		}
+	}
+	@RequestMapping(value="/member_myPage.gom", method=RequestMethod.GET)
+	public String memberMypage(Model model) {
+		model.addAttribute("iPage", "survey/survey_1.jsp");
+		model.addAttribute("memberSurveyCommand",new MemberSurveyCommand());
+		return "index";
+	}
 //	@RequestMapping(value="/member_write_survey2.gom", method=RequestMethod.GET)
 //	public String Survey2Form(Model model) {
 //		model.addAttribute("iPage", "member/login/survey_1.jsp");

@@ -13,7 +13,7 @@
 		<result column="MEMBER_ADDRNO" jdbcType="BIGINT" property="memberAddrNo"/>
 		<result column="MEMBER_DIVIDE" jdbcType="VARCHAR" property="memberDivide"/>
 	</resultMap>
-	<resultMap type="MemberSurvey" id="memberSurvey">
+	<resultMap type="MemberSurvey" id="memberSurveyMap">
 		<id column="SURV_NO" jdbcType="BIGINT" property="survNo"/>
 		<result column="MEMBER_EMAIL" jdbcType="VARCHAR" property="memberEmail"/>
 		<result column="SURV_HEIGHT" jdbcType="BIGINT" property="survHeight"/>
@@ -33,8 +33,14 @@
 		insert into member(member_email, member_name, member_phone, member_pass, member_addr1, member_addr2, member_addrno, member_divide)
 		values (#{memberEmail}, #{memberName}, #{memberPhone}, #{memberPass}, #{memberAddr1}, #{memberAddr2}, #{memberAddrNo}, #{memberDivide})
 	</insert>
-	<insert id="insertSurv" parameterType="MemberSurvey">
+	<insert id="insertSurv1" parameterType="MemberSurvey">
 		insert into survey(surv_no, member_email, surv_height, surv_weight, surv_eat, surv_bmi, surv_sex, surv_age, surv_lifestyle, surv_photo, surv_shape, surv_disease, surv_concern, surv_cause, surv_career)
 		values (#{survNo}, #{memberEmail}, #{survHeight}, #{survWeight}, #{survEat}, #{survSex}, #{survAge}, #{survLifestyle}, #{survPhoto}, #{survShape}, #{survDisease}, #{survConcern}, #{survCause}, #{survCareer})
 	</insert>
+	<resultMap type="MemberSurvey" id="survNo">
+		<id column="cnt" jdbcType="BIGINT" property="survNo"/>
+	</resultMap>
+	<select id="countSurvey" parameterType="MemberSurvey" resultMap="survNo">
+		SELECT COUNT(*)+1 as cnt FROM SURVEY
+	</select>
 </mapper>

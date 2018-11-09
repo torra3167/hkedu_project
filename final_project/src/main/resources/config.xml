@@ -9,6 +9,8 @@
 		<typeAlias type="model.AuthInfo" alias="AuthInfo"/>
 		<typeAlias type="model.Member" alias="Member"/>
 		<typeAlias type="model.MemberSurvey" alias="MemberSurvey"/>
+		<typeAlias type="command.MemberSurveyCommand" alias="MemberSurveyCommand"/>
+		<typeAlias type="command.MemberJoinCommand" alias="MemberJoinCommand"/>
 	
 	</typeAliases>
 	
