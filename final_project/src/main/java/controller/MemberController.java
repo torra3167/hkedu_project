@@ -36,10 +36,10 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value="/member_findID.gom", method=RequestMethod.GET)
+	@RequestMapping(value="/findID.gom", method=RequestMethod.GET)
 	public String findID(Model model) {
-		model.addAttribute("iPage", "member/member_login.jsp");
-		return "member/login/findID";
+		model.addAttribute("iPage", "login/login.jsp");
+		return "login/findID";
 	}
 	
 //	@RequestMapping(value="/member_write_survey1.gom", method=RequestMethod.GET)
