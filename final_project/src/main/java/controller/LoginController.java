@@ -44,9 +44,10 @@ public class LoginController {
 		System.out.println(loginCommand.getPw());*/
 		
 		AuthInfo ai = ls.selectByEmailAndDivide(loginCommand.getEmail(), loginCommand.getPw());
-		//구분
-		model.addAttribute("divide", ai.getDivide());
+		
+		session.setAttribute("divide", ai.getDivide());
 		//인증
+		
 		session.setAttribute("AuthInfo", ai);
 		
 		Cookie cookie = new Cookie("email", loginCommand.getEmail());

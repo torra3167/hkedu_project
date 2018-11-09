@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
     
     <%
-    	String divide = (String)request.getAttribute("divide");
+    	String divide = (String)session.getAttribute("divide");
+    
     %>
 <!DOCTYPE html>
 <html>
