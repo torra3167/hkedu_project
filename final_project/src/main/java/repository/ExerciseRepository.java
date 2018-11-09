@@ -1,5 +1,4 @@
 package repository;
-import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -7,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import model.Coach;
 
 @Repository
-public class CoachRepository extends AbstractRepository {
+public class ExerciseRepository extends AbstractRepository {
 	SqlSession sqlSession;
 	private final String namespace = "repository.mapper.coachMapper";
 	

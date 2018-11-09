@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis-org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="repository.mapper.memberMapper">
+	<cache></cache>
+	<resultMap type="Member" id="memberMap">
+		<id column="MEMBER_EMAIL" jdbcType="VARCHAR" property="memberEmail"/>
+		<result column="MEMBER_NAME" jdbcType="VARCHAR" property="memberName"/>
+		<result column="MEMBER_PHONE" jdbcType="VARCHAR" property="memberPhone"/>
+		<result column="MEMBER_PASS" jdbcType="VARCHAR" property="memberPass"/>
+		<result column="MEMBER_ADDR1" jdbcType="VARCHAR" property="memberAddr1"/>
+		<result column="MEMBER_ADDR2" jdbcType="VARCHAR" property="memberAddr2"/>
+		<result column="MEMBER_ADDRNO" jdbcType="BIGINT" property="memberAddrNo"/>
+		<result column="MEMBER_DIVIDE" jdbcType="VARCHAR" property="memberDivide"/>
+	</resultMap>
+	<resultMap type="MemberSurvey" id="memberSurvey">
+		<id column="SURV_NO" jdbcType="BIGINT" property="survNo"/>
+		<result column="MEMBER_EMAIL" jdbcType="VARCHAR" property="memberEmail"/>
+		<result column="SURV_HEIGHT" jdbcType="BIGINT" property="survHeight"/>
+		<result column="SURV_WEIGHT" jdbcType="BIGINT" property="survWeight"/>
+		<result column="SURV_EAT" jdbcType="VARCHAR" property="survEat"/>
+		<result column="SURV_SEX" jdbcType="VARCHAR" property="survSex"/>
+		<result column="SURV_AGE" jdbcType="BIGINT" property="survAge"/>
+		<result column="SURV_LIFESTYLE" jdbcType="VARCHAR" property="survLifestyle"/>
+		<result column="SURV_PHOTO" jdbcType="VARCHAR" property="survPhoto"/>
+		<result column="SURV_SHAPE" jdbcType="VARCHAR" property="survShape"/>
+		<result column="SURV_DISEASE" jdbcType="VARCHAR" property="survDisease"/>
+		<result column="SURV_CONCERN" jdbcType="VARCHAR" property="survConcern"/>
+		<result column="SURV_CAUSE" jdbcType="VARCHAR" property="survCause"/>
+		<result column="SURV_CAREER" jdbcType="VARCHAR" property="survCareer"/>
+	</resultMap>
+	<insert id="insertMember" parameterType="Member">
+		insert into member(member_email, member_name, member_phone, member_pass, member_addr1, member_addr2, member_addrno, member_divide)
+		values (#{memberEmail}, #{memberName}, #{memberPhone}, #{memberPass}, #{memberAddr1}, #{memberAddr2}, #{memberAddrNo}, #{memberDivide})
+	</insert>
+	<insert id="insertSurv" parameterType="MemberSurvey">
+		insert into survey(surv_no, member_email, surv_height, surv_weight, surv_eat, surv_bmi, surv_sex, surv_age, surv_lifestyle, surv_photo, surv_shape, surv_disease, surv_concern, surv_cause, surv_career)
+		values (#{survNo}, #{memberEmail}, #{survHeight}, #{survWeight}, #{survEat}, #{survSex}, #{survAge}, #{survLifestyle}, #{survPhoto}, #{survShape}, #{survDisease}, #{survConcern}, #{survCause}, #{survCareer})
+	</insert>
+</mapper>

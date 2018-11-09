@@ -8,14 +8,30 @@ public class MemberJoinCommand implements Serializable {
 	
 	private String memberEmail;
 	private String memberName;
-	private int memberPhone;
+	private String memberPhone;
 	private String memberPass;
 	private String memberAddr1;
 	private String memberAddr2;
 	private int memberAddrNo;
+	private String memberDivide;
 	
 	public MemberJoinCommand() {}
 	
+	
+	public MemberJoinCommand(String memberEmail, String memberName, String memberPhone, String memberPass,
+			String memberAddr1, String memberAddr2, int memberAddrNo, String memberDivide) {
+		super();
+		this.memberEmail = memberEmail;
+		this.memberName = memberName;
+		this.memberPhone = memberPhone;
+		this.memberPass = memberPass;
+		this.memberAddr1 = memberAddr1;
+		this.memberAddr2 = memberAddr2;
+		this.memberAddrNo = memberAddrNo;
+		this.memberDivide = memberDivide;
+	}
+
+
 	public String getMemberEmail() {
 		return memberEmail;
 	}
@@ -28,10 +44,10 @@ public class MemberJoinCommand implements Serializable {
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
-	public int getMemberPhone() {
+	public String getMemberPhone() {
 		return memberPhone;
 	}
-	public void setMemberPhone(int memberPhone) {
+	public void setMemberPhone(String memberPhone) {
 		this.memberPhone = memberPhone;
 	}
 	public String getMemberPass() {
@@ -57,6 +73,14 @@ public class MemberJoinCommand implements Serializable {
 	}
 	public void setMemberAddrNo(int memberAddrNo) {
 		this.memberAddrNo = memberAddrNo;
+	}
+
+	public String getMemberDivide() {
+		return memberDivide;
+	}
+
+	public void setMemberDivide(String memberDivide) {
+		this.memberDivide = memberDivide;
 	}
 	
 	
