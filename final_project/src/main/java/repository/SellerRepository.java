@@ -41,9 +41,14 @@ public class SellerRepository extends AbstractRepository{
 			sqlSession.close();
 		}
 	}
+
+
+	public Integer updateSeller(Seller seller) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
-<<<<<<< HEAD
 	/*public Integer updateSeller(SellerUpdateCommand sellerUpdateCommand) {
 		System.out.println("Repo updateSeller email" + sellerUpdateCommand.getSellerEmail());
 =======

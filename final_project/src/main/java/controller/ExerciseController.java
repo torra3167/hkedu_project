@@ -25,8 +25,8 @@ public class ExerciseController {
 	public String insertExercise(ExerciseCommand exerciseCommand, HttpServletRequest request, Model model) throws Exception{
 	    
 		es.exerciseCategoryB(model);
-/*		model.addAttribute("iPage", "exercise/exercise_register.jsp");
-*/	    return "exercise/exercise_register";
+		model.addAttribute("iPage", "exercise/exercise_register.jsp");
+	    return "index";
 
 	}
 
@@ -54,7 +54,8 @@ public class ExerciseController {
 	
 	@RequestMapping(value="/aca.gom", method=RequestMethod.POST)
 	public String bca(ExerciseCatB bca, Model model) {
-		System.out.println("B category " + bca.getExerciseCatBNumber());
+//		System.out.println("B category " + bca.getExerciseCatBNumber());
+		
 		es.exerciseCategoryA(bca, model);
 /*		model.addAttribute("iPage", "exercise/category/exercise_cat_a");
 */		return "exercise/category/exercise_cat_a";
