@@ -27,16 +27,19 @@
 	WHERE seller_email = #{seller_email}
 </select>
 
-
-<update id="updateSeller" parameterType="Seller">
+<update id="updateSeller">
 	UPDATE seller
-	SET
+	<set>
 		<if test="sellerPw != null">
-			seller_pw = #{sellerPw},
+			seller_pw = #{sellerPw}, 
 		</if>
+	
 		<if test="sellerPhone != null">
 			seller_phone = #{sellerPhone}
 		</if>
-	WHERE seller_email = #{sellerEmail}
+	</set>
+	<where>
+		seller_email = #{sellerEmail}
+	</where>
 </update>
 </mapper>
