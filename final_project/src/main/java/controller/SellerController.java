@@ -26,6 +26,7 @@ public class SellerController {
 	
 		@Autowired
 		private SellerService sellerService;
+		
 		@RequestMapping(value="/seller_join.gom", method=RequestMethod.GET)
 		public String joinForm(Model model) {
 			model.addAttribute("iPage", "seller/seller_join.jsp");
@@ -106,5 +107,13 @@ public class SellerController {
 			}else {
 				return "redirect:/index";
 			}
+		}
+		
+		@RequestMapping(value="/seller_menu.gom", method=RequestMethod.GET)
+		public String sellerMenu(Model model, HttpSession session) {
+			model.addAttribute("iPage", "seller/seller_menu.jsp");
+			AuthInfo ai = (AuthInfo)session.getAttribute("AuthInfo");
+			model.addAttribute("divide", ai.getDivide());
+			return "index";
 		}
 }
