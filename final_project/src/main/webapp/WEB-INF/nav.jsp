@@ -120,6 +120,8 @@
 
 
 			<div class="navbar-nav ml-md-auto">
+				<a class="nav-item nav-link" href="member_join.gom" >입점 신청</a> 
+			 &nbsp;
 				<a class="nav-item nav-link" href="member_join.gom" >마이페이지</a> 
 			 &nbsp;
 				<a class="nav-item nav-link" href="logout.gom" >로그아웃</a>	

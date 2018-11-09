@@ -12,7 +12,6 @@ public class Seller implements Serializable{
 	
 	public Seller() {}
 
-
 	public Seller(String sellerEmail, String sellerPw, String sellerPhone, String sellerTerm, String sellerDivide) {
 		this.sellerEmail = sellerEmail;
 		this.sellerPw = sellerPw;
@@ -20,7 +19,6 @@ public class Seller implements Serializable{
 		this.sellerTerm = sellerTerm;
 		this.sellerDivide = sellerDivide;
 	}
-	
 	
 	
 	public String getSellerEmail() {

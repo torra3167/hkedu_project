@@ -17,7 +17,7 @@
 <resultMap type="Seller" id="sellerMap">
 	<id column="SELLER_EMAIL" jdbcType="VARCHAR" property="sellerEmail" />
 	<result column="SELLER_PW" jdbcType="VARCHAR" property="sellerPw" />
-	<result column="SELLER_PHONE" jdbcType="BIGINT" property="sellerPhone" />
+	<result column="SELLER_PHONE" jdbcType="VARCHAR" property="sellerPhone" />
 	<result column="SELLER_TERM" jdbcType="VARCHAR" property="sellerTerm" />
 </resultMap>
 
@@ -26,5 +26,21 @@
 	FROM seller
 	WHERE seller_email = #{seller_email}
 </select>
+
+
+<update id="updateSeller" parameterType="Seller">
+	UPDATE seller
+	<set>
+		<if test="sellerPw != null">
+			seller_pw = #{sellerPw},
+		</if>
+		<if test="sellerPhone != null">
+			seller_phone = #{sellerPhone}
+		</if>
+	</set>
+	WHERE seller_email = #{sellerEmail}
+</update>
+
+
 
 </mapper>

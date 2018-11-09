@@ -16,33 +16,27 @@ import org.springframework.web.servlet.ModelAndView;
 import command.SellerJoinCommand;
 import command.SellerLoginCommand;
 import command.SellerUpdateCommand;
+import model.AuthInfo;
 import model.Seller;
 import model.SellerAuthInfo;
 import service.SellerService;
 
-//브라우저에 보여줄 뷰의 이름을 전달한다
 @Controller
 public class SellerController {
 	
 		@Autowired
 		private SellerService sellerService;
-		//value에 명시한 문자열로 접근하는 URL을 처리한다
 		@RequestMapping(value="/seller_join.gom", method=RequestMethod.GET)
 		public String joinForm(Model model) {
 			model.addAttribute("iPage", "seller/seller_join.jsp");
 			return "index";
-			 //메소드가 void타입일 경우 접근하는 URL경로(@RequestMapping에 명시한)에 해당하는 jsp를 찾아 실행시킨다.
-			 //리턴 타입이 String일 경우 리턴하는 문자열이 바로 뷰 이름이 되는 것이다.
-			 //servlet-context의 view-resolvers와 합친 경로의 jsp를 실행
 		}
 		
 		@RequestMapping(value="/seller_join.gom", method=RequestMethod.POST)
-		public String joinSubmit(SellerJoinCommand sellerJoinCommand,  Model model) { //form(jsp)에서 입력한 값담아 오는 객체
-			//@ModelAttribute는 브라우저의 요청 시 지정한 파라미터를 문자열화해주고, 뷰로 전달한다.
+		public String joinSubmit(SellerJoinCommand sellerJoinCommand,  Model model) { 
 			Integer result = null;		
 			result = sellerService.insertSeller(sellerJoinCommand);
 			if(result>0) {
-				//return jsp에서 사용할(request.getprameter처럼) command객체를 model에 저장
 				model.addAttribute("result", result);
 				return "index";
 			}else {
@@ -50,6 +44,7 @@ public class SellerController {
 			}
 		}
 		
+		/*
 		@RequestMapping(value="/seller_login.gom", method=RequestMethod.GET)
 		public String sellerLogin(SellerLoginCommand sellerLoginCommand, Model model, @CookieValue(value="coachEmail", required=false)Cookie rememberCookie) {
 			if(rememberCookie != null) {
@@ -81,11 +76,13 @@ public class SellerController {
 			
 			return "index";
 		}
+		*/
+		
 		
 		@RequestMapping(value="/seller_update.gom", method=RequestMethod.GET)
 		public String updateForm(SellerUpdateCommand sellerUpdateCommand, Model model, HttpSession session) {
-			SellerAuthInfo sai = (SellerAuthInfo) session.getAttribute("sellerAuthInfo");
-			model.addAttribute("sai", sai);
+			AuthInfo ai = (AuthInfo) session.getAttribute("AuthInfo");
+			model.addAttribute("ai", ai);
 			model.addAttribute("iPage", "seller/seller_update.jsp");
 			return "index";
 		}
@@ -98,6 +95,7 @@ public class SellerController {
 			sellerUpdateCommand.setSellerPw(httpServletRequest.getParameter("sellerPw"));
 			sellerUpdateCommand.setSellerPhone(httpServletRequest.getParameter("sellerPhone"));
 			Integer result = sellerService.updateSeller(sellerUpdateCommand);
+//			model.addAttribute("sellerUpdateCommand", sellerUpdateCommand);
 			
 			if(result>0) {
 				model.addAttribute("result", result);
