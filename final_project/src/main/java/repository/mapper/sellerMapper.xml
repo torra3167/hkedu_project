@@ -30,17 +30,13 @@
 
 <update id="updateSeller" parameterType="Seller">
 	UPDATE seller
-	<set>
+	SET
 		<if test="sellerPw != null">
 			seller_pw = #{sellerPw},
 		</if>
 		<if test="sellerPhone != null">
 			seller_phone = #{sellerPhone}
 		</if>
-	</set>
 	WHERE seller_email = #{sellerEmail}
 </update>
-
-
-
 </mapper>
