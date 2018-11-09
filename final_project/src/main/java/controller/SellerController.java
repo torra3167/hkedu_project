@@ -94,8 +94,11 @@ public class SellerController {
 			sellerUpdateCommand.setSellerEmail(httpServletRequest.getParameter("sellerEmail"));
 			sellerUpdateCommand.setSellerPw(httpServletRequest.getParameter("sellerPw"));
 			sellerUpdateCommand.setSellerPhone(httpServletRequest.getParameter("sellerPhone"));
-			Integer result = sellerService.updateSeller(sellerUpdateCommand);
-//			model.addAttribute("sellerUpdateCommand", sellerUpdateCommand);
+			Seller seller = new Seller();
+			seller.setSellerEmail(sellerUpdateCommand.getSellerEmail());
+			seller.setSellerPw(sellerUpdateCommand.getSellerPw());
+			seller.setSellerPhone(sellerUpdateCommand.getSellerPhone());
+			Integer result = sellerService.updateSeller(seller);
 			
 			if(result>0) {
 				model.addAttribute("result", result);

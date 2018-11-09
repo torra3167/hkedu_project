@@ -43,12 +43,17 @@ public class SellerRepository extends AbstractRepository{
 	}
 	
 	
+<<<<<<< HEAD
 	/*public Integer updateSeller(SellerUpdateCommand sellerUpdateCommand) {
 		System.out.println("Repo updateSeller email" + sellerUpdateCommand.getSellerEmail());
+=======
+	public Integer updateSeller(Seller seller) {
+		System.out.println("Repo updateSeller email" + seller.getSellerEmail());
+>>>>>>> 003aa954e51359d3383be1bb313e6f83cc468ac9
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
 			String statement = namespace + ".updateSeller";
-			Integer result = sqlSession.update(statement, sellerUpdateCommand);
+			Integer result = sqlSession.update(statement, seller);
 			if(result > 0) {
 				sqlSession.commit();
 			}

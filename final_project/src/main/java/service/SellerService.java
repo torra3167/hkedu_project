@@ -36,8 +36,8 @@ public class SellerService {
 		return new SellerAuthInfo(seller.getSellerEmail(), seller.getSellerPw());
 	}
 
-	public Integer updateSeller(SellerUpdateCommand sellerUpdateCommand) {
-		System.out.println("Service updateSeller"+ sellerUpdateCommand.getSellerEmail());
-		return sellerRepository.updateSeller(sellerUpdateCommand);
+	public Integer updateSeller(Seller seller) {
+		System.out.println("Service updateSeller"+ seller.getSellerEmail());
+		return sellerRepository.updateSeller(seller);
 	}
 }
