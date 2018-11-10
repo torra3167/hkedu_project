@@ -1,13 +1,13 @@
 package controller;
 
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import category.ExerciseCatB;
 import command.ExerciseCommand;
@@ -21,8 +21,8 @@ public class ExerciseController {
 	
 	
 	
-	@RequestMapping(value="/exercise_register.gom")
-	public String insertExercise(ExerciseCommand exerciseCommand, HttpServletRequest request, Model model) throws Exception{
+	@RequestMapping(value="/exercise_register.gom", method=RequestMethod.GET)
+	public String insertExercise(ExerciseCommand exerciseCommand, Model model) throws Exception{
 	    
 		es.exerciseCategoryB(model);
 		model.addAttribute("iPage", "exercise/exercise_register.jsp");
@@ -31,11 +31,21 @@ public class ExerciseController {
 	}
 
 	@RequestMapping(value="/exercise_register.gom", method=RequestMethod.POST )
-	public String ExerciseSubmit(ExerciseCommand exerciseCommand, Model model
+	public String ExerciseSubmit(MultipartHttpServletRequest multiRequest, Model model
 			) {
+		ExerciseCommand exerciseCommand = new ExerciseCommand();
+		exerciseCommand.setExerciseCatANumber(Integer.parseInt(multiRequest.getParameter("exerciseCatANumber")));
+		exerciseCommand.setExerciseCatBNumber(Integer.parseInt(multiRequest.getParameter("exerciseCatBNumber")));
+		exerciseCommand.setExerciseImg(multiRequest.getFile("exerciseImg"));
+		exerciseCommand.setExerciseVideo(multiRequest.getFile("exerciseVideo"));
+		exerciseCommand.setExerciseName(multiRequest.getParameter("exerciseName"));
+		
 		System.out.println(exerciseCommand.getExerciseImg() + " 이미지");
 		System.out.println(exerciseCommand.getExerciseVideo() + " 비디오");
 		System.out.println(exerciseCommand.getExerciseName() + " 이름");
+		System.out.println(exerciseCommand.getExerciseCatANumber() + "CATA");
+		System.out.println(exerciseCommand.getExerciseCatBNumber() + "CATB");
+		
 		boolean result = es.insertExercise(exerciseCommand, model);
 		
 	    if(!result) {

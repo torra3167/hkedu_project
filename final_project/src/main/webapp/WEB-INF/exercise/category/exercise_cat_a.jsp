@@ -11,10 +11,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<select id="acat" name="anumcat" >
+<select id="aCategory" name="exerciseCatANumber" class="form-control" >
 <Script>
-	alert("<%=list.size()%>");
-</Script>
+<%-- 	alert("<%=list.size()%>");
+ --%></Script>
 <% for(Object o : list) { 
 	ExerciseCatA exerciseCatA = (ExerciseCatA)o;
 %>
