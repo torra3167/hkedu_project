@@ -21,6 +21,15 @@ public class ExerciseController {
 	
 	
 	
+	@RequestMapping(value="/exercise_list.gom", method=RequestMethod.GET)
+	public String list(Model model) throws Exception{
+	    
+		es.exerciseList(model);
+		model.addAttribute("iPage", "exercise/exercise_list.jsp");
+	    return "index";
+
+	}
+	
 	@RequestMapping(value="/exercise_register.gom", method=RequestMethod.GET)
 	public String insertExercise(ExerciseCommand exerciseCommand, Model model) throws Exception{
 	    
@@ -31,18 +40,15 @@ public class ExerciseController {
 	}
 
 	@RequestMapping(value="/exercise_register.gom", method=RequestMethod.POST )
-	public String ExerciseSubmit(MultipartHttpServletRequest multiRequest, Model model
+	public String ExerciseSubmit(ExerciseCommand exerciseCommand, Model model
 			) {
-		ExerciseCommand exerciseCommand = new ExerciseCommand();
+		/*ExerciseCommand exerciseCommand = new ExerciseCommand();
 		exerciseCommand.setExerciseCatANumber(Integer.parseInt(multiRequest.getParameter("exerciseCatANumber")));
 		exerciseCommand.setExerciseCatBNumber(Integer.parseInt(multiRequest.getParameter("exerciseCatBNumber")));
-		exerciseCommand.setExerciseImg(multiRequest.getFile("exerciseImg"));
-		exerciseCommand.setExerciseVideo(multiRequest.getFile("exerciseVideo"));
-		exerciseCommand.setExerciseName(multiRequest.getParameter("exerciseName"));
+		exerciseCommand.setExerciseFile(multiRequest.getFile("exerciseFile"));*/
 		
-		System.out.println(exerciseCommand.getExerciseImg() + " 이미지");
-		System.out.println(exerciseCommand.getExerciseVideo() + " 비디오");
-		System.out.println(exerciseCommand.getExerciseName() + " 이름");
+		
+		System.out.println(exerciseCommand.getExerciseFile() + " 파일");
 		System.out.println(exerciseCommand.getExerciseCatANumber() + "CATA");
 		System.out.println(exerciseCommand.getExerciseCatBNumber() + "CATB");
 		
@@ -50,7 +56,7 @@ public class ExerciseController {
 		
 	    if(!result) {
 			System.out.println("파일이 저장되지않았습니다");
-	    	return "exercise_register.gom";
+	    	return "index";
 			
 		}else {
 			System.out.println("파일저장성공!");

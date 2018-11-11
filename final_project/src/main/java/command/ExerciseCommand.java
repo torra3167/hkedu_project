@@ -10,9 +10,11 @@ public class ExerciseCommand implements Serializable {
 	private int exerciseNumber;
 	private int exerciseCatANumber;
 	private int exerciseCatBNumber;
-	private String exerciseName;
-	private MultipartFile exerciseImg;
-	private MultipartFile exerciseVideo;
+	private MultipartFile exerciseFile;
+	private Long exerciseSize;
+	private String exerciseOriginal;
+	private String exerciseStored;
+	private String exerciseDivide;
 	
 	
 	
@@ -34,24 +36,40 @@ public class ExerciseCommand implements Serializable {
 	public void setExerciseCatBNumber(int exerciseCatBNumber) {
 		this.exerciseCatBNumber = exerciseCatBNumber;
 	}
-	public String getExerciseName() {
-		return exerciseName;
+	
+	
+	public MultipartFile getExerciseFile() {
+		return exerciseFile;
 	}
-	public void setExerciseName(String exerciseName) {
-		this.exerciseName = exerciseName;
+	public void setExerciseFile(MultipartFile exerciseFile) {
+		this.exerciseFile = exerciseFile;
 	}
-	public MultipartFile getExerciseImg() {
-		return exerciseImg;
+	public Long getExerciseSize() {
+		return exerciseSize;
 	}
-	public void setExerciseImg(MultipartFile exerciseImg) {
-		this.exerciseImg = exerciseImg;
+	public void setExerciseSize(Long exerciseSize) {
+		this.exerciseSize = exerciseSize;
 	}
-	public MultipartFile getExerciseVideo() {
-		return exerciseVideo;
+	public String getExerciseOriginal() {
+		return exerciseOriginal;
 	}
-	public void setExerciseVideo(MultipartFile exerciseVideo) {
-		this.exerciseVideo = exerciseVideo;
+	public void setExerciseOriginal(String exerciseOriginal) {
+		this.exerciseOriginal = exerciseOriginal;
 	}
+	public String getExerciseStored() {
+		return exerciseStored;
+	}
+	public void setExerciseStored(String exerciseStored) {
+		this.exerciseStored = exerciseStored;
+	}
+	public String getExerciseDivide() {
+		return exerciseDivide;
+	}
+	public void setExerciseDivide(String exerciseDivide) {
+		this.exerciseDivide = exerciseDivide;
+	}
+	
+	
 	
 	
 	

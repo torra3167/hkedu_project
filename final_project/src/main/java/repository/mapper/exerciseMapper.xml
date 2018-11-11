@@ -4,18 +4,19 @@
 <mapper namespace="repository.mapper.exerciseMapper">
 <cache></cache>
 
-<sql id="col">
-	COACH_EMAIL, COACH_PW, COACH_NAME, COACH_PHOTO, COACH_CAREER
-</sql>
 
 
 
 
 
-<insert id="insertExercise" parameterType="ExerciseUpload">
-insert into exerciseUpload (EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER, EXERCISE_UPLOAD_ORIGINAL,
-							EXERCISE_UPLOAD_STORED, EXERCISE_UPLOAD_SIZE, EXERCISE_UPLOAD_DIVIDE) 
-values ()
+
+<insert id="insertExercise" parameterType="Exercise">
+	insert into exercise
+	(EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER, 
+	 EXERCISE_SIZE, EXERCISE_ORIGINAL, EXERCISE_STORED, EXERCISE_DIVIDE) 
+	values
+	(#{exerciseNumber}, #{exerciseCatANumber}, #{exerciseCatBNumber},
+	#{exerciseSize}, #{exerciseOriginal}, #{exerciseStored}, #{exerciseDivide})
 </insert>
 
 <resultMap type="ExerciseCatB" id="exerciseCatBMap">
@@ -39,6 +40,39 @@ values ()
  select EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER, EXERCISE_CAT_A_NAME
  from EXERCISE_CAT_A
  where EXERCISE_CAT_B_NUMBER = #{exerciseCatBNumber}
+</select>
+
+<select id="selectExerciseNumber" resultType="Integer">
+	select count(exercise_number)
+	from exercise
+</select>
+
+<resultMap type="Exercise" id="exerciseMap">
+	<!-- <constructor>
+		<idArg javaType="int" column="EXERCISE_NUMBER"/>
+		<idArg javaType="int" column="EXERCISE_CAT_A_NUMBER"/>
+		<idArg javaType="int" column="EXERCISE_CAT_B_NUMBER"/>
+		<arg javaType="long" column="EXERCISE_SIZE"/>
+		<arg javaType="string" column="EXERCISE_ORIGINAL"/>
+		<arg javaType="string" column="EXERCISE_STORED"/>
+		<arg javaType="string" column="EXERCISE_DIVIDE"/>
+	</constructor>  -->
+	
+	<id column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber"/>
+	<id column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>
+	<id column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>	
+	<result column="EXERCISE_SIZE" jdbcType="BIGINT" property="exerciseSize"/>	
+	<result column="EXERCISE_ORIGINAL" jdbcType="VARCHAR" property="exerciseOriginal"/>	
+	<result column="EXERCISE_STORED" jdbcType="VARCHAR" property="exerciseStored"/>	
+	<result column="EXERCISE_DIVIDE" jdbcType="VARCHAR" property="exerciseDivide"/>	 
+	
+	
+</resultMap>
+
+<select id="exerciseList" resultMap="exerciseMap">
+select EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER, 
+EXERCISE_SIZE, EXERCISE_ORIGINAL, EXERCISE_STORED, EXERCISE_DIVIDE
+from exercise 
 </select>
 
 </mapper>
