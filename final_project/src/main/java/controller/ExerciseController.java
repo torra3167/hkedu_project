@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import category.ExerciseCatB;
 import command.ExerciseCommand;
@@ -20,9 +19,17 @@ public class ExerciseController {
 	private ExerciseService es;
 	
 	
-	
+	@RequestMapping(value="/exercise_detail.gom", method=RequestMethod.GET)
+	public String detail(ExerciseCommand exerciseCommand, Model model) {
+	    
+/*		es.exerciseSelectOne(exerciseCommand.getExerciseNumber());
+*/		System.out.println(exerciseCommand.getExerciseNumber() +  " NUMBER");
+		model.addAttribute("iPage", "exercise/exercise_detail.jsp");
+	    return "index";
+
+	}
 	@RequestMapping(value="/exercise_list.gom", method=RequestMethod.GET)
-	public String list(Model model) throws Exception{
+	public String list(Model model) {
 	    
 		es.exerciseList(model);
 		model.addAttribute("iPage", "exercise/exercise_list.jsp");
@@ -42,13 +49,11 @@ public class ExerciseController {
 	@RequestMapping(value="/exercise_register.gom", method=RequestMethod.POST )
 	public String ExerciseSubmit(ExerciseCommand exerciseCommand, Model model
 			) {
-		/*ExerciseCommand exerciseCommand = new ExerciseCommand();
-		exerciseCommand.setExerciseCatANumber(Integer.parseInt(multiRequest.getParameter("exerciseCatANumber")));
-		exerciseCommand.setExerciseCatBNumber(Integer.parseInt(multiRequest.getParameter("exerciseCatBNumber")));
-		exerciseCommand.setExerciseFile(multiRequest.getFile("exerciseFile"));*/
+		
 		
 		
 		System.out.println(exerciseCommand.getExerciseFile() + " 파일");
+		
 		System.out.println(exerciseCommand.getExerciseCatANumber() + "CATA");
 		System.out.println(exerciseCommand.getExerciseCatBNumber() + "CATB");
 		
