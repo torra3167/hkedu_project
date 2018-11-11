@@ -52,16 +52,22 @@
 	<!-- Tab panes -->
 	<div class="tab-content">
 		<div class="tab-pane container active" id="home">
+			<jsp:include page="seller_OrderBoard.jsp"></jsp:include>
 		</div>
 	  	<div class="tab-pane container fade" id="menu1">
+	  		<jsp:include page="../food/food_orderStatistics.jsp"></jsp:include>
 	  	</div>
 	  	<div class="tab-pane container fade" id="menu2">
+	  		<jsp:include page="../food/food_reg.jsp"></jsp:include>
 		</div>
 	  	<div class="tab-pane container fade" id="menu3">
+	  		<jsp:include page="../food/food_modify.jsp"></jsp:include>
 	  	</div>
 	  	<div class="tab-pane container fade" id="menu4">
+	  		<jsp:include page="../food/food_reviewReplyWrite.jsp"></jsp:include>
 		</div>
 	  	<div class="tab-pane container fade" id="menu5">
+	  		<jsp:include page="seller_contactAdmin.jsp"></jsp:include>
 		</div>
 	</div>
 </div>

@@ -112,8 +112,18 @@ public class SellerController {
 		@RequestMapping(value="/seller_menu.gom", method=RequestMethod.GET)
 		public String sellerMenu(Model model, HttpSession session) {
 			model.addAttribute("iPage", "seller/seller_menu.jsp");
-			AuthInfo ai = (AuthInfo)session.getAttribute("AuthInfo");
-			model.addAttribute("divide", ai.getDivide());
+			model.addAttribute("divide", session.getAttribute("divide"));
 			return "index";
 		}
+		
+		@RequestMapping(value="/seller_application.gom", method=RequestMethod.GET)
+		public String sellerApplicationForm(Model model) {
+			model.addAttribute("iPage", "seller/seller_application.jsp");
+			return "index";
+		}
+		
+		
+		
+		
+		
 }

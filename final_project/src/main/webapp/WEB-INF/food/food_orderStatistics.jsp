@@ -5,11 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>식품주문 통계</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
 <script src="../js/jquery.min.js"></script>
 <script src="../js/popper.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
@@ -32,19 +34,19 @@
 				</div>
 				<a href="#">닭가슴살샐러드</a><span class="pull-right strong">판매량:100개 / 재고:500개</span>
 				 <div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"aria-valuemin="0" aria-valuemax="100" style="width:20%">20%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="20"aria-valuemin="0" aria-valuemax="100" style="width:20%">20%</div>
 				</div>
 				<a href="#">영양밥도시락</a><span class="pull-right strong">판매량:100개 / 재고:300개</span>
 				 <div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30"aria-valuemin="0" aria-valuemax="100" style="width:30%">30%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="30"aria-valuemin="0" aria-valuemax="100" style="width:30%">30%</div>
 				</div>
 				<a href="#">소풍도시락</a><span class="pull-right strong">판매량:100개 / 재고:200개</span>
 				 <div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50"aria-valuemin="0" aria-valuemax="100" style="width:50%">50%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="50"aria-valuemin="0" aria-valuemax="100" style="width:50%">50%</div>
 				</div>
 				기타<span class="pull-right strong">판매량:100개 / 재고:200개</span>
 				 <div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50"aria-valuemin="0" aria-valuemax="100" style="width:50%">50%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="50"aria-valuemin="0" aria-valuemax="100" style="width:50%">50%</div>
 				</div>
 				<br>
 				<div class="row">
@@ -53,19 +55,19 @@
 				</div>
 				<a href="#">닭가슴살샐러드</a><span class="pull-right strong">매출액: 600,000원</span>
 				 <div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50"aria-valuemin="0" aria-valuemax="100" style="width:50%">50%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="50"aria-valuemin="0" aria-valuemax="100" style="width:50%">50%</div>
 				</div>
 				<a href="#">영양밥도시락</a><span class="pull-right strong">매출액: 300,000원</span>
 				 <div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30"aria-valuemin="0" aria-valuemax="100" style="width:30%">30%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="30"aria-valuemin="0" aria-valuemax="100" style="width:30%">30%</div>
 				</div>
 				<a href="#">소풍도시락</a><span class="pull-right strong">매출액: 200,000원</span>
 				 <div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"aria-valuemin="0" aria-valuemax="100" style="width:20%">20%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="20"aria-valuemin="0" aria-valuemax="100" style="width:20%">20%</div>
 				</div>
 				기타<span class="pull-right strong">매출액: 200,000원</span>
 				 <div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"aria-valuemin="0" aria-valuemax="100" style="width:20%">20%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="20"aria-valuemin="0" aria-valuemax="100" style="width:20%">20%</div>
 				</div>
 			</div>
 			<div class="col col-md-5">
@@ -77,19 +79,19 @@
 				</div>
 				<a href="#">닭가슴살샐러드</a><span class="pull-right strong">판매량:100개 / 재고:500개</span>
 				<div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"aria-valuemin="0" aria-valuemax="100" style="width:20%">20%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="20"aria-valuemin="0" aria-valuemax="100" style="width:20%">20%</div>
 				</div>
 				<a href="#">영양밥도시락</a><span class="pull-right strong">판매량:100개 / 재고:300개</span>
 				<div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30"aria-valuemin="0" aria-valuemax="100" style="width:30%">30%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="30"aria-valuemin="0" aria-valuemax="100" style="width:30%">30%</div>
 				</div>
 				<a href="#">소풍도시락</a><span class="pull-right strong">판매량:100개 / 재고:200개</span>
 				<div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50"aria-valuemin="0" aria-valuemax="100" style="width:50%">50%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="50"aria-valuemin="0" aria-valuemax="100" style="width:50%">50%</div>
 				</div>
 				기타<span class="pull-right strong">판매량:100개 / 재고:200개</span>
 				 <div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50"aria-valuemin="0" aria-valuemax="100" style="width:50%">50%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="50"aria-valuemin="0" aria-valuemax="100" style="width:50%">50%</div>
 				</div>
 				<br>
 				<div class="row">
@@ -98,19 +100,19 @@
 				</div>
 				<a href="#">닭가슴살샐러드</a><span class="pull-right strong">매출액: 500,000원</span>
 				 <div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50"aria-valuemin="0" aria-valuemax="100" style="width:50%">50%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="50"aria-valuemin="0" aria-valuemax="100" style="width:50%">50%</div>
 				</div>
 				<a href="#">영양밥도시락</a><span class="pull-right strong">매출액: 300,000원</span>
 				 <div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30"aria-valuemin="0" aria-valuemax="100" style="width:30%">30%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="30"aria-valuemin="0" aria-valuemax="100" style="width:30%">30%</div>
 				</div>
 				<a href="#">소풍도시락</a><span class="pull-right strong">매출액: 200,000원</span>
 				 <div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"aria-valuemin="0" aria-valuemax="100" style="width:20%">20%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="20"aria-valuemin="0" aria-valuemax="100" style="width:20%">20%</div>
 				</div>
 				기타<span class="pull-right strong">매출액: 200,000원</span>
 				 <div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"aria-valuemin="0" aria-valuemax="100" style="width:20%">20%</div>
+					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="20"aria-valuemin="0" aria-valuemax="100" style="width:20%">20%</div>
 				</div>
 			</div>
 		</div>

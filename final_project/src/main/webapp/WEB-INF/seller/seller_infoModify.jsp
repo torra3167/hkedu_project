@@ -29,6 +29,7 @@
 		</div>
 		<button type="submit" class="btn btn-primary">확인</button>
 		<button type="reset" class="btn btn-primary">다시 작성</button>
+		<button type="submit" class="btn btn-primary" onclick="location.href=''">회원탈퇴</button>
 	</form>
 </div>
 </body>
