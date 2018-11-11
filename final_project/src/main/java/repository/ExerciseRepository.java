@@ -7,8 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import category.ExerciseCatA;
 import category.ExerciseCatB;
-import model.Coach;
-import model.ExerciseUpload;
+
+import model.Exercise;
+
 
 @Repository
 public class ExerciseRepository extends AbstractRepository {
@@ -17,12 +18,20 @@ public class ExerciseRepository extends AbstractRepository {
 	
 	
 
-	public int insertExercise(ExerciseUpload eu) {
-		// TODO Auto-generated method stub
-		sqlSession = getSqlSessionFactory().openSession();
+	public int insertExercise(Exercise exercise) {
+/*		System.out.println("Exercise REPOSITORY ");
+*/		sqlSession = getSqlSessionFactory().openSession();
 		try {
-			return (Integer)sqlSession.insert(namespace + ".insertExercise", eu);
+			 int result = sqlSession.insert(namespace + ".insertExercise", exercise);
+			/*	System.out.println("Exercise REPOSITORY" + result);*/
 
+			 if(result > 0) {
+				 sqlSession.commit();
+			 } else {
+				 sqlSession.rollback();
+			 }
+			 
+			 return result;
 		} finally {
 			sqlSession.close();
 		}
@@ -54,6 +63,35 @@ public class ExerciseRepository extends AbstractRepository {
 			
 		return sqlSession.selectList(namespace + ".exerciseCatASelect", bca);
 		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+
+	public Integer selectExerciseNumber() {
+		// TODO Auto-generated method stub
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+		return (Integer)sqlSession.selectOne(namespace + ".selectExerciseNumber");
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+
+	public List<Exercise> exerciseList() {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+		List<Exercise> list =  sqlSession.selectList(namespace + ".exerciseList");
+		return list;
 		} finally {
 			sqlSession.close();
 		}

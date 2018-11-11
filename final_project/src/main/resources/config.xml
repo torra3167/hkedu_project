@@ -9,7 +9,6 @@
 		<typeAlias type="model.AuthInfo" alias="AuthInfo"/>
 		<typeAlias type="model.Member" alias="Member"/>
 		<typeAlias type="model.MemberSurvey" alias="MemberSurvey"/>
-		<typeAlias type="model.ExerciseUpload" alias="ExerciseUpload"/>
 		<typeAlias type="model.Exercise" alias="Exercise"/>
 		<typeAlias type="category.ExerciseCatA" alias="ExerciseCatA"/>
 		<typeAlias type="category.ExerciseCatB" alias="ExerciseCatB"/>

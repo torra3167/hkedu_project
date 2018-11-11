@@ -50,18 +50,16 @@
 
 <div id="aca" class="form-group"></div>
 			
-        	<div class="form-group">
-				<label>운동 이름</label> <input type="text" name="exerciseName" class="form-control">
-			</div>
+        	
 			<div class="form-group">
-				<label>운동 사진 </label> <input type="file" name="exerciseImg" class="form-control">
+				<label>운동 사진 </label> <input type="file" name="exerciseFile" class="form-control">
 			</div>
 			
-			<div class="form-group">
-				<label>운동 영상</label> <input type="file" name="exerciseVideo" class="form-control">
-			</div>
+			<!-- <div class="form-group">
+				<label>운동 영상</label> <input type="file" name="exerciseFile" class="form-control">
+			</div> -->
 			
-			<button type="submit" class="btn btn-primary">메뉴 등록</button>
+			<button type="submit" class="btn btn-primary">등록</button>
 			<button type="reset" class="btn btn-primary">다시 작성</button>
         </form>
     </div>
