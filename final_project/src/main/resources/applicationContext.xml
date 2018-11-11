@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <beans xmlns="http://www.springframework.org/schema/beans"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xmlns:mvc="http://www.springframework.org/schema/mvc"
@@ -19,7 +20,7 @@
 
        
 
-<mvc:annotation-driven></mvc:annotation-driven>
+<mvc:annotation-driven/>
 <mvc:default-servlet-handler/>
 <!-- MultipartResolver 설정 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -27,13 +28,18 @@
         <property name="maxInMemorySize" value="100000000" />
     </bean>
     
+    
+
+
+
 <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>
 <mvc:view-resolvers>
 	<mvc:jsp prefix="/WEB-INF/"/>
 </mvc:view-resolvers>
 <!--모든파일을 /** 매핑 경로는 location  -->
-<mvc:resources location="/WEB-INF/" mapping="/**" cache-period="31556926"></mvc:resources>
-
+<!-- <mvc:resources location="실제경로" mapping="사용할경로"  -->
+ <mvc:resources location="/resource/" mapping="/resource/**" cache-period="31556926"></mvc:resources>
+ 
 <mvc:view-controller path="/index" view-name="index"/>
 
 <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
@@ -45,4 +51,9 @@
 	
 	<property name="defaultEncoding" value="UTF-8"></property>
 </bean>
+
+
 </beans>
+
+
+

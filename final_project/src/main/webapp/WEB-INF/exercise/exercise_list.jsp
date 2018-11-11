@@ -48,13 +48,13 @@
 					<th>${exerciseDivide }</th>  --%>
 					
 					
-					 <th><%=exercise.getExerciseNumber() %></th>
-					<th><%=exercise.getExerciseCatANumber() %></th>
-					<th><%=exercise.getExerciseCatBNumber() %></th>
-					<th><%=exercise.getExerciseSize() %></th>
-					<th><%=exercise.getExerciseOriginal() %></th>
-					<th><img src="exercise/file/<%=exercise.getExerciseStored() %>" width="40" height="40"></th>
-					<th><%=exercise.getExerciseDivide() %></th> 
+					 <td><a href="exercise_detail.gom?exerciseNumber=<%=exercise.getExerciseNumber() %>"><%=exercise.getExerciseNumber() %></a></td>
+					<td><%=exercise.getExerciseCatANumber() %></td>
+					<td><%=exercise.getExerciseCatBNumber() %></td>
+					<td><%=exercise.getExerciseSize() %></td>
+					<td><%=exercise.getExerciseOriginal() %></td>
+					<td><img src="./resource/<%=exercise.getExerciseStored()%>" width="40" height="40"></td>
+					<td><%=exercise.getExerciseDivide() %></td> 
 					
 					
 				</tr>
@@ -66,11 +66,11 @@
 
 		<hr>
 
-		<a class="btn btn-primary" href="#" role="button">글쓰기</a>
+		<a class="btn btn-primary text-right" href="#" role="button">글쓰기</a>
 
 
-		<nav aria-label="Page navigation example">
-			<ul class="pagination">
+		<nav aria-label="Page navigation example ">
+			<ul class="pagination text-right">
 				<li class="page-item"><a class="page-link" href="#">Previous</a></li>
 				<li class="page-item active"><a class="page-link" href="#">1</a></li>
 				<li class="page-item"><a class="page-link" href="#">2</a></li>

@@ -18,7 +18,7 @@ public class ExerciseService {
 	Exercise exercise;
 	/*"http://localhost:8080/final_project/exercise/file/"*/
 	static final String filePath =
-			"C:\\Users\\Future\\Desktop\\프로젝트\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\exercise\\file\\";
+			"C:\\Users\\Future\\Desktop\\프로젝트\\hkedu_project\\final_project\\src\\main\\webapp\\resource\\";
 	File file = new File(filePath);
 	String originalFile;
 	String originalFileExtension;
@@ -92,7 +92,7 @@ public class ExerciseService {
 
 	public void exerciseList(Model model) {
 		// TODO Auto-generated method stub
-		List<Exercise> list = er.exerciseList();
+		List<Exercise> list = er.exerciseList();   
 		model.addAttribute("Exercise", list);
 	}
 	

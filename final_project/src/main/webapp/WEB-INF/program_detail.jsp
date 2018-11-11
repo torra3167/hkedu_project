@@ -13,15 +13,11 @@
 		의 정보
 	</h1>
 	<table align="center" width="600">
-		<tr>
-			<td align="right">조회수 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="./goodsCartAdd.sh?goods_num=">
-					장바구니 담기 </a></td>
-		</tr>
+		
 	
 		<tr>
 			<td rowspan="7"><img
-				src="./goodsUpload/" /></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				src="./resource/<% %>" /></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<td>종류 : </td>
 		</tr>
 		<tr>
@@ -51,7 +47,7 @@
 		</tr>
 			
 		<tr>
-			<td colspan="2" align="center"><a href="goodsList.sh">목록보기</a></td>
+			<td colspan="2" align="center"><a href="exercise_list.gom">목록보기</a></td>
 		</tr>
 
 	</table>
