@@ -27,5 +27,5 @@
 <bean id="er" class="repository.ExerciseRepository"></bean>
 <bean id="sellerRepository" class="repository.SellerRepository"></bean>
 
-
+<bean id="seller" class="model.Seller"></bean>
 </beans>

@@ -42,4 +42,10 @@
 		seller_email = #{sellerEmail}
 	</where>
 </update>
+
+<delete id="deleteSeller">
+	DELETE
+	FROM seller
+	WHERE seller_email = #{sellerEmail} and seller_pw = #{sellerPw}
+</delete>
 </mapper>

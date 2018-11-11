@@ -58,4 +58,19 @@ public class SellerRepository extends AbstractRepository{
 			sqlSession.close();
 		}
 	}
+	
+	public Integer deleteSeller(Seller seller) {
+		System.out.println("Repo deleteSeller email" + seller.getSellerEmail());
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			String statement = namespace + ".deleteSeller";
+			Integer result = sqlSession.update(statement, seller);
+			if(result > 0) {
+				sqlSession.commit();
+			}
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

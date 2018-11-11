@@ -4,6 +4,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import command.SellerJoinCommand;
 import command.SellerLoginCommand;
 import command.SellerUpdateCommand;
+import command.SellerWithdrawalCommand;
 import model.AuthInfo;
 import model.Seller;
 import model.SellerAuthInfo;
@@ -95,11 +97,7 @@ public class SellerController {
 			sellerUpdateCommand.setSellerEmail(httpServletRequest.getParameter("sellerEmail"));
 			sellerUpdateCommand.setSellerPw(httpServletRequest.getParameter("sellerPw"));
 			sellerUpdateCommand.setSellerPhone(httpServletRequest.getParameter("sellerPhone"));
-			Seller seller = new Seller();
-			seller.setSellerEmail(sellerUpdateCommand.getSellerEmail());
-			seller.setSellerPw(sellerUpdateCommand.getSellerPw());
-			seller.setSellerPhone(sellerUpdateCommand.getSellerPhone());
-			Integer result = sellerService.updateSeller(seller);
+			Integer result = sellerService.updateSeller(sellerUpdateCommand);
 			
 			if(result>0) {
 				model.addAttribute("result", result);
@@ -116,14 +114,32 @@ public class SellerController {
 			return "index";
 		}
 		
+		
+		@RequestMapping(value="/seller_withdrawal.gom", method=RequestMethod.GET)
+		public String sellerWithdrawalForm(SellerWithdrawalCommand sellerWithdrawalCommand, Model model, HttpSession session) {
+			AuthInfo ai = (AuthInfo) session.getAttribute("AuthInfo");
+			model.addAttribute("ai", ai);
+			model.addAttribute("iPage", "seller/seller_withdrawal.jsp");
+			return "index";
+		}
+		
+		@RequestMapping(value="/seller_withdrawal.gom", method=RequestMethod.POST)
+		public String sellerWithdrawalSubmit(SellerWithdrawalCommand sellerWithdrawalCommand,  Model model, HttpServletRequest httpServletRequest) { 
+			sellerWithdrawalCommand.setSellerEmail(httpServletRequest.getParameter("sellerEmail"));
+			sellerWithdrawalCommand.setSellerPw(httpServletRequest.getParameter("sellerPw"));
+			int result = sellerService.deleteSeller(sellerWithdrawalCommand);
+			if(result>0) {
+				model.addAttribute("result", result);
+				return "index";
+			}else {
+				return "redirect:/index";
+			}
+		}
+		
+		
 		@RequestMapping(value="/seller_application.gom", method=RequestMethod.GET)
 		public String sellerApplicationForm(Model model) {
 			model.addAttribute("iPage", "seller/seller_application.jsp");
 			return "index";
 		}
-		
-		
-		
-		
-		
 }

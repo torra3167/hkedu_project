@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import command.SellerJoinCommand;
 import command.SellerUpdateCommand;
+import command.SellerWithdrawalCommand;
 import exception.IdPasswordNotMatchingException;
 import model.Seller;
 import model.SellerAuthInfo;
@@ -15,6 +16,8 @@ public class SellerService {
 	
 	@Autowired
 	private SellerRepository sellerRepository;
+	@Autowired
+	private Seller seller;
 	
 	public Integer insertSeller(SellerJoinCommand sellerJoinCommand) {
 		System.out.println("service " + sellerJoinCommand.getSellerEmail());
@@ -36,8 +39,20 @@ public class SellerService {
 		return new SellerAuthInfo(seller.getSellerEmail(), seller.getSellerPw());
 	}
 
-	public Integer updateSeller(Seller seller) {
-		System.out.println("Service updateSeller"+ seller.getSellerEmail());
+	public Integer updateSeller(SellerUpdateCommand sellerUpdateCommand) {
+		System.out.println("Service updateSeller"+ sellerUpdateCommand.getSellerEmail());
+		seller.setSellerDivide(sellerUpdateCommand.getSellerEmail());
+		seller.setSellerPw(sellerUpdateCommand.getSellerPw());
+		seller.setSellerPhone(sellerUpdateCommand.getSellerPhone());
 		return sellerRepository.updateSeller(seller);
+	}
+	
+	
+	public Integer deleteSeller(SellerWithdrawalCommand sellerWithdrawalCommand) {
+		System.out.println("service deleteSeller" + sellerWithdrawalCommand.getSellerEmail());
+		seller.setSellerEmail(sellerWithdrawalCommand.getSellerEmail());
+		seller.setSellerPw(sellerWithdrawalCommand.getSellerPw());
+		int result = sellerRepository.deleteSeller(seller);
+		return result;
 	}
 }
