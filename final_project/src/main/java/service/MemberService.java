@@ -32,6 +32,7 @@ public class MemberService {
 		}
 		model.addAttribute("result", result);
 	}
+	
 //	public Integer survey1Write(MemberSurveyCommand memberSurveyCommand) {
 //		System.out.println("service "+memberSurveyCommand.getSurvNo());
 //		return memberRepository.survey1Write(memberSurveyCommand);

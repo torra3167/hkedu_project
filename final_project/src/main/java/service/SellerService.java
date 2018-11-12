@@ -16,8 +16,8 @@ public class SellerService {
 	
 	@Autowired
 	private SellerRepository sellerRepository;
-	@Autowired
-	private Seller seller;
+	
+	Seller seller;
 	
 	public Integer insertSeller(SellerJoinCommand sellerJoinCommand) {
 		System.out.println("service " + sellerJoinCommand.getSellerEmail());

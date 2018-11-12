@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis-org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="repository.mapper.foodMapper">
+<cache></cache>
+
+<select id="selectFoodNumber" resultType="Integer">
+	select count(food_no)
+	from food
+</select>
+
+<insert id="insertFood" parameterType="Food">
+ INSERT INTO food
+ (food_no, seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, food_name, food_quant, food_expiry_date, food_origin, food_sale, food_flavor, food_price, food_carbo, food_protein, food_fat, food_cal, food_image) 
+ VALUES (#{foodNo}, #{sellerEmail}, #{foodCatANo}, #{foodCatBNo}, #{foodCatCNo}, #{foodName}, #{foodQuant}, #{foodExpiryDate}, #{foodOrigin}, #{foodSale}, #{foodFlavor}, #{foodPrice}, #{foodCarbo}, #{foodProtein}, #{foodFat}, #{foodCal}, #{foodImage})
+</insert>
+
+
+<resultMap type="FoodCatC" id="foodCatCMap">
+		<id column="food_cat_c_no" jdbcType="BIGINT" property="foodCatCNo"/>
+		<result column="food_cat_c_name" jdbcType="VARCHAR" property="foodCatCName"/>
+</resultMap>
+
+<select id="foodCatCSelect" resultMap="foodCatCMap">
+		SELECT
+			food_cat_c_no,
+			food_cat_c_name
+		FROM Food_cat_c
+</select>
+
+
+
+
+</mapper>
+

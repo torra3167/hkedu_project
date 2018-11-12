@@ -1,18 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
+<%@ page import="java.util.*, model.*, category.*" %>
+<%
+	List list = (List)request.getAttribute("list");
+%>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
-<script src="../js/jquery.min.js"></script>
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+
+function bca() {
+	 var num = document.getElementById("cca").value;
+	 $.ajax({
+		 type:"POST",
+		 url:"bca.gom",
+		 dataType:"html",
+		 data:"foodCatCNo=" + num,
+		 success: function(result) {
+			 $('#bca').html(result);
+			 $('#aca').html("");
+		 }
+		 
+	 });
+}
+ 
+ 
+ 
+</script>	
 </head>
 <body>
 <div class="container mt-3" style="max-width: 560px;">
-        <form method="post" action="#">
+        <form method="post" action="food_reg.gom">
         	<div class="form-group">
 				<label>판매식품 이름</label> <input type="text" name="foodName" class="form-control">
 			</div>
@@ -20,10 +43,16 @@
 				<label>판매식품 이미지</label> <input type="file" name="foodImage" class="form-control">
 			</div>
 			<div>
-				<select id="aaa" name="aaa" onclick="">
-					<option value="aaa">aaa</option>
+				<select id="cca" name="foodCatCNo" onclick="javascript:bca();"> 
+				<% for(Object temp : list) {
+					FoodCatC foodCatC = (FoodCatC)temp; %>
+				 	<option value="<%=foodCatC.getFoodCatCNo()%>"> <%=foodCatC.getFoodCatCName() %></option>
+				<% } %>
 				</select>
 			</div>
+			<div id="bca"></div>
+			<div id="aca"></div>
+			
 			<div class="form-group">
 				<label>판매할 식품 개수</label> <input type="text" name="foodQuant" class="form-control">
 			</div>

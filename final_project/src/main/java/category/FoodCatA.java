@@ -8,6 +8,7 @@ public class FoodCatA implements Serializable{
 	private int foodCatBNo;
 	private int foodCatCNo;
 	private String foodCatAName;
+	
 	public FoodCatA() {
 	}
 	public FoodCatA(int foodCatANo, int foodCatBNo, int foodCatCNo, String foodCatAName) {

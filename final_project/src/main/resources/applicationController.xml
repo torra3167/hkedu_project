@@ -14,4 +14,5 @@
 <bean class="controller.SellerController"></bean>
 <bean class="controller.LoginController"></bean>
 <bean class="controller.ExerciseController"></bean>
+<bean class="controller.FoodController"></bean>
 </beans>

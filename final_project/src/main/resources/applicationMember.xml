@@ -18,14 +18,17 @@
 <bean id="sellerService" class="service.SellerService"></bean>
 <bean id="ls" class="service.LoginService"></bean>
 <bean id="es" class="service.ExerciseService"></bean>
+<bean id="foodService" class="service.FoodService"></bean>
+
 
 <!-- Repository  -->
 <bean id="memberRepository" class="repository.MemberRepository"></bean>
-<!--  <bean id="cr" class="repository.CoachRepository"></bean> 
- --><bean id="pr" class="repository.ProgramRepository"></bean>
+<!--  <bean id="cr" class="repository.CoachRepository"></bean> -->
+ <bean id="pr" class="repository.ProgramRepository"></bean>
 <bean id="lr" class="repository.LoginRepository"></bean>
 <bean id="er" class="repository.ExerciseRepository"></bean>
 <bean id="sellerRepository" class="repository.SellerRepository"></bean>
+<bean id="foodRepository" class="repository.FoodRepository"></bean>
 
-<bean id="seller" class="model.Seller"></bean>
+
 </beans>
