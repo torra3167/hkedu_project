@@ -78,9 +78,9 @@ public class FoodRepository extends AbstractRepository{
 	}
 	
 	public List<FoodCatB> foodCatBSelect(FoodCatC foodCatC) {
+		System.out.println("CommentSessionRepository " + foodCatC.getFoodCatCNo());
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-			System.out.println("CommentSessionRepository " + foodCatC.getFoodCatCNo());
 			return sqlSession.selectList(namespace + ".foodCatBSelect", foodCatC);
 			
 		} finally {
@@ -92,6 +92,7 @@ public class FoodRepository extends AbstractRepository{
 
 
 	public List<FoodCatA> foodCatASelect(FoodCatB foodCatB) {
+			System.out.println("repo " + foodCatB.getFoodCatBNo());
 			 sqlSession = getSqlSessionFactory().openSession();
 			 String statement = namespace + ".foodCatASelect";
 			try {

@@ -53,20 +53,19 @@ public class FoodController {
 		return "food/food_reg"; 
 	}
 	
-	
-	@RequestMapping(value="/bca.do", method=RequestMethod.POST)
+	@RequestMapping(value="/foodCatB.gom", method=RequestMethod.POST)
 	public String bca(FoodCatC foodCatC, Model model) {
 		System.out.println("B category " + foodCatC.getFoodCatCNo());
 		foodService.dominoSelectB(foodCatC, model);
 		return "category/food_cat_b";
 	}
 	
-	@RequestMapping(value="/cca.do", method=RequestMethod.POST)
+	@RequestMapping(value="/foodCatA.gom", method=RequestMethod.POST)
 	public String Cca(FoodCatB foodCatB, Model model) {
+		System.out.println("CommentController  Bnum" + foodCatB.getFoodCatBNo());
 		foodService.dominoSelectA(foodCatB, model);
 		
 		return "category/food_cat_a";
 	}
-	
 	
 }

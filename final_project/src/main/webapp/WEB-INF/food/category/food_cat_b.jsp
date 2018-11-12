@@ -15,12 +15,11 @@
 </head>
 <body>
 
-<select id="bca" name="foodCatBNo" onclick="javascript:aca();"> 
-	<% for(Object temp : list) {
-		FoodCatB foodCatB = (FoodCatB)temp; %>
-	 	<option value="<%=foodCatB.getFoodCatBNo()%>"> <%=foodCatB.getFoodCatBName() %></option>
+<select id="bca1" name="foodCatBNo" onclick="javascript:acaf();">
+	<% for(Object obj : list){ 
+		FoodCatB foodCatB = (FoodCatB)obj; %>
+		<option value="<%= foodCatB.getFoodCatBNo()%>"><%= foodCatB.getFoodCatBName()%></option>
 	<% } %>
-	
-	</select>
+</select>
 </body>
 </html>

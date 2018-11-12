@@ -25,11 +25,41 @@
 		SELECT
 			food_cat_c_no,
 			food_cat_c_name
-		FROM Food_cat_c
+		FROM food_cat_c
 </select>
 
 
+<resultMap type="FoodCatB" id="foodCatBMap">
+		<id column="food_cat_b_no" jdbcType="BIGINT" property="foodCatBNo"/>
+		<result column="food_cat_c_no" jdbcType="BIGINT" property="foodCatCNo"/>
+		<result column="food_cat_b_name" jdbcType="VARCHAR" property="foodCatBName"/>
+	</resultMap>
+
+<select id="foodCatBSelect" parameterType="FoodCatC" resultMap="foodCatBMap">
+		SELECT
+			food_cat_b_no,
+			food_cat_c_no,
+			food_cat_b_name
+		FROM food_cat_b
+		WHERE food_cat_c_no = #{foodCatCNo}
+</select>
 
 
+<resultMap type="FoodCatA" id="foodCatAMap">
+		<id column="food_cat_a_no" jdbcType="BIGINT" property="foodCatANo"/>
+		<result column="food_cat_b_no" jdbcType="BIGINT" property="foodCatBNo"/>
+		<result column="food_cat_c_no" jdbcType="BIGINT" property="foodCatCNo"/>
+		<result column="food_cat_a_name" jdbcType="VARCHAR" property="foodCatAName"/>
+</resultMap>
+	
+<select id="foodCatASelect" parameterType="FoodCatB" resultMap="foodCatAMap">
+		SELECT
+			food_cat_a_no,
+			food_cat_b_no,
+			food_cat_c_no,
+			food_cat_a_name
+		FROM food_cat_a
+		WHERE food_cat_c_no = #{foodCatCNo} and food_cat_b_no = #{foodCatBNo}
+	</select>
 </mapper>
 

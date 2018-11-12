@@ -10,23 +10,38 @@
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
-
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
 <script type="text/javascript">
 
 
-function bca() {
-	 var num = document.getElementById("cca").value;
-	 $.ajax({
-		 type:"POST",
-		 url:"bca.gom",
-		 dataType:"html",
-		 data:"foodCatCNo=" + num,
-		 success: function(result) {
-			 $('#bca').html(result);
-			 $('#aca').html("");
-		 }
-		 
-	 });
+function bcaf(){
+	var num = document.getElementById("ccca").value;
+	$.ajax({
+		type : "post",
+		url : "foodCatB.gom",
+		dataType : "html",
+		data : "foodCatCNo="+num,
+		success : function(result){
+			$('#bbbca').html(result);
+			$('#aaaca').html("");
+		}
+	});
+}
+
+function acaf(){
+	var num1 = document.getElementById("ccca").value;
+	var num2 = document.getElementById("bca1").value;
+	alert('ccaf()왔다');
+	$.ajax({
+		type : "post",
+		url : "foodCatA.gom",
+		dataType : "html",
+		data : "foodCatBNo="+num2 + "&foodCatCNo="+num1,
+		success : function(result){
+			$('#aaaca').html(result);
+		}
+	});
 }
  
  
@@ -43,15 +58,16 @@ function bca() {
 				<label>판매식품 이미지</label> <input type="file" name="foodImage" class="form-control">
 			</div>
 			<div>
-				<select id="cca" name="foodCatCNo" onclick="javascript:bca();"> 
-				<% for(Object temp : list) {
-					FoodCatC foodCatC = (FoodCatC)temp; %>
-				 	<option value="<%=foodCatC.getFoodCatCNo()%>"> <%=foodCatC.getFoodCatCName() %></option>
-				<% } %>
+				<select id="ccca" name="foodCatCNo" onclick="javascript:bcaf();">
+					<!-- list에 있는 것 option으로 주기 -->
+					<% for(Object obj : list){
+						FoodCatC foodCatC = (FoodCatC)obj;	%>
+						<option value="<%=foodCatC.getFoodCatCNo()%>"><%=foodCatC.getFoodCatCName() %></option>
+					<% } %>
 				</select>
 			</div>
-			<div id="bca"></div>
-			<div id="aca"></div>
+			<div id="bbbca"></div>
+			<div id="aaaca"></div>
 			
 			<div class="form-group">
 				<label>판매할 식품 개수</label> <input type="text" name="foodQuant" class="form-control">

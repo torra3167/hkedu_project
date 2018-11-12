@@ -78,25 +78,22 @@ public class FoodService {
 	}*/
 	
 	//FoodCatC < FoodCatB < FoodCatA
+	public void dominoSelectA(FoodCatB foodCatB, Model model) {
+		System.out.println("service " + foodCatB.getFoodCatBName());
+		List<FoodCatA> list = foodRepository.foodCatASelect(foodCatB);
+		model.addAttribute("list", list);
+	}
+	
+	public void dominoSelectB(FoodCatC foodCatC, Model model) {
+		System.out.println("service " + foodCatC.getFoodCatCNo());
+		List<FoodCatB> list = foodRepository.foodCatBSelect(foodCatC);
+		model.addAttribute("list", list);
+	}
+	
 	public void dominoSelectC(Model model) {
 		List<FoodCatC> list = foodRepository.foodCatCSelect();
 		model.addAttribute("list", list);
 	}
-	
-	
-	public void dominoSelectB(FoodCatC foodCatC, Model model) {
-		// TODO Auto-generated method stub
-		System.out.println("csr " + foodCatC.getFoodCatCNo());
-		List<FoodCatB> list = foodRepository.foodCatBSelect(foodCatC);
-		
-		model.addAttribute("list", list);
-		
-	}
 
-	public void dominoSelectA(FoodCatB foodCatB, Model model) {
-		// TODO Auto-generated method stub
-		List<FoodCatA> list = foodRepository.foodCatASelect(foodCatB);
-		model.addAttribute("list", list);
-	}
 	
 }
