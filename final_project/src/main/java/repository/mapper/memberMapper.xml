@@ -37,4 +37,11 @@
 		insert into survey(surv_no, member_email, surv_height, surv_weight, surv_eat, surv_bmi, surv_sex, surv_age, surv_lifestyle, surv_photo, surv_shape, surv_disease, surv_concern, surv_cause, surv_career)
 		values (#{survNo}, #{memberEmail}, #{survHeight}, #{survWeight}, #{survEat}, #{survSex}, #{survAge}, #{survLifestyle}, #{survPhoto}, #{survShape}, #{survDisease}, #{survConcern}, #{survCause}, #{survCareer})
 	</insert>
+	<select id="selectSurveyNo" resultType="Integer">
+		select count(surv_no)
+		from survey
+	</select>
+	<select id="selectByNameAndPhone" resultType="String">
+		select MEMBER_EMAIL from MEMBER where MEMBER_PHONE=#{memberPhone} and MEMBER_NAME=#{memberName}
+	</select>
 </mapper>

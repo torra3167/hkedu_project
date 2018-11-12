@@ -3,7 +3,9 @@ package repository;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import command.FindIDCommand;
 import model.AuthInfo;
+import model.Member;
 
 @Repository
 public class LoginRepository extends AbstractRepository{
@@ -23,6 +25,8 @@ public class LoginRepository extends AbstractRepository{
 			sqlSession.close();
 		}
 	}
+
+	
 	
 	
 	
