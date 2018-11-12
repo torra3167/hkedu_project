@@ -2,6 +2,7 @@ package controller;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import category.ExerciseCatB;
-import command.ExerciseCommand;
+import command.UploadCommand;
 import service.ExerciseService;
 
 @Controller
@@ -20,11 +21,11 @@ public class ExerciseController {
 	
 	
 	@RequestMapping(value="/exercise_detail.gom", method=RequestMethod.GET)
-	public String detail(ExerciseCommand exerciseCommand, Model model) {
+	public String detail(UploadCommand uploadCommand, Model model) {
 	    
 /*		es.exerciseSelectOne(exerciseCommand.getExerciseNumber());
-*/		System.out.println(exerciseCommand.getExerciseNumber() +  " NUMBER");
-		model.addAttribute("iPage", "exercise/exercise_detail.jsp");
+		System.out.println(uploadCommand.getExerciseNumber() +  " NUMBER");
+*/		model.addAttribute("iPage", "exercise/exercise_detail.jsp");
 	    return "index";
 
 	}
@@ -38,7 +39,7 @@ public class ExerciseController {
 	}
 	
 	@RequestMapping(value="/exercise_register.gom", method=RequestMethod.GET)
-	public String insertExercise(ExerciseCommand exerciseCommand, Model model) throws Exception{
+	public String insertExercise(UploadCommand uploadCommand, Model model) throws Exception{
 	    
 		es.exerciseCategoryB(model);
 		model.addAttribute("iPage", "exercise/exercise_register.jsp");
@@ -47,26 +48,21 @@ public class ExerciseController {
 	}
 
 	@RequestMapping(value="/exercise_register.gom", method=RequestMethod.POST )
-	public String ExerciseSubmit(ExerciseCommand exerciseCommand, Model model
+	public String ExerciseSubmit(UploadCommand uploadCommand, Model model
 			) {
+		/*int exerciseCatBNumber = Integer.parseInt(request.getParameter("exerciseCatBNumber"));
+		int exerciseCatANumber = Integer.parseInt(request.getParameter("exerciseCatANumber"));*/
 		
 		
+		System.out.println(uploadCommand.getExerciseCatANumber() + "CATA");
+		System.out.println(uploadCommand.getExerciseCatBNumber() + "CATB");
 		
-		System.out.println(exerciseCommand.getExerciseFile() + " 파일");
+	
 		
-		System.out.println(exerciseCommand.getExerciseCatANumber() + "CATA");
-		System.out.println(exerciseCommand.getExerciseCatBNumber() + "CATB");
+		es.insertExercise(uploadCommand);
 		
-		boolean result = es.insertExercise(exerciseCommand, model);
-		
-	    if(!result) {
-			System.out.println("파일이 저장되지않았습니다");
-	    	return "index";
-			
-		}else {
-			System.out.println("파일저장성공!");
-			return "index";
-		}
+		return "index";
+
 		
 		
 		

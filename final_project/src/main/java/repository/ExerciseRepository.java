@@ -9,6 +9,7 @@ import category.ExerciseCatA;
 import category.ExerciseCatB;
 
 import model.Exercise;
+import model.Upload;
 
 
 @Repository
@@ -19,8 +20,7 @@ public class ExerciseRepository extends AbstractRepository {
 	
 
 	public int insertExercise(Exercise exercise) {
-/*		System.out.println("Exercise REPOSITORY ");
-*/		sqlSession = getSqlSessionFactory().openSession();
+		sqlSession = getSqlSessionFactory().openSession();
 		try {
 			 int result = sqlSession.insert(namespace + ".insertExercise", exercise);
 			/*	System.out.println("Exercise REPOSITORY" + result);*/
@@ -95,6 +95,29 @@ public class ExerciseRepository extends AbstractRepository {
 		} finally {
 			sqlSession.close();
 		}
+	}
+
+
+
+	public int insertUpload(List<Upload> lists) {
+		int result = 0;
+			sqlSession = getSqlSessionFactory().openSession();
+				try {
+					 
+					 for(Upload upload : lists) {
+						 sqlSession.insert(namespace + ".insertUpload", upload);
+						 result++;
+					 }
+					 
+					 if(result > 0) {
+						 sqlSession.commit();
+					 } else {
+						 sqlSession.rollback();
+					 }
+				} finally {
+					sqlSession.close();
+				}
+				return result;
 	}
 	
 	

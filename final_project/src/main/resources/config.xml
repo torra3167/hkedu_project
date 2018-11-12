@@ -10,6 +10,7 @@
 		<typeAlias type="model.Member" alias="Member"/>
 		<typeAlias type="model.MemberSurvey" alias="MemberSurvey"/>
 		<typeAlias type="model.Exercise" alias="Exercise"/>
+		<typeAlias type="model.Upload" alias="Upload"/>
 		<typeAlias type="category.ExerciseCatA" alias="ExerciseCatA"/>
 		<typeAlias type="category.ExerciseCatB" alias="ExerciseCatB"/>
 		
