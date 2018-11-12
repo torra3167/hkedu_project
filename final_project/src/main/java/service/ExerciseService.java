@@ -1,6 +1,8 @@
 package service;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -10,21 +12,25 @@ import org.springframework.web.multipart.MultipartFile;
 
 import category.ExerciseCatA;
 import category.ExerciseCatB;
-import command.ExerciseCommand;
+import command.UploadCommand;
 import model.Exercise;
+import model.Upload;
 import repository.ExerciseRepository;
 
 public class ExerciseService {
+	Upload upload;
 	Exercise exercise;
 	/*"http://localhost:8080/final_project/exercise/file/"*/
 	static final String filePath =
-			"C:\\Users\\Future\\Desktop\\프로젝트\\hkedu_project\\final_project\\src\\main\\webapp\\resource\\";
+			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
 	String originalFile;
 	String originalFileExtension;
 	String storedFileName;
+	String uploadDivide;
 	
-	MultipartFile exerciseFile;
+	
+	MultipartFile multiFile;
 	
 	
 	
@@ -33,49 +39,90 @@ public class ExerciseService {
 	ExerciseRepository er;
 	
 
-	public boolean insertExercise(ExerciseCommand exerciseCommand, Model model)  {
+	public void insertExercise(UploadCommand uploadCommand)  {
 		Integer result = er.selectExerciseNumber();
-		System.out.println("EXERCISE NUMBER " + result);
-		if(result == 0) {
-			result = 1;
-		} else {
-			result = result + 1;
-		}
-		System.out.println("EXERCISE NUMBER " + result);
-
+		System.out.println();
+		List<MultipartFile> uploadImage 
+		= (List<MultipartFile>) uploadCommand.getUploadImage();
 		
+		//운동 
+		exercise = new Exercise(result, uploadCommand.getExerciseCatANumber(),
+				uploadCommand.getExerciseCatBNumber(), uploadCommand.getExerciseContent());
 		
-		exerciseFile = exerciseCommand.getExerciseFile();
-		System.out.println(exerciseFile + " EXERCISEFILE");
+		int j = er.insertExercise(exercise);
+		
+		List<Upload> list = new ArrayList<Upload>();
 	
-		originalFile = exerciseFile.getOriginalFilename();
-		originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
-		storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
-		file = new File(filePath + storedFileName);
-		try {
-			exerciseFile.transferTo(file);
-			exercise = new Exercise(result, exerciseCommand.getExerciseCatANumber(), exerciseCommand.getExerciseCatBNumber(),
-					exerciseFile.getSize(), originalFile, storedFileName, "i");
+	
+		for(int i = 0 ; i < uploadImage.size(); i++) {
 			
+			multiFile = uploadImage.get(i);
 			
-			int i = er.insertExercise(exercise);
+			originalFile = multiFile.getOriginalFilename();
 			
-			if(i < 1) {
-				System.out.println("멤버등록실패!");
-			} else {
-				System.out.println("멤버등록성공!");
+			originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+			storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+			file = new File(filePath + storedFileName);
+			
+			try {
+				multiFile.transferTo(file);
 				
-				System.out.println(exercise.getExerciseNumber() + "가 업로드한 파일은 ExerciseNumber");
-				System.out.println(originalFile + "가 업로드 한 파일입니다. originalFile");
-				System.out.println(storedFileName + "로 업로드되었음 storedFileNAME");
-				System.out.println("파일사이즈는 " + exerciseFile.getSize());
-				return true;
+				System.out.println("EXERCISE NUMBER " + result);
+				
+				
+				//업로드
+				upload = new Upload(result, uploadCommand.getExerciseCatANumber(), uploadCommand.getExerciseCatBNumber(),
+						multiFile.getSize(), originalFile, storedFileName, "i");
+				
+				list.add(upload);
+				
+				int k = er.insertUpload(list);
+				
+				
+				if(k < 1) {
+					System.out.println("멤버등록실패!");
+				} else {
+					System.out.println("멤버등록성공!");
+					
+					
+				/*	System.out.println(uploadCommand.getExerciseNumber() + "가 업로드한 파일은 ExerciseNumber");
+					System.out.println(originalFile + "가 업로드 한 파일입니다. originalFile");
+					System.out.println(storedFileName + "로 업로드되었음 storedFileNAME");
+					System.out.println("파일사이즈는 " + multiFile.getSize());*/
+					
+				}
+			} catch(Exception e) {
+				
+			} 
+			
+			System.out.println("VIDEO " + uploadCommand.getUploadVideo());
+			
+			multiFile = uploadCommand.getUploadVideo();
+
+			originalFile = multiFile.getOriginalFilename();
+			
+			originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+			storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+			file = new File(filePath + storedFileName);
+			
+			try {
+				multiFile.transferTo(file);
+				upload = new Upload(result, uploadCommand.getExerciseCatANumber(), uploadCommand.getExerciseCatBNumber(),
+						multiFile.getSize(), originalFile, storedFileName, "v");
+				list.add(upload);
+				
+				int l = er.insertUpload(list);
+				
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch(Exception e) {
 			
 		}
 		
-		return false;
 	}
 
 	public void exerciseCategoryB(Model model) {

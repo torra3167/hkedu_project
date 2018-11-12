@@ -36,7 +36,7 @@
 </mvc:view-resolvers>
 <!--모든파일을 /** 매핑 경로는 location  -->
 <!-- <mvc:resources location="실제경로" mapping="사용할경로"  -->
- <mvc:resources location="/resource/" mapping="/resource/**" cache-period="31556926"></mvc:resources>
+ <mvc:resources location="/WEB-INF/" mapping="/**" cache-period="31556926"></mvc:resources>
  
 <mvc:view-controller path="/index" view-name="index"/>
 
