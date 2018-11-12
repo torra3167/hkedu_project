@@ -85,12 +85,12 @@ public class ExerciseRepository extends AbstractRepository {
 
 
 
-	public List<Exercise> exerciseList() {
+	public List<Upload> exerciseList() {
 		sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
 			
-		List<Exercise> list =  sqlSession.selectList(namespace + ".exerciseList");
+		List<Upload> list =  sqlSession.selectList(namespace + ".uploadList");
 		return list;
 		} finally {
 			sqlSession.close();

@@ -17,10 +17,10 @@ public class Upload implements Serializable {
 
 	public Upload() {}
 
-	public Upload(int uploadNumber, int exerciseCatANumber, int exerciseCatBNumber, Long uploadSize,
+	public Upload(int exerciseNumber, int exerciseCatANumber, int exerciseCatBNumber, Long uploadSize,
 			String uploadOriginal, String uploadStored, String uploadDivide) {
 		
-		this.uploadNumber = uploadNumber;
+		this.exerciseNumber = exerciseNumber;
 		this.exerciseCatANumber = exerciseCatANumber;
 		this.exerciseCatBNumber = exerciseCatBNumber;
 		this.uploadSize = uploadSize;

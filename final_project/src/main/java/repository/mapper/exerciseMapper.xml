@@ -13,7 +13,7 @@
 	(UPLOAD_NUMBER, EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER, 
 	UPLOAD_SIZE, UPLOAD_ORIGINAL, UPLOAD_STORED, UPLOAD_DIVIDE) 
 	values
-	(#{uploadNumber}, #{exerciseNumber}, #{exerciseCatANumber}, #{exerciseCatBNumber},
+	(COUNT_NUMBER.NEXTVAL, #{exerciseNumber}, #{exerciseCatANumber}, #{exerciseCatBNumber},
 	#{uploadSize}, #{uploadOriginal}, #{uploadStored}, #{uploadDivide})
 </insert>
 

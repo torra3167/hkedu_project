@@ -53,9 +53,8 @@
 					<td><%=upload.getExerciseCatBNumber() %></td>
 					<td><%=upload.getUploadSize() %></td>
 					<td><%=upload.getUploadOriginal() %></td>
-					<td><img src="http://localhost:8080/final_project/resource/<%=upload.getUploadStored() %>" width="40" height="40"></td>
+					<td><img src="http://localhost:8080/final_project/resource/<%=upload.getUploadStored() %>" width="80" height="80"></td>
 					<td><%=upload.getUploadDivide() %></td> 
-					
 					
 				</tr>
 				
