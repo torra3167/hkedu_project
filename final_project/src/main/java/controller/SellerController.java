@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import category.FoodCatC;
 import command.SellerJoinCommand;
 import command.SellerLoginCommand;
 import command.SellerUpdateCommand;
@@ -21,6 +24,7 @@ import command.SellerWithdrawalCommand;
 import model.AuthInfo;
 import model.Seller;
 import model.SellerAuthInfo;
+import service.FoodService;
 import service.SellerService;
 
 @Controller
@@ -28,6 +32,9 @@ public class SellerController {
 	
 		@Autowired
 		private SellerService sellerService;
+		
+		@Autowired
+		private FoodService foodService;
 		
 		@RequestMapping(value="/seller_join.gom", method=RequestMethod.GET)
 		public String joinForm(Model model) {
@@ -76,7 +83,9 @@ public class SellerController {
 		@RequestMapping(value="/seller_menu.gom", method=RequestMethod.GET)
 		public String sellerMenu(Model model, HttpSession session) {
 			model.addAttribute("iPage", "seller/seller_menu.jsp");
-			//카테고리 리스트값 여기서받아오기
+			//카테고리 리스트값 받아와서 저장
+			List<FoodCatC> list = foodService.dominoSelectC(model);
+			model.addAttribute("list", list);
 			return "index";
 		}
 		

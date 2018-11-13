@@ -3,6 +3,7 @@
 <%@ page import="java.util.*, model.*, category.*" %>
 <%
 	List list = (List)request.getAttribute("list");
+	System.out.println("food_reg.jsp :" + list.size());
 %>
 <html>
 <head>
@@ -63,10 +64,10 @@ function funcAca() {
 			</div>
 			<div>
 			<select id="FCC" name="foodCatCNo" onclick="javascript:funcBca();"> 
-				<%-- <% for(Object temp : list) {
+				<% for(Object temp : list) {
 					FoodCatC acar = (FoodCatC)temp; %>
 				 	<option value="<%=acar.getFoodCatCNo() %>"> <%=acar.getFoodCatCName() %></option>
-				<% } %> --%>
+				<% } %>
 				</select>
 			</div>
 			<div id="divBca"></div>

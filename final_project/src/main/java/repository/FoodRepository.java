@@ -41,75 +41,37 @@ public class FoodRepository extends AbstractRepository{
 		}
 	}
 	
-	
-	/*public List<FoodCatA> foodCatASelect(FoodCatB bca) {
-		sqlSession = getSqlSessionFactory().openSession();
-		
-		try {
-			
-		return sqlSession.selectList(namespace + ".foodCatASelect", bca);
-		
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
-	public List<ExerciseCatB> foodCatBSelect() {
-		sqlSession = getSqlSessionFactory().openSession();
-		
-		try {
-			
-		return sqlSession.selectList(namespace + ".foodCatBSelect");
-		
-		} finally {
-			sqlSession.close();
-		}
-	}*/
-
-	
-	public List<FoodCatA> acaSelect(FoodCatA foodCatA) {
-		// TODO Auto-generated method stub
-		sqlSession = getSqlSessionFactory().openSession();
-		
-		try {
-			System.out.println("C repository getFoodCatCNo : " + foodCatA.getFoodCatBNo());
-
-		return sqlSession.selectList(namespace + ".acaSelect", foodCatA);
-		
-		} finally {
-			sqlSession.close();
-		}
-		
-	}
-
-
-
-	public List<FoodCatB> bcaSelect(FoodCatB foodCatB) {
-		// TODO Auto-generated method stub
-		sqlSession = getSqlSessionFactory().openSession();
-		try {
-			System.out.println("B repository getFoodCatCNo : " + foodCatB.getFoodCatCNo());
-			return sqlSession.selectList(namespace + ".bcaSelect", foodCatB);
-			
-		} finally {
-			
-			sqlSession.close();
-		}
-		
-	}
-
-
 
 	public List<FoodCatC> ccaSelect() {
-		
-			 sqlSession = getSqlSessionFactory().openSession();
-			 String statement = namespace + ".ccaSelect";
-			try {
-				return sqlSession.selectList(statement);
-			} finally {
-				sqlSession.close();
-			}
+		sqlSession = getSqlSessionFactory().openSession();
+		String statement = namespace + ".ccaSelect";
+		try {
+			return sqlSession.selectList(statement);
+		} finally {
+			sqlSession.close();
+		}
 	}
+	
+	public List<FoodCatA> acaSelect(FoodCatA foodCatA) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			System.out.println("A repository No : " + foodCatA.getFoodCatBNo());
+		return sqlSession.selectList(namespace + ".acaSelect", foodCatA);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<FoodCatB> bcaSelect(FoodCatB foodCatB) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			System.out.println("B repository No : " + foodCatB.getFoodCatCNo());
+			return sqlSession.selectList(namespace + ".bcaSelect", foodCatB);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 	
 	
 }

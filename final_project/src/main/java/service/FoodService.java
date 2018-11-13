@@ -67,42 +67,28 @@ public class FoodService {
 		return foodRepository.insertFood(food);
 	}
 	
-	/*public void foodCategoryA(FoodCatB bca, Model model) {
-		List<FoodCatA> list = foodRepository.foodCatASelect(bca);
-		model.addAttribute("list", list);
-	}
-	
-	public void foodCategoryB(Model model) {
-		List<ExerciseCatB> list = foodRepository.foodCatBSelect();
-		model.addAttribute("list", list);
-	}*/
 	
 	//FoodCatC < FoodCatB < FoodCatA
-	public void dominoSelectA(FoodCatA foodCatA, Model model) {
-		// TODO Auto-generated method stub
-		List<FoodCatA> list = foodRepository.acaSelect(foodCatA);
-		System.out.println("C service getFoodCatCNo : " + foodCatA.getFoodCatBNo());
-
-		model.addAttribute("list", list);
-		System.out.println("service A " + list.size());
-	}
-
-	public void dominoSelectB(FoodCatB foodCatB, Model model) {
-		// TODO Auto-generated method stub
-		System.out.println("B service getFoodCatCNo : " + foodCatB.getFoodCatCNo());
-		List<FoodCatB> list = foodRepository.bcaSelect(foodCatB);
-		
-		model.addAttribute("list", list);
-		System.out.println("service B " + list.size());
-	}
-
-	public void dominoSelectC(Model model) {
-		// TODO Auto-generated method stub
-		System.out.println("service C");
+	public List<FoodCatC> dominoSelectC(Model model) {
+		System.out.println("service C 실행");
 		List<FoodCatC> list = foodRepository.ccaSelect();
-		System.out.println("service C " + list.size());
+		System.out.println("service C 반환된 list size : " + list.size());
+		return list;
+//		model.addAttribute("list", list);	//seller_menu 열리는 sellerCntlr에서 생성
+	}
+	
+	public void dominoSelectB(FoodCatB foodCatB, Model model) {
+		System.out.println("service B 실행, FoodCatCNo : " + foodCatB.getFoodCatCNo());
+		List<FoodCatB> list = foodRepository.bcaSelect(foodCatB);
+		System.out.println("service B 반환된 list size : " + list.size());
+		model.addAttribute("list", list);
+	}
+	
+	public void dominoSelectA(FoodCatA foodCatA, Model model) {
+		System.out.println("service A 실행, FoodCatBNo : " + foodCatA.getFoodCatBNo());
+		List<FoodCatA> list = foodRepository.acaSelect(foodCatA);
+		System.out.println("service A 반환된 list size : " + list.size());
 		model.addAttribute("list", list);
 	}
 
-	
 }

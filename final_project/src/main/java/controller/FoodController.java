@@ -22,12 +22,8 @@ public class FoodController {
 	private FoodService foodService;
 	
 	@RequestMapping(value="/food_reg.gom", method=RequestMethod.GET)
-	public String foodRegForm(FoodCatC foodCatC, Model model) {
-		
-		System.out.println("A controller getFoodCatCNo : " + foodCatC.getFoodCatCNo());
-//		foodService.foodCategoryB(model);
-		foodService.dominoSelectC(model);
-		
+	public String foodRegForm(Model model) {
+//		foodService.dominoSelectC(model);
 		model.addAttribute("iPage", "food/food_reg.jsp");
 		return "index";
 	}
@@ -59,12 +55,6 @@ public class FoodController {
 		foodService.dominoSelectA(foodCatA, model);
 		
 		return "food/food_cat_a";
-	}
-	
-	@RequestMapping(value="/seller_orderBoard.gom", method=RequestMethod.GET)
-	public String sellerMenu(Model model, HttpSession session) {
-		model.addAttribute("sPage", "seller/seller_orderBoard.jsp");
-		return "index";
 	}
 	
 	
