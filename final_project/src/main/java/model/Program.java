@@ -9,7 +9,6 @@ public class Program implements Serializable {
 	private int proNo;
 	private String coachEmail;
 	private String proName;
-	private String proImg;
 	private Long programSize;
 	private String programOriginal;
 	private String programStored;
@@ -18,8 +17,11 @@ public class Program implements Serializable {
 	private String proDes;
 	
 	
+	public Program() {}
+	
 	public Program(int proNo, String coachEmail, String proName, Long programSize, String programOriginal,
 			String programStored) {
+		
 		this.proNo = proNo;
 		this.coachEmail = coachEmail;
 		this.proName = proName;
@@ -28,10 +30,6 @@ public class Program implements Serializable {
 		this.programStored = programStored;
 	}
 
-	public Program(int proNo, String proName) {
-		this.proNo = proNo;
-		this.proName = proName;
-	}
 	
 	public int getProNo() {
 		return proNo;
@@ -51,12 +49,7 @@ public class Program implements Serializable {
 	public void setProName(String proName) {
 		this.proName = proName;
 	}
-	public String getProImg() {
-		return proImg;
-	}
-	public void setProImg(String proImg) {
-		this.proImg = proImg;
-	}
+	
 	public Date getProRegdate() {
 		return proRegdate;
 	}

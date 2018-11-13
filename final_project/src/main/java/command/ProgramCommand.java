@@ -11,8 +11,15 @@ public class ProgramCommand implements Serializable {
 	private String proName;
 	private MultipartFile proImg;
 	private Date proRegdate;
+	private String coachEmail;
+
 	
-	
+	public String getCoachEmail() {
+		return coachEmail;
+	}
+	public void setCoachEmail(String coachEmail) {
+		this.coachEmail = coachEmail;
+	}
 	public String getProName() {
 		return proName;
 	}
