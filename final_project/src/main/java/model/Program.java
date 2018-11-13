@@ -18,7 +18,6 @@ public class Program implements Serializable {
 	private String proDes;
 	
 	
-	
 	public Program(int proNo, String coachEmail, String proName, Long programSize, String programOriginal,
 			String programStored) {
 		this.proNo = proNo;

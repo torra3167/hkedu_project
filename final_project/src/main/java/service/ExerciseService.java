@@ -95,6 +95,7 @@ public class ExerciseService {
 				
 			} 
 			
+		}
 			System.out.println("VIDEO " + uploadCommand.getUploadVideo());
 			
 			multiFile = uploadCommand.getUploadVideo();
@@ -122,7 +123,7 @@ public class ExerciseService {
 				e.printStackTrace();
 			}
 			
-		}
+		
 		
 	}
 
