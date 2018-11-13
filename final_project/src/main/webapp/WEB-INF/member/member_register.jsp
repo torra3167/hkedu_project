@@ -51,7 +51,7 @@
         <div>
         <button type="submit" class="btn btn-primary">회원가입</button>
         <button type="reset" class="btn btn-primary">다시 작성</button>
-        <button type="button" class="btn btn-primary">뒤로가기</button>
+        <button type="button" class="btn btn-primary" onclick="history.go(-1);">뒤로가기</button>
         </div>
       </form:form>
     </div>
