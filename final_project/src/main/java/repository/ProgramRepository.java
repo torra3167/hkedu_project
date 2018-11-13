@@ -20,10 +20,12 @@ public class ProgramRepository extends AbstractRepository {
 		}
 	}
 
-	public int insertProgram(Program program) {
+	public Integer insertProgram(Program program) {
+		System.out.println("PROGRAM REPOSITORY" );
+
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-			 int result = sqlSession.insert(namespace + ".insertProgram", program);
+			 Integer result = sqlSession.insert(namespace + ".insertProgram", program);
 			System.out.println("PROGRAM REPOSITORY" + result);
 
 			 if(result > 0) {

@@ -51,10 +51,12 @@ public class ProgramService {
 			//프로그램번호, 코치이메일, 프로그램이름, 사이즈, 오리지널, 저장된
 			
 			program = new Program(result, programCommand.getCoachEmail(), programCommand.getProName(), multiFile.getSize(), originalFile, storedFileName);
+			System.out.println(program + "PROGRAM");
 			program.setProRegdate(Calendar.getInstance().getTime());
+			
 			System.out.println(Calendar.getInstance().getTime() + "시간시간");
 			
-			int k = pr.insertProgram(program);
+			int k= pr.insertProgram(program);
 			
 			
 			if(k < 1) {

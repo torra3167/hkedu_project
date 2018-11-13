@@ -27,7 +27,8 @@ public class ProgramController {
 	@RequestMapping(value="/program_register.gom", method=RequestMethod.POST)
 	public String programSubmit(ProgramCommand programCommand, HttpSession session, Model model) {
 	    
-		String coachEmail = (String)session.getAttribute("email");
+		String coachEmail = (String)session.getAttribute("emai"
+				+ "l");
 		programCommand.setCoachEmail(coachEmail);
 		System.out.println(programCommand.getProImg() + " PRO IMG");
 		System.out.println(programCommand.getProName() + " PRO NAME");
@@ -35,7 +36,7 @@ public class ProgramController {
 		
 		
 		ps.insertProgram(programCommand);
-	    return "index";
+	    return "redirect:/index";
 
 	}
 }
