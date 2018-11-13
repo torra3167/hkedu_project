@@ -39,13 +39,7 @@
 			<% for(Object temp : list) {
 				Upload upload = (Upload)temp; %>
 				<tr>
-					<%-- <th>${exerciseCatANumber }</th>
-					<th>${exerciseCatBNumber }</th>
-					<th>${exerciseNumber}</th>
-					<th>${exerciseSize }</th>
-					<th>${exerciseOriginal }</th>
-					<th>${exerciseStored }</th>
-					<th>${exerciseDivide }</th>  --%>
+					
 					
 					
 					 <td><a href="exercise_detail.gom?exerciseNumber=<%=upload.getExerciseNumber() %>"><%=upload.getExerciseNumber() %></a></td>

@@ -19,8 +19,8 @@
 	<div class="container">
 		<div class="message">회원님의 회원정보에 있는 이메일로 비밀번호를 전송했습니다.</div>
 		<div class="btn">
-			<button type="button" class="btn btn-primary">메인으로</button>
-			<button type="button" class="btn btn-primary">로그인</button>
+			<button type="button" class="btn btn-primary" onclick="index">메인으로</button>
+			<button type="button" class="btn btn-primary" onclick="login.gom">로그인</button>
 		</div>
 	</div>
 
@@ -28,8 +28,8 @@
 	<div class="container">
 		<div class="message">일치하는 회원정보가 없습니다.</div>
 		<div class="btn">
-			<button type="button" class="btn btn-primary">다시 입력</button>
-			<button type="button" class="btn btn-primary">메인으로</button>
+			<button type="button" class="btn btn-primary" onclick="history.go(-1);">뒤로가기</button>
+			<button type="button" class="btn btn-primary" onclick="member_join.gom">회원가입</button>
 		</div>
 	</div>
 </body>

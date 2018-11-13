@@ -47,8 +47,7 @@ public class LoginController {
 		
 		session.setAttribute("divide", ai.getDivide());
 		//인증
-		
-		session.setAttribute("AuthInfo", ai);
+		session.setAttribute("email", ai.getEmail());
 		
 		Cookie cookie = new Cookie("email", loginCommand.getEmail());
 		

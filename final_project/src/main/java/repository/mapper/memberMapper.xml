@@ -44,4 +44,17 @@
 	<select id="selectByNameAndPhone" resultType="String">
 		select MEMBER_EMAIL from MEMBER where MEMBER_PHONE=#{memberPhone} and MEMBER_NAME=#{memberName}
 	</select>
+	<select id="selectByEmail" parameterType="Member" resultMap="memberMap">
+		select MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_PASS, MEMBER_ADDR1, MEMBER_ADDR2, MEMBER_ADDRNO
+		from member where MEMBER_EMAIL=#{memberEmail}
+	</select>
+	<update id="updateMember">
+		update MEMBER
+			<set>
+			MEMBER_NAME=#{memberName}, MEMBER_PHONE=#{memberPhone}, MEMBER_ADDR1=#{memberAddr1}, MEMBER_ADDR2=#{memberAddr2}, MEMBER_ADDRNO=#{memberAddrNo}
+			</set>
+			<where>
+				MEMBER_EMAIL=#{memberEmail}
+			</where>
+	</update>
 </mapper>

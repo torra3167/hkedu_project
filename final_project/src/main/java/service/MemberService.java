@@ -1,5 +1,7 @@
 package service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.ui.Model;
 import command.FindIDCommand;
 import command.MemberJoinCommand;
 import command.MemberSurveyCommand;
+import command.MemberUpdateCommand;
 import model.Member;
 import model.MemberSurvey;
 import repository.LoginRepository;
@@ -49,10 +52,16 @@ public class MemberService {
 		String i= memberRepository.selectByNameAndPhone(member);
 		System.out.println("11111 : " + i);
 		model.addAttribute("findEmail",i);
-
 	
 	}
 
+
+
+	public Member memberInfo(String email) {
+		Member member=memberRepository.selectByEmail(email);
+		return member;
+	}
+	
 	public boolean survey1Write(MemberSurveyCommand memberSurveyCommand) {
 		Integer result=memberRepository.selectSurveyNo();
 		System.out.println("SURVEY No "+memberSurveyCommand.getSurvNo());
@@ -78,7 +87,6 @@ public class MemberService {
 		}
 		return false;
 	}
-	
 //	public boolean findID(String name, String phone) {
 //		FindIDCommand findID=loginRepository.selectByNameAndPhone(name, phone);
 //		return findID(findID.getMemberName(), findID.getMemberPhone());
@@ -87,5 +95,12 @@ public class MemberService {
 //		System.out.println("service "+memberSurveyCommand.getSurvNo());
 //		return memberRepository.survey2Write(memberSurveyCommand);
 //	}
+
+	public Integer updateMember(MemberUpdateCommand memberUpdateCommand) {
+		System.out.println("service updateMember "+memberUpdateCommand.getMemberEmail());
+		
+		Member member=new Member(memberUpdateCommand.getMemberEmail(), memberUpdateCommand.getMemberName(), memberUpdateCommand.getMemberPhone(), memberUpdateCommand.getMemberPass(), memberUpdateCommand.getMemberAddr1(), memberUpdateCommand.getMemberAddr2(), memberUpdateCommand.getMemberAddrNo());
+		return memberRepository.updateMember(member);
+	}
 
 }

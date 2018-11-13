@@ -53,9 +53,9 @@ public class ExerciseController {
 		/*int exerciseCatBNumber = Integer.parseInt(request.getParameter("exerciseCatBNumber"));
 		int exerciseCatANumber = Integer.parseInt(request.getParameter("exerciseCatANumber"));*/
 		
-		
+		/*
 		System.out.println(uploadCommand.getExerciseCatANumber() + "CATA");
-		System.out.println(uploadCommand.getExerciseCatBNumber() + "CATB");
+		System.out.println(uploadCommand.getExerciseCatBNumber() + "CATB");*/
 		
 	
 		

@@ -11,6 +11,7 @@
 		<typeAlias type="model.Member" alias="Member"/>
 		<typeAlias type="model.MemberSurvey" alias="MemberSurvey"/>
 		<typeAlias type="model.Exercise" alias="Exercise"/>
+		<typeAlias type="model.Program" alias="Program"/>
 		<typeAlias type="model.Upload" alias="Upload"/>
 		<typeAlias type="category.ExerciseCatA" alias="ExerciseCatA"/>
 		<typeAlias type="category.ExerciseCatB" alias="ExerciseCatB"/>
@@ -40,5 +41,6 @@
 		<mapper resource="repository/mapper/loginMapper.xml"/>
 		<mapper resource="repository/mapper/exerciseMapper.xml"/>
 		<mapper resource="repository/mapper/foodMapper.xml"/>
+		<mapper resource="repository/mapper/programMapper.xml"/>
 	</mappers>
 </configuration>

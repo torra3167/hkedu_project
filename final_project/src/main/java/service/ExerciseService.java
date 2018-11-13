@@ -22,9 +22,9 @@ public class ExerciseService {
 	Exercise exercise;
 	/*"http://localhost:8080/final_project/exercise/file/"*/
 	static final String filePath =
-//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			"C:\\Users\\admin\\Documents\\final_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			File file = new File(filePath);
+			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\admin\\Documents\\final_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+	File file;
 	String originalFile;
 	String originalFileExtension;
 	String storedFileName;
@@ -42,7 +42,6 @@ public class ExerciseService {
 
 	public void insertExercise(UploadCommand uploadCommand)  {
 		Integer result = er.selectExerciseNumber();
-		System.out.println();
 		List<MultipartFile> uploadImage 
 		= (List<MultipartFile>) uploadCommand.getUploadImage();
 		
@@ -52,11 +51,11 @@ public class ExerciseService {
 		
 		int j = er.insertExercise(exercise);
 		
-		List<Upload> list = new ArrayList<Upload>();
+		List<Upload> list = null;
 	
 	
 		for(int i = 0 ; i < uploadImage.size(); i++) {
-			
+			list = new ArrayList<Upload>();
 			multiFile = uploadImage.get(i);
 			
 			originalFile = multiFile.getOriginalFilename();
@@ -96,6 +95,7 @@ public class ExerciseService {
 				
 			} 
 			
+		}
 			System.out.println("VIDEO " + uploadCommand.getUploadVideo());
 			
 			multiFile = uploadCommand.getUploadVideo();
@@ -104,6 +104,7 @@ public class ExerciseService {
 			
 			originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
 			storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+			list = new ArrayList<Upload>();
 			file = new File(filePath + storedFileName);
 			
 			try {
@@ -122,7 +123,7 @@ public class ExerciseService {
 				e.printStackTrace();
 			}
 			
-		}
+		
 		
 	}
 
