@@ -8,15 +8,31 @@ public class Program implements Serializable {
 	
 	private int proNo;
 	private String coachEmail;
-	private int exerciseNumber;
-	private int exerciseCatANumber;
-	private int exerciseCatBNumber;
 	private String proName;
 	private String proImg;
+	private Long programSize;
+	private String programOriginal;
+	private String programStored;
 	private Date proRegdate;
 	private String proStatus;
 	private String proDes;
 	
+	
+	
+	public Program(int proNo, String coachEmail, String proName, Long programSize, String programOriginal,
+			String programStored) {
+		this.proNo = proNo;
+		this.coachEmail = coachEmail;
+		this.proName = proName;
+		this.programSize = programSize;
+		this.programOriginal = programOriginal;
+		this.programStored = programStored;
+	}
+
+	public Program(int proNo, String proName) {
+		this.proNo = proNo;
+		this.proName = proName;
+	}
 	
 	public int getProNo() {
 		return proNo;
@@ -29,24 +45,6 @@ public class Program implements Serializable {
 	}
 	public void setCoachEmail(String coachEmail) {
 		this.coachEmail = coachEmail;
-	}
-	public int getExerciseNumber() {
-		return exerciseNumber;
-	}
-	public void setExerciseNumber(int exerciseNumber) {
-		this.exerciseNumber = exerciseNumber;
-	}
-	public int getExerciseCatANumber() {
-		return exerciseCatANumber;
-	}
-	public void setExerciseCatANumber(int exerciseCatANumber) {
-		this.exerciseCatANumber = exerciseCatANumber;
-	}
-	public int getExerciseCatBNumber() {
-		return exerciseCatBNumber;
-	}
-	public void setExerciseCatBNumber(int exerciseCatBNumber) {
-		this.exerciseCatBNumber = exerciseCatBNumber;
 	}
 	public String getProName() {
 		return proName;
@@ -78,6 +76,38 @@ public class Program implements Serializable {
 	public void setProDes(String proDes) {
 		this.proDes = proDes;
 	}
+
+
+	public Long getProgramSize() {
+		return programSize;
+	}
+
+
+	public void setProgramSize(Long programSize) {
+		this.programSize = programSize;
+	}
+
+
+	public String getProgramOriginal() {
+		return programOriginal;
+	}
+
+
+	public void setProgramOriginal(String programOriginal) {
+		this.programOriginal = programOriginal;
+	}
+
+
+	public String getProgramStored() {
+		return programStored;
+	}
+
+
+	public void setProgramStored(String programStored) {
+		this.programStored = programStored;
+	}
+	
+	
 	
 	
 }

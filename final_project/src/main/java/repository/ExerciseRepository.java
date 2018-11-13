@@ -119,6 +119,10 @@ public class ExerciseRepository extends AbstractRepository {
 				}
 				return result;
 	}
+
+
+
+	
 	
 	
 
