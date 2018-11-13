@@ -52,12 +52,17 @@
 			
         	
 			<div class="form-group">
-				<label>운동 사진 </label> <input type="file" multiple="multiple" name="exerciseFile" class="form-control">
+				<label>운동 사진 </label> <input type="file" multiple="multiple" name="uploadImage" class="form-control">
 			</div>
-		<div class="form-group">
-				<label>운동 영상</label> <input type="file" name="exerciseFile" class="form-control">
+			
+			<div class="form-group">
+				<label>운동 영상</label> <input type="file" name="uploadVideo" class="form-control">
 			</div> 
 			
+			<div class="form-group">
+				<label>운동 설명 </label> <input type="text" name="exerciseContent" class="form-control">
+			</div>
+		
 			<button type="submit" class="btn btn-primary">등록</button>
 			<button type="reset" class="btn btn-primary">다시 작성</button>
         </form>

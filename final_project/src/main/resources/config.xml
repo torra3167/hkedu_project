@@ -6,12 +6,17 @@
 	<typeAliases>
 		<typeAlias type="model.Coach" alias="Coach"/>
 		<typeAlias type="model.Seller" alias="Seller"/>
+		<typeAlias type="model.Seller" alias="Food"/>
 		<typeAlias type="model.AuthInfo" alias="AuthInfo"/>
 		<typeAlias type="model.Member" alias="Member"/>
 		<typeAlias type="model.MemberSurvey" alias="MemberSurvey"/>
 		<typeAlias type="model.Exercise" alias="Exercise"/>
+		<typeAlias type="model.Upload" alias="Upload"/>
 		<typeAlias type="category.ExerciseCatA" alias="ExerciseCatA"/>
 		<typeAlias type="category.ExerciseCatB" alias="ExerciseCatB"/>
+		<typeAlias type="category.FoodCatA" alias="FoodCatA"/>
+		<typeAlias type="category.FoodCatB" alias="FoodCatB"/>
+		<typeAlias type="category.FoodCatC" alias="FoodCatC"/>
 		
 	
 	</typeAliases>
@@ -34,5 +39,6 @@
 		<mapper resource="repository/mapper/sellerMapper.xml"/>
 		<mapper resource="repository/mapper/loginMapper.xml"/>
 		<mapper resource="repository/mapper/exerciseMapper.xml"/>
+		<mapper resource="repository/mapper/foodMapper.xml"/>
 	</mappers>
 </configuration>

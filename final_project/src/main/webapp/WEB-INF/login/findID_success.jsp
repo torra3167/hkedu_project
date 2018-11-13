@@ -29,8 +29,8 @@
 
 		<div class="message">회원님의 아이디는 <%= email %>입니다.</div>
 		<div class="btn">
-			<button type="button" class="btn btn-primary">비밀번호 찾기</button>
-			<button type="button" class="btn btn-primary">로그인</button>
+			<button type="button" class="btn btn-primary" onclick="findPW.gom">비밀번호 찾기</button>
+			<button type="button" class="btn btn-primary" onclick="login.gom">로그인</button>
 		</div>
 	</div>
 <%} %>

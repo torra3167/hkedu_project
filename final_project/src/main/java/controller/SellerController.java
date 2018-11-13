@@ -47,40 +47,6 @@ public class SellerController {
 			}
 		}
 		
-		/*
-		@RequestMapping(value="/seller_login.gom", method=RequestMethod.GET)
-		public String sellerLogin(SellerLoginCommand sellerLoginCommand, Model model, @CookieValue(value="coachEmail", required=false)Cookie rememberCookie) {
-			if(rememberCookie != null) {
-				sellerLoginCommand.setSellerEmail(rememberCookie.getValue());
-				sellerLoginCommand.setRememberEmail(true);
-			}
-			model.addAttribute("sellerLoginCommand", new SellerLoginCommand());
-			model.addAttribute("iPage", "seller/seller_login.jsp");
-			return "index";
-		}
-		
-		@RequestMapping(value="/seller_login.gom", method=RequestMethod.POST)
-		public String sellerSubmit(SellerLoginCommand sellerLoginCommand, Model model, HttpSession session, HttpServletResponse response) {
-			
-			System.out.println("controller " + sellerLoginCommand.getSellerEmail() + "," + sellerLoginCommand.getSellerPw());
-			
-			SellerAuthInfo sai = sellerService.authenticate(sellerLoginCommand.getSellerEmail(), sellerLoginCommand.getSellerPw());
-			session.setAttribute("sellerAuthInfo", sai);
-			
-			Cookie cookie = new Cookie("sellerEmail", sellerLoginCommand.getSellerEmail());
-			
-			if(sellerLoginCommand.isRememberEmail()) {
-				cookie.setMaxAge(60 * 60 * 24 * 30);
-			} else {
-				cookie.setMaxAge(0);
-			}
-			
-			response.addCookie(cookie);
-			
-			return "index";
-		}
-		*/
-		
 		
 		@RequestMapping(value="/seller_update.gom", method=RequestMethod.GET)
 		public String updateForm(SellerUpdateCommand sellerUpdateCommand, Model model, HttpSession session) {
@@ -110,7 +76,6 @@ public class SellerController {
 		@RequestMapping(value="/seller_menu.gom", method=RequestMethod.GET)
 		public String sellerMenu(Model model, HttpSession session) {
 			model.addAttribute("iPage", "seller/seller_menu.jsp");
-			model.addAttribute("divide", session.getAttribute("divide"));
 			return "index";
 		}
 		

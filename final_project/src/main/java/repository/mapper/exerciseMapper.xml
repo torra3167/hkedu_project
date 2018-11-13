@@ -8,15 +8,23 @@
 
 
 
+<insert id="insertUpload" parameterType="Upload">
+	insert into upload
+	(UPLOAD_NUMBER, EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER, 
+	UPLOAD_SIZE, UPLOAD_ORIGINAL, UPLOAD_STORED, UPLOAD_DIVIDE) 
+	values
+	(COUNT_NUMBER.NEXTVAL, #{exerciseNumber}, #{exerciseCatANumber}, #{exerciseCatBNumber},
+	#{uploadSize}, #{uploadOriginal}, #{uploadStored}, #{uploadDivide})
+</insert>
+
 
 
 <insert id="insertExercise" parameterType="Exercise">
 	insert into exercise
 	(EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER, 
-	 EXERCISE_SIZE, EXERCISE_ORIGINAL, EXERCISE_STORED, EXERCISE_DIVIDE) 
+	 EXERCISE_CONTENT) 
 	values
-	(#{exerciseNumber}, #{exerciseCatANumber}, #{exerciseCatBNumber},
-	#{exerciseSize}, #{exerciseOriginal}, #{exerciseStored}, #{exerciseDivide})
+	(#{exerciseNumber}, #{exerciseCatANumber}, #{exerciseCatBNumber}, #{exerciseContent})
 </insert>
 
 <resultMap type="ExerciseCatB" id="exerciseCatBMap">
@@ -43,11 +51,11 @@
 </select>
 
 <select id="selectExerciseNumber" resultType="Integer">
-	select count(exercise_number)
-	from exercise
+	select COUNT_NUMBER.NEXTVAL
+	from dual
 </select>
 
-<resultMap type="Exercise" id="exerciseMap">
+<resultMap type="Upload" id="uploadMap">
 	<!-- <constructor>
 		<idArg javaType="int" column="EXERCISE_NUMBER"/>
 		<idArg javaType="int" column="EXERCISE_CAT_A_NUMBER"/>
@@ -58,21 +66,22 @@
 		<arg javaType="string" column="EXERCISE_DIVIDE"/>
 	</constructor>  -->
 	
+	<id column="UPLOAD_NUMBER" jdbcType="BIGINT" property="uploadNumber"/>
 	<id column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber"/>
 	<id column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>
 	<id column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>	
-	<result column="EXERCISE_SIZE" jdbcType="BIGINT" property="exerciseSize"/>	
-	<result column="EXERCISE_ORIGINAL" jdbcType="VARCHAR" property="exerciseOriginal"/>	
-	<result column="EXERCISE_STORED" jdbcType="VARCHAR" property="exerciseStored"/>	
-	<result column="EXERCISE_DIVIDE" jdbcType="VARCHAR" property="exerciseDivide"/>	 
+	<result column="UPLOAD_SIZE" jdbcType="BIGINT" property="uploadSize"/>	
+	<result column="UPLOAD_ORIGINAL" jdbcType="VARCHAR" property="uploadOriginal"/>	
+	<result column="UPLOAD_STORED" jdbcType="VARCHAR" property="uploadStored"/>	
+	<result column="UPLOAD_DIVIDE" jdbcType="VARCHAR" property="uploadDivide"/>	 
 	
 	
 </resultMap>
 
-<select id="exerciseList" resultMap="exerciseMap">
-select EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER, 
-EXERCISE_SIZE, EXERCISE_ORIGINAL, EXERCISE_STORED, EXERCISE_DIVIDE
-from exercise 
+<select id="uploadList" resultMap="uploadMap">
+select UPLOAD_NUMBER, EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER,
+UPLOAD_SIZE, UPLOAD_ORIGINAL, UPLOAD_STORED, UPLOAD_DIVIDE
+from upload
 </select>
 
 </mapper>

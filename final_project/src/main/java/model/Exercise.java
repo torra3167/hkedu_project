@@ -10,118 +10,63 @@ public class Exercise implements Serializable {
 	private int exerciseNumber;
 	private int exerciseCatANumber;
 	private int exerciseCatBNumber;
-	private Long exerciseSize;
-	private String exerciseOriginal;
-	private String exerciseStored;
-	private String exerciseDivide;
+	private String exerciseContent;
+	
 
-	public Exercise() {}
-
-	public Exercise(int exerciseNumber, int exerciseCatANumber, int exerciseCatBNumber, Long exerciseSize,
-			String exerciseOriginal, String exerciseStored, String exerciseDivide) {
+	public Exercise(int exerciseNumber, int exerciseCatANumber, int exerciseCatBNumber, String exerciseContent) {
 		this.exerciseNumber = exerciseNumber;
 		this.exerciseCatANumber = exerciseCatANumber;
 		this.exerciseCatBNumber = exerciseCatBNumber;
-		this.exerciseSize = exerciseSize;
-		this.exerciseOriginal = exerciseOriginal;
-		this.exerciseStored = exerciseStored;
-		this.exerciseDivide = exerciseDivide;
+		this.exerciseContent = exerciseContent;
 	}
 
 
 
+	public Exercise() {}
 
-
-
+	
 
 	public int getExerciseNumber() {
 		return exerciseNumber;
 	}
 
+
 	public void setExerciseNumber(int exerciseNumber) {
 		this.exerciseNumber = exerciseNumber;
 	}
+
 
 	public int getExerciseCatANumber() {
 		return exerciseCatANumber;
 	}
 
+
 	public void setExerciseCatANumber(int exerciseCatANumber) {
 		this.exerciseCatANumber = exerciseCatANumber;
 	}
+
 
 	public int getExerciseCatBNumber() {
 		return exerciseCatBNumber;
 	}
 
+
 	public void setExerciseCatBNumber(int exerciseCatBNumber) {
 		this.exerciseCatBNumber = exerciseCatBNumber;
 	}
 
+
+	public String getExerciseContent() {
+		return exerciseContent;
+	}
+
+
+	public void setExerciseContent(String exerciseContent) {
+		this.exerciseContent = exerciseContent;
+	}
+	
 	
 
-
-
-
-
-	public Long getExerciseSize() {
-		return exerciseSize;
-	}
-
-
-
-
-
-	public void setExerciseSize(Long exerciseSize) {
-		this.exerciseSize = exerciseSize;
-	}
-
-
-
-
-
-	public String getExerciseOriginal() {
-		return exerciseOriginal;
-	}
-
-
-
-
-
-	public void setExerciseOriginal(String exerciseOriginal) {
-		this.exerciseOriginal = exerciseOriginal;
-	}
-
-
-
-
-
-	public String getExerciseStored() {
-		return exerciseStored;
-	}
-
-
-
-
-
-	public void setExerciseStored(String exerciseStored) {
-		this.exerciseStored = exerciseStored;
-	}
-
-
-
-
-
-	public String getExerciseDivide() {
-		return exerciseDivide;
-	}
-
-
-
-
-
-	public void setExerciseDivide(String exerciseDivide) {
-		this.exerciseDivide = exerciseDivide;
-	}
+	
 
 }

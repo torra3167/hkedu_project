@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, model.Exercise"%>
+	pageEncoding="UTF-8" import="java.util.*, model.Upload"%>
 	
 	<%
-    	List list = (List)request.getAttribute("Exercise");
+    	List list = (List)request.getAttribute("Upload");
     %>
 	
 	
@@ -37,7 +37,7 @@
 			</thead>
 			<tbody>
 			<% for(Object temp : list) {
-				Exercise exercise = (Exercise)temp; %>
+				Upload upload = (Upload)temp; %>
 				<tr>
 					<%-- <th>${exerciseCatANumber }</th>
 					<th>${exerciseCatBNumber }</th>
@@ -48,14 +48,13 @@
 					<th>${exerciseDivide }</th>  --%>
 					
 					
-					 <td><a href="exercise_detail.gom?exerciseNumber=<%=exercise.getExerciseNumber() %>"><%=exercise.getExerciseNumber() %></a></td>
-					<td><%=exercise.getExerciseCatANumber() %></td>
-					<td><%=exercise.getExerciseCatBNumber() %></td>
-					<td><%=exercise.getExerciseSize() %></td>
-					<td><%=exercise.getExerciseOriginal() %></td>
-					<td><img src="./resource/<%=exercise.getExerciseStored()%>" width="40" height="40"></td>
-					<td><%=exercise.getExerciseDivide() %></td> 
-					
+					 <td><a href="exercise_detail.gom?exerciseNumber=<%=upload.getExerciseNumber() %>"><%=upload.getExerciseNumber() %></a></td>
+					<td><%=upload.getExerciseCatANumber() %></td>
+					<td><%=upload.getExerciseCatBNumber() %></td>
+					<td><%=upload.getUploadSize() %></td>
+					<td><%=upload.getUploadOriginal() %></td>
+					<td><img src="http://localhost:8080/final_project/resource/<%=upload.getUploadStored() %>" width="80" height="80"></td>
+					<td><%=upload.getUploadDivide() %></td> 
 					
 				</tr>
 				
