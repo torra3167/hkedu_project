@@ -13,6 +13,11 @@ public class ProgramExercise implements Serializable {
 	
 	
 	
+	public ProgramExercise(int pro_no, String coachEmail) {
+		
+		this.pro_no = pro_no;
+		this.coachEmail = coachEmail;
+	}
 	public int getPro_no() {
 		return pro_no;
 	}

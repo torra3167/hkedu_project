@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import= "java.util.*, model.Exercise"%>
+    
+    <%
+    	Exercise exercise = (Exercise)request.getAttribute("Exercise");
+    %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>      
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 <!DOCTYPE html>
@@ -13,25 +17,25 @@
 <div class="container mt-3" style="max-width: 560px;">
 	<div><h3><strong>운동 정보수정</strong></h3></div>
 	<br>
-	<form:form method="post" action="exercise_update.gom" commandName="exerciseCommand">
-		<div class="form-group">
-			<label>이메일</label> <form:input path="sellerEmail" class="form-control" value="${ai.email}" readonly="true" />
-			<input type="button" class="btn btn-primary" name="sellerEmailDuplicate" value="중복 확인" onclick="">
-		</div>
-		<div class="form-group">
-			<label>비밀번호</label> <form:password path="sellerPw" class="form-control" />
-		</div>
-		<div class="form-group">
-			<label>비밀번호 확인</label> <input type="password" name="sellerConfirmPw" class="form-control"><!-- 속성추가 필요 -->
-		</div>
-		<div class="form-group">
-			<label>휴대폰번호</label> <form:input path="sellerPhone" class="form-control" />
-			<input type="button" class="btn btn-primary" name="sellerPhoneDuplicate" value="중복 확인" onclick="">
-		</div>
-		<button type="submit" class="btn btn-primary">확인</button>
-		<button type="reset" class="btn btn-primary">다시 작성</button>
-	</form:form>
-</div>
-
+	<div class="container mt-3" >
+    <form:form commandName="member" action="member_info.gom" method="POST">
+        <div class="form-group">
+          <label>이메일</label>
+          <form:input path="coachEmail" class="form-control" value="${exercise.coachEmail}" readonly="true"/>
+        </div>
+        <div class="form-group">
+          <label>운동 이미지</label>
+          <form:input path="memberName" class="form-control" value=""/>
+        </div>
+        <div class="form-group">
+          <label>운동 비디오</label>
+          <form:input path="memberPhone" class="form-control" value=""/>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" >정보 수정</button>
+        <button type="button" class="btn btn-primary" onclick="history.go(-1);">뒤로가기</button>
+    </form:form>
+    </div>
+    </div>
 </body>
 </html>

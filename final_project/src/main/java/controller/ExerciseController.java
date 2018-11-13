@@ -61,7 +61,7 @@ public class ExerciseController {
 		
 		es.insertExercise(uploadCommand);
 		
-		return "index";
+		return "redirect:/index";
 
 		
 		

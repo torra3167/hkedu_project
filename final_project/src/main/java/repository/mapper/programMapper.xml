@@ -9,6 +9,13 @@
 	from dual
 </select>
 
+<insert id="insertProgramExercise" parameterType="ProgramExercise">
+	insert into programexercise 
+	(PRO_NO, COACH_EMAIL)
+	values
+	(#{proNo}, #{coachEmail})
+</insert>
+
 <insert id="insertProgram" parameterType="Program">
 	insert into program
 	(PRO_NO, COACH_EMAIL, PRO_NAME, PRO_SIZE, 

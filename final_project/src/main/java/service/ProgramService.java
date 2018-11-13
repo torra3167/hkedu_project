@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import command.ProgramCommand;
 import model.Program;
+import model.ProgramExercise;
 import repository.ProgramRepository;
 
 @Service
@@ -18,10 +19,11 @@ public class ProgramService {
 	String originalFileExtension;
 	String storedFileName;
 	Program program;
+	ProgramExercise programExercise;
 	MultipartFile multiFile;
 	static final String filePath =
-			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\admin\\Documents\\final_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\admin\\Documents\\final_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
 	
 	@Autowired
@@ -58,11 +60,21 @@ public class ProgramService {
 			
 			int k= pr.insertProgram(program);
 			
-			
 			if(k < 1) {
 				System.out.println("프로그램 등록실패!");
 			} else {
 				System.out.println("프로그램 등록성공!");
+			}
+			
+			//프로그램 운동
+			//프로그램번호, 코치이메일, 운동번호, 카테고리A번호,카테고리B번호
+			programExercise = new ProgramExercise(result, programCommand.getCoachEmail());
+			int j = pr.insertProgramExercise(programExercise);
+			
+			if(j < 1) {
+				System.out.println("프로그램운동 등록실패!");
+			} else {
+				System.out.println("프로그램운동 등록성공!");
 			}
 		
 		} catch (Exception e) {

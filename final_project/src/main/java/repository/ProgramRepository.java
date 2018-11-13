@@ -3,6 +3,7 @@ package repository;
 import org.apache.ibatis.session.SqlSession;
 
 import model.Program;
+import model.ProgramExercise;
 
 public class ProgramRepository extends AbstractRepository {
 	SqlSession sqlSession;
@@ -40,6 +41,27 @@ public class ProgramRepository extends AbstractRepository {
 			sqlSession.close();
 		}
 		
+	}
+
+	public Integer insertProgramExercise(ProgramExercise programExercise) {
+		System.out.println("PROGRAM EXERCISE" );
+
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			 Integer result = sqlSession.insert(namespace + ".insertProgramExercise", programExercise);
+			System.out.println("PROGRAM EXERCISE" + result);
+
+			 if(result > 0) {
+				 sqlSession.commit();
+			 } else {
+				 sqlSession.rollback();
+			 }
+			 
+			 return result;
+			 
+		} finally {
+			sqlSession.close();
+		}
 	}
 
 }
