@@ -7,14 +7,14 @@
 <title>식품주문 통계</title>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="http://localhost:8080/final_project/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
-<script src="../js/jquery.min.js"></script>
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<!-- <script src="http://localhost:8080/final_project/js/jquery.min.js"></script>
+<script src="http://localhost:8080/final_project/js/popper.min.js"></script>
+<script src="http://localhost:8080/final_project/js/bootstrap.min.js"></script> -->
 <style type="text/css">
     	 a:link { color: black; text-decoration: none;}
 		 a:visited { color: black; text-decoration: none;}

@@ -11,12 +11,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<select id="aaaca" name="foodCatANo" >
-	<% System.out.println("cca에서 list값 : "+ list); %>
-	<% for(Object obj : list){ 
-		FoodCatA foodCatA = (FoodCatA)obj; %>
-		<option value="<%= foodCatA.getFoodCatANo()%>"><%= foodCatA.getFoodCatAName()%></option>
-	<% } %>
+<select id="FCA" name="foodCatANo" >
+<% for(Object o : list) { 
+	FoodCatA ccar = (FoodCatA)o;
+%>
+	<option value="<%=ccar.getFoodCatANo() %>">
+	<%= ccar.getFoodCatAName() %></option>
+<% } %>
 </select>
 </body>
 </html>

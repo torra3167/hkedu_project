@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>판매자전용페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="http://localhost:8080/final_project/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
@@ -52,14 +52,16 @@
 	<!-- Tab panes -->
 	<div class="tab-content">
 		<div class="tab-pane container active" id="home">
-			<jsp:include page="seller_OrderBoard.jsp"></jsp:include>
+			<jsp:include page="../food/seller_orderBoard.jsp"></jsp:include>
 		</div>
-	  	<div class="tab-pane container fade" id="menu1">
+	  	 <div class="tab-pane container fade" id="menu1">
 	  		<jsp:include page="../food/food_orderStatistics.jsp"></jsp:include>
 	  	</div>
-	  	<div class="tab-pane container fade" id="menu2">
+	  	
+	   	<div class="tab-pane container fade" id="menu2">
 	  		<jsp:include page="../food/food_reg.jsp"></jsp:include>
 		</div>
+		
 	  	<div class="tab-pane container fade" id="menu3">
 	  		<jsp:include page="../food/food_modify.jsp"></jsp:include>
 	  	</div>
@@ -68,12 +70,10 @@
 		</div>
 	  	<div class="tab-pane container fade" id="menu5">
 	  		<jsp:include page="seller_contactAdmin.jsp"></jsp:include>
-		</div>
+		</div>  
 	</div>
 </div>
 
-<script src="../js/jquery.min.js"></script>
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+
 </body>
 </html>

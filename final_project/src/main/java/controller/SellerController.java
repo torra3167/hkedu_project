@@ -76,6 +76,7 @@ public class SellerController {
 		@RequestMapping(value="/seller_menu.gom", method=RequestMethod.GET)
 		public String sellerMenu(Model model, HttpSession session) {
 			model.addAttribute("iPage", "seller/seller_menu.jsp");
+			//카테고리 리스트값 여기서받아오기
 			return "index";
 		}
 		
