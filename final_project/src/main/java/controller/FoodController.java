@@ -30,7 +30,7 @@ public class FoodController {
 	
 	@RequestMapping(value="/food_reg.gom", method=RequestMethod.POST)
 	public String foodRegSubmit(FoodRegCommand foodRegCommand,  Model model, HttpSession session) { 
-        System.out.println("cntlr foodRegCommand.getFoodName : " + foodRegCommand.getFoodName());
+//        System.out.println("cntlr foodRegCommand.getFoodName : " + foodRegCommand.getFoodName());
         foodService.insertFood(foodRegCommand, session);
         return "redirect:/index";
 	}

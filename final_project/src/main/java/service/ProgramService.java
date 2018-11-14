@@ -37,9 +37,25 @@ public class ProgramService {
 	public void insertProgram(ProgramCommand programCommand) {
 		// TODO Auto-generated method stub
 		
+		//프로그램번호
 		Integer result = pr.selectProgramNumber();
 		
 		System.out.println(result + " selectProgramNumber");
+		
+		//카테고리조건출력
+		String exerciseCatAName = programCommand.getExerciseCatAName();
+		String[] exerciseCatANames =  exerciseCatAName.split("/");
+		
+		List<ExerciseCatA> list = pr.selectCatByExerciseCatAName(exerciseCatANames);
+		for(Object temp : list) {
+			ExerciseCatA categoryA = (ExerciseCatA)temp;
+			System.out.println(categoryA.getExerciseCatANumber() + " A");
+			System.out.println(categoryA.getExerciseCatBNumber() + " B");
+			System.out.println("-------------");
+			
+		}
+		//List<DTO> 1:다 인서트. 하나의 프로그램번호에 여러개의 운동
+		
 		
 		//파일저장
 		multiFile = programCommand.getProImg();

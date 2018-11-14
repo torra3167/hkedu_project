@@ -12,8 +12,15 @@ public class ProgramCommand implements Serializable {
 	private MultipartFile proImg;
 	private Date proRegdate;
 	private String coachEmail;
+	private String exerciseCatAName;
 
 	
+	public String getExerciseCatAName() {
+		return exerciseCatAName;
+	}
+	public void setExerciseCatAName(String exerciseCatAName) {
+		this.exerciseCatAName = exerciseCatAName;
+	}
 	public String getCoachEmail() {
 		return coachEmail;
 	}

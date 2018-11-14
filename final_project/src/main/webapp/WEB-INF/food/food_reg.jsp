@@ -3,8 +3,8 @@
 <%@ page import="java.util.*, model.*, category.*" %>
 <%
 	List list = (List)request.getAttribute("list");
-	System.out.println("food_reg.jsp :" + list.size());
-%>
+/* 	System.out.println("food_reg.jsp :" + list.size());
+ */%>
 <html>
 <head>
 <meta charset="UTF-8">

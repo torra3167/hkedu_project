@@ -19,18 +19,21 @@ public class ProgramController {
 	
 	@RequestMapping(value="/program_register.gom", method=RequestMethod.GET)
 	public String programForm(ProgramCommand programCommand, Model model) {
-	    
-		ps.exerciseCategoryB(model);
+	   
+//		ps.exerciseCategoryB(model);
 		model.addAttribute("iPage", "program/program_register.jsp");
 	    return "index";
-
+	    
 	}
 	
 	@RequestMapping(value="/program_register.gom", method=RequestMethod.POST)
 	public String programSubmit(ProgramCommand programCommand, HttpSession session, Model model) {
 	    
+		System.out.println("CAT NAME " + programCommand.getExerciseCatAName());
 		String coachEmail = (String)session.getAttribute("email");
+		
 		programCommand.setCoachEmail(coachEmail);
+		
 		System.out.println(programCommand.getProImg() + " PRO IMG");
 		System.out.println(programCommand.getProName() + " PRO NAME");
 		System.out.println(programCommand.getCoachEmail() + " COACHEMAIL");
@@ -41,14 +44,14 @@ public class ProgramController {
 	    return "redirect:/index";
 
 	}
-	@RequestMapping(value="/program_aca.gom", method=RequestMethod.POST)
-	public String bca(ExerciseCatB bca, Model model) {
-//		System.out.println("B category " + bca.getExerciseCatBNumber());
-		
-		ps.exerciseCategoryA(bca, model);
-/*		model.addAttribute("iPage", "exercise/category/exercise_cat_a");
-*/		return "exercise/category/exercise_cat_a";
-	}
+//	@RequestMapping(value="/program_aca.gom", method=RequestMethod.POST)
+//	public String bca(ExerciseCatB bca, Model model) {
+//	System.out.println("B category " + bca.getExerciseCatBNumber());
+//		
+//		ps.exerciseCategoryA(bca, model);
+//		model.addAttribute("iPage", "exercise/category/exercise_cat_a");
+//		return "exercise/category/exercise_cat_a";
+//	}
 	
 }
 
