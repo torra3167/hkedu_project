@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
-<%@ page import="java.util.*, model.*, category.*" %>
-<%
-	List list = (List)request.getAttribute("list");
-	System.out.println("food_reg.jsp :" + list.size());
-%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -23,7 +18,7 @@
 <body>
 <div class="container mt-3" style="max-width: 560px;">
         	<div class="form-group">
-				<label>식품 번호</label> <input type="text" name="foodNo" class="form-control" value="" readonly="true">
+				<!-- <label>식품 번호</label> --> <input type="hidden" name="foodNo" class="form-control" value="">
 			</div>
         	<div class="form-group">
 				<label>판매식품 이름</label> <input type="text" name="foodName" class="form-control" value="" readonly="true">
@@ -35,13 +30,14 @@
 				<label>식품 할인율(%)</label> <input type="text" name="foodSale" class="form-control" value="" readonly="true">
 			</div>
 			<div class="form-group">
-				<label>판매식품 이미지</label> <input type="file" name="foodImage" class="form-control" value="" readonly="true">
+				<label>판매식품 이미지</label> <img alt="" src="images/sushi.jpg">
 			</div>
 			<div>
-			<select id="FCC" name="foodCatCNo"  value="" readonly="true"> 
+			카테고리
+			<input type="text" name="foodCatANo" class="form-control" value="" readonly="true">
+			<input type="text" name="foodCatBNo" class="form-control" value="" readonly="true">
+			<input type="text" name="foodCatCNo" class="form-control" value="" readonly="true">
 			</div>
-			<div id="divBca"></div>
-			<div id="divAca"></div>
 			<div class="form-group">
 				<label>식품 맛</label> <input type="text" name="foodFlavor" class="form-control" value="" readonly="true">
 			</div>
@@ -68,10 +64,7 @@
 			</div>
 			<button type="button" class="btn btn-primary">수정</button>
 			<button type="button" class="btn btn-primary">삭제</button>
-			<button type="reset" class="btn btn-primary">다시 작성</button>
 			<button type="button" class="btn btn-primary" onclick="history.go(-1);">뒤로가기</button>
     </div>
-    
-  
 </body>
 </html>

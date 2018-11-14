@@ -57,8 +57,8 @@ public class SellerController {
 		
 		@RequestMapping(value="/seller_update.gom", method=RequestMethod.GET)
 		public String updateForm(SellerUpdateCommand sellerUpdateCommand, Model model, HttpSession session) {
-			AuthInfo ai = (AuthInfo) session.getAttribute("AuthInfo");
-			model.addAttribute("ai", ai);
+			AuthInfo ai = (AuthInfo) session.getAttribute("email");
+			model.addAttribute("email", ai);
 			model.addAttribute("iPage", "seller/seller_update.jsp");
 			return "index";
 		}
@@ -83,9 +83,13 @@ public class SellerController {
 		@RequestMapping(value="/seller_menu.gom", method=RequestMethod.GET)
 		public String sellerMenu(Model model, HttpSession session) {
 			model.addAttribute("iPage", "seller/seller_menu.jsp");
-			//카테고리 리스트값 받아와서 저장
+			//foodReg cate list
 			List<FoodCatC> list = foodService.dominoSelectC(model);
-			model.addAttribute("list", list);
+			model.addAttribute("foodCat", list);
+			
+			//seller_foodList
+			String sellerEmail = (String) session.getAttribute("email");
+			foodService.sellerFoodList(model, sellerEmail);
 			return "index";
 		}
 		

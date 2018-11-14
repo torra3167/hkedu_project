@@ -21,6 +21,7 @@ import model.AuthInfo;
 import model.Food;
 import model.Program;
 import model.ProgramExercise;
+import model.Upload;
 import repository.FoodRepository;
 
 
@@ -41,6 +42,12 @@ public class FoodService {
 //			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
+	
+	
+	public void sellerFoodList(Model model, String sellerEmail) {
+		List<Food> list = foodRepository.sellerFoodList(sellerEmail);   
+		model.addAttribute("sellerFoodList", list);
+	}
 	
 	public void insertFood(FoodRegCommand foodRegCommand, HttpSession session) {
 		//System.out.println("service insertFood " + foodRegCommand.getFoodName());
@@ -119,14 +126,14 @@ public class FoodService {
 //		System.out.println("service B 실행, FoodCatCNo : " + foodCatB.getFoodCatCNo());
 		List<FoodCatB> list = foodRepository.bcaSelect(foodCatB);
 //		System.out.println("service B 반환된 list size : " + list.size());
-		model.addAttribute("list", list);
+		model.addAttribute("foodCat", list);
 	}
 	
 	public void dominoSelectA(FoodCatA foodCatA, Model model) {
 //		System.out.println("service A 실행, FoodCatBNo : " + foodCatA.getFoodCatBNo());
 		List<FoodCatA> list = foodRepository.acaSelect(foodCatA);
 //		System.out.println("service A 반환된 list size : " + list.size());
-		model.addAttribute("list", list);
+		model.addAttribute("foodCat", list);
 	}
 
 }

@@ -58,7 +58,7 @@ public class FoodController {
 	@RequestMapping(value="/seller_foodDetail.gom", method=RequestMethod.GET)
 	public String sellerFoodDetail(Model model) {
 		System.out.println("sellerFoodDetail");
-		model.addAttribute("iPage", "food/seller_foodDetail.jsp");
+		model.addAttribute("iPage", "seller/seller_foodDetail.jsp");
 		return "index";
 	}
 	

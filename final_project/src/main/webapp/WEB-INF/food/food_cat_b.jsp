@@ -3,7 +3,7 @@
 <%@ page import="java.util.*, model.*, category.*" %>
     
 <%
-	List list = (List)request.getAttribute("list");
+	List list = (List)request.getAttribute("foodCat");
 %>
     
     

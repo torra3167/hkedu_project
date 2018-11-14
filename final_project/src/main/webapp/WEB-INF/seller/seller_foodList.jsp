@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*, model.Food"%>
+	
+<% 
+    	List list = (List)request.getAttribute("sellerFoodList");
+ %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,15 +24,28 @@
 					<th>식품명</th>
 					<th>가격</th>
 					<th>개수</th>
+					<th>개수</th>
+					<th>개수</th>
+					<th>개수</th>
 				</tr>
 			</thead>
 			
 			<tbody>
-				<tr class="active">
-					<th><a href="seller_foodDetail.gom">이름이름</a></th>
-					<th>5000</th>
-					<th>10</th>
+			 <% for(Object temp : list) {
+				 Food food = (Food)temp; %>
+				<tr>
+					<td><a href="exercise_detail.gom?foodNo=<%=food.getFoodNo() %>"><%=food.getFoodNo() %></a></td>
+					<td><%=food.getFoodCatANo() %></td>
+					<td><%=food.getFoodCatBNo() %></td>
+					<td><%=food.getFoodCatCNo() %></td>
+					<td><%=food.getFoodPrice() %></td>
+					<td><%=food.getFoodQuant() %></td>
+<%-- 					<td><img src="http://localhost:8080/final_project/resource/<%=upload.getUploadStored() %>" width="80" height="80"></td> --%>
+					<td><%=food.getFoodExpiryDate() %></td> 
+					
 				</tr>
+			
+				<% } %>
 			</tbody>
 		</table>
 		

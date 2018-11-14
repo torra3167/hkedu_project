@@ -103,4 +103,50 @@
 		WHERE food_no = #{foodNo}
 	</update>
 	
+	
+	<resultMap type="Food" id="sellerFoodListMap">
+		<id column="food_no" jdbcType="BIGINT" property="foodNo" />
+		<id column="food_cat_a_no" jdbcType="BIGINT" property="foodCatANo" />
+		<id column="food_cat_b_no" jdbcType="BIGINT" property="foodCatBNo" />
+		<id column="food_cat_c_no" jdbcType="BIGINT" property="foodCatCNo" />
+		<result column="food_name" jdbcType="VARCHAR" property="foodName" />
+		<result column="food_quant" jdbcType="BIGINT" property="foodQuant" />
+		<result column="food_expiry_date" jdbcType="VARCHAR" property="foodExpiryDate" />
+		<result column="food_origin" jdbcType="BIGINT" property="foodOrigin" />
+		<result column="food_sale" jdbcType="BIGINT" property="foodSale" />
+		<result column="food_flavor" jdbcType="VARCHAR" property="foodFlavor" />
+		<result column="food_price" jdbcType="BIGINT" property="foodPrice" />
+		<result column="food_carbo" jdbcType="BIGINT" property="foodCarbo" />
+		<result column="food_protein" jdbcType="BIGINT" property="foodProtein" />
+		<result column="food_fat" jdbcType="BIGINT" property="foodFat" />
+		<result column="food_cal" jdbcType="BIGINT" property="foodCal" />
+		<result column="food_size" jdbcType="BIGINT" property="foodSize" />
+		<result column="food_original" jdbcType="VARCHAR" property="foodOriginal" />
+		<result column="food_stored" jdbcType="VARCHAR" property="foodStored" />
+	</resultMap>
+	
+	<select id="sellerFoodList" parameterType="String" resultMap="sellerFoodListMap">
+		SELECT
+		food_no
+		food_cat_a_no,
+		food_cat_b_no,
+		food_cat_c_no,
+		food_name,
+		food_quant,
+		food_expiry_date,
+		food_origin,
+		food_sale,
+		food_flavor,
+		food_price,
+		food_carbo,
+		food_protein,
+		food_fat,
+		food_cal,
+		food_size,
+		food_original,
+		food_stored
+		FROM
+		food
+		WHERE seller_email = #{sellerEmail}
+	</select>
 </mapper>

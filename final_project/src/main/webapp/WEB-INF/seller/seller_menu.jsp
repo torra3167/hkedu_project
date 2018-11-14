@@ -50,7 +50,7 @@
 	  		<jsp:include page="../food/food_reg.jsp"></jsp:include>
 		</div>
 	  	<div class="tab-pane container fade" id="menu3">
-	  		<jsp:include page="../food/food_updateBoard.jsp"></jsp:include>
+	  		<jsp:include page="seller_foodList.jsp"></jsp:include>
 	  	</div>
 	  	<div class="tab-pane container fade" id="menu4">
 	  		<jsp:include page="../food/food_reviewReplyWrite.jsp"></jsp:include>

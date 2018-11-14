@@ -9,6 +9,7 @@ import category.FoodCatA;
 import category.FoodCatB;
 import category.FoodCatC;
 import model.Food;
+import model.Upload;
 
 @Repository
 public class FoodRepository extends AbstractRepository{
@@ -16,6 +17,18 @@ public class FoodRepository extends AbstractRepository{
 	SqlSession sqlSession;
 	
 	private final String namespace = "repository.mapper.foodMapper";
+	
+	public List<Food> sellerFoodList(String sellerEmail) {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+		List<Food> list =  sqlSession.selectList(namespace + ".sellerFoodList", sellerEmail);
+		return list;
+		} finally {
+			sqlSession.close();
+		}
+	}
 	
 	public Integer selectFoodNumber() {
 		sqlSession = getSqlSessionFactory().openSession();

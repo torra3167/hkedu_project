@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" %>
 <%@ page import="java.util.*, model.*, category.*" %>
 <% 
- 	List list = (List)request.getAttribute("list");
+ 	List list = (List)request.getAttribute("foodCat");
  	System.out.println("food_update.jsp :" + list.size());
 %> 
 <html>
