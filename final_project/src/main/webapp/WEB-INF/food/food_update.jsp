@@ -1,29 +1,85 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
+<%@ page import="java.util.*, model.*, category.*" %>
+<% 
+ 	List list = (List)request.getAttribute("list");
+ 	System.out.println("food_update.jsp :" + list.size());
+%> 
 <html>
 <head>
 <meta charset="UTF-8">
 <title>등록식품 수정</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="http://localhost:8080/final_project/css/bootstrap.min.css">
-<!-- <script src="../js/jquery.min.js"></script>
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap.min.js"></script> -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+<script type="text/javascript">
+
+
+
+function funcBca() {
+	 var num = document.getElementById("FCC").value;
+	 $.ajax({
+		 type:"POST",
+		 url:"bca.gom",
+		 dataType:"html",
+		 data:"foodCatCNo=" + num,
+		 success: function(result) {
+			 $('#divBca').html(result);
+			 $('#divAca').html("");
+		 }
+		 
+	 });
+}
+
+function funcAca() {
+		var num1 = document.getElementById("FCC").value; 
+		var num2 = document.getElementById("FCB").value;
+		/* alert(num1+"  "+ num2); */
+		$.ajax({
+			type:"POST",
+			url:"cca.gom",
+			dataType:"html",
+			data:"foodCatBNo="+num2 + "&foodCatCNo=" + num1,
+			success:function(result){
+				$('#divAca').html(result);	
+			}
+		});		
+	}
+ 
+ 
+ 
+</script>	
 </head>
 <body>
 <div class="container mt-3" style="max-width: 560px;">
-        <form method="post" action="#">
+        <form method="post" action="food_update.gom" enctype="multipart/form-data">
         	<div class="form-group">
 				<label>판매식품 이름</label> <input type="text" name="foodName" class="form-control">
 			</div>
 			<div class="form-group">
-				<label>판매식품 이미지</label> <input type="file" name="foodImage" class="form-control">
+				<label>식품 판매가격(원)</label> <input type="text" name="foodPrice" class="form-control">
 			</div>
 			<div class="form-group">
-				<label>판매식품 카테고리</label>
-				<select id="aaa" name="aaa" onclick="" class="form-control">
-					<option value="aaa">aaa</option>
-				</select>
+				<label>식품 할인율(%)</label> <input type="text" name="foodSale" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>판매식품 이미지</label> <input type="file" name="foodImage" class="form-control">
+			</div>
+			<div>
+			<select id="FCC" name="foodCatCNo" onclick="javascript:funcBca();"> 
+ 				<% for(Object temp : list) { 
+ 					FoodCatC acar = (FoodCatC)temp; %> 
+ 				 	<option value="<%=acar.getFoodCatCNo() %>"> <%=acar.getFoodCatCName() %></option> 
+ 				<% } %>
+			</select>
+			</div>
+			<div id="divBca"></div>
+			<div id="divAca"></div>
+			<div class="form-group">
+				<label>식품 맛</label> <input type="text" name="foodFlavor" class="form-control">
 			</div>
 			<div class="form-group">
 				<label>판매할 식품 개수</label> <input type="text" name="foodQuant" class="form-control">
@@ -32,32 +88,27 @@
 				<label>식품 유통기한</label> <input type="text" name="foodExpiryDate" class="form-control">
 			</div>
 			<div class="form-group">
-				<label> 식품재료 원산지</label> <input type="text" name="foodOrigin" class="form-control">
+				<label>식품재료 원산지</label> <input type="text" name="foodOrigin" class="form-control">
 			</div>
 			<div class="form-group">
-				<label>식품 할인율</label> <input type="text" name="foodSale" class="form-control">
+				<label>식품 탄수화물 함량(g)</label> <input type="text" name="foodCarbo" class="form-control">
 			</div>
 			<div class="form-group">
-				<label>식품 맛</label> <input type="text" name="foodFlavor" class="form-control">
+				<label>식품 단백질 함량(g)</label> <input type="text" name="foodProtein" class="form-control">
 			</div>
 			<div class="form-group">
-				<label>식품 판매가격</label> <input type="text" name="foodPrice" class="form-control">
+				<label>식품 지방 함량(g)</label> <input type="text" name="foodFat" class="form-control">
 			</div>
 			<div class="form-group">
-				<label>식품 탄수화물 함량</label> <input type="text" name="foodCarbo" class="form-control">
+				<label>식품 칼로리(kcal)</label> <input type="text" name="foodCal" class="form-control">
 			</div>
-			<div class="form-group">
-				<label>식품 단백질 함량</label> <input type="text" name="foodProtein" class="form-control">
-			</div>
-			<div class="form-group">
-				<label>식품 지방 함량</label> <input type="text" name="foodFat" class="form-control">
-			</div>
-			<div class="form-group">
-				<label>식품 칼로리</label> <input type="text" name="foodCal" class="form-control">
-			</div>
-			<button type="submit" class="btn btn-primary">수정</button>
+			<button type="submit" class="btn btn-primary">메뉴 등록</button>
 			<button type="reset" class="btn btn-primary">다시 작성</button>
+			<button type="button" class="btn btn-primary" onclick="history.go(-1);">뒤로가기</button>
         </form>
     </div>
+    
+  
 </body>
 </html>
+

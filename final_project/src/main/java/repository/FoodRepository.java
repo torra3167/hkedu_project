@@ -33,9 +33,16 @@ public class FoodRepository extends AbstractRepository{
 		sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
-			
-		return (Integer)sqlSession.selectOne(namespace + ".insertFood", food);
+			Integer result = sqlSession.insert(namespace + ".insertFood", food);
+			System.out.println("food REPO " + result);
 		
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+		
+			return result;
 		} finally {
 			sqlSession.close();
 		}

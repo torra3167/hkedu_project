@@ -15,7 +15,7 @@ public class FoodRegCommand implements Serializable{
 	private int foodCatCNo;
 	private String foodName;
 	private int foodQuant;
-	private Date foodExpiryDate;
+	private String foodExpiryDate;
 	private String foodOrigin;
 	private int foodSale;
 	private String foodFlavor;
@@ -25,11 +25,10 @@ public class FoodRegCommand implements Serializable{
 	private int foodFat;
 	private int foodCal;
 	private MultipartFile foodImage;
-	
 	public FoodRegCommand() {
 	}
 	public FoodRegCommand(int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo,
-			String foodName, int foodQuant, Date foodExpiryDate, String foodOrigin, int foodSale, String foodFlavor,
+			String foodName, int foodQuant, String foodExpiryDate, String foodOrigin, int foodSale, String foodFlavor,
 			int foodPrice, int foodCarbo, int foodProtein, int foodFat, int foodCal, MultipartFile foodImage) {
 		this.foodNo = foodNo;
 		this.sellerEmail = sellerEmail;
@@ -47,6 +46,7 @@ public class FoodRegCommand implements Serializable{
 		this.foodProtein = foodProtein;
 		this.foodFat = foodFat;
 		this.foodCal = foodCal;
+		this.foodImage = foodImage;
 	}
 	public int getFoodNo() {
 		return foodNo;
@@ -90,10 +90,10 @@ public class FoodRegCommand implements Serializable{
 	public void setFoodQuant(int foodQuant) {
 		this.foodQuant = foodQuant;
 	}
-	public Date getFoodExpiryDate() {
+	public String getFoodExpiryDate() {
 		return foodExpiryDate;
 	}
-	public void setFoodExpiryDate(Date foodExpiryDate) {
+	public void setFoodExpiryDate(String foodExpiryDate) {
 		this.foodExpiryDate = foodExpiryDate;
 	}
 	public String getFoodOrigin() {
@@ -150,7 +150,5 @@ public class FoodRegCommand implements Serializable{
 	public void setFoodImage(MultipartFile foodImage) {
 		this.foodImage = foodImage;
 	}
-
-	
 	
 }

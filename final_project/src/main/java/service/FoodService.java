@@ -43,7 +43,7 @@ public class FoodService {
 	File file = new File(filePath);
 	
 	public void insertFood(FoodRegCommand foodRegCommand, HttpSession session) {
-		System.out.println("service insertFood " + foodRegCommand.getFoodName());
+		//System.out.println("service insertFood " + foodRegCommand.getFoodName());
 		
 		//foodNum
 		Integer foodNum = foodRepository.selectFoodNumber();
@@ -54,7 +54,7 @@ public class FoodService {
 			foodNum = foodNum + 1;
 		}
 		System.out.println("service insertFood FOOD NUMBER " + foodNum);
-		
+		foodRegCommand.setFoodNo(foodNum);
 		
 		//foodSellerEmail
 		String ai = (String) session.getAttribute("email");
@@ -91,9 +91,9 @@ public class FoodService {
 					originalFile, 
 					storedFileName
 					);
-			System.out.println(food + "FOOD");
+			System.out.println(food + " : FOOD");
 			
-			int k= foodRepository.insertFood(food);
+			int k = foodRepository.insertFood(food);
 			
 			if(k < 1) {
 				System.out.println("프로그램 등록실패!");

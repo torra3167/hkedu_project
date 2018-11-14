@@ -80,8 +80,27 @@
 		WHERE food_cat_c_no = #{foodCatCNo}
 	</select>
 
-
-
+	<update id="updateFood" parameterType="Food">
+		UPDATE food 
+		SET
+		FOOD_CAT_A_NO = #{foodCatANo},
+		FOOD_CAT_B_NO = #{foodCatBNo},
+		FOOD_CAT_C_NO = #{foodCatCNo},  
+		FOOD_NAME = #{foodName},   
+		FOOD_QUANT = #{foodQuant},
+		FOOD_EXPIRY_DATE = #{foodExpiryDate},
+		FOOD_ORIGIN = #{foodOrigin},    
+		FOOD_SALE = #{foodSale},       
+		FOOD_FLAVOR = #{foodFlavor},     
+		FOOD_PRICE = #{foodPrice},    
+		FOOD_CARBO = #{foodCarbo},    
+		FOOD_PROTEIN = #{foodProtein},    
+		FOOD_FAT = #{foodFat},      
+		FOOD_CAL = #{foodCal},        
+		FOOD_SIZE = #{foodSize},      
+		FOOD_ORIGINAL = #{foodOriginal},  
+		FOOD_STORED = #{foodStored} 
+		WHERE food_no = #{foodNo}
+	</update>
 	
 </mapper>
-

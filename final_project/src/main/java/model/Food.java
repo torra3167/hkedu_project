@@ -12,7 +12,7 @@ public class Food implements Serializable {
 	private int foodCatCNo;
 	private String foodName;
 	private int foodQuant;
-	private Date foodExpiryDate;
+	private String foodExpiryDate;
 	private String foodOrigin;
 	private int foodSale;
 	private String foodFlavor;
@@ -24,11 +24,10 @@ public class Food implements Serializable {
 	private Long foodSize;
 	private String foodOriginal;
 	private String foodStored;
-	public Food() { 
-		
+	public Food() {
 	}
 	public Food(int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo, String foodName,
-			int foodQuant, Date foodExpiryDate, String foodOrigin, int foodSale, String foodFlavor, int foodPrice,
+			int foodQuant, String foodExpiryDate, String foodOrigin, int foodSale, String foodFlavor, int foodPrice,
 			int foodCarbo, int foodProtein, int foodFat, int foodCal, Long foodSize, String foodOriginal,
 			String foodStored) {
 		this.foodNo = foodNo;
@@ -93,10 +92,10 @@ public class Food implements Serializable {
 	public void setFoodQuant(int foodQuant) {
 		this.foodQuant = foodQuant;
 	}
-	public Date getFoodExpiryDate() {
+	public String getFoodExpiryDate() {
 		return foodExpiryDate;
 	}
-	public void setFoodExpiryDate(Date foodExpiryDate) {
+	public void setFoodExpiryDate(String foodExpiryDate) {
 		this.foodExpiryDate = foodExpiryDate;
 	}
 	public String getFoodOrigin() {
@@ -165,6 +164,7 @@ public class Food implements Serializable {
 	public void setFoodStored(String foodStored) {
 		this.foodStored = foodStored;
 	}
+	
 	
 	
 }
