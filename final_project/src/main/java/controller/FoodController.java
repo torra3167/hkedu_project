@@ -30,7 +30,7 @@ public class FoodController {
 	
 	@RequestMapping(value="/food_reg.gom", method=RequestMethod.POST)
 	public String foodRegSubmit(FoodRegCommand foodRegCommand,  Model model, HttpSession session) { 
-		System.out.println("controller form에서 온 foodRegCommand : " + foodRegCommand.getFoodName());
+//		System.out.println("controller form에서 온 foodRegCommand : " + foodRegCommand.getFoodName());
 		Integer result = null;		
 		result = foodService.insertFood(foodRegCommand, session);
 		if(result>0) {
@@ -43,7 +43,7 @@ public class FoodController {
 		
 	@RequestMapping(value="/bca.gom", method=RequestMethod.POST)
 	public String bca(FoodCatB foodCatB, Model model, HttpServletRequest request) {
-		System.out.println( "B contoller getFoodCatCNo : " + foodCatB.getFoodCatCNo());
+//		System.out.println( "B contoller getFoodCatCNo : " + foodCatB.getFoodCatCNo());
 		foodService.dominoSelectB(foodCatB, model);
 		
 		return "food/food_cat_b";
@@ -51,7 +51,7 @@ public class FoodController {
 	
 	@RequestMapping(value="/cca.gom", method=RequestMethod.POST)
 	public String Cca(FoodCatA foodCatA, Model model) {
-		System.out.println("C controller getFoodCatBNo : " + foodCatA.getFoodCatBNo());
+//		System.out.println("C controller getFoodCatBNo : " + foodCatA.getFoodCatBNo());
 		foodService.dominoSelectA(foodCatA, model);
 		
 		return "food/food_cat_a";

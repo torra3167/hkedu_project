@@ -3,6 +3,8 @@ package command;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 
 @SuppressWarnings("serial")
 public class FoodRegCommand implements Serializable{
@@ -22,7 +24,7 @@ public class FoodRegCommand implements Serializable{
 	private int foodProtein;
 	private int foodFat;
 	private int foodCal;
-	private String foodImage;
+	private MultipartFile foodImage;
 	
 	public FoodRegCommand() {
 	}
@@ -45,7 +47,6 @@ public class FoodRegCommand implements Serializable{
 		this.foodProtein = foodProtein;
 		this.foodFat = foodFat;
 		this.foodCal = foodCal;
-		this.foodImage = foodImage;
 	}
 	public int getFoodNo() {
 		return foodNo;
@@ -143,12 +144,13 @@ public class FoodRegCommand implements Serializable{
 	public void setFoodCal(int foodCal) {
 		this.foodCal = foodCal;
 	}
-	public String getFoodImage() {
+	public MultipartFile getFoodImage() {
 		return foodImage;
 	}
-	public void setFoodImage(String foodImage) {
+	public void setFoodImage(MultipartFile foodImage) {
 		this.foodImage = foodImage;
 	}
+
 	
 	
 }

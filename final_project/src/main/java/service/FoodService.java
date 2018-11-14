@@ -70,24 +70,24 @@ public class FoodService {
 	
 	//FoodCatC < FoodCatB < FoodCatA
 	public List<FoodCatC> dominoSelectC(Model model) {
-		System.out.println("service C 실행");
+//		System.out.println("service C 실행");
 		List<FoodCatC> list = foodRepository.ccaSelect();
-		System.out.println("service C 반환된 list size : " + list.size());
+//		System.out.println("service C 반환된 list size : " + list.size());
 		return list;
 //		model.addAttribute("list", list);	//seller_menu 열리는 sellerCntlr에서 생성
 	}
 	
 	public void dominoSelectB(FoodCatB foodCatB, Model model) {
-		System.out.println("service B 실행, FoodCatCNo : " + foodCatB.getFoodCatCNo());
+//		System.out.println("service B 실행, FoodCatCNo : " + foodCatB.getFoodCatCNo());
 		List<FoodCatB> list = foodRepository.bcaSelect(foodCatB);
-		System.out.println("service B 반환된 list size : " + list.size());
+//		System.out.println("service B 반환된 list size : " + list.size());
 		model.addAttribute("list", list);
 	}
 	
 	public void dominoSelectA(FoodCatA foodCatA, Model model) {
-		System.out.println("service A 실행, FoodCatBNo : " + foodCatA.getFoodCatBNo());
+//		System.out.println("service A 실행, FoodCatBNo : " + foodCatA.getFoodCatBNo());
 		List<FoodCatA> list = foodRepository.acaSelect(foodCatA);
-		System.out.println("service A 반환된 list size : " + list.size());
+//		System.out.println("service A 반환된 list size : " + list.size());
 		model.addAttribute("list", list);
 	}
 

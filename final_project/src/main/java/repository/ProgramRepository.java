@@ -1,7 +1,11 @@
 package repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
+import category.ExerciseCatA;
+import category.ExerciseCatB;
 import model.Program;
 import model.ProgramExercise;
 
@@ -59,6 +63,34 @@ public class ProgramRepository extends AbstractRepository {
 			 
 			 return result;
 			 
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<ExerciseCatB> exerciseCatBSelect() {
+		// TODO Auto-generated method stub
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+		return sqlSession.selectList(namespace + ".exerciseCatBSelect");
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+
+	public List<ExerciseCatA> exerciseCatASelect(ExerciseCatB bca) {
+		// TODO Auto-generated method stub
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+		return sqlSession.selectList(namespace + ".exerciseCatASelect", bca);
+		
 		} finally {
 			sqlSession.close();
 		}

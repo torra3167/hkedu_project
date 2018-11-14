@@ -19,8 +19,9 @@
 	ExerciseCatA exerciseCatA = (ExerciseCatA)o;
 %>
 	<option value="<%= exerciseCatA.getExerciseCatANumber()%>">
-	<%= exerciseCatA.getExerciseCatAName() %></option>
+	<%= exerciseCatA.getExerciseCatAName() %></option>	
 <% } %>
 </select>
+
 </body>
 </html>
