@@ -24,7 +24,8 @@ public class Food implements Serializable {
 	private Long foodSize;
 	private String foodOriginal;
 	private String foodStored;
-	public Food() {
+	public Food() { 
+		
 	}
 	public Food(int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo, String foodName,
 			int foodQuant, Date foodExpiryDate, String foodOrigin, int foodSale, String foodFlavor, int foodPrice,
