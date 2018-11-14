@@ -22,7 +22,7 @@ public class FoodController {
 	private FoodService foodService;
 	
 	@RequestMapping(value="/food_reg.gom", method=RequestMethod.GET)
-	public String foodRegForm(Model model) {
+	public String foodRegForm(FoodRegCommand foodRegCommand, Model model) {
 //		foodService.dominoSelectC(model);
 		model.addAttribute("iPage", "food/food_reg.jsp");
 		return "index";
@@ -30,15 +30,9 @@ public class FoodController {
 	
 	@RequestMapping(value="/food_reg.gom", method=RequestMethod.POST)
 	public String foodRegSubmit(FoodRegCommand foodRegCommand,  Model model, HttpSession session) { 
-		System.out.println("controller form에서 온 foodRegCommand : " + foodRegCommand.getFoodName());
-		Integer result = null;		
-		result = foodService.insertFood(foodRegCommand, session);
-		if(result>0) {
-			model.addAttribute("result", result);
-			return "index";
-		}else {
-			return "redirect:/index";
-		}
+		System.out.println("cntlr foodRegCommand.getFoodName : " + foodRegCommand.getFoodName());
+		foodService.insertFood(foodRegCommand, session);
+		return "redirect:/index";
 	}
 		
 	@RequestMapping(value="/bca.gom", method=RequestMethod.POST)

@@ -21,13 +21,15 @@ public class Food implements Serializable {
 	private int foodProtein;
 	private int foodFat;
 	private int foodCal;
-	private String foodImage;
-	
-	public Food() {}
-	
+	private Long foodSize;
+	private String foodOriginal;
+	private String foodStored;
+	public Food() {
+	}
 	public Food(int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo, String foodName,
 			int foodQuant, Date foodExpiryDate, String foodOrigin, int foodSale, String foodFlavor, int foodPrice,
-			int foodCarbo, int foodProtein, int foodFat, int foodCal, String foodImage) {
+			int foodCarbo, int foodProtein, int foodFat, int foodCal, Long foodSize, String foodOriginal,
+			String foodStored) {
 		this.foodNo = foodNo;
 		this.sellerEmail = sellerEmail;
 		this.foodCatANo = foodCatANo;
@@ -44,9 +46,10 @@ public class Food implements Serializable {
 		this.foodProtein = foodProtein;
 		this.foodFat = foodFat;
 		this.foodCal = foodCal;
-		this.foodImage = foodImage;
+		this.foodSize = foodSize;
+		this.foodOriginal = foodOriginal;
+		this.foodStored = foodStored;
 	}
-	
 	public int getFoodNo() {
 		return foodNo;
 	}
@@ -143,12 +146,25 @@ public class Food implements Serializable {
 	public void setFoodCal(int foodCal) {
 		this.foodCal = foodCal;
 	}
-	public String getFoodImage() {
-		return foodImage;
+	public Long getFoodSize() {
+		return foodSize;
 	}
-	public void setFoodImage(String foodImage) {
-		this.foodImage = foodImage;
+	public void setFoodSize(Long foodSize) {
+		this.foodSize = foodSize;
 	}
+	public String getFoodOriginal() {
+		return foodOriginal;
+	}
+	public void setFoodOriginal(String foodOriginal) {
+		this.foodOriginal = foodOriginal;
+	}
+	public String getFoodStored() {
+		return foodStored;
+	}
+	public void setFoodStored(String foodStored) {
+		this.foodStored = foodStored;
+	}
+	
 	
 }
 
