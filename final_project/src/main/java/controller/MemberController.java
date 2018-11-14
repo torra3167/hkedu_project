@@ -2,6 +2,7 @@ package controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,10 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.sun.xml.internal.ws.addressing.v200408.MemberSubmissionWsaClientTube;
+
 import command.FindIDCommand;
 import command.MemberJoinCommand;
 import command.MemberSurveyCommand;
 import command.MemberUpdateCommand;
+import command.MemberWithdrawalCommand;
+import command.SellerWithdrawalCommand;
 import model.AuthInfo;
 import model.Member;
 import model.MemberAuthInfo;
@@ -57,6 +62,13 @@ public class MemberController {
 		model.addAttribute("iPage", "login/findID_success.jsp");
 		return "index";
 	}
+
+	@RequestMapping(value="/member_myPage.gom", method=RequestMethod.GET)
+	public String memberMyPage(Model model, HttpSession session) {
+		model.addAttribute("iPage", "member/member_myPage.jsp");
+		model.addAttribute("email", session.getAttribute("email").toString());
+		return "index";
+	}
 	
 	@RequestMapping(value="/member_info.gom", method=RequestMethod.GET)
 	public String memberInfo(MemberUpdateCommand memberUpdateCommand, Model model, HttpSession session) {
@@ -76,6 +88,28 @@ public class MemberController {
 			return "index";
 		}else {
 		return "redirect:/index";
+		}
+	}
+	@RequestMapping(value="/member_withdrawal.gom", method=RequestMethod.GET)
+	public String memberSucession( Model model, HttpSession session) {
+		model.addAttribute("iPage", "member/member_secession.jsp");
+		System.out.println("controller "+session.getAttribute("email"));
+		model.addAttribute("memberWithdrawal", new MemberWithdrawalCommand());
+		return "index";
+	}
+	@RequestMapping(value="/member_withdrawal.gom", method=RequestMethod.POST)
+	public String memberSucessionSubmit(MemberWithdrawalCommand memberWithdrawalCommand, Model model, HttpServletRequest request, HttpSession session) {
+		model.addAttribute("iPage", "member/member_secession_success.jsp");
+		memberWithdrawalCommand.setMemberEmail(session.getAttribute("email").toString());
+		memberWithdrawalCommand.setMemberPass(request.getParameter("memberPass"));
+		int result=memberService.deleteMember(memberWithdrawalCommand, session);
+		if(result>0) {
+			session.invalidate();
+			model.addAttribute("result", result);
+			System.out.println(result+"명 탈퇴 성공");
+			return "index";
+		}else {
+			return "redirect:/index";
 		}
 	}
 	

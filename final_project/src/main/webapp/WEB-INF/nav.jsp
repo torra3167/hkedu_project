@@ -118,9 +118,10 @@
 
 
 			<div class="navbar-nav ml-md-auto">
-				<a class="nav-item nav-link" href="member_info.gom" >마이페이지</a> 
+				<a class="nav-item nav-link" href="member_myPage.gom" >마이페이지</a> 
 			 &nbsp;
-				<a class="nav-item nav-link" href="logout.gom" >로그아웃</a>	
+				<a class="nav-item nav-link" href="logout.gom" >로그아웃</a>
+				<a class="nav-item nav-link" href="member_withdrawal.gom" >탈퇴하기</a>
 			 
 
 

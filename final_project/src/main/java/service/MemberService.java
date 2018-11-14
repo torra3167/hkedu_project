@@ -1,6 +1,6 @@
 package service;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,9 +10,10 @@ import command.FindIDCommand;
 import command.MemberJoinCommand;
 import command.MemberSurveyCommand;
 import command.MemberUpdateCommand;
+import command.MemberWithdrawalCommand;
+import model.AuthInfo;
 import model.Member;
 import model.MemberSurvey;
-import repository.LoginRepository;
 import repository.MemberRepository;
 
 @Service
@@ -101,6 +102,14 @@ public class MemberService {
 		
 		Member member=new Member(memberUpdateCommand.getMemberEmail(), memberUpdateCommand.getMemberName(), memberUpdateCommand.getMemberPhone(), memberUpdateCommand.getMemberPass(), memberUpdateCommand.getMemberAddr1(), memberUpdateCommand.getMemberAddr2(), memberUpdateCommand.getMemberAddrNo());
 		return memberRepository.updateMember(member);
+	}
+
+	public Integer deleteMember(MemberWithdrawalCommand memberWithdrawalCommand, HttpSession session) {
+		String email=(String)session.getAttribute("email");
+		member=memberRepository.selectByEmail(email);
+		
+		int result=memberRepository.deleteMember(member);
+		return result;
 	}
 
 }

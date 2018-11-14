@@ -22,6 +22,7 @@
 
 <!-- Repository  -->
 <bean id="memberRepository" class="repository.MemberRepository"></bean>
+<bean id="emailRepository" class="repository.EmailRepository"></bean>
 <bean id="pr" class="repository.ProgramRepository"></bean>
 <bean id="lr" class="repository.LoginRepository"></bean>
 <bean id="er" class="repository.ExerciseRepository"></bean>

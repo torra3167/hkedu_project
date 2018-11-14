@@ -57,4 +57,7 @@
 				MEMBER_EMAIL=#{memberEmail}
 			</where>
 	</update>
+	<delete id="deleteMember">
+		delete from MEMBER where MEMBER_EMAIL=#{memberEmail} and MEMBER_PASS=#{memberPass}
+	</delete>
 </mapper>

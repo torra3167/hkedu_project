@@ -115,4 +115,18 @@ public class MemberRepository extends AbstractRepository {
 		}
 	}
 
+	public Integer deleteMember(Member member) {
+		System.out.println("repository deleteMember "+member.getMemberEmail());
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		try {
+			Integer result=sqlSession.delete(namespace+".deleteMember", member);
+			if(result>0) {
+				sqlSession.commit();
+			}
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 }

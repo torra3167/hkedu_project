@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>      
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,14 +14,14 @@
 <body>
 <div class="container">
 		<div class="signInBox">
-	      <form class="form-secession">
+	      <form:form commandName="memberWithdrawal">
 	        <label>비밀번호</label>
-	        <input type="text" class="form-control" placeholder="비밀번호" required=""><hr>
+	        <form:input path="memberPass" type="password" class="form-control" placeholder="비밀번호" required=""/><hr>
 	        <div class="btn">
 	        <button class="btn btn-lg btn-primary" type="submit">탈퇴하기</button>
 	        <button class="btn btn-lg btn-primary" type="button">뒤로가기</button>
 	        </div>
-	      </form>
+	      </form:form>
 		</div>
     </div>
 </body>
