@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/custom.css">
 <body>
 	<div class="wrap text-center">
 		<div class="container">
@@ -28,9 +27,5 @@
 			<button type="button" class="btn btn-primary">쇼핑하기</button>
 		</div>
 	</div>
-
-	<script src="./js/jquery.min.js"></script>
-    <script src="./js/popper.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -7,9 +7,6 @@
 <title>관리자에게 문의하기</title>
 
 <link rel="stylesheet" href="../css/bootstrap.min.css">
-<script src="../js/jquery.min.js"></script>
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container" tabindex="-1" role="dialog">
