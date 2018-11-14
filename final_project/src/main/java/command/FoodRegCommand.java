@@ -30,7 +30,7 @@ public class FoodRegCommand implements Serializable{
 	}
 	public FoodRegCommand(int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo,
 			String foodName, int foodQuant, Date foodExpiryDate, String foodOrigin, int foodSale, String foodFlavor,
-			int foodPrice, int foodCarbo, int foodProtein, int foodFat, int foodCal, String foodImage) {
+			int foodPrice, int foodCarbo, int foodProtein, int foodFat, int foodCal, MultipartFile foodImage) {
 		this.foodNo = foodNo;
 		this.sellerEmail = sellerEmail;
 		this.foodCatANo = foodCatANo;
