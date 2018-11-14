@@ -13,11 +13,17 @@ public class ProgramExercise implements Serializable {
 	
 	
 	
-	public ProgramExercise(int pro_no, String coachEmail) {
-		
+	public ProgramExercise() {
+	}
+	public ProgramExercise(int pro_no, String coachEmail, int exerciseNumber, int exerciseCatANumber,
+			int exerciseCatBNumber) {
 		this.pro_no = pro_no;
 		this.coachEmail = coachEmail;
+		this.exerciseNumber = exerciseNumber;
+		this.exerciseCatANumber = exerciseCatANumber;
+		this.exerciseCatBNumber = exerciseCatBNumber;
 	}
+	
 	public int getPro_no() {
 		return pro_no;
 	}

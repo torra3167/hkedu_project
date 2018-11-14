@@ -114,4 +114,16 @@ public class ProgramRepository extends AbstractRepository {
 		
 	}
 
+	public Integer selectExerciseNumberByCategory(int exerciseCatANumber) {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+		return (Integer)sqlSession.selectOne(namespace + ".selectExerciseNumberByCategory", exerciseCatANumber);
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 }

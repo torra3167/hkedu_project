@@ -4,6 +4,11 @@
 <mapper namespace="repository.mapper.programMapper">
 <cache></cache>
 
+<select id="selectExerciseNumberByCategory" parameterType="int">
+	select EXERCISE_NUMBER from exercise
+	where EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber}
+</select>
+
 <select id="selectCatByExerciseCatAName" resultMap="exerciseCatAMap" parameterType="string">
  select EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER, EXERCISE_CAT_A_NAME
  from EXERCISE_CAT_A
