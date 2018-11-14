@@ -22,7 +22,7 @@ public class FoodController {
 	private FoodService foodService;
 	
 	@RequestMapping(value="/food_reg.gom", method=RequestMethod.GET)
-	public String foodRegForm(FoodRegCommand foodRegCommand, Model model) {
+	public String foodRegForm(Model model) {
 //		foodService.dominoSelectC(model);
 		model.addAttribute("iPage", "food/food_reg.jsp");
 		return "index";
@@ -30,14 +30,20 @@ public class FoodController {
 	
 	@RequestMapping(value="/food_reg.gom", method=RequestMethod.POST)
 	public String foodRegSubmit(FoodRegCommand foodRegCommand,  Model model, HttpSession session) { 
-		System.out.println("cntlr foodRegCommand.getFoodName : " + foodRegCommand.getFoodName());
-		foodService.insertFood(foodRegCommand, session);
-		return "redirect:/index";
+//		System.out.println("controller form에서 온 foodRegCommand : " + foodRegCommand.getFoodName());
+		Integer result = null;		
+		result = foodService.insertFood(foodRegCommand, session);
+		if(result>0) {
+			model.addAttribute("result", result);
+			return "index";
+		}else {
+			return "redirect:/index";
+		}
 	}
 		
 	@RequestMapping(value="/bca.gom", method=RequestMethod.POST)
 	public String bca(FoodCatB foodCatB, Model model, HttpServletRequest request) {
-		System.out.println( "B contoller getFoodCatCNo : " + foodCatB.getFoodCatCNo());
+//		System.out.println( "B contoller getFoodCatCNo : " + foodCatB.getFoodCatCNo());
 		foodService.dominoSelectB(foodCatB, model);
 		
 		return "food/food_cat_b";
@@ -45,7 +51,7 @@ public class FoodController {
 	
 	@RequestMapping(value="/cca.gom", method=RequestMethod.POST)
 	public String Cca(FoodCatA foodCatA, Model model) {
-		System.out.println("C controller getFoodCatBNo : " + foodCatA.getFoodCatBNo());
+//		System.out.println("C controller getFoodCatBNo : " + foodCatA.getFoodCatBNo());
 		foodService.dominoSelectA(foodCatA, model);
 		
 		return "food/food_cat_a";

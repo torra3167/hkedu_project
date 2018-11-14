@@ -47,7 +47,6 @@ public class FoodRegCommand implements Serializable{
 		this.foodProtein = foodProtein;
 		this.foodFat = foodFat;
 		this.foodCal = foodCal;
-		this.foodImage = foodImage;
 	}
 	public int getFoodNo() {
 		return foodNo;
@@ -151,6 +150,7 @@ public class FoodRegCommand implements Serializable{
 	public void setFoodImage(MultipartFile foodImage) {
 		this.foodImage = foodImage;
 	}
+
 	
 	
 }
