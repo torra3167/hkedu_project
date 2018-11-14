@@ -30,43 +30,32 @@ public class LoginController {
 			loginCommand.setEmail(rememberCookie.getValue());
 			loginCommand.setRememberEmail(true);
 		}
-		
 		model.addAttribute("iPage", "login/login.jsp");
-		
 		return "index";
 	}
 	
 	@RequestMapping(value="/login.gom", method=RequestMethod.POST )
 	public String CoachSubmit(LoginCommand loginCommand, Model model, 
 			HttpSession session, HttpServletResponse response) {
-		
 		/*System.out.println(loginCommand.getEmail());
 		System.out.println(loginCommand.getPw());*/
-		
 		AuthInfo ai = ls.selectByEmailAndDivide(loginCommand.getEmail(), loginCommand.getPw());
-		
 		session.setAttribute("divide", ai.getDivide());
 		//인증
 		session.setAttribute("email", ai.getEmail());
-		
 		Cookie cookie = new Cookie("email", loginCommand.getEmail());
-		
 		if(loginCommand.isRememberEmail()) {
 			cookie.setMaxAge(60 * 60 * 24 * 30);
 		} else {
 			cookie.setMaxAge(0);
 		}
-		
 		response.addCookie(cookie);
-		
 		return "index";
 	}
 	
 	@RequestMapping(value="/logout.gom", method=RequestMethod.GET)
 	public String logout(HttpSession session) {		
 		session.invalidate();
-		
-		
 		return "index";
 	}
 }

@@ -14,17 +14,6 @@
 </head>
 <body>
 <div class="container">
-<!--   <h3 class="text-muted">사업주 전용메뉴</h3>
-  <nav>
-    <ul class="nav nav-justified">
-      <li><a href="#">주문내역</a></li>
-      <li><a href="#">판매식품 등록</a></li>
-      <li><a href="#">등록식품 수정</a></li>
-      <li><a href="#">식품리뷰 답변</a></li>
-      <li><a href="#">관리자에게 문의하기</a></li>
-    </ul>
-  </nav>
-</div> -->
   <!-- Nav tabs -->
 	<ul class="nav nav-tabs nav-justified">
 	  <li class="nav-item">
@@ -52,18 +41,16 @@
 	<!-- Tab panes -->
 	<div class="tab-content">
 		<div class="tab-pane container active" id="home">
-			<jsp:include page="../food/seller_orderBoard.jsp"></jsp:include>
+			<jsp:include page="seller_orderBoard.jsp"></jsp:include>
 		</div>
 	  	 <div class="tab-pane container fade" id="menu1">
 	  		<jsp:include page="../food/food_orderStatistics.jsp"></jsp:include>
 	  	</div>
-	  	
 	   	<div class="tab-pane container fade" id="menu2">
 	  		<jsp:include page="../food/food_reg.jsp"></jsp:include>
 		</div>
-		
 	  	<div class="tab-pane container fade" id="menu3">
-	  		<jsp:include page="../food/food_modify.jsp"></jsp:include>
+	  		<jsp:include page="../food/food_updateBoard.jsp"></jsp:include>
 	  	</div>
 	  	<div class="tab-pane container fade" id="menu4">
 	  		<jsp:include page="../food/food_reviewReplyWrite.jsp"></jsp:include>

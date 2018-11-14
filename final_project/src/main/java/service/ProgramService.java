@@ -2,12 +2,16 @@ package service;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
+import category.ExerciseCatA;
+import category.ExerciseCatB;
 import command.ProgramCommand;
 import model.Program;
 import model.ProgramExercise;
@@ -22,8 +26,8 @@ public class ProgramService {
 	ProgramExercise programExercise;
 	MultipartFile multiFile;
 	static final String filePath =
-//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			"C:\\Users\\admin\\Documents\\final_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\admin\\Documents\\final_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
 	
 	@Autowired
@@ -33,9 +37,25 @@ public class ProgramService {
 	public void insertProgram(ProgramCommand programCommand) {
 		// TODO Auto-generated method stub
 		
+		//프로그램번호
 		Integer result = pr.selectProgramNumber();
 		
 		System.out.println(result + " selectProgramNumber");
+		
+		//카테고리조건출력
+		String exerciseCatAName = programCommand.getExerciseCatAName();
+		String[] exerciseCatANames =  exerciseCatAName.split("/");
+		
+		List<ExerciseCatA> list = pr.selectCatByExerciseCatAName(exerciseCatANames);
+		for(Object temp : list) {
+			ExerciseCatA categoryA = (ExerciseCatA)temp;
+			System.out.println(categoryA.getExerciseCatANumber() + " A");
+			System.out.println(categoryA.getExerciseCatBNumber() + " B");
+			System.out.println("-------------");
+			
+		}
+		//List<DTO> 1:다 인서트. 하나의 프로그램번호에 여러개의 운동
+		
 		
 		//파일저장
 		multiFile = programCommand.getProImg();
@@ -82,7 +102,18 @@ public class ProgramService {
 		}
 		
 	}
-			
 
+
+	public void exerciseCategoryB(Model model) {
+		// TODO Auto-generated method stub
+		List<ExerciseCatB> list = pr.exerciseCatBSelect();
+		model.addAttribute("list", list);
+	}
+			
+	public void exerciseCategoryA(ExerciseCatB bca, Model model) {
+		// TODO Auto-generated method stub
+		List<ExerciseCatA> list = pr.exerciseCatASelect(bca);
+		model.addAttribute("list", list);
+	}
 	
 }

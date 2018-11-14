@@ -3,6 +3,8 @@ package command;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 
 @SuppressWarnings("serial")
 public class FoodRegCommand implements Serializable{
@@ -13,7 +15,7 @@ public class FoodRegCommand implements Serializable{
 	private int foodCatCNo;
 	private String foodName;
 	private int foodQuant;
-	private Date foodExpiryDate;
+	private String foodExpiryDate;
 	private String foodOrigin;
 	private int foodSale;
 	private String foodFlavor;
@@ -22,13 +24,12 @@ public class FoodRegCommand implements Serializable{
 	private int foodProtein;
 	private int foodFat;
 	private int foodCal;
-	private String foodImage;
-	
+	private MultipartFile foodImage;
 	public FoodRegCommand() {
 	}
 	public FoodRegCommand(int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo,
-			String foodName, int foodQuant, Date foodExpiryDate, String foodOrigin, int foodSale, String foodFlavor,
-			int foodPrice, int foodCarbo, int foodProtein, int foodFat, int foodCal, String foodImage) {
+			String foodName, int foodQuant, String foodExpiryDate, String foodOrigin, int foodSale, String foodFlavor,
+			int foodPrice, int foodCarbo, int foodProtein, int foodFat, int foodCal, MultipartFile foodImage) {
 		this.foodNo = foodNo;
 		this.sellerEmail = sellerEmail;
 		this.foodCatANo = foodCatANo;
@@ -89,10 +90,10 @@ public class FoodRegCommand implements Serializable{
 	public void setFoodQuant(int foodQuant) {
 		this.foodQuant = foodQuant;
 	}
-	public Date getFoodExpiryDate() {
+	public String getFoodExpiryDate() {
 		return foodExpiryDate;
 	}
-	public void setFoodExpiryDate(Date foodExpiryDate) {
+	public void setFoodExpiryDate(String foodExpiryDate) {
 		this.foodExpiryDate = foodExpiryDate;
 	}
 	public String getFoodOrigin() {
@@ -143,12 +144,11 @@ public class FoodRegCommand implements Serializable{
 	public void setFoodCal(int foodCal) {
 		this.foodCal = foodCal;
 	}
-	public String getFoodImage() {
+	public MultipartFile getFoodImage() {
 		return foodImage;
 	}
-	public void setFoodImage(String foodImage) {
+	public void setFoodImage(MultipartFile foodImage) {
 		this.foodImage = foodImage;
 	}
-	
 	
 }

@@ -29,7 +29,7 @@
 	 });
  }
  
- 
+
  
 </script>	
 </head>
@@ -37,6 +37,7 @@
 
 <div class="container" style="max-width: 560px;">
         <form action="exercise_register.gom" enctype="multipart/form-data" method="post">
+        
         <div class="form-group" >
         <select id="bca" name="exerciseCatBNumber" class="form-control"
         onclick="javascript:aca();"> 

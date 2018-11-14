@@ -1,7 +1,12 @@
 package repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
+import category.ExerciseCatA;
+import category.ExerciseCatB;
 import model.Program;
 import model.ProgramExercise;
 
@@ -62,6 +67,51 @@ public class ProgramRepository extends AbstractRepository {
 		} finally {
 			sqlSession.close();
 		}
+	}
+
+	public List<ExerciseCatB> exerciseCatBSelect() {
+		// TODO Auto-generated method stub
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+		return sqlSession.selectList(namespace + ".exerciseCatBSelect");
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+
+	public List<ExerciseCatA> exerciseCatASelect(ExerciseCatB bca) {
+		// TODO Auto-generated method stub
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+		return sqlSession.selectList(namespace + ".exerciseCatASelect", bca);
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<ExerciseCatA> selectCatByExerciseCatAName(String[] exerciseCatANames) {
+		List<ExerciseCatA> list = new ArrayList<ExerciseCatA>();
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			for(String exerciseCatAName : exerciseCatANames) {
+				ExerciseCatA exerciseCatA = (ExerciseCatA)sqlSession.selectOne(namespace + ".selectCatByExerciseCatAName", exerciseCatAName);
+				list.add(exerciseCatA);
+			}
+		return list;
+		
+		} finally {
+			sqlSession.close();
+		}
+		
 	}
 
 }

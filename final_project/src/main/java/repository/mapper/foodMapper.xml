@@ -11,16 +11,16 @@
 
 	<insert id="insertFood" parameterType="Food">
 		INSERT INTO food
-		(food_no,
-		seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, food_name,
+		(food_no, seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, food_name,
 		food_quant, food_expiry_date, food_origin, food_sale, food_flavor,
-		food_price, food_carbo, food_protein, food_fat, food_cal, food_image)
+		food_price, food_carbo, food_protein, food_fat, food_cal, food_size, food_original, food_stored)
 		VALUES (#{foodNo}, #{sellerEmail}, #{foodCatANo}, #{foodCatBNo},
 		#{foodCatCNo}, #{foodName}, #{foodQuant}, #{foodExpiryDate},
 		#{foodOrigin}, #{foodSale}, #{foodFlavor}, #{foodPrice}, #{foodCarbo},
-		#{foodProtein}, #{foodFat}, #{foodCal}, #{foodImage})
+		#{foodProtein}, #{foodFat}, #{foodCal}, #{foodSize}, #{foodOriginal}, #{foodStored})
 	</insert>
-
+	
+	
 
 	<resultMap type="FoodCatC" id="ccaSelectMap">
 		<id column="food_cat_c_no" jdbcType="BIGINT" property="foodCatCNo" />
@@ -80,8 +80,27 @@
 		WHERE food_cat_c_no = #{foodCatCNo}
 	</select>
 
-
-
+	<update id="updateFood" parameterType="Food">
+		UPDATE food 
+		SET
+		FOOD_CAT_A_NO = #{foodCatANo},
+		FOOD_CAT_B_NO = #{foodCatBNo},
+		FOOD_CAT_C_NO = #{foodCatCNo},  
+		FOOD_NAME = #{foodName},   
+		FOOD_QUANT = #{foodQuant},
+		FOOD_EXPIRY_DATE = #{foodExpiryDate},
+		FOOD_ORIGIN = #{foodOrigin},    
+		FOOD_SALE = #{foodSale},       
+		FOOD_FLAVOR = #{foodFlavor},     
+		FOOD_PRICE = #{foodPrice},    
+		FOOD_CARBO = #{foodCarbo},    
+		FOOD_PROTEIN = #{foodProtein},    
+		FOOD_FAT = #{foodFat},      
+		FOOD_CAL = #{foodCal},        
+		FOOD_SIZE = #{foodSize},      
+		FOOD_ORIGINAL = #{foodOriginal},  
+		FOOD_STORED = #{foodStored} 
+		WHERE food_no = #{foodNo}
+	</update>
 	
 </mapper>
-

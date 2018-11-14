@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ page import="java.util.*, model.*, category.*" %>
-<%
-	List list = (List)request.getAttribute("list");
-/* 	System.out.println("food_reg.jsp :" + list.size());
- */%>
+<% 
+ 	List list = (List)request.getAttribute("list");
+ 	System.out.println("food_update.jsp :" + list.size());
+%> 
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>등록식품 수정</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="http://localhost:8080/final_project/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -55,10 +55,7 @@ function funcAca() {
 </head>
 <body>
 <div class="container mt-3" style="max-width: 560px;">
-        <form method="post" action="food_reg.gom" enctype="multipart/form-data">
-        	<div class="form-group">
-				<label>식품 번호</label> <input type="text" name="foodNo" class="form-control">
-			</div>
+        <form method="post" action="food_update.gom" enctype="multipart/form-data">
         	<div class="form-group">
 				<label>판매식품 이름</label> <input type="text" name="foodName" class="form-control">
 			</div>
@@ -73,10 +70,10 @@ function funcAca() {
 			</div>
 			<div>
 			<select id="FCC" name="foodCatCNo" onclick="javascript:funcBca();"> 
-				<% for(Object temp : list) {
-					FoodCatC acar = (FoodCatC)temp; %>
-				 	<option value="<%=acar.getFoodCatCNo() %>"> <%=acar.getFoodCatCName() %></option>
-				<% } %>
+ 				<% for(Object temp : list) { 
+ 					FoodCatC acar = (FoodCatC)temp; %> 
+ 				 	<option value="<%=acar.getFoodCatCNo() %>"> <%=acar.getFoodCatCName() %></option> 
+ 				<% } %>
 			</select>
 			</div>
 			<div id="divBca"></div>
@@ -107,9 +104,11 @@ function funcAca() {
 			</div>
 			<button type="submit" class="btn btn-primary">메뉴 등록</button>
 			<button type="reset" class="btn btn-primary">다시 작성</button>
+			<button type="button" class="btn btn-primary" onclick="history.go(-1);">뒤로가기</button>
         </form>
     </div>
     
   
 </body>
 </html>
+

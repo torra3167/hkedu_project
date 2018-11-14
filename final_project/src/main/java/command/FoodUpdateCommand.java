@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @SuppressWarnings("serial")
-public class FoodCommand implements Serializable{
+public class FoodUpdateCommand implements Serializable{
 	private int foodNo;
 	private String sellerEmail;
 	private int foodCatANo;
@@ -23,9 +23,9 @@ public class FoodCommand implements Serializable{
 	private int foodCal;
 	private String foodImage;
 	
-	public FoodCommand() {
+	public FoodUpdateCommand() {
 	}
-	public FoodCommand(int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo, String foodName,
+	public FoodUpdateCommand(int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo, String foodName,
 			int foodQuant, Date foodExpiryDate, String foodOrigin, int foodSale, String foodFlavor, int foodPrice,
 			int foodCarbo, int foodProtein, int foodFat, int foodCal, String foodImage) {
 		this.foodNo = foodNo;
