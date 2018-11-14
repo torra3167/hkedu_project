@@ -21,7 +21,7 @@ modelinfo = new Array(
 	         new Array(":::: 2차 분류 선택 ::::" ,-1 ),
 	         new Array("풀업", 1),
 	         new Array("바벨로우",2),
-	         new Array("랫풀다운", 3),
+	         new Array("랫풀다운", 3)
 	        
 	      ),
 	         
@@ -97,7 +97,7 @@ modelinfo = new Array(
 	            for (i = 0; i < itemArray.length; i++) {
 	               selectCtrl.options[j] = new Option(itemArray[i][0]);
 	               if (itemArray[i][1] != null) {
-	                  selectCtrl.options[j].value = exerciseName1 + "`" +itemArray[i][0];
+	                  selectCtrl.options[j].value = exerciseName1 + "," +itemArray[i][0];
 	               }
 	               j++;
 	            }
@@ -110,8 +110,8 @@ modelinfo = new Array(
 	   //alert(selIndex);
 	   //text1=$("#exerciseName2").val().replace(/\s/g,""); //앞,뒤,중간 모든 공백 없앰 
 	   text1=$("#exerciseName2").val();
-	   //alert(text1);
-	   text11 = text1.split('`'); 
+/* 	   alert(text1);
+ */	   text11 = text1.split(','); 
 	   //alert(text11[0]);
 	   //alert(text11[1]);
 	   if(text11[1]==":::: 2차 분류 선택 ::::"){
@@ -119,32 +119,46 @@ modelinfo = new Array(
 	   }
 	   var form = document.frm;
 	   selIndex  = form.select_box2.length;
-	   if(selIndex <= 4 ){
+	   
 	      for(i = 0 ; i<selIndex; i++){
 	      //alert($("#select_box2 option:eq("+i+")").val());
 	         if($("#select_box2 option:eq("+i+")").val() == text1 ){
 	            return false;
 	         }
 	      }
-	      if(text1.length>0){   
-	         $("#select_box2").append("<option value='"+text1+"' data-image='../../images/mypage/bt_del2.gif' >"+text11[0] + " > " + text11[1]+"</option>");
+	      if(text1.length > 0){   
+	    	  $("#select_box2").append("<option value='"+text1+    "'  >"+text11[0] + " > " + text11[1]+"</option>");
+	         document.frm.exerciseCatAName.value += text11[1] + "/"; 
 	      }                     
-	   }else{
-	      alert("운동은 최대 5개까지 선택가능합니다.");
-	   }
+	  
+	   
 	}
 	function del1() {   
+		
 	    var selIndex = $("#select_box2 option").index($("#select_box2 option:selected")); //선택된 값의 index   
+	    var hidden = document.frm.exerciseName.value;
+	    var exerciseIndex = $("#select_box2 option:eq("+selIndex+")").text()+"/";
+	    alert($("#select_box2 option:eq("+selIndex+")").text());
+	    document.frm.exerciseName.value = hidden.replace(exerciseIndex, "");
 	    $("#select_box2 option:eq("+selIndex+")").remove();   
-	}
+	    	
+	    alert(hidden);
+	    alert(selIndex);
+	    
+	    
 
+
+	}
+	
 </script>	
 </head>
 <body>
 
 	<div class="container" style="max-width: 560px;">
+	
 		<form name="frm" action="program_register.gom" enctype="multipart/form-data"
 			method="post">
+			<input type="text" name=exerciseCatAName>
 			 <div class="form-group">
                   
                      <select id="svSelect" class="form-control" name="exerciseName1" onChange="fillSelectFromArray1(this.form.exerciseName2,((this.selectedIndex == -1) ? null : modelinfo[this.selectedIndex]));">
@@ -171,7 +185,7 @@ modelinfo = new Array(
 					class="form-control">
 			</div>
 			<div class="form-group">
-				<label>프로그램 설명 </label> <input type="file" name="proContent"
+				<label>프로그램 설명 </label> <input type="text" name="proContent"
 					class="form-control">
 			</div>
 			<div class="form-group">
