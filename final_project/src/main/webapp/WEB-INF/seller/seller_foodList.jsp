@@ -21,12 +21,11 @@
 		<table class="table table-striped text-center">
 			<thead>
 				<tr class="active">
+					<th>식품번호</th>
 					<th>식품명</th>
 					<th>가격</th>
 					<th>개수</th>
-					<th>개수</th>
-					<th>개수</th>
-					<th>개수</th>
+					<th>유통기한</th>
 				</tr>
 			</thead>
 			
@@ -34,17 +33,13 @@
 			 <% for(Object temp : list) {
 				 Food food = (Food)temp; %>
 				<tr>
-					<td><a href="exercise_detail.gom?foodNo=<%=food.getFoodNo() %>"><%=food.getFoodNo() %></a></td>
-					<td><%=food.getFoodCatANo() %></td>
-					<td><%=food.getFoodCatBNo() %></td>
-					<td><%=food.getFoodCatCNo() %></td>
+					<td><%=food.getFoodNo() %></td>
+					<td><a href="seller_foodDetail.gom?foodNo=<%=food.getFoodNo() %>"><%=food.getFoodName() %></a></td>
 					<td><%=food.getFoodPrice() %></td>
 					<td><%=food.getFoodQuant() %></td>
+					<td><%=food.getFoodExpiryDate() %></td>
 <%-- 					<td><img src="http://localhost:8080/final_project/resource/<%=upload.getUploadStored() %>" width="80" height="80"></td> --%>
-					<td><%=food.getFoodExpiryDate() %></td> 
-					
 				</tr>
-			
 				<% } %>
 			</tbody>
 		</table>

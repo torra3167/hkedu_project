@@ -17,6 +17,7 @@ import category.FoodCatA;
 import category.FoodCatB;
 import category.FoodCatC;
 import command.FoodRegCommand;
+import command.FoodUpdateCommand;
 import model.AuthInfo;
 import model.Food;
 import model.Program;
@@ -44,8 +45,17 @@ public class FoodService {
 	File file = new File(filePath);
 	
 	
+	
+	
+	
 	public void sellerFoodList(Model model, String sellerEmail) {
-		List<Food> list = foodRepository.sellerFoodList(sellerEmail);   
+		List<Food> list = foodRepository.sellerFoodList(sellerEmail);  
+		
+//		for(Object temp : list) {
+//			 Food food = (Food)temp;
+//			 System.out.println("service foodNo : "+food.getFoodNo());
+//		}
+		
 		model.addAttribute("sellerFoodList", list);
 	}
 	
@@ -103,9 +113,9 @@ public class FoodService {
 			int k = foodRepository.insertFood(food);
 			
 			if(k < 1) {
-				System.out.println("프로그램 등록실패!");
+				System.out.println("식품 등록실패!");
 			} else {
-				System.out.println("프로그램 등록성공!");
+				System.out.println("식품 등록성공!");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -136,4 +146,73 @@ public class FoodService {
 		model.addAttribute("foodCat", list);
 	}
 
+	public void selectSellerFood(int foodNo, Model model) {
+		// TODO Auto-generated method stub
+		Food food = foodRepository.selectSellerFood(foodNo);
+		model.addAttribute("sellerFood", food);
+	}
+
+	public void updateFood(FoodUpdateCommand foodUpdateCommand) {
+		// TODO Auto-generated method stub
+		System.out.println("svc : " + foodUpdateCommand.getFoodNo());
+		System.out.println("svc : " + foodUpdateCommand.getFoodName());
+		System.out.println("svc : " + foodUpdateCommand.getFoodPrice());
+		System.out.println("svc : " + foodUpdateCommand.getFoodSale());
+		System.out.println("svc : " + foodUpdateCommand.getFoodFlavor());
+		System.out.println("svc : " + foodUpdateCommand.getFoodQuant());
+		System.out.println("svc : " + foodUpdateCommand.getFoodExpiryDate());
+		System.out.println("svc : " + foodUpdateCommand.getFoodOrigin());
+		System.out.println("svc : " + foodUpdateCommand.getFoodCarbo());
+		System.out.println("svc : " + foodUpdateCommand.getFoodProtein());
+		System.out.println("svc : " + foodUpdateCommand.getFoodFat());
+		System.out.println("svc : " + foodUpdateCommand.getFoodCal());
+		System.out.println("svc : " + foodUpdateCommand.getFoodCatANo());
+		System.out.println("svc : " + foodUpdateCommand.getFoodCatBNo());
+		System.out.println("svc : " + foodUpdateCommand.getFoodCatCNo());
+		
+		
+		//foodImage
+		multiFile = foodUpdateCommand.getFoodImage();
+		originalFile = multiFile.getOriginalFilename();
+		originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+		storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+		file = new File(filePath + storedFileName);
+		
+		try {
+			multiFile.transferTo(file);
+			food = new Food();
+			food.setFoodNo(foodUpdateCommand.getFoodNo());
+			food.setFoodName(foodUpdateCommand.getFoodName());
+			food.setFoodPrice(foodUpdateCommand.getFoodPrice());
+			food.setFoodSale(foodUpdateCommand.getFoodSale());
+			food.setFoodFlavor(foodUpdateCommand.getFoodFlavor());
+			food.setFoodQuant(foodUpdateCommand.getFoodQuant());
+			food.setFoodExpiryDate(foodUpdateCommand.getFoodExpiryDate());
+			food.setFoodOrigin(foodUpdateCommand.getFoodOrigin());
+			food.setFoodCarbo(foodUpdateCommand.getFoodCarbo());
+			food.setFoodProtein(foodUpdateCommand.getFoodProtein());
+			food.setFoodFat(foodUpdateCommand.getFoodFat());
+			food.setFoodCal(foodUpdateCommand.getFoodCal());
+			food.setFoodCatANo(foodUpdateCommand.getFoodCatANo());
+			food.setFoodCatBNo(foodUpdateCommand.getFoodCatBNo());
+			food.setFoodCatCNo(foodUpdateCommand.getFoodCatCNo());
+			food.setFoodSize(multiFile.getSize());
+			food.setFoodOriginal(originalFile);
+			food.setFoodStored(storedFileName);
+			System.out.println(food + " : FOOD");
+			
+			int k = foodRepository.updateFood(food);
+			
+			if(k < 1) {
+				System.out.println("식품변경 실패");
+			} else {
+				System.out.println("식품변경 성공!");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+	
 }

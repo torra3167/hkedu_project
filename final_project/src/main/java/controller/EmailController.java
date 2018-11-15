@@ -1,4 +1,4 @@
-package controller;
+/*package controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,3 +36,4 @@ public class EmailController {
 		}
 	}
 }
+*/

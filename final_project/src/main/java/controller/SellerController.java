@@ -90,6 +90,7 @@ public class SellerController {
 			//seller_foodList
 			String sellerEmail = (String) session.getAttribute("email");
 			foodService.sellerFoodList(model, sellerEmail);
+			
 			return "index";
 		}
 		

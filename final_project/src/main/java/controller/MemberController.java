@@ -16,7 +16,7 @@ import command.FindIDCommand;
 import command.MemberJoinCommand;
 import command.MemberSurveyCommand;
 import command.MemberUpdateCommand;
-import command.MemberWithdrawalCommand;
+//import command.MemberWithdrawalCommand;
 import command.SellerWithdrawalCommand;
 import model.AuthInfo;
 import model.Member;
@@ -122,9 +122,9 @@ public class MemberController {
 	}
 	
 	
-//	@RequestMapping(value="/member_write_survey2.gom", method=RequestMethod.GET)
-//	public String Survey2Form(Model model) {
-//		model.addAttribute("iPage", "member/login/survey_1.jsp");
-//		return "member/login/survey_2";
-//	}
+	@RequestMapping(value="/member_write_survey2.gom", method=RequestMethod.GET)
+	public String Survey2Form(Model model) {
+		model.addAttribute("iPage", "member/login/survey_1.jsp");
+		return "member/login/survey_2";
+	}
 }

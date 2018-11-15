@@ -57,9 +57,6 @@ function funcAca() {
 <div class="container mt-3" style="max-width: 560px;">
         <form method="post" action="food_reg.gom" enctype="multipart/form-data">
         	<div class="form-group">
-				<label>식품 번호</label> <input type="text" name="foodNo" class="form-control">
-			</div>
-        	<div class="form-group">
 				<label>판매식품 이름</label> <input type="text" name="foodName" class="form-control">
 			</div>
 			<div class="form-group">

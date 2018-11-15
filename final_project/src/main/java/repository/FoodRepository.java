@@ -24,6 +24,10 @@ public class FoodRepository extends AbstractRepository{
 		try {
 			
 		List<Food> list =  sqlSession.selectList(namespace + ".sellerFoodList", sellerEmail);
+//		for(Object temp : list) {
+//			 Food food = (Food)temp;
+//			 System.out.println("repo foodNo : "+food.getFoodNo());
+//		}
 		return list;
 		} finally {
 			sqlSession.close();
@@ -87,6 +91,36 @@ public class FoodRepository extends AbstractRepository{
 		try {
 			System.out.println("B repository No : " + foodCatB.getFoodCatCNo());
 			return sqlSession.selectList(namespace + ".bcaSelect", foodCatB);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public Food selectSellerFood(int foodNo) {
+		// TODO Auto-generated method stub
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+		return (Food)sqlSession.selectOne(namespace + ".selectSellerFood", foodNo);
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public Integer updateFood(Food food) {
+		// TODO Auto-generated method stub
+		sqlSession = getSqlSessionFactory().openSession();
+		Integer result = 0;
+		try {
+			result = sqlSession.update(namespace + ".updateFood", food);
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+			return result;
 		} finally {
 			sqlSession.close();
 		}
