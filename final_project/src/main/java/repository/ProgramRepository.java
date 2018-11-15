@@ -7,9 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 
 import category.ExerciseCatA;
 import category.ExerciseCatB;
+import model.ExerciseUpload;
 import model.Program;
 import model.ProgramExercise;
-import model.Upload;
 
 public class ProgramRepository extends AbstractRepository {
 	SqlSession sqlSession;
@@ -158,6 +158,17 @@ public class ProgramRepository extends AbstractRepository {
 					sqlSession.close();
 				}
 		
+	}
+
+	public ExerciseUpload selectExerciseUpload(int proNo) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			String statement = namespace + ".selectExerciseUpload";
+			return (ExerciseUpload)sqlSession.selectOne(statement, proNo);
+			
+		} finally {
+			sqlSession.close();
+		}
 	}
 
 }

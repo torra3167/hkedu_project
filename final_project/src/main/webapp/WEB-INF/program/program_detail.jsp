@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import= "java.util.*, model.ProgramExercise"%>
+    pageEncoding="UTF-8" import= "java.util.*, model.ProgramExercise, model.ExerciseUpload"%>
     
     <%
     List<ProgramExercise> programExerciseList = (List<ProgramExercise>)request.getAttribute("ProgramExercise");
+    List<ExerciseUpload> exerciseUploadList = (List<ExerciseUpload>)request.getAttribute("ExerciseUpload");
     %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>      
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
@@ -79,15 +80,15 @@
 				</tr>
 			</thead>
 			<tbody>
-			<% for(Object temp : programExerciseList) {
-				ProgramExercise programExercise = (ProgramExercise)temp; %>
+			<% for(Object temp : exerciseUploadList) {
+				ExerciseUpload exerciseUpload = (ExerciseUpload)temp; %>
 				<tr>
 				
-					<td><a href="exercise_detail.gom?programNumber=<%=programExercise.getProNo() %>"><%=programExercise.getProNo() %></a></td>
-					<td><%=programExercise.getCoachEmail() %></td>
-					<td><%=programExercise.getExerciseNumber() %></td>
-					<td><%=programExercise.getExerciseCatANumber() %></td>
-					<td><%=programExercise.getExerciseCatBNumber() %></td>
+					<td><a href="exercise_detail.gom?programNumber=<%=exerciseUpload.getProNo() %>"><%=exerciseUpload.getProNo() %></a></td>
+					<td><%=exerciseUpload.getProContent() %></td>
+					<td><%=exerciseUpload.getExerciseNumber() %></td>
+					<td><%=exerciseUpload.getExerciseCatANumber() %></td>
+					<td><%=exerciseUpload.getExerciseCatBNumber() %></td>
 			
 					
 					

@@ -15,6 +15,7 @@ import category.ExerciseCatA;
 import category.ExerciseCatB;
 import command.ProgramCommand;
 import command.ProgramDetailCommand;
+import model.ExerciseUpload;
 import model.Program;
 import model.ProgramExercise;
 import repository.ProgramRepository;
@@ -143,7 +144,7 @@ public class ProgramService {
 		List<ProgramExercise> list = pr.selectByProgramNumber(programDetailCommand.getProNo());
 		model.addAttribute("ProgramExercise", list);
 		
-		List<ExerciseUpload> exerciseUpload = pr.selectExerciseUpload(programDetailCommand.getProNo());
+		ExerciseUpload exerciseUpload = pr.selectExerciseUpload(programDetailCommand.getProNo());
 		model.addAttribute("ExerciseUpload", exerciseUpload);
 
 		
