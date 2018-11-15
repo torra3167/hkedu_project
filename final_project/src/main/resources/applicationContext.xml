@@ -65,9 +65,9 @@
 		</props>
 	</property>
 </bean>
-<bean id="email" class="main.java.email.Email"/>
+<!-- <bean id="email" class="main.java.email.Email"/>
 <bean id="emailSender" class="main.java.email.EmailSender"/>
-<bean id="emailController" class="controller.EmailController"/>
+-->
 
 
 </beans>

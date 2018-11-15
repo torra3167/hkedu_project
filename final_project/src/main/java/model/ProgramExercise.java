@@ -5,7 +5,7 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class ProgramExercise implements Serializable {
 	
-	private int pro_no;
+	private int proNo;
 	private String coachEmail;
 	private int exerciseNumber;
 	private int exerciseCatANumber;
@@ -17,18 +17,19 @@ public class ProgramExercise implements Serializable {
 	}
 	public ProgramExercise(int pro_no, String coachEmail, int exerciseNumber, int exerciseCatANumber,
 			int exerciseCatBNumber) {
-		this.pro_no = pro_no;
+		this.proNo = pro_no;
 		this.coachEmail = coachEmail;
 		this.exerciseNumber = exerciseNumber;
 		this.exerciseCatANumber = exerciseCatANumber;
 		this.exerciseCatBNumber = exerciseCatBNumber;
 	}
 	
-	public int getPro_no() {
-		return pro_no;
+	
+	public int getProNo() {
+		return proNo;
 	}
-	public void setPro_no(int pro_no) {
-		this.pro_no = pro_no;
+	public void setProNo(int proNo) {
+		this.proNo = proNo;
 	}
 	public String getCoachEmail() {
 		return coachEmail;

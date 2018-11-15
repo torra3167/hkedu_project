@@ -48,12 +48,17 @@ public class ProgramRepository extends AbstractRepository {
 		
 	}
 
-	public Integer insertProgramExercise(ProgramExercise programExercise) {
+	public Integer insertProgramExercise(List<ProgramExercise> programList) {
 		System.out.println("PROGRAM EXERCISE" );
-
+		int result = 0;
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-			 Integer result = sqlSession.insert(namespace + ".insertProgramExercise", programExercise);
+			
+			for(ProgramExercise programExercise : programList) {
+				sqlSession.insert(namespace + ".insertProgramExercise", programExercise);
+				result++;
+			}
+
 			System.out.println("PROGRAM EXERCISE" + result);
 
 			 if(result > 0) {

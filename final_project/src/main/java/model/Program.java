@@ -16,13 +16,13 @@ public class Program implements Serializable {
 	private String proStatus;
 	private String proDes;
 	
-	
+
 	public Program() {}
 	//프로그램번호, 코치이메일, 프로그램이름, 사이즈, 오리지널, 저장된
 
 
 	public Program(int proNo, String coachEmail, String proName, Long proSize, String proOriginal, String proStored) {
-		super();
+		
 		this.proNo = proNo;
 		this.coachEmail = coachEmail;
 		this.proName = proName;

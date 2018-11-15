@@ -4,7 +4,7 @@
 <mapper namespace="repository.mapper.programMapper">
 <cache></cache>
 
-<select id="selectExerciseNumberByCategory" parameterType="int">
+<select id="selectExerciseNumberByCategory" parameterType="Integer" resultType="Integer">
 	select EXERCISE_NUMBER from exercise
 	where EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber}
 </select>
@@ -46,10 +46,10 @@
 </select>
 
 <insert id="insertProgramExercise" parameterType="ProgramExercise">
-	insert into programexercise 
-	(PRO_NO, COACH_EMAIL)
+	insert into program_exercise 
+	(PRO_NO, COACH_EMAIL, EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER)
 	values
-	(#{proNo}, #{coachEmail})
+	(#{proNo}, #{coachEmail}, #{exerciseNumber}, #{exerciseCatANumber}, #{exerciseCatBNumber})
 </insert>
 
 <insert id="insertProgram" parameterType="Program">
