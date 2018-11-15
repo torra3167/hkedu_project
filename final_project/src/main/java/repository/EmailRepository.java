@@ -1,11 +1,11 @@
-package email;
+package repository;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Repository;
 
+import controller.EmailCommand;
+import model.Email;
 import model.Member;
-import repository.AbstractRepository;
 
 @Repository
 public class EmailRepository extends AbstractRepository {
@@ -15,20 +15,27 @@ public class EmailRepository extends AbstractRepository {
 	public int updatePW(Member member) throws Exception {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		String statement = namespace + ".updatePw";
+		System.out.println("repository "+member.getMemberEmail());
 		try {
-			System.out.println("repository "+member.getMemberEmail());
 			Integer result = sqlSession.update(statement, member);
 			if (result > 0) {
 				sqlSession.commit();
+			}else {
+				sqlSession.rollback();
 			}
 			return result;
 		} finally {
 			sqlSession.close();
 		}
 	}
-	
-	public void sendEmail(Member member) throws Exception{
-		String fromName="환곰탈태";
-		
+
+	public Email selectByEmailAndName(Email email) {
+		System.out.println("repository selectByEmailAndName "+email.getForName());
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		try {
+			return (Email)sqlSession.selectOne(namespace+".selectByEmailAndName", email);
+		} finally {
+			sqlSession.close();
+		}
 	}
 }

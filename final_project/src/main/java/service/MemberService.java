@@ -88,10 +88,7 @@ public class MemberService {
 		}
 		return false;
 	}
-//	public boolean findID(String name, String phone) {
-//		FindIDCommand findID=loginRepository.selectByNameAndPhone(name, phone);
-//		return findID(findID.getMemberName(), findID.getMemberPhone());
-//	}
+
 //	public Integer surveyWrite(MemberSurveyCommand memberSurveyCommand) {
 //		System.out.println("service "+memberSurveyCommand.getSurvNo());
 //		return memberRepository.survey2Write(memberSurveyCommand);

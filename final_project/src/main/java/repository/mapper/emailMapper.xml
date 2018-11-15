@@ -3,7 +3,19 @@
 
 <mapper namespace="repository.mapper.emailMapper">
 	<cache></cache>
+	<select id="selectByEmailAndName" parameterType="Email">
+		select MEMBER_EMAIL
+		<where>
+			MEMBER_NAME=#{receiver} and MEMBER_EMAIL=#{forName}
+		</where>
+	</select>
 	<update id="updatePw" parameterType="String">
-		update MEMBER set MEMBER_PASS=#{memberPass} where MEMBER_EMAIL=#{memberEmail}
+		update MEMBER 
+		<set>
+		MEMBER_PASS=#{memberPass}
+		</set>
+		<where>
+		MEMBER_EMAIL=#{memberEmail} and MEMBER_NAME=#{memberName}
+		</where>
 	</update>
 </mapper>
