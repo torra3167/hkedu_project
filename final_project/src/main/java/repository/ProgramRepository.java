@@ -9,6 +9,7 @@ import category.ExerciseCatA;
 import category.ExerciseCatB;
 import model.Program;
 import model.ProgramExercise;
+import model.Upload;
 
 public class ProgramRepository extends AbstractRepository {
 	SqlSession sqlSession;
@@ -129,6 +130,34 @@ public class ProgramRepository extends AbstractRepository {
 		} finally {
 			sqlSession.close();
 		}
+	}
+
+	public List<Program> programList() {
+		
+		sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+
+			List<Program> list = sqlSession.selectList(namespace + ".programList");
+			return list;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<ProgramExercise> selectByProgramNumber(int programNumber) {
+		// TODO Auto-generated method stub
+				sqlSession = getSqlSessionFactory().openSession();
+				List<ProgramExercise> list = null;
+				try {
+					
+				list = sqlSession.selectList(namespace + ".selectByProgramNumber", programNumber);
+				return list;
+				
+				} finally {
+					sqlSession.close();
+				}
+		
 	}
 
 }

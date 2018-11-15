@@ -13,8 +13,16 @@ public class ProgramCommand implements Serializable {
 	private Date proRegdate;
 	private String coachEmail;
 	private String exerciseCatAName;
+	private String proContent;
+
 
 	
+	public String getProContent() {
+		return proContent;
+	}
+	public void setProContent(String proContent) {
+		this.proContent = proContent;
+	}
 	public String getExerciseCatAName() {
 		return exerciseCatAName;
 	}

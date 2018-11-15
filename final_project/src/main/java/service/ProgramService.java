@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import category.ExerciseCatA;
 import category.ExerciseCatB;
 import command.ProgramCommand;
+import command.ProgramDetailCommand;
 import model.Program;
 import model.ProgramExercise;
 import repository.ProgramRepository;
@@ -53,10 +54,10 @@ public class ProgramService {
 			multiFile.transferTo(file);
 
 			// 프로그램 생성자
-			// 프로그램번호, 코치이메일, 프로그램이름, 사이즈, 오리지널, 저장된
+			// 프로그램번호, 코치이메일, 프로그램이름, 사이즈, 오리지널, 저장된, 내용
 
 			program = new Program(programNumber, programCommand.getCoachEmail(), programCommand.getProName(),
-					multiFile.getSize(), originalFile, storedFileName);
+					multiFile.getSize(), originalFile, storedFileName, programCommand.getProContent());
 			System.out.println(program + "PROGRAM");
 			program.setProRegdate(Calendar.getInstance().getTime());
 
@@ -129,6 +130,23 @@ public class ProgramService {
 		// TODO Auto-generated method stub
 		List<ExerciseCatA> list = pr.exerciseCatASelect(bca);
 		model.addAttribute("list", list);
+	}
+
+	public void programList(Model model) {
+		// TODO Auto-generated method stub
+		List<Program> list = pr.programList();
+		model.addAttribute("Program", list);
+	}
+
+	public void programDetail(ProgramDetailCommand programDetailCommand, Model model) {
+		// TODO Auto-generated method stub
+		List<ProgramExercise> list = pr.selectByProgramNumber(programDetailCommand.getProNo());
+		model.addAttribute("ProgramExercise", list);
+		
+		List<ExerciseUpload> exerciseUpload = pr.selectExerciseUpload(programDetailCommand.getProNo());
+		model.addAttribute("ExerciseUpload", exerciseUpload);
+
+		
 	}
 
 }
