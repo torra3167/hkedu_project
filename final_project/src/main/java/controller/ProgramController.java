@@ -26,7 +26,7 @@ public class ProgramController {
 	@RequestMapping(value = "/program_detail.gom", method = RequestMethod.GET)
 	public String programDetail(ProgramDetailCommand programDetailCommand/*, @RequestParam(value="proNo", defaultValue="false") int proNo*/, Model model ) {
 		System.out.println(programDetailCommand.getProNo() + "PRONO by command! ");
-		System.out.println(programDetailCommand.getProContent());
+		System.out.println(programDetailCommand.getProContent() + " PROCONTENT");
 		model.addAttribute("iPage", "program/program_detail.jsp");
 		ps.programDetail(programDetailCommand, model);
 		return "index";

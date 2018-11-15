@@ -87,11 +87,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					
-					
-					
-				</tr>
+				
 			<% for(Object temp : exerciseUploadList.getUploads()) {
 				Upload exerciseUpload = (Upload)temp; %>
 				<tr>
@@ -102,13 +98,13 @@
 					<td><%=exerciseUpload.getExerciseCatBNumber() %></td>
 					<td><%=exerciseUploadList.getExerciseContent() %></td>
 					<td><%=exerciseUpload.getUploadSize() %>
-					<td><%=exerciseUpload.getUploadOriginal() %>
+					<td><img src="http://localhost:8080/final_project/resource/<%=exerciseUpload.getUploadOriginal() %>" width="80" height="80"></td>					
 					<td><%=exerciseUpload.getUploadStored() %></td>
 					<td><%=exerciseUpload.getUploadDivide() %></td>
 					
 					<td><a href="exercise_detail.gom?programNumber=<%=exerciseUpload.getUploadNumber() %>"><%=exerciseUpload.getUploadNumber() %></a></td>
-			
 					
+			
 					
 				</tr>
 				
