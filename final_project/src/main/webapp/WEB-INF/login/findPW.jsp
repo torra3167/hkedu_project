@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>      
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,23 +9,19 @@
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- function : 자동 로그인, 이메일/비밀번호 공란 체크 -->
-
 <body>
 
 <div class="container">
-	      <form class="form-signin">
-	        <label>아이디</label>
-	        <input type="text" id="inputPhone" class="form-control" placeholder="연락처" required="" autofocus=""><br>
-	        <label>연락처</label>
-	        <input type="text" id="inputName" class="form-control" placeholder="이름" required=""><hr>
+	      <form:form commandName="emailCommand" action="findPW.gom">
+	        <label>이메일</label>
+	        <form:input path="memberEmail" class="form-control" placeholder="이메일" required="true" autofocus="true"/><br>
+	        <label>이름</label>
+	        <form:input path="memberName" class="form-control" placeholder="이름" required="true"/><hr>
 	        <div class="btn">
-	        <button class="btn btn-lg btn-primary btn-block" type="submit">찾기</button>
-	        <button class="btn btn-lg btn-primary btn-block" type="button">뒤로가기</button>
+	        <button class="btn btn-primary" type="submit">찾기</button>
+	        <button class="btn btn-primary" type="button" onclick="history.go(-1);">뒤로가기</button>
 	        </div>
-	      </form>
+	      </form:form>
     </div>
 </body>
 </html>

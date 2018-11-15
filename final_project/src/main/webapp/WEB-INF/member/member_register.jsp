@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
           <label>비밀번호</label>
-          <form:input path="memberPass" class="form-control"/>
+          <form:input type="password" path="memberPass" class="form-control"/>
         </div>
         <div class="form-group">
           <label>이름</label>

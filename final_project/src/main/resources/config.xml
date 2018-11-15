@@ -20,6 +20,7 @@
 		<typeAlias type="category.FoodCatA" alias="FoodCatA"/>
 		<typeAlias type="category.FoodCatB" alias="FoodCatB"/>
 		<typeAlias type="category.FoodCatC" alias="FoodCatC"/>
+		<typeAlias type="model.Email" alias="Email"/>
 		
 	
 	</typeAliases>
