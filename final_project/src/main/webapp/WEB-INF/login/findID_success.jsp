@@ -21,7 +21,7 @@
 		<div class="message">아이디가 존재하지 않습니다.</div>
 		<div class="btn">
 			<button type="button" class="btn btn-primary" onclick="history.go(-1);">뒤로 가기</button>
-			<button type="button" class="btn btn-primary" onclick="member_join.gom">회원가입</button>
+			<button type="button" class="btn btn-primary" onclick="location.href='member_join.gom'">회원가입</button>
 			<button type="button" class="btn btn-primary" onclick="index">메인으로</button>
 		</div>
 	</div>	
@@ -30,8 +30,8 @@
 
 		<div class="message">회원님의 아이디는 <%= email %>입니다.</div>
 		<div class="btn">
-			<button type="button" class="btn btn-primary" onclick="findPW.gom">비밀번호 찾기</button>
-			<button type="button" class="btn btn-primary" onclick="login.gom">로그인</button>
+			<button type="button" class="btn btn-primary" onclick="location.href='findPW.gom'">비밀번호 찾기</button>
+			<button type="button" class="btn btn-primary" onclick="location.href='login.gom'">로그인</button>
 		</div>
 	</div>
 <%} %>

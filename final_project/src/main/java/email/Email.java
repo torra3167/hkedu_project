@@ -1,4 +1,4 @@
-package email;
+/*package email;
 
 public class Email {
 	private String subject;
@@ -39,3 +39,4 @@ public class Email {
 		this.fromName = fromName;
 	}
 }
+*/

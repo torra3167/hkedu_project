@@ -5,7 +5,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import command.EmailCommand;
+
+import controller.EmailCommand;
+
 import org.springframework.mail.javamail.JavaMailSender;
 
 @Component
@@ -15,13 +17,16 @@ public class EmailSender {
 	
 	public void sendEmail(EmailCommand emailCommand) throws Exception{
 		MimeMessage msg = mailSender.createMimeMessage();
+		String subject="";
+		String contents="";
+		subject="<환곰탈태> 회원님의 임시 비밀번호를 발급해드립니다.";
+		contents="비밀번호";
 		try {
-			System.out.println("emailSender "+emailCommand.getReceiver());
-			msg.setSubject(emailCommand.getSubject()); //메일 제목
-			msg.setText(emailCommand.getContent());
-			msg.setFrom(new InternetAddress(emailCommand.getFromName()));
-			msg.setRecipient(RecipientType.TO, new InternetAddress(emailCommand.getReceiver()));
-			msg.setText("text","UTF-8", "html");
+			System.out.println("emailSender "+emailCommand.getMemberEmail());
+			msg.setSubject(subject); //메일 제목
+			msg.setText(contents, "text/html; charset=utf-8");
+			msg.setFrom(new InternetAddress(emailCommand.getMemberName()));
+			msg.setRecipient(RecipientType.TO, new InternetAddress(emailCommand.getMemberEmail()));
 			mailSender.send(msg);
 		} catch (Exception e) {
 			System.out.println("Messaging Exception");

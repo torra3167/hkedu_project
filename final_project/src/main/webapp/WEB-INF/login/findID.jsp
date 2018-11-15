@@ -8,11 +8,7 @@
 <title>아이디 찾기</title>
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- function : 자동 로그인, 이메일/비밀번호 공란 체크 -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 function checkID(){
 	var frm=document.getElementById("findID")
 	if(!frm.memberPhone.value){
@@ -27,7 +23,7 @@ function checkID(){
 	}
 	frm.submit();
 }
-</script>
+</script> -->
 <body>
 
 <% 
@@ -49,12 +45,13 @@ function checkID(){
 		<div class="signInBox">
 	      <form:form commandName="findIDCommand" id="findID" class="form-signin">
 	        <label>연락처</label>
-	        <form:input path="memberPhone"  class="form-control" placeholder="연락처" required="" autofocus=""/><br>
+	        <form:input path="memberPhone"  class="form-control" placeholder="연락처" required="true" autofocus="true"/><br>
 	        <label>이름</label>
-	        <form:input path="memberName"  class="form-control" placeholder="이름" required=""/><hr>
+	        <form:input path="memberName"  class="form-control" placeholder="이름" required="true"/><hr>
 	        <div class="btn">
-	        <button class="btn btn-lg btn-primary" type="button" onclick="checkID();">찾기</button>
-	        <button class="btn btn-lg btn-primary" type="button" onclick="history.go(-1);">뒤로가기</button>
+	        <button class="btn btn-primary" type="submit">찾기</button>
+	        <button class="btn btn-primary" type="button" onclick="history.go(-1);">뒤로가기</button>
+	        <button type="button" class="btn btn-primary" onclick="location.href='findPW.gom'">비밀번호 찾기</button>
 	        </div>
 	      </form:form>
 		</div>

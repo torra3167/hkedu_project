@@ -4,7 +4,80 @@
 <mapper namespace="repository.mapper.programMapper">
 <cache></cache>
 
-<select id="selectExerciseNumberByCategory" parameterType="int">
+
+
+<resultMap type="ExerciseUpload" id="exerciseUploadCollection">
+	<!-- 1에 해당되는 레코드 출력 -->
+		<id column="PRO_NO" jdbcType="BIGINT" property="proNo" /><!-- PK -->
+		<result column="PRO_CONTENT" jdbcType="VARCHAR" property="proContent" />
+		<result column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber" />
+		<result column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber" />
+		<result column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber" />
+		<result column="EXERCISE_CONTENT" jdbcType="VARCHAR" property="exerciseContent" />
+
+		<!-- n에 해당되는 레코드 출력 -->
+		<collection property="uploads" ofType="Upload">
+		
+			<id property="uploadNumber" column="UPLOAD_NUMBER" /><!-- PK -->
+			<id property="exerciseNumber" column="EXERCISE_NUMBER" /><!-- PK -->
+			<id property="exerciseCatANumber" column="EXERCISE_CAT_A_NUMBER" /><!-- PK -->
+			<id property="exerciseCatBNumber" column="EXERCISE_CAT_B_NUMBER" /><!-- PK -->
+			<result property="uploadSize" column="UPLOAD_SIZE" />
+			<result property="uploadOriginal" column="UPLOAD_ORIGINAL" />
+			<result property="uploadStored" column="UPLOAD_STORED" />
+			<result property="uploadDivide" column="UPLOAD_DIVIDE" />
+		</collection>
+</resultMap>
+
+<select id="selectExerciseUpload" resultMap="exerciseUploadCollection" parameterType="int">
+select e.exercise_number,  e.exercise_cat_a_number, e.exercise_cat_b_number, e.exercise_content,
+u.upload_number, u.upload_size, u.upload_original, u.upload_stored, u.upload_divide 
+from exercise e, upload u
+where u.exercise_number = e.exercise_number 
+and u.exercise_number in (select exercise_number from program_exercise 
+where pro_no = #{proNo})
+</select>
+
+
+
+
+
+<resultMap id="programExerciseMap" type="ProgramExercise">
+	<id column="PRO_NO" jdbcType="BIGINT" property="proNo"/>	
+	<id column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail"/>	
+	<id column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber"/>	
+	<id column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>	
+	<id column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>	
+</resultMap>
+
+<select id="selectByProgramNumber" parameterType="int" resultMap="programExerciseMap">
+	select PRO_NO, COACH_EMAIL, EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER
+	from program_exercise
+	where pro_no = #{proNo}
+</select>
+
+<resultMap type="Program" id="programMap">
+	<id column="PRO_NO" jdbcType="BIGINT" property="proNo"/>	
+	<id column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail"/>	
+	
+	<result column="PRO_NAME" jdbcType="VARCHAR" property="proName"/>	
+	<result column="PRO_SIZE" jdbcType="BIGINT" property="proSize"/>	
+	<result column="PRO_ORIGINAL" jdbcType="VARCHAR" property="proOriginal"/>	
+	<result column="PRO_STORED" jdbcType="VARCHAR" property="proStored"/>	
+	<result column="PRO_REGDATE" jdbcType="DATE" property="proRegdate"/>	
+	<result column="PRO_CONTENT" jdbcType="VARCHAR" property="proContent"/>	
+	<result column="PRO_STATUS" jdbcType="VARCHAR" property="proStatus"/>	
+	<result column="PRO_DES" jdbcType="VARCHAR" property="proDes"/>	
+</resultMap>
+
+
+<select id="programList" resultMap="programMap">
+	select PRO_NO, COACH_EMAIL, PRO_NAME, PRO_SIZE, PRO_ORIGINAL, PRO_STORED,
+	PRO_REGDATE, PRO_CONTENT, PRO_STATUS, PRO_DES
+	from program
+</select>
+
+<select id="selectExerciseNumberByCategory" parameterType="Integer" resultType="Integer">
 	select EXERCISE_NUMBER from exercise
 	where EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber}
 </select>
@@ -46,19 +119,19 @@
 </select>
 
 <insert id="insertProgramExercise" parameterType="ProgramExercise">
-	insert into programexercise 
-	(PRO_NO, COACH_EMAIL)
+	insert into program_exercise 
+	(PRO_NO, COACH_EMAIL, EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER)
 	values
-	(#{proNo}, #{coachEmail})
+	(#{proNo}, #{coachEmail}, #{exerciseNumber}, #{exerciseCatANumber}, #{exerciseCatBNumber})
 </insert>
 
 <insert id="insertProgram" parameterType="Program">
 	insert into program
 	(PRO_NO, COACH_EMAIL, PRO_NAME, PRO_SIZE, 
-	PRO_ORIGINAL, PRO_STORED, PRO_REGDATE)
+	PRO_ORIGINAL, PRO_STORED, PRO_REGDATE, PRO_CONTENT)
 	values
 	(#{proNo}, #{coachEmail}, #{proName}, #{proSize},
-	#{proOriginal}, #{proStored}, #{proRegdate})
+	#{proOriginal}, #{proStored}, #{proRegdate}, #{proContent})
 	
 </insert>
 

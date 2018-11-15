@@ -10,7 +10,7 @@ import command.FindIDCommand;
 import command.MemberJoinCommand;
 import command.MemberSurveyCommand;
 import command.MemberUpdateCommand;
-//import command.MemberWithdrawalCommand;
+import command.MemberWithdrawalCommand;
 import model.AuthInfo;
 import model.Member;
 import model.MemberSurvey;
@@ -88,14 +88,11 @@ public class MemberService {
 		}
 		return false;
 	}
-	public boolean findID(String name, String phone) {
-		FindIDCommand findID=loginRepository.selectByNameAndPhone(name, phone);
-		return findID(findID.getMemberName(), findID.getMemberPhone());
-	}
-	public Integer surveyWrite(MemberSurveyCommand memberSurveyCommand) {
-		System.out.println("service "+memberSurveyCommand.getSurvNo());
-		return memberRepository.survey2Write(memberSurveyCommand);
-	}
+
+//	public Integer surveyWrite(MemberSurveyCommand memberSurveyCommand) {
+//		System.out.println("service "+memberSurveyCommand.getSurvNo());
+//		return memberRepository.survey2Write(memberSurveyCommand);
+//	}
 
 	public Integer updateMember(MemberUpdateCommand memberUpdateCommand) {
 		System.out.println("service updateMember "+memberUpdateCommand.getMemberEmail());

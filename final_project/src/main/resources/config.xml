@@ -14,11 +14,13 @@
 		<typeAlias type="model.Program" alias="Program"/>
 		<typeAlias type="model.Upload" alias="Upload"/>
 		<typeAlias type="model.ProgramExercise" alias="ProgramExercise"/>		
+		<typeAlias type="model.ExerciseUpload" alias="ExerciseUpload"/>		
 		<typeAlias type="category.ExerciseCatA" alias="ExerciseCatA"/>
 		<typeAlias type="category.ExerciseCatB" alias="ExerciseCatB"/>
 		<typeAlias type="category.FoodCatA" alias="FoodCatA"/>
 		<typeAlias type="category.FoodCatB" alias="FoodCatB"/>
 		<typeAlias type="category.FoodCatC" alias="FoodCatC"/>
+		<typeAlias type="model.Email" alias="Email"/>
 		
 	
 	</typeAliases>
@@ -43,6 +45,6 @@
 		<mapper resource="repository/mapper/exerciseMapper.xml"/>
 		<mapper resource="repository/mapper/foodMapper.xml"/>
 		<mapper resource="repository/mapper/programMapper.xml"/>
-		<mapper resource="repository/mapper/emailMapper.xml"/>
-	</mappers>
+<!-- 		<mapper resource="repository/mapper/emailMapper.xml"/>
+ -->	</mappers>
 </configuration>
