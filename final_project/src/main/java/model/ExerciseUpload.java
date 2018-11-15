@@ -1,78 +1,55 @@
 package model;
 
-public class ExerciseUpload {
-	private int exerciseNumber;
-	private int exerciseCatANumber;
-	private int exerciseCatBNumber;
-	private Long exerciseUploadSize;
-	private String exerciseUploadOriginal;
-	private String exerciseUploadStored;
-	private String exerciseUploadDivide;
+import java.io.Serializable;
+import java.util.List;
+
+@SuppressWarnings("serial")
+public class ExerciseUpload implements Serializable {
 	
+	private int proNo;
+	private String proContent;
+	private Exercise exercise;
+	private List<Upload> upload;
+	
+	
+
 	public ExerciseUpload() {}
-	public ExerciseUpload(int exerciseNumber, Long exerciseUploadSize, String exerciseUploadOriginal,
-			String exerciseUploadStored) {
 
-		this.exerciseNumber = exerciseNumber;
-		this.exerciseUploadSize = exerciseUploadSize;
-		this.exerciseUploadOriginal = exerciseUploadOriginal;
-		this.exerciseUploadStored = exerciseUploadStored;
+	public int getProNo() {
+		return proNo;
 	}
 
-	public int getExerciseNumber() {
-		return exerciseNumber;
+	public String getProContent() {
+		return proContent;
 	}
 
-	public void setExerciseNumber(int exerciseNumber) {
-		this.exerciseNumber = exerciseNumber;
+	public void setProContent(String proContent) {
+		this.proContent = proContent;
+	}
+	
+	public void setProNo(int proNo) {
+		this.proNo = proNo;
 	}
 
-	public int getExerciseCatANumber() {
-		return exerciseCatANumber;
+	public Exercise getExercise() {
+		return exercise;
 	}
 
-	public void setExerciseCatANumber(int exerciseCatANumber) {
-		this.exerciseCatANumber = exerciseCatANumber;
+	public void setExercise(Exercise exercise) {
+		this.exercise = exercise;
 	}
 
-	public int getExerciseCatBNumber() {
-		return exerciseCatBNumber;
+	public List<Upload> getUpload() {
+		return upload;
 	}
 
-	public void setExerciseCatBNumber(int exerciseCatBNumber) {
-		this.exerciseCatBNumber = exerciseCatBNumber;
+	public void setUpload(List<Upload> upload) {
+		this.upload = upload;
 	}
+	
+	
+	
 
-	public Long getExerciseUploadSize() {
-		return exerciseUploadSize;
-	}
-
-	public void setExerciseUploadSize(Long exerciseUploadSize) {
-		this.exerciseUploadSize = exerciseUploadSize;
-	}
-
-	public String getExerciseUploadOriginal() {
-		return exerciseUploadOriginal;
-	}
-
-	public void setExerciseUploadOriginal(String exerciseUploadOriginal) {
-		this.exerciseUploadOriginal = exerciseUploadOriginal;
-	}
-
-	public String getExerciseUploadStored() {
-		return exerciseUploadStored;
-	}
-
-	public void setExerciseUploadStored(String exerciseUploadStored) {
-		this.exerciseUploadStored = exerciseUploadStored;
-	}
-
-	public String getExerciseUploadDivide() {
-		return exerciseUploadDivide;
-	}
-
-	public void setExerciseUploadDivide(String exerciseUploadDivide) {
-		this.exerciseUploadDivide = exerciseUploadDivide;
-	}
+	
 
 }

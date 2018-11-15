@@ -4,7 +4,42 @@
 <mapper namespace="repository.mapper.programMapper">
 <cache></cache>
 
-<select id="selectExerciseNumberByCategory" parameterType="int">
+<resultMap id="programExerciseMap" type="ProgramExercise">
+	<id column="PRO_NO" jdbcType="BIGINT" property="proNo"/>	
+	<id column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail"/>	
+	<id column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber"/>	
+	<id column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>	
+	<id column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>	
+</resultMap>
+
+<select id="selectByProgramNumber" parameterType="int" resultMap="programExerciseMap">
+	select PRO_NO, COACH_EMAIL, EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER
+	from program_exercise
+	where pro_no = #{proNo}
+</select>
+
+<resultMap type="Program" id="programMap">
+	<id column="PRO_NO" jdbcType="BIGINT" property="proNo"/>	
+	<id column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail"/>	
+	
+	<result column="PRO_NAME" jdbcType="VARCHAR" property="proName"/>	
+	<result column="PRO_SIZE" jdbcType="BIGINT" property="proSize"/>	
+	<result column="PRO_ORIGINAL" jdbcType="VARCHAR" property="proOriginal"/>	
+	<result column="PRO_STORED" jdbcType="VARCHAR" property="proStored"/>	
+	<result column="PRO_REGDATE" jdbcType="DATE" property="proRegdate"/>	
+	<result column="PRO_CONTENT" jdbcType="VARCHAR" property="proContent"/>	
+	<result column="PRO_STATUS" jdbcType="VARCHAR" property="proStatus"/>	
+	<result column="PRO_DES" jdbcType="VARCHAR" property="proDes"/>	
+</resultMap>
+
+
+<select id="programList" resultMap="programMap">
+	select PRO_NO, COACH_EMAIL, PRO_NAME, PRO_SIZE, PRO_ORIGINAL, PRO_STORED,
+	PRO_REGDATE, PRO_CONTENT, PRO_STATUS, PRO_DES
+	from program
+</select>
+
+<select id="selectExerciseNumberByCategory" parameterType="Integer" resultType="Integer">
 	select EXERCISE_NUMBER from exercise
 	where EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber}
 </select>
@@ -46,19 +81,19 @@
 </select>
 
 <insert id="insertProgramExercise" parameterType="ProgramExercise">
-	insert into programexercise 
-	(PRO_NO, COACH_EMAIL)
+	insert into program_exercise 
+	(PRO_NO, COACH_EMAIL, EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER)
 	values
-	(#{proNo}, #{coachEmail})
+	(#{proNo}, #{coachEmail}, #{exerciseNumber}, #{exerciseCatANumber}, #{exerciseCatBNumber})
 </insert>
 
 <insert id="insertProgram" parameterType="Program">
 	insert into program
 	(PRO_NO, COACH_EMAIL, PRO_NAME, PRO_SIZE, 
-	PRO_ORIGINAL, PRO_STORED, PRO_REGDATE)
+	PRO_ORIGINAL, PRO_STORED, PRO_REGDATE, PRO_CONTENT)
 	values
 	(#{proNo}, #{coachEmail}, #{proName}, #{proSize},
-	#{proOriginal}, #{proStored}, #{proRegdate})
+	#{proOriginal}, #{proStored}, #{proRegdate}, #{proContent})
 	
 </insert>
 

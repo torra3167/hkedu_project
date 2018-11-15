@@ -9,6 +9,7 @@ import category.ExerciseCatA;
 import category.ExerciseCatB;
 import model.Program;
 import model.ProgramExercise;
+import model.Upload;
 
 public class ProgramRepository extends AbstractRepository {
 	SqlSession sqlSession;
@@ -48,12 +49,17 @@ public class ProgramRepository extends AbstractRepository {
 		
 	}
 
-	public Integer insertProgramExercise(ProgramExercise programExercise) {
+	public Integer insertProgramExercise(List<ProgramExercise> programList) {
 		System.out.println("PROGRAM EXERCISE" );
-
+		int result = 0;
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-			 Integer result = sqlSession.insert(namespace + ".insertProgramExercise", programExercise);
+			
+			for(ProgramExercise programExercise : programList) {
+				sqlSession.insert(namespace + ".insertProgramExercise", programExercise);
+				result++;
+			}
+
 			System.out.println("PROGRAM EXERCISE" + result);
 
 			 if(result > 0) {
@@ -124,6 +130,34 @@ public class ProgramRepository extends AbstractRepository {
 		} finally {
 			sqlSession.close();
 		}
+	}
+
+	public List<Program> programList() {
+		
+		sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+
+			List<Program> list = sqlSession.selectList(namespace + ".programList");
+			return list;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<ProgramExercise> selectByProgramNumber(int programNumber) {
+		// TODO Auto-generated method stub
+				sqlSession = getSqlSessionFactory().openSession();
+				List<ProgramExercise> list = null;
+				try {
+					
+				list = sqlSession.selectList(namespace + ".selectByProgramNumber", programNumber);
+				return list;
+				
+				} finally {
+					sqlSession.close();
+				}
+		
 	}
 
 }

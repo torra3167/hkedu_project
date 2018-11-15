@@ -1,11 +1,12 @@
-package model;
+package command;
 
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class ProgramExercise implements Serializable {
+public class ProgramDetailCommand implements Serializable {
 	
 	private int proNo;
+	private String proContent;
 	private String coachEmail;
 	private int exerciseNumber;
 	private int exerciseCatANumber;
@@ -13,9 +14,17 @@ public class ProgramExercise implements Serializable {
 	
 	
 	
-	public ProgramExercise() {
+	
+	
+	public String getProContent() {
+		return proContent;
 	}
-	public ProgramExercise(int pro_no, String coachEmail, int exerciseNumber, int exerciseCatANumber,
+	public void setProContent(String proContent) {
+		this.proContent = proContent;
+	}
+	public ProgramDetailCommand() {
+	}
+	public ProgramDetailCommand(int pro_no, String coachEmail, int exerciseNumber, int exerciseCatANumber,
 			int exerciseCatBNumber) {
 		this.proNo = pro_no;
 		this.coachEmail = coachEmail;

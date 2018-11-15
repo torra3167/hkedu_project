@@ -11,9 +11,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
-
 <link rel="stylesheet" href="css/1027.css">
-
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
@@ -160,11 +158,11 @@
 
 				<li class="nav-item"><a class="nav-link" href="#">식품관</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동관</a></li>
-				<li class="nav-item"><a class="nav-link" href="exercise_review.gom">운동리뷰</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="Goods/goodsCartList.jsp">Cart</a></li>
-					
+				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동리스트</a></li>
+				<li class="nav-item"><a class="nav-link" href="program_list.gom">프로그램리스트</a></li>
+				<li class="nav-item"><a class="nav-link" href="program_review.gom">프로그램리뷰</a></li>
+				
+				
 				<li class="nav-item">
 					<div class="dropdown show">
 						<a class="nav-link dropdown-toggle" id="dropdown"

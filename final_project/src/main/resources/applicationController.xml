@@ -16,6 +16,6 @@
 <bean class="controller.LoginController"></bean>
 <bean class="controller.ExerciseController"></bean>
 <bean class="controller.FoodController"></bean>
-<bean class="controller.EmailController"></bean>
-
+<!-- <bean class="controller.EmailController"></bean>
+ -->
 </beans>
