@@ -90,7 +90,7 @@ public class MemberController {
 		return "redirect:/index";
 		}
 	}
-	@RequestMapping(value="/member_withdrawal.gom", method=RequestMethod.GET)
+	/*@RequestMapping(value="/member_withdrawal.gom", method=RequestMethod.GET)
 	public String memberSucession( Model model, HttpSession session) {
 		model.addAttribute("iPage", "member/member_secession.jsp");
 		System.out.println("controller "+session.getAttribute("email"));
@@ -111,7 +111,7 @@ public class MemberController {
 		}else {
 			return "redirect:/index";
 		}
-	}
+	}*/
 	
 	@RequestMapping(value="/member_write_survey1.gom", method=RequestMethod.GET)
 	public String Survey1Form(Model model) {

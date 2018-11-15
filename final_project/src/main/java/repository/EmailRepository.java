@@ -1,9 +1,9 @@
-package repository;
+/*package repository;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import controller.EmailCommand;
+import command.EmailCommand;
 import model.Email;
 import model.Member;
 
@@ -39,3 +39,4 @@ public class EmailRepository extends AbstractRepository {
 		}
 	}
 }
+*/

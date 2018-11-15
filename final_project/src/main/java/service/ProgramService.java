@@ -28,8 +28,9 @@ public class ProgramService {
 	Program program;
 	ProgramExercise programExercise;
 	MultipartFile multiFile;
-	static final String filePath = "C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\admin\\Documents\\final_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+	static final String filePath = 
+//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\admin\\Documents\\final_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
 
 	@Autowired

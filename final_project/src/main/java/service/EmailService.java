@@ -4,7 +4,7 @@ import java.util.Random;
 
 import org.apache.ibatis.session.SqlSession;
 
-import controller.EmailCommand;
+import command.EmailCommand;
 import model.Email;
 import model.Member;
 import repository.EmailRepository;

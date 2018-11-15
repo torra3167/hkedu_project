@@ -1,4 +1,4 @@
-/*package command;
+package command;
 
 public class MemberWithdrawalCommand {
 	private String memberEmail;
@@ -24,4 +24,3 @@ public class MemberWithdrawalCommand {
 		this.memberPass = memberPass;
 	}
 }
-*/

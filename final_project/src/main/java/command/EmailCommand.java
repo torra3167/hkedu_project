@@ -1,4 +1,4 @@
-package controller;
+package command;
 
 public class EmailCommand {
 	private String memberEmail;
