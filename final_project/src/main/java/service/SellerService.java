@@ -41,7 +41,8 @@ public class SellerService {
 
 	public Integer updateSeller(SellerUpdateCommand sellerUpdateCommand) {
 		System.out.println("Service updateSeller"+ sellerUpdateCommand.getSellerEmail());
-		seller.setSellerDivide(sellerUpdateCommand.getSellerEmail());
+		Seller seller = new Seller();
+		seller.setSellerEmail(sellerUpdateCommand.getSellerEmail());
 		seller.setSellerPw(sellerUpdateCommand.getSellerPw());
 		seller.setSellerPhone(sellerUpdateCommand.getSellerPhone());
 		return sellerRepository.updateSeller(seller);
@@ -50,6 +51,7 @@ public class SellerService {
 	
 	public Integer deleteSeller(SellerWithdrawalCommand sellerWithdrawalCommand) {
 		System.out.println("service deleteSeller" + sellerWithdrawalCommand.getSellerEmail());
+		Seller seller = new Seller();
 		seller.setSellerEmail(sellerWithdrawalCommand.getSellerEmail());
 		seller.setSellerPw(sellerWithdrawalCommand.getSellerPw());
 		int result = sellerRepository.deleteSeller(seller);

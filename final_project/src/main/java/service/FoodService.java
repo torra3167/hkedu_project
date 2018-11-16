@@ -1,8 +1,6 @@
 package service;
 
 import java.io.File;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,11 +16,7 @@ import category.FoodCatB;
 import category.FoodCatC;
 import command.FoodRegCommand;
 import command.FoodUpdateCommand;
-import model.AuthInfo;
 import model.Food;
-import model.Program;
-import model.ProgramExercise;
-import model.Upload;
 import repository.FoodRepository;
 
 
@@ -156,20 +150,6 @@ public class FoodService {
 		// TODO Auto-generated method stub
 		System.out.println("svc : " + foodUpdateCommand.getFoodNo());
 		System.out.println("svc : " + foodUpdateCommand.getFoodName());
-		System.out.println("svc : " + foodUpdateCommand.getFoodPrice());
-		System.out.println("svc : " + foodUpdateCommand.getFoodSale());
-		System.out.println("svc : " + foodUpdateCommand.getFoodFlavor());
-		System.out.println("svc : " + foodUpdateCommand.getFoodQuant());
-		System.out.println("svc : " + foodUpdateCommand.getFoodExpiryDate());
-		System.out.println("svc : " + foodUpdateCommand.getFoodOrigin());
-		System.out.println("svc : " + foodUpdateCommand.getFoodCarbo());
-		System.out.println("svc : " + foodUpdateCommand.getFoodProtein());
-		System.out.println("svc : " + foodUpdateCommand.getFoodFat());
-		System.out.println("svc : " + foodUpdateCommand.getFoodCal());
-		System.out.println("svc : " + foodUpdateCommand.getFoodCatANo());
-		System.out.println("svc : " + foodUpdateCommand.getFoodCatBNo());
-		System.out.println("svc : " + foodUpdateCommand.getFoodCatCNo());
-		
 		
 		//foodImage
 		multiFile = foodUpdateCommand.getFoodImage();
@@ -211,6 +191,22 @@ public class FoodService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void deleteFood(int foodNo) {
+		System.out.println("svc deleteFood foodNo : " + foodNo);
+		int k = foodRepository.deleteFood(foodNo);
+		
+		if(k < 1) {
+			System.out.println("식품삭제 실패");
+		} else {
+			System.out.println("식품삭제 성공!");
+		}
+	}
+
+	public void selectFoodList(Model model) {
+		List<Food> foodList = foodRepository.selectFoodList();
+		model.addAttribute("foodList", foodList);
 	}
 
 	

@@ -11,7 +11,7 @@ public class SellerApplication implements Serializable{
 	private String sellerBusinessRegistration;
 	private String sellerName;
 	private String storeName;
-	private int storeTelphone;
+	private String storeTelphone;
 	private String storeAddr;
 	private String storeTerm;
 	private String applicationStatus;
@@ -19,7 +19,7 @@ public class SellerApplication implements Serializable{
 	public SellerApplication() {
 	}
 	public SellerApplication(int sellerAppliNo, String sellerEmail, int sellerAppliBn, String sellerLicense,
-			String sellerBusinessRegistration, String sellerName, String storeName, int storeTelphone, String storeAddr,
+			String sellerBusinessRegistration, String sellerName, String storeName, String storeTelphone, String storeAddr,
 			String storeTerm, String applicationStatus, String applicationDes) {
 		this.sellerAppliNo = sellerAppliNo;
 		this.sellerEmail = sellerEmail;
@@ -76,10 +76,10 @@ public class SellerApplication implements Serializable{
 	public void setStoreName(String storeName) {
 		this.storeName = storeName;
 	}
-	public int getStoreTelphone() {
+	public String getStoreTelphone() {
 		return storeTelphone;
 	}
-	public void setStoreTelphone(int storeTelphone) {
+	public void setStoreTelphone(String storeTelphone) {
 		this.storeTelphone = storeTelphone;
 	}
 	public String getStoreAddr() {

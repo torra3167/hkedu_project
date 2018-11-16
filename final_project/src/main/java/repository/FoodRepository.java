@@ -126,6 +126,40 @@ public class FoodRepository extends AbstractRepository{
 		}
 	}
 
+	public Integer deleteFood(int foodNo) {
+		sqlSession = getSqlSessionFactory().openSession();
+		Integer result = 0;
+		try {
+			result = sqlSession.update(namespace + ".deleteFood", foodNo);
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+	public List<Food> selectFoodList() {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+		List<Food> list =  sqlSession.selectList(namespace + ".selectFoodList");
+		for(Object temp : list) {
+			 Food food = (Food)temp;
+			 System.out.println("repo foodNo : "+food.getFoodNo());
+		}
+		return list;
+		} finally {
+			sqlSession.close();
+		}
+
+	}
+
 	
 	
 }

@@ -25,13 +25,13 @@ public class FoodController {
 	@Autowired
 	private FoodService foodService;
 	
-//	@RequestMapping(value="/food_reg.gom", method=RequestMethod.GET)
-//    public String foodRegForm(FoodRegCommand foodRegCommand, Model model) {
-//		System.out.println("foodRegForm nnnnnnnnnnnnnnnnnnnnnnnnnnn"+foodRegCommand.getFoodNo());
-//		foodService.dominoSelectC(model);
-//		model.addAttribute("iPage", "food/food_reg.jsp");
-//		return "index";
-//	}
+	@RequestMapping(value="/food_list.gom", method=RequestMethod.GET)
+	public String foodList(Model model) {
+		System.out.println("cntlr foodList");
+		foodService.selectFoodList(model);
+		model.addAttribute("iPage", "food/food_list.jsp");
+		return "index";
+	}
 	
 	@RequestMapping(value="/food_reg.gom", method=RequestMethod.POST)
 	public String foodRegSubmit(FoodRegCommand foodRegCommand, HttpSession session) { 
@@ -89,9 +89,14 @@ public class FoodController {
 //		System.out.println("foodUpdateSubmit foodName : " + foodUpdateCommand.getFoodName());
 		
         foodService.updateFood(foodUpdateCommand);
-        return "index";/*"redirect:/index";*/
+        return "redirect:/index";
 	}
 	
-	
+	@RequestMapping(value="/food_delete.gom", method=RequestMethod.GET)
+    public String foodDelete(@RequestParam("foodNo")int foodNo, Model model) {
+		System.out.println("cntlr foodDelete foodNo : " + foodNo);
+		foodService.deleteFood(foodNo);
+		return "redirect:/index";
+	}
 	
 }

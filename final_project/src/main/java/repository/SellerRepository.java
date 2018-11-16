@@ -65,6 +65,8 @@ public class SellerRepository extends AbstractRepository{
 		try {
 			String statement = namespace + ".deleteSeller";
 			Integer result = sqlSession.update(statement, seller);
+			
+			sqlSession.delete(namespace + ".deleteFood", seller.getSellerEmail());
 			if(result > 0) {
 				sqlSession.commit();
 			}
