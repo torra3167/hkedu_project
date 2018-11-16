@@ -30,7 +30,7 @@
 </resultMap>
 
 <select id="selectExerciseUpload" resultMap="exerciseUploadCollection" parameterType="int">
-select e.exercise_number,  e.exercise_cat_a_number, e.exercise_cat_b_number, e.exercise_content,
+select e.exercise_number,  u.exercise_cat_a_number, u.exercise_cat_b_number, e.exercise_content,
 u.upload_number, u.upload_size, u.upload_original, u.upload_stored, u.upload_divide 
 from exercise e, upload u
 where u.exercise_number = e.exercise_number 
