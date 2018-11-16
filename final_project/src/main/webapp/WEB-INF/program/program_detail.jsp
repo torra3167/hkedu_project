@@ -32,6 +32,7 @@
 		<table class="table table-striped text-center">
 			<thead>
 				<tr class="active">
+					<th>업로드번호</th>
 					<th>운동 번호</th>
 					<th>운동카테고리A 번호</th>
 					<th>운동카테고리B 번호</th>
@@ -40,7 +41,6 @@
 					<th>저장파일명</th>
 					<th>오리지널파일명</th>
 					<th>구분</th>
-					<th>업로드번호</th>
 					
 				</tr>
 			</thead>
@@ -48,6 +48,7 @@
 			<% for(Object temp : exerciseUploadList.getUploads()) {
 				Upload exerciseUpload = (Upload)temp; %>
 				<tr>
+					<td><a href="upload_update.gom?uploadNumber=<%=exerciseUpload.getUploadNumber() %>"><%=exerciseUpload.getUploadNumber() %></a></td>
 					<td><%=exerciseUpload.getExerciseNumber() %></td>				
 					<td><%=exerciseUpload.getExerciseCatANumber() %></td>
 					<td><%=exerciseUpload.getExerciseCatBNumber() %></td>
@@ -57,7 +58,6 @@
 					<td><%=exerciseUpload.getUploadStored() %></td>
 					<td><%=exerciseUpload.getUploadDivide() %></td>
 					
-					<td><a href="exercise_detail.gom?programNumber=<%=exerciseUpload.getUploadNumber() %>"><%=exerciseUpload.getUploadNumber() %></a></td>
 					
 			
 					
