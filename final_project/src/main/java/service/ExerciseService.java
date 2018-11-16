@@ -25,9 +25,9 @@ public class ExerciseService {
 	ProgramExercise programExercise;
 	/*"http://localhost:8080/final_project/exercise/file/"*/
 	static final String filePath =
-			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\admin\\Documents\\final_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-	File file;
+//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\admin\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			File file;
 	String originalFile;
 	String originalFileExtension;
 	String storedFileName;
