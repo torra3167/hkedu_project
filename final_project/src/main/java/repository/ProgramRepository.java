@@ -10,6 +10,7 @@ import category.ExerciseCatB;
 import model.ExerciseUpload;
 import model.Program;
 import model.ProgramExercise;
+import model.ProgramExerciseUpload;
 
 public class ProgramRepository extends AbstractRepository {
 	SqlSession sqlSession;
@@ -160,12 +161,14 @@ public class ProgramRepository extends AbstractRepository {
 		
 	}
 
-	public ExerciseUpload selectExerciseUpload(int proNo) {
+	public List<ProgramExerciseUpload> selectExerciseUpload(int proNo) {
+		List<ProgramExerciseUpload> list = new ArrayList<ProgramExerciseUpload>();
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		try {
 			String statement = namespace + ".selectExerciseUpload";
-			return (ExerciseUpload)sqlSession.selectOne(statement, proNo);
 			
+			list = sqlSession.selectList(statement, proNo);
+			return list;
 		} finally {
 			sqlSession.close();
 		}

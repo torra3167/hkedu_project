@@ -13,17 +13,20 @@ import org.springframework.web.multipart.MultipartFile;
 import category.ExerciseCatA;
 import category.ExerciseCatB;
 import command.UploadCommand;
+import command.UploadUpdateCommand;
 import model.Exercise;
+import model.ProgramExercise;
 import model.Upload;
 import repository.ExerciseRepository;
 
 public class ExerciseService {
 	Upload upload;
 	Exercise exercise;
+	ProgramExercise programExercise;
 	/*"http://localhost:8080/final_project/exercise/file/"*/
 	static final String filePath =
-//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			"C:\\Users\\admin\\Documents\\final_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\admin\\Documents\\final_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file;
 	String originalFile;
 	String originalFileExtension;
@@ -144,6 +147,79 @@ public class ExerciseService {
 		List<Upload> list = er.exerciseList();   
 		model.addAttribute("Upload", list);
 	}
+
+	public void selectByUploadNumber(int uploadNumber) {
+		
+		
+		
+	}
+
+	public void updateUpload(UploadUpdateCommand uploadUpdateCommand) {
+		//파일삭제
+		
+		String fileName = uploadUpdateCommand.getUploadOriginal();
+		
+		if(fileName!=null) {
+			String path= filePath + fileName;
+			
+			file = new File(path);
+			if(file.exists()) 
+			{	
+				file.delete(); 
+				System.out.println("파일 삭제");
+			}
+		}
+		
+		multiFile = uploadUpdateCommand.getUploadFile();
+		originalFile = multiFile.getOriginalFilename();
+		originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+		storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+		file = new File(filePath + storedFileName);
+		
+		try {
+			
+			multiFile.transferTo(file);
+			
+			programExercise = new ProgramExercise(uploadUpdateCommand.getProNo(), uploadUpdateCommand.getExerciseNumber(),
+					uploadUpdateCommand.getExerciseCatANumber(), uploadUpdateCommand.getExerciseCatBNumber());
+			
+			Integer PEUpdateResult = er.updateProgramExercise(programExercise);
+
+			if (PEUpdateResult < 1) {
+				System.out.println("프로그램운동 업데이트실패!");
+			} else {
+				System.out.println("프로그램운동 업데이트성공!");
+			}
+			
+			exercise = new Exercise(uploadUpdateCommand.getExerciseNumber(), uploadUpdateCommand.getExerciseCatANumber(),
+					uploadUpdateCommand.getExerciseCatBNumber(), uploadUpdateCommand.getExerciseContent());
+			
+			Integer exerciseUpdateResult = er.updateExercise(exercise);
+			
+			if (exerciseUpdateResult < 1) {
+				System.out.println("운동 업데이트실패!");
+			} else {
+				System.out.println("운동 업데이트성공!");
+			}
+			
+			upload = new Upload(uploadUpdateCommand.getUploadNumber(), uploadUpdateCommand.getExerciseNumber(), 
+					uploadUpdateCommand.getExerciseCatANumber(), uploadUpdateCommand.getExerciseCatBNumber(),
+					multiFile.getSize(), originalFile, storedFileName);
+			
+			Integer exerciseUploadResult = er.updateUpload(upload);
+			
+			if (exerciseUploadResult < 1) {
+				System.out.println("업로드 업데이트실패!");
+			} else {
+				System.out.println("업로드 업데이트성공!");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
 	
 	
 }

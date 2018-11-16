@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import category.ExerciseCatB;
 import command.UploadCommand;
+import command.UploadUpdateCommand;
 import service.ExerciseService;
 
 @Controller
@@ -18,6 +19,28 @@ public class ExerciseController {
 
 	@Autowired
 	private ExerciseService es;
+	
+	
+	@RequestMapping(value="/upload_update.gom", method=RequestMethod.GET)
+	public String updateForm(UploadUpdateCommand uploadUpdateCommand, Model model) {
+	    
+		//카테고리
+		es.exerciseCategoryB(model);
+		model.addAttribute("iPage", "upload/upload_update.jsp");
+		model.addAttribute("UploadUpdateCommand", uploadUpdateCommand);
+		es.selectByUploadNumber(uploadUpdateCommand.getUploadNumber());
+	    return "index";
+
+	}
+	
+	@RequestMapping(value="/upload_update.gom", method=RequestMethod.POST)
+	public String updateSubmit(UploadUpdateCommand uploadUpdateCommand, Model model) {
+	    
+		es.updateUpload(uploadUpdateCommand);
+		
+	    return "redirect:/index";
+
+	}
 	
 	
 	@RequestMapping(value="/exercise_detail.gom", method=RequestMethod.GET)

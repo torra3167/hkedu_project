@@ -18,6 +18,7 @@ import command.ProgramDetailCommand;
 import model.ExerciseUpload;
 import model.Program;
 import model.ProgramExercise;
+import model.ProgramExerciseUpload;
 import repository.ProgramRepository;
 
 @Service
@@ -29,8 +30,8 @@ public class ProgramService {
 	ProgramExercise programExercise;
 	MultipartFile multiFile;
 	static final String filePath = 
-//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			"C:\\Users\\admin\\Documents\\final_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\admin\\Documents\\final_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
 
 	@Autowired
@@ -145,11 +146,11 @@ public class ProgramService {
 		List<ProgramExercise> list = pr.selectByProgramNumber(programDetailCommand.getProNo());
 		model.addAttribute("ProgramExercise", list);
 		
-		ExerciseUpload exerciseUpload = pr.selectExerciseUpload(programDetailCommand.getProNo());
-		exerciseUpload.setProContent(programDetailCommand.getProContent());
+		List<ProgramExerciseUpload> exerciseUpload = pr.selectExerciseUpload(programDetailCommand.getProNo());
+		/*exerciseUpload.setProContent(programDetailCommand.getProContent());
 		exerciseUpload.setProNo(programDetailCommand.getProNo());
-		
-		model.addAttribute("ExerciseUpload", exerciseUpload);
+		*/
+		model.addAttribute("ProgramExerciseUpload", exerciseUpload);
 
 		
 	}

@@ -8,6 +8,25 @@
 
 
 
+
+<update id="updateUpload" parameterType="Upload">
+	update upload
+	set 
+	(EXERCISE_CAT_A_NUMBER) = #{exerciseCatANumber},
+	(EXERCISE_CAT_B_NUMBER) = #{exerciseCatBNumber},
+	(UPLOAD_SIZE) = #{uploadSize},
+	(UPLOAD_ORIGINAL) = #{uploadOriginal},
+	(UPLOAD_STORED) = #{uploadStored}
+	where UPLOAD_NUMBER = #{uploadNumber}
+</update>
+
+<update id="updateExercise" parameterType="Exercise">
+	update exercise
+	set EXERCISE_CONTENT = #{exerciseContent}
+	where EXERCISE_NUMBER = #{exerciseNumber}
+	
+</update>
+
 <insert id="insertUpload" parameterType="Upload">
 	insert into upload
 	(UPLOAD_NUMBER, EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER, 

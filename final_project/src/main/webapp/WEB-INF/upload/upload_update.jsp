@@ -3,10 +3,11 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page import="java.util.*, model.*, category.*"%>
+<%@ page import="java.util.*, model.*, category.*, command.UploadUpdateCommand"%>
 
 <%
  	List list = (List)request.getAttribute("list");
+	UploadUpdateCommand uploadUpdateCommand = (UploadUpdateCommand)request.getAttribute("uploadUpdateCommand");
 %>
 <!DOCTYPE html>
 <html>
@@ -33,28 +34,32 @@
 	 });
  }
  
-
- 
 </script>	
 </head>
 
 <body>
+
 	<div class="container mt-3" style="max-width: 560px;">
-		<form:form commandName="uploadCommand" method="post"
+		<form:form commandName="uploadUpdateCommand" method="post"
 			action="upload_update.gom" enctype="multipart/form-data">
-			
-			
-	
+			${proNo } ,${uploadStored}
 			<div class="form-group">
 				<label>업로드 번호</label>
-				<form:input path="uploadNumber" class="form-control" />
+				<form:input path="uploadNumber" class="form-control" readonly="true" />
 			</div>
 			<div class="form-group">
 				<label>운동 번호</label>
-				<form:input path="exerciseNumber" class="form-control" />
+				<form:input path="exerciseNumber" class="form-control" readonly="true"/>
 			</div>
 			
 			<div class="form-group">
+				<label>운동 내용</label>
+				<form:input path="exerciseContent" class="form-control" />
+			</div>
+			
+			
+					<div class="form-group">
+					<label>운동 분류</label>
 				<select id="bca" name="exerciseCatBNumber" class="form-control"
 					onclick="javascript:aca();">
 					<%
@@ -70,60 +75,25 @@
 				</select>
 			</div>
 			
+		
 			<div id="aca" class="form-group"></div>
 			
 			<div class="form-group">
-				<label>변경할 운동 파일</label> <input type="file" name="uploadImage"
-					class="form-control">
+				<label>변경전 운동파일</label>
+				 <form:input path="uploadOriginal" class="form-control" readonly="true" /> 
+			
+	 		<input type="hidden" name="uploadStored" value="<%= uploadUpdateCommand.getUploadStored()%>">
+			<input type="hidden" name="proNo" value="<%=uploadUpdateCommand.getProNo()%>"> 
 			</div>
 			
-			<div>
-				<select id="FCC" name="foodCatCNo" onclick="javascript:funcBca();">
-					<%
-						for (Object temp : list) {
-								FoodCatC acar = (FoodCatC) temp;
-					%>
-					<option value="<%=acar.getFoodCatCNo()%>">
-						<%=acar.getFoodCatCName()%></option>
-					<%
-						}
-					%>
-				</select>
-			</div>
-			<div id="divBca"></div>
-			<div id="divAca"></div>
 			<div class="form-group">
-				<label>식품 맛</label>
-				<form:input path="foodFlavor" class="form-control" />
+				<label>변경할 운동 파일</label> 
+				<input type="file" name="uploadFile" class="form-control">
+					
+					
 			</div>
-			<div class="form-group">
-				<label>판매할 식품 개수</label>
-				<form:input path="foodQuant" class="form-control" />
-			</div>
-			<div class="form-group">
-				<label>식품 유통기한</label>
-				<form:input path="foodExpiryDate" class="form-control" />
-			</div>
-			<div class="form-group">
-				<label>식품재료 원산지</label>
-				<form:input path="foodOrigin" class="form-control" />
-			</div>
-			<div class="form-group">
-				<label>식품 탄수화물 함량(g)</label>
-				<form:input path="foodCarbo" class="form-control" />
-			</div>
-			<div class="form-group">
-				<label>식품 단백질 함량(g)</label>
-				<form:input path="foodProtein" class="form-control" />
-			</div>
-			<div class="form-group">
-				<label>식품 지방 함량(g)</label>
-				<form:input path="foodFat" class="form-control" />
-			</div>
-			<div class="form-group">
-				<label>식품 칼로리(kcal)</label>
-				<form:input path="foodCal" class="form-control" />
-			</div>
+			
+			
 			<button type="submit" class="btn btn-primary">수정 완료</button>
 			<button type="reset" class="btn btn-primary">다시 작성</button>
 			<button type="button" class="btn btn-primary"
