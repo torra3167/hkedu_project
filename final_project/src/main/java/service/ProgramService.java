@@ -146,9 +146,6 @@ public class ProgramService {
 		model.addAttribute("ProgramExercise", list);
 		
 		ExerciseUpload exerciseUpload = pr.selectExerciseUpload(programDetailCommand.getProNo());
-		exerciseUpload.setProContent(programDetailCommand.getProContent());
-		exerciseUpload.setProNo(programDetailCommand.getProNo());
-		
 		model.addAttribute("ExerciseUpload", exerciseUpload);
 
 		
