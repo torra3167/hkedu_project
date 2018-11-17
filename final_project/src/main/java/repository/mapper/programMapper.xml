@@ -4,6 +4,57 @@
 <mapper namespace="repository.mapper.programMapper">
 <cache></cache>
 
+
+
+
+
+
+
+<select id="selectProReviewAllList" resultMap="proReviewMap">
+
+ select PRO_REVIEW_NO, MEMBER_EMAIL, PRO_NO, COACH_EMAIL, PRO_REVIEW_TITLE, PRO_REVIEW_SCORE,
+ PRO_REVIEW_COMMENT, PRO_REVIEW_SIZE, PRO_REVIEW_ORIGINAL, PRO_REVIEW_STORED, PRO_REVIEW_REGDATE
+ from pro_review
+ 
+</select>
+
+
+
+<resultMap type="ProReview" id="proReviewMap">
+			<id property="proReviewNo" column="PRO_REVIEW_NO" jdbcType="BIGINT"  />
+			<id property="memberEmail" column="MEMBER_EMAIL" jdbcType="VARCHAR"  />
+			<id property="proNo" column="PRO_NO" jdbcType="BIGINT"  />
+			<id property="coachEmail" column="COACH_EMAIL" jdbcType="VARCHAR"  />
+			<result property="proReviewTitle" column="PRO_REVIEW_TITLE" jdbcType="VARCHAR"  />
+			<result property="proReviewScore" column="PRO_REVIEW_SCORE" jdbcType="VARCHAR"/>			
+			<result property="proReviewComment"  column="PRO_REVIEW_COMMENT" jdbcType="VARCHAR"  />						
+			<result property="proReviewSize" column="PRO_REVIEW_SIZE" jdbcType="BIGINT"/>
+			<result property="proReviewOriginal" column="PRO_REVIEW_ORIGINAL" jdbcType="VARCHAR"/>
+			<result property="proReviewStored" column="PRO_REVIEW_STORED" jdbcType="VARCHAR"/>
+			<result property="proReviewRegdate" column="PRO_REVIEW_REGDATE" jdbcType="DATE"/>
+	
+		
+</resultMap>
+
+<!-- 리뷰출력 -->
+<select id="selectProReviewListByProNo" parameterType="int" resultMap="proReviewMap">
+ select PRO_REVIEW_NO, MEMBER_EMAIL, PRO_NO, COACH_EMAIL, PRO_REVIEW_TITLE, PRO_REVIEW_SCORE,
+ PRO_REVIEW_COMMENT, PRO_REVIEW_SIZE, PRO_REVIEW_ORIGINAL, PRO_REVIEW_STORED, PRO_REVIEW_REGDATE
+ from pro_review
+ where PRO_NO = #{proNo}
+</select>
+
+<!--리뷰등록  -->
+<insert id="insertProReview" parameterType="ProReview">
+	insert into pro_review
+	(PRO_REVIEW_NO, MEMBER_EMAIL, PRO_NO, COACH_EMAIL, PRO_REVIEW_TITLE, PRO_REVIEW_SCORE,
+	PRO_REVIEW_COMMENT, PRO_REVIEW_SIZE, PRO_REVIEW_ORIGINAL, PRO_REVIEW_STORED, PRO_REVIEW_REGDATE)
+	values
+	(COUNT_NUMBER.NEXTVAL, #{memberEmail}, #{proNo}, #{coachEmail}, #{proReviewTitle},
+	 #{proReviewScore}, #{proReviewComment}, #{proReviewSize}, #{proReviewOriginal},
+	  #{proReviewStored}, #{proReviewRegdate})
+</insert>
+
 <!--프로그램업데이트  -->
 <update id="updateProgramExercise" parameterType="ProgramExercise">
 	update program_exercise
@@ -43,7 +94,7 @@
 <resultMap type="ProgramExerciseUpload" id="programExerciseUploadMap">
 
 			<id property="proNo" column="PRO_NO" jdbcType="BIGINT"  />
-			<result property="exerciseContent" column="EXERCISE_CONTENT" jdbcType="CLOB"/>			
+			<result property="exerciseContent" column="EXERCISE_CONTENT" jdbcType="VARCHAR"/>			
 			<result property="proContent"  column="PRO_CONTENT" jdbcType="VARCHAR"  />						
 			<result property="exerciseNumber" column="EXERCISE_NUMBER" jdbcType="BIGINT"/>
 			<result property="exerciseCatANumber" column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT"/>
@@ -55,6 +106,7 @@
 			<result property="uploadDivide" column="UPLOAD_DIVIDE" jdbcType="VARCHAR"/>
 </resultMap>
 
+<!--프로그램이 조건인 운동 + 업로드 + 프로그램 -->
 <select id="selectProgramExerciseUpload" resultMap="programExerciseUploadMap" parameterType="int">
 select e.exercise_number, e.exercise_content, u.exercise_cat_a_number, u.exercise_cat_b_number, 
 u.upload_number, u.upload_size, u.upload_original, u.upload_stored, u.upload_divide 
@@ -75,7 +127,7 @@ where pro_no = #{proNo})
 	<result column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>	
 	<result column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>	
 </resultMap>
-
+<!--프로그램운동출력  -->
 <select id="selectByProgramNumber" parameterType="int" resultMap="programExerciseMap">
 	select PRO_NO, COACH_EMAIL, EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER
 	from program_exercise
@@ -102,6 +154,7 @@ where pro_no = #{proNo})
 	PRO_REGDATE, PRO_CONTENT, PRO_STATUS, PRO_DES
 	from program
 </select>
+
 
 <select id="selectExerciseNumberByCategory" parameterType="Integer" resultType="Integer">
 	select EXERCISE_NUMBER from exercise

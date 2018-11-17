@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import= "command.ProReviewWriteCommand"%>
 	
 	<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+
+<%
+	ProReviewWriteCommand proReviewWriteCommand = 
+	(ProReviewWriteCommand) request.getAttribute("ProReviewWriteCommand");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +25,9 @@
 		</button>
 	</div>
 	<div class="body"> 
-		<form:form commandName="proReviewWriteCommand" action="program_review_write.gom" enctype="multipart/form-data">
-			
+		<form:form commandName="proReviewWriteCommand" action="pro_review_write.gom" enctype="multipart/form-data">
+			<input type="hidden" name="proNo" value="<%=proReviewWriteCommand.getProNo()%>">
+			<input type="hidden" name="coachEmail" value="<%=proReviewWriteCommand.getCoachEmail() %>">
 			<div class="form-group">
 				<label>제목</label> <form:input path="proReviewTitle" class="form-control"/>
 			</div>

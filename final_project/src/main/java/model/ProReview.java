@@ -1,13 +1,12 @@
-package command;
+package model;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import org.springframework.web.multipart.MultipartFile;
 
 
 @SuppressWarnings("serial")
-public class ProReviewWriteCommand implements Serializable{
+public class ProReview implements Serializable{
 
 	private int proReviewNo;
 	private String memberEmail;
@@ -16,9 +15,25 @@ public class ProReviewWriteCommand implements Serializable{
 	private String proReviewTitle;
 	private String proReviewScore;
 	private String proReviewComment;
-	private MultipartFile proReviewImage;
+	private Long proReviewSize;
+	private String proReviewOriginal;
+	private String proReviewStored;
 	private Date proReviewRegdate;
 	
+	public ProReview() {}
+	
+	public ProReview(String memberEmail, int proNo, String coachEmail, String proReviewTitle, String proReviewScore,
+			String proReviewComment, Long proReviewSize, String proReviewOriginal, String proReviewStored) {
+		this.memberEmail = memberEmail;
+		this.proNo = proNo;
+		this.coachEmail = coachEmail;
+		this.proReviewTitle = proReviewTitle;
+		this.proReviewScore = proReviewScore;
+		this.proReviewComment = proReviewComment;
+		this.proReviewSize = proReviewSize;
+		this.proReviewOriginal = proReviewOriginal;
+		this.proReviewStored = proReviewStored;
+	}
 	public int getProReviewNo() {
 		return proReviewNo;
 	}
@@ -61,12 +76,25 @@ public class ProReviewWriteCommand implements Serializable{
 	public void setProReviewComment(String proReviewComment) {
 		this.proReviewComment = proReviewComment;
 	}
-	public MultipartFile getProReviewImage() {
-		return proReviewImage;
+	public Long getProReviewSize() {
+		return proReviewSize;
 	}
-	public void setProReviewImage(MultipartFile proReviewImage) {
-		this.proReviewImage = proReviewImage;
+	public void setProReviewSize(Long proReviewSize) {
+		this.proReviewSize = proReviewSize;
 	}
+	public String getProReviewOriginal() {
+		return proReviewOriginal;
+	}
+	public void setProReviewOriginal(String proReviewOriginal) {
+		this.proReviewOriginal = proReviewOriginal;
+	}
+	public String getProReviewStored() {
+		return proReviewStored;
+	}
+	public void setProReviewStored(String proReviewStored) {
+		this.proReviewStored = proReviewStored;
+	}
+	
 	
 	public Date getProReviewRegdate() {
 		return proReviewRegdate;
@@ -77,7 +105,6 @@ public class ProReviewWriteCommand implements Serializable{
 	
 	
 	
-
 	
 	
 	

@@ -21,6 +21,7 @@
 		<typeAlias type="category.FoodCatB" alias="FoodCatB"/>
 		<typeAlias type="category.FoodCatC" alias="FoodCatC"/>
 		<typeAlias type="model.ProgramExerciseUpload" alias="ProgramExerciseUpload"/>
+		<typeAlias type="model.ProReview" alias="ProReview"/>
 		
 <!-- 		<typeAlias type="model.Email" alias="Email"/>
  -->		
