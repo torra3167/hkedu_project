@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
-import config.Config;
 import category.ExerciseCatA;
 import category.ExerciseCatB;
 import command.ProgramCommand;
@@ -150,6 +149,11 @@ public class ProgramService {
 		/*exerciseUpload.setProContent(programDetailCommand.getProContent());
 		exerciseUpload.setProNo(programDetailCommand.getProNo());
 		*/
+		/*for(Object temp : programExerciseUpload) {
+			ProgramExerciseUpload peu = (ProgramExerciseUpload)temp;
+			System.out.println(peu.getExerciseContent() + "SERVICE EXERCISECONTENT!!!");
+		}*/
+		
 		model.addAttribute("ProgramExerciseUpload", programExerciseUpload);
 
 		
