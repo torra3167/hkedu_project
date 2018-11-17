@@ -28,14 +28,19 @@ public class ExerciseController {
 		es.exerciseCategoryB(model);
 		model.addAttribute("iPage", "upload/upload_update.jsp");
 		model.addAttribute("UploadUpdateCommand", uploadUpdateCommand);
-		es.selectByUploadNumber(uploadUpdateCommand.getUploadNumber());
 	    return "index";
 
 	}
 	
 	@RequestMapping(value="/upload_update.gom", method=RequestMethod.POST)
 	public String updateSubmit(UploadUpdateCommand uploadUpdateCommand, Model model) {
-	    
+		System.out.println(uploadUpdateCommand.getExerciseCatANumber());
+		System.out.println(uploadUpdateCommand.getExerciseCatBNumber());
+		System.out.println(uploadUpdateCommand.getUploadStored());
+		System.out.println(uploadUpdateCommand.getUploadOriginal());
+		
+		
+		
 		es.updateUpload(uploadUpdateCommand);
 		
 	    return "redirect:/index";

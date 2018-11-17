@@ -31,6 +31,7 @@
 					<th>프로그램 이름</th>
 					<th>프로그램 등록날짜</th>
 					<th>프로그램 사진</th>
+					<th>프로그램 리뷰</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -43,7 +44,7 @@
 					<td><a href="program_detail.gom?proNo=<%=program.getProNo() %>&proContent=<%=program.getProContent()%>"><%=program.getProName() %></a></td>
 					<td><%=program.getProRegdate() %></td>
 					<td><img src="http://localhost:8080/final_project/resource/<%=program.getProStored() %>" width="80" height="80"></td>
-					
+					<td><a href="program_review_list.gom?proNo=<%=program.getProNo() %>">리뷰</a></td>
 					
 				</tr>
 				

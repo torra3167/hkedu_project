@@ -63,8 +63,8 @@
 				<td><%=programexerciseUpload.getExerciseCatANumber()%></td>
 				<td><%=programexerciseUpload.getExerciseCatBNumber()%></td>
 				<td><a
-					href="upload_update.gom?
-					uploadNumber=<%=programexerciseUpload.getUploadNumber()%>
+					href="upload_update.gom?proNo=<%=programDetailCommand.getProNo()%>
+					&uploadNumber=<%=programexerciseUpload.getUploadNumber()%>
 					&exerciseNumber=<%=programexerciseUpload.getExerciseNumber()%>
 					&exerciseContent=<%=programexerciseUpload.getExerciseContent()%>
 					&exerciseCatANumber=<%=programexerciseUpload.getExerciseCatANumber()%>

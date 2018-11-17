@@ -7,10 +7,14 @@
 <!--프로그램업데이트  -->
 <update id="updateProgramExercise" parameterType="ProgramExercise">
 	update program_exercise
-	set 
-	(EXERCISE_CAT_A_NUMBER) = #{exerciseCatANumber},
-	(EXERCISE_CAT_B_NUMBER) = #{exerciseCatBNumber}
-	where PRO_NO = #{proNo}
+	<set>
+	EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber},
+	EXERCISE_CAT_B_NUMBER = #{exerciseCatBNumber}
+	</set>
+	<where>
+	PRO_NO = #{proNo}
+	</where>
+	
 </update>
 
 <!-- <resultMap type="ExerciseUpload" id="exerciseUploadCollection">
@@ -66,10 +70,10 @@ where pro_no = #{proNo})
 
 <resultMap id="programExerciseMap" type="ProgramExercise">
 	<id column="PRO_NO" jdbcType="BIGINT" property="proNo"/>	
-	<id column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail"/>	
-	<id column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber"/>	
-	<id column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>	
-	<id column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>	
+	<result column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail"/>	
+	<result column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber"/>	
+	<result column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>	
+	<result column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>	
 </resultMap>
 
 <select id="selectByProgramNumber" parameterType="int" resultMap="programExerciseMap">

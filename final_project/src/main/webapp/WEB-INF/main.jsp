@@ -147,7 +147,7 @@
 
 					<div class="alert alert-info alert-dismissible fade show"
 						role="alert">
-						<a href="#"><strong>운동관!</strong></a> 전문코치와 함께 목표를 달성해보세요!
+						<a href="program_list.gom"><strong>운동관!</strong></a> 전문코치와 함께 목표를 달성해보세요!
 						<button type="button" class="close" data-dismiss="info"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>

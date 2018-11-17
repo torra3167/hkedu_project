@@ -7,13 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import category.ExerciseCatB;
+import command.ProReviewWriteCommand;
 import command.ProgramCommand;
 import command.ProgramDetailCommand;
-import model.ProgramExercise;
 import service.ProgramService;
 
 @Controller
@@ -22,12 +19,42 @@ public class ProgramController {
 	private ProgramService ps;
 	
 	
+	@RequestMapping(value = "/program_review_write.gom", method = RequestMethod.POST)
+	public String programReviewSubmit(ProReviewWriteCommand proReviewWriteCommand, Model model) {
+		
+		
+		
+		
+		return "redirect:/index";
+
+	}
 	
+	@RequestMapping(value = "/program_review_write.gom", method = RequestMethod.GET)
+	public String programReviewWrite(ProReviewWriteCommand proReviewWriteCommand, Model model) {
+		
+		
+		
+		model.addAttribute("iPage", "program/program_review_write.jsp");
+		return "index";
+
+	}
+	
+	@RequestMapping(value = "/program_review_list.gom", method = RequestMethod.GET)
+	public String programReview(ProgramDetailCommand programDetailCommand, Model model) {
+		
+		
+		
+		model.addAttribute("iPage", "program/program_review_list.jsp");
+		return "index";
+
+	}
 	
 	@RequestMapping(value = "/program_detail.gom", method = RequestMethod.GET)
 	public String programDetail(ProgramDetailCommand programDetailCommand/*, @RequestParam(value="proNo", defaultValue="false") int proNo*/, Model model ) {
 		System.out.println(programDetailCommand.getProNo() + "PRONO by command! ");
 		System.out.println(programDetailCommand.getProContent() + " PROCONTENT");
+		
+		
 		model.addAttribute("iPage", "program/program_detail.jsp");
 		model.addAttribute("ProgramDetailCommand", programDetailCommand);
 		ps.programDetail(programDetailCommand, model);

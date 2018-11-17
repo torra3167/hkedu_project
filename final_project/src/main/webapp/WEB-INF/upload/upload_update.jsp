@@ -42,7 +42,7 @@
 	<div class="container mt-3" style="max-width: 560px;">
 		<form:form commandName="uploadUpdateCommand" method="post"
 			action="upload_update.gom" enctype="multipart/form-data">
-			${proNo } ,${uploadStored}
+			
 			<div class="form-group">
 				<label>업로드 번호</label>
 				<form:input path="uploadNumber" class="form-control" readonly="true" />
@@ -82,7 +82,7 @@
 				<label>변경전 운동파일</label>
 				 <form:input path="uploadOriginal" class="form-control" readonly="true" /> 
 			
-	 		<input type="hidden" name="uploadStored" value="<%= uploadUpdateCommand.getUploadStored()%>">
+	 		<input type="hidden" name="uploadStored" value="<%=uploadUpdateCommand.getUploadStored()%>">
 			<input type="hidden" name="proNo" value="<%=uploadUpdateCommand.getProNo()%>"> 
 			</div>
 			

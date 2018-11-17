@@ -2,6 +2,7 @@ package command;
 
 import java.io.Serializable;
 
+
 @SuppressWarnings("serial")
 public class ProReviewAnswerCommand implements Serializable{
 
@@ -15,6 +16,7 @@ public class ProReviewAnswerCommand implements Serializable{
 	private int exerciseCatBNumber;
 	private int proReviewAnswerRegdate;
 	private String proReviewAnswerContent;
+	
 	
 	public int getProReviewAnswerNo() {
 		return proReviewAnswerNo;
