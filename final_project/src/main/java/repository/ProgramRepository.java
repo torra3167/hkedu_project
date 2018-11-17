@@ -161,14 +161,16 @@ public class ProgramRepository extends AbstractRepository {
 		
 	}
 
-	public List<ProgramExerciseUpload> selectExerciseUpload(int proNo) {
+	public List<ProgramExerciseUpload> selectProgramExerciseUpload(int proNo) {
 		List<ProgramExerciseUpload> list = new ArrayList<ProgramExerciseUpload>();
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
 		try {
-			String statement = namespace + ".selectExerciseUpload";
+			String statement = namespace + ".selectProgramExerciseUpload";
 			
 			list = sqlSession.selectList(statement, proNo);
 			return list;
+			
 		} finally {
 			sqlSession.close();
 		}
