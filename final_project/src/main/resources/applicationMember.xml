@@ -19,6 +19,7 @@
 <bean id="ls" class="service.LoginService"></bean>
 <bean id="es" class="service.ExerciseService"></bean>
 <bean id="foodService" class="service.FoodService"></bean>
+<bean id="prrs" class="service.ProReviewReportService"></bean>
 
 <!-- <bean id="emailService" class="service.EmailService"/>
  -->
@@ -31,6 +32,7 @@
 <bean id="er" class="repository.ExerciseRepository"></bean>
 <bean id="sellerRepository" class="repository.SellerRepository"></bean>
 <bean id="foodRepository" class="repository.FoodRepository"></bean>
+<bean id="prrr" class="repository.ProReviewReportRepository"></bean>
 
 <!-- <bean id="emailRepository" class="repository.EmailRepository"></bean>
  -->

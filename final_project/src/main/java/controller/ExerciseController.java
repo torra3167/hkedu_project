@@ -1,8 +1,5 @@
 package controller;
 
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,13 +51,21 @@ public class ExerciseController {
 
 	}
 	
-	
+	@RequestMapping(value="/exercise_update.gom", method=RequestMethod.POST)
+	public String exerciseUpdateSubmit(ExerciseUpdateCommand exerciseUpdateCommand, Model model) {
+	    
+		
+		es.exerciseUpdate(exerciseUpdateCommand);
+	    return "redirect:/index";
+
+	}
 	
 	@RequestMapping(value="/exercise_update.gom", method=RequestMethod.GET)
 	public String exerciseUpdate(ExerciseUpdateCommand exerciseUpdateCommand, Model model) {
 	    
-
-		model.addAttribute("iPage", "exercise/exercise_detail.jsp");
+		es.exerciseCategoryB(model);
+		model.addAttribute("iPage", "exercise/exercise_update.jsp");
+		model.addAttribute("ExerciseUpdateCommand", exerciseUpdateCommand);
 	    return "index";
 
 	}

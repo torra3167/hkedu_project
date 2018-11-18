@@ -17,6 +17,14 @@
 </select>
 
 
+<update id="updateUploadCategory" parameterType="Upload">
+	update upload
+	set 
+	(EXERCISE_CAT_A_NUMBER) = #{exerciseCatANumber},
+	(EXERCISE_CAT_B_NUMBER) = #{exerciseCatBNumber}
+	where EXERCISE_NUMBER = #{exerciseNumber}
+</update>
+
 <update id="updateUpload" parameterType="Upload">
 	update upload
 	set 
@@ -28,7 +36,10 @@
 
 <update id="updateExercise" parameterType="Exercise">
 	update exercise
-	set EXERCISE_CONTENT = #{exerciseContent}
+	set 
+	EXERCISE_CONTENT = #{exerciseContent},
+	EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber},
+	EXERCISE_CAT_B_NUMBER = #{exerciseCatBNumber}
 	where EXERCISE_NUMBER = #{exerciseNumber}
 	
 </update>

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @SuppressWarnings("serial")
-public class ProReviewReportCommand implements Serializable {
+public class ProReviewReportUpdateCommand implements Serializable {
 
 	private int proReviewNo;
 	private String memberEmail;

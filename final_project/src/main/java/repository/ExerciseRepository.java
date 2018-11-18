@@ -182,4 +182,24 @@ public class ExerciseRepository extends AbstractRepository {
 		}
 	}
 
+	public int updateUploadCategory(Upload upload) {
+		sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+			Integer resultUploadCategory = sqlSession.insert(namespace + ".updateUploadCategory", upload);
+			System.out.println("UPDATE CATEGORY UPLOAD " + resultUploadCategory);
+
+			if (resultUploadCategory > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+
+			return resultUploadCategory;
+
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 }

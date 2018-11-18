@@ -3,11 +3,11 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page import="java.util.*, model.*, category.*, command.UploadUpdateCommand"%>
+<%@ page import="java.util.*, category.*, command.ExerciseUpdateCommand"%>
 
 <%
  	List list = (List)request.getAttribute("list");
-	UploadUpdateCommand uploadUpdateCommand = (UploadUpdateCommand)request.getAttribute("uploadUpdateCommand");
+ExerciseUpdateCommand exerciseUpdateCommand = (ExerciseUpdateCommand)request.getAttribute("ExerciseUpdateCommand");
 %>
 <!DOCTYPE html>
 <html>
@@ -40,8 +40,8 @@
 <body>
 
 	<div class="container mt-3" style="max-width: 560px;">
-		<form:form commandName="uploadUpdateCommand" method="post"
-			action="upload_update.gom" enctype="multipart/form-data">
+		<form:form commandName="exerciseUpdateCommand" 
+			action="exercise_update.gom" >
 			
 			
 			<div class="form-group">
@@ -73,14 +73,7 @@
 			</div>
 			
 		
-			<div id="aca" class="form-group"></div>
-			
-			
-			
-	 		<input type="hidden" name="uploadStored" value="<%=uploadUpdateCommand.getUploadStored()%>">
-			<input type="hidden" name="proNo" value="<%=uploadUpdateCommand.getProNo()%>"> 
-		
-			
+			<div id="aca" class="form-group"></div>			
 			
 			<button type="submit" class="btn btn-primary">수정 완료</button>
 			<button type="reset" class="btn btn-primary">다시 작성</button>

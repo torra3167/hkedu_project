@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import category.ExerciseCatA;
 import category.ExerciseCatACatB;
 import category.ExerciseCatB;
+import command.ExerciseUpdateCommand;
 import command.UploadCommand;
 import command.UploadUpdateCommand;
 import model.Exercise;
@@ -166,16 +167,6 @@ public class ExerciseService {
 
 			multiFile.transferTo(file);
 
-			//운동업데이트
-			/*exercise = new Exercise(uploadUpdateCommand.getExerciseNumber(),
-					uploadUpdateCommand.getExerciseCatANumber(), uploadUpdateCommand.getExerciseCatBNumber(),
-					uploadUpdateCommand.getExerciseContent());
-
-			int exerciseUpdateResult = er.updateExercise(exercise);
-
-			if (exerciseUpdateResult < 1) {
-				System.out.println("운동 업데이트실패!");
-			}*/
 			
 			//업로드업데이트
 			upload = new Upload(uploadUpdateCommand.getUploadNumber(),
@@ -190,20 +181,7 @@ public class ExerciseService {
 				 */
 			
 			
-			//프로그램업데이트
-			/*programExercise = new ProgramExercise(uploadUpdateCommand.getProNo(),
-					uploadUpdateCommand.getExerciseNumber(), uploadUpdateCommand.getExerciseCatANumber(),
-					uploadUpdateCommand.getExerciseCatBNumber());
-
 			
-			  int PEUpdateResult = er.updateProgramExercise(programExercise);
-
-			
-		
-			  if (PEUpdateResult < 1) {
-				System.out.println("프로그램운동 업데이트실패!");
-			} */
-
 			
 			
 
@@ -218,6 +196,44 @@ public class ExerciseService {
 		
 		return exerciseCatACatB = er.selectExerciseCatACatB(exerciseCatACatB);
 		
+		
+	}
+
+	public void exerciseUpdate(ExerciseUpdateCommand exerciseUpdateCommand) {
+		
+		//운동업데이트
+		exercise = new Exercise(exerciseUpdateCommand.getExerciseNumber(),
+				exerciseUpdateCommand.getExerciseCatANumber(), exerciseUpdateCommand.getExerciseCatBNumber(),
+				exerciseUpdateCommand.getExerciseContent());
+
+		int exerciseUpdateResult = er.updateExercise(exercise);
+
+		if (exerciseUpdateResult < 1) {
+			System.out.println("운동 업데이트실패!");
+		}
+		
+		//프로그램운동업데이트
+		programExercise = new ProgramExercise(exerciseUpdateCommand.getExerciseNumber(), exerciseUpdateCommand.getExerciseCatANumber(),
+				exerciseUpdateCommand.getExerciseCatBNumber());
+
+		
+		  int PEUpdateResult = er.updateProgramExercise(programExercise);
+
+		
+	
+		  if (PEUpdateResult < 1) {
+			System.out.println("프로그램운동 업데이트실패!");
+		} 
+
+		//업로드카테고리 업데이트
+			upload = new Upload(exerciseUpdateCommand.getExerciseNumber(),exerciseUpdateCommand.getExerciseCatANumber(),
+					exerciseUpdateCommand.getExerciseCatBNumber());
+
+			int uploadUpdate = er.updateUploadCategory(upload);
+
+			if (uploadUpdate < 1) {
+				System.out.println("업로드카테고리 업데이트실패!");
+			} 
 		
 	}
 

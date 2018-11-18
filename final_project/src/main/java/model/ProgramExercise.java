@@ -18,6 +18,14 @@ public class ProgramExercise implements Serializable {
 
 	
 	
+	public ProgramExercise(int exerciseNumber, int exerciseCatANumber, int exerciseCatBNumber) {
+		this.exerciseNumber = exerciseNumber;
+		this.exerciseCatANumber = exerciseCatANumber;
+		this.exerciseCatBNumber = exerciseCatBNumber;
+	}
+
+
+
 	public ProgramExercise(int proNo, int exerciseNumber, int exerciseCatANumber, int exerciseCatBNumber) {
 		this.proNo = proNo;
 		this.exerciseNumber = exerciseNumber;

@@ -41,6 +41,12 @@
       </p>
 
       <small class="review-date"><%=proReview.getProReviewRegdate() %></small>
+      
+      <a href="pro_review_report_write.gom?proReviewNo=<%=proReview.getProReviewNo()%>
+      &memberEmail=<%=proReview.getMemberEmail() %>
+      &proNo=<%=proReview.getProNo() %>
+      &coachEmail=<%=proReview.getCoachEmail() %>
+      "><button class="text-right btn btn-secondary">신고하기</button></a>
     </div>
     
       

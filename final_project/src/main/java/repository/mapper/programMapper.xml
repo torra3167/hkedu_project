@@ -15,7 +15,7 @@
 	set
 	EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber},
 	EXERCISE_CAT_B_NUMBER = #{exerciseCatBNumber}
-	where PRO_NO = #{proNo}
+	where EXERCISE_NUMBER = #{exerciseNumber}
 	
 	
 </update>
