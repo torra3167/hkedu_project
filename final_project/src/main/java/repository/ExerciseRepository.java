@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import category.ExerciseCatA;
+import category.ExerciseCatACatB;
 import category.ExerciseCatB;
 
 import model.Exercise;
@@ -149,10 +150,10 @@ public class ExerciseRepository extends AbstractRepository {
 
 	public Integer updateProgramExercise(ProgramExercise programExercise) {
 		sqlSession = getSqlSessionFactory().openSession();
-
+		Integer resultProgramExercise;
 		try {
-			Integer resultProgramExercise = sqlSession.update("repository.mapper.programMapper.updateProgramExercise", programExercise);
-			System.out.println("UPDATE ProgramExercise " + programExercise);
+			resultProgramExercise = sqlSession.update("repository.mapper.programMapper.updateProgramExercise", programExercise);
+			System.out.println("UPDATE ProgramExercise " + resultProgramExercise);
 
 			if (resultProgramExercise > 0) {
 				sqlSession.commit();
@@ -161,6 +162,40 @@ public class ExerciseRepository extends AbstractRepository {
 			}
 
 			return resultProgramExercise;
+
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public ExerciseCatACatB selectExerciseCatACatB(ExerciseCatACatB exerciseCatACatB) {
+		sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+
+			ExerciseCatACatB exerciseCatACatBResult = 
+					(ExerciseCatACatB)sqlSession.selectOne("repository.mapper.exerciseMapper.selectExerciseCatACatB", exerciseCatACatB);
+			
+			return exerciseCatACatBResult;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public int updateUploadCategory(Upload upload) {
+		sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+			Integer resultUploadCategory = sqlSession.insert(namespace + ".updateUploadCategory", upload);
+			System.out.println("UPDATE CATEGORY UPLOAD " + resultUploadCategory);
+
+			if (resultUploadCategory > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+
+			return resultUploadCategory;
 
 		} finally {
 			sqlSession.close();

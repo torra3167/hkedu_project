@@ -11,11 +11,25 @@ public class ProgramDetailCommand implements Serializable {
 	private int exerciseNumber;
 	private int exerciseCatANumber;
 	private int exerciseCatBNumber;
+	private String exerciseCatAName;
+	private String exerciseCatBName;
 	
 	
 	
 	
 	
+	public String getExerciseCatAName() {
+		return exerciseCatAName;
+	}
+	public void setExerciseCatAName(String exerciseCatAName) {
+		this.exerciseCatAName = exerciseCatAName;
+	}
+	public String getExerciseCatBName() {
+		return exerciseCatBName;
+	}
+	public void setExerciseCatBName(String exerciseCatBName) {
+		this.exerciseCatBName = exerciseCatBName;
+	}
 	public String getProContent() {
 		return proContent;
 	}

@@ -159,7 +159,7 @@
 
 				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동리스트</a></li>
 				<li class="nav-item"><a class="nav-link" href="program_list.gom">프로그램리스트</a></li>
-				<li class="nav-item"><a class="nav-link" href="program_review.gom">프로그램리뷰</a></li>
+				<li class="nav-item"><a class="nav-link" href="pro_review_all_list.gom">프로그램올리뷰</a></li>
 				
 				
 				<li class="nav-item">

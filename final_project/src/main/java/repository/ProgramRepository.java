@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import category.ExerciseCatA;
+import category.ExerciseCatACatB;
 import category.ExerciseCatB;
-import model.ExerciseUpload;
 import model.Program;
 import model.ProgramExercise;
 import model.ProgramExerciseUpload;
@@ -161,17 +161,57 @@ public class ProgramRepository extends AbstractRepository {
 		
 	}
 
-	public List<ProgramExerciseUpload> selectExerciseUpload(int proNo) {
+	public List<ProgramExerciseUpload> selectProgramExerciseUpload(int proNo) {
 		List<ProgramExerciseUpload> list = new ArrayList<ProgramExerciseUpload>();
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
 		try {
-			String statement = namespace + ".selectExerciseUpload";
+			String statement = namespace + ".selectProgramExerciseUpload";
 			
 			list = sqlSession.selectList(statement, proNo);
+			/*for(Object temp : list) {
+				ProgramExerciseUpload peu = (ProgramExerciseUpload)temp;
+				System.out.println(peu.getExerciseContent() + "REPO EXERCISECONTENT!!!");
+			}*/
 			return list;
+			
 		} finally {
 			sqlSession.close();
 		}
 	}
 
-}
+	public ExerciseCatACatB selectExerciseCatACatB(ExerciseCatACatB exerciseCatACatB) {
+		sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+
+			ExerciseCatACatB exerciseCatACatBResult = 
+					(ExerciseCatACatB)sqlSession.selectOne("repository.mapper.exerciseMapper.selectExerciseCatACatB", exerciseCatACatB);
+			
+			return exerciseCatACatBResult;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<ExerciseCatACatB> selectExerciseCatACatBList(List<ExerciseCatACatB> categoryNumbers) {
+		sqlSession = getSqlSessionFactory().openSession();
+		List<ExerciseCatACatB> categoryResult = new ArrayList<ExerciseCatACatB>();
+		try {
+			for(Object temp : categoryNumbers) {
+				ExerciseCatACatB exerciseCatACatB = (ExerciseCatACatB)temp;
+				ExerciseCatACatB exerciseCatACatBNames = (ExerciseCatACatB)sqlSession.selectOne("repository.mapper.exerciseMapper.selectExerciseCatACatBList", exerciseCatACatB);
+				categoryResult.add(exerciseCatACatBNames);
+			}
+			
+			
+			return categoryResult;
+		} finally {
+			sqlSession.close();
+		}
+	}
+	}
+
+	
+
+

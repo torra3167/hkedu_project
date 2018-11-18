@@ -3,10 +3,11 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page import="java.util.*, model.*, category.*"%>
+<%@ page import="java.util.*, category.*, command.ExerciseUpdateCommand"%>
 
 <%
  	List list = (List)request.getAttribute("list");
+ExerciseUpdateCommand exerciseUpdateCommand = (ExerciseUpdateCommand)request.getAttribute("ExerciseUpdateCommand");
 %>
 <!DOCTYPE html>
 <html>
@@ -37,23 +38,42 @@
 </head>
 
 <body>
+
 	<div class="container mt-3" style="max-width: 560px;">
-		<form:form commandName="uploadUpdateCommand" method="post"
-			action="upload_update.gom" enctype="multipart/form-data">
+		<form:form commandName="exerciseUpdateCommand" 
+			action="exercise_update.gom" >
 			
-			<div class="form-group">
-				<label>업로드 번호</label>
-				<form:input path="uploadNumber" class="form-control" />
-			</div>
+			
 			<div class="form-group">
 				<label>운동 번호</label>
-				<form:input path="exerciseNumber" class="form-control" />
+				<form:input path="exerciseNumber" class="form-control" readonly="true"/>
+			</div>
+			
+			<div class="form-group">
+				<label>운동 내용</label>
+				<form:input path="exerciseContent" class="form-control" />
 			</div>
 			
 			
+					<div class="form-group">
+					<label>운동 분류</label>
+				<select id="bca" name="exerciseCatBNumber" class="form-control"
+					onclick="javascript:aca();">
+					<%
+						for (Object temp : list) {
+								ExerciseCatB exerciseCatB = (ExerciseCatB) temp;
+					%>
+					<option value="<%=exerciseCatB.getExerciseCatBNumber()%>">
+						<%=exerciseCatB.getExerciseCatBName()%>
+					</option>
+					<%
+						}
+					%>
+				</select>
+			</div>
 			
-			
-			
+		
+			<div id="aca" class="form-group"></div>			
 			
 			<button type="submit" class="btn btn-primary">수정 완료</button>
 			<button type="reset" class="btn btn-primary">다시 작성</button>

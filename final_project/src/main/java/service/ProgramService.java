@@ -12,10 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import category.ExerciseCatA;
+import category.ExerciseCatACatB;
 import category.ExerciseCatB;
 import command.ProgramCommand;
 import command.ProgramDetailCommand;
-import model.ExerciseUpload;
 import model.Program;
 import model.ProgramExercise;
 import model.ProgramExerciseUpload;
@@ -30,9 +30,10 @@ public class ProgramService {
 	ProgramExercise programExercise;
 	MultipartFile multiFile;
 	static final String filePath = 
-			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\admin\\Documents\\final_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-	File file = new File(filePath);
+			"C:\\Users\\FUTURE\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\admin\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			File file = new File(filePath);
 
 	@Autowired
 	ProgramRepository pr;
@@ -143,16 +144,40 @@ public class ProgramService {
 
 	public void programDetail(ProgramDetailCommand programDetailCommand, Model model) {
 		// TODO Auto-generated method stub
-		List<ProgramExercise> list = pr.selectByProgramNumber(programDetailCommand.getProNo());
-		model.addAttribute("ProgramExercise", list);
+		/*List<ProgramExercise> list = pr.selectByProgramNumber(programDetailCommand.getProNo());
+		model.addAttribute("ProgramExercise", list);*/
 		
-		List<ProgramExerciseUpload> exerciseUpload = pr.selectExerciseUpload(programDetailCommand.getProNo());
+		List<ProgramExerciseUpload> programExerciseUpload = pr.selectProgramExerciseUpload(programDetailCommand.getProNo());
 		/*exerciseUpload.setProContent(programDetailCommand.getProContent());
 		exerciseUpload.setProNo(programDetailCommand.getProNo());
 		*/
-		model.addAttribute("ProgramExerciseUpload", exerciseUpload);
+		/*for(Object temp : programExerciseUpload) {
+			ProgramExerciseUpload peu = (ProgramExerciseUpload)temp;
+			System.out.println(peu.getExerciseContent() + "SERVICE EXERCISECONTENT!!!");
+		}*/
+		
+		/*List<ExerciseCatACatB> categoryNumbers = new ArrayList<ExerciseCatACatB>();
+		for(Object temp : programExerciseUpload) {
+			ExerciseCatACatB exerciseCatACatB = (ExerciseCatACatB)temp;
+			 exerciseCatACatB = new ExerciseCatACatB(exerciseCatACatB.getExerciseCatANumber(),
+					 exerciseCatACatB.getExerciseCatBNumber());
+			 
+			 categoryNumbers.add(exerciseCatACatB);
+		}*/
+//		List<ExerciseCatACatB> categoryList = pr.selectExerciseCatACatBList(categoryNumbers);
+		
+//		ExerciseCatACatB exerciseCatACatB = new ExerciseCatACatB(programExerciseUpload.get(0).getExerciseCatANumber(),
+//				programExerciseUpload.get(0).getExerciseCatBNumber());
+//		exerciseCatACatB = pr.selectExerciseCatACatB(exerciseCatACatB);
+
+/*		model.addAttribute("CategoryList", categoryList);
+*/		model.addAttribute("ProgramExerciseUpload", programExerciseUpload);
+		model.addAttribute("ProgramDetailCommand", programDetailCommand);
 
 		
 	}
 
+	
 }
+
+

@@ -9,13 +9,15 @@
 
 <!-- Controller  -->
 <bean class="controller.MemberController"></bean>
-<!-- <bean class="controller.CoachController"></bean>
- -->
 <bean class="controller.ProgramController"></bean>
+<bean class="controller.ProReviewController"></bean>
 <bean class="controller.SellerController"></bean>
 <bean class="controller.LoginController"></bean>
 <bean class="controller.ExerciseController"></bean>
 <bean class="controller.FoodController"></bean>
+<bean class="controller.ProReviewReportController"></bean>
+<!-- <bean class="controller.CoachController"></bean>
+ -->
 <!-- <bean class="controller.EmailController"></bean>
  -->
 </beans>

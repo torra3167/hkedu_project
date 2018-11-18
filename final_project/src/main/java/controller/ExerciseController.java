@@ -1,15 +1,14 @@
 package controller;
 
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import category.ExerciseCatACatB;
 import category.ExerciseCatB;
+import command.ExerciseUpdateCommand;
 import command.UploadCommand;
 import command.UploadUpdateCommand;
 import service.ExerciseService;
@@ -25,24 +24,51 @@ public class ExerciseController {
 	public String updateForm(UploadUpdateCommand uploadUpdateCommand, Model model) {
 	    
 		//카테고리
-		es.exerciseCategoryB(model);
+		ExerciseCatACatB exerciseCatACatB = es.selectExerciseCatNames(uploadUpdateCommand.getExerciseCatANumber(), uploadUpdateCommand.getExerciseCatBNumber()
+				,model);
+		uploadUpdateCommand.setExerciseCatAName(exerciseCatACatB.getExerciseCatAName());
+		uploadUpdateCommand.setExerciseCatBName(exerciseCatACatB.getExerciseCatBName());
+		
+		
 		model.addAttribute("iPage", "upload/upload_update.jsp");
 		model.addAttribute("UploadUpdateCommand", uploadUpdateCommand);
-		es.selectByUploadNumber(uploadUpdateCommand.getUploadNumber());
 	    return "index";
 
 	}
 	
 	@RequestMapping(value="/upload_update.gom", method=RequestMethod.POST)
-	public String updateSubmit(UploadUpdateCommand uploadUpdateCommand, Model model) {
-	    
+	public String updateSubmit(UploadUpdateCommand uploadUpdateCommand) {
+		System.out.println(uploadUpdateCommand.getExerciseCatANumber());
+		System.out.println(uploadUpdateCommand.getExerciseCatBNumber());
+		System.out.println(uploadUpdateCommand.getUploadStored());
+		System.out.println(uploadUpdateCommand.getUploadOriginal());
+		
+		
+		
 		es.updateUpload(uploadUpdateCommand);
 		
 	    return "redirect:/index";
 
 	}
 	
+	@RequestMapping(value="/exercise_update.gom", method=RequestMethod.POST)
+	public String exerciseUpdateSubmit(ExerciseUpdateCommand exerciseUpdateCommand, Model model) {
+	    
+		
+		es.exerciseUpdate(exerciseUpdateCommand);
+	    return "redirect:/index";
+
+	}
 	
+	@RequestMapping(value="/exercise_update.gom", method=RequestMethod.GET)
+	public String exerciseUpdate(ExerciseUpdateCommand exerciseUpdateCommand, Model model) {
+	    
+		es.exerciseCategoryB(model);
+		model.addAttribute("iPage", "exercise/exercise_update.jsp");
+		model.addAttribute("ExerciseUpdateCommand", exerciseUpdateCommand);
+	    return "index";
+
+	}
 	@RequestMapping(value="/exercise_detail.gom", method=RequestMethod.GET)
 	public String detail(UploadCommand uploadCommand, Model model) {
 	    
