@@ -9,7 +9,9 @@ import category.FoodCatA;
 import category.FoodCatB;
 import category.FoodCatC;
 import model.Food;
-import model.Upload;
+import model.FoodAndApplication;
+import model.FoodReview;
+import model.FoodReviewAndAnswer;
 
 @Repository
 public class FoodRepository extends AbstractRepository{
@@ -143,21 +145,79 @@ public class FoodRepository extends AbstractRepository{
 	}
 
 
-	public List<Food> selectFoodList() {
+	public List<FoodAndApplication> selectFoodList() {
 		sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
 			
-		List<Food> list =  sqlSession.selectList(namespace + ".selectFoodList");
-		for(Object temp : list) {
-			 Food food = (Food)temp;
-			 System.out.println("repo foodNo : "+food.getFoodNo());
-		}
+		List<FoodAndApplication> list =  sqlSession.selectList(namespace + ".selectFoodList");
+		
+//		for(Object temp : list) {
+//			FoodAndApplication foodAppli = (FoodAndApplication)temp;
+//			 System.out.println("repo selectFoodList storeName : "+foodAppli.getStoreName());
+//		}
+		
 		return list;
 		} finally {
 			sqlSession.close();
 		}
 
+	}
+
+
+	public Integer selectFoodReviewNo() {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+		return (Integer)sqlSession.selectOne(namespace + ".selectFoodReviewNo");
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public int insertFoodReview(FoodReview foodReview) {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			Integer result = sqlSession.insert(namespace + ".insertFoodReview", foodReview);
+			System.out.println("repo insertFoodReview result : " + result);
+		
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+		
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public FoodAndApplication selectFood(int foodNo) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			
+			FoodAndApplication result =  sqlSession.selectOne(namespace + ".selectFood", foodNo);
+			System.out.println("repo selectFood storeName : " + result.getStoreName());
+		return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<FoodReviewAndAnswer> selectReviewAndAnswer(int foodNo) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			
+			List<FoodReviewAndAnswer> result =  sqlSession.selectList(namespace + ".selectReviewAndAnswer", foodNo);
+			System.out.println("repo selectReviewAndAnswer result : " + result);
+		return result;
+		} finally {
+			sqlSession.close();
+		}
 	}
 
 	

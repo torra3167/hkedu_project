@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class SellerApplication implements Serializable{
 	private int sellerAppliNo;
 	private String sellerEmail;
-	private int sellerAppliBn;
+	private String sellerAppliBn;
 	private String sellerLicense;
 	private String sellerBusinessRegistration;
 	private String sellerName;
@@ -18,9 +18,9 @@ public class SellerApplication implements Serializable{
 	private String applicationDes;
 	public SellerApplication() {
 	}
-	public SellerApplication(int sellerAppliNo, String sellerEmail, int sellerAppliBn, String sellerLicense,
-			String sellerBusinessRegistration, String sellerName, String storeName, String storeTelphone, String storeAddr,
-			String storeTerm, String applicationStatus, String applicationDes) {
+	public SellerApplication(int sellerAppliNo, String sellerEmail, String sellerAppliBn, String sellerLicense,
+			String sellerBusinessRegistration, String sellerName, String storeName, String storeTelphone,
+			String storeAddr, String storeTerm, String applicationStatus, String applicationDes) {
 		this.sellerAppliNo = sellerAppliNo;
 		this.sellerEmail = sellerEmail;
 		this.sellerAppliBn = sellerAppliBn;
@@ -46,10 +46,10 @@ public class SellerApplication implements Serializable{
 	public void setSellerEmail(String sellerEmail) {
 		this.sellerEmail = sellerEmail;
 	}
-	public int getSellerAppliBn() {
+	public String getSellerAppliBn() {
 		return sellerAppliBn;
 	}
-	public void setSellerAppliBn(int sellerAppliBn) {
+	public void setSellerAppliBn(String sellerAppliBn) {
 		this.sellerAppliBn = sellerAppliBn;
 	}
 	public String getSellerLicense() {

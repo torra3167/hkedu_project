@@ -22,7 +22,7 @@
 	<br>
 	<form:form method="post" action="seller_withdrawal.gom" commandName="sellerWithdrawalCommand">
 		<div class="form-group">
-			<label>이메일</label> <form:input path="sellerEmail" class="form-control" value="${ai.email}" readonly="true" />
+			<label>이메일</label> <form:input path="sellerEmail" class="form-control" value="${sellerEmail}" readonly="true" />
 		</div>
 		<div class="form-group">
 			<label>비밀번호</label> <form:password path="sellerPw" class="form-control" />
