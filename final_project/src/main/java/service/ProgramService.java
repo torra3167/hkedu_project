@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import category.ExerciseCatA;
+import category.ExerciseCatACatB;
 import category.ExerciseCatB;
 import command.ProgramCommand;
 import command.ProgramDetailCommand;
@@ -155,7 +156,23 @@ public class ProgramService {
 			System.out.println(peu.getExerciseContent() + "SERVICE EXERCISECONTENT!!!");
 		}*/
 		
-		model.addAttribute("ProgramExerciseUpload", programExerciseUpload);
+		/*List<ExerciseCatACatB> categoryNumbers = new ArrayList<ExerciseCatACatB>();
+		for(Object temp : programExerciseUpload) {
+			ExerciseCatACatB exerciseCatACatB = (ExerciseCatACatB)temp;
+			 exerciseCatACatB = new ExerciseCatACatB(exerciseCatACatB.getExerciseCatANumber(),
+					 exerciseCatACatB.getExerciseCatBNumber());
+			 
+			 categoryNumbers.add(exerciseCatACatB);
+		}*/
+//		List<ExerciseCatACatB> categoryList = pr.selectExerciseCatACatBList(categoryNumbers);
+		
+//		ExerciseCatACatB exerciseCatACatB = new ExerciseCatACatB(programExerciseUpload.get(0).getExerciseCatANumber(),
+//				programExerciseUpload.get(0).getExerciseCatBNumber());
+//		exerciseCatACatB = pr.selectExerciseCatACatB(exerciseCatACatB);
+
+/*		model.addAttribute("CategoryList", categoryList);
+*/		model.addAttribute("ProgramExerciseUpload", programExerciseUpload);
+		model.addAttribute("ProgramDetailCommand", programDetailCommand);
 
 		
 	}

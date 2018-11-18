@@ -7,13 +7,19 @@
 
 
 
+<!-- CAT A CAT B 넘버로 이름뽑아오기(리스트)  -->
+<select id="selectExerciseCatACatBList" resultMap="exerciseCatACatBMap" parameterType="ExerciseCatACatB">
+	select a.EXERCISE_CAT_A_NAME, b.EXERCISE_CAT_B_NAME
+	from exercise_cat_a a, exercise_cat_b b
+	where a.EXERCISE_CAT_B_NUMBER = b.EXERCISE_CAT_B_NUMBER
+	and a.EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber}
+    and b.EXERCISE_CAT_B_NUMBER = #{exerciseCatBNumber}	
+</select>
 
 
 <update id="updateUpload" parameterType="Upload">
 	update upload
 	set 
-	(EXERCISE_CAT_A_NUMBER) = #{exerciseCatANumber},
-	(EXERCISE_CAT_B_NUMBER) = #{exerciseCatBNumber},
 	(UPLOAD_SIZE) = #{uploadSize},
 	(UPLOAD_ORIGINAL) = #{uploadOriginal},
 	(UPLOAD_STORED) = #{uploadStored}

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import category.ExerciseCatACatB;
 import category.ExerciseCatB;
+import command.ExerciseUpdateCommand;
 import command.UploadCommand;
 import command.UploadUpdateCommand;
 import service.ExerciseService;
@@ -30,6 +31,7 @@ public class ExerciseController {
 				,model);
 		uploadUpdateCommand.setExerciseCatAName(exerciseCatACatB.getExerciseCatAName());
 		uploadUpdateCommand.setExerciseCatBName(exerciseCatACatB.getExerciseCatBName());
+		
 		
 		model.addAttribute("iPage", "upload/upload_update.jsp");
 		model.addAttribute("UploadUpdateCommand", uploadUpdateCommand);
@@ -53,6 +55,15 @@ public class ExerciseController {
 	}
 	
 	
+	
+	@RequestMapping(value="/exercise_update.gom", method=RequestMethod.GET)
+	public String exerciseUpdate(ExerciseUpdateCommand exerciseUpdateCommand, Model model) {
+	    
+
+		model.addAttribute("iPage", "exercise/exercise_detail.jsp");
+	    return "index";
+
+	}
 	@RequestMapping(value="/exercise_detail.gom", method=RequestMethod.GET)
 	public String detail(UploadCommand uploadCommand, Model model) {
 	    

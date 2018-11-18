@@ -6,6 +6,9 @@
 
 
 
+
+
+
 <!--프로그램업데이트  -->
 <update id="updateProgramExercise" parameterType="ProgramExercise">
 	update program_exercise

@@ -18,6 +18,19 @@ public class Upload implements Serializable {
 	public Upload() {}
 
 	
+	
+	
+	public Upload(int uploadNumber, Long uploadSize, String uploadOriginal, String uploadStored) {
+		
+		this.uploadNumber = uploadNumber;
+		this.uploadSize = uploadSize;
+		this.uploadOriginal = uploadOriginal;
+		this.uploadStored = uploadStored;
+	}
+
+
+
+
 	public Upload(int uploadNumber, int exerciseNumber, int exerciseCatANumber, int exerciseCatBNumber, Long uploadSize,
 			String uploadOriginal, String uploadStored) {
 		

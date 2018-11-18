@@ -174,7 +174,7 @@ public class ExerciseRepository extends AbstractRepository {
 		try {
 
 			ExerciseCatACatB exerciseCatACatBResult = 
-					(ExerciseCatACatB)sqlSession.selectOne(namespace + ".selectExerciseCatACatB", exerciseCatACatB);
+					(ExerciseCatACatB)sqlSession.selectOne("repository.mapper.exerciseMapper.selectExerciseCatACatB", exerciseCatACatB);
 			
 			return exerciseCatACatBResult;
 		} finally {

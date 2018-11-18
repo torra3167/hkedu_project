@@ -13,27 +13,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
 
-
- function aca() {
-	 var num = document.getElementById("bca").value;
-/* 	 alert("aaaa : " + num);
- */	 $.ajax({
-		 type:"POST",
-		 url:"aca.gom",
-		 dataType:"html",
-		 data:"exerciseCatBNumber=" + num,
-		 success: function(result) {
-/* 			 alert("bbb")
- */			 $('#aca').html(result);
-			 /* $('#cca').html(""); */
-		 }
-		 
-	 });
- }
- 
-</script>	
 </head>
 
 <body>
@@ -50,7 +30,10 @@
 				<form:input path="exerciseNumber" class="form-control" />
 			</div>
 			
-			
+			<div class="form-group">
+				<label>운동 내용</label>
+				<form:input path="exerciseContent" class="form-control" />
+			</div>
 			
 			
 			

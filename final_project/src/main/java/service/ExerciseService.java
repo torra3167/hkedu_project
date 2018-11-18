@@ -167,7 +167,7 @@ public class ExerciseService {
 			multiFile.transferTo(file);
 
 			//운동업데이트
-			exercise = new Exercise(uploadUpdateCommand.getExerciseNumber(),
+			/*exercise = new Exercise(uploadUpdateCommand.getExerciseNumber(),
 					uploadUpdateCommand.getExerciseCatANumber(), uploadUpdateCommand.getExerciseCatBNumber(),
 					uploadUpdateCommand.getExerciseContent());
 
@@ -175,13 +175,10 @@ public class ExerciseService {
 
 			if (exerciseUpdateResult < 1) {
 				System.out.println("운동 업데이트실패!");
-			} /*
-				 * else { System.out.println("운동 업데이트성공!"); }
-				 */
+			}*/
 			
 			//업로드업데이트
-			upload = new Upload(uploadUpdateCommand.getUploadNumber(), uploadUpdateCommand.getExerciseNumber(),
-					uploadUpdateCommand.getExerciseCatANumber(), uploadUpdateCommand.getExerciseCatBNumber(),
+			upload = new Upload(uploadUpdateCommand.getUploadNumber(),
 					multiFile.getSize(), originalFile, storedFileName);
 
 			int exerciseUploadResult = er.updateUpload(upload);
@@ -194,21 +191,18 @@ public class ExerciseService {
 			
 			
 			//프로그램업데이트
-			programExercise = new ProgramExercise(uploadUpdateCommand.getProNo(),
+			/*programExercise = new ProgramExercise(uploadUpdateCommand.getProNo(),
 					uploadUpdateCommand.getExerciseNumber(), uploadUpdateCommand.getExerciseCatANumber(),
 					uploadUpdateCommand.getExerciseCatBNumber());
 
-			/*
-			 * System.out.println("PE PRONO " + uploadUpdateCommand.getProNo());
-			 */ int PEUpdateResult = er.updateProgramExercise(programExercise);
+			
+			  int PEUpdateResult = er.updateProgramExercise(programExercise);
 
-			/*
-			 * System.out.println("PEUpdateResult " + PEUpdateResult);
-			 */ if (PEUpdateResult < 1) {
+			
+		
+			  if (PEUpdateResult < 1) {
 				System.out.println("프로그램운동 업데이트실패!");
-			} /*
-				 * else { System.out.println("프로그램운동 업데이트성공!"); }
-				 */
+			} */
 
 			
 			
