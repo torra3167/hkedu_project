@@ -3,10 +3,10 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page import="java.util.*, model.*, category.*, command.UploadUpdateCommand"%>
+<%@ page import="java.util.*, category.ExerciseCatACatB, command.UploadUpdateCommand"%>
 
 <%
- 	List list = (List)request.getAttribute("list");
+	ExerciseCatACatB exerciseCatACatB = (ExerciseCatACatB)request.getAttribute("ExerciseCatACatB");
 	UploadUpdateCommand uploadUpdateCommand = (UploadUpdateCommand)request.getAttribute("uploadUpdateCommand");
 %>
 <!DOCTYPE html>
@@ -14,27 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-
-
- function aca() {
-	 var num = document.getElementById("bca").value;
-/* 	 alert("aaaa : " + num);
- */	 $.ajax({
-		 type:"POST",
-		 url:"aca.gom",
-		 dataType:"html",
-		 data:"exerciseCatBNumber=" + num,
-		 success: function(result) {
-/* 			 alert("bbb")
- */			 $('#aca').html(result);
-			 /* $('#cca').html(""); */
-		 }
-		 
-	 });
- }
- 
-</script>	
+	
 </head>
 
 <body>
@@ -60,23 +40,12 @@
 			
 					<div class="form-group">
 					<label>운동 분류</label>
-				<select id="bca" name="exerciseCatBNumber" class="form-control"
-					onclick="javascript:aca();">
-					<%
-						for (Object temp : list) {
-								ExerciseCatB exerciseCatB = (ExerciseCatB) temp;
-					%>
-					<option value="<%=exerciseCatB.getExerciseCatBNumber()%>">
-						<%=exerciseCatB.getExerciseCatBName()%>
-					</option>
-					<%
-						}
-					%>
-				</select>
+					<form:input path="exerciseCatBName" class="form-control" readonly="true" />
+					<form:input path="exerciseCatAName" class="form-control" readonly="true"/>
+				
 			</div>
 			
 		
-			<div id="aca" class="form-group"></div>
 			
 			<div class="form-group">
 				<label>변경전 운동파일</label>

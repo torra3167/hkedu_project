@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import category.ExerciseCatA;
+import category.ExerciseCatACatB;
 import category.ExerciseCatB;
 import command.UploadCommand;
 import command.UploadUpdateCommand;
@@ -215,6 +216,15 @@ public class ExerciseService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public ExerciseCatACatB selectExerciseCatNames(int exerciseCatANumber, int exerciseCatBNumber, Model model) {
+		// TODO Auto-generated method stub
+		ExerciseCatACatB exerciseCatACatB = new ExerciseCatACatB(exerciseCatANumber, exerciseCatBNumber);
+		
+		return exerciseCatACatB = er.selectExerciseCatACatB(exerciseCatACatB);
+		
+		
 	}
 
 }

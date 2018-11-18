@@ -13,11 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import category.ExerciseCatA;
 import category.ExerciseCatB;
-import command.ProReviewUpdateCommand;
-import command.ProReviewWriteCommand;
 import command.ProgramCommand;
 import command.ProgramDetailCommand;
-import model.ProReview;
 import model.Program;
 import model.ProgramExercise;
 import model.ProgramExerciseUpload;

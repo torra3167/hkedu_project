@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="java.util.*, 
-    model.ProgramExerciseUpload, model.Upload, command.ProgramDetailCommand"%>
+    model.ProgramExerciseUpload, command.ProgramDetailCommand"%>
 
 <%
 	List<ProgramExerciseUpload> programExerciseUploadList = (List<ProgramExerciseUpload>) request
@@ -9,7 +9,6 @@
 
 	ProgramDetailCommand programDetailCommand = (ProgramDetailCommand) request
 			.getAttribute("ProgramDetailCommand");
-	request.setCharacterEncoding("utf-8");
 %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>

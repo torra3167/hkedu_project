@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import category.ExerciseCatACatB;
 import category.ExerciseCatB;
 import command.UploadCommand;
 import command.UploadUpdateCommand;
@@ -25,7 +26,11 @@ public class ExerciseController {
 	public String updateForm(UploadUpdateCommand uploadUpdateCommand, Model model) {
 	    
 		//카테고리
-		es.exerciseCategoryB(model);
+		ExerciseCatACatB exerciseCatACatB = es.selectExerciseCatNames(uploadUpdateCommand.getExerciseCatANumber(), uploadUpdateCommand.getExerciseCatBNumber()
+				,model);
+		uploadUpdateCommand.setExerciseCatAName(exerciseCatACatB.getExerciseCatAName());
+		uploadUpdateCommand.setExerciseCatBName(exerciseCatACatB.getExerciseCatBName());
+		
 		model.addAttribute("iPage", "upload/upload_update.jsp");
 		model.addAttribute("UploadUpdateCommand", uploadUpdateCommand);
 	    return "index";

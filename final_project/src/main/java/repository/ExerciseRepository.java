@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import category.ExerciseCatA;
+import category.ExerciseCatACatB;
 import category.ExerciseCatB;
 
 import model.Exercise;
@@ -162,6 +163,20 @@ public class ExerciseRepository extends AbstractRepository {
 
 			return resultProgramExercise;
 
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public ExerciseCatACatB selectExerciseCatACatB(ExerciseCatACatB exerciseCatACatB) {
+		sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+
+			ExerciseCatACatB exerciseCatACatBResult = 
+					(ExerciseCatACatB)sqlSession.selectOne(namespace + ".selectExerciseCatACatB", exerciseCatACatB);
+			
+			return exerciseCatACatBResult;
 		} finally {
 			sqlSession.close();
 		}

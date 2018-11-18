@@ -46,6 +46,19 @@
 	(#{exerciseNumber}, #{exerciseCatANumber}, #{exerciseCatBNumber}, #{exerciseContent})
 </insert>
 
+<resultMap id="exerciseCatACatBMap" type="ExerciseCatACatB">
+	<result column="EXERCISE_CAT_B_NAME" jdbcType="VARCHAR" property="exerciseCatBName"/>	
+	<result column="EXERCISE_CAT_A_NAME" jdbcType="VARCHAR" property="exerciseCatAName"/>	
+</resultMap>
+
+<select id="selectExerciseCatACatB" parameterType="ExerciseCatACatB" resultMap="exerciseCatACatBMap"> 	
+	select a.EXERCISE_CAT_A_NAME, b.EXERCISE_CAT_B_NAME
+	from exercise_cat_a a, exercise_cat_b b
+	where a.EXERCISE_CAT_B_NUMBER = b.EXERCISE_CAT_B_NUMBER
+	and a.EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber}
+    and b.EXERCISE_CAT_B_NUMBER = #{exerciseCatBNumber}	
+</select>
+
 <resultMap type="ExerciseCatB" id="exerciseCatBMap">
 	<id column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>
 	<result column="EXERCISE_CAT_B_NAME" jdbcType="VARCHAR" property="exerciseCatBName"/>	

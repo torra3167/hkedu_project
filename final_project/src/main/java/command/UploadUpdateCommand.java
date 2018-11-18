@@ -11,12 +11,28 @@ public class UploadUpdateCommand implements Serializable {
 	private int exerciseNumber;
 	private int exerciseCatANumber;
 	private int exerciseCatBNumber;
+	private String exerciseCatAName;
+	private String exerciseCatBName;
 	private String exerciseContent;
 	private MultipartFile uploadFile;
-	private Long uploadSize;
 	private String uploadOriginal;
 	private String uploadStored;
 	
+	
+	
+	
+	public String getExerciseCatAName() {
+		return exerciseCatAName;
+	}
+	public void setExerciseCatAName(String exerciseCatAName) {
+		this.exerciseCatAName = exerciseCatAName;
+	}
+	public String getExerciseCatBName() {
+		return exerciseCatBName;
+	}
+	public void setExerciseCatBName(String exerciseCatBName) {
+		this.exerciseCatBName = exerciseCatBName;
+	}
 	public int getProNo() {
 		return proNo;
 	}
@@ -59,12 +75,7 @@ public class UploadUpdateCommand implements Serializable {
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
 	}
-	public Long getUploadSize() {
-		return uploadSize;
-	}
-	public void setUploadSize(Long uploadSize) {
-		this.uploadSize = uploadSize;
-	}
+	
 	public String getUploadOriginal() {
 		return uploadOriginal;
 	}
