@@ -3,10 +3,9 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page import="java.util.*, category.ExerciseCatACatB, command.UploadUpdateCommand"%>
+<%@ page import="java.util.*,  command.UploadUpdateCommand"%>
 
 <%
-	ExerciseCatACatB exerciseCatACatB = (ExerciseCatACatB)request.getAttribute("ExerciseCatACatB");
 	UploadUpdateCommand uploadUpdateCommand = (UploadUpdateCommand)request.getAttribute("uploadUpdateCommand");
 %>
 <!DOCTYPE html>
