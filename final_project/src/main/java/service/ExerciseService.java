@@ -165,14 +165,12 @@ public class ExerciseService {
 
 			multiFile.transferTo(file);
 
-			
-			
 			//운동업데이트
 			exercise = new Exercise(uploadUpdateCommand.getExerciseNumber(),
 					uploadUpdateCommand.getExerciseCatANumber(), uploadUpdateCommand.getExerciseCatBNumber(),
 					uploadUpdateCommand.getExerciseContent());
 
-			Integer exerciseUpdateResult = er.updateExercise(exercise);
+			int exerciseUpdateResult = er.updateExercise(exercise);
 
 			if (exerciseUpdateResult < 1) {
 				System.out.println("운동 업데이트실패!");
@@ -185,7 +183,7 @@ public class ExerciseService {
 					uploadUpdateCommand.getExerciseCatANumber(), uploadUpdateCommand.getExerciseCatBNumber(),
 					multiFile.getSize(), originalFile, storedFileName);
 
-			Integer exerciseUploadResult = er.updateUpload(upload);
+			int exerciseUploadResult = er.updateUpload(upload);
 
 			if (exerciseUploadResult < 1) {
 				System.out.println("업로드 업데이트실패!");
@@ -201,7 +199,7 @@ public class ExerciseService {
 
 			/*
 			 * System.out.println("PE PRONO " + uploadUpdateCommand.getProNo());
-			 */ Integer PEUpdateResult = er.updateProgramExercise(programExercise);
+			 */ int PEUpdateResult = er.updateProgramExercise(programExercise);
 
 			/*
 			 * System.out.println("PEUpdateResult " + PEUpdateResult);

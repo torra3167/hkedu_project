@@ -6,65 +6,14 @@
 
 
 
-
-
-
-
-<select id="selectProReviewAllList" resultMap="proReviewMap">
-
- select PRO_REVIEW_NO, MEMBER_EMAIL, PRO_NO, COACH_EMAIL, PRO_REVIEW_TITLE, PRO_REVIEW_SCORE,
- PRO_REVIEW_COMMENT, PRO_REVIEW_SIZE, PRO_REVIEW_ORIGINAL, PRO_REVIEW_STORED, PRO_REVIEW_REGDATE
- from pro_review
- 
-</select>
-
-
-
-<resultMap type="ProReview" id="proReviewMap">
-			<id property="proReviewNo" column="PRO_REVIEW_NO" jdbcType="BIGINT"  />
-			<id property="memberEmail" column="MEMBER_EMAIL" jdbcType="VARCHAR"  />
-			<id property="proNo" column="PRO_NO" jdbcType="BIGINT"  />
-			<id property="coachEmail" column="COACH_EMAIL" jdbcType="VARCHAR"  />
-			<result property="proReviewTitle" column="PRO_REVIEW_TITLE" jdbcType="VARCHAR"  />
-			<result property="proReviewScore" column="PRO_REVIEW_SCORE" jdbcType="VARCHAR"/>			
-			<result property="proReviewComment"  column="PRO_REVIEW_COMMENT" jdbcType="VARCHAR"  />						
-			<result property="proReviewSize" column="PRO_REVIEW_SIZE" jdbcType="BIGINT"/>
-			<result property="proReviewOriginal" column="PRO_REVIEW_ORIGINAL" jdbcType="VARCHAR"/>
-			<result property="proReviewStored" column="PRO_REVIEW_STORED" jdbcType="VARCHAR"/>
-			<result property="proReviewRegdate" column="PRO_REVIEW_REGDATE" jdbcType="DATE"/>
-	
-		
-</resultMap>
-
-<!-- 리뷰출력 -->
-<select id="selectProReviewListByProNo" parameterType="int" resultMap="proReviewMap">
- select PRO_REVIEW_NO, MEMBER_EMAIL, PRO_NO, COACH_EMAIL, PRO_REVIEW_TITLE, PRO_REVIEW_SCORE,
- PRO_REVIEW_COMMENT, PRO_REVIEW_SIZE, PRO_REVIEW_ORIGINAL, PRO_REVIEW_STORED, PRO_REVIEW_REGDATE
- from pro_review
- where PRO_NO = #{proNo}
-</select>
-
-<!--리뷰등록  -->
-<insert id="insertProReview" parameterType="ProReview">
-	insert into pro_review
-	(PRO_REVIEW_NO, MEMBER_EMAIL, PRO_NO, COACH_EMAIL, PRO_REVIEW_TITLE, PRO_REVIEW_SCORE,
-	PRO_REVIEW_COMMENT, PRO_REVIEW_SIZE, PRO_REVIEW_ORIGINAL, PRO_REVIEW_STORED, PRO_REVIEW_REGDATE)
-	values
-	(COUNT_NUMBER.NEXTVAL, #{memberEmail}, #{proNo}, #{coachEmail}, #{proReviewTitle},
-	 #{proReviewScore}, #{proReviewComment}, #{proReviewSize}, #{proReviewOriginal},
-	  #{proReviewStored}, #{proReviewRegdate})
-</insert>
-
 <!--프로그램업데이트  -->
 <update id="updateProgramExercise" parameterType="ProgramExercise">
 	update program_exercise
-	<set>
+	set
 	EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber},
 	EXERCISE_CAT_B_NUMBER = #{exerciseCatBNumber}
-	</set>
-	<where>
-	PRO_NO = #{proNo}
-	</where>
+	where PRO_NO = #{proNo}
+	
 	
 </update>
 
@@ -122,10 +71,10 @@ where pro_no = #{proNo})
 
 <resultMap id="programExerciseMap" type="ProgramExercise">
 	<id column="PRO_NO" jdbcType="BIGINT" property="proNo"/>	
-	<result column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail"/>	
-	<result column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber"/>	
-	<result column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>	
-	<result column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>	
+	<id column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail"/>	
+	<id column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber"/>	
+	<id column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>	
+	<id column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>	
 </resultMap>
 <!--프로그램운동출력  -->
 <select id="selectByProgramNumber" parameterType="int" resultMap="programExerciseMap">

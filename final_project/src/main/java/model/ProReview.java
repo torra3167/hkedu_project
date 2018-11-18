@@ -22,6 +22,20 @@ public class ProReview implements Serializable{
 	
 	public ProReview() {}
 	
+	
+	public ProReview(int proReviewNo, String proReviewTitle, String proReviewScore, String proReviewComment,
+			Long proReviewSize, String proReviewOriginal, String proReviewStored) {
+		this.proReviewNo = proReviewNo;
+		this.proReviewTitle = proReviewTitle;
+		this.proReviewScore = proReviewScore;
+		this.proReviewComment = proReviewComment;
+		this.proReviewSize = proReviewSize;
+		this.proReviewOriginal = proReviewOriginal;
+		this.proReviewStored = proReviewStored;
+	}
+
+
+
 	public ProReview(String memberEmail, int proNo, String coachEmail, String proReviewTitle, String proReviewScore,
 			String proReviewComment, Long proReviewSize, String proReviewOriginal, String proReviewStored) {
 		this.memberEmail = memberEmail;

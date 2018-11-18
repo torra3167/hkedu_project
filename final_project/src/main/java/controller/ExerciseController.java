@@ -33,7 +33,7 @@ public class ExerciseController {
 	}
 	
 	@RequestMapping(value="/upload_update.gom", method=RequestMethod.POST)
-	public String updateSubmit(UploadUpdateCommand uploadUpdateCommand, Model model) {
+	public String updateSubmit(UploadUpdateCommand uploadUpdateCommand) {
 		System.out.println(uploadUpdateCommand.getExerciseCatANumber());
 		System.out.println(uploadUpdateCommand.getExerciseCatBNumber());
 		System.out.println(uploadUpdateCommand.getUploadStored());

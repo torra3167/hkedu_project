@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import category.ExerciseCatA;
 import category.ExerciseCatB;
+import command.ProReviewUpdateCommand;
 import command.ProReviewWriteCommand;
 import command.ProgramCommand;
 import command.ProgramDetailCommand;
@@ -160,54 +161,6 @@ public class ProgramService {
 		model.addAttribute("ProgramExerciseUpload", programExerciseUpload);
 
 		
-	}
-
-	public void programReviewWrite(ProReviewWriteCommand proReviewWriteCommand, Model model) {
-		
-		// 파일저장
-		multiFile = proReviewWriteCommand.getProReviewImage();
-		originalFile = multiFile.getOriginalFilename();
-		originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
-		storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
-		file = new File(filePath + storedFileName);
-		
-		try {
-
-			multiFile.transferTo(file);
-		
-			
-			// 프로그램 생성자
-			// 프로그램번호, 코치이메일, 프로그램이름, 사이즈, 오리지널, 저장된, 내용
-
-			//주문결제완료되면 멤버이메일등록필요 "1"
-			ProReview proReview = new ProReview("1", proReviewWriteCommand.getProNo(), proReviewWriteCommand.getCoachEmail(), 
-					proReviewWriteCommand.getProReviewTitle(), proReviewWriteCommand.getProReviewScore(),
-					proReviewWriteCommand.getProReviewComment(), multiFile.getSize(), originalFile, storedFileName);
-			proReview.setProReviewRegdate(Calendar.getInstance().getTime());
-
-
-			Integer proReviewResult = pr.insertProReview(proReview);
-
-			if (proReviewResult < 1) {
-				System.out.println("프로그램리뷰 등록실패!");
-			} 
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public void selectProReviewListByProNo(int proNo, Model model) {
-		// TODO Auto-generated method stub
-		List<ProReview> list = pr.selectProReviewListByProNo(proNo);
-		model.addAttribute("list", list);
-	}
-
-	public void selectProReviewAllList(Model model) {
-		// TODO Auto-generated method stub
-		List<ProReview> list = pr.selectProReviewAllList();
-		model.addAttribute("list", list);
 	}
 
 	

@@ -149,9 +149,9 @@ public class ExerciseRepository extends AbstractRepository {
 
 	public Integer updateProgramExercise(ProgramExercise programExercise) {
 		sqlSession = getSqlSessionFactory().openSession();
-
+		Integer resultProgramExercise;
 		try {
-			Integer resultProgramExercise = sqlSession.update("repository.mapper.programMapper.updateProgramExercise", programExercise);
+			resultProgramExercise = sqlSession.update("repository.mapper.programMapper.updateProgramExercise", programExercise);
 			System.out.println("UPDATE ProgramExercise " + resultProgramExercise);
 
 			if (resultProgramExercise > 0) {

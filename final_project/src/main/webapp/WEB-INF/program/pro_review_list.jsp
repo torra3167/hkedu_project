@@ -14,12 +14,12 @@
 <script src="js/program_review_list.js" type="text/javascript"></script>
 </head>
 <body>
-
+  <% for(Object temp : list) {
+				ProReview proReview = (ProReview)temp; %>
 <div class="reviews">
   <div class="row blockquote review-item">
     <div class="col-md-3 text-center">
-    <% for(Object temp : list) {
-				ProReview proReview = (ProReview)temp; %>
+  
       <img class="rounded-circle reviewer" src="http://localhost:8080/final_project/resource/<%=proReview.getProReviewStored() %>" width="80" height="80">
       <div class="caption">
       
@@ -43,11 +43,11 @@
       <small class="review-date"><%=proReview.getProReviewRegdate() %></small>
     </div>
     
-        <% } %>
+      
   </div>  
   
   	
 </div>
-
+  <% } %>
 </body>
 </html>
