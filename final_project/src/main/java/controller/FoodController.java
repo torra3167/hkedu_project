@@ -2,7 +2,6 @@ package controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,8 @@ import category.FoodCatA;
 import category.FoodCatB;
 import category.FoodCatC;
 import command.FoodRegCommand;
+import command.FoodReviewReportWriteCommand;
+import command.FoodReviewWriteCommand;
 import command.FoodUpdateCommand;
 import service.FoodService;
 
@@ -25,13 +26,13 @@ public class FoodController {
 	@Autowired
 	private FoodService foodService;
 	
-//	@RequestMapping(value="/food_reg.gom", method=RequestMethod.GET)
-//    public String foodRegForm(FoodRegCommand foodRegCommand, Model model) {
-//		System.out.println("foodRegForm nnnnnnnnnnnnnnnnnnnnnnnnnnn"+foodRegCommand.getFoodNo());
-//		foodService.dominoSelectC(model);
-//		model.addAttribute("iPage", "food/food_reg.jsp");
-//		return "index";
-//	}
+	@RequestMapping(value="/food_list.gom", method=RequestMethod.GET)
+	public String foodList(Model model) {
+		System.out.println("cntlr foodList");
+		foodService.selectFoodList(model);
+		model.addAttribute("iPage", "food/food_list.jsp");
+		return "index";
+	}
 	
 	@RequestMapping(value="/food_reg.gom", method=RequestMethod.POST)
 	public String foodRegSubmit(FoodRegCommand foodRegCommand, HttpSession session) { 
@@ -43,7 +44,7 @@ public class FoodController {
 	}
 		
 	@RequestMapping(value="/bca.gom", method=RequestMethod.POST)
-	public String bca(FoodCatB foodCatB, Model model, HttpServletRequest request) {
+	public String bca(FoodCatB foodCatB, Model model) {
 //		System.out.println( "B contoller getFoodCatCNo : " + foodCatB.getFoodCatCNo());
 		foodService.dominoSelectB(foodCatB, model);
 		
@@ -85,11 +86,55 @@ public class FoodController {
 	
 	@RequestMapping(value="/food_update.gom", method=RequestMethod.POST)
 	public String foodUpdateSubmit(FoodUpdateCommand foodUpdateCommand) { 
-		System.out.println("foodUpdateSubmit foodNo : " + foodUpdateCommand.getFoodNo());
+//		System.out.println("foodUpdateSubmit foodNo : " + foodUpdateCommand.getFoodNo());
 //		System.out.println("foodUpdateSubmit foodName : " + foodUpdateCommand.getFoodName());
 		
         foodService.updateFood(foodUpdateCommand);
-        return "index";/*"redirect:/index";*/
+        return "redirect:/index";
+	}
+	
+	@RequestMapping(value="/food_delete.gom", method=RequestMethod.GET)
+    public String foodDelete(@RequestParam("foodNo")int foodNo, Model model) {
+		System.out.println("cntlr foodDelete foodNo : " + foodNo);
+		foodService.deleteFood(foodNo);
+		return "redirect:/index";
+	}
+	
+	@RequestMapping(value="/food_detail.gom", method=RequestMethod.GET)
+    public String foodDetail(@RequestParam("foodNo")int foodNo, Model model) {
+		System.out.println("cntlr foodDetail foodNo : " + foodNo);
+		foodService.selectFood(foodNo, model);
+		foodService.selectReviewAndAnswer(foodNo, model);
+		model.addAttribute("iPage", "food/food_detail.jsp");
+		return "index";
+	}
+	
+	
+	@RequestMapping(value="/food_reviewWrite.gom", method=RequestMethod.GET)
+    public String foodReviewWriteForm(FoodReviewWriteCommand foodReviewWriteCommand, Model model, HttpSession session) {
+		System.out.println("cntlr foodReviewWriteForm foodNo : " + foodReviewWriteCommand.getFoodNo());
+		foodService.selectReviewFood(foodReviewWriteCommand, model);
+		if(session.getAttribute("email") != null) {
+			model.addAttribute("iPage", "food/food_reviewWrite.jsp");
+			return "index";
+		}else {
+			return "redirect:/index";
+		}
+	}
+	
+	@RequestMapping(value="/food_reviewWrite.gom", method=RequestMethod.POST)
+	public String foodReviewWriteSubmit(FoodReviewWriteCommand foodReviewWriteCommand, Model model, HttpSession session) { 
+		System.out.println("cntlr foodReviewWriteSubmit foodNo : " + foodReviewWriteCommand.getFoodNo());
+		System.out.println("cntlr foodReviewWriteSubmit sellerEmail : " + foodReviewWriteCommand.getSellerEmail());
+        foodService.insertFoodReview(foodReviewWriteCommand, model, session);
+        return "redirect:/index";
+	}
+	
+	@RequestMapping(value="/food_reviewReportWrite.gom", method=RequestMethod.GET)
+    public String foodReviewReportWrite(FoodReviewReportWriteCommand foodReviewReportWriteCommand, Model model) {
+		System.out.println("cntlr foodReviewReportWrite foodReviewNo : " + foodReviewReportWriteCommand.getFoodReviewNo());
+		model.addAttribute("iPage", "food/food_reviewReportWrite.jsp");
+		return "index";
 	}
 	
 	

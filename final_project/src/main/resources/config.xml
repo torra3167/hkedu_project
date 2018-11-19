@@ -7,6 +7,11 @@
 		<typeAlias type="model.Coach" alias="Coach"/>
 		<typeAlias type="model.Seller" alias="Seller"/>
 		<typeAlias type="model.Food" alias="Food"/>
+		<typeAlias type="model.FoodReview" alias="FoodReview"/>
+		<typeAlias type="model.FoodAndApplication" alias="FoodAndApplication"/>
+		<typeAlias type="model.FoodReviewAnswer" alias="FoodReviewAnswer"/>
+		<typeAlias type="model.FoodReviewAndAnswer" alias="FoodReviewAndAnswer"/>
+		<typeAlias type="model.FoodReviewReport" alias="FoodReviewReport"/>
 		<typeAlias type="model.AuthInfo" alias="AuthInfo"/>
 		<typeAlias type="model.Member" alias="Member"/>
 		<typeAlias type="model.MemberSurvey" alias="MemberSurvey"/>

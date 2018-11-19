@@ -1,56 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<script src="../js/jquery.min.js"></script>
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
 </head>    
 <body>
 <div  id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
             <h5>식품리뷰 등록</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="body">
-            <form action="#" method="post">
+            <form:form action="food_reviewWrite.gom" method="post" enctype="multipart/form-data" commandName="foodReviewWriteCommand">
+            		<!-- <label>FoodNo</label> -->
+                	<form:hidden path="foodNo" class="form-control"/>
+            		<!-- <label>SellerEmail</label> -->
+                	<form:hidden path="sellerEmail" class="form-control"/>
+                	<!-- <label>FoodCatANo</label> -->
+                	<form:hidden path="foodCatANo" class="form-control"/>
+                	<!-- <label>FoodCatBNo</label> -->
+                	<form:hidden path="foodCatBNo" class="form-control"/>
+                	<!-- <label>FoodCatCNo</label> -->
+                	<form:hidden path="foodCatCNo" class="form-control"/>
+                	<!-- <label>foodReviewFoodName</label> -->
+                	<form:hidden path="foodReviewFoodName" class="form-control"/>
+                	<!-- <label>foodReviewOrderdate</label> -->
+                	<form:hidden path="foodReviewOrderdate" class="form-control"/>
               <div class="form-row">
                 <div class="form-group col-sm-6">
                 	<label>제목</label>
-                	<input type="text" name="reviewTitle" class="form-control" maxlength="20">
+                	<form:input path="foodReviewTitle" class="form-control" maxlength="50"/>
               	</div>
               </div>
               <div class="form-group">
                 <label>총평</label>
-                <textarea type="text" name="reviewContent" class="form-control" maxlength="2048" style="height: 180px;"></textarea>
+                <form:textarea path="foodReviewComment" class="form-control" maxlength="2048" style="height: 180px;" />
               </div>
               <div class="form-group">
                 <label>이미지</label>
-                <input type="file" name="reviewImage" class="form-control">
+                <input type="file" name="foodReviewImage" class="form-control">
               </div>
               <div class="form-row">
                 <div class="form-group col-sm-3">
                   <label>총점</label>
-                  <select name="totalScore" class="form-control">
-                    <option value="A" selected>★</option>
-                    <option value="B">★★</option>
-                    <option value="C">★★★</option>
-                    <option value="D">★★★★</option>
-                    <option value="F">★★★★★</option>
-                  </select>
+                  <form:select path="foodReviewScore" class="form-control">
+                    <form:option value="A">★</form:option>
+                    <form:option value="B">★★</form:option>
+                    <form:option value="C">★★★</form:option>
+                    <form:option value="D">★★★★</form:option>
+                    <form:option value="F">★★★★★</form:option>
+                  </form:select>
                 </div>
               </div>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">등록하기</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-secondary" onclick="history.go(-1);">뒤로가기</button>
               </div>
-            </form>
+            </form:form>
           </div>
 </body>
 </html>

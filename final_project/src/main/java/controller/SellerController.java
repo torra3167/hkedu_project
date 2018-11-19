@@ -57,8 +57,8 @@ public class SellerController {
 		
 		@RequestMapping(value="/seller_update.gom", method=RequestMethod.GET)
 		public String updateForm(SellerUpdateCommand sellerUpdateCommand, Model model, HttpSession session) {
-			AuthInfo ai = (AuthInfo) session.getAttribute("email");
-			model.addAttribute("email", ai);
+			sellerUpdateCommand.setSellerEmail((String) session.getAttribute("email"));
+			model.addAttribute("email", sellerUpdateCommand.getSellerEmail());
 			model.addAttribute("iPage", "seller/seller_update.jsp");
 			return "index";
 		}
@@ -66,7 +66,7 @@ public class SellerController {
 		
 		@RequestMapping(value="/seller_update.gom", method=RequestMethod.POST)
 		public String updateSubmit(SellerUpdateCommand sellerUpdateCommand, HttpServletRequest httpServletRequest,  Model model) {
-			System.out.println("controller form에서 온 httpServletRequest" + httpServletRequest.getParameter("sellerEmail"));
+			System.out.println("cntlr updateSubmit sellerEmail : " + httpServletRequest.getParameter("sellerEmail"));
 			sellerUpdateCommand.setSellerEmail(httpServletRequest.getParameter("sellerEmail"));
 			sellerUpdateCommand.setSellerPw(httpServletRequest.getParameter("sellerPw"));
 			sellerUpdateCommand.setSellerPhone(httpServletRequest.getParameter("sellerPhone"));
@@ -97,23 +97,25 @@ public class SellerController {
 		
 		@RequestMapping(value="/seller_withdrawal.gom", method=RequestMethod.GET)
 		public String sellerWithdrawalForm(SellerWithdrawalCommand sellerWithdrawalCommand, Model model, HttpSession session) {
-			AuthInfo ai = (AuthInfo) session.getAttribute("AuthInfo");
-			model.addAttribute("ai", ai);
+			sellerWithdrawalCommand.setSellerEmail((String) session.getAttribute("email"));
 			model.addAttribute("iPage", "seller/seller_withdrawal.jsp");
 			return "index";
 		}
 		
 		@RequestMapping(value="/seller_withdrawal.gom", method=RequestMethod.POST)
-		public String sellerWithdrawalSubmit(SellerWithdrawalCommand sellerWithdrawalCommand,  Model model, HttpServletRequest httpServletRequest) { 
+		public String sellerWithdrawalSubmit(SellerWithdrawalCommand sellerWithdrawalCommand,  Model model, HttpServletRequest httpServletRequest, HttpSession session) { 
 			sellerWithdrawalCommand.setSellerEmail(httpServletRequest.getParameter("sellerEmail"));
 			sellerWithdrawalCommand.setSellerPw(httpServletRequest.getParameter("sellerPw"));
 			int result = sellerService.deleteSeller(sellerWithdrawalCommand);
 			if(result>0) {
 				model.addAttribute("result", result);
+				session.invalidate();
+				model.addAttribute("iPage", "seller/seller_withdrawalResult.jsp");
 				return "index";
 			}else {
 				return "redirect:/index";
 			}
+			
 		}
 		
 		

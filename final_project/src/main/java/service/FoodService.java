@@ -2,7 +2,6 @@ package service;
 
 import java.io.File;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,12 +16,12 @@ import category.FoodCatA;
 import category.FoodCatB;
 import category.FoodCatC;
 import command.FoodRegCommand;
+import command.FoodReviewWriteCommand;
 import command.FoodUpdateCommand;
-import model.AuthInfo;
 import model.Food;
-import model.Program;
-import model.ProgramExercise;
-import model.Upload;
+import model.FoodAndApplication;
+import model.FoodReview;
+import model.FoodReviewAndAnswer;
 import repository.FoodRepository;
 
 
@@ -34,6 +33,7 @@ public class FoodService {
 	private FoodRepository foodRepository;
 	
 	Food food;
+	FoodReview foodReview;
 	
 	String originalFile;
 	String originalFileExtension;
@@ -41,7 +41,8 @@ public class FoodService {
 	MultipartFile multiFile;
 	static final String filePath =
 //			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
 	
 	
@@ -156,20 +157,6 @@ public class FoodService {
 		// TODO Auto-generated method stub
 		System.out.println("svc : " + foodUpdateCommand.getFoodNo());
 		System.out.println("svc : " + foodUpdateCommand.getFoodName());
-		System.out.println("svc : " + foodUpdateCommand.getFoodPrice());
-		System.out.println("svc : " + foodUpdateCommand.getFoodSale());
-		System.out.println("svc : " + foodUpdateCommand.getFoodFlavor());
-		System.out.println("svc : " + foodUpdateCommand.getFoodQuant());
-		System.out.println("svc : " + foodUpdateCommand.getFoodExpiryDate());
-		System.out.println("svc : " + foodUpdateCommand.getFoodOrigin());
-		System.out.println("svc : " + foodUpdateCommand.getFoodCarbo());
-		System.out.println("svc : " + foodUpdateCommand.getFoodProtein());
-		System.out.println("svc : " + foodUpdateCommand.getFoodFat());
-		System.out.println("svc : " + foodUpdateCommand.getFoodCal());
-		System.out.println("svc : " + foodUpdateCommand.getFoodCatANo());
-		System.out.println("svc : " + foodUpdateCommand.getFoodCatBNo());
-		System.out.println("svc : " + foodUpdateCommand.getFoodCatCNo());
-		
 		
 		//foodImage
 		multiFile = foodUpdateCommand.getFoodImage();
@@ -212,6 +199,111 @@ public class FoodService {
 			e.printStackTrace();
 		}
 	}
+
+	public void deleteFood(int foodNo) {
+		System.out.println("svc deleteFood foodNo : " + foodNo);
+		int k = foodRepository.deleteFood(foodNo);
+		
+		if(k < 1) {
+			System.out.println("식품삭제 실패");
+		} else {
+			System.out.println("식품삭제 성공!");
+		}
+	}
+
+	public void selectFoodList(Model model) {
+		List<FoodAndApplication> foodAppliList = foodRepository.selectFoodList();
+		model.addAttribute("foodAppliList", foodAppliList);
+	}
+
+	public void selectFood(int foodNo, Model model) {
+		System.out.println("svc selectFood foodNo : " + foodNo);
+		FoodAndApplication fa = foodRepository.selectFood(foodNo);
+		model.addAttribute("fa", fa);
+	}
+	
+	public void selectReviewFood(FoodReviewWriteCommand foodReviewWriteCommand, Model model) {
+		System.out.println("svc selectReviewFood foodNo : " + foodReviewWriteCommand.getFoodNo());
+		FoodAndApplication rf = foodRepository.selectFood(foodReviewWriteCommand.getFoodNo());
+		foodReviewWriteCommand.setFoodNo(foodReviewWriteCommand.getFoodNo());
+		foodReviewWriteCommand.setSellerEmail(rf.getSellerEmail());
+		foodReviewWriteCommand.setFoodCatANo(rf.getFoodCatANo());
+		foodReviewWriteCommand.setFoodCatBNo(rf.getFoodCatBNo());
+		foodReviewWriteCommand.setFoodCatCNo(rf.getFoodCatCNo());
+		foodReviewWriteCommand.setFoodReviewFoodName(rf.getFoodName());
+		foodReviewWriteCommand.setFoodReviewOrderdate("주문 추가 시 수정해라!!!!");
+	}
+	
+	public void insertFoodReview(FoodReviewWriteCommand foodReviewWriteCommand, Model model, HttpSession session) {
+		System.out.println("svc insertFoodReview foodNo : " + foodReviewWriteCommand.getFoodNo());
+		System.out.println("svc insertFoodReview ReviewfoodName : " + foodReviewWriteCommand.getFoodReviewFoodName());
+		
+		//foodReviewNum
+			Integer foodReviewNo = foodRepository.selectFoodReviewNo();
+			System.out.println("svc insertFoodReview foodReviewNo1 : " + foodReviewNo);
+			if(foodReviewNo == 0) {
+				foodReviewNo = 1;
+			} else {
+				foodReviewNo = foodReviewNo + 1;
+			}
+			System.out.println("svc insertFoodReview foodReviewNo2 : " + foodReviewNo);
+		
+		//memberEmail
+			String memberEmail = (String) session.getAttribute("email");
+			
+		//foodReviewRegdate
+			foodReviewWriteCommand.setFoodReviewRegdate(Calendar.getInstance().getTime());
+			System.out.println("svc insertFoodReview FoodReviewRegdate : " + Calendar.getInstance().getTime() + "시간");
+			
+		//foodImage
+			multiFile = foodReviewWriteCommand.getFoodReviewImage();
+			originalFile = multiFile.getOriginalFilename();
+			originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+			storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+			file = new File(filePath + storedFileName);
+			
+			try {
+				multiFile.transferTo(file);
+				
+				foodReview = new FoodReview(
+						foodReviewNo,
+						memberEmail,
+						foodReviewWriteCommand.getFoodNo(),
+						foodReviewWriteCommand.getSellerEmail(),
+						foodReviewWriteCommand.getFoodCatANo(),
+						foodReviewWriteCommand.getFoodCatBNo(),
+						foodReviewWriteCommand.getFoodCatCNo(),
+						foodReviewWriteCommand.getFoodReviewRegdate(),
+						foodReviewWriteCommand.getFoodReviewFoodName(),
+						foodReviewWriteCommand.getFoodReviewOrderdate(),
+						foodReviewWriteCommand.getFoodReviewTitle(),
+						foodReviewWriteCommand.getFoodReviewScore(),
+						foodReviewWriteCommand.getFoodReviewComment(),
+						multiFile.getSize(), 
+						originalFile, 
+						storedFileName
+				);
+				System.out.println("svc insertFoodReview foodReview : " + foodReview);
+				
+				int k = foodRepository.insertFoodReview(foodReview);
+				
+				if(k < 1) {
+					System.out.println("식품리뷰 등록실패!");
+				} else {
+					System.out.println("식품리뷰 등록성공!");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
+
+	public void selectReviewAndAnswer(int foodNo, Model model) {
+		System.out.println("svc selectReviewAndAnswer foodNo : " + foodNo);
+		List<FoodReviewAndAnswer> foodReviewAndAnswers  = foodRepository.selectReviewAndAnswer(foodNo);
+		model.addAttribute("foodReviewAndAnswers", foodReviewAndAnswers);
+	}
+
+	
 
 	
 	

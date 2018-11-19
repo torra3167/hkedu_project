@@ -38,7 +38,7 @@
 					<td><%=food.getFoodPrice() %></td>
 					<td><%=food.getFoodQuant() %></td>
 					<td><%=food.getFoodExpiryDate() %></td>
-<%-- 					<td><img src="http://localhost:8080/final_project/resource/<%=upload.getUploadStored() %>" width="80" height="80"></td> --%>
+					<td><img src="http://localhost:8080/final_project/resource/<%=food.getFoodStored() %>" width="80" height="80"></td>
 				</tr>
 				<% } %>
 			</tbody>

@@ -7,12 +7,12 @@ public class SellerJoinCommand implements Serializable{
 	private String sellerEmail;
 	private String sellerPw;
 	private String sellerConfirmPw;
-	private int sellerPhone;
+	private String sellerPhone;
 	private String sellerTerm;
 	
 	public SellerJoinCommand() {}
 
-	public SellerJoinCommand(String sellerEmail, String sellerPw, String sellerConfirmPw, int sellerPhone,
+	public SellerJoinCommand(String sellerEmail, String sellerPw, String sellerConfirmPw, String sellerPhone,
 			String sellerTerm) {
 		this.sellerEmail = sellerEmail;
 		this.sellerPw = sellerPw;
@@ -39,10 +39,10 @@ public class SellerJoinCommand implements Serializable{
 	public void setSellerConfirmPw(String sellerConfirmPw) {
 		this.sellerConfirmPw = sellerConfirmPw;
 	}
-	public int getSellerPhone() {
+	public String getSellerPhone() {
 		return sellerPhone;
 	}
-	public void setSellerPhone(int sellerPhone) {
+	public void setSellerPhone(String sellerPhone) {
 		this.sellerPhone = sellerPhone;
 	}
 	public String getSellerTerm() {

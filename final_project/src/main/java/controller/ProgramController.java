@@ -29,7 +29,6 @@ public class ProgramController {
 		System.out.println(programDetailCommand.getProNo() + "PRONO by command! ");
 		System.out.println(programDetailCommand.getProContent() + " PROCONTENT");
 		model.addAttribute("iPage", "program/program_detail.jsp");
-		model.addAttribute("ProgramDetailCommand", programDetailCommand);
 		ps.programDetail(programDetailCommand, model);
 		return "index";
 

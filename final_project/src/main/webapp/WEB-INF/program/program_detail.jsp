@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import= "java.util.*, 
-    model.ProgramExercise, model.ProgramExerciseUpload, model.Upload, command.ProgramDetailCommand"%>
+    pageEncoding="UTF-8" import= "java.util.*, model.ProgramExercise, model.ProgramExerciseUpload, model.Upload"%>
     
     <%
-    List<ProgramExerciseUpload> programExerciseUploadList = (List<ProgramExerciseUpload>)request.getAttribute("ProgramExerciseUpload");
-    ProgramDetailCommand programDetailCommand = (ProgramDetailCommand)request.getAttribute("ProgramDetailCommand");
-    request.setCharacterEncoding("utf-8");
+    List<ProgramExerciseUpload> exerciseUploadList = (List<ProgramExerciseUpload>)request.getAttribute("ProgramExerciseUpload");
+   
     %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>      
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
@@ -27,8 +25,8 @@
 				</tr>
 		
 			    <tr class="active">
-					<td><%=programDetailCommand.getProNo() %></td>
-					<td><%=programDetailCommand.getProContent() %></td>
+					<td></td>
+					<td></td>
 				</tr>
 		</table>
 		<table class="table table-striped text-center">
@@ -48,32 +46,35 @@
 				</tr>
 			</thead>
 			<tbody>
-			<% for(Object temp : programExerciseUploadList) {
-				ProgramExerciseUpload programexerciseUpload = (ProgramExerciseUpload)temp; %>
+			<% for(Object temp : exerciseUploadList) {
+				ProgramExerciseUpload exerciseUpload = (ProgramExerciseUpload)temp; %>
 				
-					<td><%=programexerciseUpload.getExerciseNumber() %></td>	
-					<td><%=programexerciseUpload.getProContent() %></td>			
-					<td><%=programexerciseUpload.getExerciseCatANumber() %></td>
-					<td><%=programexerciseUpload.getExerciseCatBNumber() %></td>
-					<td><%=programexerciseUpload.getUploadNumber() %>
-					<td><%=programexerciseUpload.getUploadSize() %>					
-					<td><img src="http://localhost:8080/final_project/resource/<%=programexerciseUpload.getUploadStored() %>" width="80" height="80"></td>					
-					<td><%=programexerciseUpload.getUploadOriginal() %></td>
-					<td><%=programexerciseUpload.getUploadDivide() %></td> 
-					
-					<%--  <td><a href="upload_update.gom?
-					uploadNumber=<%=programexerciseUpload.getUploadNumber() %>
-					&exerciseNumber=<%=programexerciseUpload.getExerciseNumber() %>
-					&exerciseContent=<%=programexerciseUpload.getExerciseContent()%>
-					&exerciseCatANumber=<%=programexerciseUpload.getExerciseCatANumber() %>
-					&exerciseCatBNumber=<%=programexerciseUpload.getExerciseCatBNumber() %>
-					&uploadStored=<%=programexerciseUpload.getUploadStored() %>					
-					&uploadOriginal=<%=programexerciseUpload.getUploadOriginal()%>
-					&proNo=<%=programexerciseUpload.getProNo()%>
+					<td><%=exerciseUpload.getExerciseNumber() %></td>	
+					<td><%=exerciseUpload.getProContent() %></td>			
+					<td><%=exerciseUpload.getExerciseCatANumber() %></td>
+					<td><%=exerciseUpload.getExerciseCatBNumber() %></td>
+					<%-- <td><a href="upload_update.gom?
+					uploadNumber=<%=exerciseUpload.getUploadNumber() %>
+					&exerciseNumber=<%=exerciseUpload.getExerciseNumber() %>
+					&exerciseContent=<%=exerciseUploadList.getExerciseContent()%>
+					&exerciseCatANumber=<%=exerciseUpload.getExerciseCatANumber() %>
+					&exerciseCatBNumber=<%=exerciseUpload.getExerciseCatBNumber() %>
+					&uploadStored=<%=exerciseUpload.getUploadStored() %>					
+					&uploadOriginal=<%=exerciseUpload.getUploadOriginal()%>
+					&proNo=<%=exerciseUploadList.getProNo()%>
 					
 					">
-					<%=programexerciseUpload.getUploadNumber() %></a></td> 
-				 --%>	
+					<%=exerciseUpload.getUploadNumber() %></a></td>
+					<td><%=exerciseUpload.getUploadSize() %>
+					<td><img src="http://localhost:8080/final_project/resource/<%=exerciseUpload.getUploadOriginal() %>" width="80" height="80"></td>					
+					<td><%=exerciseUpload.getUploadStored() %></td>
+					<td><%=exerciseUpload.getUploadDivide() %></td> --%>
+					
+					<%-- <td><%=exerciseUpload.getUploadSize() %>
+					<td><img src="http://localhost:8080/final_project/resource/<%=exerciseUpload.getUploadOriginal() %>" width="80" height="80"></td>					
+					<td><%=exerciseUpload.getUploadStored() %></td>
+					<td><%=exerciseUpload.getUploadDivide() %></td> --%>
+					
 					
 			
 					
