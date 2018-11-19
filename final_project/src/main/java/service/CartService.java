@@ -73,15 +73,23 @@ public class CartService {
 				firstCart.setDemandQty(firstCart.getDemandQty() + demandQty);
 			}
 
-			/*
-			 * if(cart.getFoodNo() == foodNo) { try { request.setCharacterEncoding("utf-8");
-			 * response.setContentType("text/html;charset=utf-8"); PrintWriter pw =
-			 * response.getWriter(); pw.println("<script>");
-			 * pw.println("alert('이미 장바구니에 담겨있는 상품입니다.')");
-			 * pw.println("location.href='index'"); pw.println("</script>"); pw.close(); }
-			 * catch (Exception e) { e.printStackTrace(); }
-			 * 
-			 * }
+			
+			/*if (firstCart.getFoodNo() == foodNo) {
+				try {
+					request.setCharacterEncoding("utf-8");
+					response.setContentType("text/html;charset=utf-8");
+					PrintWriter pw = response.getWriter();
+					pw.println("<script>");
+					pw.println("alert('이미 장바구니에 담겨있는 상품입니다.')");
+					pw.println("location.href='index'");
+					pw.println("</script>");
+					pw.close();
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			  
+			  }*/
 			 
 		}
 
