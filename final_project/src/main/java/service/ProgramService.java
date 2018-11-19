@@ -146,7 +146,7 @@ public class ProgramService {
 		/*List<ProgramExercise> list = pr.selectByProgramNumber(programDetailCommand.getProNo());
 		model.addAttribute("ProgramExercise", list);*/
 		
-		List<ProgramExerciseUpload> programExerciseUpload = pr.selectProgramExerciseUpload(programDetailCommand.getProNo());
+//		List<ProgramExerciseUpload> programExerciseUpload = pr.selectProgramExerciseUpload(programDetailCommand.getProNo());
 		/*exerciseUpload.setProContent(programDetailCommand.getProContent());
 		exerciseUpload.setProNo(programDetailCommand.getProNo());
 		*/
@@ -155,7 +155,7 @@ public class ProgramService {
 			System.out.println(peu.getExerciseContent() + "SERVICE EXERCISECONTENT!!!");
 		}*/
 		
-		model.addAttribute("ProgramExerciseUpload", programExerciseUpload);
+//		model.addAttribute("ProgramExerciseUpload", programExerciseUpload);
 
 		
 	}
