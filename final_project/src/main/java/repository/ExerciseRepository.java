@@ -152,7 +152,7 @@ public class ExerciseRepository extends AbstractRepository {
 
 		try {
 			Integer resultProgramExercise = sqlSession.update("repository.mapper.programMapper.updateProgramExercise", programExercise);
-			System.out.println("UPDATE ProgramExercise " + programExercise);
+			System.out.println("UPDATE ProgramExercise " + resultProgramExercise);
 
 			if (resultProgramExercise > 0) {
 				sqlSession.commit();

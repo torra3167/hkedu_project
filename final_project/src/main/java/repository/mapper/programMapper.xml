@@ -7,10 +7,14 @@
 <!--프로그램업데이트  -->
 <update id="updateProgramExercise" parameterType="ProgramExercise">
 	update program_exercise
-	set 
-	(EXERCISE_CAT_A_NUMBER) = #{exerciseCatANumber},
-	(EXERCISE_CAT_B_NUMBER) = #{exerciseCatBNumber}
-	where PRO_NO = #{proNo}
+	<set>
+	EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber},
+	EXERCISE_CAT_B_NUMBER = #{exerciseCatBNumber}
+	</set>
+	<where>
+	PRO_NO = #{proNo}
+	</where>
+	
 </update>
 
 <!-- <resultMap type="ExerciseUpload" id="exerciseUploadCollection">
@@ -38,12 +42,12 @@
 
 <resultMap type="ProgramExerciseUpload" id="programExerciseUploadMap">
 
-			<id 	property="proNo"     column="PRO_NO" jdbcType="BIGINT"  />
+			<id property="proNo" column="PRO_NO" jdbcType="BIGINT"  />
+			<result property="exerciseContent" column="EXERCISE_CONTENT" jdbcType="CLOB"/>			
 			<result property="proContent"  column="PRO_CONTENT" jdbcType="VARCHAR"  />						
 			<result property="exerciseNumber" column="EXERCISE_NUMBER" jdbcType="BIGINT"/>
 			<result property="exerciseCatANumber" column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT"/>
 			<result property="exerciseCatBNumber" column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT"/>
-			<result property="exerciseContent"  column="EXERCISE_CONTENT" jdbcType="VARCHAR"  />			
 			<result property="uploadNumber" column="UPLOAD_NUMBER" jdbcType="BIGINT"/>
 			<result property="uploadSize" column="UPLOAD_SIZE" jdbcType="BIGINT"/>
 			<result property="uploadOriginal" column="UPLOAD_ORIGINAL" jdbcType="VARCHAR"/>
@@ -51,8 +55,8 @@
 			<result property="uploadDivide" column="UPLOAD_DIVIDE" jdbcType="VARCHAR"/>
 </resultMap>
 
-<select id="selectExerciseUpload" resultMap="programExerciseUploadMap" parameterType="int">
-select e.exercise_number, e.exercise_content,  u.exercise_cat_a_number, u.exercise_cat_b_number,
+<select id="selectProgramExerciseUpload" resultMap="programExerciseUploadMap" parameterType="int">
+select e.exercise_number, e.exercise_content, u.exercise_cat_a_number, u.exercise_cat_b_number, 
 u.upload_number, u.upload_size, u.upload_original, u.upload_stored, u.upload_divide 
 from exercise e, upload u
 where u.exercise_number = e.exercise_number 
@@ -66,10 +70,10 @@ where pro_no = #{proNo})
 
 <resultMap id="programExerciseMap" type="ProgramExercise">
 	<id column="PRO_NO" jdbcType="BIGINT" property="proNo"/>	
-	<id column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail"/>	
-	<id column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber"/>	
-	<id column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>	
-	<id column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>	
+	<result column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail"/>	
+	<result column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber"/>	
+	<result column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>	
+	<result column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>	
 </resultMap>
 
 <select id="selectByProgramNumber" parameterType="int" resultMap="programExerciseMap">

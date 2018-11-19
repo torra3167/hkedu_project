@@ -15,7 +15,6 @@ import category.ExerciseCatA;
 import category.ExerciseCatB;
 import command.ProgramCommand;
 import command.ProgramDetailCommand;
-import model.ExerciseUpload;
 import model.Program;
 import model.ProgramExercise;
 import model.ProgramExerciseUpload;
@@ -30,9 +29,10 @@ public class ProgramService {
 	ProgramExercise programExercise;
 	MultipartFile multiFile;
 	static final String filePath = 
-			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\admin\\Documents\\final_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-	File file = new File(filePath);
+			"C:\\Users\\FUTURE\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\admin\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			File file = new File(filePath);
 
 	@Autowired
 	ProgramRepository pr;
@@ -143,14 +143,19 @@ public class ProgramService {
 
 	public void programDetail(ProgramDetailCommand programDetailCommand, Model model) {
 		// TODO Auto-generated method stub
-		List<ProgramExercise> list = pr.selectByProgramNumber(programDetailCommand.getProNo());
-		model.addAttribute("ProgramExercise", list);
+		/*List<ProgramExercise> list = pr.selectByProgramNumber(programDetailCommand.getProNo());
+		model.addAttribute("ProgramExercise", list);*/
 		
-		List<ProgramExerciseUpload> exerciseUpload = pr.selectExerciseUpload(programDetailCommand.getProNo());
+		List<ProgramExerciseUpload> programExerciseUpload = pr.selectProgramExerciseUpload(programDetailCommand.getProNo());
 		/*exerciseUpload.setProContent(programDetailCommand.getProContent());
 		exerciseUpload.setProNo(programDetailCommand.getProNo());
 		*/
-		model.addAttribute("ProgramExerciseUpload", exerciseUpload);
+		/*for(Object temp : programExerciseUpload) {
+			ProgramExerciseUpload peu = (ProgramExerciseUpload)temp;
+			System.out.println(peu.getExerciseContent() + "SERVICE EXERCISECONTENT!!!");
+		}*/
+		
+		model.addAttribute("ProgramExerciseUpload", programExerciseUpload);
 
 		
 	}

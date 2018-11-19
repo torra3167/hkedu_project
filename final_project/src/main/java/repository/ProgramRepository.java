@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 
 import category.ExerciseCatA;
 import category.ExerciseCatB;
-import model.ExerciseUpload;
 import model.Program;
 import model.ProgramExercise;
 import model.ProgramExerciseUpload;
@@ -168,6 +167,10 @@ public class ProgramRepository extends AbstractRepository {
 			String statement = namespace + ".selectExerciseUpload";
 			
 			list = sqlSession.selectList(statement, proNo);
+			/*for(Object temp : list) {
+				ProgramExerciseUpload peu = (ProgramExerciseUpload)temp;
+				System.out.println(peu.getExerciseContent() + "REPO EXERCISECONTENT!!!");
+			}*/
 			return list;
 		} finally {
 			sqlSession.close();
