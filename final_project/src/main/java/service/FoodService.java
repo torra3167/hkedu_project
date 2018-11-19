@@ -40,9 +40,9 @@ public class FoodService {
 	String storedFileName;
 	MultipartFile multiFile;
 	static final String filePath =
+			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 //			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
 	
 	

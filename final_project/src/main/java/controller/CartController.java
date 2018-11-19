@@ -1,0 +1,29 @@
+package controller;
+
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import service.CartService;
+
+
+@Controller
+public class CartController {
+	
+	@Autowired
+	CartService cartS;
+	
+	@RequestMapping(value="/cart_list.gom", method=RequestMethod.GET)
+	public String cartForm(Model model, HttpServletRequest request ) {
+		
+		model.addAttribute("iPage", "pay/cartList.jsp");
+		cartS.cartList(model);
+		return "index";
+	}
+}
+

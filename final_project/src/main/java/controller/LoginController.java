@@ -1,6 +1,7 @@
 package controller;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -21,7 +22,7 @@ public class LoginController {
 	
 	@Autowired
 	private LoginService ls;
-
+	
 	
 	
 	@RequestMapping(value="/login.gom", method=RequestMethod.GET)
@@ -30,6 +31,10 @@ public class LoginController {
 			loginCommand.setEmail(rememberCookie.getValue());
 			loginCommand.setRememberEmail(true);
 		}
+		
+		
+
+		
 		model.addAttribute("iPage", "login/login.jsp");
 		return "index";
 	}

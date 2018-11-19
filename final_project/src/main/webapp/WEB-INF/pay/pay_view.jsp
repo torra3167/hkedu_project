@@ -11,11 +11,7 @@
 
     <title>Checkout example for Bootstrap</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="form-validation.css" rel="stylesheet">
+  
   </head>
 
   <body class="bg-light">
@@ -180,10 +176,7 @@
    
 
  
-  
-  <script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+
   
 
 </body>

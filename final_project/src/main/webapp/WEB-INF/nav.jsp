@@ -39,7 +39,7 @@
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="Goods/goodsCartList.jsp">Cart</a></li>
+					href="cart_list.gom">Cart</a></li>
 					
 				<li class="nav-item">
 					<div class="dropdown">
@@ -98,7 +98,7 @@
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="Goods/goodsCartList.jsp">Cart</a></li>
+					href="cart_list.gom">Cart</a></li>
 					
 				<li class="nav-item">
 					<div class="dropdown show">
@@ -223,7 +223,7 @@
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="Goods/goodsCartList.jsp">Cart</a></li>
+					href="cart_list.gom">Cart</a></li>
 					
 				<li class="nav-item">
 					<div class="dropdown show">
@@ -286,7 +286,7 @@
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="Goods/goodsCartList.jsp">Cart</a></li>
+					href="cart_list.gom">Cart</a></li>
 					
 				<li class="nav-item">
 					<div class="dropdown show">

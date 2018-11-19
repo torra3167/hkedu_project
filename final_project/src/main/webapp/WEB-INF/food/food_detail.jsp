@@ -36,15 +36,15 @@
 	    		<h3><%=salePrice %>원</h3><!-- (판매가) -->
 	    		<div>배송비 2,500원</div>
 	    		<div>
-	    			<form action="" method="post" name="">
+	    			<form action="cart_list.gom" method="post">
 						<div class="form-row">
 			                <div class="form-group col-sm-2">
 			                	<label>수량</label>
-			                	<input type="text" name="" class="form-control" maxlength="20">
+			                	<input type="text" name="foodQuant" class="form-control" maxlength="20">
 			              	</div>
 		              	</div>
 		              	<div>총 150,000원(8개)</div>
-						<input type="hidden" name="num" value="">
+						<input type="hidden" name="foodNo" value="<%=foodAndApplication.getFoodNo() %>">
 						<button type="submit" class="btn btn-primary">장바구니 담기</button>
 					</form>
     			</div>
