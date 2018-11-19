@@ -24,27 +24,28 @@
   <body>
     <div class="container">
     	<div class="row">
-    		<div class="col-sm-6"><img src="http://localhost:8080/final_project/resource/<%=foodAndApplication.getFoodStored() %>"></div>
+    		<div class="col-sm-6"><img src="resource/<%=foodAndApplication.getFoodStored() %>"></div>
     		<div class="col-sm-6">
 	    		<h5><%=foodAndApplication.getStoreName() %></h5><!-- (업체명) -->
 	    		<h3><%=foodAndApplication.getFoodName() %></h3>
 	    		<div class="regularPrice"><%=foodAndApplication.getFoodPrice() %>원</div><!-- (정상가) -->
 	    		<h3 class="savingsOff"><%=foodAndApplication.getFoodSale() %>% OFF</h3>
 	    		<%
-                                int salePrice = (int) (foodAndApplication.getFoodSale() - (foodAndApplication.getFoodPrice() * (foodAndApplication.getFoodSale()*0.01)));
+                    int salePrice = (int) (foodAndApplication.getFoodSale() - (foodAndApplication.getFoodPrice() * (foodAndApplication.getFoodSale()*0.01)));
                 %>
 	    		<h3><%=salePrice %>원</h3><!-- (판매가) -->
 	    		<div>배송비 2,500원</div>
 	    		<div>
-	    			<form action="cart_list.gom" method="post">
+	    			<form action="cart_addList.gom" method="post">
 						<div class="form-row">
 			                <div class="form-group col-sm-2">
 			                	<label>수량</label>
-			                	<input type="text" name="foodQuant" class="form-control" maxlength="20">
+			                	<input type="text" name="demandQty" class="form-control" maxlength="20">
 			              	</div>
 		              	</div>
 		              	<div>총 150,000원(8개)</div>
 						<input type="hidden" name="foodNo" value="<%=foodAndApplication.getFoodNo() %>">
+						
 						<button type="submit" class="btn btn-primary">장바구니 담기</button>
 					</form>
     			</div>
@@ -106,7 +107,7 @@
 	        <div class="card-body">
 	          <p class="card-text"><%=foodReviewAndAnswer.getFoodReviewComment() %>
 	          </p>
-	          <img src="http://localhost:8080/final_project/resource/<%=foodReviewAndAnswer.getFoodReviewStored() %>" width="200" height="200">
+	          <img src="resource/<%=foodReviewAndAnswer.getFoodReviewStored() %>" width="200" height="200">
 	          <div class="row">
 	            <div class="col-9 text-left">
 	            	<p><%=foodReviewAndAnswer.getFoodReviewScore() %></p>

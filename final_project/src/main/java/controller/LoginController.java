@@ -24,6 +24,13 @@ public class LoginController {
 	private LoginService ls;
 	
 	
+	@RequestMapping(value="/index", method=RequestMethod.GET)
+	public String index(Model model, HttpSession session) {
+		
+		session.setAttribute("sender", "kdahae1129@gmail.com");
+		
+		return "index";
+	}
 	
 	@RequestMapping(value="/login.gom", method=RequestMethod.GET)
 	public String CoachLogin(LoginCommand loginCommand, Model model, @CookieValue(value="email", required=false)Cookie rememberCookie) {
