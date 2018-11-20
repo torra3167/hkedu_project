@@ -1,5 +1,8 @@
 package command;
 
-public class CartCommand {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class CartCommand implements Serializable {
 	
 }
