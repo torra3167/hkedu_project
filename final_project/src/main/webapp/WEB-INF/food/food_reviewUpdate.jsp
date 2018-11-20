@@ -11,13 +11,15 @@
 </head>    
 <body>
 <div  id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-            <h5>식품리뷰 등록</h5>
+            <h5>식품리뷰 수정</h5>
             <button type="button" class="close" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="body">
-            <form:form action="food_reviewWrite.gom" method="post" enctype="multipart/form-data" commandName="foodReviewWriteCommand">
+            <form:form action="food_reviewUpdate.gom" method="post" enctype="multipart/form-data" commandName="foodReviewUpdateCommand">
+            		<!-- <label>foodReviewNo</label> -->
+                	<form:hidden path="foodReviewNo" class="form-control"/>
             		<!-- <label>FoodNo</label> -->
                 	<form:hidden path="foodNo" class="form-control"/>
             		<!-- <label>SellerEmail</label> -->

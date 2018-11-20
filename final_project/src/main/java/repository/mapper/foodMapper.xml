@@ -149,6 +149,7 @@
 		FROM
 		food
 		WHERE seller_email = #{sellerEmail}
+		order by food_no
 	</select>
 	
 	
@@ -199,6 +200,239 @@
 		WHERE food_no = #{foodNo}
 	</select>
 	
+<delete id="deleteFood" parameterType="String">
+	DELETE
+	FROM food
+	WHERE food_no = #{foodNo}
+</delete>
+
+
+<resultMap type="FoodAndApplication" id="selectFoodListMap">
+		<id column="food_no" jdbcType="BIGINT" property="foodNo" />
+		<id column="seller_email" jdbcType="VARCHAR" property="sellerEmail" />
+		<id column="food_cat_a_no" jdbcType="BIGINT" property="foodCatANo" />
+		<id column="food_cat_b_no" jdbcType="BIGINT" property="foodCatBNo" />
+		<id column="food_cat_c_no" jdbcType="BIGINT" property="foodCatCNo" />
+		<result column="food_name" jdbcType="VARCHAR" property="foodName" />
+		<result column="food_quant" jdbcType="BIGINT" property="foodQuant" />
+		<result column="food_expiry_date" jdbcType="VARCHAR" property="foodExpiryDate" />
+		<result column="food_origin" jdbcType="BIGINT" property="foodOrigin" />
+		<result column="food_sale" jdbcType="BIGINT" property="foodSale" />
+		<result column="food_flavor" jdbcType="VARCHAR" property="foodFlavor" />
+		<result column="food_price" jdbcType="BIGINT" property="foodPrice" />
+		<result column="food_carbo" jdbcType="BIGINT" property="foodCarbo" />
+		<result column="food_protein" jdbcType="BIGINT" property="foodProtein" />
+		<result column="food_fat" jdbcType="BIGINT" property="foodFat" />
+		<result column="food_cal" jdbcType="BIGINT" property="foodCal" />
+		<result column="food_size" jdbcType="BIGINT" property="foodSize" />
+		<result column="food_original" jdbcType="VARCHAR" property="foodOriginal" />
+		<result column="food_stored" jdbcType="VARCHAR" property="foodStored" />
+		<result column="seller_name" jdbcType="VARCHAR" property="sellerName" />
+		<result column="store_name" jdbcType="VARCHAR" property="storeName" />
+		<result column="store_telphone" jdbcType="VARCHAR" property="storeTelphone" />
+		<result column="store_addr" jdbcType="VARCHAR" property="storeAddr" />
+</resultMap>
+
 	
-	
+<select id="selectFoodList" resultMap="selectFoodListMap">
+		SELECT
+		food_no, f.seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, 
+		food_name, food_quant, food_expiry_date, food_origin, food_sale, food_flavor,
+		food_price, food_carbo, food_protein, food_fat, food_cal, food_size, food_original,
+		food_stored, sa.seller_name, sa.store_name, sa.store_telphone, sa.store_addr
+		FROM food f, seller_application sa
+		WHERE f.seller_email = sa.seller_email
+		order by food_no
+</select>
+
+
+<select id="selectFood" parameterType="Integer" resultMap="selectFoodListMap">
+		SELECT
+		food_no, f.seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, 
+		food_name, food_quant, food_expiry_date, food_origin, food_sale, food_flavor,
+		food_price, food_carbo, food_protein, food_fat, food_cal, food_size, food_original,
+		food_stored, sa.seller_name, sa.store_name, sa.store_telphone, sa.store_addr
+		FROM food f, seller_application sa
+		WHERE f.seller_email = sa.seller_email and f.food_no = #{foodNo}
+</select>
+
+
+<select id="selectFoodReviewNo" resultType="Integer">
+		select count(food_review_no)
+		from food_review
+</select>
+
+<insert id="insertFoodReview" parameterType="FoodReview">
+		INSERT INTO food_review(
+		food_review_no,
+		member_email,
+		food_no,
+		seller_email,
+		food_cat_a_no,
+		food_cat_b_no,
+		food_cat_c_no,
+		food_review_regdate,
+		food_review_food_name,
+		food_review_title,
+		food_review_score,
+		food_review_comment,
+		food_review_size,
+		food_review_original,
+		food_review_stored
+		)
+		VALUES(
+		#{foodReviewNo},
+		#{memberEmail},
+		#{foodNo}, 
+		#{sellerEmail},
+		#{foodCatANo}, 
+		#{foodCatBNo}, 
+		#{foodCatCNo}, 
+		#{foodReviewRegdate},
+		#{foodReviewFoodName}, 
+		#{foodReviewTitle}, 
+		#{foodReviewScore}, 
+		#{foodReviewComment},
+		#{foodReviewSize}, 
+		#{foodReviewOriginal}, 
+		#{foodReviewStored}
+		)
+</insert>
+
+<!-- <resultMap type="ExerciseUpload" id="exerciseUploadCollection">
+	1에 해당되는 레코드 출력
+		<id column="PRO_NO" jdbcType="BIGINT" property="proNo" />PK
+		<result column="PRO_CONTENT" jdbcType="VARCHAR" property="proContent" />
+		<result column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber" />
+		<result column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber" />
+		<result column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber" />
+		<result column="EXERCISE_CONTENT" jdbcType="VARCHAR" property="exerciseContent" />
+
+		n에 해당되는 레코드 출력
+		<collection property="uploads" ofType="Upload">
+		
+			<id property="uploadNumber" column="UPLOAD_NUMBER" />PK
+			<id property="exerciseNumber" column="EXERCISE_NUMBER" />PK
+			<id property="exerciseCatANumber" column="EXERCISE_CAT_A_NUMBER" />PK
+			<id property="exerciseCatBNumber" column="EXERCISE_CAT_B_NUMBER" />PK
+			<result property="uploadSize" column="UPLOAD_SIZE" />
+			<result property="uploadOriginal" column="UPLOAD_ORIGINAL" />
+			<result property="uploadStored" column="UPLOAD_STORED" />
+			<result property="uploadDivide" column="UPLOAD_DIVIDE" />
+		</collection>
+</resultMap> -->
+
+<resultMap type="FoodReviewAndAnswer" id="selectReviewAndAnswerMap">
+		<id column="food_review_no" jdbcType="BIGINT" property="foodReviewNo" />
+		<id column="member_email" jdbcType="VARCHAR" property="memberEmail" />
+		<id column="food_no" jdbcType="BIGINT" property="foodNo" />
+		<id column="seller_email" jdbcType="VARCHAR" property="sellerEmail" />
+		<id column="food_cat_a_no" jdbcType="BIGINT" property="foodCatANo" />
+		<result column="food_cat_b_no" jdbcType="BIGINT" property="foodCatBNo" />
+		<result column="food_cat_c_no" jdbcType="BIGINT" property="foodCatCNo" />
+		<result column="food_review_regdate" jdbcType="DATE" property="foodReviewRegdate" />
+		<result column="food_review_food_name" jdbcType="VARCHAR" property="foodReviewFoodName" />
+		<result column="food_review_title" jdbcType="VARCHAR" property="foodReviewTitle" />
+		<result column="food_review_score" jdbcType="VARCHAR" property="foodReviewScore" />
+		<result column="food_review_comment" jdbcType="VARCHAR" property="foodReviewComment" />
+		<result column="food_review_size" jdbcType="BIGINT" property="foodReviewSize" />
+		<result column="food_review_original" jdbcType="VARCHAR" property="foodReviewOriginal" />
+		<result column="food_review_stored" jdbcType="VARCHAR" property="foodReviewStored" />
+		
+		<collection property="foodReviewAnswers" ofType="FoodReviewAnswer">
+			<result property="foodReviewAnswerNo" column="FOOD_REVIEW_ANSWER_NO" />
+			<result property="foodReviewAnswerContent" column="FOOD_REVIEW_ANSWER_CONTENT" />
+			<result property="foodReviewAnswerRegdate" column="FOOD_REVIEW_ANSWER_REGDATE" />
+		</collection>
+</resultMap>
+<select id="selectReviewAndAnswer" parameterType="Integer" resultMap="selectReviewAndAnswerMap">
+		SELECT
+		fr.food_review_no, fr.member_email, fr.food_no, fr.seller_email, fr.food_cat_a_no, fr.food_cat_b_no,
+        fr.food_cat_c_no, food_review_regdate, food_review_food_name,
+        food_review_title, food_review_score, food_review_comment, food_review_size,
+        food_review_original, food_review_stored,
+        food_review_answer_no, food_review_answer_content, food_review_answer_regdate
+		FROM food_review fr, food_review_answer fra
+		WHERE fr.food_review_no = fra.food_review_no(+) AND fr.food_no = #{foodNo}
+		ORDER BY food_review_regdate
+</select>
+
+
+<update id="updateFoodReview" parameterType="FoodReview">
+		UPDATE food_review
+		SET
+		food_review_no = #{foodReviewNo},
+		member_email = #{memberEmail},
+		food_no = #{foodNo},
+		seller_email = #{sellerEmail},
+		food_cat_a_no = #{foodCatANo},
+		food_cat_b_no = #{foodCatBNo},
+		food_cat_c_no = #{foodCatCNo},  
+		food_review_regdate = #{foodReviewRegdate},   
+		food_review_food_name = #{foodReviewFoodName},
+		food_review_title = #{foodReviewTitle},
+		food_review_score = #{foodReviewScore},    
+		food_review_comment = #{foodReviewComment},
+		food_review_size = #{foodReviewSize},    
+		food_review_original = #{foodReviewOriginal},    
+		food_review_stored = #{foodReviewStored}  
+		WHERE food_review_no = #{foodReviewNo}
+</update>
+
+<delete id="deleteFoodReview" parameterType="Integer">
+	DELETE
+	FROM food_review
+	WHERE food_review_no = #{foodReviewNo}
+</delete>
+
+<select id="selectfoodReviewAnswerNo" resultType="Integer">
+		select count(food_review_answer_no)
+		from food_review_answer
+</select>
+
+
+<insert id="insertFoodReviewAnswer" parameterType="FoodReviewAnswer">
+		INSERT INTO FOOD_REVIEW_ANSWER(
+		FOOD_REVIEW_NO,
+		MEMBER_EMAIL,
+		FOOD_NO,
+		SELLER_EMAIL,
+		FOOD_REVIEW_ANSWER_NO,
+		FOOD_CAT_A_NO,
+		FOOD_CAT_B_NO,
+		FOOD_CAT_C_NO,
+		FOOD_REVIEW_ANSWER_CONTENT,
+		FOOD_REVIEW_ANSWER_REGDATE
+		)
+		VALUES(
+		#{foodReviewNo},
+		#{memberEmail},
+		#{foodNo}, 
+		#{sellerEmail},
+		#{foodReviewAnswerNo}, 
+		#{foodCatANo}, 
+		#{foodCatBNo}, 
+		#{foodCatCNo}, 
+		#{foodReviewAnswerContent},
+		#{foodReviewAnswerRegdate}
+		)
+</insert>
+
+<update id="updateFoodReviewAnswer" parameterType="FoodReviewAnswer">
+		UPDATE food_review_answer
+		SET
+		food_review_no = #{foodReviewNo},
+		member_email = #{memberEmail},
+		food_no = #{foodNo},
+		seller_email = #{sellerEmail},
+		food_review_answer_no= #{foodReviewAnswerNo},
+		food_cat_a_no = #{foodCatANo},
+		food_cat_b_no = #{foodCatBNo},
+		food_cat_c_no = #{foodCatCNo},  
+		food_review_answer_content = #{foodReviewAnswerContent},   
+		food_review_answer_regdate = #{foodReviewAnswerRegdate}
+		WHERE food_review_answer_no = #{foodReviewAnswerNo}
+</update>
+
+
 </mapper>

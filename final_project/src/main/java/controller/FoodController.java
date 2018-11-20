@@ -15,7 +15,10 @@ import category.FoodCatA;
 import category.FoodCatB;
 import category.FoodCatC;
 import command.FoodRegCommand;
+import command.FoodReviewAnswerUpdateCommand;
+import command.FoodReviewAnswerWriteCommand;
 import command.FoodReviewReportWriteCommand;
+import command.FoodReviewUpdateCommand;
 import command.FoodReviewWriteCommand;
 import command.FoodUpdateCommand;
 import service.FoodService;
@@ -95,14 +98,14 @@ public class FoodController {
 	
 	@RequestMapping(value="/food_delete.gom", method=RequestMethod.GET)
     public String foodDelete(@RequestParam("foodNo")int foodNo, Model model) {
-//		System.out.println("cntlr foodDelete foodNo : " + foodNo);
+		System.out.println("cntlr foodDelete foodNo : " + foodNo);
 		foodService.deleteFood(foodNo);
 		return "redirect:/index";
 	}
 	
 	@RequestMapping(value="/food_detail.gom", method=RequestMethod.GET)
     public String foodDetail(@RequestParam("foodNo")int foodNo, Model model) {
-//		System.out.println("cntlr foodDetail foodNo : " + foodNo);
+		System.out.println("cntlr foodDetail foodNo : " + foodNo);
 		foodService.selectFood(foodNo, model);
 		foodService.selectReviewAndAnswer(foodNo, model);
 		model.addAttribute("iPage", "food/food_detail.jsp");
@@ -112,8 +115,8 @@ public class FoodController {
 	
 	@RequestMapping(value="/food_reviewWrite.gom", method=RequestMethod.GET)
     public String foodReviewWriteForm(FoodReviewWriteCommand foodReviewWriteCommand, Model model, HttpSession session) {
-//		System.out.println("cntlr foodReviewWriteForm foodNo : " + foodReviewWriteCommand.getFoodNo());
-		foodService.selectReviewFood(foodReviewWriteCommand, model);
+		System.out.println("cntlr foodReviewWriteForm foodNo : " + foodReviewWriteCommand.getFoodNo());
+		foodService.selectReviewFood(foodReviewWriteCommand);
 		if(session.getAttribute("email") != null) {
 			model.addAttribute("iPage", "food/food_reviewWrite.jsp");
 			return "index";
@@ -124,18 +127,105 @@ public class FoodController {
 	
 	@RequestMapping(value="/food_reviewWrite.gom", method=RequestMethod.POST)
 	public String foodReviewWriteSubmit(FoodReviewWriteCommand foodReviewWriteCommand, Model model, HttpSession session) { 
-//		System.out.println("cntlr foodReviewWriteSubmit foodNo : " + foodReviewWriteCommand.getFoodNo());
-//		System.out.println("cntlr foodReviewWriteSubmit sellerEmail : " + foodReviewWriteCommand.getSellerEmail());
+		System.out.println("cntlr foodReviewWriteSubmit foodNo : " + foodReviewWriteCommand.getFoodNo());
+		System.out.println("cntlr foodReviewWriteSubmit sellerEmail : " + foodReviewWriteCommand.getSellerEmail());
         foodService.insertFoodReview(foodReviewWriteCommand, model, session);
         return "redirect:/index";
 	}
 	
+	
+	@RequestMapping(value="/food_reviewUpdate.gom", method=RequestMethod.GET)
+    public String foodReviewUpdateForm(FoodReviewUpdateCommand foodReviewUpdateCommand, Model model, HttpSession session) {
+		System.out.println("cntlr foodReviewUpdateForm foodReviewNo : " + foodReviewUpdateCommand.getFoodReviewNo());
+		System.out.println("cntlr foodReviewUpdateForm foodNo : " + foodReviewUpdateCommand.getFoodNo());
+		foodService.selectReviewUpdateFood(foodReviewUpdateCommand);
+		if(session.getAttribute("email") != null) {
+			model.addAttribute("iPage", "food/food_reviewUpdate.jsp");
+			return "index";
+		}else {
+			return "redirect:/index";
+		}
+	}
+	
+	@RequestMapping(value="/food_reviewUpdate.gom", method=RequestMethod.POST)
+	public String foodReviewUpdateSubmit(FoodReviewUpdateCommand foodReviewUpdateCommand, Model model, HttpSession session) { 
+		System.out.println("cntlr foodReviewUpdateSubmit foodReviewNo : " + foodReviewUpdateCommand.getFoodReviewNo());
+		System.out.println("cntlr foodReviewUpdateSubmit sellerEmail : " + foodReviewUpdateCommand.getSellerEmail());
+        foodService.updateFoodReview(foodReviewUpdateCommand, model, session);
+        return "redirect:/index";
+	}
+	
+	@RequestMapping(value="/food_reviewDelete.gom", method=RequestMethod.GET)
+    public String foodReviewDelete(@RequestParam("foodReviewNo")int foodReviewNo, Model model) {
+		System.out.println("cntlr foodReviewDelete foodReviewNo : " + foodReviewNo);
+		foodService.deleteFoodReview(foodReviewNo);
+		return "redirect:/index";
+	}
+	
+	
+	
+	@RequestMapping(value="/food_reviewAnswerWrite.gom", method=RequestMethod.GET)
+    public String foodReviewAnswerWriteForm(FoodReviewAnswerWriteCommand foodReviewAnswerWriteCommand, HttpSession session, Model model) {
+		System.out.println("cntlr foodReviewAnswerWrite foodReviewNo : " + foodReviewAnswerWriteCommand.getFoodReviewNo());
+		System.out.println("cntlr foodReviewAnswerWrite foodNo : " + foodReviewAnswerWriteCommand.getFoodNo());
+		System.out.println("cntlr foodReviewAnswerWrite memberEmail : " + foodReviewAnswerWriteCommand.getMemberEmail());
+		foodService.selectReviewAnswerFood(foodReviewAnswerWriteCommand);
+		if(session.getAttribute("email") != null) {
+			model.addAttribute("iPage", "food/food_reviewAnswerWrite.jsp");
+			return "index";
+		}else {
+			return "redirect:/index";
+		}
+	}
+	
+	@RequestMapping(value="/food_reviewAnswerWrite.gom", method=RequestMethod.POST)
+	public String foodReviewAnswerWriteSubmit(FoodReviewAnswerWriteCommand foodReviewAnswerWriteCommand, Model model) { 
+		System.out.println("cntlr foodReviewAnswerWriteSubmit FoodReviewNo : " + foodReviewAnswerWriteCommand.getFoodReviewNo());
+		System.out.println("cntlr foodReviewAnswerWriteSubmit SellerEmail : " + foodReviewAnswerWriteCommand.getSellerEmail());
+		System.out.println("cntlr foodReviewAnswerWriteSubmit memberEmail : " + foodReviewAnswerWriteCommand.getMemberEmail());
+		foodService.insertFoodReviewAnswer(foodReviewAnswerWriteCommand, model);
+        return "redirect:/index";
+	}
+	
+//	foodReviewNo foodNo memberEmail
+	@RequestMapping(value="/food_reviewAnswerUpdate.gom", method=RequestMethod.GET)
+    public String foodReviewAnswerUpdateForm(FoodReviewAnswerUpdateCommand foodReviewAnswerUpdateCommand, Model model, HttpSession session) {
+		System.out.println("cntlr foodReviewAnswerUpdateForm foodReviewNo : " + foodReviewAnswerUpdateCommand.getFoodReviewNo());
+		System.out.println("cntlr foodReviewAnswerUpdateForm foodNo : " + foodReviewAnswerUpdateCommand.getFoodNo());
+		System.out.println("cntlr foodReviewAnswerUpdateForm memberEmail : " + foodReviewAnswerUpdateCommand.getMemberEmail());
+		System.out.println("cntlr foodReviewAnswerUpdateForm foodReviewAnswerNo : " + foodReviewAnswerUpdateCommand.getFoodReviewAnswerNo());
+		foodService.selectReviewAnswerUpdateFood(foodReviewAnswerUpdateCommand);
+		if(session.getAttribute("email") != null) {
+			model.addAttribute("iPage", "food/food_reviewAnswerUpdate.jsp");
+			return "index";
+		}else {
+			return "redirect:/index";
+		}
+	}
+	
+	@RequestMapping(value="/food_reviewAnswerUpdate.gom", method=RequestMethod.POST)
+	public String foodReviewAnswerUpdateSubmit(FoodReviewAnswerUpdateCommand foodReviewAnswerUpdateCommand, Model model) { 
+		System.out.println("cntlr foodReviewAnswerUpdateSubmit foodReviewNo : " + foodReviewAnswerUpdateCommand.getFoodReviewNo());
+		System.out.println("cntlr foodReviewAnswerUpdateSubmit SellerEmail : " + foodReviewAnswerUpdateCommand.getSellerEmail());
+		System.out.println("cntlr foodReviewAnswerUpdateSubmit memberEmail : " + foodReviewAnswerUpdateCommand.getMemberEmail());
+		foodService.updateFoodReviewAnswer(foodReviewAnswerUpdateCommand, model);
+        return "redirect:/index";
+	}
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value="/food_reviewReportWrite.gom", method=RequestMethod.GET)
     public String foodReviewReportWrite(FoodReviewReportWriteCommand foodReviewReportWriteCommand, Model model) {
-//		System.out.println("cntlr foodReviewReportWrite foodReviewNo : " + foodReviewReportWriteCommand.getFoodReviewNo());
+		System.out.println("cntlr foodReviewReportWrite foodReviewNo : " + foodReviewReportWriteCommand.getFoodReviewNo());
 		model.addAttribute("iPage", "food/food_reviewReportWrite.jsp");
 		return "index";
 	}
+	
+	
 	
 	
 	

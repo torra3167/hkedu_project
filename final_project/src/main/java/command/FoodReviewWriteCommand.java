@@ -16,7 +16,6 @@ public class FoodReviewWriteCommand implements Serializable{
 	private int foodCatCNo;
 	private Date foodReviewRegdate;
 	private String foodReviewFoodName;
-	private String foodReviewOrderdate;
 	private String foodReviewScore;
 	private String foodReviewTitle;
 	private String foodReviewComment;
@@ -24,9 +23,8 @@ public class FoodReviewWriteCommand implements Serializable{
 	public FoodReviewWriteCommand() {
 	}
 	public FoodReviewWriteCommand(int foodReviewNo, String memberEmail, int foodNo, String sellerEmail, int foodCatANo,
-			int foodCatBNo, int foodCatCNo, Date foodReviewRegdate, String foodReviewFoodName,
-			String foodReviewOrderdate, String foodReviewScore, String foodReviewTitle, String foodReviewComment,
-			MultipartFile foodReviewImage) {
+			int foodCatBNo, int foodCatCNo, Date foodReviewRegdate, String foodReviewFoodName, String foodReviewScore,
+			String foodReviewTitle, String foodReviewComment, MultipartFile foodReviewImage) {
 		this.foodReviewNo = foodReviewNo;
 		this.memberEmail = memberEmail;
 		this.foodNo = foodNo;
@@ -36,7 +34,6 @@ public class FoodReviewWriteCommand implements Serializable{
 		this.foodCatCNo = foodCatCNo;
 		this.foodReviewRegdate = foodReviewRegdate;
 		this.foodReviewFoodName = foodReviewFoodName;
-		this.foodReviewOrderdate = foodReviewOrderdate;
 		this.foodReviewScore = foodReviewScore;
 		this.foodReviewTitle = foodReviewTitle;
 		this.foodReviewComment = foodReviewComment;
@@ -87,20 +84,14 @@ public class FoodReviewWriteCommand implements Serializable{
 	public Date getFoodReviewRegdate() {
 		return foodReviewRegdate;
 	}
-	public void setFoodReviewRegdate(Date date) {
-		this.foodReviewRegdate = date;
+	public void setFoodReviewRegdate(Date foodReviewRegdate) {
+		this.foodReviewRegdate = foodReviewRegdate;
 	}
 	public String getFoodReviewFoodName() {
 		return foodReviewFoodName;
 	}
 	public void setFoodReviewFoodName(String foodReviewFoodName) {
 		this.foodReviewFoodName = foodReviewFoodName;
-	}
-	public String getFoodReviewOrderdate() {
-		return foodReviewOrderdate;
-	}
-	public void setFoodReviewOrderdate(String foodReviewOrderdate) {
-		this.foodReviewOrderdate = foodReviewOrderdate;
 	}
 	public String getFoodReviewScore() {
 		return foodReviewScore;

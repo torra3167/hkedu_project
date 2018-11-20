@@ -1,37 +1,35 @@
-package model;
+package command;
 
 import java.io.Serializable;
 import java.util.Date;
 
 @SuppressWarnings("serial")
-public class FoodReviewReport implements Serializable {
+public class FoodReviewAnswerUpdateCommand implements Serializable{
 	private int foodReviewNo;
 	private String memberEmail;
 	private int foodNo;
 	private String sellerEmail;
+	private int foodReviewAnswerNo;
 	private int foodCatANo;
 	private int foodCatBNo;
 	private int foodCatCNo;
-	private String foodReportTitle;
-	private int foodReportContent;
-	private String foodReportWriter;
-	private Date foodReportRegdate;
-	public FoodReviewReport() {
+	private String foodReviewAnswerContent;
+	private Date foodReviewAnswerRegdate;
+	public FoodReviewAnswerUpdateCommand() {
 	}
-	public FoodReviewReport(int foodReviewNo, String memberEmail, int foodNo, String sellerEmail, int foodCatANo,
-			int foodCatBNo, int foodCatCNo, String foodReportTitle, int foodReportContent, String foodReportWriter,
-			Date foodReportRegdate) {
+	public FoodReviewAnswerUpdateCommand(int foodReviewNo, String memberEmail, int foodNo, String sellerEmail,
+			int foodReviewAnswerNo, int foodCatANo, int foodCatBNo, int foodCatCNo, String foodReviewAnswerContent,
+			Date foodReviewAnswerRegdate) {
 		this.foodReviewNo = foodReviewNo;
 		this.memberEmail = memberEmail;
 		this.foodNo = foodNo;
 		this.sellerEmail = sellerEmail;
+		this.foodReviewAnswerNo = foodReviewAnswerNo;
 		this.foodCatANo = foodCatANo;
 		this.foodCatBNo = foodCatBNo;
 		this.foodCatCNo = foodCatCNo;
-		this.foodReportTitle = foodReportTitle;
-		this.foodReportContent = foodReportContent;
-		this.foodReportWriter = foodReportWriter;
-		this.foodReportRegdate = foodReportRegdate;
+		this.foodReviewAnswerContent = foodReviewAnswerContent;
+		this.foodReviewAnswerRegdate = foodReviewAnswerRegdate;
 	}
 	public int getFoodReviewNo() {
 		return foodReviewNo;
@@ -57,6 +55,12 @@ public class FoodReviewReport implements Serializable {
 	public void setSellerEmail(String sellerEmail) {
 		this.sellerEmail = sellerEmail;
 	}
+	public int getFoodReviewAnswerNo() {
+		return foodReviewAnswerNo;
+	}
+	public void setFoodReviewAnswerNo(int foodReviewAnswerNo) {
+		this.foodReviewAnswerNo = foodReviewAnswerNo;
+	}
 	public int getFoodCatANo() {
 		return foodCatANo;
 	}
@@ -75,29 +79,17 @@ public class FoodReviewReport implements Serializable {
 	public void setFoodCatCNo(int foodCatCNo) {
 		this.foodCatCNo = foodCatCNo;
 	}
-	public String getFoodReportTitle() {
-		return foodReportTitle;
+	public String getFoodReviewAnswerContent() {
+		return foodReviewAnswerContent;
 	}
-	public void setFoodReportTitle(String foodReportTitle) {
-		this.foodReportTitle = foodReportTitle;
+	public void setFoodReviewAnswerContent(String foodReviewAnswerContent) {
+		this.foodReviewAnswerContent = foodReviewAnswerContent;
 	}
-	public int getFoodReportContent() {
-		return foodReportContent;
+	public Date getFoodReviewAnswerRegdate() {
+		return foodReviewAnswerRegdate;
 	}
-	public void setFoodReportContent(int foodReportContent) {
-		this.foodReportContent = foodReportContent;
-	}
-	public String getFoodReportWriter() {
-		return foodReportWriter;
-	}
-	public void setFoodReportWriter(String foodReportWriter) {
-		this.foodReportWriter = foodReportWriter;
-	}
-	public Date getFoodReportRegdate() {
-		return foodReportRegdate;
-	}
-	public void setFoodReportRegdate(Date foodReportRegdate) {
-		this.foodReportRegdate = foodReportRegdate;
+	public void setFoodReviewAnswerRegdate(Date foodReviewAnswerRegdate) {
+		this.foodReviewAnswerRegdate = foodReviewAnswerRegdate;
 	}
 	
 	
