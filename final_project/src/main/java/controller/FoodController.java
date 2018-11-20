@@ -187,7 +187,7 @@ public class FoodController {
         return "redirect:/index";
 	}
 	
-//	foodReviewNo foodNo memberEmail
+
 	@RequestMapping(value="/food_reviewAnswerUpdate.gom", method=RequestMethod.GET)
     public String foodReviewAnswerUpdateForm(FoodReviewAnswerUpdateCommand foodReviewAnswerUpdateCommand, Model model, HttpSession session) {
 		System.out.println("cntlr foodReviewAnswerUpdateForm foodReviewNo : " + foodReviewAnswerUpdateCommand.getFoodReviewNo());
@@ -214,8 +214,15 @@ public class FoodController {
 	
 	
 	
+	@RequestMapping(value="/food_reviewAnswerDelete.gom", method=RequestMethod.GET)
+    public String foodReviewAnswerDelete(@RequestParam("foodReviewAnswerNo")int foodReviewAnswerNo, Model model) {
+		System.out.println("cntlr foodReviewAnswerDelete foodReviewAnswerNo : " + foodReviewAnswerNo);
+		foodService.deleteFoodReviewAnswer(foodReviewAnswerNo);
+		return "redirect:/index";
+	}
 	
 	
+
 	
 	
 	@RequestMapping(value="/food_reviewReportWrite.gom", method=RequestMethod.GET)

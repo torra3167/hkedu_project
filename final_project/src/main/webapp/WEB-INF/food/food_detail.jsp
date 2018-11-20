@@ -141,7 +141,7 @@
 						            <div class="col-6 text-left"><small><%=foodReviewAndAnswer.getSellerEmail() %></small></div>
 						            <div class="col-4 text-right"><%=foodReviewAnswer.getFoodReviewAnswerRegdate() %></div>
 						            <div class="col-1 text-right"><a class="" href="food_reviewAnswerUpdate.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>&memberEmail=<%=foodReviewAndAnswer.getMemberEmail() %>&foodReviewAnswerNo=<%=foodReviewAnswer.getFoodReviewAnswerNo() %>">수정</a></div>
-						            <div class="col-1 text-right"><a class="" href="food_reviewAnswerDelete.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>&memberEmail=<%=foodReviewAndAnswer.getMemberEmail() %>">삭제</a></div>
+						            <div class="col-1 text-right"><a class="" href="food_reviewAnswerDelete.gom?foodReviewAnswerNo=<%=foodReviewAnswer.getFoodReviewAnswerNo() %>">삭제</a></div>
 						          </div>
 						        </div>
 						        <div class="card-body">
