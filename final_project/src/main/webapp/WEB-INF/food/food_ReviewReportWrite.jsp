@@ -17,7 +17,7 @@
 <div class="container">
           <h5>식품리뷰 신고</h5>
           <div class="body">
-            <form:form action="food_reviewReportWrite.gom" method="post">
+            <form:form action="food_reviewReportWrite.gom" method="post" commandName="foodReviewReportWriteCommand">
               <div class="form-row">
                 <div class="form-group col-sm-6">
                 	<label>제목</label>

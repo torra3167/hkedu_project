@@ -1,10 +1,12 @@
-package model;
+package command;
 
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @SuppressWarnings("serial")
-public class FoodReview implements Serializable {
+public class FoodReviewUpdateCommand implements Serializable{
 	private int foodReviewNo;
 	private String memberEmail;
 	private int foodNo;
@@ -14,18 +16,15 @@ public class FoodReview implements Serializable {
 	private int foodCatCNo;
 	private Date foodReviewRegdate;
 	private String foodReviewFoodName;
-	private String foodReviewTitle;
 	private String foodReviewScore;
+	private String foodReviewTitle;
 	private String foodReviewComment;
-	private Long foodReviewSize;
-	private String foodReviewOriginal;
-	private String foodReviewStored;
-	public FoodReview() {
+	private MultipartFile foodReviewImage;
+	public FoodReviewUpdateCommand() {
 	}
-	public FoodReview(int foodReviewNo, String memberEmail, int foodNo, String sellerEmail, int foodCatANo,
-			int foodCatBNo, int foodCatCNo, Date foodReviewRegdate, String foodReviewFoodName,
-			String foodReviewTitle, String foodReviewScore, String foodReviewComment,
-			Long foodReviewSize, String foodReviewOriginal, String foodReviewStored) {
+	public FoodReviewUpdateCommand(int foodReviewNo, String memberEmail, int foodNo, String sellerEmail, int foodCatANo,
+			int foodCatBNo, int foodCatCNo, Date foodReviewRegdate, String foodReviewFoodName, String foodReviewScore,
+			String foodReviewTitle, String foodReviewComment, MultipartFile foodReviewImage) {
 		this.foodReviewNo = foodReviewNo;
 		this.memberEmail = memberEmail;
 		this.foodNo = foodNo;
@@ -35,12 +34,10 @@ public class FoodReview implements Serializable {
 		this.foodCatCNo = foodCatCNo;
 		this.foodReviewRegdate = foodReviewRegdate;
 		this.foodReviewFoodName = foodReviewFoodName;
-		this.foodReviewTitle = foodReviewTitle;
 		this.foodReviewScore = foodReviewScore;
+		this.foodReviewTitle = foodReviewTitle;
 		this.foodReviewComment = foodReviewComment;
-		this.foodReviewSize = foodReviewSize;
-		this.foodReviewOriginal = foodReviewOriginal;
-		this.foodReviewStored = foodReviewStored;
+		this.foodReviewImage = foodReviewImage;
 	}
 	public int getFoodReviewNo() {
 		return foodReviewNo;
@@ -96,17 +93,17 @@ public class FoodReview implements Serializable {
 	public void setFoodReviewFoodName(String foodReviewFoodName) {
 		this.foodReviewFoodName = foodReviewFoodName;
 	}
-	public String getFoodReviewTitle() {
-		return foodReviewTitle;
-	}
-	public void setFoodReviewTitle(String foodReviewTitle) {
-		this.foodReviewTitle = foodReviewTitle;
-	}
 	public String getFoodReviewScore() {
 		return foodReviewScore;
 	}
 	public void setFoodReviewScore(String foodReviewScore) {
 		this.foodReviewScore = foodReviewScore;
+	}
+	public String getFoodReviewTitle() {
+		return foodReviewTitle;
+	}
+	public void setFoodReviewTitle(String foodReviewTitle) {
+		this.foodReviewTitle = foodReviewTitle;
 	}
 	public String getFoodReviewComment() {
 		return foodReviewComment;
@@ -114,24 +111,12 @@ public class FoodReview implements Serializable {
 	public void setFoodReviewComment(String foodReviewComment) {
 		this.foodReviewComment = foodReviewComment;
 	}
-	public Long getFoodReviewSize() {
-		return foodReviewSize;
+	public MultipartFile getFoodReviewImage() {
+		return foodReviewImage;
 	}
-	public void setFoodReviewSize(Long foodReviewSize) {
-		this.foodReviewSize = foodReviewSize;
-	}
-	public String getFoodReviewOriginal() {
-		return foodReviewOriginal;
-	}
-	public void setFoodReviewOriginal(String foodReviewOriginal) {
-		this.foodReviewOriginal = foodReviewOriginal;
-	}
-	public String getFoodReviewStored() {
-		return foodReviewStored;
-	}
-	public void setFoodReviewStored(String foodReviewStored) {
-		this.foodReviewStored = foodReviewStored;
+	public void setFoodReviewImage(MultipartFile foodReviewImage) {
+		this.foodReviewImage = foodReviewImage;
 	}
 	
+	
 }
-
