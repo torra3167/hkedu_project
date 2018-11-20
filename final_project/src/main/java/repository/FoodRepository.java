@@ -217,13 +217,13 @@ public class FoodRepository extends AbstractRepository{
 			List<FoodReviewAndAnswer> result =  sqlSession.selectList(namespace + ".selectReviewAndAnswer", foodNo);
 			for(Object temp : result) {
 				FoodReviewAndAnswer fraa = (FoodReviewAndAnswer)temp;
-				System.out.println("dddddddddddddddddddddddddd : " + fraa.getFoodReviewRegdate());
+				System.out.println("repo selectReviewAndAnswer selectReviewAndAnswer : " + fraa.getFoodReviewRegdate());
 				List<FoodReviewAnswer> fra = fraa.getFoodReviewAnswers();
-				System.out.println("repo selectReviewAndAnswer FoodReviewAnswers : " + fra.size());
-				for(Object temp2 : fra) {
-					FoodReviewAnswer foodReviewAnswer = (FoodReviewAnswer)temp2;
-					System.out.println("repo selectReviewAndAnswer FoodReviewAnswerNo : " + foodReviewAnswer.getFoodReviewAnswerRegdate());
-				}
+				System.out.println("repo selectReviewAndAnswer List<FoodReviewAnswer>fra.size() : " + fra.size());
+//				for(Object temp2 : fra) {
+//					FoodReviewAnswer foodReviewAnswer = (FoodReviewAnswer)temp2;
+//					System.out.println("repo selectReviewAndAnswer getFoodReviewAnswerRegdate : " + foodReviewAnswer.getFoodReviewAnswerRegdate());
+//				}
 			}
 //			System.out.println("repo selectReviewAndAnswer result : " + result);
 		return result;

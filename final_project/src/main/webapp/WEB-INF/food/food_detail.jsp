@@ -8,6 +8,17 @@
 	List<FoodReviewAndAnswer> foodReviewAndAnswers = (List<FoodReviewAndAnswer>)request.getAttribute("foodReviewAndAnswers");
 	//답변보기버튼 구분자
 	int answerButton = 0;
+	
+// 	for(Object temp : foodReviewAndAnswers) {
+// 		FoodReviewAndAnswer fraa = (FoodReviewAndAnswer)temp;
+// 		System.out.println("jsp selectReviewAndAnswer selectReviewAndAnswer : " + fraa.getFoodReviewRegdate());
+// 		List<FoodReviewAnswer> fra = fraa.getFoodReviewAnswers();
+// 		System.out.println("jsp selectReviewAndAnswer FoodReviewAnswers : " + fra.size());
+// 		for(Object temp2 : fra) {
+// 			FoodReviewAnswer foodReviewAnswer = (FoodReviewAnswer)temp2;
+// 			System.out.println("jsp selectReviewAndAnswer getFoodReviewAnswerRegdate : " + foodReviewAnswer.getFoodReviewAnswerRegdate());
+// 		}
+// 	}
 %>
     
 <!DOCTYPE html>
@@ -16,10 +27,6 @@
 <meta charset="UTF-8">
 <title>식품 상세보기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- <script src="../js/jquery.min.js"></script> -->
-<!-- <script src="../js/popper.min.js"></script> -->
-<!-- <script src="../js/bootstrap.min.js"></script> -->
-<!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
 <style type="text/css">
     .regularPrice { text-decoration:line-through }
 </style>
@@ -105,8 +112,8 @@
 			        <div class="card-header bg-light">
 			          <div class="row">
 			            <div class="col-8 text-left"><%=foodReviewAndAnswer.getFoodReviewTitle() %>&nbsp;&nbsp;&nbsp;&nbsp;<small><%=foodReviewAndAnswer.getMemberEmail() %></small></div>
-<%-- 			            <div class="col-4 text-right"><%=foodReviewAndAnswer.getFoodReviewRegdate() %> --%>
-<!-- 			            </div> -->
+			            <div class="col-4 text-right"><%=foodReviewAndAnswer.getFoodReviewRegdate() %>
+			            </div>
 			          </div>
 			        </div>
 			        <div class="card-body">
