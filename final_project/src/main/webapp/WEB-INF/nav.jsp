@@ -38,7 +38,7 @@
 				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동관</a></li>
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
-				<li class="nav-item"><a class="nav-link"
+				
 					
 				<li class="nav-item">
 					<div class="dropdown">
@@ -91,13 +91,13 @@
 
 			<ul class="nav navbar-nav">
 
-				<li class="nav-item"><a class="nav-link" href="#">식품관</a></li>
+				<li class="nav-item"><a class="nav-link" href="food_list.gom">식품관</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="#">운동관</a></li>
+				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동관</a></li>
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="Goods/goodsCartList.jsp">Cart</a></li>
+					href="cart_list.gom">Cart</a></li>
 					
 				<li class="nav-item">
 					<div class="dropdown show">
@@ -154,7 +154,7 @@
 
 			<ul class="nav navbar-nav">
 
-				<li class="nav-item"><a class="nav-link" href="#">식품관</a></li>
+				<li class="nav-item"><a class="nav-link" href="food_list.gom">식품관</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동리스트</a></li>
 				<li class="nav-item"><a class="nav-link" href="program_list.gom">프로그램리스트</a></li>
@@ -216,13 +216,13 @@
 
 			<ul class="nav navbar-nav">
 
-				<li class="nav-item"><a class="nav-link" href="#">식품관</a></li>
+				<li class="nav-item"><a class="nav-link" href="food_list.gom">식품관</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동관</a></li>
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="Goods/goodsCartList.jsp">Cart</a></li>
+					href="cart_list.gom">Cart</a></li>
 					
 				<li class="nav-item">
 					<div class="dropdown show">
@@ -279,13 +279,12 @@
 
 			<ul class="nav navbar-nav">
 
-				<li class="nav-item"><a class="nav-link" href="#">식품관</a></li>
-
+				<li class="nav-item"><a class="nav-link" href="food_list.gom">식품관</a></li>
 				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동관</a></li>
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="Goods/goodsCartList.jsp">Cart</a></li>
+					href="cart_list.gom">Cart</a></li>
 					
 				<li class="nav-item">
 					<div class="dropdown show">
