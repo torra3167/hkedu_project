@@ -11,102 +11,104 @@ import command.MemberJoinCommand;
 import command.MemberSurveyCommand;
 import command.MemberUpdateCommand;
 import command.MemberWithdrawalCommand;
-import model.AuthInfo;
 import model.Member;
 import model.MemberSurvey;
 import repository.MemberRepository;
 
 @Service
 public class MemberService {
-	
+
 	Member member;
 	MemberSurvey survey;
-	
+
 	@Autowired
 	private MemberRepository memberRepository;
 
 	public Integer insertMember(MemberJoinCommand memberJoinCommand) {
-		System.out.println("service " + memberJoinCommand.getMemberEmail());
-		return memberRepository.insertMember(memberJoinCommand);
+		System.out.println("MEMBERSERVICE InsertMember " + memberJoinCommand.getMemberEmail());
+		member = new Member(memberJoinCommand.getMemberEmail(), memberJoinCommand.getMemberName(),
+				memberJoinCommand.getMemberPhone(), memberJoinCommand.getMemberPass(),
+				memberJoinCommand.getMemberAddr1(), memberJoinCommand.getMemberAddr2(),
+				memberJoinCommand.getMemberAddrNo(), memberJoinCommand.getMemberDivide());
+		return memberRepository.insertMember(member);
 	}
 
 	public void findID(FindIDCommand findIDCommand, Model model) {
-		/*System.out.println("service " + findIDCommand.getMemberEmail());
-		Member mb = memberRepository.memberSelect(findIDCommand);
-		int result = 0;
-		if (mb != null) {
-			if (!mb.getMemberPass().equals(findIDCommand.getMemberPass())) {
-				result = 2;
-			} else {
-				result = 3;
-			}
-		} else {
-			result = 1;
-		}
-		model.addAttribute("result", result);*/
-		
-		member=new Member();
+		member = new Member();
 		member.setMemberName(findIDCommand.getMemberName());
-		System.out.println("memberservice "+findIDCommand.getMemberName());
+		System.out.println("MEMBERSERVICE FindID " + findIDCommand.getMemberName());
 		member.setMemberPhone(findIDCommand.getMemberPhone());
-		System.out.println("memberservice "+findIDCommand.getMemberPhone());
-		String i= memberRepository.selectByNameAndPhone(member);
-		System.out.println("11111 : " + i);
-		model.addAttribute("findEmail",i);
-	
+		System.out.println("MEMBERSERVICE FindID " + findIDCommand.getMemberPhone());
+		String i = memberRepository.selectByNameAndPhone(member);
+		model.addAttribute("findEmail", i);
+
 	}
-
-
 
 	public Member memberInfo(String email) {
-		Member member=memberRepository.selectByEmail(email);
+		Member member = memberRepository.selectByEmail(email);
+		System.out.println("MEMBERSERVICE MemberInfo " + email);
 		return member;
 	}
-	
-	public boolean survey1Write(MemberSurveyCommand memberSurveyCommand) {
-		Integer result=memberRepository.selectSurveyNo();
-		System.out.println("SURVEY No "+memberSurveyCommand.getSurvNo());
-		if(result==0) {
-			result=1;
-		}else {
-			result=result+1;
-		}
-		try {
-		survey=new MemberSurvey(result, member.getMemberEmail(), memberSurveyCommand.getSurvHeight(), memberSurveyCommand.getSurvWeight(),
-				memberSurveyCommand.getSurvEat(), memberSurveyCommand.getSurvBMI(), memberSurveyCommand.getSurvSex(), memberSurveyCommand.getSurvAge(),
-				memberSurveyCommand.getSurvLifestyle(), memberSurveyCommand.getSurvPhoto(), memberSurveyCommand.getSurvShape(), memberSurveyCommand.getSurvDisease(),
-				memberSurveyCommand.getSurvConcern(), memberSurveyCommand.getSurvCause(), memberSurveyCommand.getSurvCareer());
-		int i=memberRepository.survey1Write(survey);
-		if(i>0) {
-			System.out.println("SURVEY INSERT "+survey.getSurvNo());
-			return true;
-		}else {
-			System.out.println("SURVEY INSERT FALE");
-		}
-		}catch(Exception e) {
-			
-		}
-		return false;
-	}
-
-//	public Integer surveyWrite(MemberSurveyCommand memberSurveyCommand) {
-//		System.out.println("service "+memberSurveyCommand.getSurvNo());
-//		return memberRepository.survey2Write(memberSurveyCommand);
-//	}
 
 	public Integer updateMember(MemberUpdateCommand memberUpdateCommand) {
-		System.out.println("service updateMember "+memberUpdateCommand.getMemberEmail());
-		
-		Member member=new Member(memberUpdateCommand.getMemberEmail(), memberUpdateCommand.getMemberName(), memberUpdateCommand.getMemberPhone(), memberUpdateCommand.getMemberPass(), memberUpdateCommand.getMemberAddr1(), memberUpdateCommand.getMemberAddr2(), memberUpdateCommand.getMemberAddrNo());
+		System.out.println("MEMBERSERVICE UpdateMember " + memberUpdateCommand.getMemberEmail());
+		Member member = new Member(memberUpdateCommand.getMemberEmail(), memberUpdateCommand.getMemberName(),
+				memberUpdateCommand.getMemberPhone(), memberUpdateCommand.getMemberPass(),
+				memberUpdateCommand.getMemberAddr1(), memberUpdateCommand.getMemberAddr2(),
+				memberUpdateCommand.getMemberAddrNo());
 		return memberRepository.updateMember(member);
 	}
 
 	public Integer deleteMember(MemberWithdrawalCommand memberWithdrawalCommand, HttpSession session) {
-		String email=(String)session.getAttribute("email");
-		member=memberRepository.selectByEmail(email);
-		
-		int result=memberRepository.deleteMember(member);
+		String email = (String) session.getAttribute("email");
+		System.out.println("MEMBERSERVICE DeleteMember " + memberWithdrawalCommand.getMemberEmail());
+		member = memberRepository.selectByEmail(email);
+		int result = memberRepository.deleteMember(member);
 		return result;
 	}
 
+	public Integer insertSurvey1(MemberSurveyCommand memberSurveyCommand) {
+		Integer result = memberRepository.selectSurveyNo();
+		System.out.println("MEMBERSERVICE InsertSurvey1 " + memberSurveyCommand.getSurvNo());
+		if (result == 0) {
+			result = 1;
+		} else {
+			result = result + 1;
+		}
+		survey = new MemberSurvey(result, member.getMemberEmail(), memberSurveyCommand.getSurvHeight(),
+				memberSurveyCommand.getSurvWeight(), memberSurveyCommand.getSurvEat(), memberSurveyCommand.getSurvBMI(),
+				memberSurveyCommand.getSurvSex(), memberSurveyCommand.getSurvAge(),
+				memberSurveyCommand.getSurvLifestyle(), memberSurveyCommand.getSurvPhoto(),
+				memberSurveyCommand.getSurvShape(), memberSurveyCommand.getSurvDisease(),
+				memberSurveyCommand.getSurvConcern(), memberSurveyCommand.getSurvCause(),
+				memberSurveyCommand.getSurvCareer());
+		Integer i = memberRepository.insertSurvey1(survey);
+		if (i > 0) {
+			System.out.println("SURVEY INSERT " + survey.getSurvNo());
+		} else {
+			System.out.println("SURVEY INSERT FALE");
+		}
+		return i;
+	}
+	
+	public MemberSurvey memberSurvey(String email) {
+		MemberSurvey memberSurvey=memberRepository.selectSurvByEmail(email);
+		System.out.println("MEMBERSERVICE MemberSurvey " + email);
+		return memberSurvey;
+	}
+	
+	public Integer updateSurvey2(MemberSurveyCommand memberSurveyCommand) {
+		MemberSurvey memberSurvey = new MemberSurvey(memberSurveyCommand.getSurvSex(),
+				memberSurveyCommand.getSurvLifestyle(), memberSurveyCommand.getSurvPhoto(),
+				memberSurveyCommand.getSurvShape(), memberSurveyCommand.getSurvDisease(),
+				memberSurveyCommand.getSurvConcern(), memberSurveyCommand.getSurvCause(),
+				memberSurveyCommand.getSurvCareer());
+		Integer i=memberRepository.updateSurvey2(memberSurvey);
+		if(i>0) {
+			System.out.println("SURVEY UPDATE");
+		}else {
+			System.out.println("SURVEY UPDATE FALE");
+		}
+		return null;
+	}
 }

@@ -10,20 +10,13 @@
 <html>
 <head>
 <title>설문지</title>
-<link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="../css/1027.css">
 </head>
 <script type="text/javascript">
 	
 </script>
 <body>
 	<div class="container mt-3">
-		<form:form commandName="memberSurvey">
+		<form:form commandName="memberSurveyCommand">
 			<form:hidden path="survNo" value="<%= survey.getSurvNo() %>"/>
 			<form:hidden path="memberEmail" value=""/>
 			<div class="form-group">
@@ -45,13 +38,14 @@
 					<option value="2">2</option>
 				</select>
 			</div>
-			<form:hidden path="survAge" value=null/>
+			<form:hidden path="survSex" value=null/>
 			<form:hidden path="survLifestyle" value=null/>
 			<form:hidden path="survPhoto" value=null/>
 			<form:hidden path="survShape" value=null/>
 			<form:hidden path="survDisease" value=null/>
 			<form:hidden path="survConcern" value=null/>
-			<button type="submit" class="btn btn-primary">완료</button>
+			
+			<button type="button" class="btn btn-primary" onclick="">완료</button>
 			<button type="reset" class="btn btn-secondary">다시 작성</button>
 			<button type="button" class="btn btn-secondary">뒤로가기</button>
 		</form:form>>

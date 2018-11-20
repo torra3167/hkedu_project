@@ -23,6 +23,18 @@ public class MemberSurvey implements Serializable {
 	public MemberSurvey() {
 		
 	}
+	public MemberSurvey(String survSex, String survLifestyle, String survPhoto, String survShape,
+			String survDisease, String survConcern, String survCause, String survCareer) {
+		super();
+		this.survSex = survSex;
+		this.survLifestyle = survLifestyle;
+		this.survPhoto = survPhoto;
+		this.survShape = survShape;
+		this.survDisease = survDisease;
+		this.survConcern = survConcern;
+		this.survCause = survCause;
+		this.survCareer = survCareer;
+	}
 	
 	public MemberSurvey(int survNo, String memberEmail, int survHeight, int survWeight, String survEat, int survBMI,
 			String survSex, int survAge, String survLifestyle, String survPhoto, String survShape, String survDisease,

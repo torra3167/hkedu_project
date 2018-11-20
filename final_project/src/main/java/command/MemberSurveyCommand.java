@@ -24,6 +24,42 @@ public class MemberSurveyCommand implements Serializable {
 		
 	}
 	
+	public MemberSurveyCommand(String survSex, String survLifestyle, String survPhoto, String survShape,
+			String survDisease, String survConcern, String survCause, String survCareer) {
+		super();
+		this.survSex = survSex;
+		this.survLifestyle = survLifestyle;
+		this.survPhoto = survPhoto;
+		this.survShape = survShape;
+		this.survDisease = survDisease;
+		this.survConcern = survConcern;
+		this.survCause = survCause;
+		this.survCareer = survCareer;
+	}
+
+	public MemberSurveyCommand(int survNo, String memberEmail, int survHeight, int survWeight, String survEat,
+			int survBMI, String survSex, int survAge, String survLifestyle, String survPhoto, String survShape,
+			String survDisease, String survConcern, String survCause, String survCareer) {
+		super();
+		this.survNo = survNo;
+		this.memberEmail = memberEmail;
+		this.survHeight = survHeight;
+		this.survWeight = survWeight;
+		this.survEat = survEat;
+		this.survBMI = survBMI;
+		this.survSex = survSex;
+		this.survAge = survAge;
+		this.survLifestyle = survLifestyle;
+		this.survPhoto = survPhoto;
+		this.survShape = survShape;
+		this.survDisease = survDisease;
+		this.survConcern = survConcern;
+		this.survCause = survCause;
+		this.survCareer = survCareer;
+	}
+
+
+
 	public int getSurvNo() {
 		return survNo;
 	}

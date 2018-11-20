@@ -36,10 +36,10 @@
 
                 <li class="nav-item"><a class="nav-link" href="food_list.gom">식품관</a></li>
 				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동관</a></li>
-				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
-						상품진단</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="cart_list.gom">Cart</a></li>
+				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는	상품진단</a></li>
+				<li class="nav-item"><a class="nav-link" href="cart_list.gom">Cart</a></li>
+				<li class="nav-item"><a class="nav-link" href="main/noticeBoard.jsp">공지사항</a> </li>
+				<li class="nav-item"><a class="nav-link" href="personalQna.gom" >1:1문의</a></li>
 					
 				<li class="nav-item">
 					<div class="dropdown">
@@ -48,7 +48,7 @@
 							고객센터 </a>
 						<div class="dropdown-menu" aria-labelledby="dropdown">
 							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a> 
-							<a class="dropdown-item" href="main/contact.jsp" >1:1문의</a>
+							<a class="dropdown-item" href="personalQna.gom" >1:1문의</a>
 						</div>
 					</div>
 				</li>				
@@ -95,19 +95,18 @@
 				<li class="nav-item"><a class="nav-link" href="food_list.gom">식품관</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="#">운동관</a></li>
-				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
-						상품진단</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="cart_list.gom">Cart</a></li>
+				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는	상품 진단</a></li>
+				<li class="nav-item"><a class="nav-link" href="cart_list.gom">Cart</a></li>
+				<li class="nav-item"><a class="nav-link" href="main/noticeBoard.jsp">공지사항</a> </li>
+				<li class="nav-item"><a class="nav-link" href="personalQna.gom" >1:1문의</a></li>
 					
 				<li class="nav-item">
 					<div class="dropdown show">
-						<a class="nav-link dropdown-toggle" id="dropdown"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							고객센터 </a>
 						<div class="dropdown-menu" aria-labelledby="dropdown">
 							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a> 
-							<a class="dropdown-item" href="main/contact.jsp" >1:1문의</a>
+							<a class="dropdown-item" href="personalQna.gom" >1:1문의</a>
 						</div>
 					</div>
 				</li>				
@@ -169,7 +168,7 @@
 							고객센터 </a>
 						<div class="dropdown-menu" aria-labelledby="dropdown">
 							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a> 
-							<a class="dropdown-item" href="main/contact.jsp" >1:1문의</a>
+							<a class="dropdown-item" href="personalQna.gom" >1:1문의</a>
 						</div>
 					</div>
 				</li>				
@@ -232,7 +231,7 @@
 							고객센터 </a>
 						<div class="dropdown-menu" aria-labelledby="dropdown">
 							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a> 
-							<a class="dropdown-item" href="main/contact.jsp" >1:1문의</a>
+							<a class="dropdown-item" href="personalQna.gom" >1:1문의</a>
 						</div>
 					</div>
 				</li>				
@@ -295,7 +294,7 @@
 							고객센터 </a>
 						<div class="dropdown-menu" aria-labelledby="dropdown">
 							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a> 
-							<a class="dropdown-item" href="main/contact.jsp" >1:1문의</a>
+							<a class="dropdown-item" href="personalQna.gom" >1:1문의</a>
 						</div>
 					</div>
 				</li>				

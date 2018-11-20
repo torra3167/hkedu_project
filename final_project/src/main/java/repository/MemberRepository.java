@@ -3,10 +3,6 @@ package repository;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.sun.javafx.css.CssError.InlineStyleParsingError;
-
-import command.MemberJoinCommand;
-import command.MemberSurveyCommand;
 import model.Member;
 import model.MemberSurvey;
 
@@ -15,12 +11,12 @@ public class MemberRepository extends AbstractRepository {
 
 	private final String namespace = "repository.mapper.memberMapper";
 
-	public Integer insertMember(MemberJoinCommand memberJoinCommand) {
+	public Integer insertMember(Member member) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		String statement = namespace + ".insertMember";
 		try {
-			System.out.println("repository " + memberJoinCommand.getMemberEmail());
-			Integer result = sqlSession.insert(statement, memberJoinCommand);
+			System.out.println("MEMBERREPOSITORY InsertMember " + member.getMemberEmail());
+			Integer result = sqlSession.insert(statement, member);
 			if (result > 0) {
 				sqlSession.commit();
 			}
@@ -33,7 +29,7 @@ public class MemberRepository extends AbstractRepository {
 	public Member memberSelect(Member member) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		String statement = namespace + ".memberSelect";
-		System.out.println("Repository " + member.getMemberEmail());
+		System.out.println("MEMBERREPOSITORY MemberSelect " + member.getMemberEmail());
 		try {
 			return sqlSession.selectOne(statement, member);
 		} finally {
@@ -41,50 +37,12 @@ public class MemberRepository extends AbstractRepository {
 		}
 	}
 
-	public Integer survey1Write(MemberSurvey survey) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		String statement = namespace + ".survey1Write";
-		try {
-			System.out.println("repository " + survey.getSurvNo());
-			Integer result = sqlSession.insert(statement, survey);
-			if (result > 0) {
-				sqlSession.commit();
-			}
-			return result;
-		} finally {
-			sqlSession.close();
-		}
-	}
-//
-//	public Integer survey2Write(MemberSurveyCommand memberSurveyCommand) {
-//		SqlSession sqlSession=getSqlSessionFactory().openSession();
-//		String statement=namespace+".survey2Write";
-//		try {
-//			System.out.println("repository "+memberSurveyCommand.getSurvNo());
-//			Integer result=sqlSession.insert(statement, memberSurveyCommand);
-//			if(result>0) {
-//				sqlSession.commit();
-//			}
-//			return result;
-//		} finally {
-//			sqlSession.close();
-//		}
-//	}
-
-	public Integer selectSurveyNo() {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		try {
-			return (Integer) sqlSession.selectOne(namespace + "selectSurveyNo");
-		} finally {
-			sqlSession.close();
-		}
-	}
-
 	public String selectByNameAndPhone(Member member) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-
+		String statement = namespace + ".selectByNameAndPhone";
+		System.out.println("MEMBERREPOSITORY SelectByNameAndPhone " + member.getMemberEmail());
 		try {
-			String email = sqlSession.selectOne(namespace + ".selectByNameAndPhone", member);
+			String email = sqlSession.selectOne(statement, member);
 			return email;
 		} finally {
 			sqlSession.close();
@@ -92,21 +50,23 @@ public class MemberRepository extends AbstractRepository {
 	}
 
 	public Member selectByEmail(String email) {
-		System.out.println("Repository selectByEmail "+email);
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		String statement = namespace + ".selectByEmail";
+		System.out.println("MEMBERREPOSITORY SelectByEmail " + email);
 		try {
-			return (Member)sqlSession.selectOne(namespace + ".selectByEmail", email);
+			return (Member) sqlSession.selectOne(statement, email);
 		} finally {
 			sqlSession.close();
 		}
 	}
 
 	public Integer updateMember(Member member) {
-		System.out.println("repository memberUpdate "+member.getMemberEmail());
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		String statement = namespace + ".updateMember";
+		System.out.println("MEMBERREPOSITORY UpdateMember " + member.getMemberEmail());
 		try {
-			Integer result=sqlSession.update(namespace+".updateMember", member);
-			if(result>0) {
+			Integer result = sqlSession.update(statement, member);
+			if (result > 0) {
 				sqlSession.commit();
 			}
 			return result;
@@ -116,10 +76,61 @@ public class MemberRepository extends AbstractRepository {
 	}
 
 	public Integer deleteMember(Member member) {
-		System.out.println("repository deleteMember "+member.getMemberEmail());
-		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		String statement = namespace + ".deleteMember";
+		System.out.println("MEMBERREPOSITORY DeleteMember " + member.getMemberEmail());
 		try {
-			Integer result=sqlSession.delete(namespace+".deleteMember", member);
+			Integer result = sqlSession.delete(statement, member);
+			if (result > 0) {
+				sqlSession.commit();
+			}
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public Integer insertSurvey1(MemberSurvey memberSurvey) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		String statement = namespace + ".insertSurvey1";
+		System.out.println("MEMBERREPOSITORY Survey1Write " + memberSurvey.getMemberEmail());
+		try {
+			Integer result = sqlSession.insert(statement, memberSurvey);
+			if (result > 0) {
+				sqlSession.commit();
+			}
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public Integer selectSurveyNo() {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		String statement = namespace + ".selectSurveyNo";
+		try {
+			return (Integer) sqlSession.selectOne(statement);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	public MemberSurvey selectSurvByEmail(String email) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		String statement=namespace+".selectSurvByEmail";
+		System.out.println("MEMBERREPOSITORY SelectSurvByEmail "+email);
+		try {
+			return (MemberSurvey) sqlSession.selectOne(statement, email);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public Integer updateSurvey2(MemberSurvey memberSurvey) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		String statement=namespace+".updateSurvey2";
+		System.out.println("MEMBERREPOSITORY Survey1Write " + memberSurvey.getMemberEmail());
+		try {
+			Integer result=sqlSession.update(statement, memberSurvey);
 			if(result>0) {
 				sqlSession.commit();
 			}
