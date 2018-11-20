@@ -33,14 +33,18 @@ public class CartService {
 		
 		int money = 0;
 		int foodTotalAmount = 0;
-		
+		if(cartList != null) {
+			
 		for(Object temp : cartList) {
 			Cart cart = (Cart)temp;
 			money = cart.getFoodPrice() * cart.getDemandQty();
 			foodTotalAmount += money;
 		}
 		session.setAttribute("foodTotalAmount", foodTotalAmount);
+		}
+		
 		session.setAttribute("cartList", cartList);
+		
 
 	}
 

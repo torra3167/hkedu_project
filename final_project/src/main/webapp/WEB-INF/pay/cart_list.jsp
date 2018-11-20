@@ -3,7 +3,7 @@
     
     <%
 	List cartList = (List) session.getAttribute("cartList");
-	int foodTotalAmount = (Integer)session.getAttribute("foodTotalAmount");
+	Integer foodTotalAmount = (Integer)session.getAttribute("foodTotalAmount");
 
     %>
 
@@ -29,27 +29,32 @@
 
 <body>
 
-<% if(cartList == null){ %>
+<% if(cartList == null && foodTotalAmount == null){ %>
 <h1 align="center">상품이 존재하지 않습니다.</h1>
+
+<table class="table">
+		<tr>
+			<td>상품이미지</td>
+			<td>상품명</td>
+			<td>가격</td>
+			<td>수량</td>
+			<td><input type="submit" value="삭제" /></td>
+		</tr>
+</table>
 <% } else { %>
 <h1 align="center"> <font color ="black"><font size = 15> 장바구니</font></font></h1>
-<table width="600" align="center">
 
-</table>
 
 <form action="cart_remove.gom" method="post">
 <table class="table">
 	<tr>
-<!-- 		<td>번호	</td>
- -->		<td>상품이미지</td>
+	<td>상품이미지</td>
 		<td>상품명</td>
 		<td>가격</td>
 		<td>수량</td>
 		<td align="center">
 		<input type="submit" value="삭제" />
-		
 		</td>
-
 	</tr>
 	
 	<% 
@@ -85,6 +90,7 @@
 </form>
 <% } %>
 <hr>
+<% if(foodTotalAmount != null){ %> 
 <table class="table">
 		<tr align="center">
 			<td align="right" colspan="6"><font color="gray" size="5">총
@@ -96,6 +102,6 @@
 
 		</tr>
 	</table>
-
+<% } %>
 </body>
 </html>
