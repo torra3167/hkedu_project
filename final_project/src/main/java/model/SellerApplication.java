@@ -6,21 +6,21 @@ import java.io.Serializable;
 public class SellerApplication implements Serializable{
 	private int sellerAppliNo;
 	private String sellerEmail;
-	private String sellerAppliBn;
+	private int sellerAppliBn;
 	private String sellerLicense;
 	private String sellerBusinessRegistration;
 	private String sellerName;
 	private String storeName;
-	private String storeTelphone;
+	private int storeTelphone;
 	private String storeAddr;
 	private String storeTerm;
 	private String applicationStatus;
 	private String applicationDes;
 	public SellerApplication() {
 	}
-	public SellerApplication(int sellerAppliNo, String sellerEmail, String sellerAppliBn, String sellerLicense,
-			String sellerBusinessRegistration, String sellerName, String storeName, String storeTelphone,
-			String storeAddr, String storeTerm, String applicationStatus, String applicationDes) {
+	public SellerApplication(int sellerAppliNo, String sellerEmail, int sellerAppliBn, String sellerLicense,
+			String sellerBusinessRegistration, String sellerName, String storeName, int storeTelphone, String storeAddr,
+			String storeTerm, String applicationStatus, String applicationDes) {
 		this.sellerAppliNo = sellerAppliNo;
 		this.sellerEmail = sellerEmail;
 		this.sellerAppliBn = sellerAppliBn;
@@ -46,10 +46,10 @@ public class SellerApplication implements Serializable{
 	public void setSellerEmail(String sellerEmail) {
 		this.sellerEmail = sellerEmail;
 	}
-	public String getSellerAppliBn() {
+	public int getSellerAppliBn() {
 		return sellerAppliBn;
 	}
-	public void setSellerAppliBn(String sellerAppliBn) {
+	public void setSellerAppliBn(int sellerAppliBn) {
 		this.sellerAppliBn = sellerAppliBn;
 	}
 	public String getSellerLicense() {
@@ -76,10 +76,10 @@ public class SellerApplication implements Serializable{
 	public void setStoreName(String storeName) {
 		this.storeName = storeName;
 	}
-	public String getStoreTelphone() {
+	public int getStoreTelphone() {
 		return storeTelphone;
 	}
-	public void setStoreTelphone(String storeTelphone) {
+	public void setStoreTelphone(int storeTelphone) {
 		this.storeTelphone = storeTelphone;
 	}
 	public String getStoreAddr() {

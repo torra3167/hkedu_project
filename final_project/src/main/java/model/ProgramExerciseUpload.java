@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class ProgramExerciseUpload implements Serializable {
+	
 	private int proNo;
 	private String proContent;
 	private int exerciseNumber;

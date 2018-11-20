@@ -1,15 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.*, 
-    model.ProgramExerciseUpload, model.Upload, command.ProgramDetailCommand"%>
+	import="
+	java.util.*, category.ExerciseCatACatB,
+    model.ProgramExerciseUpload, command.ProgramDetailCommand
+    "%>
 
 <%
 	List<ProgramExerciseUpload> programExerciseUploadList = (List<ProgramExerciseUpload>) request
 			.getAttribute("ProgramExerciseUpload");
 
+	/* List<ExerciseCatACatB> categoryList = (List<ExerciseCatACatB>) request
+	.getAttribute("CategoryList"); */
+
+
 	ProgramDetailCommand programDetailCommand = (ProgramDetailCommand) request
 			.getAttribute("ProgramDetailCommand");
-	request.setCharacterEncoding("utf-8");
+	
+	
 %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -59,9 +66,17 @@
 				%>
 
 				<td><%=programexerciseUpload.getExerciseNumber()%></td>
-				<td><%=programexerciseUpload.getExerciseContent()%></td>
+				<td><a href="exercise_update.gom?exerciseNumber=<%=programexerciseUpload.getExerciseNumber()%>
+				&exerciseContent=<%=programexerciseUpload.getExerciseContent()%>
+				&exerciseCatANumber=<%=programexerciseUpload.getExerciseCatANumber()%>
+				&exerciseCatBNumber=<%=programexerciseUpload.getExerciseCatBNumber()%>
+				"><%=programexerciseUpload.getExerciseContent()%></a></td>
 				<td><%=programexerciseUpload.getExerciseCatANumber()%></td>
 				<td><%=programexerciseUpload.getExerciseCatBNumber()%></td>
+				<td>
+					<%=programexerciseUpload.getUploadNumber()%>
+				</td>
+				<td><%=programexerciseUpload.getUploadSize()%></td>
 				<td><a
 					href="upload_update.gom?proNo=<%=programDetailCommand.getProNo()%>
 					&uploadNumber=<%=programexerciseUpload.getUploadNumber()%>
@@ -71,13 +86,9 @@
 					&exerciseCatBNumber=<%=programexerciseUpload.getExerciseCatBNumber()%>
 					&uploadStored=<%=programexerciseUpload.getUploadStored()%>					
 					&uploadOriginal=<%=programexerciseUpload.getUploadOriginal()%>
-					">
-					<%=programexerciseUpload.getUploadNumber()%></a>
-				</td>
-				<td><%=programexerciseUpload.getUploadSize()%></td>
-				<td><img
+					"><img
 					src="http://localhost:8080/final_project/resource/<%=programexerciseUpload.getUploadStored()%>"
-					width="80" height="80"></td>
+					width="80" height="80"></a></td>
 				<td><%=programexerciseUpload.getUploadOriginal()%></td>
 				<td><%=programexerciseUpload.getUploadDivide()%></td>
 				</tr>

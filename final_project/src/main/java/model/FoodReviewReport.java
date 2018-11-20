@@ -5,7 +5,7 @@ import java.util.Date;
 
 @SuppressWarnings("serial")
 public class FoodReviewReport implements Serializable {
-	private int foodReviewNo;
+	private int reviewFNo;
 	private String memberEmail;
 	private int foodNo;
 	private String sellerEmail;
@@ -18,10 +18,10 @@ public class FoodReviewReport implements Serializable {
 	private Date foodReportRegdate;
 	public FoodReviewReport() {
 	}
-	public FoodReviewReport(int foodReviewNo, String memberEmail, int foodNo, String sellerEmail, int foodCatANo,
+	public FoodReviewReport(int reviewFNo, String memberEmail, int foodNo, String sellerEmail, int foodCatANo,
 			int foodCatBNo, int foodCatCNo, String foodReportTitle, int foodReportContent, String foodReportWriter,
 			Date foodReportRegdate) {
-		this.foodReviewNo = foodReviewNo;
+		this.reviewFNo = reviewFNo;
 		this.memberEmail = memberEmail;
 		this.foodNo = foodNo;
 		this.sellerEmail = sellerEmail;
@@ -33,11 +33,11 @@ public class FoodReviewReport implements Serializable {
 		this.foodReportWriter = foodReportWriter;
 		this.foodReportRegdate = foodReportRegdate;
 	}
-	public int getFoodReviewNo() {
-		return foodReviewNo;
+	public int getReviewFNo() {
+		return reviewFNo;
 	}
-	public void setFoodReviewNo(int foodReviewNo) {
-		this.foodReviewNo = foodReviewNo;
+	public void setReviewFNo(int reviewFNo) {
+		this.reviewFNo = reviewFNo;
 	}
 	public String getMemberEmail() {
 		return memberEmail;

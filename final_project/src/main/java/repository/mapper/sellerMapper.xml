@@ -27,7 +27,7 @@
 	WHERE seller_email = #{seller_email}
 </select>
 
-<update id="updateSeller" parameterType="Seller">
+<update id="updateSeller">
 	UPDATE seller
 	<set>
 		<if test="sellerPw != null">
@@ -47,11 +47,5 @@
 	DELETE
 	FROM seller
 	WHERE seller_email = #{sellerEmail} and seller_pw = #{sellerPw}
-</delete>
-
-<delete id="deleteFood" parameterType="String">
-	DELETE
-	FROM food
-	WHERE seller_email = #{sellerEmail}
 </delete>
 </mapper>

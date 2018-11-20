@@ -7,13 +7,27 @@
 
 
 
+<!-- CAT A CAT B 넘버로 이름뽑아오기(리스트)  -->
+<select id="selectExerciseCatACatBList" resultMap="exerciseCatACatBMap" parameterType="ExerciseCatACatB">
+	select a.EXERCISE_CAT_A_NAME, b.EXERCISE_CAT_B_NAME
+	from exercise_cat_a a, exercise_cat_b b
+	where a.EXERCISE_CAT_B_NUMBER = b.EXERCISE_CAT_B_NUMBER
+	and a.EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber}
+    and b.EXERCISE_CAT_B_NUMBER = #{exerciseCatBNumber}	
+</select>
 
+
+<update id="updateUploadCategory" parameterType="Upload">
+	update upload
+	set 
+	(EXERCISE_CAT_A_NUMBER) = #{exerciseCatANumber},
+	(EXERCISE_CAT_B_NUMBER) = #{exerciseCatBNumber}
+	where EXERCISE_NUMBER = #{exerciseNumber}
+</update>
 
 <update id="updateUpload" parameterType="Upload">
 	update upload
 	set 
-	(EXERCISE_CAT_A_NUMBER) = #{exerciseCatANumber},
-	(EXERCISE_CAT_B_NUMBER) = #{exerciseCatBNumber},
 	(UPLOAD_SIZE) = #{uploadSize},
 	(UPLOAD_ORIGINAL) = #{uploadOriginal},
 	(UPLOAD_STORED) = #{uploadStored}
@@ -22,7 +36,10 @@
 
 <update id="updateExercise" parameterType="Exercise">
 	update exercise
-	set EXERCISE_CONTENT = #{exerciseContent}
+	set 
+	EXERCISE_CONTENT = #{exerciseContent},
+	EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber},
+	EXERCISE_CAT_B_NUMBER = #{exerciseCatBNumber}
 	where EXERCISE_NUMBER = #{exerciseNumber}
 	
 </update>
@@ -45,6 +62,19 @@
 	values
 	(#{exerciseNumber}, #{exerciseCatANumber}, #{exerciseCatBNumber}, #{exerciseContent})
 </insert>
+
+<resultMap id="exerciseCatACatBMap" type="ExerciseCatACatB">
+	<result column="EXERCISE_CAT_B_NAME" jdbcType="VARCHAR" property="exerciseCatBName"/>	
+	<result column="EXERCISE_CAT_A_NAME" jdbcType="VARCHAR" property="exerciseCatAName"/>	
+</resultMap>
+
+<select id="selectExerciseCatACatB" parameterType="ExerciseCatACatB" resultMap="exerciseCatACatBMap"> 	
+	select a.EXERCISE_CAT_A_NAME, b.EXERCISE_CAT_B_NAME
+	from exercise_cat_a a, exercise_cat_b b
+	where a.EXERCISE_CAT_B_NUMBER = b.EXERCISE_CAT_B_NUMBER
+	and a.EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber}
+    and b.EXERCISE_CAT_B_NUMBER = #{exerciseCatBNumber}	
+</select>
 
 <resultMap type="ExerciseCatB" id="exerciseCatBMap">
 	<id column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>

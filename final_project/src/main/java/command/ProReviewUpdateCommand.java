@@ -5,43 +5,24 @@ import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
-
 @SuppressWarnings("serial")
-public class ProReviewWriteCommand implements Serializable{
+public class ProReviewUpdateCommand implements Serializable{
 
 	private int proReviewNo;
-	private String memberEmail;
-	private int proNo;
-	private String coachEmail;
 	private String proReviewTitle;
 	private String proReviewScore;
 	private String proReviewComment;
 	private MultipartFile proReviewImage;
+	private String proReviewOriginal;
+	private String proReviewStored;
 	private Date proReviewRegdate;
+	
 	
 	public int getProReviewNo() {
 		return proReviewNo;
 	}
 	public void setProReviewNo(int proReviewNo) {
 		this.proReviewNo = proReviewNo;
-	}
-	public String getMemberEmail() {
-		return memberEmail;
-	}
-	public void setMemberEmail(String memberEmail) {
-		this.memberEmail = memberEmail;
-	}
-	public int getProNo() {
-		return proNo;
-	}
-	public void setProNo(int proNo) {
-		this.proNo = proNo;
-	}
-	public String getCoachEmail() {
-		return coachEmail;
-	}
-	public void setCoachEmail(String coachEmail) {
-		this.coachEmail = coachEmail;
 	}
 	public String getProReviewTitle() {
 		return proReviewTitle;
@@ -67,17 +48,24 @@ public class ProReviewWriteCommand implements Serializable{
 	public void setProReviewImage(MultipartFile proReviewImage) {
 		this.proReviewImage = proReviewImage;
 	}
-	
+	public String getProReviewOriginal() {
+		return proReviewOriginal;
+	}
+	public void setProReviewOriginal(String proReviewOriginal) {
+		this.proReviewOriginal = proReviewOriginal;
+	}
+	public String getProReviewStored() {
+		return proReviewStored;
+	}
+	public void setProReviewStored(String proReviewStored) {
+		this.proReviewStored = proReviewStored;
+	}
 	public Date getProReviewRegdate() {
 		return proReviewRegdate;
 	}
 	public void setProReviewRegdate(Date proReviewRegdate) {
 		this.proReviewRegdate = proReviewRegdate;
 	}
-	
-	
-	
-
 	
 	
 	
