@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @SuppressWarnings("serial")
 public class FoodPay implements Serializable{
@@ -15,7 +14,7 @@ public class FoodPay implements Serializable{
 	private int foodPayCardM;
 	private int foodPayCardY;
 	private int foodPayCardCvc;
-	private Date foodPayDate;
+	private String foodPayDate;
 	
 	
 	public FoodPay() {
@@ -24,7 +23,7 @@ public class FoodPay implements Serializable{
 
 	public FoodPay(int foodPayNo, String memberEmail, int foodOrderReceiverNo, int foodPayPrice, String foodPayCard,
 			String foodPayCash, int foodPayCardNo, int foodPayCardM, int foodPayCardY, int foodPayCardCvc,
-			Date foodPayDate) {
+			String foodPayDate) {
 		this.foodPayNo = foodPayNo;
 		this.memberEmail = memberEmail;
 		this.foodOrderReceiverNo = foodOrderReceiverNo;
@@ -139,14 +138,16 @@ public class FoodPay implements Serializable{
 	}
 
 
-	public Date getFoodPayDate() {
+	public String getFoodPayDate() {
 		return foodPayDate;
 	}
 
 
-	public void setFoodPayDate(Date foodPayDate) {
+	public void setFoodPayDate(String foodPayDate) {
 		this.foodPayDate = foodPayDate;
 	}
+
+
 	
 	
 }

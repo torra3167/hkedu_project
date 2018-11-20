@@ -13,6 +13,7 @@ import model.FoodAndApplication;
 import model.FoodReview;
 import model.FoodReviewAndAnswer;
 import model.FoodReviewAnswer;
+import model.FoodReviewReport;
 
 @Repository
 public class FoodRepository extends AbstractRepository{
@@ -214,15 +215,16 @@ public class FoodRepository extends AbstractRepository{
 		try {
 			
 			List<FoodReviewAndAnswer> result =  sqlSession.selectList(namespace + ".selectReviewAndAnswer", foodNo);
-//			for(Object temp : result) {
-//				FoodReviewAndAnswer fraa = (FoodReviewAndAnswer)temp;
-//				List<FoodReviewAnswer> fra = fraa.getFoodReviewAnswers();
-//				System.out.println("repo selectReviewAndAnswer FoodReviewAnswers : " + fra.size());
-//				for(Object temp2 : fra) {
-//					FoodReviewAnswer foodReviewAnswer = (FoodReviewAnswer)temp2;
-//					System.out.println("repo selectReviewAndAnswer FoodReviewAnswerNo : " + foodReviewAnswer.getFoodReviewAnswerNo());
-//				}
-//			}
+			for(Object temp : result) {
+				FoodReviewAndAnswer fraa = (FoodReviewAndAnswer)temp;
+				System.out.println("dddddddddddddddddddddddddd : " + fraa.getFoodReviewRegdate());
+				List<FoodReviewAnswer> fra = fraa.getFoodReviewAnswers();
+				System.out.println("repo selectReviewAndAnswer FoodReviewAnswers : " + fra.size());
+				for(Object temp2 : fra) {
+					FoodReviewAnswer foodReviewAnswer = (FoodReviewAnswer)temp2;
+					System.out.println("repo selectReviewAndAnswer FoodReviewAnswerNo : " + foodReviewAnswer.getFoodReviewAnswerRegdate());
+				}
+			}
 //			System.out.println("repo selectReviewAndAnswer result : " + result);
 		return result;
 		} finally {
@@ -304,6 +306,66 @@ public class FoodRepository extends AbstractRepository{
 				sqlSession.rollback();
 			}
 			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public int deleteFoodReviewAnswer(int foodReviewAnswerNo) {
+		sqlSession = getSqlSessionFactory().openSession();
+		Integer result = 0;
+		try {
+			result = sqlSession.update(namespace + ".deleteFoodReviewAnswer", foodReviewAnswerNo);
+			System.out.println("repo deleteFoodReviewAnswer result : " + result);
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public int insertFoodReviewReport(FoodReviewReport foodReviewReport) {
+sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			Integer result = sqlSession.insert(namespace + ".insertFoodReviewReport", foodReviewReport);
+			System.out.println("repo insertFoodReviewReport result : " + result);
+		
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+		
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<FoodReviewReport> selectFoodReviewReportList() {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+		List<FoodReviewReport> list =  sqlSession.selectList(namespace + ".selectFoodReviewReportList");
+		
+		for(Object temp : list) {
+			FoodReviewReport foodReviewReport = (FoodReviewReport)temp;
+			 System.out.println("repo selectFoodReviewReportList foodReviewReport : "+ foodReviewReport);
+		}
+		return list;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public FoodReviewReport selectFoodReviewReport(String foodReportRegdate) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+		return (FoodReviewReport)sqlSession.selectOne(namespace + ".selectFoodReviewReport", foodReportRegdate);
 		} finally {
 			sqlSession.close();
 		}

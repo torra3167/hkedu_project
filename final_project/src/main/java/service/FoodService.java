@@ -2,7 +2,6 @@ package service;
 
 import java.io.File;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,6 +18,7 @@ import category.FoodCatC;
 import command.FoodRegCommand;
 import command.FoodReviewAnswerUpdateCommand;
 import command.FoodReviewAnswerWriteCommand;
+import command.FoodReviewReportWriteCommand;
 import command.FoodReviewUpdateCommand;
 import command.FoodReviewWriteCommand;
 import command.FoodUpdateCommand;
@@ -27,15 +27,13 @@ import model.FoodAndApplication;
 import model.FoodReview;
 import model.FoodReviewAndAnswer;
 import model.FoodReviewAnswer;
+import model.FoodReviewReport;
 import repository.FoodRepository;
 
 
 
 @Service
 public class FoodService {
-
-	
-	
 	Food food;
 	FoodReview foodReview;
 	
@@ -258,7 +256,7 @@ public class FoodService {
 			String memberEmail = (String) session.getAttribute("email");
 			
 		//foodReviewRegdate
-			foodReviewWriteCommand.setFoodReviewRegdate(Calendar.getInstance().getTime());
+			foodReviewWriteCommand.setFoodReviewRegdate(Calendar.getInstance().getTime().toString());
 			System.out.println("svc insertFoodReview FoodReviewRegdate : " + Calendar.getInstance().getTime() + "시간");
 			
 		//foodImage
@@ -327,7 +325,7 @@ public class FoodService {
 		String memberEmail = (String) session.getAttribute("email");
 		
 		//foodReviewRegdate
-		foodReviewUpdateCommand.setFoodReviewRegdate(Calendar.getInstance().getTime());
+		foodReviewUpdateCommand.setFoodReviewRegdate(Calendar.getInstance().getTime().toString());
 		System.out.println("svc updateFoodReview FoodReviewRegdate : " + Calendar.getInstance().getTime() + "시간");
 		
 		//foodImage
@@ -405,7 +403,7 @@ public class FoodService {
 		System.out.println("svc insertFoodReviewAnswer foodReviewAnswerNo2 : " + foodReviewAnswerNo);
 		
 		//foodReviewRegdate
-		foodReviewAnswerWriteCommand.setFoodReviewAnswerRegdate(Calendar.getInstance().getTime());
+		foodReviewAnswerWriteCommand.setFoodReviewAnswerRegdate(Calendar.getInstance().getTime().toString());
 		System.out.println("svc insertFoodReviewAnswer FoodReviewAnswerRegdate : " + Calendar.getInstance().getTime() + "시간");
 		
 		FoodReviewAnswer foodReviewAnswer = new FoodReviewAnswer(
@@ -444,7 +442,7 @@ public class FoodService {
 	public void updateFoodReviewAnswer(FoodReviewAnswerUpdateCommand foodReviewAnswerUpdateCommand, Model model) {
 		System.out.println("svc updateFoodReviewAnswer foodReviewNo : " + foodReviewAnswerUpdateCommand.getFoodReviewNo());
 		//foodReviewAnswerRegdate
-		foodReviewAnswerUpdateCommand.setFoodReviewAnswerRegdate(Calendar.getInstance().getTime());
+		foodReviewAnswerUpdateCommand.setFoodReviewAnswerRegdate(Calendar.getInstance().getTime().toString());
 		System.out.println("svc updateFoodReviewAnswer FoodReviewAnswerRegdate : " + Calendar.getInstance().getTime() + "시간");
 		FoodReviewAnswer foodReviewAnswer = new FoodReviewAnswer(
 				foodReviewAnswerUpdateCommand.getFoodReviewNo(),
@@ -468,9 +466,71 @@ public class FoodService {
 		}
 	}
 
-//	public void deleteFoodReviewAnswer(int foodReviewAnswerNo) {
-//		
-//	}
+	public void deleteFoodReviewAnswer(int foodReviewAnswerNo) {
+		System.out.println("svc deleteFoodReviewAnswer foodReviewAnswerNo : " + foodReviewAnswerNo);
+		int k = foodRepository.deleteFoodReviewAnswer(foodReviewAnswerNo);
+		
+		if(k < 1) {
+			System.out.println("식품리뷰답변 삭제 실패");
+		} else {
+			System.out.println("식품리뷰답변 삭제 성공!");
+		}
+	}
+
+	public void selectReviewReportFood(FoodReviewReportWriteCommand foodReviewReportWriteCommand, HttpSession session) {
+		System.out.println("svc selectReviewReportFood foodNo : " + foodReviewReportWriteCommand.getFoodNo());
+		FoodAndApplication fa = foodRepository.selectFood(foodReviewReportWriteCommand.getFoodNo());
+		foodReviewReportWriteCommand.setSellerEmail(fa.getSellerEmail());
+		foodReviewReportWriteCommand.setFoodCatANo(fa.getFoodCatANo());
+		foodReviewReportWriteCommand.setFoodCatBNo(fa.getFoodCatBNo());
+		foodReviewReportWriteCommand.setFoodCatCNo(fa.getFoodCatCNo());
+		System.out.println("svc selectReviewReportFood sellerEmail : " + foodReviewReportWriteCommand.getSellerEmail());
+		System.out.println("svc selectReviewReportFood foodCatANo : " + foodReviewReportWriteCommand.getFoodCatANo());
+		System.out.println("svc selectReviewReportFood foodCatBNo : " + foodReviewReportWriteCommand.getFoodCatBNo());
+		System.out.println("svc selectReviewReportFood foodCatCNo : " + foodReviewReportWriteCommand.getFoodCatCNo());
+		String foodReportWriter = (String) session.getAttribute("email");
+		foodReviewReportWriteCommand.setFoodReportWriter(foodReportWriter);
+		System.out.println("svc selectReviewReportFood foodReportWriter : " + foodReviewReportWriteCommand.getFoodReportWriter());
+	}
+
+	public void insertFoodReviewReport(FoodReviewReportWriteCommand foodReviewReportWriteCommand, Model model) {
+System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportWriteCommand.getFoodReviewNo());
+		//foodReportRegdate
+		foodReviewReportWriteCommand.setFoodReportRegdate(Calendar.getInstance().getTime().toString());
+		System.out.println("svc insertFoodReviewReport foodReportRegdate : " + foodReviewReportWriteCommand.getFoodReportRegdate());
+		FoodReviewReport foodReviewReport = new FoodReviewReport(
+				foodReviewReportWriteCommand.getFoodReviewNo(),
+				foodReviewReportWriteCommand.getMemberEmail(),
+				foodReviewReportWriteCommand.getFoodNo(),
+				foodReviewReportWriteCommand.getSellerEmail(),
+				foodReviewReportWriteCommand.getFoodCatANo(),
+				foodReviewReportWriteCommand.getFoodCatBNo(),
+				foodReviewReportWriteCommand.getFoodCatCNo(),
+				foodReviewReportWriteCommand.getFoodReportTitle(),
+				foodReviewReportWriteCommand.getFoodReportContent(),
+				foodReviewReportWriteCommand.getFoodReportWriter(),
+				foodReviewReportWriteCommand.getFoodReportRegdate()
+				);
+		System.out.println("svc insertFoodReviewReport foodReviewReport : " + foodReviewReport);
+		
+		int k = foodRepository.insertFoodReviewReport(foodReviewReport);
+		
+		if(k < 1) {
+			System.out.println("식품리뷰신고 등록 실패!");
+		} else {
+			System.out.println("식품리뷰신고 등록 성공!");
+		}
+	}
+
+	public void selectFoodReviewReportList(Model model) {
+		List<FoodReviewReport> foodReviewReports = foodRepository.selectFoodReviewReportList();
+		model.addAttribute("foodReviewReports", foodReviewReports);
+	}
+
+	public void selectFoodReviewReport(String foodReportRegdate, Model model) {
+			FoodReviewReport foodReviewReport = foodRepository.selectFoodReviewReport(foodReportRegdate);
+			model.addAttribute("foodReviewReport", foodReviewReport);
+	}
 
 	
 

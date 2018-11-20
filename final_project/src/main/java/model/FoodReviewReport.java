@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @SuppressWarnings("serial")
 public class FoodReviewReport implements Serializable {
@@ -13,14 +12,14 @@ public class FoodReviewReport implements Serializable {
 	private int foodCatBNo;
 	private int foodCatCNo;
 	private String foodReportTitle;
-	private int foodReportContent;
+	private String foodReportContent;
 	private String foodReportWriter;
-	private Date foodReportRegdate;
+	private String foodReportRegdate;
 	public FoodReviewReport() {
 	}
 	public FoodReviewReport(int foodReviewNo, String memberEmail, int foodNo, String sellerEmail, int foodCatANo,
-			int foodCatBNo, int foodCatCNo, String foodReportTitle, int foodReportContent, String foodReportWriter,
-			Date foodReportRegdate) {
+			int foodCatBNo, int foodCatCNo, String foodReportTitle, String foodReportContent, String foodReportWriter,
+			String foodReportRegdate) {
 		this.foodReviewNo = foodReviewNo;
 		this.memberEmail = memberEmail;
 		this.foodNo = foodNo;
@@ -81,10 +80,10 @@ public class FoodReviewReport implements Serializable {
 	public void setFoodReportTitle(String foodReportTitle) {
 		this.foodReportTitle = foodReportTitle;
 	}
-	public int getFoodReportContent() {
+	public String getFoodReportContent() {
 		return foodReportContent;
 	}
-	public void setFoodReportContent(int foodReportContent) {
+	public void setFoodReportContent(String foodReportContent) {
 		this.foodReportContent = foodReportContent;
 	}
 	public String getFoodReportWriter() {
@@ -93,10 +92,10 @@ public class FoodReviewReport implements Serializable {
 	public void setFoodReportWriter(String foodReportWriter) {
 		this.foodReportWriter = foodReportWriter;
 	}
-	public Date getFoodReportRegdate() {
+	public String getFoodReportRegdate() {
 		return foodReportRegdate;
 	}
-	public void setFoodReportRegdate(Date foodReportRegdate) {
+	public void setFoodReportRegdate(String foodReportRegdate) {
 		this.foodReportRegdate = foodReportRegdate;
 	}
 	

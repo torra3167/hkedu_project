@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -13,7 +12,7 @@ public class FoodReviewAndAnswer implements Serializable{
 	private int foodCatANo;
 	private int foodCatBNo;
 	private int foodCatCNo;
-	private Date foodReviewRegdate;
+	private String foodReviewRegdate;
 	private String foodReviewFoodName;
 	private String foodReviewTitle;
 	private String foodReviewScore;
@@ -25,7 +24,7 @@ public class FoodReviewAndAnswer implements Serializable{
 	public FoodReviewAndAnswer() {
 	}
 	public FoodReviewAndAnswer(int foodReviewNo, String memberEmail, int foodNo, String sellerEmail, int foodCatANo,
-			int foodCatBNo, int foodCatCNo, Date foodReviewRegdate, String foodReviewFoodName, String foodReviewTitle,
+			int foodCatBNo, int foodCatCNo, String foodReviewRegdate, String foodReviewFoodName, String foodReviewTitle,
 			String foodReviewScore, String foodReviewComment, Long foodReviewSize, String foodReviewOriginal,
 			String foodReviewStored, List<FoodReviewAnswer> foodReviewAnswers) {
 		this.foodReviewNo = foodReviewNo;
@@ -87,10 +86,10 @@ public class FoodReviewAndAnswer implements Serializable{
 	public void setFoodCatCNo(int foodCatCNo) {
 		this.foodCatCNo = foodCatCNo;
 	}
-	public Date getFoodReviewRegdate() {
+	public String getFoodReviewRegdate() {
 		return foodReviewRegdate;
 	}
-	public void setFoodReviewRegdate(Date foodReviewRegdate) {
+	public void setFoodReviewRegdate(String foodReviewRegdate) {
 		this.foodReviewRegdate = foodReviewRegdate;
 	}
 	public String getFoodReviewFoodName() {
