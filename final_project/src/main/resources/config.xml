@@ -54,7 +54,7 @@
 		<mapper resource="repository/mapper/foodMapper.xml"/>
 		<mapper resource="repository/mapper/programMapper.xml"/>
 		<mapper resource="repository/mapper/proReviewMapper.xml"/>
- 		<mapper resource="repository/mapper/cartMapper.xml"/>
+ 		<mapper resource="repository/mapper/payMapper.xml"/>
  	
  	
  	</mappers>

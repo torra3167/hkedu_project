@@ -1,14 +1,42 @@
 package controller;
 
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import command.FoodOrderCommand;
+import service.PayService;
 
 
 @Controller
 public class PayController {
 	
 	
+	@Autowired
+	PayService payS;
+	
+	@RequestMapping(value="/food_order_list.gom", method=RequestMethod.POST)
+	public String cartList(@RequestParam(value="foodNo") String[] foodNo, @RequestParam(value="foodQuant") String[] foodQuant, 
+			 Model model, HttpServletRequest request ) {
+		System.out.println("PAY FOOD ORDER LIST");
+		
+		System.out.println(foodNo + "FOODNO");
+		System.out.println(foodNo[0]);
+		
+		System.out.println(foodQuant + "FOODQTY");
+		System.out.println(foodQuant[0]);
+		
+		/*payS.insertFoodOrderList();*/
+		
+		
+		
+		model.addAttribute("iPage", "pay/food_order_list.jsp");
+		return "index";
+	}
 }

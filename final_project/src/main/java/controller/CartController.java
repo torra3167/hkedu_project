@@ -20,9 +20,11 @@ public class CartController {
 	@Autowired
 	CartService cartS;
 	
-	@RequestMapping(value="/cart_remove.gom", method=RequestMethod.POST)
-	public String removeCart(@RequestParam(value="foodName", defaultValue="false")String foodName, @RequestParam(value="delete", defaultValue="false")int[] foodNums, Model model, HttpServletRequest request ) {
+	@RequestMapping(value="/cart_remove.gom", method=RequestMethod.GET)
+	public String removeCart(@RequestParam(value="delete", defaultValue="false")String deleteValues, Model model, HttpServletRequest request ) {
 		System.out.println("CART REMOVE");
+		
+		String[] foodNums = deleteValues.split("/"); 
 		
 		model.addAttribute("iPage", "pay/cart_list.jsp");
 		

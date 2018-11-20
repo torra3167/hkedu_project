@@ -158,14 +158,14 @@ public class CartService {
 		session.setAttribute("cartList", cartList);
 	}
 
-	public void cartRemove(@ModelAttribute HttpServletRequest request, Model model, int[] foodNums) {
+	public void cartRemove(@ModelAttribute HttpServletRequest request, Model model, String[] foodNums) {
 		session = request.getSession();
 		List list = (List) session.getAttribute("cartList");
 
 		for (int i = 0; i < foodNums.length; i++) {
 			for (int j = 0; j < list.size(); j++) {
 				Cart cart = (Cart) list.get(j);
-				if (foodNums[i] == cart.getFoodNo()) {
+				if (Integer.parseInt(foodNums[i]) == cart.getFoodNo()) {
 					System.out.println("식품번호 " + cart.getFoodNo() + " 제거되었습니다");
 					list.remove(list.get(j));
 					

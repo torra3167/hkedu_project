@@ -13,6 +13,7 @@
 <meta charset="UTF-8">
 <title> 장바구니 </title>
 <script type="text/javascript">
+$(document).ready();
 	function upQty(name,qty){  
 		
 			location.href="cart_qty_up.gom?foodName="+name;
@@ -24,6 +25,41 @@
 		
 		
 	}
+
+	function checkBoxNumbers(num) {
+ 	
+ 		
+
+/*  		var deleteNumberValue = num.value;
+ */ 
+ 		
+		var hiddenNumbers = document.frm.deleteNumbers.value;
+		
+		
+		
+		if(num.checked){
+			hiddenNumbers = hiddenNumbers + num.value + "/";
+/* 			document.frm.deleteNumbers.value += deleteNumberValue + "/";
+ */			
+		}else{
+			
+/* 			document.frm.deleteNumbers.value = hiddenNumbers.replace(deleteNumberValue+"/", "");
+ */			hiddenNumbers = hiddenNumbers.replace(num.value + "/", "");
+ 			
+ 
+ 		}
+		  document.frm.deleteNumbers.value = hiddenNumbers;
+		
+/* 		alert(hiddenNumbers);
+ */		
+	}
+	function itemDelete() {
+		
+		
+ 		
+ 		location.href="cart_remove.gom?delete=" + document.frm.deleteNumbers.value; 
+	}
+	
 </script>
 </head>
 
@@ -38,25 +74,27 @@
 			<td>상품명</td>
 			<td>가격</td>
 			<td>수량</td>
-			<td><input type="submit" value="삭제" /></td>
+			<td>삭제</td>
 		</tr>
 </table>
 <% } else { %>
 <h1 align="center"> <font color ="black"><font size = 15> 장바구니</font></font></h1>
 
 
-<form action="cart_remove.gom" method="post">
+
 <table class="table">
 	<tr>
 	<td>상품이미지</td>
 		<td>상품명</td>
 		<td>가격</td>
 		<td>수량</td>
-		<td align="center">
-		<input type="submit" value="삭제" />
-		</td>
+		<td><button class="btn-secondary"  onClick="javascript:itemDelete();" >삭제</button></td>
+		
 	</tr>
+
+<form name="frm" id="frm" action="food_order_list.gom" method="post">	
 	
+	<input type="hidden"  id="deleteNumbers" name="deleteNumbers">
 	<% 
 		for(int i=0; i < cartList.size();i++){
 			Cart cart = (Cart)cartList.get(i);
@@ -64,7 +102,7 @@
 	
 	<tr>
 		
-		<td><a href="food_detail.gom?foodNo=<%=cart.getFoodNo()%>"><img src="./resource/<%=cart.getFoodImage() %>" width="70" height="70"/></a></td>
+		<td><a href="food_detail.gom?foodNo=<%=cart.getFoodNo()%>"><img src="resource/<%=cart.getFoodImage() %>" width="70" height="70"/></a></td>
 		<td><%=cart.getFoodName() %></td>
 		<td><%=cart.getFoodPrice() %></td>
 		<td>
@@ -80,28 +118,31 @@
 		<br>
 		</td>
 	<td align="center">
-	<input type="checkbox" name="delete" value="<%=cart.getFoodNo() %>" />
+	<input type="checkbox" name="foodNo" value="<%=cart.getFoodNo() %>" onClick="javascript:checkBoxNumbers(this);" />
 	</td>
 	</tr>
+		<input type="hidden" name="foodQuant" value="<%=cart.getDemandQty() %>">
+	
 	<%} %>
-
-
-</table>
-</form>
-<% } %>
-<hr>
-<% if(foodTotalAmount != null){ %> 
-<table class="table">
-		<tr align="center">
+<!-- 	<tr><td></td></tr> -->
+	<tr align="center">
 			<td align="right" colspan="6"><font color="gray" size="5">총
 					결제금액 :</font><font color="black" size="8"> <%=foodTotalAmount %> 원</font></td>
-
+				
 		</tr>
-		<tr>
-			<td align="right"><a href="index">쇼핑계속하기</a></td>
-
+		
+		<tr align="center">
+			<td align="right" colspan="6">
+				<input type="submit" value="결제하기" color="gray" size="5" class="gray" />	
+			</td>
 		</tr>
-	</table>
+		<tr align="center">	
+			<td align="right" colspan="6"><a href="index">쇼핑계속하기</a></td>
+		</tr>
+	</form>
+	
+</table>
+
 <% } %>
 </body>
 </html>
