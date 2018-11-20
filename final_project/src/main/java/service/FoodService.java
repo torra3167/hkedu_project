@@ -34,8 +34,7 @@ import repository.FoodRepository;
 @Service
 public class FoodService {
 
-	@Autowired
-	private FoodRepository foodRepository;
+	
 	
 	Food food;
 	FoodReview foodReview;
@@ -44,6 +43,9 @@ public class FoodService {
 	String originalFileExtension;
 	String storedFileName;
 	MultipartFile multiFile;
+	
+	@Autowired
+	private FoodRepository foodRepository;
 	static final String filePath =
 //			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
