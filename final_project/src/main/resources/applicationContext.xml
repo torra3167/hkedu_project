@@ -38,8 +38,8 @@
 <!-- <mvc:resources location="실제경로" mapping="사용할경로"  -->
  <mvc:resources location="/WEB-INF/" mapping="/**" cache-period="31556926"></mvc:resources>
  
-<mvc:view-controller path="/index" view-name="index"/>
-
+<!-- <mvc:view-controller path="/index" view-name="index"/>
+ -->
 <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 	<property name="basenames">
 		<list>
@@ -49,23 +49,23 @@
 	
 	<property name="defaultEncoding" value="UTF-8"></property>
 </bean>
-<!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-	<property name="host" value="smtp.gmail.com"/>
-	<property name="port" value="587"/>
-	<property name="defaultEncoding" value="utf-8"/>
-	<property name="username" value="kdahae1129@gmail.com"/>
-	<property name="password" value="akau161616"/>
-	<property name="javaMailProperties">
-		<props>
-			<prop key="mail.smtp.starttls.enable">true</prop>
-			<prop key="mail.smtp.auth">true</prop>
-			<prop key="mail.smtp.ssl.checkserveridentity">true</prop>
-			<prop key="mail.smtp.debug">true</prop>
-			<prop key="mail.smtp.ssl.trust">*</prop>
-		</props>
-	</property>
-</bean>
- --><!-- <bean id="email" class="main.java.email.Email"/> -->
+<!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> -->
+<!-- 	<property name="host" value="smtp.gmail.com"/> -->
+<!-- 	<property name="port" value="587"/> -->
+<!-- 	<property name="defaultEncoding" value="utf-8"/> -->
+<!-- 	<property name="username" value="kdahae1129@gmail.com"/> -->
+<!-- 	<property name="password" value="akau161616"/> -->
+<!-- 	<property name="javaMailProperties"> -->
+<!-- 		<props> -->
+<!-- 			<prop key="mail.smtp.starttls.enable">true</prop> -->
+<!-- 			<prop key="mail.smtp.auth">true</prop> -->
+<!-- 			<prop key="mail.smtp.ssl.checkserveridentity">true</prop> -->
+<!-- 			<prop key="mail.smtp.debug">true</prop> -->
+<!-- 			<prop key="mail.smtp.ssl.trust">*</prop> -->
+<!-- 		</props> -->
+<!-- 	</property> -->
+<!-- </bean> -->
+<!-- <bean id="email" class="main.java.email.Email"/> -->
 <!-- <bean id="emailSender" class="email.EmailSender"/>
  --><!-- <bean id="emailController" class="controller.EmailController"/> -->
 

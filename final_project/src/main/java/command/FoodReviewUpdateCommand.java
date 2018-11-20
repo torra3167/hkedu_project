@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.springframework.web.multipart.MultipartFile;
 
 @SuppressWarnings("serial")
-public class FoodReviewWriteCommand implements Serializable{
+public class FoodReviewUpdateCommand implements Serializable{
 	private int foodReviewNo;
 	private String memberEmail;
 	private int foodNo;
@@ -19,12 +19,11 @@ public class FoodReviewWriteCommand implements Serializable{
 	private String foodReviewTitle;
 	private String foodReviewComment;
 	private MultipartFile foodReviewImage;
-	public FoodReviewWriteCommand() {
+	public FoodReviewUpdateCommand() {
 	}
-	public FoodReviewWriteCommand(int foodReviewNo, String memberEmail, int foodNo, String sellerEmail, int foodCatANo,
+	public FoodReviewUpdateCommand(int foodReviewNo, String memberEmail, int foodNo, String sellerEmail, int foodCatANo,
 			int foodCatBNo, int foodCatCNo, String foodReviewRegdate, String foodReviewFoodName, String foodReviewScore,
 			String foodReviewTitle, String foodReviewComment, MultipartFile foodReviewImage) {
-		super();
 		this.foodReviewNo = foodReviewNo;
 		this.memberEmail = memberEmail;
 		this.foodNo = foodNo;

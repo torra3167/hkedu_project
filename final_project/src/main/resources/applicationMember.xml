@@ -14,27 +14,23 @@
 <!-- Service  -->
 <bean id="memberService" class="service.MemberService"></bean>
 <bean id="ps" class="service.ProgramService"></bean>
-<bean id="prs" class="service.ProReviewService"></bean>
 <bean id="sellerService" class="service.SellerService"></bean>
 <bean id="ls" class="service.LoginService"></bean>
 <bean id="es" class="service.ExerciseService"></bean>
 <bean id="foodService" class="service.FoodService"></bean>
-<bean id="prrs" class="service.ProReviewReportService"></bean>
+<bean id="cartS" class="service.CartService"></bean>
+<bean id="payS" class="service.PayService"></bean>
 
-<!-- <bean id="emailService" class="service.EmailService"/>
- -->
 
 <!-- Repository  -->
 <bean id="memberRepository" class="repository.MemberRepository"></bean>
 <bean id="pr" class="repository.ProgramRepository"></bean>
-<bean id="prr" class="repository.ProReviewRepository"></bean>
 <bean id="lr" class="repository.LoginRepository"></bean>
 <bean id="er" class="repository.ExerciseRepository"></bean>
 <bean id="sellerRepository" class="repository.SellerRepository"></bean>
 <bean id="foodRepository" class="repository.FoodRepository"></bean>
-<bean id="prrr" class="repository.ProReviewReportRepository"></bean>
+<bean id="cartR" class="repository.CartRepository"></bean>
+<bean id="payR" class="repository.PayRepository"></bean>
 
-<!-- <bean id="emailRepository" class="repository.EmailRepository"></bean>
- -->
 
 </beans>

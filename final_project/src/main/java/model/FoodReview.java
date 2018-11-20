@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @SuppressWarnings("serial")
 public class FoodReview implements Serializable {
@@ -12,9 +11,8 @@ public class FoodReview implements Serializable {
 	private int foodCatANo;
 	private int foodCatBNo;
 	private int foodCatCNo;
-	private Date foodReviewRegdate;
+	private String foodReviewRegdate;
 	private String foodReviewFoodName;
-	private String foodReviewOrderdate;
 	private String foodReviewTitle;
 	private String foodReviewScore;
 	private String foodReviewComment;
@@ -24,9 +22,9 @@ public class FoodReview implements Serializable {
 	public FoodReview() {
 	}
 	public FoodReview(int foodReviewNo, String memberEmail, int foodNo, String sellerEmail, int foodCatANo,
-			int foodCatBNo, int foodCatCNo, Date foodReviewRegdate, String foodReviewFoodName,
-			String foodReviewOrderdate, String foodReviewTitle, String foodReviewScore, String foodReviewComment,
-			Long foodReviewSize, String foodReviewOriginal, String foodReviewStored) {
+			int foodCatBNo, int foodCatCNo, String foodReviewRegdate, String foodReviewFoodName, String foodReviewTitle,
+			String foodReviewScore, String foodReviewComment, Long foodReviewSize, String foodReviewOriginal,
+			String foodReviewStored) {
 		this.foodReviewNo = foodReviewNo;
 		this.memberEmail = memberEmail;
 		this.foodNo = foodNo;
@@ -36,7 +34,6 @@ public class FoodReview implements Serializable {
 		this.foodCatCNo = foodCatCNo;
 		this.foodReviewRegdate = foodReviewRegdate;
 		this.foodReviewFoodName = foodReviewFoodName;
-		this.foodReviewOrderdate = foodReviewOrderdate;
 		this.foodReviewTitle = foodReviewTitle;
 		this.foodReviewScore = foodReviewScore;
 		this.foodReviewComment = foodReviewComment;
@@ -86,10 +83,10 @@ public class FoodReview implements Serializable {
 	public void setFoodCatCNo(int foodCatCNo) {
 		this.foodCatCNo = foodCatCNo;
 	}
-	public Date getFoodReviewRegdate() {
+	public String getFoodReviewRegdate() {
 		return foodReviewRegdate;
 	}
-	public void setFoodReviewRegdate(Date foodReviewRegdate) {
+	public void setFoodReviewRegdate(String foodReviewRegdate) {
 		this.foodReviewRegdate = foodReviewRegdate;
 	}
 	public String getFoodReviewFoodName() {
@@ -97,12 +94,6 @@ public class FoodReview implements Serializable {
 	}
 	public void setFoodReviewFoodName(String foodReviewFoodName) {
 		this.foodReviewFoodName = foodReviewFoodName;
-	}
-	public String getFoodReviewOrderdate() {
-		return foodReviewOrderdate;
-	}
-	public void setFoodReviewOrderdate(String foodReviewOrderdate) {
-		this.foodReviewOrderdate = foodReviewOrderdate;
 	}
 	public String getFoodReviewTitle() {
 		return foodReviewTitle;

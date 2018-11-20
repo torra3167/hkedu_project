@@ -6,13 +6,14 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import category.ExerciseCatA;
-import category.ExerciseCatACatB;
 import category.ExerciseCatB;
 import command.ProgramCommand;
 import command.ProgramDetailCommand;
@@ -34,13 +35,13 @@ public class ProgramService {
 //			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 //			"C:\\Users\\admin\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 			File file = new File(filePath);
-
+			
 	@Autowired
 	ProgramRepository pr;
 
 	public void insertProgram(ProgramCommand programCommand) {
 		// TODO Auto-generated method stub
-
+		
 		// 프로그램번호
 		Integer programNumber = pr.selectProgramNumber();
 
@@ -147,7 +148,7 @@ public class ProgramService {
 		/*List<ProgramExercise> list = pr.selectByProgramNumber(programDetailCommand.getProNo());
 		model.addAttribute("ProgramExercise", list);*/
 		
-		List<ProgramExerciseUpload> programExerciseUpload = pr.selectProgramExerciseUpload(programDetailCommand.getProNo());
+//		List<ProgramExerciseUpload> programExerciseUpload = pr.selectProgramExerciseUpload(programDetailCommand.getProNo());
 		/*exerciseUpload.setProContent(programDetailCommand.getProContent());
 		exerciseUpload.setProNo(programDetailCommand.getProNo());
 		*/
@@ -156,28 +157,9 @@ public class ProgramService {
 			System.out.println(peu.getExerciseContent() + "SERVICE EXERCISECONTENT!!!");
 		}*/
 		
-		/*List<ExerciseCatACatB> categoryNumbers = new ArrayList<ExerciseCatACatB>();
-		for(Object temp : programExerciseUpload) {
-			ExerciseCatACatB exerciseCatACatB = (ExerciseCatACatB)temp;
-			 exerciseCatACatB = new ExerciseCatACatB(exerciseCatACatB.getExerciseCatANumber(),
-					 exerciseCatACatB.getExerciseCatBNumber());
-			 
-			 categoryNumbers.add(exerciseCatACatB);
-		}*/
-//		List<ExerciseCatACatB> categoryList = pr.selectExerciseCatACatBList(categoryNumbers);
-		
-//		ExerciseCatACatB exerciseCatACatB = new ExerciseCatACatB(programExerciseUpload.get(0).getExerciseCatANumber(),
-//				programExerciseUpload.get(0).getExerciseCatBNumber());
-//		exerciseCatACatB = pr.selectExerciseCatACatB(exerciseCatACatB);
-
-/*		model.addAttribute("CategoryList", categoryList);
-*/		model.addAttribute("ProgramExerciseUpload", programExerciseUpload);
-		model.addAttribute("ProgramDetailCommand", programDetailCommand);
+//		model.addAttribute("ProgramExerciseUpload", programExerciseUpload);
 
 		
 	}
 
-	
 }
-
-

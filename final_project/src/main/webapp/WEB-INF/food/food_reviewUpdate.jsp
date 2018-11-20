@@ -11,13 +11,15 @@
 </head>    
 <body>
 <div  id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-            <h5>식품리뷰 등록</h5>
+            <h5>식품리뷰 수정</h5>
             <button type="button" class="close" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="body">
-            <form:form action="food_reviewWrite.gom" method="post" enctype="multipart/form-data" commandName="foodReviewWriteCommand">
+            <form:form action="food_reviewUpdate.gom" method="post" enctype="multipart/form-data" commandName="foodReviewUpdateCommand">
+            		<!-- <label>foodReviewNo</label> -->
+                	<form:hidden path="foodReviewNo" class="form-control"/>
             		<!-- <label>FoodNo</label> -->
                 	<form:hidden path="foodNo" class="form-control"/>
             		<!-- <label>SellerEmail</label> -->
@@ -30,11 +32,6 @@
                 	<form:hidden path="foodCatCNo" class="form-control"/>
                 	<!-- <label>foodReviewFoodName</label> -->
                 	<form:hidden path="foodReviewFoodName" class="form-control"/>
-<<<<<<< HEAD
-                	<!-- <label>foodReviewOrderdate</label> -->
-                	<form:hidden path="foodReviewOrderdate" class="form-control"/>
-=======
->>>>>>> 867a84a10d52b8e8197eac8a00e2b5282705c69d
               <div class="form-row">
                 <div class="form-group col-sm-6">
                 	<label>제목</label>

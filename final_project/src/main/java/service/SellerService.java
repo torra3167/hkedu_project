@@ -14,10 +14,12 @@ import repository.SellerRepository;
 @Service
 public class SellerService {
 	
-	@Autowired
-	private SellerRepository sellerRepository;
+
 	
 	Seller seller;
+	
+	@Autowired
+	private SellerRepository sellerRepository;
 	
 	public Integer insertSeller(SellerJoinCommand sellerJoinCommand) {
 		System.out.println("service " + sellerJoinCommand.getSellerEmail());
