@@ -31,7 +31,6 @@
 		<typeAlias type="model.ProReview" alias="ProReview"/>
 		
 
-	
 	</typeAliases>
 	
 	<environments default="development">
