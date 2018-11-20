@@ -22,13 +22,14 @@
 		<typeAlias type="model.ExerciseUpload" alias="ExerciseUpload"/>		
 		<typeAlias type="category.ExerciseCatA" alias="ExerciseCatA"/>
 		<typeAlias type="category.ExerciseCatB" alias="ExerciseCatB"/>
+		<typeAlias type="category.ExerciseCatACatB" alias="ExerciseCatACatB"/>
 		<typeAlias type="category.FoodCatA" alias="FoodCatA"/>
 		<typeAlias type="category.FoodCatB" alias="FoodCatB"/>
 		<typeAlias type="category.FoodCatC" alias="FoodCatC"/>
 		<typeAlias type="model.ProgramExerciseUpload" alias="ProgramExerciseUpload"/>
+		<typeAlias type="model.ProReview" alias="ProReview"/>
 		
-<!-- 		<typeAlias type="model.Email" alias="Email"/>
- -->		
+
 	
 	</typeAliases>
 	
@@ -52,7 +53,9 @@
 		<mapper resource="repository/mapper/exerciseMapper.xml"/>
 		<mapper resource="repository/mapper/foodMapper.xml"/>
 		<mapper resource="repository/mapper/programMapper.xml"/>
-		<mapper resource="repository/mapper/cartMapper.xml"/>
-<!-- 		<mapper resource="repository/mapper/emailMapper.xml"/>
- -->	</mappers>
+		<mapper resource="repository/mapper/proReviewMapper.xml"/>
+ 		<mapper resource="repository/mapper/cartMapper.xml"/>
+ 	
+ 	
+ 	</mappers>
 </configuration>
