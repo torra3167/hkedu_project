@@ -30,7 +30,7 @@
 		<typeAlias type="model.ProgramExerciseUpload" alias="ProgramExerciseUpload"/>
 		<typeAlias type="model.ProReview" alias="ProReview"/>
 		
-<!--  -->
+
 	
 	</typeAliases>
 	
