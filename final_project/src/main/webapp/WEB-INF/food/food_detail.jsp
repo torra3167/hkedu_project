@@ -1,4 +1,3 @@
-<%@page import="model.FoodReviewAndAnswer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, model.FoodAndApplication, model.FoodReviewAndAnswer, model.FoodReviewAnswer"%>
 <%
@@ -105,8 +104,8 @@
 			        <div class="card-header bg-light">
 			          <div class="row">
 			            <div class="col-8 text-left"><%=foodReviewAndAnswer.getFoodReviewTitle() %>&nbsp;&nbsp;&nbsp;&nbsp;<small><%=foodReviewAndAnswer.getMemberEmail() %></small></div>
-			            <div class="col-4 text-right"><%=foodReviewAndAnswer.getFoodReviewRegdate() %>
-			            </div>
+<%-- 			            <div class="col-4 text-right"><%=foodReviewAndAnswer.getFoodReviewRegdate() %> --%>
+<!-- 			            </div> -->
 			          </div>
 			        </div>
 			        <div class="card-body">
@@ -125,7 +124,7 @@
 			     %>
 		         <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo<%=answerButton %>">답변 보기</button>
 		         <a class="btn btn-primary mx-1 mt-2" href="food_reviewAnswerWrite.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>&memberEmail=<%=foodReviewAndAnswer.getMemberEmail() %>">답변 등록</a>
-		         <a class="btn btn-danger ml-1 mt-2" href="food_reviewReportWrite.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>">리뷰 신고</a>
+		         <a class="btn btn-danger ml-1 mt-2" href="food_reviewReportWrite.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>&memberEmail=<%=foodReviewAndAnswer.getMemberEmail() %>">리뷰 신고</a>
 		         <a class="btn btn-primary ml-1 mt-2" href="food_reviewUpdate.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>">리뷰 수정</a>
 		         <a class="btn btn-danger ml-1 mt-2" href="food_reviewDelete.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>">리뷰 삭제</a>
 		      		<%

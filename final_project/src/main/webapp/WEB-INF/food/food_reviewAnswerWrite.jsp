@@ -38,7 +38,7 @@
               </div>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">등록하기</button>
-                <button type="button" class="btn btn-secondary" onclick="history.go(-1);">뒤로가기</button>
+                <button type="button" class="btn btn-secondary" onclick="history.go(-1);">취소</button>
               </div>
             </form:form>
           </div>

@@ -1,7 +1,6 @@
 package command;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @SuppressWarnings("serial")
 public class FoodReviewAnswerUpdateCommand implements Serializable{
@@ -14,12 +13,12 @@ public class FoodReviewAnswerUpdateCommand implements Serializable{
 	private int foodCatBNo;
 	private int foodCatCNo;
 	private String foodReviewAnswerContent;
-	private Date foodReviewAnswerRegdate;
+	private String foodReviewAnswerRegdate;
 	public FoodReviewAnswerUpdateCommand() {
 	}
 	public FoodReviewAnswerUpdateCommand(int foodReviewNo, String memberEmail, int foodNo, String sellerEmail,
 			int foodReviewAnswerNo, int foodCatANo, int foodCatBNo, int foodCatCNo, String foodReviewAnswerContent,
-			Date foodReviewAnswerRegdate) {
+			String foodReviewAnswerRegdate) {
 		this.foodReviewNo = foodReviewNo;
 		this.memberEmail = memberEmail;
 		this.foodNo = foodNo;
@@ -85,10 +84,10 @@ public class FoodReviewAnswerUpdateCommand implements Serializable{
 	public void setFoodReviewAnswerContent(String foodReviewAnswerContent) {
 		this.foodReviewAnswerContent = foodReviewAnswerContent;
 	}
-	public Date getFoodReviewAnswerRegdate() {
+	public String getFoodReviewAnswerRegdate() {
 		return foodReviewAnswerRegdate;
 	}
-	public void setFoodReviewAnswerRegdate(Date foodReviewAnswerRegdate) {
+	public void setFoodReviewAnswerRegdate(String foodReviewAnswerRegdate) {
 		this.foodReviewAnswerRegdate = foodReviewAnswerRegdate;
 	}
 	

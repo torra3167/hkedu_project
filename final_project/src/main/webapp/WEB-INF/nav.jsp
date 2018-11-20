@@ -294,6 +294,7 @@
 						<div class="dropdown-menu" aria-labelledby="dropdown">
 							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a> 
 							<a class="dropdown-item" href="main/contact.jsp" >1:1문의</a>
+							<a class="dropdown-item" href="food_reviewReportList.gom" >리뷰신고관리</a>
 						</div>
 					</div>
 				</li>				

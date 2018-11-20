@@ -1,7 +1,6 @@
 package command;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,7 +13,7 @@ public class FoodReviewUpdateCommand implements Serializable{
 	private int foodCatANo;
 	private int foodCatBNo;
 	private int foodCatCNo;
-	private Date foodReviewRegdate;
+	private String foodReviewRegdate;
 	private String foodReviewFoodName;
 	private String foodReviewScore;
 	private String foodReviewTitle;
@@ -23,7 +22,7 @@ public class FoodReviewUpdateCommand implements Serializable{
 	public FoodReviewUpdateCommand() {
 	}
 	public FoodReviewUpdateCommand(int foodReviewNo, String memberEmail, int foodNo, String sellerEmail, int foodCatANo,
-			int foodCatBNo, int foodCatCNo, Date foodReviewRegdate, String foodReviewFoodName, String foodReviewScore,
+			int foodCatBNo, int foodCatCNo, String foodReviewRegdate, String foodReviewFoodName, String foodReviewScore,
 			String foodReviewTitle, String foodReviewComment, MultipartFile foodReviewImage) {
 		this.foodReviewNo = foodReviewNo;
 		this.memberEmail = memberEmail;
@@ -81,10 +80,10 @@ public class FoodReviewUpdateCommand implements Serializable{
 	public void setFoodCatCNo(int foodCatCNo) {
 		this.foodCatCNo = foodCatCNo;
 	}
-	public Date getFoodReviewRegdate() {
+	public String getFoodReviewRegdate() {
 		return foodReviewRegdate;
 	}
-	public void setFoodReviewRegdate(Date foodReviewRegdate) {
+	public void setFoodReviewRegdate(String foodReviewRegdate) {
 		this.foodReviewRegdate = foodReviewRegdate;
 	}
 	public String getFoodReviewFoodName() {
