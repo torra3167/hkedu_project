@@ -46,8 +46,8 @@ public class FoodService {
 	private FoodRepository foodRepository;
 	static final String filePath =
 //			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
 	
 	
@@ -257,7 +257,7 @@ public class FoodService {
 			
 		//foodReviewRegdate
 			foodReviewWriteCommand.setFoodReviewRegdate(Calendar.getInstance().getTime().toString());
-			System.out.println("svc insertFoodReview FoodReviewRegdate : " + Calendar.getInstance().getTime() + "시간");
+			System.out.println("svc insertFoodReview FoodReviewRegdate : " + foodReviewWriteCommand.getFoodReviewRegdate() + "시간");
 			
 		//foodImage
 			multiFile = foodReviewWriteCommand.getFoodReviewImage();
@@ -303,6 +303,16 @@ public class FoodService {
 	public void selectReviewAndAnswer(int foodNo, Model model) {
 		System.out.println("svc selectReviewAndAnswer foodNo : " + foodNo);
 		List<FoodReviewAndAnswer> foodReviewAndAnswers  = foodRepository.selectReviewAndAnswer(foodNo);
+		for(Object temp : foodReviewAndAnswers) {
+			FoodReviewAndAnswer fraa = (FoodReviewAndAnswer)temp;
+			System.out.println("svc selectReviewAndAnswer selectReviewAndAnswer : " + fraa.getFoodReviewRegdate());
+			List<FoodReviewAnswer> fra = fraa.getFoodReviewAnswers();
+			System.out.println("svc selectReviewAndAnswer FoodReviewAnswers : " + fra.size());
+			for(Object temp2 : fra) {
+				FoodReviewAnswer foodReviewAnswer = (FoodReviewAnswer)temp2;
+				System.out.println("svc selectReviewAndAnswer getFoodReviewAnswerRegdate : " + foodReviewAnswer.getFoodReviewAnswerRegdate());
+			}
+		}
 		model.addAttribute("foodReviewAndAnswers", foodReviewAndAnswers);
 	}
 	
