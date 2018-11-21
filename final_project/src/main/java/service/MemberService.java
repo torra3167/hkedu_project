@@ -30,7 +30,8 @@ public class MemberService {
 				memberJoinCommand.getMemberPhone(), memberJoinCommand.getMemberPass(),
 				memberJoinCommand.getMemberAddr1(), memberJoinCommand.getMemberAddr2(),
 				memberJoinCommand.getMemberAddrNo(), memberJoinCommand.getMemberDivide());
-		return memberRepository.insertMember(member);
+		Integer result=memberRepository.insertMember(member);
+		return result;
 	}
 
 	public void findID(FindIDCommand findIDCommand, Model model) {

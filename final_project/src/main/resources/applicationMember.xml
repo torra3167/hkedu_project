@@ -19,6 +19,7 @@
 <bean id="es" class="service.ExerciseService"></bean>
 <bean id="foodService" class="service.FoodService"></bean>
 <bean id="cartS" class="service.CartService"></bean>
+<bean id="noticeService" class="service.NoticeService"></bean>
 
 
 <!-- Repository  -->
@@ -29,6 +30,7 @@
 <bean id="sellerRepository" class="repository.SellerRepository"></bean>
 <bean id="foodRepository" class="repository.FoodRepository"></bean>
 <bean id="cartR" class="repository.CartRepository"></bean>
+<bean id="noticeRepository" class="repository.NoticeRepository"></bean>
 
 
 </beans>

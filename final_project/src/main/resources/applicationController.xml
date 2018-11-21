@@ -19,6 +19,7 @@
 <bean class="controller.PayController"></bean>
 <bean class="controller.CartController"></bean>
 <bean class="controller.PayController"></bean>
+<bean class="controller.NoticeController"></bean>
 <!-- <bean class="controller.EmailController"></bean>
  -->
 </beans>
