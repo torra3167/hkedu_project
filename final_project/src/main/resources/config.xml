@@ -31,6 +31,7 @@
 		<typeAlias type="model.ProReview" alias="ProReview"/>
 		<typeAlias type="model.FoodOrder" alias="FoodOrder"/>
 		<typeAlias type="model.FoodOrderReceiver" alias="FoodOrderReceiver"/>
+		<typeAlias type="model.FoodPay" alias="FoodPay"/>
 		
 
 	</typeAliases>

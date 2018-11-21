@@ -1,6 +1,7 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import model.Cart;
 import model.Food;
 import model.FoodOrder;
 import model.FoodOrderReceiver;
+import model.FoodPay;
 import repository.PayRepository;
 
 @Service
@@ -123,10 +125,31 @@ public class PayService {
 		//식품주문 수취인정보, 식품주문리스트 인서트
 		
 		
-		payR.insertOrderList(foodOrderList, foodOrderReceiver);
+		Integer foodOrderReceiverNumber = payR.insertOrderList(foodOrderList, foodOrderReceiver);
+		
+		if(foodOrderReceiverNumber > 0) {
+			model.addAttribute("FoodOrderReceiverNumber", foodOrderReceiverNumber);
+			model.addAttribute("FoodOrderReceiverTotal", foodOrderReceiver.getFoodOrderReceiverTotal());
+			
+		} else {
+			System.out.println("식품주문 INSERT 실패");
+		}
 		
 		
 		
 		
+	}
+	
+	public void payInsert(FoodPay foodPay, Model model) {
+		// TODO Auto-generated method stub
+		foodPay.setFoodPayDate(Calendar.getInstance().getTime());
+		foodPay.setFoodPayDivide("card");
+		Integer payInsertResult = payR.payInsert(foodPay);
+		
+		if(payInsertResult > 0) {
+			System.out.println("PAY INSERT 성공");
+		} else {
+			System.out.println("PAY INSERT 실패");
+		}
 	}
 }

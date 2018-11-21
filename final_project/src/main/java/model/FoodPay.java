@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class FoodPay implements Serializable{
@@ -8,33 +9,30 @@ public class FoodPay implements Serializable{
 	private String memberEmail;
 	private int foodOrderReceiverNo;
 	private int foodPayPrice;
-	private String foodPayCard;
-	private String foodPayCash;
+	private String foodPayDivide;
 	private int foodPayCardNo;
 	private int foodPayCardM;
 	private int foodPayCardY;
 	private int foodPayCardCvc;
-	private String foodPayDate;
-	
+	private Date foodPayDate;
+
 	
 	public FoodPay() {
 	}
 
 
-	public FoodPay(int foodPayNo, String memberEmail, int foodOrderReceiverNo, int foodPayPrice, String foodPayCard,
-			String foodPayCash, int foodPayCardNo, int foodPayCardM, int foodPayCardY, int foodPayCardCvc,
-			String foodPayDate) {
+	public FoodPay(int foodPayNo, String memberEmail, int foodOrderReceiverNo, int foodPayPrice, String foodPayDivide,
+			int foodPayCardNo, int foodPayCardM, int foodPayCardY, int foodPayCardCvc) {
+		super();
 		this.foodPayNo = foodPayNo;
 		this.memberEmail = memberEmail;
 		this.foodOrderReceiverNo = foodOrderReceiverNo;
 		this.foodPayPrice = foodPayPrice;
-		this.foodPayCard = foodPayCard;
-		this.foodPayCash = foodPayCash;
+		this.foodPayDivide = foodPayDivide;
 		this.foodPayCardNo = foodPayCardNo;
 		this.foodPayCardM = foodPayCardM;
 		this.foodPayCardY = foodPayCardY;
 		this.foodPayCardCvc = foodPayCardCvc;
-		this.foodPayDate = foodPayDate;
 	}
 
 
@@ -78,23 +76,13 @@ public class FoodPay implements Serializable{
 	}
 
 
-	public String getFoodPayCard() {
-		return foodPayCard;
+	public String getFoodPayDivide() {
+		return foodPayDivide;
 	}
 
 
-	public void setFoodPayCard(String foodPayCard) {
-		this.foodPayCard = foodPayCard;
-	}
-
-
-	public String getFoodPayCash() {
-		return foodPayCash;
-	}
-
-
-	public void setFoodPayCash(String foodPayCash) {
-		this.foodPayCash = foodPayCash;
+	public void setFoodPayDivide(String foodPayDivide) {
+		this.foodPayDivide = foodPayDivide;
 	}
 
 
@@ -138,16 +126,19 @@ public class FoodPay implements Serializable{
 	}
 
 
-	public String getFoodPayDate() {
+	public Date getFoodPayDate() {
 		return foodPayDate;
 	}
 
 
-	public void setFoodPayDate(String foodPayDate) {
+	public void setFoodPayDate(Date foodPayDate) {
 		this.foodPayDate = foodPayDate;
 	}
 
 
+	
+
+	
 	
 	
 }

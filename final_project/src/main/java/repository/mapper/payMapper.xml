@@ -5,23 +5,32 @@
 <cache></cache>
 
 
+<insert id="payInsert" parameterType="FoodPay">
+	insert into food_pay
+	(FOOD_PAY_NO, MEMBER_EMAIL, FOOD_ORDER_RECEIVER_NO, FOOD_PAY_PRICE, FOOD_PAY_DIVIDE, 
+	FOOD_PAY_CARD_NO, FOOD_PAY_CARD_M, FOOD_PAY_CARD_Y, FOOD_PAY_CARD_CVC, FOOD_PAY_DATE)
+	values
+	(#{foodPayNo}, #{memberEmail}, #{foodOrderReceiverNo}, #{foodPayPrice}, #{foodPayDivide}, 
+	#{foodPayCardNo}, #{foodPayCardM}, #{foodPayCardY}, #{foodPayCardCvc}, #{foodPayDate})
+</insert>
 
-
-<!-- <insert id="insertFoodOrder" parameterType="foodOrder" >
+ <insert id="insertFoodOrder" parameterType="FoodOrder" >
 	insert into FOOD_ORDER 
 	(MEMBER_EMAIL, FOOD_ORDER_RECEIVER_NO, FOOD_NO, SELLER_EMAIL, FOOD_CAT_A_NO, FOOD_CAT_B_NO, FOOD_CAT_C_NO,
 	FOOD_ORDER_PRICE, FOOD_ORDER_QUANT, FOOD_ORDER_NAME, FOOD_ORDER_STORED)
 	values
-	(#{memberEmail} ,#{} ,#{} ,#{} ,#{} ,#{} ,#{} ,#{} ,#{} ,#{})
+	(#{memberEmail} ,#{foodOrderReceiverNo} ,#{foodNo} ,#{sellerEmail} ,#{foodCatANo} ,#{foodCatBNo} ,
+	#{foodCatCNo} ,#{foodOrderPrice} ,#{foodOrderQuant} ,#{foodOrderName}, #{foodOrderStored})
 </insert>
 
-<insert id="insertFoodOrderReceiver" parameterType="foodOrderReceiver" >
+<insert id="insertFoodOrderReceiver" parameterType="FoodOrderReceiver" >
 	insert into FOOD_ORDER_RECEIVER 
 	(FOOD_ORDER_RECEIVER_NO, MEMBER_EMAIL, PRO_FOOD_ORDER_RECEIVER_NAME, FOOD_ORDER_RECEIVER_PHONE, 
 	FOOD_ORDER_RECEIVER_ADDR1, FOOD_ORDER_RECEIVER_ADDR2, FOOD_ORDER_RECEIVER_ADDRNO, FOOD_ORDER_RECEIVER_TOTAL)
 	values
-	(#{} ,#{} ,#{} ,#{} ,#{} ,#{} ,#{} ,#{} ,#{}, #{}, #{}, #{}. #{})
-</insert> -->
+	(#{foodOrderReceiverNo} , #{memberEmail}, #{proFoodOrderReceiverName}, #{foodOrderReceiverPhone},
+	 #{foodOrderReceiverAddr1}, #{foodOrderReceiverAddr2}, #{foodOrderReceiverAddrno}, #{foodOrderReceiverTotal})
+</insert> 
 
 <resultMap type="Food" id="foodCategoryResultMap">
 	<result jdbcType="BIGINT" property="foodNo" column="food_no" />
@@ -36,6 +45,11 @@
  select food_no, seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no 
  from food
  where food_no = #{foodNo}
+</select>
+
+<select id="selectSequenceNumber" resultType="Integer">
+	select COUNT_NUMBER.NEXTVAL
+	from dual
 </select>
 
 </mapper>

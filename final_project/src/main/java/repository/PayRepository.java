@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import model.Food;
 import model.FoodOrder;
 import model.FoodOrderReceiver;
+import model.FoodPay;
 
 @Repository
 public class PayRepository extends AbstractRepository {
@@ -33,20 +34,47 @@ public class PayRepository extends AbstractRepository {
 
 
 
-	public void insertOrderList(List<FoodOrder> foodOrderList, FoodOrderReceiver foodOrderReceiver) {
+	public Integer insertOrderList(List<FoodOrder> foodOrderList, FoodOrderReceiver foodOrderReceiver) {
 		sqlSession = getSqlSessionFactory().openSession();
+		//식품주문번호를 위한 select
+		Integer foodOrderReceiverNumber = (Integer)sqlSession.selectOne(namespace + ".selectSequenceNumber");
+		
+		System.out.println("식품주문번호 " + foodOrderReceiverNumber);
 
+		//식품수취인정보 인서트
+		
+		foodOrderReceiver.setFoodOrderReceiverNo(foodOrderReceiverNumber);
+		
+		Integer FoodOrderReceiverResult = (Integer)sqlSession.insert(namespace + ".insertFoodOrderReceiver", foodOrderReceiver);
+		System.out.println("FoodOrderReceiverResult" + FoodOrderReceiverResult);
+
+		//식품주문정보 인서트
 		Integer foodOrderResult = 0;
 		for(Object temp : foodOrderList) {
 			FoodOrder foodOrder = (FoodOrder)temp;
+			foodOrder.setFoodOrderReceiverNo(foodOrderReceiverNumber);
 			sqlSession.insert(namespace + ".insertFoodOrder", foodOrder);
 			foodOrderResult++;
 		}
 		System.out.println("FOOD ORDER RESULT " + foodOrderResult);
 		
-		Integer FoodOrderReceiverResult = (Integer)sqlSession.insert(namespace + ".insertFoodOrderReceiver", foodOrderReceiver);
+		return foodOrderReceiverNumber;
 		
-		System.out.println("FoodOrderReceiverResult" + FoodOrderReceiverResult);
+	}
+
+
+
+	public Integer payInsert(FoodPay foodPay) {
+		
+		sqlSession = getSqlSessionFactory().openSession();
+		//번호를 위한 select
+		Integer foodPayNumber = (Integer)sqlSession.selectOne(namespace + ".selectSequenceNumber");
+		
+		foodPay.setFoodPayNo(foodPayNumber);
+		
+		sqlSession.insert(namespace + ".payInsert", foodPay);
+		
+		return null;
 	}
 	
 	

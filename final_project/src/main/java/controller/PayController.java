@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import model.FoodOrderReceiver;
+import model.FoodPay;
 import service.PayService;
 
 
@@ -21,6 +22,14 @@ public class PayController {
 	@Autowired
 	PayService payS;
 	
+	
+	@RequestMapping(value="/pay_success.gom", method=RequestMethod.POST)
+	public String paySuccess(FoodPay foodPay, Model model) {
+		
+		payS.payInsert(foodPay, model);	
+		model.addAttribute("iPage", "pay/pay_view.jsp");
+		return "index";
+	}
 	
 	@RequestMapping(value="/food_order_list_insert.gom", method=RequestMethod.POST)
 	public String foodOrderListInsert(FoodOrderReceiver foodOrderReceiver, Model model, 
