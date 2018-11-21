@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import command.SellerApplicationWriteCommand;
@@ -29,8 +28,8 @@ public class SellerService {
 	
 	static final String filePath =
 //			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
 	File file2 = new File(filePath);
 	
@@ -84,7 +83,7 @@ public class SellerService {
 		return result;
 	}
 
-	public void insertSellerApplication(SellerApplicationWriteCommand sellerApplicationWriteCommand, HttpSession session, Model model) {
+	public void insertSellerApplication(SellerApplicationWriteCommand sellerApplicationWriteCommand, HttpSession session) {
 		//sellerEmail
 		String sellerEmail = (String) session.getAttribute("email");
 		System.out.println("svc insertSellerApplication sellerEmail : " + sellerEmail);
@@ -156,38 +155,37 @@ public class SellerService {
 		}
 	}
 
-	public void selectSellerApplicationList(Model model) {
+	public List<SellerApplication> selectSellerApplicationList() {
 		List<SellerApplication> sellerApplicationList = sellerRepository.selectSellerApplicationList();  
 		
 		for(Object temp : sellerApplicationList) {
 			 SellerApplication sa = (SellerApplication)temp;
 			 System.out.println("svc selectSellerApplicationList getSellerBrOriginal : " + sa.getSellerBrOriginal());
 		}
-		model.addAttribute("sellerApplicationList", sellerApplicationList);
-		
+		return sellerApplicationList;
 	}
 
-//	public void selectSellerApplicationByEmail(String sellerEmail, HttpSession session) {
-//		SellerApplication sellerApplication = sellerRepository.selectSellerApplicationByEmail(sellerEmail);
-//		session.setAttribute("sellerApplicationStatus", sellerApplication.getApplicationStatus());
-//	}
+	public void selectApplicationCountByEmail(String sellerEmail, HttpSession session) {
+		Integer count = sellerRepository.selectApplicationCountByEmail(sellerEmail);
+		session.setAttribute("count", count);
+	}
 //	
-//	public void selectSellerApplication(String sellerEmail, Model model) {
-//		SellerApplication sellerApplication = sellerRepository.selectSellerApplicationByEmail(sellerEmail);
-//		model.addAttribute("sellerApplication", sellerApplication);
-//	}
-//
-//	public void deleteSellerApplication(int sellerAppliNo) {
-//		System.out.println("svc deleteSellerApplication sellerAppliNo : " + sellerAppliNo);
-//		int k = sellerRepository.deleteSellerApplication(sellerAppliNo);
-//		
-//		if(k < 1) {
-//			System.out.println("입점신청서 삭제 실패");
-//		} else {
-//			System.out.println("입점신청서 삭제 성공!");
-//			//판매자 입점신청서 조회 -> 입점신청하기로 변경해야한다.
-//		}
-//	}
+	public SellerApplication selectSellerApplication(String sellerEmail) {
+		SellerApplication sellerApplication = sellerRepository.selectSellerApplication(sellerEmail);
+		return sellerApplication;
+	}
+
+	public void deleteSellerApplication(int sellerAppliNo) {
+		System.out.println("svc deleteSellerApplication sellerAppliNo : " + sellerAppliNo);
+		int k = sellerRepository.deleteSellerApplication(sellerAppliNo);
+		
+		if(k < 1) {
+			System.out.println("입점신청서 삭제 실패");
+		} else {
+			System.out.println("입점신청서 삭제 성공!");
+			//판매자 입점신청서 조회 -> 입점신청하기로 변경해야한다.
+		}
+	}
 	
 	
 	

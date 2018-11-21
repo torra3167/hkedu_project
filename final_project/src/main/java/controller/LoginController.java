@@ -69,7 +69,7 @@ public class LoginController {
 		response.addCookie(cookie);
 		
 		//회원 입점신청 후 입점신청서 조회에 사용
-//		sellerService.selectSellerApplicationByEmail((String) session.getAttribute("email"), session);
+		sellerService.selectApplicationCountByEmail((String) session.getAttribute("email"), session);
 		
 		return "index";
 	}

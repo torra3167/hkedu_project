@@ -125,33 +125,44 @@ public class SellerRepository extends AbstractRepository{
 	}
 
 
-//	public SellerApplication selectSellerApplicationByEmail(String sellerEmail) {
-//		System.out.println("repo selectSellerApplicationStatus sellerEmail " + sellerEmail);
-//		sqlSession = getSqlSessionFactory().openSession();
-//		try {
-//			SellerApplication sellerApplication = sqlSession.selectOne(namespace + ".selectSellerApplicationByEmail", sellerEmail);
-//			return sellerApplication;
-//		} finally {
-//			sqlSession.close();
-//		}
-//	}
-//
-//
-//	public int deleteSellerApplication(int sellerAppliNo) {
-//		sqlSession = getSqlSessionFactory().openSession();
-//		Integer result = 0;
-//		try {
-//			result = sqlSession.update(namespace + ".deleteSellerApplication", sellerAppliNo);
-//			if(result > 0) {
-//				sqlSession.commit();
-//			} else {
-//				sqlSession.rollback();
-//			}
-//			return result;
-//		} finally {
-//			sqlSession.close();
-//		}
-//	}
+	public Integer selectApplicationCountByEmail(String sellerEmail) {
+		System.out.println("repo selectApplicationCountByEmail sellerEmail " + sellerEmail);
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			Integer count = sqlSession.selectOne(namespace + ".selectApplicationCountByEmail", sellerEmail);
+			return count;
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public SellerApplication selectSellerApplication(String sellerEmail) {
+		System.out.println("repo selectSellerApplication sellerEmail " + sellerEmail);
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			SellerApplication sellerApplication = sqlSession.selectOne(namespace + ".selectSellerApplication", sellerEmail);
+			return sellerApplication;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+	public int deleteSellerApplication(int sellerAppliNo) {
+		sqlSession = getSqlSessionFactory().openSession();
+		Integer result = 0;
+		try {
+			result = sqlSession.update(namespace + ".deleteSellerApplication", sellerAppliNo);
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
 
 	
 	

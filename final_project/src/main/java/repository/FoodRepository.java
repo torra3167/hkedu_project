@@ -149,16 +149,13 @@ public class FoodRepository extends AbstractRepository{
 
 	public List<FoodAndApplication> selectFoodList() {
 		sqlSession = getSqlSessionFactory().openSession();
-		
 		try {
-			
 		List<FoodAndApplication> list =  sqlSession.selectList(namespace + ".selectFoodList");
 		
-//		for(Object temp : list) {
-//			FoodAndApplication foodAppli = (FoodAndApplication)temp;
-//			 System.out.println("repo selectFoodList storeName : "+foodAppli.getStoreName());
-//		}
-		
+		for(Object temp : list) {
+			FoodAndApplication foodAppli = (FoodAndApplication)temp;
+			 System.out.println("repo selectFoodList storeName : "+foodAppli.getStoreName());
+		}
 		return list;
 		} finally {
 			sqlSession.close();
