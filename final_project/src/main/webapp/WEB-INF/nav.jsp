@@ -4,6 +4,8 @@
     <%
     	String divide = (String)session.getAttribute("divide");
     
+    	/* String sellerApplicationStatus = (String)session.getAttribute("sellerApplicationStatus");
+    	System.out.println("sellerApplicationStatus : " + sellerApplicationStatus); */
     %>
 <!DOCTYPE html>
 <html>
@@ -108,6 +110,15 @@
 						<div class="dropdown-menu" aria-labelledby="dropdown">
 							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a> 
 							<a class="dropdown-item" href="main/contact.jsp" >1:1문의</a>
+							<%-- 
+							<% 			
+ 								if(sellerApplicationStatus != null){
+							%> 
+							--%>
+							<a class="dropdown-item" href="seller_lookUpApplication.gom" >입점신청서 조회</a>
+<%-- 							<%	}else{ %> --%>
+							<a class="dropdown-item" href="seller_application.gom" >입점신청하기</a>
+<%-- 							<%	} %> --%>
 						</div>
 					</div>
 				</li>				
@@ -296,7 +307,8 @@
 						<div class="dropdown-menu" aria-labelledby="dropdown">
 							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a> 
 							<a class="dropdown-item" href="main/contact.jsp" >1:1문의</a>
-							<a class="dropdown-item" href="food_reviewReportList.gom" >리뷰신고관리</a>
+							<a class="dropdown-item" href="food_reviewReportList.gom" >리뷰신고 관리</a>
+							<a class="dropdown-item" href="seller_applicationList.gom" >입점신청서 관리</a>
 						</div>
 					</div>
 				</li>				

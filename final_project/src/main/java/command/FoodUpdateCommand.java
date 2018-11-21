@@ -16,7 +16,6 @@ public class FoodUpdateCommand implements Serializable{
 	private String foodExpiryDate;
 	private String foodOrigin;
 	private int foodSale;
-	private String foodFlavor;
 	private int foodPrice;
 	private int foodCarbo;
 	private int foodProtein;
@@ -26,9 +25,10 @@ public class FoodUpdateCommand implements Serializable{
 	
 	public FoodUpdateCommand() {
 	}
+
 	public FoodUpdateCommand(int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo,
-			String foodName, int foodQuant, String foodExpiryDate, String foodOrigin, int foodSale, String foodFlavor,
-			int foodPrice, int foodCarbo, int foodProtein, int foodFat, int foodCal, MultipartFile foodImage) {
+			String foodName, int foodQuant, String foodExpiryDate, String foodOrigin, int foodSale, int foodPrice,
+			int foodCarbo, int foodProtein, int foodFat, int foodCal, MultipartFile foodImage) {
 		this.foodNo = foodNo;
 		this.sellerEmail = sellerEmail;
 		this.foodCatANo = foodCatANo;
@@ -39,7 +39,6 @@ public class FoodUpdateCommand implements Serializable{
 		this.foodExpiryDate = foodExpiryDate;
 		this.foodOrigin = foodOrigin;
 		this.foodSale = foodSale;
-		this.foodFlavor = foodFlavor;
 		this.foodPrice = foodPrice;
 		this.foodCarbo = foodCarbo;
 		this.foodProtein = foodProtein;
@@ -47,106 +46,131 @@ public class FoodUpdateCommand implements Serializable{
 		this.foodCal = foodCal;
 		this.foodImage = foodImage;
 	}
-	
+
 	public int getFoodNo() {
 		return foodNo;
 	}
+
 	public void setFoodNo(int foodNo) {
 		this.foodNo = foodNo;
 	}
+
 	public String getSellerEmail() {
 		return sellerEmail;
 	}
+
 	public void setSellerEmail(String sellerEmail) {
 		this.sellerEmail = sellerEmail;
 	}
+
 	public int getFoodCatANo() {
 		return foodCatANo;
 	}
+
 	public void setFoodCatANo(int foodCatANo) {
 		this.foodCatANo = foodCatANo;
 	}
+
 	public int getFoodCatBNo() {
 		return foodCatBNo;
 	}
+
 	public void setFoodCatBNo(int foodCatBNo) {
 		this.foodCatBNo = foodCatBNo;
 	}
+
 	public int getFoodCatCNo() {
 		return foodCatCNo;
 	}
+
 	public void setFoodCatCNo(int foodCatCNo) {
 		this.foodCatCNo = foodCatCNo;
 	}
+
 	public String getFoodName() {
 		return foodName;
 	}
+
 	public void setFoodName(String foodName) {
 		this.foodName = foodName;
 	}
+
 	public int getFoodQuant() {
 		return foodQuant;
 	}
+
 	public void setFoodQuant(int foodQuant) {
 		this.foodQuant = foodQuant;
 	}
+
 	public String getFoodExpiryDate() {
 		return foodExpiryDate;
 	}
+
 	public void setFoodExpiryDate(String foodExpiryDate) {
 		this.foodExpiryDate = foodExpiryDate;
 	}
+
 	public String getFoodOrigin() {
 		return foodOrigin;
 	}
+
 	public void setFoodOrigin(String foodOrigin) {
 		this.foodOrigin = foodOrigin;
 	}
+
 	public int getFoodSale() {
 		return foodSale;
 	}
+
 	public void setFoodSale(int foodSale) {
 		this.foodSale = foodSale;
 	}
-	public String getFoodFlavor() {
-		return foodFlavor;
-	}
-	public void setFoodFlavor(String foodFlavor) {
-		this.foodFlavor = foodFlavor;
-	}
+
 	public int getFoodPrice() {
 		return foodPrice;
 	}
+
 	public void setFoodPrice(int foodPrice) {
 		this.foodPrice = foodPrice;
 	}
+
 	public int getFoodCarbo() {
 		return foodCarbo;
 	}
+
 	public void setFoodCarbo(int foodCarbo) {
 		this.foodCarbo = foodCarbo;
 	}
+
 	public int getFoodProtein() {
 		return foodProtein;
 	}
+
 	public void setFoodProtein(int foodProtein) {
 		this.foodProtein = foodProtein;
 	}
+
 	public int getFoodFat() {
 		return foodFat;
 	}
+
 	public void setFoodFat(int foodFat) {
 		this.foodFat = foodFat;
 	}
+
 	public int getFoodCal() {
 		return foodCal;
 	}
+
 	public void setFoodCal(int foodCal) {
 		this.foodCal = foodCal;
 	}
+
 	public MultipartFile getFoodImage() {
 		return foodImage;
 	}
+
 	public void setFoodImage(MultipartFile foodImage) {
 		this.foodImage = foodImage;
 	}

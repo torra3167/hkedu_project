@@ -54,4 +54,63 @@
 	FROM food
 	WHERE seller_email = #{sellerEmail}
 </delete>
+
+<select id="selectsellerAppliNo" resultType="Integer">
+	select count(seller_appli_no)
+	from seller_application
+</select>
+
+<insert id="insertSellerApplication" parameterType="SellerApplication">
+	INSERT INTO seller_application
+	(seller_appli_no, seller_email, seller_appli_bn, seller_name, store_name, store_telphone,
+	store_addr, store_term, application_status, application_des,
+	seller_license_size, seller_license_original, seller_license_stored, seller_br_size, seller_br_original, seller_br_stored)
+	VALUES (#{sellerAppliNo}, #{sellerEmail}, #{sellerAppliBn}, #{sellerName},
+	#{storeName}, #{storeTelphone}, #{storeAddr}, #{storeTerm},
+	#{applicationStatus}, #{applicationDes}, #{sellerLicenseSize}, #{sellerLicenseOriginal},
+	#{sellerLicenseStored}, #{sellerBrSize}, #{sellerBrOriginal}, #{sellerBrStored})
+</insert>
+
+<resultMap type="SellerApplication" id="selectSellerApplicationListMap">
+		<id column="SELLER_APPLI_NO" jdbcType="BIGINT" property="sellerAppliNo" />
+		<id column="SELLER_EMAIL" jdbcType="VARCHAR" property="sellerEmail" />
+		<result column="SELLER_APPLI_BN" jdbcType="VARCHAR" property="sellerAppliBn" />
+		<result column="SELLER_NAME" jdbcType="VARCHAR" property="sellerName" />
+		<result column="STORE_NAME" jdbcType="VARCHAR" property="storeName" />
+		<result column="STORE_TELPHONE" jdbcType="VARCHAR" property="storeTelphone" />
+		<result column="STORE_ADDR" jdbcType="VARCHAR" property="storeAddr" />
+		<result column="STORE_TERM" jdbcType="VARCHAR" property="storeTerm" />
+		<result column="APPLICATION_STATUS" jdbcType="VARCHAR" property="applicationStatus" />
+		<result column="APPLICATION_DES" jdbcType="VARCHAR" property="applicationDes" />
+		<result column="SELLER_LICENSE_SIZE" jdbcType="BIGINT" property="sellerLicenseSize" />
+		<result column="SELLER_LICENSE_ORIGINAL" jdbcType="VARCHAR" property="sellerLicenseOriginal" />
+		<result column="SELLER_LICENSE_STORED" jdbcType="VARCHAR" property="sellerLicenseStored" />
+		<result column="SELLER_BR_SIZE" jdbcType="BIGINT" property="sellerBrSize" />
+		<result column="SELLER_BR_ORIGINAL" jdbcType="VARCHAR" property="sellerBrOriginal" />
+		<result column="SELLER_BR_STORED" jdbcType="VARCHAR" property="sellerBrStored" />
+</resultMap>
+
+<select id="selectSellerApplicationList" resultMap="selectSellerApplicationListMap">
+		SELECT
+		seller_appli_no, seller_email, seller_appli_bn, seller_name, store_name, 
+		store_telphone, store_addr, store_term, application_status, application_des,
+		seller_license_size, seller_license_original, seller_license_stored, seller_br_size, seller_br_original, seller_br_stored
+		FROM seller_application
+		ORDER BY seller_appli_no
+</select>
+
+<select id="selectSellerApplicationByEmail" parameterType="String" resultMap="selectSellerApplicationListMap">
+	select seller_appli_no, seller_email, seller_appli_bn, seller_name, store_name, 
+		store_telphone, store_addr, store_term, application_status, application_des,
+		seller_license_size, seller_license_original, seller_license_stored, seller_br_size, seller_br_original, seller_br_stored
+	from seller_application
+	where seller_email = #{sellerEmail}
+</select>
+
+<delete id="deleteSellerApplication" parameterType="Integer">
+	DELETE
+	FROM seller_application
+	WHERE seller_appli_no = #{sellerAppliNo}
+</delete>
+
 </mapper>

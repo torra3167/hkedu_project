@@ -29,10 +29,7 @@
 	    <a class="nav-link" data-toggle="tab" href="#menu3">등록식품 수정</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" data-toggle="tab" href="#menu4">식품리뷰 답변</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" data-toggle="tab" href="#menu5">관리자 문의</a>
+	    <a class="nav-link" data-toggle="tab" href="#menu4">관리자 문의</a>
 	  </li>
 	</ul>
 	
@@ -53,9 +50,6 @@
 	  		<jsp:include page="seller_foodList.jsp"></jsp:include>
 	  	</div>
 	  	<div class="tab-pane container fade" id="menu4">
-	  		<jsp:include page="../food/food_reviewAnswerWrite.jsp"></jsp:include>
-		</div>
-	  	<div class="tab-pane container fade" id="menu5">
 	  		<jsp:include page="seller_contactAdmin.jsp"></jsp:include>
 		</div>  
 	</div>

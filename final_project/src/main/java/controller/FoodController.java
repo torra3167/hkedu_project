@@ -39,7 +39,7 @@ public class FoodController {
 	
 	@RequestMapping(value="/food_reg.gom", method=RequestMethod.POST)
 	public String foodRegSubmit(FoodRegCommand foodRegCommand, HttpSession session) { 
-		System.out.println("foodRegForm yyyyyyyyyyyyyyyyyyyyyyyyyyy"+foodRegCommand.getFoodNo());
+		System.out.println("cntlr foodRegSubmit getFoodNo : "+foodRegCommand.getFoodNo());
 //        System.out.println("cntlr foodRegCommand.getFoodName : " + foodRegCommand.getFoodName());
         foodService.insertFood(foodRegCommand, session);
         System.out.println("food_cntlr foodNo : " + foodRegCommand.getFoodNo());
@@ -262,5 +262,13 @@ public class FoodController {
 		model.addAttribute("iPage", "food/food_reviewReportDetail.jsp");
 		return "index";
 	}
+	
+	@RequestMapping(value="/food_reviewReportDelete.gom", method=RequestMethod.GET)
+    public String foodReviewReportDelete(@RequestParam("foodReportRegdate")String foodReportRegdate, Model model) {
+		System.out.println("cntlr foodReviewReportDelete foodReportRegdate : " + foodReportRegdate);
+		foodService.deleteFoodReviewReport(foodReportRegdate);
+		return "redirect:/index";
+	}
+	
 	
 }

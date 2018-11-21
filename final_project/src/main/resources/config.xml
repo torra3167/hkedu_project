@@ -6,6 +6,7 @@
 	<typeAliases>
 		<typeAlias type="model.Coach" alias="Coach"/>
 		<typeAlias type="model.Seller" alias="Seller"/>
+		<typeAlias type="model.SellerApplication" alias="SellerApplication"/>
 		<typeAlias type="model.Food" alias="Food"/>
 		<typeAlias type="model.FoodReview" alias="FoodReview"/>
 		<typeAlias type="model.FoodAndApplication" alias="FoodAndApplication"/>

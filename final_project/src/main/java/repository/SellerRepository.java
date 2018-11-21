@@ -1,12 +1,13 @@
 package repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import command.SellerJoinCommand;
-import command.SellerUpdateCommand;
-import model.Coach;
 import model.Seller;
+import model.SellerApplication;
 
 @Repository
 public class SellerRepository extends AbstractRepository{
@@ -75,4 +76,83 @@ public class SellerRepository extends AbstractRepository{
 			sqlSession.close();
 		}
 	}
+
+
+	public Integer selectsellerAppliNo() {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+		return (Integer)sqlSession.selectOne(namespace + ".selectsellerAppliNo");
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+	public Integer insertSellerApplication(SellerApplication sellerApplication) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			Integer result = sqlSession.insert(namespace + ".insertSellerApplication", sellerApplication);
+			System.out.println("repo insertSellerApplication result : " + result);
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+	public List<SellerApplication> selectSellerApplicationList() {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+		List<SellerApplication> list =  sqlSession.selectList(namespace + ".selectSellerApplicationList");
+		for(Object temp : list) {
+			SellerApplication sa = (SellerApplication)temp;
+			System.out.println("repo selectSellerApplicationList getSellerAppliNo : "+ sa.getSellerAppliNo());
+		}
+		return list;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+//	public SellerApplication selectSellerApplicationByEmail(String sellerEmail) {
+//		System.out.println("repo selectSellerApplicationStatus sellerEmail " + sellerEmail);
+//		sqlSession = getSqlSessionFactory().openSession();
+//		try {
+//			SellerApplication sellerApplication = sqlSession.selectOne(namespace + ".selectSellerApplicationByEmail", sellerEmail);
+//			return sellerApplication;
+//		} finally {
+//			sqlSession.close();
+//		}
+//	}
+//
+//
+//	public int deleteSellerApplication(int sellerAppliNo) {
+//		sqlSession = getSqlSessionFactory().openSession();
+//		Integer result = 0;
+//		try {
+//			result = sqlSession.update(namespace + ".deleteSellerApplication", sellerAppliNo);
+//			if(result > 0) {
+//				sqlSession.commit();
+//			} else {
+//				sqlSession.rollback();
+//			}
+//			return result;
+//		} finally {
+//			sqlSession.close();
+//		}
+//	}
+
+	
+	
 }

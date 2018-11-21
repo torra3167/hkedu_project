@@ -365,7 +365,25 @@ sqlSession = getSqlSessionFactory().openSession();
 	public FoodReviewReport selectFoodReviewReport(String foodReportRegdate) {
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-		return (FoodReviewReport)sqlSession.selectOne(namespace + ".selectFoodReviewReport", foodReportRegdate);
+			FoodReviewReport result = (FoodReviewReport)sqlSession.selectOne(namespace + ".selectFoodReviewReport", foodReportRegdate);
+			System.out.println("repo selectFoodReviewReport getFoodReportRegdate : " + result.getFoodReportRegdate());
+		return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public int deleteFoodReviewReport(String foodReportRegdate) {
+		sqlSession = getSqlSessionFactory().openSession();
+		Integer result = 0;
+		try {
+			result = sqlSession.update(namespace + ".deleteFoodReviewReport", foodReportRegdate);
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+			return result;
 		} finally {
 			sqlSession.close();
 		}
