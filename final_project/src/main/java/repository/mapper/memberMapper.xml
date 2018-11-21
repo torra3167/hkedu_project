@@ -43,12 +43,10 @@
 		insert into
 		survey
 			(SURV_NO, MEMBER_EMAIL, SURV_HEIGHT, SURV_WEIGHT, SURV_EAT,
-			SURV_BMI, SURV_SEX, SURV_AGE, SURV_LIFESTYLE, SURV_PHOTO, SURV_SHAPE,
-			SURV_DISEASE, SURV_CONCERN, SURV_CONCERN, SURV_CAREER)
+			SURV_BMI, SURV_AGE)
 		values
-			(#{survNo}, #{memberEmail}, #{survHeight}, #{survWeight}, #{survEat},
-			#{survBMI}, #{survSex}, #{survAge}, #{survLifestyle}, #{survPhoto}, #{survShape},
-			#{survDisease}, #{survConcern}, #{survCause}, #{survCareer})
+			((select count(SURV_NO)+1 from survey ), #{memberEmail}, #{survHeight}, #{survWeight}, #{survEat},
+			#{survBMI}, #{survAge})
 	</insert>
 	<select id="selectSurveyNo" resultType="Integer">
 		select count(surv_no)

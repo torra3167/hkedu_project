@@ -11,7 +11,7 @@
 	}
 	</script>
 </head>
-<style type="text/css">
+<!-- <style type="text/css">
 a:link {
 	color: black;
 	text-decoration: none;
@@ -35,7 +35,7 @@ a:hover {
 #noticetd {
 	padding: 20px
 }
-</style>
+</style> -->
 <body>
 <form action="./NoticeAddAction.sh" method="post" 
 	enctype="multipart/form-data" name="noticeform">
@@ -78,21 +78,20 @@ a:hover {
 		</td>
 	</tr>
 	<tr>
-		<td style="font-family: 돋음; font-size: 12">
+		<td>
 			<div align="center">파일 첨부</div>
 		</td>
 		<td><input name="NOTICE_FILE" type="file" /></td>
 	</tr>
 	<tr bgcolor="cccccc">
-		<td colspan="2" style="height:1px;">
+		<td colspan="2">
 		</td>
 	</tr>
 	<tr><td colspan="2">&nbsp;</td></tr>
 	<tr align="center" valign="middle">
 		<td colspan="5">
-			<a href="javascript:addnotice()">[등록]</a>&nbsp;&nbsp;
-			
-			<a href="javascript:history.go(-1)">[뒤로]</a>
+			<button type="submit" value="등록">등록</button>&nbsp;&nbsp;
+			<button type="button" value="뒤로가기" onclick="history.go(-1);">등록</button>
 		</td>
 	</tr>
 </table>

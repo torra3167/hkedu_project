@@ -3,6 +3,7 @@
     
     <%
 	String iPage = (String)request.getAttribute("iPage");
+    System.out.print(iPage);
 	if (request.getAttribute("iPage") == null) {
 		iPage = "main.jsp";
 	}

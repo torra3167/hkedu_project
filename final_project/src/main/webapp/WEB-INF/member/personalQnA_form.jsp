@@ -22,11 +22,7 @@
 				<div class="right">문의 답변을 받을 이메일을 작성해주세요.</div>
 			<%} else { %>
 				<div class="right div-text-min">다른 주소로 문의를 전송하시려면 이메일 주소를 작성해주세요.</div>
-			<%} 	
-			
-			if(email==null){
-				email=(String)session.getAttribute("sender");
-				}	%>
+			<%}%>
 			<div right="left">
 				<input type="hidden" name="email" value=<%= email %> readonly="true"/>
 				<label>보내는 사람</label>
@@ -35,7 +31,7 @@
 			</div>
 			<hr>
 			<div>
-				<label>제목</label><br>
+				<label>제목</label>
 				<input type="text" name="title"/>
 			</div>
 			<div>

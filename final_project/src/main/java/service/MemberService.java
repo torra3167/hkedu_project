@@ -68,20 +68,15 @@ public class MemberService {
 	}
 
 	public Integer insertSurvey1(MemberSurveyCommand memberSurveyCommand) {
-		Integer result = memberRepository.selectSurveyNo();
-		System.out.println("MEMBERSERVICE InsertSurvey1 " + memberSurveyCommand.getSurvNo());
-		if (result == 0) {
-			result = 1;
-		} else {
-			result = result + 1;
-		}
-		survey = new MemberSurvey(result, member.getMemberEmail(), memberSurveyCommand.getSurvHeight(),
+		System.out.println("memberSurveyCommand.getSurvEat()="+memberSurveyCommand.getSurvEat());
+		survey = new MemberSurvey(memberSurveyCommand.getSurvNo(), memberSurveyCommand.getMemberEmail(), memberSurveyCommand.getSurvHeight(),
 				memberSurveyCommand.getSurvWeight(), memberSurveyCommand.getSurvEat(), memberSurveyCommand.getSurvBMI(),
 				memberSurveyCommand.getSurvSex(), memberSurveyCommand.getSurvAge(),
 				memberSurveyCommand.getSurvLifestyle(), memberSurveyCommand.getSurvPhoto(),
 				memberSurveyCommand.getSurvShape(), memberSurveyCommand.getSurvDisease(),
 				memberSurveyCommand.getSurvConcern(), memberSurveyCommand.getSurvCause(),
 				memberSurveyCommand.getSurvCareer());
+		
 		Integer i = memberRepository.insertSurvey1(survey);
 		if (i > 0) {
 			System.out.println("SURVEY INSERT " + survey.getSurvNo());
@@ -98,17 +93,19 @@ public class MemberService {
 	}
 	
 	public Integer updateSurvey2(MemberSurveyCommand memberSurveyCommand) {
-		MemberSurvey memberSurvey = new MemberSurvey(memberSurveyCommand.getSurvSex(),
+		MemberSurvey memberSurvey = new MemberSurvey(
+				memberSurveyCommand.getMemberEmail(), memberSurveyCommand.getSurvSex(),
 				memberSurveyCommand.getSurvLifestyle(), memberSurveyCommand.getSurvPhoto(),
 				memberSurveyCommand.getSurvShape(), memberSurveyCommand.getSurvDisease(),
 				memberSurveyCommand.getSurvConcern(), memberSurveyCommand.getSurvCause(),
 				memberSurveyCommand.getSurvCareer());
 		Integer i=memberRepository.updateSurvey2(memberSurvey);
+		System.out.println("service "+i);
 		if(i>0) {
 			System.out.println("SURVEY UPDATE");
 		}else {
 			System.out.println("SURVEY UPDATE FALE");
 		}
-		return null;
+		return i;
 	}
 }

@@ -6,19 +6,20 @@
 	<%@page import="java.util.*" %>
     <%
     	request.setCharacterEncoding("utf-8");
-     	String email=(String)request.getParameter("email");
-     	String sender=(String)request.getParameter("sender");
+     	String email=(String)request.getAttribute("sender");
+     	/* String sender=(String)request.getParameter("sender");
+     	if(email==null){
+    		email=sender;
+    	} */
     	String receiver="kdahae1129@gmail.com";
-    	String title=request.getParameter("title");
+    	String sent=request.getParameter("title");
+    	String title=email+"님의 문의입니다.";
     	String contents="";
-    	if(sender==null){
-    		contents+="문의자 이메일은 "+email+"입니다.<br>";
-    	}else{
-    		contents+="문의자 이메일은 "+sender+"입니다.<br>";
-    	}
-    	contents+="문의 제목 : "+request.getParameter("title")+"<br>";
+    	contents+="문의자 이메일은 "+email+"입니다.<br>";
+    	contents+="문의 제목 : "+sent+"<br>";
     	contents+="문의 내용 : <br>"+request.getParameter("contents")+"<br>";
-    	contents+="http://localhost:8080/final_project/personalQna_answer.gom?app="+sender;
+    	contents+="<br><br>";
+    	contents+="문의에 답변하기 : http://localhost:8080/final_project/personalQna_answer.gom?app="+email;
 
     	
 /*     	contents+="asdfasdfasdf"; */

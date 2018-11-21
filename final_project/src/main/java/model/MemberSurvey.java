@@ -23,9 +23,10 @@ public class MemberSurvey implements Serializable {
 	public MemberSurvey() {
 		
 	}
-	public MemberSurvey(String survSex, String survLifestyle, String survPhoto, String survShape,
+	public MemberSurvey(String memberEmail, String survSex, String survLifestyle, String survPhoto, String survShape,
 			String survDisease, String survConcern, String survCause, String survCareer) {
 		super();
+		this.memberEmail=memberEmail;
 		this.survSex = survSex;
 		this.survLifestyle = survLifestyle;
 		this.survPhoto = survPhoto;

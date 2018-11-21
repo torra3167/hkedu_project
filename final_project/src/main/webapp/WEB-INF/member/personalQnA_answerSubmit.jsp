@@ -6,7 +6,7 @@
 	<%@page import="java.util.*" %>
     <%
     	request.setCharacterEncoding("utf-8");
-     	String sender=(String)request.getAttribute("sender");
+     	String sender="kdahae1129@gmail.com";
     	String receiver=(String)request.getParameter("email");
     	String title=request.getParameter("title");
     	String contents="";

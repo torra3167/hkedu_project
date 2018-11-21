@@ -24,9 +24,10 @@ public class MemberSurveyCommand implements Serializable {
 		
 	}
 	
-	public MemberSurveyCommand(String survSex, String survLifestyle, String survPhoto, String survShape,
+	public MemberSurveyCommand(String memberEmail, String survSex, String survLifestyle, String survPhoto, String survShape,
 			String survDisease, String survConcern, String survCause, String survCareer) {
 		super();
+		this.memberEmail=memberEmail;
 		this.survSex = survSex;
 		this.survLifestyle = survLifestyle;
 		this.survPhoto = survPhoto;
