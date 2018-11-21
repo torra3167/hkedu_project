@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class FoodOrderReceiver implements Serializable{
+	
 	private int foodOrderReceiverNo;
 	private String memberEmail;
 	private String proFoodOrderReceiverName;
@@ -12,8 +13,17 @@ public class FoodOrderReceiver implements Serializable{
 	private String foodOrderReceiverAddr2;
 	private int foodOrderReceiverAddrno;
 	private int foodOrderReceiverTotal;
+	
 	public FoodOrderReceiver() {
 	}
+	
+	
+	public FoodOrderReceiver(String memberEmail, int foodOrderReceiverTotal) {
+		this.memberEmail = memberEmail;
+		this.foodOrderReceiverTotal = foodOrderReceiverTotal;
+	}
+
+
 	public FoodOrderReceiver(int foodOrderReceiverNo, String memberEmail, String proFoodOrderReceiverName,
 			int foodOrderReceiverPhone, String foodOrderReceiverAddr1, String foodOrderReceiverAddr2,
 			int foodOrderReceiverAddrno, int foodOrderReceiverTotal) {

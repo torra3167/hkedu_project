@@ -132,6 +132,7 @@
 	
 	<resultMap type="Food" id="selectSellerFoodMap">
 		<id column="food_no" jdbcType="BIGINT" property="foodNo" />
+		<id column="seller_email" jdbcType="VARCHAR" property="sellerEmail" />
 		<id column="food_cat_a_no" jdbcType="BIGINT" property="foodCatANo" />
 		<id column="food_cat_b_no" jdbcType="BIGINT" property="foodCatBNo" />
 		<id column="food_cat_c_no" jdbcType="BIGINT" property="foodCatCNo" />

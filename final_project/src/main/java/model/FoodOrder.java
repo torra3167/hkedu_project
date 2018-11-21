@@ -4,45 +4,58 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class FoodOrder implements Serializable {
-	private int proFoodNo;
-	private int foodNo;
-	private String sellerEmail;
 	private String memberEmail;
 	private int foodOrderReceiverNo;
+	private int foodNo;
+	private String sellerEmail;
 	private int foodCatANo;
 	private int foodCatBNo;
 	private int foodCatCNo;
 	private int foodOrderPrice;
-	private int foodOrderFee;
 	private int foodOrderQuant;
 	private String foodOrderName;
+	private String foodOrderStored;
 	
 	public FoodOrder() {
 	}
 	
+	
+	
 
-	public FoodOrder(int proFoodNo, int foodNo, String sellerEmail, String memberEmail, int foodOrderReceiverNo,
-			int foodCatANo, int foodCatBNo, int foodCatCNo, int foodOrderPrice, int foodOrderFee, int foodOrderQuant,
-			String foodOrderName) {
-		this.proFoodNo = proFoodNo;
+	//구매자이메일,식품번호,판매자이메일, 카테고리A,카테고리B,카테고리C, 가격, 갯수,식품이름, 이미지
+	public FoodOrder(String memberEmail, int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo,
+			int foodOrderPrice, int foodOrderQuant, String foodOrderName, String foodOrderStored) {
+		super();
+		this.memberEmail = memberEmail;
 		this.foodNo = foodNo;
 		this.sellerEmail = sellerEmail;
-		this.memberEmail = memberEmail;
-		this.foodOrderReceiverNo = foodOrderReceiverNo;
 		this.foodCatANo = foodCatANo;
 		this.foodCatBNo = foodCatBNo;
 		this.foodCatCNo = foodCatCNo;
 		this.foodOrderPrice = foodOrderPrice;
-		this.foodOrderFee = foodOrderFee;
 		this.foodOrderQuant = foodOrderQuant;
 		this.foodOrderName = foodOrderName;
+		this.foodOrderStored = foodOrderStored;
 	}
-	public int getProFoodNo() {
-		return proFoodNo;
+
+
+
+
+
+	public String getFoodOrderStored() {
+		return foodOrderStored;
 	}
-	public void setProFoodNo(int proFoodNo) {
-		this.proFoodNo = proFoodNo;
+
+
+
+
+	public void setFoodOrderStored(String foodOrderStored) {
+		this.foodOrderStored = foodOrderStored;
 	}
+
+
+
+
 	public int getFoodNo() {
 		return foodNo;
 	}
@@ -91,12 +104,7 @@ public class FoodOrder implements Serializable {
 	public void setFoodOrderPrice(int foodOrderPrice) {
 		this.foodOrderPrice = foodOrderPrice;
 	}
-	public int getFoodOrderFee() {
-		return foodOrderFee;
-	}
-	public void setFoodOrderFee(int foodOrderFee) {
-		this.foodOrderFee = foodOrderFee;
-	}
+	
 	public int getFoodOrderQuant() {
 		return foodOrderQuant;
 	}

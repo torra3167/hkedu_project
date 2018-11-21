@@ -27,6 +27,7 @@ public class CartService {
 
 	public void cartList(Model model, HttpServletRequest request) {
 		// TODO Auto-generated method stub
+		
 
 		session = request.getSession();
 		List cartList = (List) session.getAttribute("cartList");
@@ -54,7 +55,7 @@ public class CartService {
 		Food food = cartR.selectSellerFood(foodNo);
 		System.out.println("FOOD PRICE" + food.getFoodPrice());
 		List cartList = (List) session.getAttribute("cartList");
-
+		
 		if (cartList == null) {
 			cartList = new ArrayList();
 		}
@@ -96,12 +97,13 @@ public class CartService {
 			  }*/
 			 
 		}
-
+		
 		if (newCart) {
 			// 푸드번호,이름,가격,이미지,QTY
-
-			firstCart = new Cart(food.getFoodNo(), food.getFoodName(), food.getFoodPrice(), food.getFoodStored(), demandQty);
-
+			System.out.println("SELLER EMAIL" + food.getSellerEmail());
+			firstCart = new Cart(food.getFoodNo(), food.getSellerEmail(), food.getFoodCatANo(), food.getFoodCatBNo(), food.getFoodCatCNo(),
+						food.getFoodName(), food.getFoodPrice(), food.getFoodStored(), demandQty);
+			
 			cartList.add(firstCart);
 
 		}

@@ -70,11 +70,15 @@ $(document).ready();
 
 <table class="table">
 		<tr>
+			<td>판매자이메일</td>
 			<td>상품이미지</td>
 			<td>상품명</td>
 			<td>가격</td>
 			<td>수량</td>
-			<td>삭제</td>
+			<td>카테고리A</td>
+			<td>카테고리B</td>
+			<td>카테고리C</td>
+			
 		</tr>
 </table>
 <% } else { %>
@@ -84,10 +88,14 @@ $(document).ready();
 
 <table class="table">
 	<tr>
-	<td>상품이미지</td>
+		<td>판매자이메일</td>
+		<td>상품이미지</td>
 		<td>상품명</td>
 		<td>가격</td>
 		<td>수량</td>
+		<td>카테고리A</td>
+		<td>카테고리B</td>
+		<td>카테고리C</td>
 		<td><button class="btn-secondary"  onClick="javascript:itemDelete();" >삭제</button></td>
 		
 	</tr>
@@ -101,7 +109,7 @@ $(document).ready();
 	%>
 	
 	<tr>
-		
+		<td><%=cart.getSellerEmail() %></td>
 		<td><a href="food_detail.gom?foodNo=<%=cart.getFoodNo()%>"><img src="resource/<%=cart.getFoodImage() %>" width="70" height="70"/></a></td>
 		<td><%=cart.getFoodName() %></td>
 		<td><%=cart.getFoodPrice() %></td>
@@ -117,27 +125,35 @@ $(document).ready();
 		</a>
 		<br>
 		</td>
+		<td><%=cart.getFoodCatANo() %></td>
+		<td><%=cart.getFoodCatBNo() %></td>
+		<td><%=cart.getFoodCatCNo() %></td>
+		
+		
 	<td align="center">
 	<input type="checkbox" name="foodNo" value="<%=cart.getFoodNo() %>" onClick="javascript:checkBoxNumbers(this);" />
 	</td>
 	</tr>
-		<input type="hidden" name="foodQuant" value="<%=cart.getDemandQty() %>">
-	
+		<%-- <input type="hidden" name="foodQuant" value="<%=cart.getDemandQty() %>">
+		<input type="hidden" name="foodCatANo" value="<%=cart.getFoodCatANo() %>">
+		<input type="hidden" name="foodCatBNo" value="<%=cart.getFoodCatBNo() %>">
+		<input type="hidden" name="foodCatCNo" value="<%=cart.getFoodCatCNo() %>"> --%>
+		
 	<%} %>
-<!-- 	<tr><td></td></tr> -->
+
 	<tr align="center">
-			<td align="right" colspan="6"><font color="gray" size="5">총
+			<td align="right" colspan="10"><font color="gray" size="5">총
 					결제금액 :</font><font color="black" size="8"> <%=foodTotalAmount %> 원</font></td>
 				
 		</tr>
 		
 		<tr align="center">
-			<td align="right" colspan="6">
+			<td align="right" colspan="10">
 				<input type="submit" value="결제하기" color="gray" size="5" class="gray" />	
 			</td>
 		</tr>
 		<tr align="center">	
-			<td align="right" colspan="6"><a href="index">쇼핑계속하기</a></td>
+			<td align="right" colspan="10"><a href="index">쇼핑계속하기</a></td>
 		</tr>
 	</form>
 	

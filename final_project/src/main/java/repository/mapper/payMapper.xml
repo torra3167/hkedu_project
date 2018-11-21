@@ -5,4 +5,37 @@
 <cache></cache>
 
 
+
+
+<!-- <insert id="insertFoodOrder" parameterType="foodOrder" >
+	insert into FOOD_ORDER 
+	(MEMBER_EMAIL, FOOD_ORDER_RECEIVER_NO, FOOD_NO, SELLER_EMAIL, FOOD_CAT_A_NO, FOOD_CAT_B_NO, FOOD_CAT_C_NO,
+	FOOD_ORDER_PRICE, FOOD_ORDER_QUANT, FOOD_ORDER_NAME, FOOD_ORDER_STORED)
+	values
+	(#{memberEmail} ,#{} ,#{} ,#{} ,#{} ,#{} ,#{} ,#{} ,#{} ,#{})
+</insert>
+
+<insert id="insertFoodOrderReceiver" parameterType="foodOrderReceiver" >
+	insert into FOOD_ORDER_RECEIVER 
+	(FOOD_ORDER_RECEIVER_NO, MEMBER_EMAIL, PRO_FOOD_ORDER_RECEIVER_NAME, FOOD_ORDER_RECEIVER_PHONE, 
+	FOOD_ORDER_RECEIVER_ADDR1, FOOD_ORDER_RECEIVER_ADDR2, FOOD_ORDER_RECEIVER_ADDRNO, FOOD_ORDER_RECEIVER_TOTAL)
+	values
+	(#{} ,#{} ,#{} ,#{} ,#{} ,#{} ,#{} ,#{} ,#{}, #{}, #{}, #{}. #{})
+</insert> -->
+
+<resultMap type="Food" id="foodCategoryResultMap">
+	<result jdbcType="BIGINT" property="foodNo" column="food_no" />
+	<result jdbcType="VARCHAR" property="sellerEmail" column="seller_email" />
+	<result jdbcType="BIGINT" property="foodCatANo" column="food_cat_a_no" />
+	<result jdbcType="BIGINT" property="foodCatBNo" column="food_cat_b_no" />
+	<result jdbcType="BIGINT" property="foodCatCNo" column="food_cat_c_no" />
+	
+</resultMap>
+
+<select id="selectFoodCategoryByFoodNo" parameterType="Integer" resultMap="foodCategoryResultMap">
+ select food_no, seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no 
+ from food
+ where food_no = #{foodNo}
+</select>
+
 </mapper>
