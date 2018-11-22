@@ -15,6 +15,7 @@ import command.SellerJoinCommand;
 import command.SellerUpdateCommand;
 import command.SellerWithdrawalCommand;
 import exception.IdPasswordNotMatchingException;
+import model.Member;
 import model.Seller;
 import model.SellerApplication;
 import model.SellerAuthInfo;
@@ -26,10 +27,11 @@ public class SellerService {
 	@Autowired
 	private SellerRepository sellerRepository;
 	
+	
 	static final String filePath =
 //			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
 	File file2 = new File(filePath);
 	
@@ -105,7 +107,7 @@ public class SellerService {
 		sellerApplicationWriteCommand.setApplicationStatus("대기");
 		
 		//applicationDes
-		sellerApplicationWriteCommand.setApplicationDes("대기중");
+		sellerApplicationWriteCommand.setApplicationDes("대기 중");
 		
 		//sellerLicenseImage
 		multiFile = sellerApplicationWriteCommand.getSellerLicense();
@@ -149,6 +151,11 @@ public class SellerService {
 				System.out.println("입점신청서 등록 실패!");
 			} else {
 				System.out.println("입점신청서 등록 성공!");
+				Member member = new Member();
+				member.setMemberEmail(sellerEmail);
+				member.setMemberDivide("w");
+				sellerRepository.updateMemberDivide(member);
+				session.setAttribute("divide", "w");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -165,17 +172,12 @@ public class SellerService {
 		return sellerApplicationList;
 	}
 
-	public void selectApplicationCountByEmail(String sellerEmail, HttpSession session) {
-		Integer count = sellerRepository.selectApplicationCountByEmail(sellerEmail);
-		session.setAttribute("count", count);
-	}
-//	
 	public SellerApplication selectSellerApplication(String sellerEmail) {
 		SellerApplication sellerApplication = sellerRepository.selectSellerApplication(sellerEmail);
 		return sellerApplication;
 	}
 
-	public void deleteSellerApplication(int sellerAppliNo) {
+	public void deleteSellerApplication(int sellerAppliNo, HttpSession session) {
 		System.out.println("svc deleteSellerApplication sellerAppliNo : " + sellerAppliNo);
 		int k = sellerRepository.deleteSellerApplication(sellerAppliNo);
 		
@@ -183,7 +185,11 @@ public class SellerService {
 			System.out.println("입점신청서 삭제 실패");
 		} else {
 			System.out.println("입점신청서 삭제 성공!");
-			//판매자 입점신청서 조회 -> 입점신청하기로 변경해야한다.
+			Member member = new Member();
+			member.setMemberEmail((String)session.getAttribute("email"));
+			member.setMemberDivide("p");
+			sellerRepository.updateMemberDivide(member);
+			session.setAttribute("divide", "p");
 		}
 	}
 	

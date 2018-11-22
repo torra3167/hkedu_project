@@ -29,10 +29,10 @@
 			%>
 			<tbody>
 				<tr class="active">
-					<th><a href="seller_applicationDetail.gom?sellerAppliNo=<%=sellerApplication.getSellerAppliNo() %>"><%=sellerApplication.getSellerAppliNo() %></a></th>
-					<th><a href="seller_applicationDetail.gom?sellerAppliNo=<%=sellerApplication.getSellerAppliNo() %>"><%=sellerApplication.getStoreName() %></a></th>
-					<th><a href="seller_applicationDetail.gom?sellerAppliNo=<%=sellerApplication.getSellerAppliNo() %>"><%=sellerApplication.getSellerName() %></a></th>
-					<th><a href="seller_applicationDetail.gom?sellerAppliNo=<%=sellerApplication.getSellerAppliNo() %>"><%=sellerApplication.getApplicationStatus() %></a></th>
+					<th><a href="admin_sellerApplicationDetail.gom?sellerAppliNo=<%=sellerApplication.getSellerAppliNo() %>"><%=sellerApplication.getSellerAppliNo() %></a></th>
+					<th><a href="admin_sellerApplicationDetail.gom?sellerAppliNo=<%=sellerApplication.getSellerAppliNo() %>"><%=sellerApplication.getStoreName() %></a></th>
+					<th><a href="admin_sellerApplicationDetail.gom?sellerAppliNo=<%=sellerApplication.getSellerAppliNo() %>"><%=sellerApplication.getSellerName() %></a></th>
+					<th><a href="admin_sellerApplicationDetail.gom?sellerAppliNo=<%=sellerApplication.getSellerAppliNo() %>"><%=sellerApplication.getApplicationStatus() %></a></th>
 				</tr>
 			</tbody>
 			<%} %>

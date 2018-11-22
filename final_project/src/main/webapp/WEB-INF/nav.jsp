@@ -4,8 +4,8 @@
     <%
     	String divide = (String)session.getAttribute("divide");
     
-    	Integer count = (Integer)session.getAttribute("count");
-    	System.out.println("count : " + count);
+//     	Integer count = (Integer)session.getAttribute("count");
+//     	System.out.println("count : " + count);
     %>
 <!DOCTYPE html>
 <html>
@@ -76,7 +76,7 @@
 
 		</div>
 	</nav>
-<% } else if(divide.equals("p")) { %>
+<% } else if(divide.equals("p")||divide.equals("w")) { %>
 <!--회원 로그인  -->	
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -110,11 +110,11 @@
 						<div class="dropdown-menu" aria-labelledby="dropdown">
 							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a> 
 							<a class="dropdown-item" href="main/contact.jsp" >1:1문의</a>
-							<% 			
- 								if(count > 0){
-							%> 
+							<%
+								if(divide.equals("w")){
+							%>
 							<a class="dropdown-item" href="seller_lookUpApplication.gom" >입점신청서 조회</a>
- 							<%	}else{ %>
+							<%	} else{ %>
 							<a class="dropdown-item" href="seller_application.gom" >입점신청하기</a>
 							<%	} %>
 						</div>

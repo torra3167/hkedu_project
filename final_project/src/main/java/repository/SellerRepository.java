@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import command.SellerJoinCommand;
+import model.Member;
 import model.Seller;
 import model.SellerApplication;
 
@@ -25,6 +26,8 @@ public class SellerRepository extends AbstractRepository{
 			Integer result = sqlSession.insert(statement, sellerJoinCommand);
 			if(result>0) {
 				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
 			}
 			return result;
 		} finally {
@@ -53,6 +56,8 @@ public class SellerRepository extends AbstractRepository{
 			Integer result = sqlSession.update(statement, seller);
 			if(result > 0) {
 				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
 			}
 			return result;
 		} finally {
@@ -70,6 +75,8 @@ public class SellerRepository extends AbstractRepository{
 			sqlSession.delete(namespace + ".deleteFood", seller.getSellerEmail());
 			if(result > 0) {
 				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
 			}
 			return result;
 		} finally {
@@ -125,17 +132,6 @@ public class SellerRepository extends AbstractRepository{
 	}
 
 
-	public Integer selectApplicationCountByEmail(String sellerEmail) {
-		System.out.println("repo selectApplicationCountByEmail sellerEmail " + sellerEmail);
-		sqlSession = getSqlSessionFactory().openSession();
-		try {
-			Integer count = sqlSession.selectOne(namespace + ".selectApplicationCountByEmail", sellerEmail);
-			return count;
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
 	public SellerApplication selectSellerApplication(String sellerEmail) {
 		System.out.println("repo selectSellerApplication sellerEmail " + sellerEmail);
 		sqlSession = getSqlSessionFactory().openSession();
@@ -164,6 +160,22 @@ public class SellerRepository extends AbstractRepository{
 		}
 	}
 
+
+	public void updateMemberDivide(Member member) {
+		System.out.println("Repo updateMemberDivide getMemberEmail" + member.getMemberEmail());
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			String statement = namespace + ".updateMemberDivide";
+			Integer result = sqlSession.update(statement, member);
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+		} finally {
+			sqlSession.close();
+		}		
+	}
 	
 	
 }

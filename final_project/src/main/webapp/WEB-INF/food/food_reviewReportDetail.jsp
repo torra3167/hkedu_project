@@ -26,7 +26,7 @@
 	    <div class="card-footer">
 	      <div class="row">
 	        <div class="col-12 text-center">
-	        	<a href="food_reviewReportDelete.gom?foodReportRegdate=<%=foodReviewReport.getFoodReportRegdate() %>" class="card-link">삭제</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="card-link">목록으로</a>
+	        	<a href="food_reviewReportDelete.gom?foodReportRegdate=<%=foodReviewReport.getFoodReportRegdate() %>" class="card-link">삭제</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="card-link" onclick="history.go(-1);">목록</a>
 	        </div>
 	      </div>
 	    </div>

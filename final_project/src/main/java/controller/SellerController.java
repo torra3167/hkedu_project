@@ -145,15 +145,12 @@ public class SellerController {
 		}
 		
 		
-		@RequestMapping(value="/seller_applicationDelete.gom", method=RequestMethod.POST)
-	    public String sellerApplicationDelete(@RequestParam("sellerAppliNo")int sellerAppliNo, Model model) {
+		@RequestMapping(value="/seller_applicationDelete.gom", method=RequestMethod.GET)
+	    public String sellerApplicationDelete(@RequestParam("sellerAppliNo")int sellerAppliNo, Model model, HttpSession session) {
 			System.out.println("cntlr sellerApplicationDelete sellerAppliNo : " + sellerAppliNo);
-			sellerService.deleteSellerApplication(sellerAppliNo);
+			sellerService.deleteSellerApplication(sellerAppliNo, session);
 			return "redirect:/index";
 		}
-		
-		
-		
 		
 		
 }

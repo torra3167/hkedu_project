@@ -99,12 +99,6 @@
 		ORDER BY seller_appli_no
 </select>
 
-<select id="selectApplicationCountByEmail" parameterType="String" resultType="Integer">
-	select count(seller_appli_no)
-	from seller_application
-	where seller_email = #{sellerEmail}
-</select>
-
 <select id="selectSellerApplication" parameterType="String" resultMap="selectSellerApplicationListMap">
 	SELECT seller_appli_no, seller_email, seller_appli_bn, seller_name, store_name, store_telphone, store_addr,
 	store_term, application_status, application_des, seller_license_size, seller_license_original, seller_license_stored, 
@@ -120,5 +114,13 @@
 	FROM seller_application
 	WHERE seller_appli_no = #{sellerAppliNo}
 </delete>
+
+<update id="updateMemberDivide" parameterType="Member">
+	UPDATE member
+	SET
+	member_divide = #{memberDivide}
+	WHERE
+	member_email = #{memberEmail}
+</update>
 
 </mapper>
