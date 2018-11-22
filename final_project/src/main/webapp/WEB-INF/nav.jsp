@@ -3,9 +3,6 @@
     
     <%
     	String divide = (String)session.getAttribute("divide");
-    
-//     	Integer count = (Integer)session.getAttribute("count");
-//     	System.out.println("count : " + count);
     %>
 <!DOCTYPE html>
 <html>

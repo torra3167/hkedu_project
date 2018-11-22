@@ -41,10 +41,10 @@
 	    		<div class="regularPrice"><%=foodAndApplication.getFoodPrice() %>원</div><!-- (정상가) -->
 	    		<h3 class="savingsOff"><%=foodAndApplication.getFoodSale() %>% OFF</h3>
 	    		<%
-                                int salePrice = (int) (foodAndApplication.getFoodSale() - (foodAndApplication.getFoodPrice() * (foodAndApplication.getFoodSale()*0.01)));
+                                int salePrice = (int) (foodAndApplication.getFoodPrice() - (foodAndApplication.getFoodPrice() * (foodAndApplication.getFoodSale()*0.01)));
                 %>
 	    		<h3><%=salePrice %>원</h3><!-- (판매가) -->
-	    		<div>배송비 2,500원</div>
+<!-- 	    		<div>배송비 2,500원</div> -->
 	    		<div>
 	    			<form action="cart_addList.gom" method="post">
 						<div class="form-row">
@@ -175,7 +175,6 @@
 		        </div>
 			</div>
         <% } %>
->>>>>>> 867a84a10d52b8e8197eac8a00e2b5282705c69d
 	    <ul class="pagination justify-content-center mt-3">
 	      <li class="page-item">
 	        <a class="page-link" href="#">이전</a>

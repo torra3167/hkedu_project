@@ -49,21 +49,27 @@
 			<label>처리 내용</label> <input type="text" name="applicationDes" class="form-control" value="<%=sellerApplication.getApplicationDes() %>" readonly="readonly">
 		</div>
 		<%	
-			if(loginDivide.equals("a") && !sellerApplication.getApplicationStatus().equals("반려")){
+			if(loginDivide.equals("a") && sellerApplication.getApplicationStatus().equals("대기")){
 		%>
 		<div class="form-group">
 			<label>반려 사유</label> <input type="text" name="returnCause" class="form-control" style="height: 180px;">
 		</div>
-		<%
-			}
-			if(loginDivide.equals("a")){
-		%>
 		<button type="button" class="btn btn-primary" onclick="location.href='admin_sellerApplicationApproval.gom?sellerEmail=<%=sellerApplication.getSellerEmail() %>'">승인</button>
 		<button type="submit" class="btn btn-danger">반려</button>
-		<button type="button" class="btn btn-primary" onclick="histosry.go(-1);">목록으로</button>
-		<%	}else{ %>
+		<button type="button" class="btn btn-primary" onclick="window.history.go(-1)">목록으로</button>
+		<%
+			}else if(loginDivide.equals("a") && !sellerApplication.getApplicationStatus().equals("대기")){
+		%>
+		<button type="button" class="btn btn-primary" onclick="window.history.go(-1)">목록으로</button>
+		<%
+			}else if(loginDivide.equals("w") && sellerApplication.getApplicationStatus().equals("승인")){
+		%>
+		<button type="button" class="btn btn-primary" onclick="window.history.go(-1)">목록으로</button>
+		<%	
+			}else if(loginDivide.equals("w") && !sellerApplication.getApplicationStatus().equals("승인")){
+		%>
 		<button type="button" class="btn btn-danger" onclick="location.href='seller_applicationDelete.gom?sellerAppliNo=<%=sellerApplication.getSellerAppliNo() %>'">신청서 삭제</button>
-		<button type="button" class="btn btn-primary" onclick="histosry.go(-1);">뒤로 가기</button>
+		<button type="button" class="btn btn-primary" onclick="window.history.go(-1)">뒤로 가기</button>
 		<%	} %>
 	</form>
 	
