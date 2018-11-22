@@ -8,8 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import command.EmailCommand;
+import command.ChangePWCommand;
 import command.FindIDCommand;
 import service.EmailService;
 
@@ -51,9 +52,28 @@ public class EmailController {
 	@RequestMapping(value = "/findPW.gom", method = RequestMethod.POST)
 	public String findPWSubmit(FindIDCommand findIDCommand, Model model, HttpSession session, HttpServletRequest request) {
 		model.addAttribute("iPage", "login/findPW_success.jsp");
+		System.out.println("controller "+findIDCommand.getEmail());
+		System.out.println("controller "+findIDCommand.getPhone());
 		String email=findIDCommand.getEmail();
-		String phone=findIDCommand.getPhone();
-		Integer result=emailService.findPW(email, phone);
+		Integer result=emailService.findPW(findIDCommand);
+		System.out.println("result="+result);
+		model.addAttribute("result", result);
+		model.addAttribute("email", email);
+		return "index";
+	}
+	
+	@RequestMapping(value = "/changePW.gom", method = RequestMethod.GET)
+	public String changePW(@RequestParam("app")String email, Model model) {
+		model.addAttribute("iPage", "login/changePW.jsp");
+		model.addAttribute("email", email);
+		System.out.println("controller changePW get");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/changePW.gom", method = RequestMethod.GET)
+	public String changePWSubmit(ChangePWCommand changePWCommand, Model model) {
+		model.addAttribute("iPage", "login/changePW.jsp");
+		Integer result=emailService.changePW(changePWCommand);
 		model.addAttribute("result", result);
 		return "index";
 	}

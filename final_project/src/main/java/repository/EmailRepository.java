@@ -3,6 +3,8 @@ package repository;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import command.ChangePWCommand;
+import command.FindIDCommand;
 import model.Email;
 
 @Repository
@@ -27,23 +29,31 @@ public class EmailRepository extends AbstractRepository {
 		}
 	}
 	
-	public Email selectByEmail(String email) {
+	public FindIDCommand selectByEmail(FindIDCommand findIDCommand) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		String statement=namespace+".selectByEmail";
 		try {
-			Email selectEmail = (Email)sqlSession.selectOne(statement, email);
+			FindIDCommand selectEmail = (FindIDCommand)sqlSession.selectOne(statement, findIDCommand);
 			return selectEmail;
 		} finally {
 			sqlSession.close();
 		}
 	}
 
-	public Email selectByPhone(String phone) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		String statement=namespace+".selectByPnone";
+	public Integer changePW(ChangePWCommand changePWCommand) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		String statement=namespace+".updatePW";
 		try {
-			Email selectPhone = (Email)sqlSession.selectOne(statement, phone);
-			return selectPhone;
+			String newPW=changePWCommand.getNewPW();
+			String newPWChk=changePWCommand.getNewPWchk();
+			String email=changePWCommand.getEmail();
+			if(newPW.equals(newPWChk)) {
+				FindIDCommand selectEmail = (FindIDCommand)sqlSession.selectOne(statement, findIDCommand);
+				return selectEmail;
+			}else {
+				return 0;
+			}
+			
 		} finally {
 			sqlSession.close();
 		}

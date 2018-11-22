@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<% int result=(Integer)request.getAttribute("result");%>
+	<% int result=(Integer)request.getAttribute("result");
+		String email=(String)request.getParameter("email");
+	%>
 	<%@page import="javax.mail.internet.*"%>
 	<%@page import="javax.mail.*"%>	
 	<%@page import="javax.activation.*" %>
 	<%@page import="java.util.*" %>
-    <%
+    <%if(result>0){
     	request.setCharacterEncoding("utf-8");
-     	String email=(String)request.getAttribute("email");
      	String sender="kdahae1129@gmail.com";
     	String title=email+"님의 비밀번호 변경 링크를 안내드립니다.";
     	String contents="";
@@ -52,6 +53,7 @@
     	}catch(Exception e){
     		e.printStackTrace();
     	}
+    }
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

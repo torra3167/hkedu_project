@@ -3,6 +3,8 @@ package service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import command.ChangePWCommand;
+import command.FindIDCommand;
 import exception.IdPasswordNotMatchingException;
 import model.Email;
 import repository.EmailRepository;
@@ -20,18 +22,24 @@ public class EmailService {
 		return i;
 	}
 
-	public Integer findPW(String email, String phone) {
-		Email selectEmail = emailRepository.selectByEmail(email);
-		Email selectPhone=emailRepository.selectByPhone(phone);
+	public Integer findPW(FindIDCommand findIDCommand) {
+		FindIDCommand selectEmail = emailRepository.selectByEmail(findIDCommand);
+		/*String selectPhone = emailRepository.selectByPhone(phone);*/
+		System.out.println("EMAILSERVICE findPW "+selectEmail);
 		if (selectEmail == null) {
 			throw new IdPasswordNotMatchingException("아이디가 존재하지않습니다");
-		} else {
-			int i=0;
-			if(selectEmail.equals(selectPhone)) {
-				i=1;
-			}
+		}else {
+			int i=1;
 			return i;
 		}
+	}
+
+	public Integer changePW(ChangePWCommand changePWCommand) {
+		System.out.println("EmailService changePW "+changePWCommand.getEmail());
+		System.out.println("EmailService changePW "+changePWCommand.getNewPW());
+		System.out.println("EmailService changePW "+changePWCommand.getNewPWchk());
+		Integer result=emailRepository.changePW(changePWCommand);
+		return result;
 	}
 
 }

@@ -13,14 +13,9 @@
 		</where>
 	</select>
 
-	<select id="selectByEmail" resultType="String"	parameterType="String">
-		select member_email as email from member where member_email = #{email}
+	<select id="selectByEmail" resultType="FindIDCommand"	parameterType="String">
+		select member_email as email from member where member_email = #{email} and member_phone=#{phone}
 		union
-		select seller_email as email from seller where seller_email = #{email}
-	</select>
-	<select id="selectByPnone" resultType="String"	parameterType="String">
-		select member_email as email from member where member_phone=#{phone}
-		union
-		select seller_email as email from seller where seller_phone=#{phone}
+		select seller_email as email from seller where seller_email = #{email} and seller_phone=#{phone}
 	</select>
 </mapper>
