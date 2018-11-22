@@ -2,12 +2,14 @@ package service;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import command.ProReviewReportWriteCommand;
+import model.FoodReviewReport;
 import model.ProReviewReport;
 import repository.ProReviewReportRepository;
 
@@ -32,5 +34,12 @@ public class ProReviewReportService {
 		
 		prrr.insertProReviewReport(proReviewReport);
 		
+	}
+
+	public void selectProReviewReportList(Model model) {
+		
+		List<ProReviewReport> proReviewReportList = prrr.selectProReviewReportList();
+
+		model.addAttribute("ProReviewReportList", proReviewReportList);
 	}
 }

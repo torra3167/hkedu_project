@@ -18,6 +18,7 @@ import command.ProgramCommand;
 import command.ProgramDetailCommand;
 import model.Program;
 import model.ProgramExercise;
+import model.ProgramExerciseUpload;
 import repository.ProgramRepository;
 
 @Service
@@ -144,20 +145,21 @@ public class ProgramService {
 
 	public void programDetail(ProgramDetailCommand programDetailCommand, Model model) {
 		// TODO Auto-generated method stub
-		/*List<ProgramExercise> list = pr.selectByProgramNumber(programDetailCommand.getProNo());
-		model.addAttribute("ProgramExercise", list);*/
+		List<ProgramExercise> list = pr.selectByProgramNumber(programDetailCommand.getProNo());
+		model.addAttribute("ProgramExercise", list);
 		
-//		List<ProgramExerciseUpload> programExerciseUpload = pr.selectProgramExerciseUpload(programDetailCommand.getProNo());
+		
+		List<ProgramExerciseUpload> programExerciseUpload = pr.selectProgramExerciseUpload(programDetailCommand.getProNo());
 		/*exerciseUpload.setProContent(programDetailCommand.getProContent());
-		exerciseUpload.setProNo(programDetailCommand.getProNo());
-		*/
-		/*for(Object temp : programExerciseUpload) {
+		exerciseUpload.setProNo(programDetailCommand.getProNo());*/
+		
+		for(Object temp : programExerciseUpload) {
 			ProgramExerciseUpload peu = (ProgramExerciseUpload)temp;
 			System.out.println(peu.getExerciseContent() + "SERVICE EXERCISECONTENT!!!");
-		}*/
+		}
 		
-//		model.addAttribute("ProgramExerciseUpload", programExerciseUpload);
-
+		model.addAttribute("ProgramExerciseUpload", programExerciseUpload);
+		model.addAttribute("ProgramDetailCommand", programDetailCommand);
 		
 	}
 

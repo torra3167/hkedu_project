@@ -4,6 +4,21 @@
 <mapper namespace="repository.mapper.proReviewReportMapper">
 <cache></cache>
 
+<resultMap type="ProReviewReport" id="proReviewReportMap">
+	<id column="PRO_REVIEW_NO" property="proReviewNo" jdbcType="BIGINT"/>
+	<id column="MEMBER_EMAIL" property="memberEmail" jdbcType="VARCHAR"/>
+	<id column="PRO_NO" property="proNo" jdbcType="BIGINT"/>
+	<id column="COACH_EMAIL" property="coachEmail" jdbcType="VARCHAR"/>
+	<result column="PRO_REVIEW_REPORT_TITLE" property="proReviewReportTitle" jdbcType="VARCHAR"/>
+	<result column="PRO_REVIEW_REPORT_CONTENT" property="proReviewReportContent" jdbcType="VARCHAR"/>
+	<result column="PRO_REVIEW_REPORT_REGDATE" property="proReviewReportRegdate" jdbcType="VARCHAR"/>
+</resultMap>
+
+<select id="selectProReviewReportList" resultMap="proReviewReportMap" >
+	select * 
+	from pro_review_report
+</select>
+
 <select id="selectSequenceNumber" resultType="Integer">
 	select COUNT_NUMBER.NEXTVAL
 	from dual

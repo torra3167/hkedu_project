@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import model.FoodReviewReport;
 import model.ProReviewReport;
 
 
@@ -40,6 +41,23 @@ public class ProReviewReportRepository extends AbstractRepository {
 		}
 		
 		
+	}
+
+
+	public List<ProReviewReport> selectProReviewReportList() {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			List<ProReviewReport> list = sqlSession.selectList(namespace + ".selectProReviewReportList");
+			
+			/*for (Object temp : list) {
+				ProReviewReport proReviewReport = (ProReviewReport) temp;
+				System.out.println("proReviewReport : " + proReviewReport);
+			}*/
+			return list;
+			
+		} finally {
+			sqlSession.close();
+		}
 	}
 	
 	

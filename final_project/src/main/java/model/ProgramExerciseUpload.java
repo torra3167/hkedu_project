@@ -154,6 +154,9 @@ public class ProgramExerciseUpload implements Serializable {
 	public void setUploadDivide(String uploadDivide) {
 		this.uploadDivide = uploadDivide;
 	}
+
+	
+
 	
 	
 	
