@@ -1,5 +1,7 @@
 package controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,14 +61,11 @@ public class ProReviewController {
 	
 	
 	@RequestMapping(value = "/pro_review_write.gom", method = RequestMethod.POST)
-	public String programReviewSubmit(ProReviewWriteCommand proReviewWriteCommand, Model model) {
+	public String programReviewSubmit(ProReviewWriteCommand proReviewWriteCommand, Model model, HttpSession session) {
 		
-		/*System.out.println(proReviewWriteCommand.getProReviewComment());
-		System.out.println(proReviewWriteCommand.getProReviewImage());
-		System.out.println(proReviewWriteCommand.getProReviewTitle());
-		System.out.println(proReviewWriteCommand.getProReviewScore());
-		System.out.println(proReviewWriteCommand.getProNo());
-		System.out.println(proReviewWriteCommand.getCoachEmail());*/
+		String email = (String)session.getAttribute("email");
+		
+		proReviewWriteCommand.setMemberEmail(email);
 		
 		prs.programReviewWrite(proReviewWriteCommand, model);
 		

@@ -25,10 +25,10 @@
 
 <insert id="insertFoodOrderReceiver" parameterType="FoodOrderReceiver" >
 	insert into FOOD_ORDER_RECEIVER 
-	(FOOD_ORDER_RECEIVER_NO, MEMBER_EMAIL, PRO_FOOD_ORDER_RECEIVER_NAME, FOOD_ORDER_RECEIVER_PHONE, 
+	(FOOD_ORDER_RECEIVER_NO, MEMBER_EMAIL, FOOD_ORDER_RECEIVER_NAME, FOOD_ORDER_RECEIVER_PHONE, 
 	FOOD_ORDER_RECEIVER_ADDR1, FOOD_ORDER_RECEIVER_ADDR2, FOOD_ORDER_RECEIVER_ADDRNO, FOOD_ORDER_RECEIVER_TOTAL)
 	values
-	(#{foodOrderReceiverNo} , #{memberEmail}, #{proFoodOrderReceiverName}, #{foodOrderReceiverPhone},
+	(#{foodOrderReceiverNo}, #{memberEmail}, #{foodOrderReceiverName}, #{foodOrderReceiverPhone},
 	 #{foodOrderReceiverAddr1}, #{foodOrderReceiverAddr2}, #{foodOrderReceiverAddrno}, #{foodOrderReceiverTotal})
 </insert> 
 

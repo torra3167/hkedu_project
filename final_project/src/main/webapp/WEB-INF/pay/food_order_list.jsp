@@ -5,6 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
     
      <%
+    String email = (String)session.getAttribute("email");
 	List cartList = (List)session.getAttribute("FoodOrderList");
     int sum = 0;
      %>
@@ -34,6 +35,7 @@
 	</tr>
 
  	<form:form commandName="foodOrderReceiver" action="food_order_list_insert.gom"> 
+ 	<form:hidden path="memberEmail" value="<%=email %>"/>
 	<% 
 		for(Object temp : cartList) {
 			FoodOrder foodOrder = (FoodOrder)temp;
@@ -61,7 +63,7 @@
 		
 		<div class="form-group">
           <label>이름</label>
-          <form:input path="proFoodOrderReceiverName" class="form-control" />
+          <form:input path="foodOrderReceiverName" class="form-control" />
         </div>
         <div class="form-group">
           <label>연락처 번호</label>
@@ -87,7 +89,12 @@
           <form:input path="foodOrderReceiverTotal" class="form-control" value="<%=sum %>" readonly="true"/>
         </div>
        
-        
+        <div class="form-group">
+					<label>결제방법</label> <select name="foodPayDivide" class="form-control">
+						<option value="card" selected>카드결제</option>
+						<option value="cash">현금결제</option>
+					</select>
+				</div>
         <button type="submit" class="btn btn-primary" >결제하기</button>
         <button type="button" class="btn btn-primary" onclick="history.go(-1);">뒤로가기</button>
 		

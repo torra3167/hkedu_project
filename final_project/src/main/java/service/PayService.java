@@ -105,7 +105,7 @@ public class PayService {
 			
 			System.out.println("FOOD ORDER   " + foodOrder);
 		}
-		System.out.println("FOODORDERLIST    " + foodOrderList);
+//		System.out.println("FOODORDERLIST    " + foodOrderList);
 		
 		session.setAttribute("FoodOrderList", foodOrderList);
 		
@@ -121,9 +121,9 @@ public class PayService {
 		foodOrderReceiver.setMemberEmail(foodOrderReceiver.getMemberEmail());
 		
 		
-		System.out.println(foodOrderReceiver.getMemberEmail() + " MEMBEREMAIL!");
-		//식품주문 수취인정보, 식품주문리스트 인서트
-		
+		String memberEmail = (String)session.getAttribute("email");
+		//
+		foodOrderReceiver.setMemberEmail(memberEmail);
 		
 		Integer foodOrderReceiverNumber = payR.insertOrderList(foodOrderList, foodOrderReceiver);
 		
@@ -138,12 +138,16 @@ public class PayService {
 		
 		
 		
+		
+		
 	}
 	
-	public void payInsert(FoodPay foodPay, Model model) {
+	public void payInsert(FoodPay foodPay, Model model, HttpSession session) {
 		// TODO Auto-generated method stub
+		
 		foodPay.setFoodPayDate(Calendar.getInstance().getTime());
-		foodPay.setFoodPayDivide("card");
+		
+		foodPay.setFoodPayDivide((String)session.getAttribute("FoodPayDivide"));
 		Integer payInsertResult = payR.payInsert(foodPay);
 		
 		if(payInsertResult > 0) {

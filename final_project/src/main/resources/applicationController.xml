@@ -18,6 +18,7 @@
 <bean class="controller.FoodController"></bean>
 <bean class="controller.PayController"></bean>
 <bean class="controller.CartController"></bean>
-<!-- <bean class="controller.EmailController"></bean>
- -->
+<bean class="controller.ProReviewController"></bean>
+<bean class="controller.ProReviewReportController"></bean>
+
 </beans>

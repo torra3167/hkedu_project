@@ -24,21 +24,24 @@ public class PayController {
 	
 	
 	@RequestMapping(value="/pay_success.gom", method=RequestMethod.POST)
-	public String paySuccess(FoodPay foodPay, Model model) {
+	public String paySuccess(FoodPay foodPay, Model model, HttpSession session) {
 		
-		payS.payInsert(foodPay, model);	
-		model.addAttribute("iPage", "pay/pay_view.jsp");
+		payS.payInsert(foodPay, model,session);	
+		model.addAttribute("iPage", "pay/pay_success.jsp");
 		return "index";
 	}
 	
 	@RequestMapping(value="/food_order_list_insert.gom", method=RequestMethod.POST)
-	public String foodOrderListInsert(FoodOrderReceiver foodOrderReceiver, Model model, 
+	public String foodOrderListInsert(FoodOrderReceiver foodOrderReceiver, @RequestParam(value="foodPayDivide") String foodPayDivide,  Model model, 
 			  HttpSession session) {
 		System.out.println("FOODORDER INSERT");
+		System.out.println(foodPayDivide);
+		//결제방법 세션저장
+		session.setAttribute("FoodPayDivide", foodPayDivide);
 		
 		payS.insertOrderList(foodOrderReceiver, session, model);
-			
-		model.addAttribute("iPage", "pay/pay_view.jsp");
+		
+		model.addAttribute("iPage", "pay/food_pay.jsp");
 		return "index";
 	}
 	

@@ -18,7 +18,6 @@ public class ProReviewReportController {
 	@Autowired
 	private ProReviewReportService prrs;
 	
-	
 	@RequestMapping(value="/pro_review_report_write.gom", method=RequestMethod.GET)
 	public String proReviewReportWrite(ProReviewReportWriteCommand proReviewReportWriteCommand,Model model) {
 		model.addAttribute("iPage", "program/pro_review_report_write.jsp");

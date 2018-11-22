@@ -25,9 +25,10 @@ public class ProReviewService {
 	ProgramExercise programExercise;
 	MultipartFile multiFile;
 	static final String filePath = 
-			"C:\\Users\\FUTURE\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\FUTURE\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 //			"C:\\Users\\admin\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+	
 			File file = new File(filePath);
 
 	@Autowired
@@ -53,7 +54,9 @@ public class ProReviewService {
 			// 프로그램번호, 코치이메일, 프로그램이름, 사이즈, 오리지널, 저장된, 내용
 
 			//주문결제완료되면 멤버이메일등록필요 "1"
-			proReview = new ProReview("1", proReviewWriteCommand.getProNo(), proReviewWriteCommand.getCoachEmail(), 
+			//멤버이메일, 프로그램번호, 코치이메일, 타이틀, 스코어, 코멘트, 사이즈, 오리지널, 저장
+			
+			proReview = new ProReview(proReviewWriteCommand.getMemberEmail(), proReviewWriteCommand.getProNo(), proReviewWriteCommand.getCoachEmail(), 
 					proReviewWriteCommand.getProReviewTitle(), proReviewWriteCommand.getProReviewScore(),
 					proReviewWriteCommand.getProReviewComment(), multiFile.getSize(), originalFile, storedFileName);
 			proReview.setProReviewRegdate(Calendar.getInstance().getTime());

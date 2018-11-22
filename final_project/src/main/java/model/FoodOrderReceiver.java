@@ -7,13 +7,13 @@ public class FoodOrderReceiver implements Serializable{
 	
 	private int foodOrderReceiverNo;
 	private String memberEmail;
-	private String proFoodOrderReceiverName;
+	private String foodOrderReceiverName;
 	private int foodOrderReceiverPhone;
 	private String foodOrderReceiverAddr1;
 	private String foodOrderReceiverAddr2;
 	private int foodOrderReceiverAddrno;
 	private int foodOrderReceiverTotal;
-	
+
 	public FoodOrderReceiver() {
 	}
 	
@@ -24,12 +24,12 @@ public class FoodOrderReceiver implements Serializable{
 	}
 
 
-	public FoodOrderReceiver(int foodOrderReceiverNo, String memberEmail, String proFoodOrderReceiverName,
+	public FoodOrderReceiver(int foodOrderReceiverNo, String memberEmail, String foodOrderReceiverName,
 			int foodOrderReceiverPhone, String foodOrderReceiverAddr1, String foodOrderReceiverAddr2,
 			int foodOrderReceiverAddrno, int foodOrderReceiverTotal) {
 		this.foodOrderReceiverNo = foodOrderReceiverNo;
 		this.memberEmail = memberEmail;
-		this.proFoodOrderReceiverName = proFoodOrderReceiverName;
+		this.foodOrderReceiverName = foodOrderReceiverName;
 		this.foodOrderReceiverPhone = foodOrderReceiverPhone;
 		this.foodOrderReceiverAddr1 = foodOrderReceiverAddr1;
 		this.foodOrderReceiverAddr2 = foodOrderReceiverAddr2;
@@ -48,12 +48,17 @@ public class FoodOrderReceiver implements Serializable{
 	public void setMemberEmail(String memberEmail) {
 		this.memberEmail = memberEmail;
 	}
-	public String getProFoodOrderReceiverName() {
-		return proFoodOrderReceiverName;
+	
+	public String getFoodOrderReceiverName() {
+		return foodOrderReceiverName;
 	}
-	public void setProFoodOrderReceiverName(String proFoodOrderReceiverName) {
-		this.proFoodOrderReceiverName = proFoodOrderReceiverName;
+
+
+	public void setFoodOrderReceiverName(String foodOrderReceiverName) {
+		this.foodOrderReceiverName = foodOrderReceiverName;
 	}
+
+
 	public int getFoodOrderReceiverPhone() {
 		return foodOrderReceiverPhone;
 	}

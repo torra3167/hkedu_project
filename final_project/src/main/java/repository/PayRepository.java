@@ -44,9 +44,9 @@ public class PayRepository extends AbstractRepository {
 		//식품수취인정보 인서트
 		
 		foodOrderReceiver.setFoodOrderReceiverNo(foodOrderReceiverNumber);
+		Integer foodOrderReceiverResult = (Integer)sqlSession.insert(namespace + ".insertFoodOrderReceiver", foodOrderReceiver);
+		System.out.println("FoodOrderReceiverResult" + foodOrderReceiverResult);
 		
-		Integer FoodOrderReceiverResult = (Integer)sqlSession.insert(namespace + ".insertFoodOrderReceiver", foodOrderReceiver);
-		System.out.println("FoodOrderReceiverResult" + FoodOrderReceiverResult);
 
 		//식품주문정보 인서트
 		Integer foodOrderResult = 0;
@@ -55,6 +55,12 @@ public class PayRepository extends AbstractRepository {
 			foodOrder.setFoodOrderReceiverNo(foodOrderReceiverNumber);
 			sqlSession.insert(namespace + ".insertFoodOrder", foodOrder);
 			foodOrderResult++;
+		}
+		
+		if(foodOrderResult > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
 		}
 		System.out.println("FOOD ORDER RESULT " + foodOrderResult);
 		
@@ -69,12 +75,18 @@ public class PayRepository extends AbstractRepository {
 		sqlSession = getSqlSessionFactory().openSession();
 		//번호를 위한 select
 		Integer foodPayNumber = (Integer)sqlSession.selectOne(namespace + ".selectSequenceNumber");
-		
+		System.out.println("FOODPAY SEQUENCE NUMBER" + foodPayNumber);
 		foodPay.setFoodPayNo(foodPayNumber);
 		
-		sqlSession.insert(namespace + ".payInsert", foodPay);
+		Integer payInsertResult =  (Integer)sqlSession.insert(namespace + ".payInsert", foodPay);
 		
-		return null;
+		if(payInsertResult > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		
+		return payInsertResult;
 	}
 	
 	

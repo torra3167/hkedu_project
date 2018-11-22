@@ -22,19 +22,18 @@ table{border:3px solid black;}
 </style>
 </head>
 <body>
-<form >
+<form action="pay_success.gom" method="post" >
 <table align="center" border="0" width =50% height=300 id="tborder">
 <tr align="center">
 
 
 				<td colspan=2 id="border2"><font size=5>카드결제</font></td>
 			</tr> 
-			<input type="hidden" name="foodPayPrice" value="<%=foodOrderReceiverTotal%>">
 			<input type="hidden" name="foodOrderReceiverNo" value="<%=foodOrderReceiverNumber%>">
 				
 			<tr>
 				<td id="border" align="center">구매자이메일 : </td>
-				<td id="border" align="left"><input type="text" name="memberEmail" /></td>
+				<td id="border" align="left"><input type="text" name="memberEmail" value=<%=memberEmail %> readonly="readonly"/></td>
 			</tr>
 			
 			<tr>
@@ -61,7 +60,7 @@ table{border:3px solid black;}
 			
 			<tr>
 				<td id="border" align="center">총 금액 : </td>
-				<td id="border" align="left"><input type="number" name="foodPayPrice" size=20 /><br/>
+				<td id="border" align="left"><input type="number" name="foodPayPrice" value="<%=foodOrderReceiverTotal %>" readonly="readonly"  /><br/>
 				</td>
 			</tr>
 			<tr>
