@@ -94,7 +94,7 @@ where pro_no = #{proNo})
 	<result column="PRO_SIZE" jdbcType="BIGINT" property="proSize"/>	
 	<result column="PRO_ORIGINAL" jdbcType="VARCHAR" property="proOriginal"/>	
 	<result column="PRO_STORED" jdbcType="VARCHAR" property="proStored"/>	
-	<result column="PRO_REGDATE" jdbcType="DATE" property="proRegdate"/>	
+	<result column="PRO_REGDATE" jdbcType="VARCHAR" property="proRegdate"/>	
 	<result column="PRO_CONTENT" jdbcType="VARCHAR" property="proContent"/>	
 	<result column="PRO_STATUS" jdbcType="VARCHAR" property="proStatus"/>	
 	<result column="PRO_DES" jdbcType="VARCHAR" property="proDes"/>	

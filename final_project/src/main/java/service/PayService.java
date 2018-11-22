@@ -1,5 +1,6 @@
 package service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -145,7 +146,9 @@ public class PayService {
 	public void payInsert(FoodPay foodPay, Model model, HttpSession session) {
 		// TODO Auto-generated method stub
 		
-		foodPay.setFoodPayDate(Calendar.getInstance().getTime());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
+        String regDate = sdf.format(Calendar.getInstance().getTime());
+		foodPay.setFoodPayDate(regDate);
 		
 		foodPay.setFoodPayDivide((String)session.getAttribute("FoodPayDivide"));
 		Integer payInsertResult = payR.payInsert(foodPay);

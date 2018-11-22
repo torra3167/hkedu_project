@@ -39,7 +39,7 @@
 			<result property="proReviewSize" column="PRO_REVIEW_SIZE" jdbcType="BIGINT"/>
 			<result property="proReviewOriginal" column="PRO_REVIEW_ORIGINAL" jdbcType="VARCHAR"/>
 			<result property="proReviewStored" column="PRO_REVIEW_STORED" jdbcType="VARCHAR"/>
-			<result property="proReviewRegdate" column="PRO_REVIEW_REGDATE" jdbcType="DATE"/>
+			<result property="proReviewRegdate" column="PRO_REVIEW_REGDATE" jdbcType="VARCHAR"/>
 	
 		
 </resultMap>

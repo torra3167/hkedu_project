@@ -329,7 +329,7 @@ public class FoodRepository extends AbstractRepository{
 	}
 
 	public int insertFoodReviewReport(FoodReviewReport foodReviewReport) {
-sqlSession = getSqlSessionFactory().openSession();
+		sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
 			Integer result = sqlSession.insert(namespace + ".insertFoodReviewReport", foodReviewReport);
@@ -337,6 +337,7 @@ sqlSession = getSqlSessionFactory().openSession();
 		
 			if(result > 0) {
 				sqlSession.commit();
+				
 			} else {
 				sqlSession.rollback();
 			}

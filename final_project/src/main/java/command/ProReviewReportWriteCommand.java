@@ -10,14 +10,9 @@ public class ProReviewReportWriteCommand implements Serializable {
 	private String memberEmail;
 	private int proNo;
 	private String coachEmail;
-	private int exerciseNumber;
-	private int exerciseCatANumber;
-	private int exerciseCatBNumber;
 	private String proReviewReportTitle;
 	private String proReviewReportContent;
-	private String proReviewReportWriter;
-	private Date proReviewReportRegdate;
-	
+	private String proReviewReportRegdate;
 	
 	public int getProReviewNo() {
 		return proReviewNo;
@@ -43,24 +38,6 @@ public class ProReviewReportWriteCommand implements Serializable {
 	public void setCoachEmail(String coachEmail) {
 		this.coachEmail = coachEmail;
 	}
-	public int getExerciseNumber() {
-		return exerciseNumber;
-	}
-	public void setExerciseNumber(int exerciseNumber) {
-		this.exerciseNumber = exerciseNumber;
-	}
-	public int getExerciseCatANumber() {
-		return exerciseCatANumber;
-	}
-	public void setExerciseCatANumber(int exerciseCatANumber) {
-		this.exerciseCatANumber = exerciseCatANumber;
-	}
-	public int getExerciseCatBNumber() {
-		return exerciseCatBNumber;
-	}
-	public void setExerciseCatBNumber(int exerciseCatBNumber) {
-		this.exerciseCatBNumber = exerciseCatBNumber;
-	}
 	public String getProReviewReportTitle() {
 		return proReviewReportTitle;
 	}
@@ -73,19 +50,16 @@ public class ProReviewReportWriteCommand implements Serializable {
 	public void setProReviewReportContent(String proReviewReportContent) {
 		this.proReviewReportContent = proReviewReportContent;
 	}
-	public String getProReviewReportWriter() {
-		return proReviewReportWriter;
-	}
-	public void setProReviewReportWriter(String proReviewReportWriter) {
-		this.proReviewReportWriter = proReviewReportWriter;
-	}
-	public Date getProReviewReportRegdate() {
+	
+	public String getProReviewReportRegdate() {
 		return proReviewReportRegdate;
 	}
-	public void setProReviewReportRegdate(Date proReviewReportRegdate) {
+	public void setProReviewReportRegdate(String proReviewReportRegdate) {
 		this.proReviewReportRegdate = proReviewReportRegdate;
 	}
-
+	
+	
+	
 	
 	
 }

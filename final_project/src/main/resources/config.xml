@@ -29,6 +29,7 @@
 		<typeAlias type="category.FoodCatC" alias="FoodCatC"/>
 		<typeAlias type="model.ProgramExerciseUpload" alias="ProgramExerciseUpload"/>
 		<typeAlias type="model.ProReview" alias="ProReview"/>
+		<typeAlias type="model.ProReviewReport" alias="ProReviewReport"/>
 		<typeAlias type="model.FoodOrder" alias="FoodOrder"/>
 		<typeAlias type="model.FoodOrderReceiver" alias="FoodOrderReceiver"/>
 		<typeAlias type="model.FoodPay" alias="FoodPay"/>
@@ -57,6 +58,7 @@
 		<mapper resource="repository/mapper/foodMapper.xml"/>
 		<mapper resource="repository/mapper/programMapper.xml"/>
 		<mapper resource="repository/mapper/proReviewMapper.xml"/>
+		<mapper resource="repository/mapper/proReviewReportMapper.xml"/>
  		<mapper resource="repository/mapper/payMapper.xml"/>
  	
  	

@@ -13,7 +13,7 @@ public class ProFood implements Serializable{
 	private int foodCatCNo;
 	private String proFoodName;
 	private int proFoodQuant;
-	private Date proFoodExpiryDate;
+	private String proFoodExpiryDate;
 	private String proFoodOrigin;
 	private int proFoodSale;
 	private String proFoodFlavor;
@@ -30,7 +30,7 @@ public class ProFood implements Serializable{
 		super();
 	}
 	public ProFood(int proFoodNo, int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo,
-			String proFoodName, int proFoodQuant, Date proFoodExpiryDate, String proFoodOrigin, int proFoodSale,
+			String proFoodName, int proFoodQuant, String proFoodOrigin, int proFoodSale,
 			String proFoodFlavor, int proFoodPrice, int proFoodCarbo, int proFoodProt, int proFoodFat,
 			String proFoodImage, int proFoodCal, int proNo, String coachEmail) {
 		super();
@@ -42,7 +42,6 @@ public class ProFood implements Serializable{
 		this.foodCatCNo = foodCatCNo;
 		this.proFoodName = proFoodName;
 		this.proFoodQuant = proFoodQuant;
-		this.proFoodExpiryDate = proFoodExpiryDate;
 		this.proFoodOrigin = proFoodOrigin;
 		this.proFoodSale = proFoodSale;
 		this.proFoodFlavor = proFoodFlavor;
@@ -103,10 +102,11 @@ public class ProFood implements Serializable{
 	public void setProFoodQuant(int proFoodQuant) {
 		this.proFoodQuant = proFoodQuant;
 	}
-	public Date getProFoodExpiryDate() {
+	
+	public String getProFoodExpiryDate() {
 		return proFoodExpiryDate;
 	}
-	public void setProFoodExpiryDate(Date proFoodExpiryDate) {
+	public void setProFoodExpiryDate(String proFoodExpiryDate) {
 		this.proFoodExpiryDate = proFoodExpiryDate;
 	}
 	public String getProFoodOrigin() {

@@ -14,7 +14,7 @@ public class FoodPay implements Serializable{
 	private int foodPayCardM;
 	private int foodPayCardY;
 	private int foodPayCardCvc;
-	private Date foodPayDate;
+	private String foodPayDate;
 
 	
 	public FoodPay() {
@@ -126,15 +126,17 @@ public class FoodPay implements Serializable{
 	}
 
 
-	public Date getFoodPayDate() {
+	public String getFoodPayDate() {
 		return foodPayDate;
 	}
 
 
-	public void setFoodPayDate(Date foodPayDate) {
+	public void setFoodPayDate(String foodPayDate) {
 		this.foodPayDate = foodPayDate;
 	}
 
+
+	
 
 	
 

@@ -13,7 +13,7 @@ public class ProReviewAnswer implements Serializable{
 	private int exerciseNumber;
 	private int exerciseCatANumber;
 	private int exerciseCatBNumber;
-	private int proReviewAnswerRegdate;
+	private String proReviewAnswerRegdate;
 	private String proReviewAnswerContent;
 	
 	public int getProReviewAnswerNo() {
@@ -64,10 +64,11 @@ public class ProReviewAnswer implements Serializable{
 	public void setExerciseCatBNumber(int exerciseCatBNumber) {
 		this.exerciseCatBNumber = exerciseCatBNumber;
 	}
-	public int getProReviewAnswerRegdate() {
+	
+	public String getProReviewAnswerRegdate() {
 		return proReviewAnswerRegdate;
 	}
-	public void setProReviewAnswerRegdate(int proReviewAnswerRegdate) {
+	public void setProReviewAnswerRegdate(String proReviewAnswerRegdate) {
 		this.proReviewAnswerRegdate = proReviewAnswerRegdate;
 	}
 	public String getProReviewAnswerContent() {

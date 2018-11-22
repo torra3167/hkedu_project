@@ -8,6 +8,8 @@
 <%
 ProReviewReportWriteCommand proReviewReportWriteCommand = 
 	(ProReviewReportWriteCommand) request.getAttribute("ProReviewReportWriteCommand");
+
+
 %>
 <!DOCTYPE html>
 <html>
@@ -18,30 +20,35 @@ ProReviewReportWriteCommand proReviewReportWriteCommand =
 </head>
 <body>
 	<div class="" >
-		<h5>프로그램리뷰 등록</h5>
+		<h5>프로그램리뷰 신고등록</h5>
 
 	</div>
 	<div class="body"> 
-		<form:form commandName="proReviewReportWriteCommand" action="pro_review_report_write.gom" enctype="multipart/form-data">
-			<input type="hidden" name="proNo" value="<%=proReviewReportWriteCommand.getProNo()%>">
-			<input type="hidden" name="coachEmail" value="<%=proReviewReportWriteCommand.getCoachEmail() %>">
-			<div class="form-group">
-				<label>제목</label> <form:input path="proReviewReportTitle" class="form-control"/>
-			</div>
-			
-			<div class="form-group">
-				<label>신고내용</label>
-				<textarea type="text" name="proReviewReportContent" class="form-control col-sm-3"
-					 style="height: 180px;"></textarea>
-			</div>
+		<form:form commandName="proReviewReportWriteCommand" action="pro_review_report_write.gom" >
+			<form:hidden path="proReviewNo" class="form-control"/>
+			<form:hidden path="proNo" class="form-control"/>
+			<form:hidden path="coachEmail" class="form-control"/>
+			<form:hidden path="memberEmail" class="form-control" />
 		
+            
+              <div class="form-group">
+                <label>제목</label>
+                <form:input path="proReviewReportTitle" class="form-control"  />
+              </div>
+              
+              <div class="form-group">
+                <label>내용</label>
+                <form:textarea path="proReviewReportContent" class="form-control"  />
+              </div>
 			
 			<div class="">
 				<button type="submit" class="btn btn-primary">등록하기</button>
 				<button type="reset" class="btn btn-primary">다시 작성</button>
 				<button type="button" class="btn btn-secondary">취소</button>
 			</div>
-		</form:form>
-	</div>
+			
+		  </div>
+		  </form:form>
+	
 </body>
 </html>

@@ -18,7 +18,7 @@ public class ExerciseRecord implements Serializable {
 	private int exerciseRecordKg;
 	private int exerciseRecordTimes;
 	private int exerciseRecordWeight;
-	private Date exerciseRecordRegdate;
+	private String exerciseRecordRegdate;
 	public int getExerciseRecordNo() {
 		return exerciseRecordNo;
 	}
@@ -85,12 +85,13 @@ public class ExerciseRecord implements Serializable {
 	public void setExerciseRecordWeight(int exerciseRecordWeight) {
 		this.exerciseRecordWeight = exerciseRecordWeight;
 	}
-	public Date getExerciseRecordRegdate() {
+	public String getExerciseRecordRegdate() {
 		return exerciseRecordRegdate;
 	}
-	public void setExerciseRecordRegdate(Date exerciseRecordRegdate) {
+	public void setExerciseRecordRegdate(String exerciseRecordRegdate) {
 		this.exerciseRecordRegdate = exerciseRecordRegdate;
 	}
+	
 	
 	
 }

@@ -17,6 +17,7 @@ public class ProFoodOrder implements Serializable{
 	private int proFoodOrderQuant;
 	private int proFoodOrderPrice;
 	private String proFoodOrderName;
+	
 	public ProFoodOrder() {
 	}
 	public ProFoodOrder(int proFoodNo, int foodNo, String sellerEmail, String memberEmail, int proFoodOrderReceiverNo,

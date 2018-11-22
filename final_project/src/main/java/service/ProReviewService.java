@@ -1,6 +1,7 @@
 package service;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
@@ -59,8 +60,14 @@ public class ProReviewService {
 			proReview = new ProReview(proReviewWriteCommand.getMemberEmail(), proReviewWriteCommand.getProNo(), proReviewWriteCommand.getCoachEmail(), 
 					proReviewWriteCommand.getProReviewTitle(), proReviewWriteCommand.getProReviewScore(),
 					proReviewWriteCommand.getProReviewComment(), multiFile.getSize(), originalFile, storedFileName);
-			proReview.setProReviewRegdate(Calendar.getInstance().getTime());
-
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
+	        String regDate = sdf.format(Calendar.getInstance().getTime());
+			proReview.setProReviewRegdate(regDate);
+			/*SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
+	         String theTime = simpleDateFormat.format(Calendar.getInstance().getTime());
+			*/
+			
 
 			int proReviewResult = prr.insertProReview(proReview);
 
@@ -121,7 +128,9 @@ public class ProReviewService {
 					multiFile.getSize(), originalFile, storedFileName);
 			
 			//날짜
-			proReview.setProReviewRegdate(Calendar.getInstance().getTime());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
+	        String regDate = sdf.format(Calendar.getInstance().getTime());
+			proReview.setProReviewRegdate(regDate);
 			
 			int updateProReviewResult = prr.updateProReview(proReview);
 			

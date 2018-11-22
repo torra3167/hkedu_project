@@ -454,6 +454,7 @@ public class FoodService {
 		//foodReviewAnswerRegdate
 		foodReviewAnswerUpdateCommand.setFoodReviewAnswerRegdate(Calendar.getInstance().getTime().toString());
 		System.out.println("svc updateFoodReviewAnswer FoodReviewAnswerRegdate : " + Calendar.getInstance().getTime() + "시간");
+		
 		FoodReviewAnswer foodReviewAnswer = new FoodReviewAnswer(
 				foodReviewAnswerUpdateCommand.getFoodReviewNo(),
 				foodReviewAnswerUpdateCommand.getMemberEmail(),

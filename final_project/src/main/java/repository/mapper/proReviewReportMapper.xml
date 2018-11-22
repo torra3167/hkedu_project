@@ -4,6 +4,18 @@
 <mapper namespace="repository.mapper.proReviewReportMapper">
 <cache></cache>
 
+<select id="selectSequenceNumber" resultType="Integer">
+	select COUNT_NUMBER.NEXTVAL
+	from dual
+</select>
 
+<insert id="insertFoodReviewReport" parameterType="ProReviewReport">
+	insert into pro_review_report
+	(PRO_REVIEW_NO, MEMBER_EMAIL, PRO_NO, COACH_EMAIL, PRO_REVIEW_REPORT_TITLE,
+	 PRO_REVIEW_REPORT_CONTENT, PRO_REVIEW_REPORT_REGDATE)
+	values
+	(#{proReviewNo}, #{memberEmail}, #{proNo}, #{coachEmail}, #{proReviewReportTitle},
+	 #{proReviewReportContent}, #{proReviewReportRegdate})
+</insert>
 
 </mapper>

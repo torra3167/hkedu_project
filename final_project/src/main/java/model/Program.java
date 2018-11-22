@@ -12,7 +12,7 @@ public class Program implements Serializable {
 	private Long proSize;
 	private String proOriginal;
 	private String proStored;
-	private Date proRegdate;
+	private String proRegdate;
 	private String proContent;
 	private String proStatus;
 	private String proDes;
@@ -33,6 +33,20 @@ public class Program implements Serializable {
 		this.proStored = proStored;
 		this.proContent = proContent;
 	}
+
+	
+	
+
+	public String getProRegdate() {
+		return proRegdate;
+	}
+
+
+
+	public void setProRegdate(String proRegdate) {
+		this.proRegdate = proRegdate;
+	}
+
 
 
 	public String getProContent() {
@@ -106,14 +120,7 @@ public class Program implements Serializable {
 	}
 
 
-	public Date getProRegdate() {
-		return proRegdate;
-	}
-
-
-	public void setProRegdate(Date proRegdate) {
-		this.proRegdate = proRegdate;
-	}
+	
 
 
 	public String getProStatus() {

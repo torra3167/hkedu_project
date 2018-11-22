@@ -18,7 +18,7 @@ public class ProReview implements Serializable{
 	private Long proReviewSize;
 	private String proReviewOriginal;
 	private String proReviewStored;
-	private Date proReviewRegdate;
+	private String proReviewRegdate;
 	
 	public ProReview() {}
 
@@ -142,13 +142,19 @@ public class ProReview implements Serializable{
 		this.proReviewStored = proReviewStored;
 	}
 
-	public Date getProReviewRegdate() {
+
+
+
+
+
+	public String getProReviewRegdate() {
 		return proReviewRegdate;
 	}
 
-	public void setProReviewRegdate(Date proReviewRegdate) {
+	public void setProReviewRegdate(String proReviewRegdate) {
 		this.proReviewRegdate = proReviewRegdate;
 	}
+
 	
 	
 	

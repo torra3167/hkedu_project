@@ -1,12 +1,11 @@
 package service;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,6 @@ import command.ProgramCommand;
 import command.ProgramDetailCommand;
 import model.Program;
 import model.ProgramExercise;
-import model.ProgramExerciseUpload;
 import repository.ProgramRepository;
 
 @Service
@@ -64,9 +62,10 @@ public class ProgramService {
 			program = new Program(programNumber, programCommand.getCoachEmail(), programCommand.getProName(),
 					multiFile.getSize(), originalFile, storedFileName, programCommand.getProContent());
 			System.out.println(program + "PROGRAM");
-			program.setProRegdate(Calendar.getInstance().getTime());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
+	        String regDate = sdf.format(Calendar.getInstance().getTime());
+			program.setProRegdate(regDate);
 
-			System.out.println(Calendar.getInstance().getTime() + "시간");
 
 			int k = pr.insertProgram(program);
 

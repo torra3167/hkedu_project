@@ -15,12 +15,13 @@ public class ProFoodPay implements Serializable{
 	private int proFoodPayCardM;
 	private int proFoodPayCardY;
 	private int proFoodPayCardCvc;
-	private Date proFoodPayDate;
+	private String proFoodPayDate;
+	
 	public ProFoodPay() {
 	}
 	public ProFoodPay(int proFoodPayNo, String memberEmail, int proFoodOrderReceiverNo, int proFoodPayPrice,
 			String proFoodPayCard, String proFoodPayCash, int proFoodPayCardNo, int proFoodPayCardM,
-			int proFoodPayCardY, int proFoodPayCardCvc, Date proFoodPayDate) {
+			int proFoodPayCardY, int proFoodPayCardCvc) {
 		this.proFoodPayNo = proFoodPayNo;
 		this.memberEmail = memberEmail;
 		this.proFoodOrderReceiverNo = proFoodOrderReceiverNo;
@@ -31,7 +32,7 @@ public class ProFoodPay implements Serializable{
 		this.proFoodPayCardM = proFoodPayCardM;
 		this.proFoodPayCardY = proFoodPayCardY;
 		this.proFoodPayCardCvc = proFoodPayCardCvc;
-		this.proFoodPayDate = proFoodPayDate;
+		
 	}
 	public int getProFoodPayNo() {
 		return proFoodPayNo;
@@ -93,10 +94,10 @@ public class ProFoodPay implements Serializable{
 	public void setProFoodPayCardCvc(int proFoodPayCardCvc) {
 		this.proFoodPayCardCvc = proFoodPayCardCvc;
 	}
-	public Date getProFoodPayDate() {
+	public String getProFoodPayDate() {
 		return proFoodPayDate;
 	}
-	public void setProFoodPayDate(Date proFoodPayDate) {
+	public void setProFoodPayDate(String proFoodPayDate) {
 		this.proFoodPayDate = proFoodPayDate;
 	}
 	

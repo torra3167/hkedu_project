@@ -12,6 +12,7 @@ public class ProFoodOrderReceiver implements Serializable{
 	private String proFoodOrderReceiverAddr2;
 	private int proFoodOrderReceiverAddrno;
 	private int proFoodOrderReceiverTotal;
+	
 	public ProFoodOrderReceiver() {
 	}
 	public ProFoodOrderReceiver(int proFoodOrderReceiverNo, String memberEmail, String proFoodOrderReceiverName,
