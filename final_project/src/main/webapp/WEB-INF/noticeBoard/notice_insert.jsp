@@ -14,7 +14,8 @@
   <body>
     <div class="container mt-3">
       <form:form commandName="noticeInsertCommand">
-      	<form:hidden path="noticeNo" type="hidden" value=""/>
+      	<form:hidden path="noticeNo" value=""/>
+      	<form:hidden path="noticeDate" value=""/>
       	<div class="form-group">
           <label>제목</label>
           <form:input path="noticeTitle"/>

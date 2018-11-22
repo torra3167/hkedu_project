@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%
 	String email=(String)request.getAttribute("email");
-	System.out.println("jsp"+email);
+	System.out.println("jsp "+email);
 	Integer result = 0;
  	if(email == null){
 		result = 1;

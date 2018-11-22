@@ -38,7 +38,7 @@
 				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동관</a></li>
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는	상품진단</a></li>
 				<li class="nav-item"><a class="nav-link" href="cart_list.gom">Cart</a></li>
-				<li class="nav-item"><a class="nav-link" href="main/noticeBoard.jsp">공지사항</a> </li>
+				<li class="nav-item"><a class="nav-link" href="notice_insert.gom">공지사항</a> </li>
 				<li class="nav-item"><a class="nav-link" href="personalQna.gom" >1:1문의</a></li>
 					
 				<li class="nav-item">
@@ -223,6 +223,8 @@
 						상품진단</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="cart_list.gom">Cart</a></li>
+					<li class="nav-item"><a class="nav-link" href="sellerQnA.gom" >입점 문의</a></li>
+					<li class="nav-item"><a class="nav-link" href="personalQna.gom" >1:1문의</a></li>
 					
 				<li class="nav-item">
 					<div class="dropdown show">
@@ -230,7 +232,8 @@
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							고객센터 </a>
 						<div class="dropdown-menu" aria-labelledby="dropdown">
-							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a> 
+							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a>  
+							<a class="dropdown-item" href="sellerQnA.gom" >입점 문의</a>
 							<a class="dropdown-item" href="personalQna.gom" >1:1문의</a>
 						</div>
 					</div>

@@ -1,44 +1,40 @@
-/*package controller;
+package controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import email.EmailSender;
-import model.Member;
 import service.EmailService;
 
 @Controller
 public class EmailController {
-	EmailSender emailSender;
-	EmailService emailService;
+	@Autowired
+	private EmailService emailService;
 	
-	@RequestMapping(value="/findPW.gom", method=RequestMethod.GET)
-	public String sendEmail(Model model) throws Exception {
-		model.addAttribute("iPage", "login/findPW.jsp");
-		model.addAttribute("emailCommand", new EmailCommand());
+	@RequestMapping(value = "/sellerQnA.gom", method = RequestMethod.GET)
+	public String sellerQnA(Model model, HttpSession session, HttpServletRequest request) {
+		model.addAttribute("iPage", "seller/sellerQnA_form.jsp");
+		String email = (String) session.getAttribute("email");
+		System.out.println(email);
+		model.addAttribute("email", email);
+		System.out.println("CONTROLLER SellerQnA GET");
+		Integer result=emailService.findSellerID(email);
+		model.addAttribute("result", result);
+		System.out.println("controller "+result);
 		return "index";
 	}
-	@RequestMapping(value="/findPW.gom", method=RequestMethod.POST)
-	public String sendEmailAction(EmailCommand emailCommand, Model model, Member member, HttpServletRequest request) throws Exception {
-		model.addAttribute("iPage", "login/findPW_success.jsp");
-		emailCommand.setMemberEmail(request.getParameter("memberEmail"));
-		emailCommand.setMemberName(request.getParameter("memberName"));
-		System.out.println("controller emailAction success "+emailCommand.getMemberEmail());
-//		member.setMemberPass(request.getParameter(""));
-		int result=emailService.sendEmail(emailCommand);
-		
-		emailSender.sendEmail(emailCommand);
-		if(result>0) {
-			System.out.println("controller emailAction success 2 "+emailCommand.getMemberEmail());
-			model.addAttribute("result", result);
-			return "index";
-		}else {
-		return "redirect:/index";
-		}
+
+	@RequestMapping(value = "/sellerQnA.gom", method = RequestMethod.POST)
+	public String sellerQnASubmit(Model model, HttpSession session, HttpServletRequest request) {
+		model.addAttribute("iPage", "seller/sellerQnA_submit.jsp");
+		String email = (String) session.getAttribute("email");
+		model.addAttribute("sender", email);
+		System.out.println("CONTROLLER SellerQnA POST "+email);
+		return "index";
 	}
 }
-*/

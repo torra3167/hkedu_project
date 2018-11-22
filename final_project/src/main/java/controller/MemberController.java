@@ -182,7 +182,6 @@ public class MemberController {
 		model.addAttribute("iPage", "survey/survey_success.jsp");
 		System.out.println("CONTROLLER Survey1 POST "+request.getParameter("survNo"));
 		String email=memberSurveyCommand.getMemberEmail();
-		System.out.println(email);
 		String id=(String)session.getAttribute("email");
 		model.addAttribute("email",id);
 		if(email==null || email.equals("") ) {
@@ -225,6 +224,10 @@ public class MemberController {
 			return "redirect:/index";
 		}
 	}
-
+	@RequestMapping("/survey_success.gom")
+	public String SurveySuccess(Model model) {
+		model.addAttribute("iPage", "survey/survey_success_notMember.jsp");
+		return "index";
+	}
 	
 }

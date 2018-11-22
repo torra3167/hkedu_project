@@ -29,6 +29,7 @@
 		<typeAlias type="model.ProgramExerciseUpload" alias="ProgramExerciseUpload"/>
 		<typeAlias type="model.ProReview" alias="ProReview"/>
 		<typeAlias type="model.Notice" alias="Notice"/>
+		<typeAlias type="model.Email" alias="Email"/>
 		
 
 	
@@ -57,6 +58,7 @@
 		<mapper resource="repository/mapper/proReviewMapper.xml"/>
  		<mapper resource="repository/mapper/cartMapper.xml"/>
  		<mapper resource="repository/mapper/noticeMapper.xml"/>
+ 		<mapper resource="repository/mapper/emailMapper.xml"/>
  	
  	
  	</mappers>

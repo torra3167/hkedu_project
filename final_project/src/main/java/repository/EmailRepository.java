@@ -1,42 +1,40 @@
-/*package repository;
+package repository;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import command.EmailCommand;
 import model.Email;
-import model.Member;
 
 @Repository
 public class EmailRepository extends AbstractRepository {
+	
+	private final String namespace="repository.mapper.emailMapper";
 
-	private final String namespace = "repository.mapper.emailMapper";
-
-	public int updatePW(Member member) throws Exception {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		String statement = namespace + ".updatePw";
-		System.out.println("repository "+member.getMemberEmail());
+	public Integer countSellerID(String email) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		String statement=namespace+".countSellerID";
 		try {
-			Integer result = sqlSession.update(statement, member);
-			if (result > 0) {
+			System.out.println("EMAILREPOSITORY CountSellerID "+email);
+			Integer result=sqlSession.selectOne(statement, email);
+			System.out.println("repository email "+email);
+			if(result>0) {
 				sqlSession.commit();
-			}else {
-				sqlSession.rollback();
 			}
+			System.out.println("repository result "+result);
 			return result;
 		} finally {
 			sqlSession.close();
 		}
 	}
-
-	public Email selectByEmailAndName(Email email) {
-		System.out.println("repository selectByEmailAndName "+email.getForName());
-		SqlSession sqlSession=getSqlSessionFactory().openSession();
+	
+	public Email selectByEmail(String email) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		String statement=namespace+".selectByEmail";
 		try {
-			return (Email)sqlSession.selectOne(namespace+".selectByEmailAndName", email);
+			Email selectEmail = (Email)sqlSession.selectOne(statement, email);
+			return selectEmail;
 		} finally {
 			sqlSession.close();
 		}
 	}
 }
-*/

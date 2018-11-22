@@ -23,8 +23,9 @@ public class NoticeController {
 	}
 	@RequestMapping(value = "/notice_insert.gom", method = RequestMethod.POST)
 	public String joinSubmit(NoticeInsertCommand noticeInsertCommand, Model model) {
-		Integer result = null;
+		model.addAttribute("iPage", "noticeBoard/notice_list.jsp");
 		System.out.println("CONTROLLER Insert POST");
+		Integer result = null;
 		result = noticeService.insertNotice(noticeInsertCommand);
 		if (result > 0) {
 			model.addAttribute("result", result);

@@ -9,7 +9,7 @@
 	NOTICE_BOARD
 	(NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_DATE)
 	values
-		(select count(NOTICE_NO)+1 from NOTICE_BOARD),#{noticeTitle},#{noticeContent},SYSDATE)
+		((select count(NOTICE_NO)+1 from NOTICE_BOARD),#{noticeTitle},#{noticeContent},SYSDATE)
 </insert>
 
 </mapper>
