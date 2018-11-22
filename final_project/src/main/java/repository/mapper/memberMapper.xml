@@ -53,9 +53,7 @@
 		from survey
 	</select>
 	<select id="selectByNameAndPhone" resultType="String">
-		select MEMBER_EMAIL
-		from MEMBER where MEMBER_PHONE=#{memberPhone} and
-		MEMBER_NAME=#{memberName}
+		select MEMBER_EMAIL as email from MEMBER where MEMBER_PHONE=#{phone} and MEMBER_NAME=#{name}
 	</select>
 	<select id="selectByEmail" parameterType="Member" resultMap="memberMap">
 		select MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_PASS,

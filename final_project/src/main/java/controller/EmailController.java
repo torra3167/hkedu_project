@@ -9,10 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import command.EmailCommand;
+import command.FindIDCommand;
 import service.EmailService;
 
 @Controller
 public class EmailController {
+	
 	@Autowired
 	private EmailService emailService;
 	
@@ -37,4 +40,22 @@ public class EmailController {
 		System.out.println("CONTROLLER SellerQnA POST "+email);
 		return "index";
 	}
+	
+	@RequestMapping(value = "/findPW.gom", method = RequestMethod.GET)
+	public String findPW(FindIDCommand findIDCommand, Model model, HttpSession session, HttpServletRequest request) {
+		model.addAttribute("iPage", "login/findPWForm.jsp");
+		model.addAttribute("find", new FindIDCommand());
+		return "index";
+	}
+	
+	@RequestMapping(value = "/findPW.gom", method = RequestMethod.POST)
+	public String findPWSubmit(FindIDCommand findIDCommand, Model model, HttpSession session, HttpServletRequest request) {
+		model.addAttribute("iPage", "login/findPW_success.jsp");
+		String email=findIDCommand.getEmail();
+		String phone=findIDCommand.getPhone();
+		Integer result=emailService.findPW(email, phone);
+		model.addAttribute("result", result);
+		return "index";
+	}
+	
 }

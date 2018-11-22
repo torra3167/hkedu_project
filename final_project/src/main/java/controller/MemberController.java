@@ -16,11 +16,11 @@ import command.MemberSurveyCommand;
 import command.MemberUpdateCommand;
 import command.MemberWithdrawalCommand;
 import model.Member;
-import model.MemberSurvey;
 import service.MemberService;
 
 @Controller
 public class MemberController {
+	
 	@Autowired
 	private MemberService memberService;
 
@@ -51,14 +51,16 @@ public class MemberController {
 	public String findID(FindIDCommand findIDCommand, Model model) {
 		model.addAttribute("iPage", "login/findID.jsp");
 		System.out.println("CONTROLLER FindID GET");
+		model.addAttribute("findIDCommand", new FindIDCommand());
 		return "index";
 	}
 
 	@RequestMapping(value = "/findID.gom", method = RequestMethod.POST)
 	public String findIDSubmit(FindIDCommand findIDCommand, Model model) {
 		model.addAttribute("iPage", "login/findID_success.jsp");
-		System.out.println("CONTROLLER FindIDSubmit POST "+findIDCommand.getMemberName());
-		memberService.findID(findIDCommand, model);
+		System.out.println("CONTROLLER FindIDSubmit POST "+findIDCommand.getName());
+		String email=memberService.findID(findIDCommand);
+		model.addAttribute("email", email);
 		return "index";
 	}
 	

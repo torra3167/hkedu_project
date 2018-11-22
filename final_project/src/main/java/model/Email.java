@@ -16,13 +16,6 @@ public class Email {
 		this.divide = divide;
 	}
 
-	public Email(String email, String name, String phone) {
-		super();
-		this.email = email;
-		this.name = name;
-		this.phone = phone;
-	}
-
 	public String getEmail() {
 		return email;
 	}

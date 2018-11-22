@@ -20,16 +20,18 @@ public class EmailService {
 		return i;
 	}
 
-	public String findPW(String email, String pw) {
+	public Integer findPW(String email, String phone) {
 		Email selectEmail = emailRepository.selectByEmail(email);
+		Email selectPhone=emailRepository.selectByPhone(phone);
 		if (selectEmail == null) {
 			throw new IdPasswordNotMatchingException("아이디가 존재하지않습니다");
 		} else {
-			String keyEmail=selectEmail.getEmail();
-			return keyEmail;
-
+			int i=0;
+			if(selectEmail.equals(selectPhone)) {
+				i=1;
+			}
+			return i;
 		}
-
 	}
 
 }

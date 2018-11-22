@@ -12,21 +12,15 @@
 			SELLER_EMAIL=#{email}
 		</where>
 	</select>
-	
-	
-	<resultMap type="AuthInfo" id="authInfoMap">
-		<id column="email" jdbcType="VARCHAR" property="email" />
-		<result column="divide" jdbcType="VARCHAR" property="divide" />
 
-	</resultMap>
-
-	<select id="selectByEmailAndDivide" resultMap="authInfoMap"	parameterType="String">
-		select member_email as email from member where member_email = #{member_email}
+	<select id="selectByEmail" resultType="String"	parameterType="String">
+		select member_email as email from member where member_email = #{email}
 		union
-		select coach_email as email from coach where coach_email = #{coach_email}
+		select seller_email as email from seller where seller_email = #{email}
+	</select>
+	<select id="selectByPnone" resultType="String"	parameterType="String">
+		select member_email as email from member where member_phone=#{phone}
 		union
-		select seller_email as email from seller where seller_email = #{seller_email}
-		union
-		select manager_id as email from manager where manager_id = #{manager_id}
+		select seller_email as email from seller where seller_phone=#{phone}
 	</select>
 </mapper>

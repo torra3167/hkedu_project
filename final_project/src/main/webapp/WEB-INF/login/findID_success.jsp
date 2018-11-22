@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8" import="command.FindIDCommand"%>
 	
 	<%
-	String email=(String)request.getAttribute("findEmail");
+	String email=(String)request.getAttribute("email");
 
 %>
 <!DOCTYPE html>

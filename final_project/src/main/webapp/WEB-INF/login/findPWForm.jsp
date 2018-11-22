@@ -1,46 +1,48 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<% String email=(String)session.getAttribute("email");
-	%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1대 1 문의하기</title>
-<meta charset="utf-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/custom-1.css">
+<title>아이디 찾기</title>
 </head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script type="text/javascript">
+	function checkID() {
+		var frm = document.getElementById("findID")
+		if (!frm.memberPhone.value) {
+			alert("연락처를 입력하세요.");
+			frm.memberPhone.focus();
+			return false;
+		}
+		if (!frm.memberName.value) {
+			alert("이름을 입력하세요.");
+			frm.memberName.focus();
+			return false;
+		}
+		frm.submit();
+	}
+</script>
 <body>
-
 	<div class="container">
-		<form action="personalQna.gom" method="post">
-			
-			<%if(email==null){ %>
-				<div class="right">문의 답변을 받을 이메일을 작성해주세요.</div>
-			<%} else { %>
-				<div class="right div-text-min">다른 주소로 문의를 전송하시려면 이메일 주소를 작성해주세요.</div>
-			<%}%>
-			<div right="left">
-				<input type="hidden" name="email" value=<%= email %> readonly="true"/>
-				<label>보내는 사람</label>
-				<input type="email" name="sender"><br>
-				
-			</div>
-			<hr>
-			<div>
-				<label>제목</label>
-				<input type="text" name="title"/>
-			</div>
-			<div>
-				<label>내용</label><br>
-				<textarea cols="155" rows="20" name="contents"></textarea>
-			</div>
-			<input type="submit" class="btn btn-primary" value="전송"/>
-			<input type="reset" class="btn btn-secondary" value="다시 작성"/>
-		</form>
+
+		<div class="signInBox">
+			<form:form commandName="findIDCommand" id="findID" class="form-signin">
+				<label>아이디</label>
+				<form:input path="email" name="email" id="email" class="form-control" placeholder="아이디로 사용하는 이메일을 입력해주세요." required="true" autofocus="true" />
+				<br>
+				<label>연락처</label>
+				<form:input path="phone" name="phone" id="phone" class="form-control" placeholder="가입 시 입력했던 연락처를 입력해주세요." required="true" />
+				<hr>
+				<div class="btn">
+					<form:button class="btn btn-primary" onclick="checkID();">찾기</form:button>
+					<form:button class="btn btn-primary" onclick="history.go(-1);">뒤로가기</form:button>
+					<form:button class="btn btn-primary" onclick="location.href='findPW.gom'">비밀번호 찾기</form:button>
+				</div>
+			</form:form>
+		</div>
 	</div>
 </body>
 </html>

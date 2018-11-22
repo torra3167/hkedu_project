@@ -37,4 +37,15 @@ public class EmailRepository extends AbstractRepository {
 			sqlSession.close();
 		}
 	}
+
+	public Email selectByPhone(String phone) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		String statement=namespace+".selectByPnone";
+		try {
+			Email selectPhone = (Email)sqlSession.selectOne(statement, phone);
+			return selectPhone;
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

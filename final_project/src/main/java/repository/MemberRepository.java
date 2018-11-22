@@ -3,6 +3,7 @@ package repository;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import command.FindIDCommand;
 import command.MemberSurveyCommand;
 import model.Member;
 import model.MemberSurvey;
@@ -41,9 +42,9 @@ public class MemberRepository extends AbstractRepository {
 	public String selectByNameAndPhone(Member member) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		String statement = namespace + ".selectByNameAndPhone";
-		System.out.println("MEMBERREPOSITORY SelectByNameAndPhone " + member.getMemberEmail());
 		try {
 			String email = sqlSession.selectOne(statement, member);
+			System.out.println("MEMBERREPOSITORY SelectByNameAndPhone "+email);
 			return email;
 		} finally {
 			sqlSession.close();
