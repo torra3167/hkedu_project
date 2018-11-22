@@ -14,7 +14,6 @@ public class Food implements Serializable {
 	private String foodExpiryDate;
 	private String foodOrigin;
 	private int foodSale;
-	private String foodFlavor;
 	private int foodPrice;
 	private int foodCarbo;
 	private int foodProtein;
@@ -28,9 +27,8 @@ public class Food implements Serializable {
 	public Food() {
 	}
 	public Food(int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo, String foodName,
-			int foodQuant, String foodExpiryDate, String foodOrigin, int foodSale, String foodFlavor, int foodPrice,
-			int foodCarbo, int foodProtein, int foodFat, int foodCal, Long foodSize, String foodOriginal,
-			String foodStored) {
+			int foodQuant, String foodExpiryDate, String foodOrigin, int foodSale, int foodPrice, int foodCarbo,
+			int foodProtein, int foodFat, int foodCal, Long foodSize, String foodOriginal, String foodStored) {
 		this.foodNo = foodNo;
 		this.sellerEmail = sellerEmail;
 		this.foodCatANo = foodCatANo;
@@ -41,7 +39,6 @@ public class Food implements Serializable {
 		this.foodExpiryDate = foodExpiryDate;
 		this.foodOrigin = foodOrigin;
 		this.foodSale = foodSale;
-		this.foodFlavor = foodFlavor;
 		this.foodPrice = foodPrice;
 		this.foodCarbo = foodCarbo;
 		this.foodProtein = foodProtein;
@@ -111,12 +108,6 @@ public class Food implements Serializable {
 	public void setFoodSale(int foodSale) {
 		this.foodSale = foodSale;
 	}
-	public String getFoodFlavor() {
-		return foodFlavor;
-	}
-	public void setFoodFlavor(String foodFlavor) {
-		this.foodFlavor = foodFlavor;
-	}
 	public int getFoodPrice() {
 		return foodPrice;
 	}
@@ -165,7 +156,6 @@ public class Food implements Serializable {
 	public void setFoodStored(String foodStored) {
 		this.foodStored = foodStored;
 	}
-	
 	
 	
 }

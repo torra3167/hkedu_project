@@ -16,12 +16,16 @@ import command.LoginCommand;
 import model.AuthInfo;
 
 import service.LoginService;
+import service.SellerService;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
 	private LoginService ls;
+	
+	@Autowired
+	private SellerService sellerService;
 	
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
@@ -55,6 +59,7 @@ public class LoginController {
 		session.setAttribute("divide", ai.getDivide());
 		//인증
 		session.setAttribute("email", ai.getEmail());
+		
 		Cookie cookie = new Cookie("email", loginCommand.getEmail());
 		if(loginCommand.isRememberEmail()) {
 			cookie.setMaxAge(60 * 60 * 24 * 30);
@@ -62,6 +67,8 @@ public class LoginController {
 			cookie.setMaxAge(0);
 		}
 		response.addCookie(cookie);
+		
+		
 		return "index";
 	}
 	

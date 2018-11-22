@@ -6,6 +6,7 @@
 	<typeAliases>
 		<typeAlias type="model.Coach" alias="Coach"/>
 		<typeAlias type="model.Seller" alias="Seller"/>
+		<typeAlias type="model.SellerApplication" alias="SellerApplication"/>
 		<typeAlias type="model.Food" alias="Food"/>
 		<typeAlias type="model.FoodReview" alias="FoodReview"/>
 		<typeAlias type="model.FoodAndApplication" alias="FoodAndApplication"/>
@@ -60,6 +61,8 @@
 		<mapper resource="repository/mapper/proReviewMapper.xml"/>
 		<mapper resource="repository/mapper/proReviewReportMapper.xml"/>
  		<mapper resource="repository/mapper/payMapper.xml"/>
+ 		<mapper resource="repository/mapper/cartMapper.xml"/>
+ 		<mapper resource="repository/mapper/adminMapper.xml"/>
  	
  	
  	</mappers>

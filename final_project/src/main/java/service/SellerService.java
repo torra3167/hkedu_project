@@ -1,25 +1,50 @@
 package service;
 
+import java.io.File;
+import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import command.SellerApplicationWriteCommand;
 import command.SellerJoinCommand;
 import command.SellerUpdateCommand;
 import command.SellerWithdrawalCommand;
 import exception.IdPasswordNotMatchingException;
+import model.Member;
 import model.Seller;
+import model.SellerApplication;
 import model.SellerAuthInfo;
 import repository.SellerRepository;
 
 @Service
 public class SellerService {
 	
-
-	
-	Seller seller;
-	
 	@Autowired
 	private SellerRepository sellerRepository;
+	
+	
+	static final String filePath =
+//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+	File file = new File(filePath);
+	File file2 = new File(filePath);
+	
+//	Seller seller;
+	
+	String originalFile;
+	String originalFile2;
+	String originalFileExtension;
+	String originalFileExtension2;
+	String storedFileName;
+	String storedFileName2;
+	MultipartFile multiFile;
+	MultipartFile multiFile2;
 	
 	public Integer insertSeller(SellerJoinCommand sellerJoinCommand) {
 		System.out.println("service " + sellerJoinCommand.getSellerEmail());
@@ -59,4 +84,115 @@ public class SellerService {
 		int result = sellerRepository.deleteSeller(seller);
 		return result;
 	}
+
+	public void insertSellerApplication(SellerApplicationWriteCommand sellerApplicationWriteCommand, HttpSession session) {
+		//sellerEmail
+		String sellerEmail = (String) session.getAttribute("email");
+		System.out.println("svc insertSellerApplication sellerEmail : " + sellerEmail);
+		sellerApplicationWriteCommand.setSellerEmail(sellerEmail);
+		System.out.println("svc insertSellerApplication getSellerEmail : " + sellerApplicationWriteCommand.getSellerEmail());
+		
+		//foodNum
+		Integer sellerAppliNo = sellerRepository.selectsellerAppliNo();
+		System.out.println("service insertSellerApplication sellerAppliNo : " + sellerAppliNo);
+		if(sellerAppliNo == 0) {
+			sellerAppliNo = 1;
+		} else {
+			sellerAppliNo = sellerAppliNo + 1;
+		}
+		System.out.println("service insertSellerApplication sellerAppliNo : " + sellerAppliNo);
+		sellerApplicationWriteCommand.setSellerAppliNo(sellerAppliNo);
+		
+		//applicationStatus
+		sellerApplicationWriteCommand.setApplicationStatus("대기");
+		
+		//applicationDes
+		sellerApplicationWriteCommand.setApplicationDes("대기 중");
+		
+		//sellerLicenseImage
+		multiFile = sellerApplicationWriteCommand.getSellerLicense();
+		originalFile = multiFile.getOriginalFilename();
+		originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+		storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+		file = new File(filePath + storedFileName);
+		
+		//sellerBusinessRegistrationImage
+		multiFile2 = sellerApplicationWriteCommand.getSellerBusinessRegistration();
+		originalFile2 = multiFile.getOriginalFilename();
+		originalFileExtension2 = originalFile2.substring(originalFile2.lastIndexOf("."));
+		storedFileName2 = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension2;
+		file2 = new File(filePath + storedFileName2);
+		try {
+			multiFile.transferTo(file);
+			multiFile2.transferTo(file2);
+			SellerApplication sellerApplication = new SellerApplication(
+					sellerAppliNo,
+					sellerEmail,
+					sellerApplicationWriteCommand.getSellerAppliBn(), 
+					sellerApplicationWriteCommand.getSellerName(),
+					sellerApplicationWriteCommand.getStoreName(), 
+					sellerApplicationWriteCommand.getStoreTelphone(),
+					sellerApplicationWriteCommand.getStoreAddr(),
+					sellerApplicationWriteCommand.getStoreTerm(),
+					sellerApplicationWriteCommand.getApplicationStatus(),
+					sellerApplicationWriteCommand.getApplicationDes(),
+					multiFile.getSize(), 
+					originalFile, 
+					storedFileName,
+					multiFile2.getSize(), 
+					originalFile2, 
+					storedFileName2
+					);
+			System.out.println("svc insertSellerApplication getSellerLicenseOriginal : " + sellerApplication.getSellerLicenseOriginal());
+			
+			int k = sellerRepository.insertSellerApplication(sellerApplication);
+			
+			if(k < 1) {
+				System.out.println("입점신청서 등록 실패!");
+			} else {
+				System.out.println("입점신청서 등록 성공!");
+				Member member = new Member();
+				member.setMemberEmail(sellerEmail);
+				member.setMemberDivide("w");
+				sellerRepository.updateMemberDivide(member);
+				session.setAttribute("divide", "w");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<SellerApplication> selectSellerApplicationList() {
+		List<SellerApplication> sellerApplicationList = sellerRepository.selectSellerApplicationList();  
+		
+		for(Object temp : sellerApplicationList) {
+			 SellerApplication sa = (SellerApplication)temp;
+			 System.out.println("svc selectSellerApplicationList getSellerBrOriginal : " + sa.getSellerBrOriginal());
+		}
+		return sellerApplicationList;
+	}
+
+	public SellerApplication selectSellerApplication(String sellerEmail) {
+		SellerApplication sellerApplication = sellerRepository.selectSellerApplication(sellerEmail);
+		return sellerApplication;
+	}
+
+	public void deleteSellerApplication(int sellerAppliNo, HttpSession session) {
+		System.out.println("svc deleteSellerApplication sellerAppliNo : " + sellerAppliNo);
+		int k = sellerRepository.deleteSellerApplication(sellerAppliNo);
+		
+		if(k < 1) {
+			System.out.println("입점신청서 삭제 실패");
+		} else {
+			System.out.println("입점신청서 삭제 성공!");
+			Member member = new Member();
+			member.setMemberEmail((String)session.getAttribute("email"));
+			member.setMemberDivide("p");
+			sellerRepository.updateMemberDivide(member);
+			session.setAttribute("divide", "p");
+		}
+	}
+	
+	
+	
 }

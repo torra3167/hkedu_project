@@ -1,12 +1,14 @@
 package repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import command.SellerJoinCommand;
-import command.SellerUpdateCommand;
-import model.Coach;
+import model.Member;
 import model.Seller;
+import model.SellerApplication;
 
 @Repository
 public class SellerRepository extends AbstractRepository{
@@ -24,6 +26,8 @@ public class SellerRepository extends AbstractRepository{
 			Integer result = sqlSession.insert(statement, sellerJoinCommand);
 			if(result>0) {
 				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
 			}
 			return result;
 		} finally {
@@ -52,6 +56,8 @@ public class SellerRepository extends AbstractRepository{
 			Integer result = sqlSession.update(statement, seller);
 			if(result > 0) {
 				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
 			}
 			return result;
 		} finally {
@@ -69,10 +75,107 @@ public class SellerRepository extends AbstractRepository{
 			sqlSession.delete(namespace + ".deleteFood", seller.getSellerEmail());
 			if(result > 0) {
 				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
 			}
 			return result;
 		} finally {
 			sqlSession.close();
 		}
 	}
+
+
+	public Integer selectsellerAppliNo() {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+		return (Integer)sqlSession.selectOne(namespace + ".selectsellerAppliNo");
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+	public Integer insertSellerApplication(SellerApplication sellerApplication) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			Integer result = sqlSession.insert(namespace + ".insertSellerApplication", sellerApplication);
+			System.out.println("repo insertSellerApplication result : " + result);
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+	public List<SellerApplication> selectSellerApplicationList() {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+		List<SellerApplication> list =  sqlSession.selectList(namespace + ".selectSellerApplicationList");
+		for(Object temp : list) {
+			SellerApplication sa = (SellerApplication)temp;
+			System.out.println("repo selectSellerApplicationList getSellerAppliNo : "+ sa.getSellerAppliNo());
+		}
+		return list;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+	public SellerApplication selectSellerApplication(String sellerEmail) {
+		System.out.println("repo selectSellerApplication sellerEmail " + sellerEmail);
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			SellerApplication sellerApplication = sqlSession.selectOne(namespace + ".selectSellerApplication", sellerEmail);
+			return sellerApplication;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+	public int deleteSellerApplication(int sellerAppliNo) {
+		sqlSession = getSqlSessionFactory().openSession();
+		Integer result = 0;
+		try {
+			result = sqlSession.update(namespace + ".deleteSellerApplication", sellerAppliNo);
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+	public void updateMemberDivide(Member member) {
+		System.out.println("Repo updateMemberDivide getMemberEmail" + member.getMemberEmail());
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			String statement = namespace + ".updateMemberDivide";
+			Integer result = sqlSession.update(statement, member);
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+		} finally {
+			sqlSession.close();
+		}		
+	}
+	
+	
 }

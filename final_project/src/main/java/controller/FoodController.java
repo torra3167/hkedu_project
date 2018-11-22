@@ -21,6 +21,10 @@ import command.FoodReviewReportWriteCommand;
 import command.FoodReviewUpdateCommand;
 import command.FoodReviewWriteCommand;
 import command.FoodUpdateCommand;
+import model.Food;
+import model.FoodAndApplication;
+import model.FoodReviewAndAnswer;
+import model.FoodReviewReport;
 import service.FoodService;
 
 @Controller
@@ -32,14 +36,16 @@ public class FoodController {
 	@RequestMapping(value="/food_list.gom", method=RequestMethod.GET)
 	public String foodList(Model model) {
 		System.out.println("cntlr foodList");
-		foodService.selectFoodList(model);
+		List<FoodAndApplication> foodAppliList = foodService.selectFoodList();
+		System.out.println("ccccccccccccccccccccccccccc : " + foodAppliList.size());
+		model.addAttribute("foodAppliList", foodAppliList);
 		model.addAttribute("iPage", "food/food_list.jsp");
 		return "index";
 	}
 	
 	@RequestMapping(value="/food_reg.gom", method=RequestMethod.POST)
 	public String foodRegSubmit(FoodRegCommand foodRegCommand, HttpSession session) { 
-		System.out.println("foodRegForm yyyyyyyyyyyyyyyyyyyyyyyyyyy"+foodRegCommand.getFoodNo());
+		System.out.println("cntlr foodRegSubmit getFoodNo : "+foodRegCommand.getFoodNo());
 //        System.out.println("cntlr foodRegCommand.getFoodName : " + foodRegCommand.getFoodName());
         foodService.insertFood(foodRegCommand, session);
         System.out.println("food_cntlr foodNo : " + foodRegCommand.getFoodNo());
@@ -49,16 +55,16 @@ public class FoodController {
 	@RequestMapping(value="/bca.gom", method=RequestMethod.POST)
 	public String bca(FoodCatB foodCatB, Model model) {
 //		System.out.println( "B contoller getFoodCatCNo : " + foodCatB.getFoodCatCNo());
-		foodService.dominoSelectB(foodCatB, model);
-		
+		List<FoodCatB> foodCatList = foodService.dominoSelectB(foodCatB);
+		model.addAttribute("foodCat", foodCatList);
 		return "food/food_cat_b";
 	}
 	
 	@RequestMapping(value="/cca.gom", method=RequestMethod.POST)
 	public String Cca(FoodCatA foodCatA, Model model) {
 //		System.out.println("C controller getFoodCatBNo : " + foodCatA.getFoodCatBNo());
-		foodService.dominoSelectA(foodCatA, model);
-		
+		List<FoodCatA> foodCatList2 = foodService.dominoSelectA(foodCatA);
+		model.addAttribute("foodCat", foodCatList2);
 		return "food/food_cat_a";
 	}
 	
@@ -67,8 +73,8 @@ public class FoodController {
 //		System.out.println("cntlr sellerFoodDetail");
 //		System.out.println("cntlr foodNo : "+foodNo);
 		
-		foodService.selectSellerFood(foodNo, model);
-		
+		Food food = foodService.selectSellerFood(foodNo);
+		model.addAttribute("sellerFood", food);
 		
 		model.addAttribute("iPage", "seller/seller_foodDetail.jsp");
 		return "index";
@@ -80,7 +86,7 @@ public class FoodController {
 //		System.out.println("foodUpdateForm foodName : " +  foodUpdateCommand.getFoodName());
 		
 		//등록식품 수정에 사용
-		List<FoodCatC> list = foodService.dominoSelectC(model);
+		List<FoodCatC> list = foodService.dominoSelectC();
 		model.addAttribute("foodCat", list);	
 		
 		model.addAttribute("iPage", "food/food_update.jsp");
@@ -106,8 +112,10 @@ public class FoodController {
 	@RequestMapping(value="/food_detail.gom", method=RequestMethod.GET)
     public String foodDetail(@RequestParam("foodNo")int foodNo, Model model) {
 		System.out.println("cntlr foodDetail foodNo : " + foodNo);
-		foodService.selectFood(foodNo, model);
-		foodService.selectReviewAndAnswer(foodNo, model);
+		FoodAndApplication fa = foodService.selectFood(foodNo);
+		model.addAttribute("fa", fa);
+		List<FoodReviewAndAnswer> foodReviewAndAnswers = foodService.selectReviewAndAnswer(foodNo);
+		model.addAttribute("foodReviewAndAnswers", foodReviewAndAnswers);
 		model.addAttribute("iPage", "food/food_detail.jsp");
 		return "index";
 	}
@@ -129,7 +137,7 @@ public class FoodController {
 	public String foodReviewWriteSubmit(FoodReviewWriteCommand foodReviewWriteCommand, Model model, HttpSession session) { 
 		System.out.println("cntlr foodReviewWriteSubmit foodNo : " + foodReviewWriteCommand.getFoodNo());
 		System.out.println("cntlr foodReviewWriteSubmit sellerEmail : " + foodReviewWriteCommand.getSellerEmail());
-        foodService.insertFoodReview(foodReviewWriteCommand, model, session);
+        foodService.insertFoodReview(foodReviewWriteCommand, session);
         return "redirect:/index";
 	}
 	
@@ -151,7 +159,7 @@ public class FoodController {
 	public String foodReviewUpdateSubmit(FoodReviewUpdateCommand foodReviewUpdateCommand, Model model, HttpSession session) { 
 		System.out.println("cntlr foodReviewUpdateSubmit foodReviewNo : " + foodReviewUpdateCommand.getFoodReviewNo());
 		System.out.println("cntlr foodReviewUpdateSubmit sellerEmail : " + foodReviewUpdateCommand.getSellerEmail());
-        foodService.updateFoodReview(foodReviewUpdateCommand, model, session);
+        foodService.updateFoodReview(foodReviewUpdateCommand, session);
         return "redirect:/index";
 	}
 	
@@ -183,7 +191,7 @@ public class FoodController {
 		System.out.println("cntlr foodReviewAnswerWriteSubmit FoodReviewNo : " + foodReviewAnswerWriteCommand.getFoodReviewNo());
 		System.out.println("cntlr foodReviewAnswerWriteSubmit SellerEmail : " + foodReviewAnswerWriteCommand.getSellerEmail());
 		System.out.println("cntlr foodReviewAnswerWriteSubmit memberEmail : " + foodReviewAnswerWriteCommand.getMemberEmail());
-		foodService.insertFoodReviewAnswer(foodReviewAnswerWriteCommand, model);
+		foodService.insertFoodReviewAnswer(foodReviewAnswerWriteCommand);
         return "redirect:/index";
 	}
 	
@@ -208,7 +216,7 @@ public class FoodController {
 		System.out.println("cntlr foodReviewAnswerUpdateSubmit foodReviewNo : " + foodReviewAnswerUpdateCommand.getFoodReviewNo());
 		System.out.println("cntlr foodReviewAnswerUpdateSubmit SellerEmail : " + foodReviewAnswerUpdateCommand.getSellerEmail());
 		System.out.println("cntlr foodReviewAnswerUpdateSubmit memberEmail : " + foodReviewAnswerUpdateCommand.getMemberEmail());
-		foodService.updateFoodReviewAnswer(foodReviewAnswerUpdateCommand, model);
+		foodService.updateFoodReviewAnswer(foodReviewAnswerUpdateCommand);
         return "redirect:/index";
 	}
 	
@@ -242,7 +250,7 @@ public class FoodController {
 		System.out.println("cntlr foodReviewReportWriteSubmit sellerEmail : " + foodReviewReportWriteCommand.getSellerEmail());
 		System.out.println("cntlr foodReviewReportWriteSubmit memberEmail : " + foodReviewReportWriteCommand.getMemberEmail());
 		System.out.println("cntlr foodReviewReportWriteSubmit foodReportContent : " + foodReviewReportWriteCommand.getFoodReportContent());
-		foodService.insertFoodReviewReport(foodReviewReportWriteCommand, model);
+		foodService.insertFoodReviewReport(foodReviewReportWriteCommand);
         return "redirect:/index";
 	}
 	
@@ -250,7 +258,8 @@ public class FoodController {
 	@RequestMapping(value="/food_reviewReportList.gom", method=RequestMethod.GET)
 	public String foodReviewReportList(Model model) {
 		System.out.println("cntlr foodReviewReportList");
-		foodService.selectFoodReviewReportList(model);
+		List<FoodReviewReport> foodReviewReports = foodService.selectFoodReviewReportList();
+		model.addAttribute("foodReviewReports", foodReviewReports);
 		model.addAttribute("iPage", "food/food_reviewReportBoard.jsp");
 		return "index";
 	}
@@ -258,9 +267,18 @@ public class FoodController {
 	@RequestMapping(value="/food_reviewReportDetail.gom", method=RequestMethod.GET)
 	public String foodReviewReportDetail(@RequestParam("foodReportRegdate")String foodReportRegdate, Model model) {
 		System.out.println("cntlr foodReviewReportDetail foodReportRegdate : " + foodReportRegdate);
-		foodService.selectFoodReviewReport(foodReportRegdate, model);
+		FoodReviewReport foodReviewReport = foodService.selectFoodReviewReport(foodReportRegdate);
+		model.addAttribute("foodReviewReport", foodReviewReport);
 		model.addAttribute("iPage", "food/food_reviewReportDetail.jsp");
 		return "index";
 	}
+	
+	@RequestMapping(value="/food_reviewReportDelete.gom", method=RequestMethod.GET)
+    public String foodReviewReportDelete(@RequestParam("foodReportRegdate")String foodReportRegdate, Model model) {
+		System.out.println("cntlr foodReviewReportDelete foodReportRegdate : " + foodReportRegdate);
+		foodService.deleteFoodReviewReport(foodReportRegdate);
+		return "redirect:/index";
+	}
+	
 	
 }

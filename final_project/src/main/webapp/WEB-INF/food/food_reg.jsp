@@ -79,9 +79,6 @@ function funcAca() {
 			<div id="divBca"></div>
 			<div id="divAca"></div>
 			<div class="form-group">
-				<label>식품 맛</label> <input type="text" name="foodFlavor" class="form-control">
-			</div>
-			<div class="form-group">
 				<label>판매할 식품 개수</label> <input type="text" name="foodQuant" class="form-control">
 			</div>
 			<div class="form-group">
