@@ -128,16 +128,6 @@
                 </div>
                 <% } %>
                 
-                <!--                 <tr> -->
-                
-<%--                     <td><%=program.getProNo() %></td> --%>
-<%--                     <td><%=program.getCoachEmail() %></td> --%>
-<%--                     <td><a href="program_detail.gom?proNo=<%=program.getProNo() %>&proContent=<%=program.getProContent()%>"><%=program.getProName() %></a></td> --%>
-<%--                     <td><%=program.getProRegdate() %></td> --%>
-<%--                     <td><img src="http://localhost:8080/final_project/resource/<%=program.getProStored() %>" width="80" height="80"></td> --%>
-                    
-                    
-<!--                 </tr> -->
 			</div>
 		</div>
 		

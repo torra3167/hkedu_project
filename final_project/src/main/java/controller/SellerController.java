@@ -2,28 +2,23 @@ package controller;
 
 import java.util.List;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import category.FoodCatC;
+import command.SellerApplicationWriteCommand;
 import command.SellerJoinCommand;
-import command.SellerLoginCommand;
 import command.SellerUpdateCommand;
 import command.SellerWithdrawalCommand;
-import model.AuthInfo;
-import model.Seller;
-import model.SellerAuthInfo;
+import model.Food;
+import model.SellerApplication;
 import service.FoodService;
 import service.SellerService;
 
@@ -84,13 +79,13 @@ public class SellerController {
 		public String sellerMenu(Model model, HttpSession session) {
 			model.addAttribute("iPage", "seller/seller_menu.jsp");
 			//foodReg cate list
-			List<FoodCatC> list = foodService.dominoSelectC(model);
+			List<FoodCatC> list = foodService.dominoSelectC();
 			model.addAttribute("foodCat", list);
 			
 			//seller_foodList
 			String sellerEmail = (String) session.getAttribute("email");
-			foodService.sellerFoodList(model, sellerEmail);
-			
+			List<Food> FoodList = foodService.sellerFoodList(sellerEmail);
+			model.addAttribute("sellerFoodList", FoodList);
 			return "index";
 		}
 		
@@ -120,8 +115,42 @@ public class SellerController {
 		
 		
 		@RequestMapping(value="/seller_application.gom", method=RequestMethod.GET)
-		public String sellerApplicationForm(Model model) {
+		public String sellerApplicationForm(SellerApplicationWriteCommand sellerApplicationWriteCommand, Model model) {
 			model.addAttribute("iPage", "seller/seller_application.jsp");
 			return "index";
 		}
+		
+		@RequestMapping(value="/seller_application.gom", method=RequestMethod.POST)
+		public String sellerApplicationSubmit(SellerApplicationWriteCommand sellerApplicationWriteCommand, HttpSession session, Model model) { 
+			sellerService.insertSellerApplication(sellerApplicationWriteCommand, session);
+			return "index";
+		}
+		
+		@RequestMapping(value="/seller_applicationList.gom", method=RequestMethod.GET)
+		public String sellerApplicationList(Model model) {
+			System.out.println("cntlr sellerApplicationList");
+			List<SellerApplication> sellerApplicationList = sellerService.selectSellerApplicationList();
+			model.addAttribute("sellerApplicationList", sellerApplicationList);
+			model.addAttribute("iPage", "seller/seller_applicationBoard.jsp");
+			return "index";
+		}
+		
+		@RequestMapping(value="/seller_lookUpApplication.gom", method=RequestMethod.GET)
+		public String sellerLookUpApplication(Model model, HttpSession session) {
+			System.out.println("cntlr sellerLookUpApplication");
+			SellerApplication sellerApplication = sellerService.selectSellerApplication((String)session.getAttribute("email"));
+			model.addAttribute("sellerApplication", sellerApplication);
+			model.addAttribute("iPage", "seller/seller_applicationDetail.jsp");
+			return "index";
+		}
+		
+		
+		@RequestMapping(value="/seller_applicationDelete.gom", method=RequestMethod.GET)
+	    public String sellerApplicationDelete(@RequestParam("sellerAppliNo")int sellerAppliNo, Model model, HttpSession session) {
+			System.out.println("cntlr sellerApplicationDelete sellerAppliNo : " + sellerAppliNo);
+			sellerService.deleteSellerApplication(sellerAppliNo, session);
+			return "redirect:/index";
+		}
+		
+		
 }

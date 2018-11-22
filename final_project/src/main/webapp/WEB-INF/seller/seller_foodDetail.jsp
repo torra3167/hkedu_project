@@ -44,9 +44,6 @@
 			<input type="text" name="foodCatCNo" class="form-control" value="<%=food.getFoodCatCNo() %>" readonly="true">
 			</div>
 			<div class="form-group">
-				<label>식품 맛</label> <input type="text" name="foodFlavor" class="form-control" value="<%=food.getFoodFlavor() %>" readonly="true">
-			</div>
-			<div class="form-group">
 				<label>판매할 식품 개수</label> <input type="text" name="foodQuant" class="form-control" value="<%=food.getFoodQuant() %>" readonly="true">
 			</div>
 			<div class="form-group">

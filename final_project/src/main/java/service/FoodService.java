@@ -1,6 +1,7 @@
 package service;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import category.FoodCatA;
@@ -46,23 +46,23 @@ public class FoodService {
 	private FoodRepository foodRepository;
 	static final String filePath =
 //			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
 	
 	
 	
 	
 	
-	public void sellerFoodList(Model model, String sellerEmail) {
-		List<Food> list = foodRepository.sellerFoodList(sellerEmail);  
-		
+	public List<Food> sellerFoodList(String sellerEmail) {
+		 List<Food> list = foodRepository.sellerFoodList(sellerEmail);
 //		for(Object temp : list) {
 //			 Food food = (Food)temp;
 //			 System.out.println("service foodNo : "+food.getFoodNo());
 //		}
+		 return list;
 		
-		model.addAttribute("sellerFoodList", list);
+		
 	}
 	
 	public void insertFood(FoodRegCommand foodRegCommand, HttpSession session) {
@@ -104,7 +104,6 @@ public class FoodService {
 					foodRegCommand.getFoodExpiryDate(),
 					foodRegCommand.getFoodOrigin(),
 					foodRegCommand.getFoodSale(),
-					foodRegCommand.getFoodFlavor(),
 					foodRegCommand.getFoodPrice(),
 					foodRegCommand.getFoodCarbo(),
 					foodRegCommand.getFoodProtein(),
@@ -130,7 +129,7 @@ public class FoodService {
 	
 	
 	//FoodCatC < FoodCatB < FoodCatA
-	public List<FoodCatC> dominoSelectC(Model model) {
+	public List<FoodCatC> dominoSelectC() {
 //		System.out.println("service C 실행");
 		List<FoodCatC> list = foodRepository.ccaSelect();
 //		System.out.println("service C 반환된 list size : " + list.size());
@@ -138,28 +137,26 @@ public class FoodService {
 //		model.addAttribute("list", list);	//seller_menu 열리는 sellerCntlr에서 생성
 	}
 	
-	public void dominoSelectB(FoodCatB foodCatB, Model model) {
+	public List<FoodCatB> dominoSelectB(FoodCatB foodCatB) {
 //		System.out.println("service B 실행, FoodCatCNo : " + foodCatB.getFoodCatCNo());
 		List<FoodCatB> list = foodRepository.bcaSelect(foodCatB);
 //		System.out.println("service B 반환된 list size : " + list.size());
-		model.addAttribute("foodCat", list);
+		return list;
 	}
 	
-	public void dominoSelectA(FoodCatA foodCatA, Model model) {
+	public List<FoodCatA> dominoSelectA(FoodCatA foodCatA) {
 //		System.out.println("service A 실행, FoodCatBNo : " + foodCatA.getFoodCatBNo());
 		List<FoodCatA> list = foodRepository.acaSelect(foodCatA);
 //		System.out.println("service A 반환된 list size : " + list.size());
-		model.addAttribute("foodCat", list);
+		return list;
 	}
 
-	public void selectSellerFood(int foodNo, Model model) {
-		// TODO Auto-generated method stub
+	public Food selectSellerFood(int foodNo) {
 		Food food = foodRepository.selectSellerFood(foodNo);
-		model.addAttribute("sellerFood", food);
+		return food;
 	}
 
 	public void updateFood(FoodUpdateCommand foodUpdateCommand) {
-		// TODO Auto-generated method stub
 		System.out.println("svc : " + foodUpdateCommand.getFoodNo());
 		System.out.println("svc : " + foodUpdateCommand.getFoodName());
 		
@@ -177,7 +174,6 @@ public class FoodService {
 			food.setFoodName(foodUpdateCommand.getFoodName());
 			food.setFoodPrice(foodUpdateCommand.getFoodPrice());
 			food.setFoodSale(foodUpdateCommand.getFoodSale());
-			food.setFoodFlavor(foodUpdateCommand.getFoodFlavor());
 			food.setFoodQuant(foodUpdateCommand.getFoodQuant());
 			food.setFoodExpiryDate(foodUpdateCommand.getFoodExpiryDate());
 			food.setFoodOrigin(foodUpdateCommand.getFoodOrigin());
@@ -216,15 +212,15 @@ public class FoodService {
 		}
 	}
 
-	public void selectFoodList(Model model) {
-		List<FoodAndApplication> foodAppliList = foodRepository.selectFoodList();
-		model.addAttribute("foodAppliList", foodAppliList);
+	public List<FoodAndApplication> selectFoodList() {
+		return foodRepository.selectFoodList();
 	}
 
-	public void selectFood(int foodNo, Model model) {
+	public FoodAndApplication selectFood(int foodNo) {
 		System.out.println("svc selectFood foodNo : " + foodNo);
 		FoodAndApplication fa = foodRepository.selectFood(foodNo);
-		model.addAttribute("fa", fa);
+		return fa;
+		
 	}
 	
 	public void selectReviewFood(FoodReviewWriteCommand foodReviewWriteCommand) {
@@ -238,7 +234,7 @@ public class FoodService {
 		foodReviewWriteCommand.setFoodReviewFoodName(rf.getFoodName());
 	}
 	
-	public void insertFoodReview(FoodReviewWriteCommand foodReviewWriteCommand, Model model, HttpSession session) {
+	public void insertFoodReview(FoodReviewWriteCommand foodReviewWriteCommand, HttpSession session) {
 		System.out.println("svc insertFoodReview foodNo : " + foodReviewWriteCommand.getFoodNo());
 		System.out.println("svc insertFoodReview ReviewfoodName : " + foodReviewWriteCommand.getFoodReviewFoodName());
 		
@@ -256,8 +252,12 @@ public class FoodService {
 			String memberEmail = (String) session.getAttribute("email");
 			
 		//foodReviewRegdate
-			foodReviewWriteCommand.setFoodReviewRegdate(Calendar.getInstance().getTime().toString());
-			System.out.println("svc insertFoodReview FoodReviewRegdate : " + foodReviewWriteCommand.getFoodReviewRegdate() + "시간");
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
+	        String theTime = simpleDateFormat.format(Calendar.getInstance().getTime());
+	        System.out.println("svc insertFoodReview theTime : " + theTime);
+			
+			foodReviewWriteCommand.setFoodReviewRegdate(theTime);
+			System.out.println("svc insertFoodReview FoodReviewRegdate : " + foodReviewWriteCommand.getFoodReviewRegdate());
 			
 		//foodImage
 			multiFile = foodReviewWriteCommand.getFoodReviewImage();
@@ -300,7 +300,7 @@ public class FoodService {
 			}
 	}
 
-	public void selectReviewAndAnswer(int foodNo, Model model) {
+	public List<FoodReviewAndAnswer> selectReviewAndAnswer(int foodNo) {
 		System.out.println("svc selectReviewAndAnswer foodNo : " + foodNo);
 		List<FoodReviewAndAnswer> foodReviewAndAnswers  = foodRepository.selectReviewAndAnswer(foodNo);
 		for(Object temp : foodReviewAndAnswers) {
@@ -313,7 +313,7 @@ public class FoodService {
 				System.out.println("svc selectReviewAndAnswer getFoodReviewAnswerRegdate : " + foodReviewAnswer.getFoodReviewAnswerRegdate());
 			}
 		}
-		model.addAttribute("foodReviewAndAnswers", foodReviewAndAnswers);
+		return foodReviewAndAnswers;
 	}
 	
 	
@@ -328,15 +328,19 @@ public class FoodService {
 			foodReviewUpdateCommand.setFoodReviewFoodName(fa.getFoodName());
 	}
 	
-	public void updateFoodReview(FoodReviewUpdateCommand foodReviewUpdateCommand, Model model, HttpSession session) {
+	public void updateFoodReview(FoodReviewUpdateCommand foodReviewUpdateCommand, HttpSession session) {
 		System.out.println("svc updateFoodReview FoodReviewUpdateCommand foodReviewNo : " + foodReviewUpdateCommand.getFoodReviewNo() );
 		
 		//memberEmail
 		String memberEmail = (String) session.getAttribute("email");
 		
 		//foodReviewRegdate
-		foodReviewUpdateCommand.setFoodReviewRegdate(Calendar.getInstance().getTime().toString());
-		System.out.println("svc updateFoodReview FoodReviewRegdate : " + Calendar.getInstance().getTime() + "시간");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
+        String theTime = simpleDateFormat.format(Calendar.getInstance().getTime());
+        System.out.println("svc insertFoodReview theTime : " + theTime);
+        
+		foodReviewUpdateCommand.setFoodReviewRegdate(theTime);
+		System.out.println("svc updateFoodReview FoodReviewRegdate : " + foodReviewUpdateCommand.getFoodReviewRegdate());
 		
 		//foodImage
 		multiFile = foodReviewUpdateCommand.getFoodReviewImage();
@@ -399,7 +403,7 @@ public class FoodService {
 		foodReviewAnswerWriteCommand.setFoodCatCNo(fa.getFoodCatCNo());
 	}
 
-	public void insertFoodReviewAnswer(FoodReviewAnswerWriteCommand foodReviewAnswerWriteCommand, Model model) {
+	public void insertFoodReviewAnswer(FoodReviewAnswerWriteCommand foodReviewAnswerWriteCommand) {
 		System.out.println("svc insertFoodReviewAnswer foodReviewNo" + foodReviewAnswerWriteCommand.getFoodReviewNo());
 		
 		//foodReviewAnswerNo
@@ -413,8 +417,12 @@ public class FoodService {
 		System.out.println("svc insertFoodReviewAnswer foodReviewAnswerNo2 : " + foodReviewAnswerNo);
 		
 		//foodReviewRegdate
-		foodReviewAnswerWriteCommand.setFoodReviewAnswerRegdate(Calendar.getInstance().getTime().toString());
-		System.out.println("svc insertFoodReviewAnswer FoodReviewAnswerRegdate : " + Calendar.getInstance().getTime() + "시간");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
+        String theTime = simpleDateFormat.format(Calendar.getInstance().getTime());
+        System.out.println("svc insertFoodReview theTime : " + theTime);
+        
+		foodReviewAnswerWriteCommand.setFoodReviewAnswerRegdate(theTime);
+		System.out.println("svc insertFoodReviewAnswer FoodReviewAnswerRegdate : " + foodReviewAnswerWriteCommand.getFoodReviewAnswerRegdate());
 		
 		FoodReviewAnswer foodReviewAnswer = new FoodReviewAnswer(
 				foodReviewAnswerWriteCommand.getFoodReviewNo(),
@@ -449,11 +457,16 @@ public class FoodService {
 		
 	}
 	
-	public void updateFoodReviewAnswer(FoodReviewAnswerUpdateCommand foodReviewAnswerUpdateCommand, Model model) {
+	public void updateFoodReviewAnswer(FoodReviewAnswerUpdateCommand foodReviewAnswerUpdateCommand) {
 		System.out.println("svc updateFoodReviewAnswer foodReviewNo : " + foodReviewAnswerUpdateCommand.getFoodReviewNo());
 		//foodReviewAnswerRegdate
-		foodReviewAnswerUpdateCommand.setFoodReviewAnswerRegdate(Calendar.getInstance().getTime().toString());
-		System.out.println("svc updateFoodReviewAnswer FoodReviewAnswerRegdate : " + Calendar.getInstance().getTime() + "시간");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
+        String theTime = simpleDateFormat.format(Calendar.getInstance().getTime());
+        System.out.println("svc insertFoodReview theTime : " + theTime);
+        
+		foodReviewAnswerUpdateCommand.setFoodReviewAnswerRegdate(theTime);
+		System.out.println("svc updateFoodReviewAnswer FoodReviewAnswerRegdate : " + foodReviewAnswerUpdateCommand.getFoodReviewAnswerRegdate());
+		
 		FoodReviewAnswer foodReviewAnswer = new FoodReviewAnswer(
 				foodReviewAnswerUpdateCommand.getFoodReviewNo(),
 				foodReviewAnswerUpdateCommand.getMemberEmail(),
@@ -503,11 +516,16 @@ public class FoodService {
 		System.out.println("svc selectReviewReportFood foodReportWriter : " + foodReviewReportWriteCommand.getFoodReportWriter());
 	}
 
-	public void insertFoodReviewReport(FoodReviewReportWriteCommand foodReviewReportWriteCommand, Model model) {
+	public void insertFoodReviewReport(FoodReviewReportWriteCommand foodReviewReportWriteCommand) {
 System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportWriteCommand.getFoodReviewNo());
 		//foodReportRegdate
-		foodReviewReportWriteCommand.setFoodReportRegdate(Calendar.getInstance().getTime().toString());
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
+		String theTime = simpleDateFormat.format(Calendar.getInstance().getTime());
+		System.out.println("svc insertFoodReview theTime : " + theTime);
+
+		foodReviewReportWriteCommand.setFoodReportRegdate(theTime);
 		System.out.println("svc insertFoodReviewReport foodReportRegdate : " + foodReviewReportWriteCommand.getFoodReportRegdate());
+		
 		FoodReviewReport foodReviewReport = new FoodReviewReport(
 				foodReviewReportWriteCommand.getFoodReviewNo(),
 				foodReviewReportWriteCommand.getMemberEmail(),
@@ -532,15 +550,28 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 		}
 	}
 
-	public void selectFoodReviewReportList(Model model) {
+	public List<FoodReviewReport> selectFoodReviewReportList() {
 		List<FoodReviewReport> foodReviewReports = foodRepository.selectFoodReviewReportList();
-		model.addAttribute("foodReviewReports", foodReviewReports);
+		return foodReviewReports;
 	}
 
-	public void selectFoodReviewReport(String foodReportRegdate, Model model) {
-			FoodReviewReport foodReviewReport = foodRepository.selectFoodReviewReport(foodReportRegdate);
-			model.addAttribute("foodReviewReport", foodReviewReport);
+	public FoodReviewReport selectFoodReviewReport(String foodReportRegdate) {
+		System.out.println("svc selectFoodReviewReport foodReportRegdate : " + foodReportRegdate);
+		FoodReviewReport foodReviewReport = foodRepository.selectFoodReviewReport(foodReportRegdate);
+		return foodReviewReport;
 	}
+
+	public void deleteFoodReviewReport(String foodReportRegdate) {
+		System.out.println("svc deleteFoodReviewReport foodReportRegdate : " + foodReportRegdate);
+		int k = foodRepository.deleteFoodReviewReport(foodReportRegdate);
+		
+		if(k < 1) {
+			System.out.println("식품리뷰신고 삭제 실패");
+		} else {
+			System.out.println("식품리뷰신고 삭제 성공!");
+		}
+	}
+
 
 	
 
