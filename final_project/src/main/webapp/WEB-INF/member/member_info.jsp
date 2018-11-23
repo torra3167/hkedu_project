@@ -21,7 +21,8 @@
  		</div>
  	</div>
   <%} else { %> 
-    <div class="container mt-3" >
+    <div class="row">
+    <div class="container mt-3 col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4" >
     <form:form commandName="member" action="member_info.gom" method="POST">
         <div class="form-group">
           <label>이메일</label>
@@ -49,7 +50,9 @@
           </div>
         <button type="submit" class="btn btn-primary" >정보 수정</button>
         <button type="button" class="btn btn-primary" onclick="history.go(-1);">뒤로가기</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='changePWMember.gom';">비밀번호 바꾸기</button>
     </form:form>
+    </div>
     </div>
    
     <% } %>
