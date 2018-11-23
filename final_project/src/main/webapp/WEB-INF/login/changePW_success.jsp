@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8" import="command.FindIDCommand"%>
 	
 	<%
-	String email=(String)request.getAttribute("email");
+	String result=(String)request.getAttribute("result");
 
 %>
 <!DOCTYPE html>
@@ -14,11 +14,11 @@
 <link rel="stylesheet" href="../css/custom-1.css">
 <body>
 	<%
-		if(email == null){
+		if(result == null){
 	%>
 	<div class="container">
 
-		<div class="message">아이디가 존재하지 않습니다.</div>
+		<div class="message">아이디 변경에 실패했습니다. 다시 시도해주세요.</div>
 		<div class="btn">
 			<button type="button" class="btn btn-primary" onclick="history.go(-1);">뒤로 가기</button>
 			<button type="button" class="btn btn-primary" onclick="location.href='member_join.gom'">회원가입</button>
@@ -28,7 +28,7 @@
 	<%} else{ %>
 	<div class="container">
 
-		<div class="message">회원님의 아이디는 <%= email %>입니다.</div>
+		<div class="message">비밀번호 변경이 완료되었습니다.</div>
 		<div class="btn">
 			<button type="button" class="btn btn-primary" onclick="location.href='findPW.gom'">비밀번호 찾기</button>
 			<button type="button" class="btn btn-primary" onclick="location.href='login.gom'">로그인</button>

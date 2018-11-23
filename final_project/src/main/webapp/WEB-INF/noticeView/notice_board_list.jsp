@@ -18,7 +18,7 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 게시판</title>
-<style type="text/css">
+<!-- <style type="text/css">
 table {
 	border-bottom: 3px solid black;
 	margin-bottom: 20px;
@@ -67,7 +67,7 @@ a:hover {
 #border4 {
 	padding: 10px;
 }
-</style>
+</style> -->
 </head>
 <body>
 	<table width=80% border="0" cellpadding="0" cellspacing="0"

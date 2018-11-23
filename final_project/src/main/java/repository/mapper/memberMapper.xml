@@ -4,60 +4,105 @@
 <mapper namespace="repository.mapper.memberMapper">
 	<cache></cache>
 	<resultMap type="Member" id="memberMap">
-		<id column="MEMBER_EMAIL" jdbcType="VARCHAR" property="memberEmail"/>
-		<result column="MEMBER_NAME" jdbcType="VARCHAR" property="memberName"/>
-		<result column="MEMBER_PHONE" jdbcType="VARCHAR" property="memberPhone"/>
-		<result column="MEMBER_PASS" jdbcType="VARCHAR" property="memberPass"/>
-		<result column="MEMBER_ADDR1" jdbcType="VARCHAR" property="memberAddr1"/>
-		<result column="MEMBER_ADDR2" jdbcType="VARCHAR" property="memberAddr2"/>
-		<result column="MEMBER_ADDRNO" jdbcType="BIGINT" property="memberAddrNo"/>
-		<result column="MEMBER_DIVIDE" jdbcType="VARCHAR" property="memberDivide"/>
+		<id column="MEMBER_EMAIL" jdbcType="VARCHAR" property="memberEmail" />
+		<result column="MEMBER_NAME" jdbcType="VARCHAR"	property="memberName" />
+		<result column="MEMBER_PHONE" jdbcType="VARCHAR" property="memberPhone" />
+		<result column="MEMBER_PASS" jdbcType="VARCHAR"	property="memberPass" />
+		<result column="MEMBER_ADDR1" jdbcType="VARCHAR" property="memberAddr1" />
+		<result column="MEMBER_ADDR2" jdbcType="VARCHAR" property="memberAddr2" />
+		<result column="MEMBER_ADDRNO" jdbcType="BIGINT" property="memberAddrNo" />
+		<result column="MEMBER_DIVIDE" jdbcType="VARCHAR" property="memberDivide" />
 	</resultMap>
 	<resultMap type="MemberSurvey" id="memberSurvey">
-		<id column="SURV_NO" jdbcType="BIGINT" property="survNo"/>
-		<result column="MEMBER_EMAIL" jdbcType="VARCHAR" property="memberEmail"/>
-		<result column="SURV_HEIGHT" jdbcType="BIGINT" property="survHeight"/>
-		<result column="SURV_WEIGHT" jdbcType="BIGINT" property="survWeight"/>
-		<result column="SURV_EAT" jdbcType="VARCHAR" property="survEat"/>
-		<result column="SURV_SEX" jdbcType="VARCHAR" property="survSex"/>
-		<result column="SURV_AGE" jdbcType="BIGINT" property="survAge"/>
-		<result column="SURV_LIFESTYLE" jdbcType="VARCHAR" property="survLifestyle"/>
-		<result column="SURV_PHOTO" jdbcType="VARCHAR" property="survPhoto"/>
-		<result column="SURV_SHAPE" jdbcType="VARCHAR" property="survShape"/>
-		<result column="SURV_DISEASE" jdbcType="VARCHAR" property="survDisease"/>
-		<result column="SURV_CONCERN" jdbcType="VARCHAR" property="survConcern"/>
-		<result column="SURV_CAUSE" jdbcType="VARCHAR" property="survCause"/>
-		<result column="SURV_CAREER" jdbcType="VARCHAR" property="survCareer"/>
+		<id column="SURV_NO" jdbcType="BIGINT" property="survNo" />
+		<result column="MEMBER_EMAIL" jdbcType="VARCHAR" property="memberEmail" />
+		<result column="SURV_HEIGHT" jdbcType="BIGINT" property="survHeight" />
+		<result column="SURV_WEIGHT" jdbcType="BIGINT" property="survWeight" />
+		<result column="SURV_EAT" jdbcType="VARCHAR" property="survEat" />
+		<result column="SURV_BMI" jdbcType="BIGINT" property="survBMI" />
+		<result column="SURV_SEX" jdbcType="VARCHAR" property="survSex" />
+		<result column="SURV_AGE" jdbcType="BIGINT" property="survAge" />
+		<result column="SURV_LIFESTYLE" jdbcType="VARCHAR" property="survLifestyle" />
+		<result column="SURV_PHOTO" jdbcType="VARCHAR" property="survPhoto" />
+		<result column="SURV_SHAPE" jdbcType="VARCHAR" property="survShape" />
+		<result column="SURV_DISEASE" jdbcType="VARCHAR" property="survDisease" />
+		<result column="SURV_CONCERN" jdbcType="VARCHAR" property="survConcern" />
+		<result column="SURV_CAUSE" jdbcType="VARCHAR" property="survCause" />
+		<result column="SURV_CAREER" jdbcType="VARCHAR" property="survCareer" />
 	</resultMap>
 	<insert id="insertMember" parameterType="Member">
-		insert into member(member_email, member_name, member_phone, member_pass, member_addr1, member_addr2, member_addrno, member_divide)
-		values (#{memberEmail}, #{memberName}, #{memberPhone}, #{memberPass}, #{memberAddr1}, #{memberAddr2}, #{memberAddrNo}, #{memberDivide})
+		insert into
+		member
+			(MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_PASS,
+			MEMBER_ADDR1, MEMBER_ADDR2, MEMBER_ADDRNO, MEMBER_DIVIDE)
+		values
+			(#{memberEmail}, #{memberName}, #{memberPhone}, #{memberPass},
+			#{memberAddr1}, #{memberAddr2}, #{memberAddrNo}, #{memberDivide})
 	</insert>
-	<insert id="insertSurv" parameterType="MemberSurvey">
-		insert into survey(surv_no, member_email, surv_height, surv_weight, surv_eat, surv_bmi, surv_sex, surv_age, surv_lifestyle, surv_photo, surv_shape, surv_disease, surv_concern, surv_cause, surv_career)
-		values (#{survNo}, #{memberEmail}, #{survHeight}, #{survWeight}, #{survEat}, #{survSex}, #{survAge}, #{survLifestyle}, #{survPhoto}, #{survShape}, #{survDisease}, #{survConcern}, #{survCause}, #{survCareer})
+	<insert id="insertSurvey1" parameterType="MemberSurvey">
+		insert into
+		survey
+			(SURV_NO, MEMBER_EMAIL, SURV_HEIGHT, SURV_WEIGHT, SURV_EAT,
+			SURV_BMI, SURV_AGE)
+		values
+			((select count(SURV_NO)+1 from survey ), #{memberEmail}, #{survHeight}, #{survWeight}, #{survEat},
+			#{survBMI}, #{survAge})
 	</insert>
 	<select id="selectSurveyNo" resultType="Integer">
 		select count(surv_no)
 		from survey
 	</select>
 	<select id="selectByNameAndPhone" resultType="String">
-		select MEMBER_EMAIL from MEMBER where MEMBER_PHONE=#{memberPhone} and MEMBER_NAME=#{memberName}
+		select MEMBER_EMAIL as email from MEMBER where MEMBER_PHONE=#{phone} and MEMBER_NAME=#{name}
+		union
+		select SELLER_EMAIL as email from SELLER where SELLER_PHONE=#{phone} and SELLER_NAME=#{name}
 	</select>
 	<select id="selectByEmail" parameterType="Member" resultMap="memberMap">
-		select MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_PASS, MEMBER_ADDR1, MEMBER_ADDR2, MEMBER_ADDRNO
-		from member where MEMBER_EMAIL=#{memberEmail}
+		select MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_PASS,
+		MEMBER_ADDR1, MEMBER_ADDR2, MEMBER_ADDRNO
+		from member where
+		MEMBER_EMAIL=#{memberEmail}
 	</select>
 	<update id="updateMember">
 		update MEMBER
-			<set>
-			MEMBER_NAME=#{memberName}, MEMBER_PHONE=#{memberPhone}, MEMBER_ADDR1=#{memberAddr1}, MEMBER_ADDR2=#{memberAddr2}, MEMBER_ADDRNO=#{memberAddrNo}
-			</set>
-			<where>
-				MEMBER_EMAIL=#{memberEmail}
-			</where>
+		<set>
+			MEMBER_NAME=#{memberName},
+			MEMBER_PHONE=#{memberPhone},
+			MEMBER_ADDR1=#{memberAddr1},
+			MEMBER_ADDR2=#{memberAddr2},
+			MEMBER_ADDRNO=#{memberAddrNo}
+		</set>
+		<where>
+			MEMBER_EMAIL=#{memberEmail}
+		</where>
 	</update>
 	<delete id="deleteMember">
-		delete from MEMBER where MEMBER_EMAIL=#{memberEmail} and MEMBER_PASS=#{memberPass}
+		delete from MEMBER where MEMBER_EMAIL=#{memberEmail}
+		and MEMBER_PASS=#{memberPass}
 	</delete>
+	<select id="selectSurvByEmail" parameterType="MemberSurvey" resultMap="memberSurvey">
+		select
+		SURV_NO, MEMBER_EMAIL, SURV_HEIGHT, SURV_WEIGHT, SURV_BMI,
+		SURV_EAT, SURV_AGE
+		from SURVEY
+		<where>
+			MEMBER_EMAIL=#{memberEmail}
+		</where>
+	</select>
+	<update id="updateSurvey2" parameterType="MemberSurvey">
+		update SURVEY
+		<set>
+			SURV_SEX=#{survSex},
+			SERV_LIFESTYLE=#{survLifestyle},
+			SURV_PHOTO=#{survPhoto},
+			SURV_SHAPE=#{survShape},
+			SURV_DISEASE=#{survDisease},
+			SURV_CONCERN=#{survConcern},
+			SURV_CAUSE=#{survCause},
+			SURV_CAREER=#{survCareer}
+		</set>
+		<where>
+			MEMBER_EMAIL=#{memberEmail}
+		</where>
+	</update>
 </mapper>

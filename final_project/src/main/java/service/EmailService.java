@@ -1,49 +1,48 @@
-//package service;
-//
-//import java.util.Random;
-//
-//import org.apache.ibatis.session.SqlSession;
-//
-//import command.EmailCommand;
-//import model.Email;
-//import model.Member;
-//import repository.EmailRepository;
-//
-//public class EmailService {
-//
-//	SqlSession sqlSession;
-//	EmailRepository emailRepository;
-//	Member member;
-//	Email email;
-//	public Integer sendEmail(EmailCommand emailCommand) throws Exception {
-//		System.out.println("EmailService SendEmail start");
-//		email.setForName(emailCommand.getMemberName());
-//		email.setReceiver(emailCommand.getMemberEmail());
-//		member.setMemberEmail(emailRepository.selectByEmailAndName(email).toString());
-//		member.setMemberPass(getRandomPassword(8));
-//		System.out.println("emailService " + member.getMemberPass());
-//		return emailRepository.updatePW(member);
-//	}
-//	
-//	public static String getRandomPassword(int length) {
-//		StringBuffer temp=new StringBuffer();
-//		Random rnd=new Random();
-//		for(int i=0; i<length; i++) {
-//			int rIndex=rnd.nextInt(3);
-//			switch(rIndex) {
-//			case 0:
-//				temp.append((char)((int)(rnd.nextInt(26))+97));
-//				break;
-//			case 1:
-//				temp.append((char)((int)(rnd.nextInt(26))+65));
-//				break;
-//			case 2:
-//				temp.append((rnd.nextInt(10)));
-//				break;
-//			}
-//		}
-//		System.out.println(temp.toString());
-//		return temp.toString();
-//	}
-//
-//}
+package service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import command.ChangePWCommand;
+import command.FindIDCommand;
+import exception.IdPasswordNotMatchingException;
+import exception.MemberNotFoundException;
+import repository.EmailRepository;
+
+@Service
+public class EmailService {
+
+	@Autowired
+	private EmailRepository emailRepository;
+
+	public Integer findSellerID(String email) {
+		System.out.println("EMAILSERVICE FindSellerID " + email);
+		Integer i = emailRepository.countSellerID(email);
+		System.out.println("EmailService " + i);
+		return i;
+	}
+
+	public Integer findPW(FindIDCommand findIDCommand) {
+		FindIDCommand selectEmail = emailRepository.selectByEmail(findIDCommand);
+		/*String selectPhone = emailRepository.selectByPhone(phone);*/
+		System.out.println("EMAILSERVICE findPW "+selectEmail);
+		if (selectEmail == null) {
+			throw new IdPasswordNotMatchingException("아이디가 존재하지않습니다");
+		}else {
+			int i=1;
+			return i;
+		}
+	}
+
+	public Integer changePW(ChangePWCommand changePWCommand) {
+		System.out.println("EmailService changePW "+changePWCommand.getEmail());
+		System.out.println("EmailService changePW "+changePWCommand.getNewPW());
+		Integer result=emailRepository.changePW(changePWCommand);
+		System.out.println("리퍼시토리 "+result);
+		if(result==0) {
+			throw new MemberNotFoundException();
+		}
+		return result;
+	}
+
+}

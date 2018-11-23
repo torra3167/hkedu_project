@@ -4,41 +4,37 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class FindIDCommand implements Serializable {
-	private String memberEmail;
-	private String memberPhone;
-	private String memberName;
-
+	private String email;
+	private String phone;
+	private String name;
+	
 	public FindIDCommand() {
-	}
-
-	public FindIDCommand(String memberEmail, String memberPhone, String memberName) {
 		super();
-		this.memberEmail = memberEmail;
-		this.memberPhone = memberPhone;
-		this.memberName = memberName;
 	}
 
-	public String getMemberEmail() {
-		return memberEmail;
+	public FindIDCommand(String email, String phone, String name) {
+		super();
+		this.email = email;
+		this.phone = phone;
+		this.name = name;
 	}
-
-	public void setMemberEmail(String memberEmail) {
-		this.memberEmail = memberEmail;
+	
+	public String getEmail() {
+		return email;
 	}
-
-	public String getMemberPhone() {
-		return memberPhone;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-
-	public void setMemberPhone(String memberPhone) {
-		this.memberPhone = memberPhone;
+	public String getPhone() {
+		return phone;
 	}
-
-	public String getMemberName() {
-		return memberName;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
-
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }
