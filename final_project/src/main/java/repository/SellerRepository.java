@@ -161,12 +161,12 @@ public class SellerRepository extends AbstractRepository{
 	}
 
 
-	public void updateMemberDivide(Member member) {
-		System.out.println("Repo updateMemberDivide getMemberEmail" + member.getMemberEmail());
+	public void updateSellerDivide(Seller seller) {
+		System.out.println("Repo updateMemberDivide getMemberEmail" + seller.getSellerEmail());
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-			String statement = namespace + ".updateMemberDivide";
-			Integer result = sqlSession.update(statement, member);
+			String statement = namespace + ".updateSellerDivide";
+			Integer result = sqlSession.update(statement, seller);
 			if(result > 0) {
 				sqlSession.commit();
 			} else {

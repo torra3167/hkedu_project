@@ -7,7 +7,6 @@ public class SellerApplication implements Serializable{
 	private int sellerAppliNo;
 	private String sellerEmail;
 	private String sellerAppliBn;
-	private String sellerName;
 	private String storeName;
 	private String storeTelphone;
 	private String storeAddr;
@@ -26,14 +25,13 @@ public class SellerApplication implements Serializable{
 	}
 
 
-	public SellerApplication(int sellerAppliNo, String sellerEmail, String sellerAppliBn, String sellerName,
-			String storeName, String storeTelphone, String storeAddr, String storeTerm, String applicationStatus,
-			String applicationDes, Long sellerLicenseSize, String sellerLicenseOriginal, String sellerLicenseStored,
-			Long sellerBrSize, String sellerBrOriginal, String sellerBrStored) {
+	public SellerApplication(int sellerAppliNo, String sellerEmail, String sellerAppliBn, String storeName,
+			String storeTelphone, String storeAddr, String storeTerm, String applicationStatus, String applicationDes,
+			Long sellerLicenseSize, String sellerLicenseOriginal, String sellerLicenseStored, Long sellerBrSize,
+			String sellerBrOriginal, String sellerBrStored) {
 		this.sellerAppliNo = sellerAppliNo;
 		this.sellerEmail = sellerEmail;
 		this.sellerAppliBn = sellerAppliBn;
-		this.sellerName = sellerName;
 		this.storeName = storeName;
 		this.storeTelphone = storeTelphone;
 		this.storeAddr = storeAddr;
@@ -76,16 +74,6 @@ public class SellerApplication implements Serializable{
 
 	public void setSellerAppliBn(String sellerAppliBn) {
 		this.sellerAppliBn = sellerAppliBn;
-	}
-
-
-	public String getSellerName() {
-		return sellerName;
-	}
-
-
-	public void setSellerName(String sellerName) {
-		this.sellerName = sellerName;
 	}
 
 
@@ -207,5 +195,6 @@ public class SellerApplication implements Serializable{
 	public void setSellerBrStored(String sellerBrStored) {
 		this.sellerBrStored = sellerBrStored;
 	}
+
 	
 }

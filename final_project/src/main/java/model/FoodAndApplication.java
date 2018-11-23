@@ -22,7 +22,6 @@ public class FoodAndApplication implements Serializable{
 	private Long foodSize;
 	private String foodOriginal;
 	private String foodStored;
-	private String sellerName;
 	private String storeName;
 	private String storeTelphone;
 	private String storeAddr;
@@ -31,8 +30,7 @@ public class FoodAndApplication implements Serializable{
 	public FoodAndApplication(int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo,
 			String foodName, int foodQuant, String foodExpiryDate, String foodOrigin, int foodSale, int foodPrice,
 			int foodCarbo, int foodProtein, int foodFat, int foodCal, Long foodSize, String foodOriginal,
-			String foodStored, String sellerName, String storeName, String storeTelphone, String storeAddr) {
-		super();
+			String foodStored, String storeName, String storeTelphone, String storeAddr) {
 		this.foodNo = foodNo;
 		this.sellerEmail = sellerEmail;
 		this.foodCatANo = foodCatANo;
@@ -51,7 +49,6 @@ public class FoodAndApplication implements Serializable{
 		this.foodSize = foodSize;
 		this.foodOriginal = foodOriginal;
 		this.foodStored = foodStored;
-		this.sellerName = sellerName;
 		this.storeName = storeName;
 		this.storeTelphone = storeTelphone;
 		this.storeAddr = storeAddr;
@@ -163,12 +160,6 @@ public class FoodAndApplication implements Serializable{
 	}
 	public void setFoodStored(String foodStored) {
 		this.foodStored = foodStored;
-	}
-	public String getSellerName() {
-		return sellerName;
-	}
-	public void setSellerName(String sellerName) {
-		this.sellerName = sellerName;
 	}
 	public String getStoreName() {
 		return storeName;
