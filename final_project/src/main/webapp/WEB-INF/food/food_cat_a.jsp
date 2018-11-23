@@ -11,11 +11,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<select id="FCA" name="foodCatANo" >
+<select id="FCA" name="foodCatANo" class="form-control" onclick="javascript:valueAdd(this);" >
 <% for(Object o : list) { 
 	FoodCatA ccar = (FoodCatA)o;
 %>
-	<option value="<%=ccar.getFoodCatANo() %>">
+	<option value="<%=ccar.getFoodCatANo() %>" id="<%=ccar.getFoodCatAName() %>">
 	<%= ccar.getFoodCatAName() %></option>
 <% } %>
 </select>

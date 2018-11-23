@@ -127,13 +127,13 @@ public class ExerciseService {
 	public void exerciseCategoryB(Model model) {
 		// TODO Auto-generated method stub
 		List<ExerciseCatB> list = er.exerciseCatBSelect();
-		model.addAttribute("list", list);
+		model.addAttribute("exerciselist", list);
 	}
 
 	public void exerciseCategoryA(ExerciseCatB bca, Model model) {
 		// TODO Auto-generated method stub
 		List<ExerciseCatA> list = er.exerciseCatASelect(bca);
-		model.addAttribute("list", list);
+		model.addAttribute("exerciselist", list);
 	}
 
 	public void exerciseList(Model model) {

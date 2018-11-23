@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import category.ExerciseCatA;
 import category.ExerciseCatB;
+import category.FoodCatC;
 import command.ProgramCommand;
 import command.ProgramDetailCommand;
 import model.Program;
@@ -45,7 +46,12 @@ public class ProgramService {
 		Integer programNumber = pr.selectProgramNumber();
 
 		System.out.println(programNumber + " selectProgramNumber");
-
+		
+		// 운동프로그램식품등록 
+		
+		
+		pr.selectFoodAndInsertProFood(programCommand, programNumber);
+		
 		// 파일저장
 		multiFile = programCommand.getProImg();
 		originalFile = multiFile.getOriginalFilename();
@@ -128,13 +134,13 @@ public class ProgramService {
 	public void exerciseCategoryB(Model model) {
 		// TODO Auto-generated method stub
 		List<ExerciseCatB> list = pr.exerciseCatBSelect();
-		model.addAttribute("list", list);
+		model.addAttribute("exerciselist", list);
 	}
 
 	public void exerciseCategoryA(ExerciseCatB bca, Model model) {
 		// TODO Auto-generated method stub
 		List<ExerciseCatA> list = pr.exerciseCatASelect(bca);
-		model.addAttribute("list", list);
+		model.addAttribute("exerciselist", list);
 	}
 
 	public void programList(Model model) {
@@ -161,6 +167,11 @@ public class ProgramService {
 		model.addAttribute("ProgramExerciseUpload", programExerciseUpload);
 		model.addAttribute("ProgramDetailCommand", programDetailCommand);
 		
+	}
+
+	public List<FoodCatC> dominoSelectC() {
+		List<FoodCatC> list = pr.ccaSelect();
+		return list;
 	}
 
 }

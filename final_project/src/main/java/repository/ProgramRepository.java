@@ -8,6 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 import category.ExerciseCatA;
 import category.ExerciseCatACatB;
 import category.ExerciseCatB;
+import category.FoodCatC;
+import command.ProgramCommand;
+import model.Food;
 import model.Program;
 import model.ProgramExercise;
 import model.ProgramExerciseUpload;
@@ -210,6 +213,40 @@ public class ProgramRepository extends AbstractRepository {
 			sqlSession.close();
 		}
 	}
+
+	public List<FoodCatC> ccaSelect() {
+		sqlSession = getSqlSessionFactory().openSession();
+		String statement = "repository.mapper.foodMapper.ccaSelect";
+		try {
+			return sqlSession.selectList(statement);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public void selectFoodAndInsertProFood(ProgramCommand programCommand, Integer programNumber) {
+		
+		sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+			//select
+			String[] foodCatANos = programCommand.getFoodCatANos();
+			List<Food> foodList = new ArrayList<Food>();
+			for(int i = 0; i < foodCatANos.length; i++) {
+				Food food = (Food)sqlSession.selectOne("repository.mapper.foodMapper.");
+				
+			}
+			
+			
+			
+		/*	return exerciseCatACatBResult;*/
+		} finally {
+			sqlSession.close();
+		}
+		
+	}
+	
+	
 	}
 
 	

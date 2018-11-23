@@ -14,9 +14,22 @@ public class ProgramCommand implements Serializable {
 	private String coachEmail;
 	private String exerciseCatAName;
 	private String proContent;
-
-
+	private String[] foodCatANos;
+	private String[] foodCatANames;
 	
+	
+	public String[] getFoodCatANos() {
+		return foodCatANos;
+	}
+	public void setFoodCatANos(String[] foodCatANos) {
+		this.foodCatANos = foodCatANos;
+	}
+	public String[] getFoodCatANames() {
+		return foodCatANames;
+	}
+	public void setFoodCatANames(String[] foodCatANames) {
+		this.foodCatANames = foodCatANames;
+	}
 	public String getProContent() {
 		return proContent;
 	}

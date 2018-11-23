@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.*, category.*" %>
     
     <%
-    	List list = (List)request.getAttribute("list");
+    	List exerciselist = (List)request.getAttribute("exerciselist");
     %>
 <html>
 <head>
@@ -14,15 +14,15 @@
 
  function aca() {
 	 var num = document.getElementById("bca").value;
-/* 	 alert("aaaa : " + num);
- */	 $.ajax({
+/* 	 alert("aaaa : " + num); */
+	 $.ajax({
 		 type:"POST",
 		 url:"aca.gom",
 		 dataType:"html",
 		 data:"exerciseCatBNumber=" + num,
 		 success: function(result) {
-/* 			 alert("bbb")
- */			 $('#aca').html(result);
+/* 			 alert("bbb"); */
+			 $('#aca').html(result);
 			 /* $('#cca').html(""); */
 		 }
 		 
@@ -31,25 +31,30 @@
  
 
  
-</script>	
+</script>
+	
 </head>
 <body>
 
 <div class="container" style="max-width: 560px;">
         <form action="exercise_register.gom" enctype="multipart/form-data" method="post">
-        
-        <div class="form-group" >
-        <select id="bca" name="exerciseCatBNumber" class="form-control"
-        onclick="javascript:aca();"> 
-		<% for(Object temp : list) {
-	 	ExerciseCatB exerciseCatB = (ExerciseCatB)temp; %>
-	 	<option value="<%=exerciseCatB.getExerciseCatBNumber() %>"> <%=exerciseCatB.getExerciseCatBName() %>
-		</option>	 	
-	<% } %>
-	</select>
-</div>
 
-<div id="aca" class="form-group"></div>
+			<div class="form-group">
+				<select name="exerciseCatBNumber" id="bca" class="form-control" onclick="javascript:aca();">
+					<%
+						for (Object temp : exerciselist) {
+							ExerciseCatB exerciseCatB = (ExerciseCatB) temp;
+					%>
+					<option value="<%=exerciseCatB.getExerciseCatBNumber()%>">
+						<%=exerciseCatB.getExerciseCatBName()%>
+					</option>
+					<%
+						}
+					%>
+				</select>
+			</div>
+
+			<div id="aca" class="form-group"></div>
 			
         	
 			<div class="form-group">

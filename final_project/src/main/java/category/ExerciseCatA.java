@@ -9,6 +9,7 @@ public class ExerciseCatA implements Serializable {
 	private String exerciseCatAName;
 	
 	public ExerciseCatA() {}
+	
 	public int getExerciseCatANumber() {
 		return exerciseCatANumber;
 	}

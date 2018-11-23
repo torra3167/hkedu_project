@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import category.FoodCatC;
 import command.ProgramCommand;
 import command.ProgramDetailCommand;
 import service.ProgramService;
@@ -41,6 +45,8 @@ public class ProgramController {
 	public String programForm(ProgramCommand programCommand, Model model) {
 
 //		ps.exerciseCategoryB(model);
+		List<FoodCatC> list = ps.dominoSelectC();
+		model.addAttribute("foodCat", list);
 		model.addAttribute("iPage", "program/program_register.jsp");
 		return "index";
 

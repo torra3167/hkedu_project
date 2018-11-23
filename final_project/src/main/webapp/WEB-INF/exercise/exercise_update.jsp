@@ -6,7 +6,7 @@
 <%@ page import="java.util.*, category.*, command.ExerciseUpdateCommand"%>
 
 <%
- 	List list = (List)request.getAttribute("list");
+ 	List list = (List)request.getAttribute("exerciseList");
 ExerciseUpdateCommand exerciseUpdateCommand = (ExerciseUpdateCommand)request.getAttribute("ExerciseUpdateCommand");
 %>
 <!DOCTYPE html>

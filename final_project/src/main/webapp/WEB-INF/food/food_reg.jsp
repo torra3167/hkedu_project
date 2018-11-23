@@ -3,8 +3,11 @@
 <%@ page import="java.util.*, model.*, category.*" %>
 <%
 	List list = (List)request.getAttribute("foodCat");
+
 /* 	System.out.println("food_reg.jsp :" + list.size());
- */%>
+ */
+ 
+ %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -46,6 +49,10 @@ function funcAca() {
 			success:function(result){
 				$('#divAca').html(result);	
 			}
+			,error:function(request,status,error){
+		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+
+	
 		});		
 	}
  

@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8" import="java.util.*, category.*"%>
 
 <%
-    	List list = (List)request.getAttribute("list");
-    %>
+		List list = (List)request.getAttribute("foodCat");
+%>
 
 <html>
 <head>
@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 
 <script type="text/javascript">
-modelinfo = new Array(
+ exerciseInfo = new Array(
 	       
 	      new Array(    
 	      new Array(":::: 2차 분류 선택 ::::" ,-1 )   
@@ -76,7 +76,7 @@ modelinfo = new Array(
 	      
 	   );
 
-
+ 
 	function fillSelectFromArray1(selectCtrl, itemArray, goodPrompt, badPrompt, defaultItem) {
 	   var i, j;
 	   var prompt;
@@ -136,19 +136,59 @@ modelinfo = new Array(
 	function del1() {   
 		
 	    var selIndex = $("#select_box2 option").index($("#select_box2 option:selected")); //선택된 값의 index   
-	    var hidden = document.frm.exerciseName.value;
+	    var hidden = document.frm.exerciseCatAName.value;
 	    var exerciseIndex = $("#select_box2 option:eq("+selIndex+")").text()+"/";
 	    alert($("#select_box2 option:eq("+selIndex+")").text());
-	    document.frm.exerciseName.value = hidden.replace(exerciseIndex, "");
+	    document.frm.exerciseCatAName.value = hidden.replace(exerciseIndex, "");
 	    $("#select_box2 option:eq("+selIndex+")").remove();   
 	    	
-	    alert(hidden);
-	    alert(selIndex);
+	    /* alert(hidden);
+	    alert(selIndex); */
 	    
 	    
 
 
 	}
+	
+	function funcBca() {
+		 var num = document.getElementById("FCC").value;
+		 $.ajax({
+			 type:"POST",
+			 url:"bca.gom",
+			 dataType:"html",
+			 data:"foodCatCNo=" + num,
+			 success: function(result) {
+				 $('#divBca').html(result);
+/* 				 $('#divAca').html("");
+ */			 }
+			 
+		 });
+	}
+
+	function funcAca() {
+			var num1 = document.getElementById("FCC").value; 
+			var num2 = document.getElementById("FCB").value;
+			/* alert(num1+"  "+ num2); */
+			$.ajax({
+				type:"POST",
+				url:"cca.gom",
+				dataType:"html",
+				data:"foodCatBNo="+num2 + "&foodCatCNo=" + num1,
+				success:function(result){
+					$('#divAca').html(result);
+					/* $('#divBca').html(); */	
+
+				}
+			});		
+		}
+	 function valueAdd(val) {
+		 var catANames = $("#FCA").text().trim();
+		 document.frm.foodCatANos.value += val.value + "/";
+ 		 document.frm.foodCatANames.value += catANames;
+ 		 alert(catANames + '추가성공!');
+	 }
+	 
+	 
 	
 </script>	
 </head>
@@ -158,10 +198,10 @@ modelinfo = new Array(
 	
 		<form name="frm" action="program_register.gom" enctype="multipart/form-data"
 			method="post">
-			<input type="text" name=exerciseCatAName>
+			<input type="text" name="exerciseCatAName" >
 			 <div class="form-group">
                   
-                     <select id="svSelect" class="form-control" name="exerciseName1" onChange="fillSelectFromArray1(this.form.exerciseName2,((this.selectedIndex == -1) ? null : modelinfo[this.selectedIndex]));">
+                     <select id="svSelect" class="form-control" name="exerciseName1" onChange="fillSelectFromArray1(this.form.exerciseName2,((this.selectedIndex == -1) ? null : exerciseInfo[this.selectedIndex]));">
                         <option value = -1>-- 1차 분류 선택 --</option>
                         <option value = 등  >등</option>
                         <option value = 어깨  >어깨</option>
@@ -170,16 +210,18 @@ modelinfo = new Array(
                         <option value = 하체  >하체</option>
                         <option value = 복근  >복근</option>
                         <option value = 유산소 >유산소</option>
-                   
-                     </select>
+  					 </select>
+  			</div>		 
+            <div class="form-group">         
                      <select  class="form-control" name="exerciseName2" id="exerciseName2"  onChange="test1()" >
                         
                      </select>
-
+            </div>	        
+			<div class="form-group">
                      <select class="bodcon_list form-control" name= "select_box2" id="select_box2" onChange="del1()"></select>
                      
-          	</div>
-                              
+          			 
+            </div>                  
 			<div class="form-group">
 				<label>프로그램 이름</label> <input type="text" name="proName"
 					class="form-control">
@@ -192,8 +234,40 @@ modelinfo = new Array(
 				<label>프로그램 사진 </label> <input type="file" name="proImg"
 					class="form-control">
 			</div>
+			
+			<div class="form-group">
+				<label>프로그램 식품 </label> 
+				
+			</div>
 
-
+			<div class="form-group">
+                  
+            <select id="FCC" name="foodCatCNo" onclick="javascript:funcBca();" class="form-control"> 
+			  <% for(Object temp : list) {
+					FoodCatC acar = (FoodCatC)temp; %>
+				 	<option value="<%=acar.getFoodCatCNo() %>"> <%=acar.getFoodCatCName() %></option>
+				<% } %> 
+			</select>
+  			</div>		 
+            <div class="form-group" id="divBca" >         
+                     <select class="form-control">
+                        
+                     </select>
+            </div>	        
+			<div class="form-group" id="divAca" >
+                     <select class="form-control">
+                     
+                     </select>
+                     
+          			 
+            </div>    
+            <div class="form-group"  >
+                   <input type="text" id="foodCatANos" name="foodCatANos"  class="form-control"> 
+                   <input type="text" id="foodCatANames" readonly="readonly" name="foodCatANames"  class="form-control"> 
+                     
+          			 
+            </div>  
+                
 
 			<button type="submit" class="btn btn-primary">메뉴 등록</button>
 			<button type="reset" class="btn btn-primary">다시 작성</button>
