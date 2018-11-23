@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import command.ChangePWCommand;
 import command.FindIDCommand;
 import exception.IdPasswordNotMatchingException;
-import model.Email;
+import exception.MemberNotFoundException;
 import repository.EmailRepository;
 
 @Service
@@ -37,8 +37,11 @@ public class EmailService {
 	public Integer changePW(ChangePWCommand changePWCommand) {
 		System.out.println("EmailService changePW "+changePWCommand.getEmail());
 		System.out.println("EmailService changePW "+changePWCommand.getNewPW());
-		System.out.println("EmailService changePW "+changePWCommand.getNewPWchk());
 		Integer result=emailRepository.changePW(changePWCommand);
+		System.out.println("리퍼시토리 "+result);
+		if(result==0) {
+			throw new MemberNotFoundException();
+		}
 		return result;
 	}
 

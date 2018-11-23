@@ -44,7 +44,7 @@ public class EmailController {
 	
 	@RequestMapping(value = "/findPW.gom", method = RequestMethod.GET)
 	public String findPW(FindIDCommand findIDCommand, Model model, HttpSession session, HttpServletRequest request) {
-		model.addAttribute("iPage", "login/findPWForm.jsp");
+		model.addAttribute("iPage", "login/findPW.jsp");
 		model.addAttribute("find", new FindIDCommand());
 		return "index";
 	}
@@ -63,17 +63,43 @@ public class EmailController {
 	}
 	
 	@RequestMapping(value = "/changePW.gom", method = RequestMethod.GET)
-	public String changePW(@RequestParam("app")String email, Model model) {
+	public String changePW(ChangePWCommand changePWCommand, @RequestParam("app")String email, Model model, HttpSession session) {
 		model.addAttribute("iPage", "login/changePW.jsp");
 		model.addAttribute("email", email);
+		model.addAttribute("changePWCommand", new ChangePWCommand());
+		String id=(String)session.getAttribute("email");
+		model.addAttribute("id", id);
 		System.out.println("controller changePW get");
 		return "index";
 	}
 	
-	@RequestMapping(value = "/changePW.gom", method = RequestMethod.GET)
-	public String changePWSubmit(ChangePWCommand changePWCommand, Model model) {
+	@RequestMapping(value = "/changePW.gom", method = RequestMethod.POST)
+	public String changePWSubmit(ChangePWCommand changePWCommand, @RequestParam("app")String email, Model model) {
 		model.addAttribute("iPage", "login/changePW.jsp");
 		Integer result=emailService.changePW(changePWCommand);
+		System.out.println("controller changepw "+result);
+		model.addAttribute("email", email);
+		return "index";
+	}
+	@RequestMapping(value = "/changePWMember.gom", method = RequestMethod.GET)
+	public String changePWMember(ChangePWCommand changePWCommand, Model model, HttpSession session) {
+		model.addAttribute("iPage", "login/changePW.jsp");
+		String email=(String)session.getAttribute("email");
+		String id=(String)session.getAttribute("email");
+		model.addAttribute("id", id);
+		model.addAttribute("email", email);
+		model.addAttribute("changePWCommand", new ChangePWCommand());
+		System.out.println("controller changePW get");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/changePWMember.gom", method = RequestMethod.POST)
+	public String changePWSubmitMember(ChangePWCommand changePWCommand, Model model, HttpSession session) {
+		model.addAttribute("iPage", "login/changePW_success.jsp");
+		Integer result=emailService.changePW(changePWCommand);
+		System.out.println("controller changepw "+result);
+		String email=(String)session.getAttribute("email");
+		model.addAttribute("email", email);
 		model.addAttribute("result", result);
 		return "index";
 	}

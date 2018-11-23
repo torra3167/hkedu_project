@@ -71,7 +71,7 @@
 <body>
 <% if(result>0){ %>
 	<div class="container">
-		<div class="message">회원님의 회원정보에 있는 이메일로 비밀번호를 전송했습니다.</div>
+		<div class="message">회원님의 회원정보에 있는 이메일로 비밀번호 변경 링크를 전송했습니다.</div>
 		<div class="btn">
 			<button type="button" class="btn btn-primary" onclick="index">메인으로</button>
 			<button type="button" class="btn btn-primary" onclick="login.gom">로그인</button>

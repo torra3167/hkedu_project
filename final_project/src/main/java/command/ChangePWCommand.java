@@ -3,17 +3,16 @@ package command;
 public class ChangePWCommand {
 	private String email;
 	private String newPW;
-	private String newPWchk;
+	private String nowPW;
 	
 	public ChangePWCommand() {
 		super();
 	}
 
-	public ChangePWCommand(String email, String newPW, String newPWchk) {
+	public ChangePWCommand(String email, String newPW) {
 		super();
 		this.email = email;
 		this.newPW = newPW;
-		this.newPWchk = newPWchk;
 	}
 	
 	public String getEmail() {
@@ -28,10 +27,10 @@ public class ChangePWCommand {
 	public void setNewPW(String newPW) {
 		this.newPW = newPW;
 	}
-	public String getNewPWchk() {
-		return newPWchk;
+	public String getNowPW() {
+		return nowPW;
 	}
-	public void setNewPWchk(String newPWchk) {
-		this.newPWchk = newPWchk;
+	public void setNowPW(String nowPW) {
+		this.nowPW = nowPW;
 	}
 }
