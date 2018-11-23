@@ -18,9 +18,6 @@
 			<label>업체명</label> <input type="text" name="storeName" class="form-control">
 		</div>
 		<div class="form-group">
-			<label>이름</label> <input type="text" name="sellerName" class="form-control">
-		</div>
-		<div class="form-group">
 			<label>연락처</label> <input type="text" name="sellerPhone" class="form-control">
 		</div>
 		<div class="form-group">

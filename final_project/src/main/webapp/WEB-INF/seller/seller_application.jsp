@@ -27,9 +27,6 @@
 			<label>영업 신고증 사본</label> <input type="file" name="sellerBusinessRegistration" class="form-control">
 		</div>
 		<div class="form-group">
-			<label>사업주 이름</label> <input type="text" name="sellerName" class="form-control">
-		</div>
-		<div class="form-group">
 			<label>업체 이름</label> <input type="text" name="storeName" class="form-control">
 		</div>
 		<div class="form-group">

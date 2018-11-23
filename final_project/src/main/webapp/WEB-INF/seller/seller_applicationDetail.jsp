@@ -31,9 +31,6 @@
 			<img src="http://localhost:8080/final_project/resource/<%=sellerApplication.getSellerBrStored()%>">
 		</div>
 		<div class="form-group">
-			<label>사업주 이름</label> <input type="text" name="sellerName" class="form-control" value="<%=sellerApplication.getSellerName() %>" readonly="readonly">
-		</div>
-		<div class="form-group">
 			<label>업체 이름</label> <input type="text" name="storeName" class="form-control" value="<%=sellerApplication.getStoreName() %>" readonly="readonly">
 		</div>
 		<div class="form-group">

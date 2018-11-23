@@ -15,10 +15,10 @@ import command.SellerJoinCommand;
 import command.SellerUpdateCommand;
 import command.SellerWithdrawalCommand;
 import exception.IdPasswordNotMatchingException;
+import model.AuthInfo;
 import model.Member;
 import model.Seller;
 import model.SellerApplication;
-import model.SellerAuthInfo;
 import repository.SellerRepository;
 
 @Service
@@ -51,7 +51,7 @@ public class SellerService {
 		return sellerRepository.insertSeller(sellerJoinCommand);
 	}
 	
-	public SellerAuthInfo authenticate(String email, String pw) {
+	public AuthInfo authenticate(String email, String pw) {
 		Seller seller = sellerRepository.selectByEmail(email);
 		System.out.println("Service  Seller " + seller.getSellerEmail());
 		// 이메일이 존재하지 않는경우
@@ -63,7 +63,7 @@ public class SellerService {
 			throw new IdPasswordNotMatchingException("패스워드가 일치하지 않습니다");
 		}
 		//일치하는 경우
-		return new SellerAuthInfo(seller.getSellerEmail(), seller.getSellerPw());
+		return new AuthInfo(seller.getSellerEmail(), seller.getSellerPw());
 	}
 
 	public Integer updateSeller(SellerUpdateCommand sellerUpdateCommand) {
@@ -129,7 +129,6 @@ public class SellerService {
 					sellerAppliNo,
 					sellerEmail,
 					sellerApplicationWriteCommand.getSellerAppliBn(), 
-					sellerApplicationWriteCommand.getSellerName(),
 					sellerApplicationWriteCommand.getStoreName(), 
 					sellerApplicationWriteCommand.getStoreTelphone(),
 					sellerApplicationWriteCommand.getStoreAddr(),
@@ -151,10 +150,10 @@ public class SellerService {
 				System.out.println("입점신청서 등록 실패!");
 			} else {
 				System.out.println("입점신청서 등록 성공!");
-				Member member = new Member();
-				member.setMemberEmail(sellerEmail);
-				member.setMemberDivide("w");
-				sellerRepository.updateMemberDivide(member);
+				Seller seller = new Seller();
+				seller.setSellerEmail(sellerEmail);
+				seller.setSellerDivide("w");
+				sellerRepository.updateSellerDivide(seller);
 				session.setAttribute("divide", "w");
 			}
 		} catch (Exception e) {
@@ -185,11 +184,11 @@ public class SellerService {
 			System.out.println("입점신청서 삭제 실패");
 		} else {
 			System.out.println("입점신청서 삭제 성공!");
-			Member member = new Member();
-			member.setMemberEmail((String)session.getAttribute("email"));
-			member.setMemberDivide("p");
-			sellerRepository.updateMemberDivide(member);
-			session.setAttribute("divide", "p");
+			Seller seller = new Seller();
+			seller.setSellerEmail((String)session.getAttribute("email"));
+			seller.setSellerDivide("ns");
+			sellerRepository.updateSellerDivide(seller);
+			session.setAttribute("divide", "ns");
 		}
 	}
 	

@@ -22,7 +22,9 @@
 			<label>이메일</label> <input type="text" name="sellerEmail" class="form-control">
 			<input type="button" class="btn btn-primary" name="sellerEmailDuplicate" value="중복 확인" onclick="">
 		</div>
-		
+		<div class="form-group">
+			<label>이름</label> <input type="text" name="sellerName" class="form-control">
+		</div>
 		<div class="form-group">
 			<label>비밀번호</label> <input type="password" name="sellerPw" class="form-control">
 		</div>

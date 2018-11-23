@@ -183,7 +183,6 @@
 		<result column="food_size" jdbcType="BIGINT" property="foodSize" />
 		<result column="food_original" jdbcType="VARCHAR" property="foodOriginal" />
 		<result column="food_stored" jdbcType="VARCHAR" property="foodStored" />
-		<result column="seller_name" jdbcType="VARCHAR" property="sellerName" />
 		<result column="store_name" jdbcType="VARCHAR" property="storeName" />
 		<result column="store_telphone" jdbcType="VARCHAR" property="storeTelphone" />
 		<result column="store_addr" jdbcType="VARCHAR" property="storeAddr" />
@@ -195,7 +194,7 @@
 		food_no, f.seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, 
 		food_name, food_quant, food_expiry_date, food_origin, food_sale,
 		food_price, food_carbo, food_protein, food_fat, food_cal, food_size, food_original,
-		food_stored, sa.seller_name, sa.store_name, sa.store_telphone, sa.store_addr
+		food_stored, sa.store_name, sa.store_telphone, sa.store_addr
 		FROM food f, seller_application sa
 		WHERE f.seller_email = sa.seller_email
 		order by food_no
@@ -207,7 +206,7 @@
 		food_no, f.seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, 
 		food_name, food_quant, food_expiry_date, food_origin, food_sale,
 		food_price, food_carbo, food_protein, food_fat, food_cal, food_size, food_original,
-		food_stored, sa.seller_name, sa.store_name, sa.store_telphone, sa.store_addr
+		food_stored, sa.store_name, sa.store_telphone, sa.store_addr
 		FROM food f, seller_application sa
 		WHERE f.seller_email = sa.seller_email and f.food_no = #{foodNo}
 </select>
