@@ -2,21 +2,20 @@
     pageEncoding="UTF-8" %>
 <%@ page import="java.util.*, model.*, category.*" %>
 <%
-	List list = (List)request.getAttribute("foodCat");
+	
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
+</head>food_selected_for_proFood
 <body>
-<select id="FCA" name="foodCatANo" class="form-control" onchange="javascript:valueAdd(this);" >
+<input id="selectedFoodInput" name="selectedFoodInput" class="form-control" onclick="javascript:valueAdd(this);" >
 <% for(Object o : list) { 
 	FoodCatA ccar = (FoodCatA)o;
 %>
-	<option value="<%=ccar.getFoodCatANo() %>"> <%= ccar.getFoodCatAName() %></option>
-<% } %>
+
 </select>
 </body>
 </html>

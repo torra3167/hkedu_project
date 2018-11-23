@@ -184,8 +184,21 @@
 	 function valueAdd(val) {
 		 var catANames = $("#FCA").text().trim();
 		 document.frm.foodCatANos.value += val.value + "/";
- 		 document.frm.foodCatANames.value += catANames;
- 		 alert(catANames + '추가성공!');
+		 var catANos = document.getElementById('foodCatANos').value;
+		 $.ajax({
+				type:"POST",
+				url:"selectedFoodForProFood.gom",
+				dataType:"html",
+				data:"foodCatANos=" + catANos ,
+				success:function(result){
+					$('#divAca').html(result);
+					/* $('#divBca').html(); */	
+
+				}
+			});		
+		 
+/*  		 document.frm.foodCatANames.value += catANames;
+ */ 		 alert(catANames + '추가성공!');
 	 }
 	 
 	 

@@ -21,6 +21,8 @@ public class ProgramController {
 	private ProgramService ps;
 	
 	
+	
+
 	@RequestMapping(value = "/program_detail.gom", method = RequestMethod.GET)
 	public String programDetail(ProgramDetailCommand programDetailCommand, Model model ) {
 //		System.out.println(programDetailCommand.getProNo() + "PRONO by command! ");

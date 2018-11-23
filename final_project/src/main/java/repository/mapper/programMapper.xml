@@ -149,6 +149,8 @@ where pro_no = #{proNo})
 	from dual
 </select>
 
+
+
 <insert id="insertProgramExercise" parameterType="ProgramExercise">
 	insert into program_exercise 
 	(PRO_NO, COACH_EMAIL, EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER)

@@ -126,5 +126,7 @@ public class ExerciseController {
 /*		model.addAttribute("iPage", "exercise/category/exercise_cat_a");
 */		return "exercise/category/exercise_cat_a";
 	}
+	
+	
 
 }

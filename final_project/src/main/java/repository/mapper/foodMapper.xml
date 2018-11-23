@@ -3,6 +3,12 @@
 
 <mapper namespace="repository.mapper.foodMapper">
 	<cache></cache>
+	
+	<!-- <select id="selectFoodByFoodCatANo" resultType="selectSellerFoodMap" parameterType="Integer">
+		select *
+		from food
+		where FOOD_CAT_A_NO = #{foodCatANo}
+	</select> -->
 
 	<select id="selectFoodNumber" resultType="Integer">
 		select count(food_no)

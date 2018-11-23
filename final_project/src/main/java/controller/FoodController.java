@@ -21,6 +21,7 @@ import command.FoodReviewReportWriteCommand;
 import command.FoodReviewUpdateCommand;
 import command.FoodReviewWriteCommand;
 import command.FoodUpdateCommand;
+import command.ProgramDetailCommand;
 import model.Food;
 import model.FoodAndApplication;
 import model.FoodReviewAndAnswer;
@@ -66,6 +67,16 @@ public class FoodController {
 		List<FoodCatA> foodCatList2 = foodService.dominoSelectA(foodCatA);
 		model.addAttribute("foodCat", foodCatList2);
 		return "food/food_cat_a";
+	}
+	
+	@RequestMapping(value = "/selectedFoodForProFood.gom", method = RequestMethod.POST)
+	public String programDetail(@RequestParam(value="foodCatANos") String foodCatANos, Model model ) {
+
+		System.out.println(foodCatANos + " FOODCATANOS!!!");
+		String[] splitFoodCatANos = foodCatANos.split("/");
+		
+		return "food/food_selected_for_proFood.jsp";
+
 	}
 	
 	@RequestMapping(value="/seller_foodDetail.gom", method=RequestMethod.GET)

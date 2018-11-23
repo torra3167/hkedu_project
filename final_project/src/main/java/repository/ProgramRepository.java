@@ -11,6 +11,7 @@ import category.ExerciseCatB;
 import category.FoodCatC;
 import command.ProgramCommand;
 import model.Food;
+import model.ProFood;
 import model.Program;
 import model.ProgramExercise;
 import model.ProgramExerciseUpload;
@@ -226,23 +227,37 @@ public class ProgramRepository extends AbstractRepository {
 
 	public void selectFoodAndInsertProFood(ProgramCommand programCommand, Integer programNumber) {
 		
-		sqlSession = getSqlSessionFactory().openSession();
-
+		/*sqlSession = getSqlSessionFactory().openSession();
+		Integer selectproFoodNo = sqlSession.selectOne(namespace + ".selectSequenceNumber");
 		try {
 			//select
 			String[] foodCatANos = programCommand.getFoodCatANos();
 			List<Food> foodList = new ArrayList<Food>();
 			for(int i = 0; i < foodCatANos.length; i++) {
-				Food food = (Food)sqlSession.selectOne("repository.mapper.foodMapper.");
+				foodList = sqlSession.selectList("repository.mapper.foodMapper.selectFoodByFoodCatANo", Integer.parseInt(foodCatANos[i]));
 				
+				
+			}
+			ProFood proFood = new ProFood();
+			
+			for(Object temp : foodList) {
+				Food food = (Food)temp;
+				//음식번호, 판매자이메일, 카테고리ABC, 코치이메일
+				proFood = new ProFood(food.getFoodNo(), food.getSellerEmail(), food.getFoodCatANo(), food.getFoodCatBNo(),
+						food.getFoodCatCNo(), programCommand.getCoachEmail());
+				proFood.setProNo(programNumber);
+				sqlSession.insert(namespace + ".insertProFood");
 			}
 			
 			
 			
-		/*	return exerciseCatACatBResult;*/
+			
+			
+			
+			return exerciseCatACatBResult;
 		} finally {
 			sqlSession.close();
-		}
+		}*/
 		
 	}
 	
