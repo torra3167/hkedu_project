@@ -58,7 +58,7 @@
         </div>
         <div class="form-group">
         	<label>내 전신 사진 파일 업로드</label><br>
-        	<form:input path="survPhoto" type="file"></form:input>
+        	<form:input path="survPhoto" type="file" name="survPhoto" enctype="multipart/form-data"></form:input>
         </div>
         <div class="form-button">
         <button type="submit" class="btn btn-primary">제출하기</button>

@@ -1,5 +1,8 @@
 package controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import command.FindIDCommand;
 import command.MemberJoinCommand;
@@ -212,13 +217,26 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/member_write_survey2.gom", method = RequestMethod.POST)
-	public String Survey2Submit(MemberSurveyCommand memberSurveyCommand, Model model, HttpSession session,HttpServletRequest request) {
+	public String Survey2Submit(MemberSurveyCommand memberSurveyCommand,MultipartHttpServletRequest fileRequest , Model model, HttpSession session,HttpServletRequest request) {
 		model.addAttribute("iPage", "survey/survey_success2.jsp");
 		String email=(String)session.getAttribute("email");
 		model.addAttribute("email", email);
 		System.out.println("CONTROLLER Survey2 POST "+request.getParameter("memberEmail"));
 		Integer result=memberService.updateSurvey2(memberSurveyCommand);
 		System.out.println("controller "+result);
+		MultipartFile photo=fileRequest.getFile("survPhoto");
+		String uploadPath="";
+		String path="C:\\Users\\HKEDU\\Desktop\\업로드파일\\";
+		String original=photo.getOriginalFilename();
+		System.out.println("파일 업데이트 : "+original);
+		uploadPath=path+original;
+		try {
+			photo.transferTo(new File(uploadPath));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		if(result>0) {
 			model.addAttribute("result", result);
 			return "index";

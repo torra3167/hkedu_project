@@ -13,7 +13,6 @@ public class MemberSurvey implements Serializable {
 	private String survSex;
 	private int survAge;
 	private String survLifestyle;
-	private String survPhoto;
 	private String survShape;
 	private String survDisease;
 	private String survConcern;
@@ -23,13 +22,12 @@ public class MemberSurvey implements Serializable {
 	public MemberSurvey() {
 		
 	}
-	public MemberSurvey(String memberEmail, String survSex, String survLifestyle, String survPhoto, String survShape,
+	public MemberSurvey(String memberEmail, String survSex, String survLifestyle, String survShape,
 			String survDisease, String survConcern, String survCause, String survCareer) {
 		super();
 		this.memberEmail=memberEmail;
 		this.survSex = survSex;
 		this.survLifestyle = survLifestyle;
-		this.survPhoto = survPhoto;
 		this.survShape = survShape;
 		this.survDisease = survDisease;
 		this.survConcern = survConcern;
@@ -38,7 +36,7 @@ public class MemberSurvey implements Serializable {
 	}
 	
 	public MemberSurvey(int survNo, String memberEmail, int survHeight, int survWeight, String survEat, int survBMI,
-			String survSex, int survAge, String survLifestyle, String survPhoto, String survShape, String survDisease,
+			String survSex, int survAge, String survLifestyle, String survShape, String survDisease,
 			String survConcern, String survCause, String survCareer) {
 		super();
 		this.survNo = survNo;
@@ -50,7 +48,6 @@ public class MemberSurvey implements Serializable {
 		this.survSex = survSex;
 		this.survAge = survAge;
 		this.survLifestyle = survLifestyle;
-		this.survPhoto = survPhoto;
 		this.survShape = survShape;
 		this.survDisease = survDisease;
 		this.survConcern = survConcern;
@@ -111,12 +108,6 @@ public class MemberSurvey implements Serializable {
 	}
 	public void setSurvLifestyle(String survLifestyle) {
 		this.survLifestyle = survLifestyle;
-	}
-	public String getSurvPhoto() {
-		return survPhoto;
-	}
-	public void setSurvPhoto(String survPhoto) {
-		this.survPhoto = survPhoto;
 	}
 	public String getSurvShape() {
 		return survShape;

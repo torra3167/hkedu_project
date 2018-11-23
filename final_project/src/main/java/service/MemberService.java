@@ -71,10 +71,9 @@ public class MemberService {
 		survey = new MemberSurvey(memberSurveyCommand.getSurvNo(), memberSurveyCommand.getMemberEmail(), memberSurveyCommand.getSurvHeight(),
 				memberSurveyCommand.getSurvWeight(), memberSurveyCommand.getSurvEat(), memberSurveyCommand.getSurvBMI(),
 				memberSurveyCommand.getSurvSex(), memberSurveyCommand.getSurvAge(),
-				memberSurveyCommand.getSurvLifestyle(), memberSurveyCommand.getSurvPhoto(),
-				memberSurveyCommand.getSurvShape(), memberSurveyCommand.getSurvDisease(),
-				memberSurveyCommand.getSurvConcern(), memberSurveyCommand.getSurvCause(),
-				memberSurveyCommand.getSurvCareer());
+				memberSurveyCommand.getSurvLifestyle(),	memberSurveyCommand.getSurvShape(),
+				memberSurveyCommand.getSurvDisease(), memberSurveyCommand.getSurvConcern(),
+				memberSurveyCommand.getSurvCause(), memberSurveyCommand.getSurvCareer());
 		
 		Integer i = memberRepository.insertSurvey1(survey);
 		if (i > 0) {
@@ -94,10 +93,10 @@ public class MemberService {
 	public Integer updateSurvey2(MemberSurveyCommand memberSurveyCommand) {
 		MemberSurvey memberSurvey = new MemberSurvey(
 				memberSurveyCommand.getMemberEmail(), memberSurveyCommand.getSurvSex(),
-				memberSurveyCommand.getSurvLifestyle(), memberSurveyCommand.getSurvPhoto(),
-				memberSurveyCommand.getSurvShape(), memberSurveyCommand.getSurvDisease(),
-				memberSurveyCommand.getSurvConcern(), memberSurveyCommand.getSurvCause(),
-				memberSurveyCommand.getSurvCareer());
+				memberSurveyCommand.getSurvLifestyle(), memberSurveyCommand.getSurvShape(),
+				memberSurveyCommand.getSurvDisease(), memberSurveyCommand.getSurvConcern(),
+				memberSurveyCommand.getSurvCause(), memberSurveyCommand.getSurvCareer());
+		
 		Integer i=memberRepository.updateSurvey2(memberSurvey);
 		System.out.println("service "+i);
 		if(i>0) {
