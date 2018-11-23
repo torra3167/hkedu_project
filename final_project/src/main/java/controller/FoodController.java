@@ -281,4 +281,10 @@ public class FoodController {
 	}
 	
 	
+	@RequestMapping(value="/food_record.gom", method=RequestMethod.GET)
+    public String foodReviewReportDelete(Model model) {
+		model.addAttribute("iPage", "food/food_record.jsp");
+		return "index";
+	}
+	
 }
