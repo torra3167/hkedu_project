@@ -35,7 +35,6 @@ public class FoodApplicationReview implements Serializable{
 			int foodCarbo, int foodProtein, int foodFat, int foodCal, Long foodSize, String foodOriginal,
 			String foodStored, String sellerName, String storeName, String storeTelphone, String storeAddr,
 			List<FoodReview> foodReview) {
-		super();
 		this.foodNo = foodNo;
 		this.sellerEmail = sellerEmail;
 		this.foodCatANo = foodCatANo;

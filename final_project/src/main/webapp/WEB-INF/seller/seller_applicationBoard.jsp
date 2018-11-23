@@ -19,7 +19,6 @@
 				<tr class="active">
 					<th>입점신청 번호</th>
 					<th>판매업체 이름</th>
-					<th>사업주 이름</th>
 					<th>신청서 검토 상태</th>
 				</tr>
 			</thead>
@@ -31,7 +30,6 @@
 				<tr class="active">
 					<th><a href="admin_sellerApplicationDetail.gom?sellerAppliNo=<%=sellerApplication.getSellerAppliNo() %>"><%=sellerApplication.getSellerAppliNo() %></a></th>
 					<th><a href="admin_sellerApplicationDetail.gom?sellerAppliNo=<%=sellerApplication.getSellerAppliNo() %>"><%=sellerApplication.getStoreName() %></a></th>
-					<th><a href="admin_sellerApplicationDetail.gom?sellerAppliNo=<%=sellerApplication.getSellerAppliNo() %>"><%=sellerApplication.getSellerName() %></a></th>
 					<th><a href="admin_sellerApplicationDetail.gom?sellerAppliNo=<%=sellerApplication.getSellerAppliNo() %>"><%=sellerApplication.getApplicationStatus() %></a></th>
 				</tr>
 			</tbody>

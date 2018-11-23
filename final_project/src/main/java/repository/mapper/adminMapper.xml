@@ -5,11 +5,11 @@
 <cache></cache>
 
 <update id="updateSellerDivideS" parameterType="String">
-	UPDATE member
+	UPDATE seller
 	SET
-	member_divide = 's'
+	seller_divide = 's'
 	WHERE
-	member_email = #{sellerEmail}
+	seller_email = #{sellerEmail}
 </update>
 
 <update id="updateApplicationStatusApproval" parameterType="String">
@@ -26,7 +26,6 @@
 		<id column="SELLER_APPLI_NO" jdbcType="BIGINT" property="sellerAppliNo" />
 		<id column="SELLER_EMAIL" jdbcType="VARCHAR" property="sellerEmail" />
 		<result column="SELLER_APPLI_BN" jdbcType="VARCHAR" property="sellerAppliBn" />
-		<result column="SELLER_NAME" jdbcType="VARCHAR" property="sellerName" />
 		<result column="STORE_NAME" jdbcType="VARCHAR" property="storeName" />
 		<result column="STORE_TELPHONE" jdbcType="VARCHAR" property="storeTelphone" />
 		<result column="STORE_ADDR" jdbcType="VARCHAR" property="storeAddr" />
@@ -42,7 +41,7 @@
 </resultMap>
 
 <select id="selectAppliByAppliNo" parameterType="Integer" resultMap="selectAppliByAppliNoMap">
-	SELECT seller_appli_no, seller_email, seller_appli_bn, seller_name, store_name, store_telphone, store_addr,
+	SELECT seller_appli_no, seller_email, seller_appli_bn, store_name, store_telphone, store_addr,
 	store_term, application_status, application_des, seller_license_size, seller_license_original, seller_license_stored, 
 	seller_br_size, seller_br_original, seller_br_stored
 	FROM seller_application
@@ -61,11 +60,11 @@
 </update>
 
 <update id="updateSellerDivideW" parameterType="String">
-	UPDATE member
+	UPDATE seller
 	SET
-	member_divide = 'w'
+	seller_divide = 'ns'
 	WHERE
-	member_email = #{sellerEmail}
+	seller_email = #{sellerEmail}
 </update>
 
 

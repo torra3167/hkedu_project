@@ -3,9 +3,6 @@
     
     <%
     	String divide = (String)session.getAttribute("divide");
-    
-//     	Integer count = (Integer)session.getAttribute("count");
-//     	System.out.println("count : " + count);
     %>
 <!DOCTYPE html>
 <html>
@@ -21,16 +18,12 @@
 <!--로그인 하기전  -->
 <%if(divide == null || divide.equals(""))  { %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-
 		<a class="navbar-brand" href="index"><img alt="logo"
 			src="images\logo.png"
 			 width="40" height="40"></a>
-
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#mainNavBar">
 			<span class="navbar-toggler-icon"></span>
-
 		</button>
 		<div class="collapse navbar-collapse" id="mainNavBar">
 
@@ -56,6 +49,7 @@
 
 
 			<div class="navbar-nav ml-md-auto">
+				<a class="nav-item nav-link" href="seller_join.gom" >판매자가입</a> 
 				<a class="nav-item nav-link" href="member_join.gom" >회원가입</a> 
 				<a class="nav-item nav-link" href="login.gom" >로그인</a> &nbsp;
 
@@ -74,7 +68,7 @@
 
 		</div>
 	</nav>
-<% } else if(divide.equals("p")||divide.equals("w")) { %>
+<% } else if(divide.equals("p")) { %>
 <!--회원 로그인  -->	
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -108,13 +102,6 @@
 						<div class="dropdown-menu" aria-labelledby="dropdown">
 							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a> 
 							<a class="dropdown-item" href="main/contact.jsp" >1:1문의</a>
-							<%
-								if(divide.equals("w")){
-							%>
-							<a class="dropdown-item" href="seller_lookUpApplication.gom" >입점신청서 조회</a>
-							<%	} else{ %>
-							<a class="dropdown-item" href="seller_application.gom" >입점신청하기</a>
-							<%	} %>
 						</div>
 					</div>
 				</li>				
@@ -205,7 +192,7 @@
 		</div>
 	</nav>
 
-<% } else if(divide.equals("s")) { %>
+<% } else if(divide.equals("ns")||divide.equals("w")||divide.equals("s")) { %>
 	
 	<!-- 판매자 페이지  -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -240,6 +227,13 @@
 						<div class="dropdown-menu" aria-labelledby="dropdown">
 							<a class="dropdown-item" href="main/noticeBoard.jsp">공지사항</a> 
 							<a class="dropdown-item" href="main/contact.jsp" >1:1문의</a>
+			<%
+				if(divide.equals("ns")){
+			%>
+							<a class="dropdown-item" href="seller_application.gom" >입점신청하기</a>
+			<%	} else if(!divide.equals("ns")){ %>
+							<a class="dropdown-item" href="seller_lookUpApplication.gom" >입점신청서 조회</a>
+			<%	} %>
 						</div>
 					</div>
 				</li>				
@@ -249,8 +243,12 @@
 			<div class="navbar-nav ml-md-auto">
 				<a class="nav-item nav-link" href="seller_update.gom" >마이페이지</a> 
 			 &nbsp;
+			 <%
+				if(divide.equals("s")){
+			 %>
 				<a class="nav-item nav-link" href="seller_menu.gom" >판매자페이지</a> 
 			 &nbsp;
+			 <%	} %>
 				<a class="nav-item nav-link" href="logout.gom" >로그아웃</a>	
 
 

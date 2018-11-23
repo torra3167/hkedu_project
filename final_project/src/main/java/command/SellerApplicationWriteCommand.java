@@ -11,7 +11,6 @@ public class SellerApplicationWriteCommand implements Serializable{
 	private String sellerAppliBn;
 	private MultipartFile sellerLicense;
 	private MultipartFile sellerBusinessRegistration;
-	private String sellerName;
 	private String storeName;
 	private String storeTelphone;
 	private String storeAddr;
@@ -21,14 +20,14 @@ public class SellerApplicationWriteCommand implements Serializable{
 	public SellerApplicationWriteCommand() {
 	}
 	public SellerApplicationWriteCommand(int sellerAppliNo, String sellerEmail, String sellerAppliBn,
-			MultipartFile sellerLicense, MultipartFile sellerBusinessRegistration, String sellerName, String storeName,
+			MultipartFile sellerLicense, MultipartFile sellerBusinessRegistration, String storeName,
 			String storeTelphone, String storeAddr, String storeTerm, String applicationStatus, String applicationDes) {
+		super();
 		this.sellerAppliNo = sellerAppliNo;
 		this.sellerEmail = sellerEmail;
 		this.sellerAppliBn = sellerAppliBn;
 		this.sellerLicense = sellerLicense;
 		this.sellerBusinessRegistration = sellerBusinessRegistration;
-		this.sellerName = sellerName;
 		this.storeName = storeName;
 		this.storeTelphone = storeTelphone;
 		this.storeAddr = storeAddr;
@@ -65,12 +64,6 @@ public class SellerApplicationWriteCommand implements Serializable{
 	}
 	public void setSellerBusinessRegistration(MultipartFile sellerBusinessRegistration) {
 		this.sellerBusinessRegistration = sellerBusinessRegistration;
-	}
-	public String getSellerName() {
-		return sellerName;
-	}
-	public void setSellerName(String sellerName) {
-		this.sellerName = sellerName;
 	}
 	public String getStoreName() {
 		return storeName;

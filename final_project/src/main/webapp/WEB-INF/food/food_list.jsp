@@ -116,7 +116,7 @@
                             <div class="regularPrice"><%=foodAppli.getFoodPrice() %></div>
                             <h4 class="card-text"><%=foodAppli.getFoodSale() %>% OFF</h4>
                             <%
-                                int salePrice = (int) (foodAppli.getFoodSale() - (foodAppli.getFoodPrice() * (foodAppli.getFoodSale()*0.01)));
+                                int salePrice = (int) (foodAppli.getFoodPrice() - (foodAppli.getFoodPrice() * (foodAppli.getFoodSale()*0.01)));
                             %>
                             <h4 class="card-text"><%=salePrice %>원</h4>
                             <div class="row">

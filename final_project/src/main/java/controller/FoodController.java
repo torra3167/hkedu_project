@@ -37,7 +37,7 @@ public class FoodController {
 	public String foodList(Model model) {
 		System.out.println("cntlr foodList");
 		List<FoodAndApplication> foodAppliList = foodService.selectFoodList();
-		System.out.println("ccccccccccccccccccccccccccc : " + foodAppliList.size());
+		System.out.println("******************cntlr foodList foodAppliList.size() : " + foodAppliList.size());
 		model.addAttribute("foodAppliList", foodAppliList);
 		model.addAttribute("iPage", "food/food_list.jsp");
 		return "index";

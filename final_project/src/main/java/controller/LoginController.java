@@ -24,9 +24,6 @@ public class LoginController {
 	@Autowired
 	private LoginService ls;
 	
-	@Autowired
-	private SellerService sellerService;
-	
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public String index(Model model, HttpSession session) {
@@ -42,9 +39,6 @@ public class LoginController {
 			loginCommand.setEmail(rememberCookie.getValue());
 			loginCommand.setRememberEmail(true);
 		}
-		
-		
-
 		
 		model.addAttribute("iPage", "login/login.jsp");
 		return "index";
