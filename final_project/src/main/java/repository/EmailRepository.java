@@ -46,12 +46,11 @@ public class EmailRepository extends AbstractRepository {
 		try {
 			String newPW=changePWCommand.getNewPW();
 			String newPWChk=changePWCommand.getNewPWchk();
-			String email=changePWCommand.getEmail();
 			if(newPW.equals(newPWChk)) {
-				FindIDCommand selectEmail = (FindIDCommand)sqlSession.selectOne(statement, findIDCommand);
-				return selectEmail;
+				Integer i = sqlSession.selectOne(statement, changePWCommand);
+				return i;
 			}else {
-				return 0;
+				return -1;
 			}
 			
 		} finally {
