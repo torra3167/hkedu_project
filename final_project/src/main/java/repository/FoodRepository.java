@@ -1,5 +1,6 @@
 package repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -401,8 +402,41 @@ public class FoodRepository extends AbstractRepository{
 		} finally {
 			sqlSession.close();
 		}
-		
+	}
 			
+	public List<Food> selectOrderedFoodList(String memberEmail) {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			List<Food> list1 =  sqlSession.selectList(namespace + ".selectOrderedFoodList1", memberEmail);
+			for(Object temp : list1) {
+				 Food food = (Food)temp;
+				 System.out.println("repo selectOrderedFoodList1 getFoodName : " + food.getFoodName());
+			}
+			
+			List<Food> list2 = sqlSession.selectList(namespace + ".selectOrderedFoodList2", memberEmail);
+			for(Object temp : list2) {
+				 Food food = (Food)temp;
+				 System.out.println("repo selectOrderedFoodList2 getFoodName : " + food.getFoodName());
+			}
+			
+			List<Food> foodOrderList = new ArrayList<Food>(list1);
+			foodOrderList.addAll(list2);
+			System.out.println("repo selectOrderedFoodList foodOrderList.size : " + foodOrderList.size());
+			
+			return foodOrderList;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public Food selectFoodByFoodNo(int foodNo) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+		return (Food)sqlSession.selectOne(namespace + ".selectFoodByFoodNo", foodNo);
+		} finally {
+			sqlSession.close();
+		}
 	}
 	
 	
