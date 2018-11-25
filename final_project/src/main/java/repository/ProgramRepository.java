@@ -11,6 +11,7 @@ import category.ExerciseCatB;
 import category.FoodCatC;
 import command.ProgramCommand;
 import model.Food;
+import model.FoodProFood;
 import model.ProFood;
 import model.Program;
 import model.ProgramExercise;
@@ -225,40 +226,61 @@ public class ProgramRepository extends AbstractRepository {
 		}
 	}
 
-	public void selectFoodAndInsertProFood(ProgramCommand programCommand, Integer programNumber) {
+	
+
+	public void insertProFood(ProgramCommand programCommand, String[] selectedFoodNos) {
+		sqlSession = getSqlSessionFactory().openSession();
 		
-		/*sqlSession = getSqlSessionFactory().openSession();
-		Integer selectproFoodNo = sqlSession.selectOne(namespace + ".selectSequenceNumber");
 		try {
-			//select
-			String[] foodCatANos = programCommand.getFoodCatANos();
-			List<Food> foodList = new ArrayList<Food>();
-			for(int i = 0; i < foodCatANos.length; i++) {
-				foodList = sqlSession.selectList("repository.mapper.foodMapper.selectFoodByFoodCatANo", Integer.parseInt(foodCatANos[i]));
+			for (int i = 0; i < selectedFoodNos.length; i++) {
+				Food food = sqlSession.selectOne("repository.mapper.foodMapper.selectSellerFood",
+						Integer.parseInt(selectedFoodNos[i]));
 				
+				Integer selectProFoodNo = sqlSession.selectOne(namespace + ".selectSequenceNumber");
 				
+				ProFood proFood = new ProFood(selectProFoodNo, food.getFoodNo(), food.getSellerEmail(), 
+						food.getFoodCatANo(), food.getFoodCatBNo(), food.getFoodCatCNo(), 
+						programCommand.getProNo(), programCommand.getCoachEmail());
+				
+				Integer insertProFoodResult = sqlSession.insert(namespace + ".insertProFood", proFood);
+				
+				if(insertProFoodResult > 0) {
+					sqlSession.commit();
+				} else {
+					System.out.println("프로그램 식품 등록 실패");
+					sqlSession.rollback();
+				}
 			}
-			ProFood proFood = new ProFood();
-			
-			for(Object temp : foodList) {
-				Food food = (Food)temp;
-				//음식번호, 판매자이메일, 카테고리ABC, 코치이메일
-				proFood = new ProFood(food.getFoodNo(), food.getSellerEmail(), food.getFoodCatANo(), food.getFoodCatBNo(),
-						food.getFoodCatCNo(), programCommand.getCoachEmail());
-				proFood.setProNo(programNumber);
-				sqlSession.insert(namespace + ".insertProFood");
-			}
-			
-			
-			
-			
-			
-			
-			return exerciseCatACatBResult;
+
 		} finally {
 			sqlSession.close();
-		}*/
+		}
+
+	}
+
+	public List<FoodProFood> selectProFoodList() {
+		sqlSession = getSqlSessionFactory().openSession();
 		
+		try {
+			 List<FoodProFood> foodProFoodList = sqlSession.selectList(namespace + ".selectProFoodList");
+			 
+			 return foodProFoodList;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<FoodProFood> selectFoodProFoodOneByProFoodNo(int proFoodNo) {
+		sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+			List<FoodProFood> foodProFoodList = sqlSession.selectList(namespace + ".selectFoodProFoodOneByProFoodNo", proFoodNo);
+
+			return foodProFoodList;
+		} finally {
+			
+			sqlSession.close();
+		}
 	}
 	
 	

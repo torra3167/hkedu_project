@@ -15,10 +15,12 @@ public class ProFoodOrderReceiver implements Serializable{
 	
 	public ProFoodOrderReceiver() {
 	}
-	public ProFoodOrderReceiver(int proFoodOrderReceiverNo, String memberEmail, String proFoodOrderReceiverName,
-			int proFoodOrderReceiverPhone, String proFoodOrderReceiverAddr1, String proFoodOrderReceiverAddr2,
-			int proFoodOrderReceiverAddrno, int proFoodOrderReceiverTotal) {
-		this.proFoodOrderReceiverNo = proFoodOrderReceiverNo;
+	
+	
+	public ProFoodOrderReceiver(String memberEmail, String proFoodOrderReceiverName, int proFoodOrderReceiverPhone,
+			String proFoodOrderReceiverAddr1, String proFoodOrderReceiverAddr2, int proFoodOrderReceiverAddrno,
+			int proFoodOrderReceiverTotal) {
+		super();
 		this.memberEmail = memberEmail;
 		this.proFoodOrderReceiverName = proFoodOrderReceiverName;
 		this.proFoodOrderReceiverPhone = proFoodOrderReceiverPhone;
@@ -27,6 +29,8 @@ public class ProFoodOrderReceiver implements Serializable{
 		this.proFoodOrderReceiverAddrno = proFoodOrderReceiverAddrno;
 		this.proFoodOrderReceiverTotal = proFoodOrderReceiverTotal;
 	}
+
+
 	public int getProFoodOrderReceiverNo() {
 		return proFoodOrderReceiverNo;
 	}

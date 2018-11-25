@@ -2,6 +2,8 @@ package controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,6 @@ import command.FoodReviewReportWriteCommand;
 import command.FoodReviewUpdateCommand;
 import command.FoodReviewWriteCommand;
 import command.FoodUpdateCommand;
-import command.ProgramDetailCommand;
 import model.Food;
 import model.FoodAndApplication;
 import model.FoodReviewAndAnswer;
@@ -69,13 +70,13 @@ public class FoodController {
 		return "food/food_cat_a";
 	}
 	
-	@RequestMapping(value = "/selectedFoodForProFood.gom", method = RequestMethod.POST)
-	public String programDetail(@RequestParam(value="foodCatANos") String foodCatANos, Model model ) {
+	@RequestMapping(value = "/food_for_pro_food.gom", method = RequestMethod.POST)
+	public String programDetail(@RequestParam(value="foodCategoryANum") int foodCatANo, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
-		System.out.println(foodCatANos + " FOODCATANOS!!!");
-		String[] splitFoodCatANos = foodCatANos.split("/");
+		System.out.println(foodCatANo + " FOODCATANO!!!");
+		foodService.selectFoodListByCategoryA(foodCatANo, request, response, session);
 		
-		return "food/food_selected_for_proFood.jsp";
+		return "food/food_selected_proFood";
 
 	}
 	

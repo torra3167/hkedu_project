@@ -4,6 +4,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
 import command.FindIDCommand;
 import command.MemberJoinCommand;
 import command.MemberSurveyCommand;
@@ -32,7 +34,7 @@ public class MemberService {
 		return result;
 	}
 
-	public String findID(FindIDCommand findIDCommand) {
+	public String findID(FindIDCommand findIDCommand, Model model) {
 		member = new Member();
 		member.setMemberName(findIDCommand.getName());
 		System.out.println("MEMBERSERVICE FindID " + findIDCommand.getName());

@@ -17,6 +17,8 @@ import category.ExerciseCatB;
 import category.FoodCatC;
 import command.ProgramCommand;
 import command.ProgramDetailCommand;
+import model.FoodProFood;
+import model.ProFood;
 import model.Program;
 import model.ProgramExercise;
 import model.ProgramExerciseUpload;
@@ -31,26 +33,27 @@ public class ProgramService {
 	ProgramExercise programExercise;
 	MultipartFile multiFile;
 	static final String filePath = 
-//			"C:\\Users\\FUTURE\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\FUTURE\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 //			"C:\\Users\\admin\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 			File file = new File(filePath);
 			
 	@Autowired
 	ProgramRepository pr;
 
-	public void insertProgram(ProgramCommand programCommand) {
+	public void insertProgram(ProgramCommand programCommand, String[] selectedFoodNos) {
 		// TODO Auto-generated method stub
 		
 		// 프로그램번호
 		Integer programNumber = pr.selectProgramNumber();
 
-		System.out.println(programNumber + " selectProgramNumber");
+//		System.out.println(programNumber + " selectProgramNumber");
+		programCommand.setProNo(programNumber);
+		
 		
 		// 운동프로그램식품등록 
 		
-		
-		pr.selectFoodAndInsertProFood(programCommand, programNumber);
+		pr.insertProFood(programCommand, selectedFoodNos);
 		
 		// 파일저장
 		multiFile = programCommand.getProImg();
@@ -172,6 +175,30 @@ public class ProgramService {
 	public List<FoodCatC> dominoSelectC() {
 		List<FoodCatC> list = pr.ccaSelect();
 		return list;
+	}
+
+	public void selectProFoodList(Model model) {
+		// TODO Auto-generated method stub
+		List<FoodProFood> foodProFoodList = pr.selectProFoodList();
+		
+		if(foodProFoodList != null) {
+		
+		model.addAttribute("FoodProFoodList", foodProFoodList);
+		} else {
+			System.out.println("selectFoodProFoodList 실패");
+		}
+	}
+
+	public void selectFoodProFoodOneByProFoodNo(Model model, int proFoodNo) {
+		// TODO Auto-generated method stub
+		List<FoodProFood> foodProFoodList = pr.selectFoodProFoodOneByProFoodNo(proFoodNo);
+		
+		if(foodProFoodList != null) {
+		
+		model.addAttribute("FoodProFoodList", foodProFoodList);
+		} else {
+			System.out.println("selectFoodProFoodList 실패");
+		}
 	}
 
 }

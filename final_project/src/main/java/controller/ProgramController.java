@@ -9,10 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import category.FoodCatC;
 import command.ProgramCommand;
 import command.ProgramDetailCommand;
+import model.ProFood;
 import service.ProgramService;
 
 @Controller
@@ -22,7 +24,28 @@ public class ProgramController {
 	
 	
 	
+	
+	
+	@RequestMapping(value = "/pro_food_list_detail.gom", method = RequestMethod.GET)
+	public String proFoodList(@RequestParam(value="proFoodNo")int proFoodNo , Model model ) {
 
+		
+		ps.selectFoodProFoodOneByProFoodNo(model, proFoodNo);
+		model.addAttribute("iPage", "pro_food/pro_food_detail.jsp");
+
+		return "index";
+
+	}
+	
+	@RequestMapping(value = "/pro_food_list.gom", method = RequestMethod.GET)
+	public String proFoodList(ProFood proFood, Model model ) {
+
+		
+		model.addAttribute("iPage", "pro_food/pro_food_list.jsp");
+		ps.selectProFoodList(model);
+		return "index";
+
+	}
 	@RequestMapping(value = "/program_detail.gom", method = RequestMethod.GET)
 	public String programDetail(ProgramDetailCommand programDetailCommand, Model model ) {
 //		System.out.println(programDetailCommand.getProNo() + "PRONO by command! ");
@@ -55,7 +78,7 @@ public class ProgramController {
 	}
 
 	@RequestMapping(value = "/program_register.gom", method = RequestMethod.POST)
-	public String programSubmit(ProgramCommand programCommand, HttpSession session, Model model) {
+	public String programSubmit(ProgramCommand programCommand, @RequestParam(value="foodNos")String foodNos,  HttpSession session, Model model) {
 
 		System.out.println("CAT NAME " + programCommand.getExerciseCatAName());
 		String coachEmail = (String) session.getAttribute("email");
@@ -66,7 +89,9 @@ public class ProgramController {
 		System.out.println(programCommand.getProName() + " PRO NAME");
 		System.out.println(programCommand.getCoachEmail() + " COACHEMAIL");
 
-		ps.insertProgram(programCommand);
+		String[] selectedFoodNos = foodNos.split("/");
+		
+		ps.insertProgram(programCommand, selectedFoodNos);
 		
 		return "redirect:/index";
 

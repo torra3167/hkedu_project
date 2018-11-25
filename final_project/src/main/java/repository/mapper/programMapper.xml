@@ -4,10 +4,74 @@
 <mapper namespace="repository.mapper.programMapper">
 <cache></cache>
 
+<select id="selectFoodProFoodOneByProFoodNo" parameterType="Integer" resultMap="foodProFoodMap">
+select 
+pf.PRO_FOOD_NO, pf.FOOD_NO, pf.SELLER_EMAIL, pf.FOOD_CAT_A_NO,
+pf.FOOD_CAT_B_NO, pf.FOOD_CAT_C_NO, pf.PRO_NO, pf.COACH_EMAIL,
+f.FOOD_NAME, f.FOOD_QUANT, f.FOOD_EXPIRY_DATE,
+f.FOOD_ORIGIN,f.FOOD_SALE, f.FOOD_PRICE,  f.FOOD_CARBO, f.FOOD_PROTEIN, f.FOOD_FAT,
+f.FOOD_CAL, f.FOOD_SIZE, f.FOOD_ORIGINAL, f.FOOD_STORED
+from pro_food pf, food f 
+where pf.food_no = f.food_no
+and pf.pro_food_no = #{proFoodNo}
+</select>
 
+<resultMap type="FoodProFood" id="foodProFoodMap">
+	<id column="PRO_FOOD_NO" property="proFoodNo" jdbcType="BIGINT"/>
+	<id column="FOOD_NO" property="foodNo" jdbcType="BIGINT"/>
+	<id column="SELLER_EMAIL" property="sellerEmail" jdbcType="VARCHAR"/>
+	<id column="FOOD_CAT_A_NO" property="foodCatANo" jdbcType="BIGINT"/>
+	<id column="FOOD_CAT_B_NO" property="foodCatBNo" jdbcType="BIGINT"/>
+	<id column="FOOD_CAT_C_NO" property="foodCatCNo" jdbcType="BIGINT"/>
+	<id column="PRO_NO" property="proNo" jdbcType="BIGINT"/>
+	<id column="COACH_EMAIL" property="coachEmail" jdbcType="VARCHAR"/>
+	<result column="FOOD_NAME" property="foodName" jdbcType="VARCHAR"/>
+	<result column="FOOD_QUANT" property="foodQuant" jdbcType="BIGINT"/>
+	<result column="FOOD_EXPIRY_DATE" property="foodExpiryDate" jdbcType="VARCHAR"/>
+	<result column="FOOD_ORIGIN" property="foodOrigin" jdbcType="VARCHAR"/>
+	<result column="FOOD_SALE" property="foodSale" jdbcType="BIGINT"/>
+	<result column="FOOD_PRICE" property="foodPrice" jdbcType="BIGINT"/>
+	<result column="FOOD_CARBO" property="foodCarbo" jdbcType="BIGINT"/>
+	<result column="FOOD_PROTEIN" property="foodProtein" jdbcType="BIGINT"/>
+	<result column="FOOD_FAT" property="foodFat" jdbcType="BIGINT"/>
+	<result column="FOOD_CAL" property="foodCal" jdbcType="BIGINT"/>
+	<result column="FOOD_SIZE" property="foodSize" jdbcType="BIGINT"/>
+	<result column="FOOD_ORIGINAL" property="foodOriginal" jdbcType="VARCHAR"/>
+	<result column="FOOD_STORED" property="foodStored" jdbcType="VARCHAR"/>
+</resultMap>
 
+<select id="selectProFoodList"  resultMap="foodProFoodMap">
+<!-- select 
+pf.pro_food_no as proFoodNo, pf.food_no as foodNo, pf.seller_email as sellerEmail, pf.food_cat_a_no as foodCatANo, pf.food_cat_b_no as foodCatBNo,
+pf.food_cat_c_no as foodCatCNo, pf.pro_no as proNo, pf.coach_email as coachEmail, f.FOOD_NAME as foodName, f.FOOD_QUANT as foodQuant, 
+f.FOOD_EXPIRY_DATE as foodExpiryDate,
+f.FOOD_ORIGIN as foodOrigin ,f.FOOD_SALE as foodSale, f.FOOD_PRICE as foodPrice,  f.FOOD_CARBO as foodCarbo,
+f.FOOD_PROTEIN as foodProtein, f.FOOD_FAT as foodFat, f.FOOD_CAL as foodCal,
+f.FOOD_SIZE as foodSize, f.FOOD_ORIGINAL as foodOriginal, f.FOOD_STORED as foodStored
+from pro_food pf, food f 
+where pf.food_no  = f.food_no -->
 
+select 
+pf.pro_food_no pro_food_no, pf.food_no food_no, pf.seller_email seller_email, pf.food_cat_a_no food_cat_a_no,
+pf.food_cat_b_no food_cat_b_no,
+pf.food_cat_c_no food_cat_c_no, pf.pro_no pro_no, pf.coach_email coach_email, f.FOOD_NAME FOOD_NAME, f.FOOD_QUANT FOOD_QUANT, 
+f.FOOD_EXPIRY_DATE FOOD_EXPIRY_DATE,
+f.FOOD_ORIGIN FOOD_ORIGIN ,f.FOOD_SALE FOOD_SALE, f.FOOD_PRICE FOOD_PRICE,  f.FOOD_CARBO FOOD_CARBO,
+f.FOOD_PROTEIN FOOD_PROTEIN, f.FOOD_FAT FOOD_FAT,
+f.FOOD_CAL FOOD_CAL, f.FOOD_SIZE FOOD_SIZE, f.FOOD_ORIGINAL FOOD_ORIGINAL, f.FOOD_STORED FOOD_STORED
+from pro_food pf, food f 
+where pf.food_no = f.food_no
+	
+</select>
 
+<insert id="insertProFood" parameterType="ProFood">
+	insert into pro_food
+	(PRO_FOOD_NO, FOOD_NO, SELLER_EMAIL, FOOD_CAT_A_NO, FOOD_CAT_B_NO, 
+	FOOD_CAT_C_NO, PRO_NO, COACH_EMAIL)
+	values
+	(#{proFoodNo}, #{foodNo}, #{sellerEmail}, #{foodCatANo}, #{foodCatBNo},
+	 #{foodCatCNo}, #{proNo}, #{coachEmail})
+</insert>
 
 <!--프로그램업데이트  -->
 <update id="updateProgramExercise" parameterType="ProgramExercise">
@@ -145,6 +209,11 @@ where pro_no = #{proNo})
 
 <!--프로그램  -->
 <select id="selectProgramNumber" resultType="Integer">
+	select COUNT_NUMBER.NEXTVAL
+	from dual
+</select>
+
+<select id="selectSequenceNumber" resultType="Integer">
 	select COUNT_NUMBER.NEXTVAL
 	from dual
 </select>

@@ -386,6 +386,24 @@ public class FoodRepository extends AbstractRepository{
 			sqlSession.close();
 		}
 	}
+
+	public List<Food> selectFoodListByCategoryA(int foodCatANo) {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+		List<Food> list =  sqlSession.selectList(namespace + ".selectFoodListByCategoryA", foodCatANo);
+		
+		
+		
+		return list;
+		
+		
+		} finally {
+			sqlSession.close();
+		}
+		
+			
+	}
 	
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 @SuppressWarnings("serial")
 public class ProgramCommand implements Serializable {
 
+	private int proNo;
 	private String proName;
 	private MultipartFile proImg;
 	private Date proRegdate;
@@ -18,6 +19,14 @@ public class ProgramCommand implements Serializable {
 	private String[] foodCatANames;
 	
 	
+	
+	
+	public int getProNo() {
+		return proNo;
+	}
+	public void setProNo(int proNo) {
+		this.proNo = proNo;
+	}
 	public String[] getFoodCatANos() {
 		return foodCatANos;
 	}

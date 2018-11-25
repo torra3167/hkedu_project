@@ -136,7 +136,7 @@
 	function del1() {   
 		
 	    var selIndex = $("#select_box2 option").index($("#select_box2 option:selected")); //선택된 값의 index   
-	    var hidden = document.frm.exerciseCatAName.value;
+	    var hidden = document.getElementById('exerciseCatAName').value;
 	    var exerciseIndex = $("#select_box2 option:eq("+selIndex+")").text()+"/";
 	    alert($("#select_box2 option:eq("+selIndex+")").text());
 	    document.frm.exerciseCatAName.value = hidden.replace(exerciseIndex, "");
@@ -181,25 +181,35 @@
 				}
 			});		
 		}
-	 function valueAdd(val) {
-		 var catANames = $("#FCA").text().trim();
-		 document.frm.foodCatANos.value += val.value + "/";
-		 var catANos = document.getElementById('foodCatANos').value;
+	function selectedFood(val) {
+		 var foodCategoryANum = document.getElementById('FCA').value;
+
 		 $.ajax({
 				type:"POST",
-				url:"selectedFoodForProFood.gom",
+				url:"food_for_pro_food.gom",
 				dataType:"html",
-				data:"foodCatANos=" + catANos ,
+				data:"foodCategoryANum=" + foodCategoryANum,
 				success:function(result){
-					$('#divAca').html(result);
-					/* $('#divBca').html(); */	
+					$('#selectedFood').html(result);
+		
 
 				}
 			});		
-		 
-/*  		 document.frm.foodCatANames.value += catANames;
- */ 		 alert(catANames + '추가성공!');
+	 
 	 }
+	 	
+	
+	 function valueAdd(val) {
+		 var selectedFoodOne = $("#selectedFoodInput").text();
+		 document.frm.foodNos.value += val.value + "/";
+		 
+		 var catANos = document.getElementById('foodNos').value;	
+		 foodNames
+		 document.frm.foodNames.value += selectedFoodOne + "/";
+
+ 		 alert(selectedFoodOne + '추가성공!');
+	 }
+	 
 	 
 	 
 	
@@ -211,7 +221,7 @@
 	
 		<form name="frm" action="program_register.gom" enctype="multipart/form-data"
 			method="post">
-			<input type="text" name="exerciseCatAName" >
+			<input type="text" name="exerciseCatAName" id="exerciseCatAName" value="" >
 			 <div class="form-group">
                   
                      <select id="svSelect" class="form-control" name="exerciseName1" onChange="fillSelectFromArray1(this.form.exerciseName2,((this.selectedIndex == -1) ? null : exerciseInfo[this.selectedIndex]));">
@@ -231,7 +241,7 @@
                      </select>
             </div>	        
 			<div class="form-group">
-                     <select class="bodcon_list form-control" name= "select_box2" id="select_box2" onChange="del1()"></select>
+                     <select class="form-control" name="select_box2" id="select_box2" onChange="del1()"></select>
                      
           			 
             </div>                  
@@ -273,10 +283,20 @@
                      </select>
                      
           			 
+            </div>
+            
+            <div class="form-group" id="selectedFood" >
+            <label>프로그램 식품 선택</label>
+                     <select class="form-control">
+                     
+                     </select>
+                     
+          			 
             </div>    
             <div class="form-group"  >
-                   <input type="text" id="foodCatANos" name="foodCatANos"  class="form-control"> 
-                   <input type="text" id="foodCatANames" readonly="readonly" name="foodCatANames"  class="form-control"> 
+            <label>선택된 프로그램 식품 </label>
+                   <input type="text" id="foodNos" name="foodNos"  class="form-control"> 
+                   <input type="text" id="foodNames" readonly="readonly" name="foodNames"  class="form-control"> 
                      
           			 
             </div>  

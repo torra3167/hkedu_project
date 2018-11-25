@@ -154,7 +154,8 @@
 				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동리스트</a></li>
 				<li class="nav-item"><a class="nav-link" href="program_list.gom">프로그램리스트</a></li>
 				<li class="nav-item"><a class="nav-link" href="pro_review_all_list.gom">프로그램올리뷰</a></li>
-				
+				<li class="nav-item"><a class="nav-link"
+					href="cart_list.gom">Cart</a></li>
 				
 				<li class="nav-item">
 					<div class="dropdown show">
@@ -171,7 +172,7 @@
 
 
 			<div class="navbar-nav ml-md-auto">
-				<a class="nav-item nav-link" href="member_join.gom" >코치페이지</a> 
+				<a class="nav-item nav-link" href="pro_food_list.gom" >프로그램식품보기</a> 
 				<a class="nav-item nav-link" href="program_register.gom" >프로그램등록</a> 
 				<a class="nav-item nav-link" href="exercise_register.gom" >운동등록</a> 
 				<a class="nav-item nav-link" href="logout.gom" >로그아웃</a>	

@@ -4,6 +4,14 @@
 <mapper namespace="repository.mapper.payMapper">
 <cache></cache>
 
+<insert id="proFoodPayInsert" parameterType="ProFoodPay">
+	insert into pro_food_pay
+	(PRO_FOOD_PAY_NO, MEMBER_EMAIL, PRO_FOOD_ORDER_RECEIVER_NO, PRO_FOOD_PAY_PRICE, PRO_FOOD_PAY_DIVIDE, 
+	PRO_FOOD_PAY_CARD_NO, PRO_FOOD_PAY_CARD_M, PRO_FOOD_PAY_CARD_Y, PRO_FOOD_PAY_CARD_CVC, PRO_FOOD_PAY_DATE)
+	values
+	(#{proFoodPayNo}, #{memberEmail}, #{proFoodOrderReceiverNo}, #{proFoodPayPrice}, #{proFoodPayDivide}, 
+	#{proFoodPayCardNo}, #{proFoodPayCardM}, #{proFoodPayCardY}, #{proFoodPayCardCvc}, #{proFoodPayDate})
+</insert>
 
 <insert id="payInsert" parameterType="FoodPay">
 	insert into food_pay
@@ -14,15 +22,35 @@
 	#{foodPayCardNo}, #{foodPayCardM}, #{foodPayCardY}, #{foodPayCardCvc}, #{foodPayDate})
 </insert>
 
+
  <insert id="insertFoodOrder" parameterType="FoodOrder" >
 	insert into FOOD_ORDER 
 	(MEMBER_EMAIL, FOOD_ORDER_RECEIVER_NO, FOOD_NO, SELLER_EMAIL, FOOD_CAT_A_NO, FOOD_CAT_B_NO, FOOD_CAT_C_NO,
 	FOOD_ORDER_PRICE, FOOD_ORDER_QUANT, FOOD_ORDER_NAME, FOOD_ORDER_STORED)
 	values
-	(#{memberEmail} ,#{foodOrderReceiverNo} ,#{foodNo} ,#{sellerEmail} ,#{foodCatANo} ,#{foodCatBNo} ,
-	#{foodCatCNo} ,#{foodOrderPrice} ,#{foodOrderQuant} ,#{foodOrderName}, #{foodOrderStored})
+	(#{memberEmail}, #{foodOrderReceiverNo}, #{foodNo}, #{sellerEmail}, #{foodCatANo}, #{foodCatBNo},
+	#{foodCatCNo}, #{foodOrderPrice}, #{foodOrderQuant}, #{foodOrderName}, #{foodOrderStored})
 </insert>
 
+
+<insert id="insertProFoodOrder" parameterType="ProFoodOrder">
+	insert into PRO_FOOD_ORDER 
+	(PRO_FOOD_NO, FOOD_NO, SELLER_EMAIL, MEMBER_EMAIL, PRO_FOOD_ORDER_RECEIVER_NO, FOOD_CAT_A_NO, FOOD_CAT_B_NO, FOOD_CAT_C_NO,
+	PRO_NO, COACH_EMAIL, PRO_FOOD_ORDER_PRICE, PRO_FOOD_ORDER_QUANT, PRO_FOOD_ORDER_NAME, PRO_FOOD_ORDER_STORED)
+	values
+	(#{proFoodNo}, #{foodNo}, #{sellerEmail}, #{memberEmail}, #{proFoodOrderReceiverNo}, #{foodCatANo}, #{foodCatBNo},
+	#{foodCatCNo}, #{proNo}, #{coachEmail}, #{proFoodOrderPrice}, #{proFoodOrderQuant}, #{proFoodOrderName}, #{proFoodOrderStored})
+</insert>
+
+<insert id="insertProFoodOrderReceiver" parameterType="ProFoodOrderReceiver">
+	insert into PRO_FOOD_ORDER_RECEIVER 
+	(PRO_FOOD_ORDER_RECEIVER_NO, MEMBER_EMAIL, PRO_FOOD_ORDER_RECEIVER_NAME, PRO_FOOD_ORDER_RECEIVER_PHONE, 
+	PRO_FOOD_ORDER_RECEIVER_ADDR1, PRO_FOOD_ORDER_RECEIVER_ADDR2, PRO_FOOD_ORDER_RECEIVER_ADDRNO,
+	PRO_FOOD_ORDER_RECEIVER_TOTAL)
+	values
+	(#{proFoodOrderReceiverNo}, #{memberEmail}, #{proFoodOrderReceiverName}, #{proFoodOrderReceiverPhone},
+	 #{proFoodOrderReceiverAddr1}, #{proFoodOrderReceiverAddr2}, #{proFoodOrderReceiverAddrno}, #{proFoodOrderReceiverTotal})
+</insert>
 <insert id="insertFoodOrderReceiver" parameterType="FoodOrderReceiver" >
 	insert into FOOD_ORDER_RECEIVER 
 	(FOOD_ORDER_RECEIVER_NO, MEMBER_EMAIL, FOOD_ORDER_RECEIVER_NAME, FOOD_ORDER_RECEIVER_PHONE, 

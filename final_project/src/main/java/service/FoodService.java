@@ -1,15 +1,20 @@
 package service;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import category.FoodCatA;
@@ -45,8 +50,8 @@ public class FoodService {
 	@Autowired
 	private FoodRepository foodRepository;
 	static final String filePath =
+			"C:\\Users\\FUTURE\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 //			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 //			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
 	
@@ -570,6 +575,45 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 		} else {
 			System.out.println("식품리뷰신고 삭제 성공!");
 		}
+	}
+
+	public Boolean selectFoodListByCategoryA(int foodCatANo, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		List selectedFoodList = (List)session.getAttribute("selectedFoodList");
+		
+		//없으면 만들어주고
+		if (selectedFoodList == null) {
+			selectedFoodList = new ArrayList<Food>();
+
+		}
+		
+		//받아온FoodcatANo비교해서 없으면진행 있으면 종료
+		for(int i = 0; i < selectedFoodList.size(); i++) {
+			Food tempFood = (Food) selectedFoodList.get(i);
+			
+			if(tempFood.getFoodNo() == foodCatANo) {	
+					return false;
+			}
+		}
+		
+		
+		
+		//저장소에서 select 반환
+		List<Food> selectedFood = foodRepository.selectFoodListByCategoryA(foodCatANo);
+		
+		//반환값 누적
+		for(Object temp : selectedFood) {
+			
+			
+			Food choicedFood = (Food)temp;
+			selectedFoodList.add(choicedFood);
+			
+		}
+		
+		session.setAttribute("selectedFoodList", selectedFoodList);
+		return true;
+		
+		
 	}
 
 

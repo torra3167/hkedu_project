@@ -9,6 +9,9 @@ import model.Food;
 import model.FoodOrder;
 import model.FoodOrderReceiver;
 import model.FoodPay;
+import model.ProFoodOrder;
+import model.ProFoodOrderReceiver;
+import model.ProFoodPay;
 
 @Repository
 public class PayRepository extends AbstractRepository {
@@ -87,6 +90,70 @@ public class PayRepository extends AbstractRepository {
 		}
 		
 		return payInsertResult;
+	}
+
+
+
+	public Integer insertProFoodOrderList(List<ProFoodOrder> proFoodOrderList,
+			ProFoodOrderReceiver proFoodOrderReceiver) {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		//주문번호를 위한 select
+		Integer proFoodOrderReceiverNumber = (Integer)sqlSession.selectOne(namespace + ".selectSequenceNumber");
+		
+		System.out.println("식품주문번호 " + proFoodOrderReceiverNumber);
+
+		//운동식품수취인정보 인서트
+		
+		proFoodOrderReceiver.setProFoodOrderReceiverNo(proFoodOrderReceiverNumber);
+		
+		Integer proFoodOrderReceiverResult = (Integer)sqlSession.insert(namespace + ".insertProFoodOrderReceiver", proFoodOrderReceiver);
+		System.out.println("proFoodOrderReceiverResult " + proFoodOrderReceiverResult);
+		
+
+		//운동식품주문정보 인서트
+		Integer proFoodOrderResult = 0;
+		for(Object temp : proFoodOrderList) {
+			
+			ProFoodOrder proFoodOrder = (ProFoodOrder)temp;
+			System.out.println(proFoodOrder.getCoachEmail() + " ~~~ COACHEMAIL");
+			proFoodOrder.setProFoodOrderReceiverNo(proFoodOrderReceiverNumber);
+			sqlSession.insert(namespace + ".insertProFoodOrder", proFoodOrder);
+			proFoodOrderResult++;
+		}
+		
+		if(proFoodOrderResult > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		System.out.println("PRO FOOD ORDER RESULT " + proFoodOrderResult);
+		
+		return proFoodOrderResult;
+	}
+
+
+
+	
+
+
+
+	public Integer proFoodPayInsert(ProFoodPay proFoodPay) {
+		sqlSession = getSqlSessionFactory().openSession();
+		//번호를 위한 select
+		Integer proFoodPayNumber = (Integer)sqlSession.selectOne(namespace + ".selectSequenceNumber");
+		System.out.println("PRO FOODPAY SEQUENCE NUMBER" + proFoodPayNumber);
+		proFoodPay.setProFoodPayNo(proFoodPayNumber);
+		
+		Integer proPayInsertResult =  (Integer)sqlSession.insert(namespace + ".proFoodPayInsert", proFoodPay);
+		
+		if(proPayInsertResult > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		
+		return proPayInsertResult;
 	}
 	
 	

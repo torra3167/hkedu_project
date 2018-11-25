@@ -30,10 +30,15 @@
 		<typeAlias type="category.FoodCatC" alias="FoodCatC"/>
 		<typeAlias type="model.ProgramExerciseUpload" alias="ProgramExerciseUpload"/>
 		<typeAlias type="model.ProReview" alias="ProReview"/>
+		<typeAlias type="model.ProFood" alias="ProFood"/>
+		<typeAlias type="model.FoodProFood" alias="FoodProFood"/>
 		<typeAlias type="model.ProReviewReport" alias="ProReviewReport"/>
 		<typeAlias type="model.FoodOrder" alias="FoodOrder"/>
+		<typeAlias type="model.ProFoodOrder" alias="ProFoodOrder"/>
 		<typeAlias type="model.FoodOrderReceiver" alias="FoodOrderReceiver"/>
+		<typeAlias type="model.ProFoodOrderReceiver" alias="ProFoodOrderReceiver"/>
 		<typeAlias type="model.FoodPay" alias="FoodPay"/>
+		<typeAlias type="model.ProFoodPay" alias="ProFoodPay"/>
 		
 
 	</typeAliases>

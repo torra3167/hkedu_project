@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.List, model.FoodOrder"%>
+    pageEncoding="UTF-8" import="java.util.*, model.FoodOrder, model.ProFoodOrder"%>
     
  <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -7,6 +7,8 @@
      <%
     String email = (String)session.getAttribute("email");
 	List cartList = (List)session.getAttribute("FoodOrderList");
+	List proFoodOrderList = (List)session.getAttribute("proFoodOrderList");
+	System.out.println("PROFOOD SIZE " + proFoodOrderList.size());
     int sum = 0;
      %>
 <!DOCTYPE html>
@@ -36,9 +38,38 @@
 
  	<form:form commandName="foodOrderReceiver" action="food_order_list_insert.gom"> 
  	<form:hidden path="memberEmail" value="<%=email %>"/>
-	<% 
-		for(Object temp : cartList) {
-			FoodOrder foodOrder = (FoodOrder)temp;
+	
+<% 	if(proFoodOrderList != null) {
+	 
+		for(Object temp : proFoodOrderList) {
+			ProFoodOrder proFoodOrder = (ProFoodOrder)temp;
+
+	%>
+	
+	<tr>
+		<td><%=proFoodOrder.getSellerEmail() %></td>
+		<td><%=proFoodOrder.getFoodNo()%><img src="resource/<%=proFoodOrder.getProFoodOrderStored() %>" width="70" height="70"/></td>
+		<td><%=proFoodOrder.getProFoodOrderName() %></td>
+		<td><%=proFoodOrder.getProFoodOrderPrice() %></td>
+		<td><%=proFoodOrder.getProFoodOrderQuant() %></td>
+		<td><%=proFoodOrder.getFoodCatANo() %></td>
+		<td><%=proFoodOrder.getFoodCatBNo() %></td>
+		<td><%=proFoodOrder.getFoodCatCNo() %></td>
+	</tr>
+		
+	
+	<%
+		sum += 	proFoodOrder.getProFoodOrderPrice() * proFoodOrder.getProFoodOrderQuant();
+	} 
+ } %>	
+<% 	if(cartList == null) { %>
+	
+<% 	} 
+
+	if(cartList != null) { 
+		
+		for(Object temp2 : cartList) {
+			FoodOrder foodOrder = (FoodOrder)temp2;
 
 	%>
 	
@@ -52,11 +83,12 @@
 		<td><%=foodOrder.getFoodCatBNo() %></td>
 		<td><%=foodOrder.getFoodCatCNo() %></td>
 	</tr>
-		
-		
+	
 	<%
 		sum += 	foodOrder.getFoodOrderPrice() * foodOrder.getFoodOrderQuant();
 	} %>
+	
+<% } %>
 	</table>
 	
 		

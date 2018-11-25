@@ -3,8 +3,20 @@
     
     <%
 		Integer foodOrderReceiverNumber = (Integer)request.getAttribute("FoodOrderReceiverNumber");
+		Integer proFoodOrderReceiverNumber = (Integer)request.getAttribute("ProFoodOrderReceiverNumber");
 		Integer foodOrderReceiverTotal = (Integer)request.getAttribute("FoodOrderReceiverTotal");
+		Integer proFoodOrderReceiverTotal = (Integer)request.getAttribute("ProFoodOrderReceiverTotal");
 		String memberEmail = (String)session.getAttribute("email");
+		Integer total = 0;
+		
+		if(foodOrderReceiverTotal == null) {
+			total = proFoodOrderReceiverTotal;
+		} else if(proFoodOrderReceiverTotal == null) {
+			total = foodOrderReceiverTotal;
+		} else {
+			total = foodOrderReceiverTotal + proFoodOrderReceiverTotal;
+		}
+		
 	%>
 <!DOCTYPE html>
 <html>
@@ -28,9 +40,19 @@ table{border:3px solid black;}
 
 
 				<td colspan=2 id="border2"><font size=5>카드결제</font></td>
-			</tr> 
+			</tr>
+		<% if(foodOrderReceiverNumber == null) { %>
+			<input type="hidden" name="proFoodOrderReceiverNo" value="<%=proFoodOrderReceiverNumber%>">	
+		
+		<% } else if(proFoodOrderReceiverNumber == null) {%>
 			<input type="hidden" name="foodOrderReceiverNo" value="<%=foodOrderReceiverNumber%>">
-				
+		<% } else {%>
+			<input type="hidden" name="foodOrderReceiverNo"
+				value="<%=foodOrderReceiverNumber%>">
+			<input type="hidden" name="proFoodOrderReceiverNo"
+				value="<%=proFoodOrderReceiverNumber%>">
+
+			<% } %>
 			<tr>
 				<td id="border" align="center">구매자이메일 : </td>
 				<td id="border" align="left"><input type="text" name="memberEmail" value=<%=memberEmail %> readonly="readonly"/></td>
@@ -60,7 +82,7 @@ table{border:3px solid black;}
 			
 			<tr>
 				<td id="border" align="center">총 금액 : </td>
-				<td id="border" align="left"><input type="number" name="foodPayPrice" value="<%=foodOrderReceiverTotal %>" readonly="readonly"  /><br/>
+				<td id="border" align="left"><input type="number" name="foodPayPrice" value="<%=total %>" readonly="readonly"  /><br/>
 				</td>
 			</tr>
 			<tr>
