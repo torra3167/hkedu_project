@@ -127,6 +127,44 @@
 		order by food_no
 	</select>
 	
+	<select id="selectOrderedFoodList1" parameterType="String" resultMap="sellerFoodListMap">
+		SELECT 
+		f.food_no, f.seller_email, f.food_cat_a_no, f.food_cat_b_no, f.food_cat_c_no, food_name, food_quant, food_expiry_date,
+		food_origin, food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size,
+		food_original, food_stored
+		FROM
+		food_pay fp, food_order fo, food f
+		WHERE 
+		fp.food_order_receiver_no = fo.food_order_receiver_no
+		AND fo.food_no = f.food_no
+		AND fp.member_email = #{memberEmail}
+		ORDER BY fp.FOOD_PAY_DATE
+	</select>
+	
+	
+	<select id="selectOrderedFoodList2" parameterType="String" resultMap="sellerFoodListMap">
+		SELECT 
+		f.food_no, f.seller_email, f.food_cat_a_no, f.food_cat_b_no, f.food_cat_c_no, food_name, food_quant, food_expiry_date,
+		food_origin, food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size,
+		food_original, food_stored
+		FROM
+		pro_food_pay pfp, pro_food_order pfo, food f
+		WHERE 
+		pfp.pro_food_order_receiver_no  = pfo.pro_food_order_receiver_no 
+		AND pfo.food_no = f.food_no
+		AND pfp.member_email = 'member1'
+        ORDER BY pfp.pro_food_pay_date
+	</select>
+	
+	<select id="selectFoodByFoodNo" parameterType="Integer" resultMap="sellerFoodListMap">
+		SELECT
+		food_no, seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, food_name, food_quant, food_expiry_date,
+		food_origin, food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size,
+		food_original, food_stored
+		FROM
+		food
+		WHERE food_no = #{foodNo}
+	</select>
 	
 	<resultMap type="Food" id="selectSellerFoodMap">
 		<id column="food_no" jdbcType="BIGINT" property="foodNo" />
@@ -378,6 +416,8 @@
 	FROM food_review_report
 	WHERE food_report_regdate = #{foodReportRegdate}
 </delete>
+
+	
 
 
 </mapper>

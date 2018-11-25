@@ -46,8 +46,8 @@ public class FoodService {
 	private FoodRepository foodRepository;
 	static final String filePath =
 //			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
 	
 	
@@ -570,6 +570,16 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 		} else {
 			System.out.println("식품리뷰신고 삭제 성공!");
 		}
+	}
+
+	public List<Food> selectOrderedFoodList(String memberEmail) {
+		List<Food> foodOrderList = foodRepository.selectOrderedFoodList(memberEmail);
+		return foodOrderList;
+	}
+
+	public Food selectFoodByFoodNo(int foodNo) {
+		Food selectedFood = foodRepository.selectFoodByFoodNo(foodNo);
+		return selectedFood;
 	}
 
 

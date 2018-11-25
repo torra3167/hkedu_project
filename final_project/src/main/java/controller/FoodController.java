@@ -281,10 +281,27 @@ public class FoodController {
 	}
 	
 	
-	@RequestMapping(value="/food_record.gom", method=RequestMethod.GET)
+	@RequestMapping(value="/record.gom", method=RequestMethod.GET)
     public String foodReviewReportDelete(Model model) {
-		model.addAttribute("iPage", "food/food_record.jsp");
+		model.addAttribute("iPage", "food/dietRecord.jsp");
 		return "index";
 	}
+	
+	@RequestMapping(value="/FoodSearchWindow.gom", method=RequestMethod.GET)
+	public String foodSearchWindow(Model model, HttpSession session) {
+		//식단기록에 사용할 식품결제내역
+		List<Food> orderedFoodList = foodService.selectOrderedFoodList((String)session.getAttribute("email"));
+		model.addAttribute("orderedFoodList", orderedFoodList);
+		return "food/foodSearchWindow";
+	}
+	
+//	@RequestMapping(value="/selectedFoodOption.gom", method=RequestMethod.POST)
+//	public String selectedFoodOption(@RequestParam("SelectOrderedFood")int foodNo, Model model) { 
+//		System.out.println("cntlr selectedFoodOption foodNo : " + foodNo);
+//		Food selectedFood = foodService.selectFoodByFoodNo(foodNo);
+//		model.addAttribute("selectedFood", selectedFood);
+//		model.addAttribute("iPage", "food/dietRecord.jsp");
+//        return "/index";
+//	}
 	
 }
