@@ -23,7 +23,7 @@
 			</div>
 			<div class="btn">
 				<button type="button" class="btn btn-primary" onclick="location.href='index'">메인으로</button>
-				<button type="button" class="btn btn-primary" onclick="history.go(-1);">뒤로가기</button>
+				<button type="button" class="btn btn-primary" onclick="location.href='coach_list.gom'">리스트로</button>
 			</div>
 		</div>
 	</div>
@@ -35,9 +35,7 @@
 			</div>
 			<div class="btn">
 				<button type="button" class="btn btn-primary" onclick="location.href='index'">메인으로</button>
-				<% if(id=="admin"){ %>
-				<button type="button" class="btn btn-primary" onclick="location.href='index'">메인으로</button>
-				<%} %>
+				<button type="button" class="btn btn-primary" onclick="location.href='coach_list.gom'">리스트로</button>
 			</div>
 		</div>
 	</div>
