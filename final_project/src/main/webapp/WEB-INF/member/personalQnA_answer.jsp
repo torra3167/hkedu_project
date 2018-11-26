@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <% String receiver=(String)request.getAttribute("receiver");
-	String id=(String)request.getAttribute("id");
-	String admin="admin";
+	String id=(String)session.getAttribute("email");
+	System.out.println("jsp "+id);
 	%>
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="../css/custom-1.css">
 </head>
 <body>
- <% if(id.equals(admin)){ %> 
+ <% if(id=="admin"){ %> 
  	<div class="container">
 		<form action="personalQna_answer.gom" method="post">
 			<div right="left">
@@ -46,7 +46,7 @@
 			<input type="reset" class="btn btn-secondary" value="다시 작성"/>
 		</form>
 	</div>
- <%} else {%>
+ <%} if(id!="admin") {%>
  <div class="container">
 		관리자 메뉴입니다. 로그인 후 이용해주십시오.<br>
 		<button type="button" value="메인으로" class="btn btn-primary" onclick="location.href='index'">메인으로</button>
