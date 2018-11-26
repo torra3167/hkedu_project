@@ -74,7 +74,6 @@
     		<div>지방 : <%=foodAndApplication.getFoodFat() %>g</div>
     		<div>열량 : <%=foodAndApplication.getFoodCal() %>kcal</div>
     		<div>유통기한 : <%=foodAndApplication.getFoodExpiryDate() %></div>
-    		<div>원산지 :<%=foodAndApplication.getFoodOrigin() %></div>
     		<div>소비자상담관련 업체 연락처 <%=foodAndApplication.getStoreTelphone() %></div>
     		<div>업체 주소 <%=foodAndApplication.getStoreAddr() %></div>
     	</div>

@@ -90,9 +90,6 @@ function funcAca() {
 				<label>식품 유통기한</label> <form:input path="foodExpiryDate" class="form-control"/>
 			</div>
 			<div class="form-group">
-				<label>식품재료 원산지</label> <form:input path="foodOrigin" class="form-control"/>
-			</div>
-			<div class="form-group">
 				<label>식품 탄수화물 함량(g)</label> <form:input path="foodCarbo" class="form-control"/>
 			</div>
 			<div class="form-group">

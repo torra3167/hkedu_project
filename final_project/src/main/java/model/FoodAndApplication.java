@@ -12,7 +12,6 @@ public class FoodAndApplication implements Serializable{
 	private String foodName;
 	private int foodQuant;
 	private String foodExpiryDate;
-	private String foodOrigin;
 	private int foodSale;
 	private int foodPrice;
 	private int foodCarbo;
@@ -28,9 +27,9 @@ public class FoodAndApplication implements Serializable{
 	public FoodAndApplication() {
 	}
 	public FoodAndApplication(int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo,
-			String foodName, int foodQuant, String foodExpiryDate, String foodOrigin, int foodSale, int foodPrice,
-			int foodCarbo, int foodProtein, int foodFat, int foodCal, Long foodSize, String foodOriginal,
-			String foodStored, String storeName, String storeTelphone, String storeAddr) {
+			String foodName, int foodQuant, String foodExpiryDate, int foodSale, int foodPrice, int foodCarbo,
+			int foodProtein, int foodFat, int foodCal, Long foodSize, String foodOriginal, String foodStored,
+			String storeName, String storeTelphone, String storeAddr) {
 		this.foodNo = foodNo;
 		this.sellerEmail = sellerEmail;
 		this.foodCatANo = foodCatANo;
@@ -39,7 +38,6 @@ public class FoodAndApplication implements Serializable{
 		this.foodName = foodName;
 		this.foodQuant = foodQuant;
 		this.foodExpiryDate = foodExpiryDate;
-		this.foodOrigin = foodOrigin;
 		this.foodSale = foodSale;
 		this.foodPrice = foodPrice;
 		this.foodCarbo = foodCarbo;
@@ -100,12 +98,6 @@ public class FoodAndApplication implements Serializable{
 	}
 	public void setFoodExpiryDate(String foodExpiryDate) {
 		this.foodExpiryDate = foodExpiryDate;
-	}
-	public String getFoodOrigin() {
-		return foodOrigin;
-	}
-	public void setFoodOrigin(String foodOrigin) {
-		this.foodOrigin = foodOrigin;
 	}
 	public int getFoodSale() {
 		return foodSale;

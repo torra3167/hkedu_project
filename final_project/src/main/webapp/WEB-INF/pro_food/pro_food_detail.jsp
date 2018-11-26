@@ -60,7 +60,6 @@
 					<td><%=foodProFoodList.getFoodName() %></td>
 					<td><%=foodProFoodList.getFoodQuant() %></td>
 					<td><%=foodProFoodList.getFoodExpiryDate() %></td>
-					<td><%=foodProFoodList.getFoodOrigin() %></td>
 					<td><%=foodProFoodList.getFoodCarbo() %></td>
 					<td><%=foodProFoodList.getFoodProtein() %></td>
 					<td><%=foodProFoodList.getFoodFat() %></td>

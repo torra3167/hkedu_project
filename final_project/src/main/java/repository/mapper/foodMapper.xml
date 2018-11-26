@@ -18,11 +18,11 @@
 	<insert id="insertFood" parameterType="Food">
 		INSERT INTO food
 		(food_no, seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, food_name,
-		food_quant, food_expiry_date, food_origin, food_sale,
+		food_quant, food_expiry_date, food_sale,
 		food_price, food_carbo, food_protein, food_fat, food_cal, food_size, food_original, food_stored)
 		VALUES (#{foodNo}, #{sellerEmail}, #{foodCatANo}, #{foodCatBNo},
 		#{foodCatCNo}, #{foodName}, #{foodQuant}, #{foodExpiryDate},
-		#{foodOrigin}, #{foodSale}, #{foodPrice}, #{foodCarbo},
+		#{foodSale}, #{foodPrice}, #{foodCarbo},
 		#{foodProtein}, #{foodFat}, #{foodCal}, #{foodSize}, #{foodOriginal}, #{foodStored})
 	</insert>
 	
@@ -88,7 +88,6 @@
 		FOOD_NAME = #{foodName},   
 		FOOD_QUANT = #{foodQuant},
 		FOOD_EXPIRY_DATE = #{foodExpiryDate},
-		FOOD_ORIGIN = #{foodOrigin},    
 		FOOD_SALE = #{foodSale},       
 		FOOD_PRICE = #{foodPrice},    
 		FOOD_CARBO = #{foodCarbo},    
@@ -110,7 +109,6 @@
 		<result column="food_name" jdbcType="VARCHAR" property="foodName" />
 		<result column="food_quant" jdbcType="BIGINT" property="foodQuant" />
 		<result column="food_expiry_date" jdbcType="VARCHAR" property="foodExpiryDate" />
-		<result column="food_origin" jdbcType="BIGINT" property="foodOrigin" />
 		<result column="food_sale" jdbcType="BIGINT" property="foodSale" />
 		<result column="food_price" jdbcType="BIGINT" property="foodPrice" />
 		<result column="food_carbo" jdbcType="BIGINT" property="foodCarbo" />
@@ -125,7 +123,7 @@
 	<select id="sellerFoodList" parameterType="String" resultMap="sellerFoodListMap">
 		SELECT
 		food_no, seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, food_name, food_quant, food_expiry_date,
-		food_origin, food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size,
+		food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size,
 		food_original, food_stored
 		FROM
 		food
@@ -136,7 +134,7 @@
 	<select id="selectOrderedFoodList1" parameterType="String" resultMap="sellerFoodListMap">
 		SELECT 
 		f.food_no, f.seller_email, f.food_cat_a_no, f.food_cat_b_no, f.food_cat_c_no, food_name, food_quant, food_expiry_date,
-		food_origin, food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size,
+		food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size,
 		food_original, food_stored
 		FROM
 		food_pay fp, food_order fo, food f
@@ -144,14 +142,14 @@
 		fp.food_order_receiver_no = fo.food_order_receiver_no
 		AND fo.food_no = f.food_no
 		AND fp.member_email = #{memberEmail}
-		ORDER BY fp.FOOD_PAY_DATE
+		ORDER BY fp.food_pay_date
 	</select>
 	
 	
 	<select id="selectOrderedFoodList2" parameterType="String" resultMap="sellerFoodListMap">
 		SELECT 
 		f.food_no, f.seller_email, f.food_cat_a_no, f.food_cat_b_no, f.food_cat_c_no, food_name, food_quant, food_expiry_date,
-		food_origin, food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size,
+		food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size,
 		food_original, food_stored
 		FROM
 		pro_food_pay pfp, pro_food_order pfo, food f
@@ -162,15 +160,15 @@
         ORDER BY pfp.pro_food_pay_date
 	</select>
 	
-	<select id="selectFoodByFoodNo" parameterType="Integer" resultMap="sellerFoodListMap">
-		SELECT
-		food_no, seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, food_name, food_quant, food_expiry_date,
-		food_origin, food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size,
-		food_original, food_stored
-		FROM
-		food
-		WHERE food_no = #{foodNo}
-	</select>
+<!-- 	<select id="selectFoodByFoodNo" parameterType="Integer" resultMap="sellerFoodListMap"> -->
+<!-- 		SELECT -->
+<!-- 		food_no, seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, food_name, food_quant, food_expiry_date, -->
+<!-- 		food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size, -->
+<!-- 		food_original, food_stored -->
+<!-- 		FROM -->
+<!-- 		food -->
+<!-- 		WHERE food_no = #{foodNo} -->
+<!-- 	</select> -->
 	
 	<resultMap type="Food" id="selectSellerFoodMap">
 		<id column="food_no" jdbcType="BIGINT" property="foodNo" />
@@ -181,7 +179,6 @@
 		<result column="food_name" jdbcType="VARCHAR" property="foodName" />
 		<result column="food_quant" jdbcType="BIGINT" property="foodQuant" />
 		<result column="food_expiry_date" jdbcType="VARCHAR" property="foodExpiryDate" />
-		<result column="food_origin" jdbcType="BIGINT" property="foodOrigin" />
 		<result column="food_sale" jdbcType="BIGINT" property="foodSale" />
 		<result column="food_price" jdbcType="BIGINT" property="foodPrice" />
 		<result column="food_carbo" jdbcType="BIGINT" property="foodCarbo" />
@@ -195,7 +192,7 @@
 	
 	<select id="selectSellerFood" parameterType="Integer" resultMap="selectSellerFoodMap">
 		SELECT
-		food_no, seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, food_name, food_quant, food_expiry_date, food_origin,
+		food_no, seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, food_name, food_quant, food_expiry_date,
 		food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size, food_original, food_stored
 		FROM food
 		WHERE food_no = #{foodNo}
@@ -217,7 +214,6 @@
 		<result column="food_name" jdbcType="VARCHAR" property="foodName" />
 		<result column="food_quant" jdbcType="BIGINT" property="foodQuant" />
 		<result column="food_expiry_date" jdbcType="VARCHAR" property="foodExpiryDate" />
-		<result column="food_origin" jdbcType="BIGINT" property="foodOrigin" />
 		<result column="food_sale" jdbcType="BIGINT" property="foodSale" />
 		<result column="food_price" jdbcType="BIGINT" property="foodPrice" />
 		<result column="food_carbo" jdbcType="BIGINT" property="foodCarbo" />
@@ -236,7 +232,7 @@
 <select id="selectFoodList" resultMap="selectFoodListMap">
 		SELECT
 		food_no, f.seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, 
-		food_name, food_quant, food_expiry_date, food_origin, food_sale,
+		food_name, food_quant, food_expiry_date, food_sale,
 		food_price, food_carbo, food_protein, food_fat, food_cal, food_size, food_original,
 		food_stored, sa.store_name, sa.store_telphone, sa.store_addr
 		FROM food f, seller_application sa
@@ -248,7 +244,7 @@
 <select id="selectFood" parameterType="Integer" resultMap="selectFoodListMap">
 		SELECT
 		food_no, f.seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, 
-		food_name, food_quant, food_expiry_date, food_origin, food_sale,
+		food_name, food_quant, food_expiry_date, food_sale,
 		food_price, food_carbo, food_protein, food_fat, food_cal, food_size, food_original,
 		food_stored, sa.store_name, sa.store_telphone, sa.store_addr
 		FROM food f, seller_application sa
