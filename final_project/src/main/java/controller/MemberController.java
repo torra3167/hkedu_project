@@ -2,7 +2,9 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -249,5 +252,62 @@ public class MemberController {
 		model.addAttribute("iPage", "survey/survey_success_notMember.jsp");
 		return "index";
 	}
+	@RequestMapping(value = "/member_list.gom", method = RequestMethod.GET)
+	public String memberList(Model model, HttpSession session) {
+		model.addAttribute("iPage", "admin/member_list.jsp");
+		String id = (String) session.getAttribute("email");
+		List<Member> memberList=memberService.memberList();
+		model.addAttribute("id", id);
+		model.addAttribute("memberList", memberList);
+		System.out.println("CONTROLLER MemberList GET");
+		return "index";
+	}
 	
+	@RequestMapping(value = "/member_list_delete.gom")
+	public String memberListDelete(@RequestParam("email")String email, Model model, HttpSession session) {
+		model.addAttribute("iPage", "admin/member_delete.jsp");
+		System.out.println("CONTROLLER memberListDelete "+email);
+		int result = memberService.deleteMemberList(email);
+		if (result > 0) {
+			model.addAttribute("result", result);
+			System.out.println("CONTROLLER MemberWithdrawal POST "+result);
+			return "index";
+		} else {
+			return "redirect:/index";
+		}
+	}
+	
+	@RequestMapping(value = "/member_detail.gom", method = RequestMethod.GET)
+	public String memberListDetail(@RequestParam("email")String email, HttpServletRequest request, Model model, HttpSession session) {
+		model.addAttribute("iPage", "admin/member_detail.jsp");
+		Member member = memberService.memberInfo(email);
+		model.addAttribute("member", member);
+		String id=(String)session.getAttribute("email");
+		model.addAttribute("id", id);
+		System.out.println("CONTROLLER MemberList GET");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/member_detail.gom", method = RequestMethod.POST)
+	public String memberListUpdate(MemberUpdateCommand memberUpdateCommand,HttpSession session, HttpServletRequest request, Model model) {
+		model.addAttribute("iPage", "member/member_update.jsp");
+		Integer result = memberService.updateMember(memberUpdateCommand);
+		System.out.println("CONTROLLER MemberInfoUpdate POST "+memberUpdateCommand.getMemberEmail());
+		String id=(String)session.getAttribute("email");
+		model.addAttribute("id", id);
+		if (result > 0) {
+			model.addAttribute("result", result);
+			return "index";
+		} else {
+			return "redirect:/index";
+		}
+	}
+	
+	@ResponseBody
+    @RequestMapping(value = "/checkSignup", method = RequestMethod.POST)
+    public String checkSignup(HttpServletRequest request, Model model) {
+        String id = request.getParameter("id");
+        int rowcount = memberService.checkSignup(id);
+        return String.valueOf(rowcount);
+    }
 }

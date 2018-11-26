@@ -21,6 +21,7 @@
 <bean id="cartS" class="service.CartService"></bean>
 <bean id="noticeService" class="service.NoticeService"></bean>
 <bean id="emailService" class="service.EmailService"></bean>
+<bean id="adminService" class="service.AdminService"></bean>
 
 
 <!-- Repository  -->
@@ -33,6 +34,7 @@
 <bean id="cartR" class="repository.CartRepository"></bean>
 <bean id="noticeRepository" class="repository.NoticeRepository"></bean>
 <bean id="emailRepository" class="repository.EmailRepository"></bean>
+<bean id="adminRepository" class="repository.AdminRepository"></bean>
 
 
 </beans>

@@ -1,9 +1,13 @@
 package service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import command.FindIDCommand;
 import command.MemberJoinCommand;
 import command.MemberSurveyCommand;
@@ -105,5 +109,22 @@ public class MemberService {
 			System.out.println("SURVEY UPDATE FALE");
 		}
 		return i;
+	}
+	public List<Member> memberList() {
+		List<Member> memberList=new ArrayList<Member>();
+		memberList=memberRepository.memberList();
+		System.out.println("MEMBERSERVICE MemberList");
+		return memberList;
+	}
+
+	public int deleteMemberList(String email) {
+		System.out.println("MEMBERSERVICE DeleteMemberList " + email);
+		int result = memberRepository.deleteMemberList(email);
+		return result;
+	}
+
+	public int checkSignup(String id) {
+		int result=memberRepository.checkEmail(id);
+		return result;
 	}
 }

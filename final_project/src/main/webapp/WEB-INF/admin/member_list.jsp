@@ -1,34 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*" %>
-    
-   
-    
-    
+    pageEncoding="UTF-8" import="java.util.*, model.Member" %>
+<%
+	List<Member> memberList=(List<Member>)request.getAttribute("memberList");
+	Integer result=memberList.size();
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>member_list.jsp</title>
+<title>멤버 리스트</title>
 </head>
 <body>
-
-    	
-<table border=10 width=300 align=center>
-
-    	
-	<tr><td colspan=3>회원 목록</td></tr>
-	<tr><td>아이디</td><td>이름</td><td>삭제</td></tr>
-	
-	<tr><td><a href="MemberInfoAction.sh?id=">11</a></td>
-		<td>123</td>
+<table>
+	<tr>
+		<td colspan=3>회원 목록</td>
+	</tr>
+	<tr>
+		<td>아이디</td>
+		<td>이름</td>
+		<td>삭제</td>
+	</tr>
+	<%if(result>0){ %>
+	<%
+    		for(Member member:memberList){
+    	%>
+	<tr>
+		<td><a href="member_detail.gom?email=<%= member.getMemberEmail() %>"><%= member.getMemberEmail() %></a></td>
+		<td><%= member.getMemberName() %></td>
 		<td>
-		
-			<a href="MemberDeleteAction.sh?id=">삭제</a>
-			
+			<a href="member_list_delete.gom?email=<%= member.getMemberEmail() %>">삭제</a>
 		</td>
 	</tr>
-
+	<%} %>
+	<%} else if(result==0||result==null){ %>
+		<tr>
+		<td colspan="3">회원이 존재하지 않습니다.</td>
+	</tr>
+	<%} %>
 </table>
-
 </body>
 </html>

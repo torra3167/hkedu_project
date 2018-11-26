@@ -61,6 +61,7 @@
  		<mapper resource="repository/mapper/cartMapper.xml"/>
  		<mapper resource="repository/mapper/noticeMapper.xml"/>
  		<mapper resource="repository/mapper/emailMapper.xml"/>
+ 		<mapper resource="repository/mapper/adminMapper.xml"/>
  	
  	
  	</mappers>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis-org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="repository.mapper.adminMapper">
+<cache></cache>
+<resultMap type="Coach" id="coachMap">
+	<id column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail"/>
+	<result column="COACH_PW" jdbcType="VARCHAR" property="coachPw"/>
+	<result column="COACH_NAME" jdbcType="VARCHAR" property="coachName"/>
+	<result column="COACH_PHOTO" jdbcType="VARCHAR" property="coachPhoto"/>
+	<result column="COACH_CAREER" jdbcType="VARCHAR" property="coachCareer"/>
+</resultMap>
+<resultMap type="Coach" id="coachList">
+	<id column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail"/>
+	<result column="COACH_NAME" jdbcType="VARCHAR" property="coachName"/>
+</resultMap>
+<select id="selectByEmail" parameterType="Coach" resultMap="coachMap">
+		select COACH_EMAIL, COACH_PW, COACH_NAME, COACH_PHOTO, COACH_CAREER
+		from coach where
+		COACH_EMAIL=#{email}
+	</select>
+<delete id="deleteCoach">
+	delete from Coach where COACH_EMAIL=#{email}
+</delete>
+<update id="updateCoach">
+	update coach
+	<set>
+		COACH_PW=#{coachPw}
+		COACH_NAME=#{coachName}
+		COACH_CAREER=#{coachCareer}
+	</set>
+	<where>
+		COACH_EMAIL=#{coachEmail}
+	</where>
+</update>
+<select id="coachList" resultMap="coachList">
+	select COACH_EMAIL, COACH_NAME from COACH
+</select>
+</mapper>

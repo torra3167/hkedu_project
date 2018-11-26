@@ -305,13 +305,12 @@
 
 
 			<div class="navbar-nav ml-md-auto">
-				<a class="nav-item nav-link" href="member_join.gom" >코치페이지</a> 
+				<a class="nav-item nav-link" href="coach_list.gom" >코치 리스트</a> 
 				 &nbsp;
 				<a class="nav-item nav-link" href="member_join.gom" >판매자페이지</a> 
 			 	&nbsp;
-				<a class="nav-item nav-link" href="member_join.gom" >회원마이페이지</a> 
+				<a class="nav-item nav-link" href="member_list.gom" >회원 리스트</a> 
 				 &nbsp;
-		
 				<a class="nav-item nav-link" href="logout.gom" >로그아웃</a>	
 				 
 		

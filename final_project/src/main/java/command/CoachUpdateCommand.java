@@ -1,40 +1,39 @@
-package model;
+package command;
 
-import java.io.Serializable;
-
-@SuppressWarnings("serial")
-public class Coach implements Serializable {
-
-	
+public class CoachUpdateCommand {
 	private String coachEmail;
-	private String coachPw;
+	private String coachPW;
 	private String coachName;
 	private String coachPhoto;
 	private String coachCareer;
+	private String coachDivide;
 	
+	public CoachUpdateCommand() {
+		super();
+	}
 	
-	
-	public Coach(String coachEmail, String coachPw, String coachName, String coachCareer) {
+	public CoachUpdateCommand(String coachEmail, String coachPW, String coachName, String coachPhoto,
+			String coachCareer, String coachDivide) {
 		super();
 		this.coachEmail = coachEmail;
-		this.coachPw = coachPw;
+		this.coachPW = coachPW;
 		this.coachName = coachName;
+		this.coachPhoto = coachPhoto;
 		this.coachCareer = coachCareer;
+		this.coachDivide = coachDivide;
 	}
-	public Coach() {
-		
-	}
+	
 	public String getCoachEmail() {
 		return coachEmail;
 	}
 	public void setCoachEmail(String coachEmail) {
 		this.coachEmail = coachEmail;
 	}
-	public String getCoachPw() {
-		return coachPw;
+	public String getCoachPW() {
+		return coachPW;
 	}
-	public void setCoachPw(String coachPw) {
-		this.coachPw = coachPw;
+	public void setCoachPW(String coachPW) {
+		this.coachPW = coachPW;
 	}
 	public String getCoachName() {
 		return coachName;
@@ -54,6 +53,10 @@ public class Coach implements Serializable {
 	public void setCoachCareer(String coachCareer) {
 		this.coachCareer = coachCareer;
 	}
-	
-	
+	public String getCoachDivide() {
+		return coachDivide;
+	}
+	public void setCoachDivide(String coachDivide) {
+		this.coachDivide = coachDivide;
+	}
 }

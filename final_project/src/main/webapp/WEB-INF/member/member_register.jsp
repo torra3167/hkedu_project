@@ -48,7 +48,7 @@
 		}
 		frm.submit();
 	}
-</script>
+    </script>
 </head>
 <body>
 	<div class="container mt-3">
@@ -57,8 +57,8 @@
 				<div class="form-group">
 					<label>이메일</label>
 					<form:input path="memberEmail" type="email" class="form-control" id="memberEmail" />
-					<button type="button" class="btn btn-primary" onclick="">중복
-						체크</button>
+					<div id="checkMsg"></div>
+					<button type="button" id="checkbtn" class="btn btn-default" onclick="">중복확인</button>
 				</div>
 				<div class="form-group">
 					<label>비밀번호</label>
