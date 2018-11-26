@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 <%	Coach coach=(Coach)request.getAttribute("coach");
 	String id=(String)session.getAttribute("email");
+	System.out.println();
 	%>
 <!doctype html>
 <html>
@@ -13,7 +14,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
   </head>
   <body>
-<% if(id!="admin"){ %>
+<% if(!id.equals("admin")){ %>
  	<div class="container mt-3">
  		<div class="board">
  			로그인해주십시오.
@@ -24,7 +25,7 @@
   <%} else { %> 
     <div class="row">
     <div class="container mt-3 col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4" >
-    <form:form commandName="member" action="member_Detail.gom" method="POST">
+    <form:form commandName="coach" action="coach_detail.gom" method="POST">
         <div class="form-group">
           <label>이메일</label>
           <form:input path="coachEmail" class="form-control" value="${coach.coachEmail}" readonly="true"/>

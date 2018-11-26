@@ -22,7 +22,7 @@
 <delete id="deleteCoach">
 	delete from Coach where COACH_EMAIL=#{email}
 </delete>
-<update id="updateCoach">
+<update id="updateCoach" parameterType="coach">
 	update coach
 	<set>
 		COACH_PW=#{coachPw}

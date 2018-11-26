@@ -35,8 +35,8 @@
 			</div>
 			<div class="btn">
 				<button type="button" class="btn btn-primary" onclick="location.href='index'">메인으로</button>
-				<% if(id=="admin"){ %>
-				<button type="button" class="btn btn-primary" onclick="location.href='index'">메인으로</button>
+				<% if(id.equals("admin")){ %>
+				<button type="button" class="btn btn-primary" onclick="location.href='member_list.gom'">메인으로</button>
 				<%} %>
 			</div>
 		</div>

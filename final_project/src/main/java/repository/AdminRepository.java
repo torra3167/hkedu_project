@@ -56,6 +56,9 @@ public class AdminRepository extends AbstractRepository {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		String statement = namespace + ".updateCoach";
 		System.out.println("AdminRepository UpdateCoach " + coach.getCoachEmail());
+		System.out.println("AdminRepository UpdateCoach " + coach.getCoachName());
+		System.out.println("AdminRepository UpdateCoach " + coach.getCoachPw());
+		System.out.println("AdminRepository UpdateCoach " + coach.getCoachCareer());
 		try {
 			Integer result = sqlSession.update(statement, coach);
 			if (result > 0) {
