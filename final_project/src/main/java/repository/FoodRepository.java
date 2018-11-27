@@ -430,14 +430,14 @@ public class FoodRepository extends AbstractRepository{
 		}
 	}
 
-//	public Food selectFoodByFoodNo(int foodNo) {
-//		sqlSession = getSqlSessionFactory().openSession();
-//		try {
-//		return (Food)sqlSession.selectOne(namespace + ".selectFoodByFoodNo", foodNo);
-//		} finally {
-//			sqlSession.close();
-//		}
-//	}
+	public Food selectFoodByFoodNo(int foodNo) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+		return (Food)sqlSession.selectOne(namespace + ".selectFoodByFoodNo", foodNo);
+		} finally {
+			sqlSession.close();
+		}
+	}
 	
 	
 }

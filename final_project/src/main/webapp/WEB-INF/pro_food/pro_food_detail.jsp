@@ -60,6 +60,7 @@
 					<td><%=foodProFoodList.getFoodName() %></td>
 					<td><%=foodProFoodList.getFoodQuant() %></td>
 					<td><%=foodProFoodList.getFoodExpiryDate() %></td>
+					<td><%=foodProFoodList.getFoodOrigin() %></td>
 					<td><%=foodProFoodList.getFoodCarbo() %></td>
 					<td><%=foodProFoodList.getFoodProtein() %></td>
 					<td><%=foodProFoodList.getFoodFat() %></td>
@@ -76,7 +77,7 @@
 		</table>
 		
 		<div>
-	    			<form action="cart_addList.gom" method="post">
+	    			<form action="pro_cart_addList.gom" method="post">
 						<div class="form-row">
 			                <div class="form-group col-sm-2">
 			                	<label>수량</label>

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class Cart implements Serializable {
-	
+	//식품
 	private int foodNo;
 	private String sellerEmail;
 	private int foodCatANo;
@@ -15,14 +15,35 @@ public class Cart implements Serializable {
 	private String foodImage;
 	//전체상품갯수
 	private int demandQty;
-
 	
+	//프로그램
 	
+	private int proNo;
+	private String coachEmail;
+	private String proName;
+	private String proStored;
+	private String proContent;
+	private int proPrice;
 	
 	public Cart() {
 	}
 	
 	
+	
+	
+	public Cart(int proNo, String coachEmail, String proName, String proStored, String proContent, int proPrice) {
+		super();
+		this.proNo = proNo;
+		this.coachEmail = coachEmail;
+		this.proName = proName;
+		this.proStored = proStored;
+		this.proContent = proContent;
+		this.proPrice = proPrice;
+	}
+
+
+
+
 	public Cart(int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo, String foodName,
 			int foodPrice, String foodImage, int demandQty) {
 		super();
@@ -45,6 +66,71 @@ public class Cart implements Serializable {
 		this.foodImage = foodImage;
 		this.demandQty = demandQty;
 	}
+	
+
+	
+	
+	
+	public int getProNo() {
+		return proNo;
+	}
+
+
+	public void setProNo(int proNo) {
+		this.proNo = proNo;
+	}
+
+
+	public String getCoachEmail() {
+		return coachEmail;
+	}
+
+
+	public void setCoachEmail(String coachEmail) {
+		this.coachEmail = coachEmail;
+	}
+
+
+	public String getProName() {
+		return proName;
+	}
+
+
+	public void setProName(String proName) {
+		this.proName = proName;
+	}
+
+
+	public String getProStored() {
+		return proStored;
+	}
+
+
+	public void setProStored(String proStored) {
+		this.proStored = proStored;
+	}
+
+
+	public String getProContent() {
+		return proContent;
+	}
+
+
+	public void setProContent(String proContent) {
+		this.proContent = proContent;
+	}
+
+
+	public int getProPrice() {
+		return proPrice;
+	}
+
+
+	public void setProPrice(int proPrice) {
+		this.proPrice = proPrice;
+	}
+
+
 	
 	
 	

@@ -20,6 +20,8 @@ import model.ProFoodCart;
 import model.ProFoodOrder;
 import model.ProFoodOrderReceiver;
 import model.ProFoodPay;
+import model.ProOrder;
+import model.ProPay;
 import repository.PayRepository;
 
 @Service
@@ -35,7 +37,7 @@ public class PayService {
 	@Autowired
 	private PayRepository payR;
 
-	public void orderList(String[] foodNo, HttpSession session, Model model) {
+	public void orderList(String[] foodNo, HttpSession session) {
 		
 		
 		cartList = (List)session.getAttribute("cartList");
@@ -291,6 +293,104 @@ public class PayService {
 			System.out.println("PRO FOOD PAY INSERT 성공");
 		} else {
 			System.out.println("PRO FOOD PAY INSERT 실패");
+		}
+	}
+
+
+
+	public void programFoodOrderList(String[] proNo, HttpSession session) {
+		List programCartList = (List)session.getAttribute("programCartList");
+		
+		System.out.println("PROGRAMFOODORDERLIST !!!!!");
+	
+		Cart selectedCart = null;
+		
+		//장바구니에서 선택한 물품들을 새로운 카트리스트에 저장.
+		for(int i = 0 ; i < programCartList.size(); i++) {
+			cart = (Cart)programCartList.get(i);
+			for(int j = 0; j < proNo.length ;j++) {
+				if(cart.getProNo()==Integer.parseInt(proNo[j])) {
+					
+					
+					selectedCart = new Cart(cart.getProNo(), cart.getCoachEmail(), cart.getProName(), cart.getProStored(),
+							cart.getProContent(), cart.getProPrice());
+					
+					System.out.println(cart.getProPrice() + "   ~~~~~~PRO PRICE");
+
+					
+				}
+			}
+		System.out.println("CART NULL? " + selectedCart);	
+		}
+		//장바구니에서 선택한 물품들을 장바구니 항목에서 제거.
+		
+		for(int i = 0; i < proNo.length; i++) {
+			for(int j = 0; j < programCartList.size(); j++) {
+				cart = (Cart)programCartList.get(j);
+				if(Integer.parseInt(proNo[i]) == cart.getProNo()) {
+					programCartList.remove(programCartList.get(j));
+				}
+			}
+		}
+		//장바구니세션 다시저장
+		session.setAttribute("programCartList", programCartList);
+		
+		
+		
+		//-------------------------
+		String memberEmail = (String)session.getAttribute("email");
+		
+		System.out.println("memberEmail" + memberEmail);
+		
+		//이메일 proNo, coachEmail, orderName, total, image
+		 ProOrder proOrder = new ProOrder(memberEmail, cart.getProNo(), cart.getCoachEmail(), 
+				 cart.getProName(), cart.getProPrice(), cart.getProStored());
+		
+		System.out.println(cart.getFoodPrice() + "  PRO ORDER PRICE");
+		
+		
+			session.setAttribute("proOrder", proOrder);
+
+		
+
+		
+	}
+
+
+
+	public void insertProOrder(ProOrder proOrderCommand, HttpSession session) {
+		
+		
+        ProOrder proOrder = (ProOrder)session.getAttribute("proOrder");
+        
+        proOrder.setProOrderTotal(proOrderCommand.getProOrderTotal());
+        
+        Integer proOrderResult = payR.insertProOrder(proOrder);
+		
+		if(proOrderResult < 1) {
+			System.out.println("PRO ORDER 등록실패");
+
+		}
+      
+		
+	
+	}
+
+	public void programPayInsert(ProPay proPay, Model model, HttpSession session) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
+        String regDate = sdf.format(Calendar.getInstance().getTime());
+        proPay.setProPayDate(regDate);
+		
+        ProOrder proOrder = (ProOrder)session.getAttribute("proOrder");
+        
+        proPay.setCoachEmail(proOrder.getCoachEmail());
+        proPay.setProPayDivide((String)session.getAttribute("FoodPayDivide"));
+        
+		Integer programPayInsertResult = payR.programPayInsert(proPay);
+		if(programPayInsertResult > 0) {
+			System.out.println("PAY INSERT 성공");
+		} else {
+			System.out.println("PAY INSERT 실패");
 		}
 	}
 }

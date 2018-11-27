@@ -13,11 +13,20 @@ public class ProgramDetailCommand implements Serializable {
 	private int exerciseCatBNumber;
 	private String exerciseCatAName;
 	private String exerciseCatBName;
+	private int proPrice;
 	
 	
 	
 	
 	
+	
+	
+	public int getProPrice() {
+		return proPrice;
+	}
+	public void setProPrice(int proPrice) {
+		this.proPrice = proPrice;
+	}
 	public String getExerciseCatAName() {
 		return exerciseCatAName;
 	}

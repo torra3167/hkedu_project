@@ -45,7 +45,6 @@ public class MemberController {
 		}
 	}
 	
-	
 	@RequestMapping(value="/findID.gom", method=RequestMethod.GET)
 	public String findID(FindIDCommand findIDCommand,Model model) {
 		model.addAttribute("iPage", "login/findID.jsp");

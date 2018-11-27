@@ -12,6 +12,8 @@ import model.FoodPay;
 import model.ProFoodOrder;
 import model.ProFoodOrderReceiver;
 import model.ProFoodPay;
+import model.ProOrder;
+import model.ProPay;
 
 @Repository
 public class PayRepository extends AbstractRepository {
@@ -154,6 +156,46 @@ public class PayRepository extends AbstractRepository {
 		}
 		
 		return proPayInsertResult;
+	}
+
+
+
+	public Integer insertProOrder(ProOrder proOrder) {
+		sqlSession = getSqlSessionFactory().openSession();
+		//번호를 위한 select
+		Integer proOrderNumber = (Integer)sqlSession.selectOne(namespace + ".selectSequenceNumber");
+		System.out.println("proOrderNumber SEQUENCE NUMBER" + proOrderNumber);
+		proOrder.setProOrderNo(proOrderNumber);
+		
+		Integer proOrderInsertResult =  (Integer)sqlSession.insert(namespace + ".insertProOrder", proOrder);
+		
+		if(proOrderInsertResult > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		
+		return proOrderInsertResult;
+	}
+
+
+
+	public Integer programPayInsert(ProPay proPay) {
+		sqlSession = getSqlSessionFactory().openSession();
+		//번호를 위한 select
+		Integer proPayNumber = (Integer)sqlSession.selectOne(namespace + ".selectSequenceNumber");
+		System.out.println("proPayNumber SEQUENCE NUMBER" + proPayNumber);
+		proPay.setProPayNo(proPayNumber);
+		
+		Integer programPayInsertResult =  (Integer)sqlSession.insert(namespace + ".programPayInsert", proPay);
+		
+		if(programPayInsertResult > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		
+		return programPayInsertResult;
 	}
 	
 	

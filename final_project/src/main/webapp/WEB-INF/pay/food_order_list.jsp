@@ -8,7 +8,6 @@
     String email = (String)session.getAttribute("email");
 	List cartList = (List)session.getAttribute("FoodOrderList");
 	List proFoodOrderList = (List)session.getAttribute("proFoodOrderList");
-	System.out.println("PROFOOD SIZE " + proFoodOrderList.size());
     int sum = 0;
      %>
 <!DOCTYPE html>
@@ -38,6 +37,10 @@
 
  	<form:form commandName="foodOrderReceiver" action="food_order_list_insert.gom"> 
  	<form:hidden path="memberEmail" value="<%=email %>"/>
+
+ <% 	if(proFoodOrderList == null) { %>
+	
+<% 	} %>
 	
 <% 	if(proFoodOrderList != null) {
 	 
@@ -62,6 +65,8 @@
 		sum += 	proFoodOrder.getProFoodOrderPrice() * proFoodOrder.getProFoodOrderQuant();
 	} 
  } %>	
+ 
+
 <% 	if(cartList == null) { %>
 	
 <% 	} 

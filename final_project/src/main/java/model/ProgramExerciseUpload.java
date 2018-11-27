@@ -7,6 +7,7 @@ public class ProgramExerciseUpload implements Serializable {
 	
 	private int proNo;
 	private String proContent;
+	private int proPrice;
 	private int exerciseNumber;
 	private int exerciseCatANumber;
 	private int exerciseCatBNumber;
@@ -22,6 +23,21 @@ public class ProgramExerciseUpload implements Serializable {
 	public ProgramExerciseUpload() {
 		
 	}
+
+
+	
+
+	public int getProPrice() {
+		return proPrice;
+	}
+
+
+
+
+	public void setProPrice(int proPrice) {
+		this.proPrice = proPrice;
+	}
+
 
 
 

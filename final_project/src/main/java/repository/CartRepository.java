@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import model.Coach;
 import model.Food;
 import model.FoodProFood;
+import model.Program;
 
 @Repository
 public class CartRepository extends AbstractRepository {
@@ -43,6 +44,24 @@ public class CartRepository extends AbstractRepository {
 			
 			sqlSession.close();
 		}
+	}
+
+
+
+
+	public Program selectProgramByProNo(int proNo) {
+		// TODO Auto-generated method stub
+		sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+			Program program = sqlSession.selectOne("repository.mapper.programMapper.selectProgramByProNo", proNo);
+
+			return program;
+		} finally {
+			
+			sqlSession.close();
+		}
+		
 	}
 	
 	

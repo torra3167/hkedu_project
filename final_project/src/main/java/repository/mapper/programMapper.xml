@@ -4,6 +4,11 @@
 <mapper namespace="repository.mapper.programMapper">
 <cache></cache>
 
+<select id="selectProgramByProNo" parameterType="int" resultMap="programMap">
+	select * from program
+	where pro_no = #{proNo}
+</select>
+
 <select id="selectFoodProFoodOneByProFoodNo" parameterType="Integer" resultMap="foodProFoodMap">
 select 
 pf.PRO_FOOD_NO, pf.FOOD_NO, pf.SELLER_EMAIL, pf.FOOD_CAT_A_NO,
@@ -110,8 +115,9 @@ where pf.food_no = f.food_no
 <resultMap type="ProgramExerciseUpload" id="programExerciseUploadMap">
 
 			<id property="proNo" column="PRO_NO" jdbcType="BIGINT"  />
-			<result property="exerciseContent" column="EXERCISE_CONTENT" jdbcType="VARCHAR"/>			
 			<result property="proContent"  column="PRO_CONTENT" jdbcType="VARCHAR"  />						
+			<result property="proPrice"  column="PRO_PRICE" jdbcType="BIGINT"  />						
+			<result property="exerciseContent" column="EXERCISE_CONTENT" jdbcType="VARCHAR"/>			
 			<result property="exerciseNumber" column="EXERCISE_NUMBER" jdbcType="BIGINT"/>
 			<result property="exerciseCatANumber" column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT"/>
 			<result property="exerciseCatBNumber" column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT"/>
@@ -153,7 +159,6 @@ where pro_no = #{proNo})
 <resultMap type="Program" id="programMap">
 	<id column="PRO_NO" jdbcType="BIGINT" property="proNo"/>	
 	<id column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail"/>	
-	
 	<result column="PRO_NAME" jdbcType="VARCHAR" property="proName"/>	
 	<result column="PRO_SIZE" jdbcType="BIGINT" property="proSize"/>	
 	<result column="PRO_ORIGINAL" jdbcType="VARCHAR" property="proOriginal"/>	
@@ -162,12 +167,13 @@ where pro_no = #{proNo})
 	<result column="PRO_CONTENT" jdbcType="VARCHAR" property="proContent"/>	
 	<result column="PRO_STATUS" jdbcType="VARCHAR" property="proStatus"/>	
 	<result column="PRO_DES" jdbcType="VARCHAR" property="proDes"/>	
+	<result column="PRO_PRICE" jdbcType="BIGINT" property="proPrice"/>	
 </resultMap>
 
 
 <select id="programList" resultMap="programMap">
 	select PRO_NO, COACH_EMAIL, PRO_NAME, PRO_SIZE, PRO_ORIGINAL, PRO_STORED,
-	PRO_REGDATE, PRO_CONTENT, PRO_STATUS, PRO_DES
+	PRO_REGDATE, PRO_CONTENT, PRO_STATUS, PRO_DES, PRO_PRICE
 	from program
 </select>
 
@@ -230,10 +236,10 @@ where pro_no = #{proNo})
 <insert id="insertProgram" parameterType="Program">
 	insert into program
 	(PRO_NO, COACH_EMAIL, PRO_NAME, PRO_SIZE, 
-	PRO_ORIGINAL, PRO_STORED, PRO_REGDATE, PRO_CONTENT)
+	PRO_ORIGINAL, PRO_STORED, PRO_REGDATE, PRO_CONTENT, PRO_PRICE)
 	values
 	(#{proNo}, #{coachEmail}, #{proName}, #{proSize},
-	#{proOriginal}, #{proStored}, #{proRegdate}, #{proContent})
+	#{proOriginal}, #{proStored}, #{proRegdate}, #{proContent}, #{proPrice})
 	
 </insert>
 

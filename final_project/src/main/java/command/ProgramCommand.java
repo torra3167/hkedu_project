@@ -15,12 +15,19 @@ public class ProgramCommand implements Serializable {
 	private String coachEmail;
 	private String exerciseCatAName;
 	private String proContent;
+	private int proPrice;
 	private String[] foodCatANos;
 	private String[] foodCatANames;
 	
 	
 	
 	
+	public int getProPrice() {
+		return proPrice;
+	}
+	public void setProPrice(int proPrice) {
+		this.proPrice = proPrice;
+	}
 	public int getProNo() {
 		return proNo;
 	}

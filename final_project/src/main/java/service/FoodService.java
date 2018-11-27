@@ -108,6 +108,7 @@ public class FoodService {
 					foodRegCommand.getFoodName(),
 					foodRegCommand.getFoodQuant(),
 					foodRegCommand.getFoodExpiryDate(),
+					foodRegCommand.getFoodOrigin(),
 					foodRegCommand.getFoodSale(),
 					foodRegCommand.getFoodPrice(),
 					foodRegCommand.getFoodCarbo(),
@@ -181,6 +182,7 @@ public class FoodService {
 			food.setFoodSale(foodUpdateCommand.getFoodSale());
 			food.setFoodQuant(foodUpdateCommand.getFoodQuant());
 			food.setFoodExpiryDate(foodUpdateCommand.getFoodExpiryDate());
+			food.setFoodOrigin(foodUpdateCommand.getFoodOrigin());
 			food.setFoodCarbo(foodUpdateCommand.getFoodCarbo());
 			food.setFoodProtein(foodUpdateCommand.getFoodProtein());
 			food.setFoodFat(foodUpdateCommand.getFoodFat());
@@ -618,10 +620,10 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 		return foodOrderList;
 	}
 
-//	public Food selectFoodByFoodNo(int foodNo) {
-//		Food selectedFood = foodRepository.selectFoodByFoodNo(foodNo);
-//		return selectedFood;
-//	}
+	public Food selectFoodByFoodNo(int foodNo) {
+		Food selectedFood = foodRepository.selectFoodByFoodNo(foodNo);
+		return selectedFood;
+	}
 
 
 	

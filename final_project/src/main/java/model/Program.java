@@ -16,12 +16,27 @@ public class Program implements Serializable {
 	private String proContent;
 	private String proStatus;
 	private String proDes;
+	private int proPrice;
 	
+	
+
+	public int getProPrice() {
+		return proPrice;
+	}
+
+
+
+	public void setProPrice(int proPrice) {
+		this.proPrice = proPrice;
+	}
+
+
 
 	public Program() {}
 	//프로그램번호, 코치이메일, 프로그램이름, 사이즈, 오리지널, 저장된
 
-
+	
+	
 	
 	public Program(int proNo, String coachEmail, String proName, Long proSize, String proOriginal, String proStored, String proContent) {
 		
@@ -36,6 +51,21 @@ public class Program implements Serializable {
 
 	
 	
+
+	public Program(int proNo, String coachEmail, String proName, Long proSize, String proOriginal, String proStored,
+			String proContent, int proPrice) {
+		super();
+		this.proNo = proNo;
+		this.coachEmail = coachEmail;
+		this.proName = proName;
+		this.proSize = proSize;
+		this.proOriginal = proOriginal;
+		this.proStored = proStored;
+		this.proContent = proContent;
+		this.proPrice = proPrice;
+	}
+
+
 
 	public String getProRegdate() {
 		return proRegdate;

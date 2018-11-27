@@ -7,8 +7,7 @@
 	List<ProgramExerciseUpload> programExerciseUploadList = 
 	(List<ProgramExerciseUpload>) request.getAttribute("ProgramExerciseUpload");
 
-	/* List<ExerciseCatACatB> categoryList = (List<ExerciseCatACatB>) request
-	.getAttribute("CategoryList"); */
+
 
 	ProgramDetailCommand programDetailCommand = (ProgramDetailCommand) request.getAttribute("ProgramDetailCommand");
 %>
@@ -29,11 +28,20 @@
 			<tr>
 				<th>프로그램 번호</th>
 				<th>프로그램 내용</th>
+				<th>가격</th>
+				<th>장바구니</th>
 			</tr>
 
 			<tr class="active">
 				<td><%=programDetailCommand.getProNo()%></td>
 				<td><%=programDetailCommand.getProContent()%></td>
+				<form action="program_cart_addlist.gom" method="post">
+						
+		        <td>가격: <%=programDetailCommand.getProPrice() %></td>
+ 						<input type="text" name="proNo" value="<%=programDetailCommand.getProNo() %>">
+						
+				<td><button type="submit" class="btn btn-primary">장바구니 담기</button><td>
+				</form>
 			</tr>
 		</table>
 		<table class="table table-striped text-center">
@@ -49,7 +57,8 @@
 					<th>저장파일명</th>
 					<th>오리지널파일명</th>
 					<th>구분</th>
-
+					
+					
 				</tr>
 			</thead>
 			<tbody>
@@ -84,8 +93,10 @@
 							width="80" height="80"></a></td>
 					<td><%=programexerciseUpload.getUploadOriginal()%></td>
 					<td><%=programexerciseUpload.getUploadDivide()%></td>
-				</tr>
+				
 
+				
+				</tr>
 				<%
 					}
 				%>

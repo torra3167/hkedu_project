@@ -4,6 +4,22 @@
 <mapper namespace="repository.mapper.payMapper">
 <cache></cache>
 
+<insert id="programPayInsert" parameterType="ProPay">
+	insert into pro_pay
+	(PRO_PAY_NO, PRO_ORDER_NO, MEMBER_EMAIL, PRO_NO, COACH_EMAIL, PRO_PAY_PRICE, PRO_PAY_DIVIDE,
+	PRO_PAY_CARD_NO, PRO_PAY_CARD_M, PRO_PAY_CARD_Y, PRO_PAY_CARD_CVC, PRO_PAY_DATE)
+	values
+	(#{proPayNo}, #{proOrderNo}, #{memberEmail}, #{proNo}, #{coachEmail}, #{proPayPrice},
+	 #{proPayDivide}, #{proPayCardNo}, #{proPayCardM}, #{proPayCardY}, #{proPayCardCvc}, #{proPayDate})
+</insert>
+
+<insert id="insertProOrder" parameterType="ProOrder">
+	insert into pro_order 
+	(PRO_ORDER_NO, MEMBER_EMAIL, PRO_NO, COACH_EMAIL, PRO_ORDER_NAME, PRO_ORDER_TOTAL, PRO_ORDER_STORED)
+	values
+	(#{proOrderNo}, #{memberEmail}, #{proNo}, #{coachEmail}, #{proOrderName}, #{proOrderTotal}, #{proOrderStored})
+</insert>
+
 <insert id="proFoodPayInsert" parameterType="ProFoodPay">
 	insert into pro_food_pay
 	(PRO_FOOD_PAY_NO, MEMBER_EMAIL, PRO_FOOD_ORDER_RECEIVER_NO, PRO_FOOD_PAY_PRICE, PRO_FOOD_PAY_DIVIDE, 

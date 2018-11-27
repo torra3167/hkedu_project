@@ -33,8 +33,8 @@ public class ProgramService {
 	ProgramExercise programExercise;
 	MultipartFile multiFile;
 	static final String filePath = 
-			"C:\\Users\\FUTURE\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\FUTURE\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 //			"C:\\Users\\admin\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 			File file = new File(filePath);
 			
@@ -70,7 +70,7 @@ public class ProgramService {
 			// 프로그램번호, 코치이메일, 프로그램이름, 사이즈, 오리지널, 저장된, 내용
 
 			program = new Program(programNumber, programCommand.getCoachEmail(), programCommand.getProName(),
-					multiFile.getSize(), originalFile, storedFileName, programCommand.getProContent());
+					multiFile.getSize(), originalFile, storedFileName, programCommand.getProContent(), programCommand.getProPrice());
 			System.out.println(program + "PROGRAM");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
 	        String regDate = sdf.format(Calendar.getInstance().getTime());

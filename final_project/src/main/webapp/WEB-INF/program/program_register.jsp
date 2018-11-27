@@ -253,6 +253,11 @@
 				<label>프로그램 설명 </label> <input type="text" name="proContent"
 					class="form-control">
 			</div>
+			
+			<div class="form-group">
+				<label>프로그램 가격 </label> <input type="text" name="proPrice"
+					class="form-control">
+			</div>
 			<div class="form-group">
 				<label>프로그램 사진 </label> <input type="file" name="proImg"
 					class="form-control">

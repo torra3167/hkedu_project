@@ -316,20 +316,4 @@ public class FoodController {
 //        return "/index";
 //	}
 	
-	@RequestMapping(value="/food_record.gom", method=RequestMethod.POST)
-	public String foodRecord(@RequestParam("selectOrderedFood")String selectOrderedFood, Model model) {
-		System.out.println("cntlr foodRecord selectOrderedFood : " + selectOrderedFood);
-		String[] sof = selectOrderedFood.split(",");
-		for(int i=0;i<sof.length;i++) {
-		    System.out.println(sof[i]+"   ["+i+"]");
-		}
-		int foodNo = Integer.parseInt(sof[5]);
-		System.out.println("cntlr foodRecord FoodNo : " + foodNo);
-		
-		//식단기록에 사용할 식품결제내역
-//		List<Food> orderedFoodList = foodService.selectOrderedFoodList((String)session.getAttribute("email"));
-//		model.addAttribute("orderedFoodList", orderedFoodList);
-		return "index";
-	}
-	
 }
