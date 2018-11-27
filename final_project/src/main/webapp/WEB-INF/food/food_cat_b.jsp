@@ -16,6 +16,7 @@
 <body>
 
 <select id="FCB" name="foodCatBNo" onclick="javascript:funcAca();" class="form-control"> 
+<option value="">--선택하세요--</option>
 	<% for(Object temp : list) {
 		FoodCatB bcar = (FoodCatB)temp; %>
 	 	<option value="<%=bcar.getFoodCatBNo() %>"> <%=bcar.getFoodCatBName() %></option>

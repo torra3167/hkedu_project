@@ -47,10 +47,24 @@
 					<td><%=upload.getExerciseCatBNumber() %></td>
 					<td><%=upload.getUploadSize() %></td>
 					<td><%=upload.getUploadOriginal() %></td>
-					<td><img src="/resource/<%=upload.getUploadStored() %>" width="80" height="80"></td>
+					
+					<% if(upload.getUploadDivide().equals("i"))  {%>
+					<td><img src="resource//<%=upload.getUploadStored() %>" width="80" height="80"></td>
+						
+					<%} %>
+					
+					<% if(upload.getUploadDivide().equals("v"))  {%>
+					<td><video width="640"
+						height="360" controls="controls" >
+						<source src="resource//<%=upload.getUploadStored() %>" type="video/mp4" />
+					</video>
+					<%} %>	</td>
 					<td><%=upload.getUploadDivide() %></td> 
 					
+				
+					
 				</tr>
+				
 				
 				<% } %>
 				

@@ -14,6 +14,7 @@ public class ProgramDetailCommand implements Serializable {
 	private String exerciseCatAName;
 	private String exerciseCatBName;
 	private int proPrice;
+	private String proStatus;
 	
 	
 	
@@ -21,6 +22,12 @@ public class ProgramDetailCommand implements Serializable {
 	
 	
 	
+	public String getProStatus() {
+		return proStatus;
+	}
+	public void setProStatus(String proStatus) {
+		this.proStatus = proStatus;
+	}
 	public int getProPrice() {
 		return proPrice;
 	}

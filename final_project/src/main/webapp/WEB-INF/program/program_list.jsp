@@ -3,6 +3,7 @@
 	
 	<%
     	List list = (List)request.getAttribute("Program");
+		String email = (String)session.getAttribute("email");
     %>
 	
 	
@@ -35,6 +36,10 @@
 					<th>프로그램 가격</th>
 					<th>프로그램 리뷰</th>
 					<th>프로그램 리뷰보기</th>
+					
+				<% 	if(email.equals("admin"))  { %>
+					<th>신청서 검토상태</th>
+				<% } %>
 				</tr>
 			</thead>
 			<tbody>
@@ -46,7 +51,9 @@
 					<td><%=program.getCoachEmail() %></td>
 					<td><a href="program_detail.gom?proNo=<%=program.getProNo() %>
 					&proContent=<%=program.getProContent()%>
-					&proPrice=<%=program.getProPrice()%>"><%=program.getProName() %>
+					&proPrice=<%=program.getProPrice()%>
+					&proStatus=<%=program.getProStatus()%>
+					"><%=program.getProName() %>
 					</a></td>
 					<td><%=program.getProRegdate() %></td>
 					<td><img src="http://localhost:8080/final_project/resource/<%=program.getProStored() %>" width="80" height="80"></td>
@@ -54,6 +61,10 @@
 					<td><%=program.getProPrice() %></td>
 					<td><a href="pro_review_write.gom?proNo=<%=program.getProNo() %>&coachEmail=<%=program.getCoachEmail() %>">리뷰작성</a></td>
 					<td><a href="pro_review_list.gom?proNo=<%=program.getProNo() %>">리뷰확인하러가기</a></td>
+					
+					<% 	if(email.equals("admin"))  { %>
+					<td><%=program.getProStatus() %></td>
+				<% } %>
 				</tr>
 				
 				<% } %>

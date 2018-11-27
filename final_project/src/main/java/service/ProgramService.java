@@ -75,7 +75,8 @@ public class ProgramService {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
 	        String regDate = sdf.format(Calendar.getInstance().getTime());
 			program.setProRegdate(regDate);
-
+			program.setProStatus("대기");
+			program.setProDes(" ");
 
 			int k = pr.insertProgram(program);
 
@@ -199,6 +200,20 @@ public class ProgramService {
 		} else {
 			System.out.println("selectFoodProFoodList 실패");
 		}
+	}
+
+	public void proUpdateApprove(Model model, int proNo) {
+		
+		int proUpdateApproveResult = pr.proUpdateApprove(proNo);
+		
+	}
+
+	public void proUpdateReject(Model model, int proNo, String proDes) {
+		// TODO Auto-generated method stub
+		Program program = new Program();
+		program.setProNo(proNo);
+		program.setProDes(proDes);
+		int proUpdateRejectResult = pr.proUpdateReject(program);
 	}
 
 }

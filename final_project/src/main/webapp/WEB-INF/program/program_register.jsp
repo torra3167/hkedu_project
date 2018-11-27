@@ -127,7 +127,7 @@
 	         }
 	      }
 	      if(text1.length > 0){   
-	    	  $("#select_box2").append("<option value='"+text1+    "'  >"+text11[0] + " > " + text11[1]+"</option>");
+	    	  $("#select_box2").append("<option value='"+text1+"'  >"+text11[0] + " > " + text11[1]+"</option>");
 	         document.frm.exerciseCatAName.value += text11[1] + "/"; 
 	      }                     
 	  
@@ -181,34 +181,33 @@
 				}
 			});		
 		}
-	function selectedFood(val) {
+	function selectedFoodFun(val) {
 		 var foodCategoryANum = document.getElementById('FCA').value;
-
+		 
+		 
+		/*  for(int i = 0; i < selectedFoodList.size(); i++) {
+				Food tempFood = (Food) selectedFoodList.get(i);
+				
+				if(tempFood.getFoodNo() == foodCatANo) {
+					
+					
+		} */
+				
 		 $.ajax({
 				type:"POST",
 				url:"food_for_pro_food.gom",
 				dataType:"html",
-				data:"foodCategoryANum=" + foodCategoryANum,
+				data:"foodCategoryANum="+foodCategoryANum,
 				success:function(result){
 					$('#selectedFood').html(result);
 		
-
 				}
 			});		
 	 
 	 }
 	 	
 	
-	 function valueAdd(val) {
-		 var selectedFoodOne = $("#selectedFoodInput").text();
-		 document.frm.foodNos.value += val.value + "/";
-		 
-		 var catANos = document.getElementById('foodNos').value;	
-		 foodNames
-		 document.frm.foodNames.value += selectedFoodOne + "/";
-
- 		 alert(selectedFoodOne + '추가성공!');
-	 }
+	 
 	 
 	 
 	 
@@ -271,6 +270,7 @@
 			<div class="form-group">
                   
             <select id="FCC" name="foodCatCNo" onclick="javascript:funcBca();" class="form-control"> 
+            	<option value="">--선택하세요--</option>
 			  <% for(Object temp : list) {
 					FoodCatC acar = (FoodCatC)temp; %>
 				 	<option value="<%=acar.getFoodCatCNo() %>"> <%=acar.getFoodCatCName() %></option>

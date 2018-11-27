@@ -1,6 +1,7 @@
 package service;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -593,8 +594,22 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 			Food tempFood = (Food) selectedFoodList.get(i);
 			
 			if(tempFood.getFoodNo() == foodCatANo) {	
-					return false;
-			}
+				response.setContentType("text/html;charset=utf-8");
+				PrintWriter pw;
+				try {
+					pw = response.getWriter();
+					pw.println("<script>");
+					pw.println("alert('이미 선택하셨습니다')");
+					pw.println("</script>");
+					pw.close();
+					
+					continue;
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+		}
 		}
 		
 		

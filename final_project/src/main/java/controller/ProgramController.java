@@ -23,6 +23,28 @@ public class ProgramController {
 	private ProgramService ps;
 	
 	
+
+	
+	
+	@RequestMapping(value = "/program_approve.gom", method = RequestMethod.GET)
+	public String proApprove(@RequestParam(value="proNo")int proNo , Model model ) {
+
+		
+		ps.proUpdateApprove(model, proNo);
+
+		return "index";
+
+	}
+	
+	@RequestMapping(value = "/program_reject.gom", method = RequestMethod.GET)
+	public String proReject(@RequestParam(value="proNo")int proNo , @RequestParam(value="proDes")String proDes, Model model ) {
+
+		System.out.println(proDes);
+		ps.proUpdateReject(model, proNo, proDes);
+
+		return "redirect:/index";
+
+	}
 	
 	
 	
@@ -54,9 +76,11 @@ public class ProgramController {
 		model.addAttribute("iPage", "program/program_detail.jsp");
 		ps.programDetail(programDetailCommand, model);
 		return "index";
-
+		
 	}
 
+	
+	
 	@RequestMapping(value = "/program_list.gom", method = RequestMethod.GET)
 	public String programList(Model model) {
 

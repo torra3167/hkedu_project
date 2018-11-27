@@ -282,6 +282,43 @@ public class ProgramRepository extends AbstractRepository {
 			sqlSession.close();
 		}
 	}
+
+	public int proUpdateApprove(int proNo) {
+		
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			 Integer result = sqlSession.insert(namespace + ".proUpdateApprove", proNo);
+
+			 if(result > 0) {
+				 sqlSession.commit();
+			 } else {
+				 sqlSession.rollback();
+			 }
+			 
+			 return result;
+			 
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public int proUpdateReject(Program program) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			 Integer result = sqlSession.insert(namespace + ".proUpdateReject", program);
+
+			 if(result > 0) {
+				 sqlSession.commit();
+			 } else {
+				 sqlSession.rollback();
+			 }
+			 
+			 return result;
+			 
+		} finally {
+			sqlSession.close();
+		}
+	}
 	
 	
 	}

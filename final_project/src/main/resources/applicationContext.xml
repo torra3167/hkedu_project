@@ -24,8 +24,8 @@
 <mvc:default-servlet-handler/>
 <!-- MultipartResolver 설정 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="maxUploadSize" value="100000000" />
-        <property name="maxInMemorySize" value="100000000" />
+        <property name="maxUploadSize" value="200000000" />
+        <property name="maxInMemorySize" value="200000000" />
     </bean>
     
 
@@ -36,8 +36,8 @@
 </mvc:view-resolvers>
 <!--모든파일을 /** 매핑 경로는 location  -->
 <!-- <mvc:resources location="실제경로" mapping="사용할경로"  -->
- <mvc:resources location="/WEB-INF/" mapping="/**" cache-period="31556926"></mvc:resources>
- 
+<mvc:resources location="/WEB-INF/" mapping="/**" ></mvc:resources>
+ <mvc:resources location="/resource/" mapping="/resource/**"></mvc:resources>
 <!-- <mvc:view-controller path="/index" view-name="index"/>
  -->
 <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">

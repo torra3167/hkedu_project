@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
-<%@ page import="java.util.*, model.*, category.*" %>
+<%@ page import="java.util.*, category.FoodCatA" %>
 <%
 	List list = (List)request.getAttribute("foodCat");
 %>
@@ -11,7 +11,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<select id="FCA" name="foodCatANo" class="form-control" onchange="javascript:selectedFood(this);" >
+<select id="FCA" name="foodCatANo" class="form-control" onchange="javascript:selectedFoodFun(this);" >
+<option value="">--선택하세요--</option>
 <% for(Object o : list) { 
 	FoodCatA ccar = (FoodCatA)o;
 %>

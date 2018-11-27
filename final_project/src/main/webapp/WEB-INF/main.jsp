@@ -118,8 +118,8 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+		
+			<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
 			<div id="box">
 				<img class="d-block w-100" src="images/chicken.jpg"
 					alt="Third slide">

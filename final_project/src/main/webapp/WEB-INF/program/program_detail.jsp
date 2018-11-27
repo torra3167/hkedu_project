@@ -6,9 +6,7 @@
 <%
 	List<ProgramExerciseUpload> programExerciseUploadList = 
 	(List<ProgramExerciseUpload>) request.getAttribute("ProgramExerciseUpload");
-
-
-
+	String email = (String)session.getAttribute("email");
 	ProgramDetailCommand programDetailCommand = (ProgramDetailCommand) request.getAttribute("ProgramDetailCommand");
 %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -18,6 +16,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	
+	function rejectFunction() {
+	
+	var inputString = prompt('반려 이유를 작성해주세요', '반려이유');
+	location.href="program_reject.gom?proNo=<%=programDetailCommand.getProNo()%>&proDes=" + inputString;
+	
+	}
+</script>
+
 
 </head>
 <body>
@@ -30,19 +38,29 @@
 				<th>프로그램 내용</th>
 				<th>가격</th>
 				<th>장바구니</th>
+				<% 	if((email.equals("admin") && programDetailCommand.getProStatus().equals("대기")) || (email.equals("admin") && programDetailCommand.getProStatus().equals("거절")) )  { %>
+				<th><a href="program_approve.gom?proNo=<%=programDetailCommand.getProNo()%>"><button class="btn btn-primary">승인</button></a></th>
+				
+				
+				<%  } %>
+				
 			</tr>
 
 			<tr class="active">
 				<td><%=programDetailCommand.getProNo()%></td>
-				<td><%=programDetailCommand.getProContent()%></td>
-				<form action="program_cart_addlist.gom" method="post">
-						
+				<td><%=programDetailCommand.getProContent()%></td>	
 		        <td>가격: <%=programDetailCommand.getProPrice() %></td>
- 						<input type="text" name="proNo" value="<%=programDetailCommand.getProNo() %>">
-						
 				<td><button type="submit" class="btn btn-primary">장바구니 담기</button><td>
-				</form>
-			</tr>
+				
+				<% 	if(email.equals("admin") && programDetailCommand.getProStatus().equals("대기"))  { %> 
+				<td>
+				<button class="btn btn-primary" onclick="rejectFunction();">반려</button></td>	
+				<% } %>
+		        <form action="program_cart_addlist.gom" method="post">
+ 				<input type="hidden" name="proNo" value="<%=programDetailCommand.getProNo() %>">
+ 				</form>
+				
+		</tr>
 		</table>
 		<table class="table table-striped text-center">
 			<thead>

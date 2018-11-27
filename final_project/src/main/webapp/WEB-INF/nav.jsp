@@ -327,6 +327,7 @@
 							<a class="dropdown-item" href="food_reviewReportList.gom" >리뷰신고 관리</a>
 							<a class="dropdown-item" href="review_report_board.gom" >프로그램리뷰 신고 관리</a>
 							<a class="dropdown-item" href="seller_applicationList.gom" >입점신청서 관리</a>
+							<a class="dropdown-item" href="program_list.gom" >프로그램신청 관리</a>
 						</div>
 					</div>
 				</li>				
