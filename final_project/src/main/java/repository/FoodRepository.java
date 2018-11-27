@@ -410,16 +410,16 @@ public class FoodRepository extends AbstractRepository{
 		
 		try {
 			List<Food> list1 =  sqlSession.selectList(namespace + ".selectOrderedFoodList1", memberEmail);
-			for(Object temp : list1) {
-				 Food food = (Food)temp;
-				 System.out.println("repo selectOrderedFoodList1 getFoodName : " + food.getFoodName());
-			}
+//			for(Object temp : list1) {
+//				 Food food = (Food)temp;
+//				 System.out.println("repo selectOrderedFoodList1 getFoodName : " + food.getFoodName());
+//			}
 			
 			List<Food> list2 = sqlSession.selectList(namespace + ".selectOrderedFoodList2", memberEmail);
-			for(Object temp : list2) {
-				 Food food = (Food)temp;
-				 System.out.println("repo selectOrderedFoodList2 getFoodName : " + food.getFoodName());
-			}
+//			for(Object temp : list2) {
+//				 Food food = (Food)temp;
+//				 System.out.println("repo selectOrderedFoodList2 getFoodName : " + food.getFoodName());
+//			}
 			
 			List<Food> foodOrderList = new ArrayList<Food>(list1);
 			foodOrderList.addAll(list2);
@@ -436,7 +436,7 @@ public class FoodRepository extends AbstractRepository{
 		
 		try {
 			Integer result = sqlSession.insert(namespace + ".insertDietRecord", dietRecord);
-			System.out.println("repo insertDietRecord result : " + result);
+//			System.out.println("repo insertDietRecord result : " + result);
 		
 			if(result > 0) {
 				sqlSession.commit();
@@ -475,6 +475,22 @@ public class FoodRepository extends AbstractRepository{
 			System.out.println("repo selectDietRecordList list.size : " + list.size());
 		return list;
 		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public int selectFoodRecord(DietRecord dietRecord) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			Integer result = sqlSession.selectOne(namespace + ".selectFoodRecord", dietRecord);
+			if(result == null) {
+				result = 0;
+			}else {
+				result = 1;
+			}
+			System.out.println("repo selectFoodRecord result : " + result);
+		return result;
 		} finally {
 			sqlSession.close();
 		}

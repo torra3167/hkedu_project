@@ -421,10 +421,10 @@
 
 <insert id="insertDietRecord" parameterType="DietRecord">
 		INSERT INTO diet_record(
-		diet_record_regdate, diet_record_time, member_email, food_nutrient_name
+		diet_record_regdate, diet_record_time, member_email, food_nutrient_name, food_quantity
 		)
 		VALUES(
-		#{dietRecordRegdate}, #{dietRecordTime}, #{memberEmail}, #{foodNutrientname}
+		#{dietRecordRegdate}, #{dietRecordTime}, #{memberEmail}, #{foodNutrientname}, #{foodQuantity}
 		)
 </insert>
 
@@ -442,15 +442,24 @@
 		<id column="diet_record_time" jdbcType="VARCHAR" property="dietRecordTime" />
 		<id column="member_email" jdbcType="VARCHAR" property="memberEmail" />
 		<id column="food_nutrient_name" jdbcType="VARCHAR" property="foodNutrientname" />
+		<result column="food_quantity" jdbcType="BIGINT" property="foodQuantity" />
 </resultMap>
 
 <select id="selectDietRecordList" parameterType="String" resultMap="selectDietRecordListMap">
 		SELECT
-		diet_record_regdate as dietRecordRegdate, diet_record_time as dietRecordTime, member_email as memberEmail, food_nutrient_name as foodNutrientname
+		diet_record_regdate, diet_record_time, member_email, food_nutrient_name, food_quantity
 		FROM diet_record
 		WHERE member_email = #{memberEmail}
 </select>
 
-
+<select id="selectFoodRecord" parameterType="DietRecord" resultMap="selectDietRecordListMap">
+		SELECT
+		diet_record_regdate, diet_record_time, member_email, food_nutrient_name, food_quantity
+		FROM diet_record
+		WHERE diet_record_regdate = #{dietRecordRegdate}
+		AND diet_record_time = #{dietRecordTime}
+		AND member_email = #{memberEmail}
+		AND food_nutrient_name = #{foodNutrientname}
+</select>
 
 </mapper>

@@ -619,8 +619,8 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 		return foodOrderList;
 	}
 
-	public void insertDietRecord(String selectOrderedFood, Integer mealtime, HttpSession session) {
-		System.out.println("svc insertDietRecord selectOrderedFood : " + selectOrderedFood);
+	public void insertDietRecord(String selectOrderedFood, Integer mealtime, Integer quantity, HttpSession session) {
+//		System.out.println("svc insertDietRecord selectOrderedFood : " + selectOrderedFood);
 		String[] sof = selectOrderedFood.split(",");
 		for(int i=0;i<sof.length;i++) {
 		    System.out.println(sof[i]+"   ["+i+"]");
@@ -656,7 +656,8 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 				dietRecordRegdate,
 				mt,
 				memberEmail,
-				sof[0]
+				sof[0],
+				quantity
 				);
 		int k = foodRepository.insertDietRecord(dietRecord);
 		if(k < 1) {
@@ -682,7 +683,12 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
         	mt = "간식";
         }
         
-        DietRecord dietRecord = new DietRecord(recordDate, mt, memberEmail, foodName);
+        DietRecord dietRecord = new DietRecord();
+        dietRecord.setDietRecordRegdate(recordDate);
+        dietRecord.setDietRecordTime(mt);
+        dietRecord.setMemberEmail(memberEmail);
+        dietRecord.setFoodNutrientname(foodName);
+        
 		int k = foodRepository.deleteDietRecord(dietRecord);
 		
 		if(k < 1) {
@@ -694,6 +700,38 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 
 	public List<DietRecord> selectDietRecordList(String memberEmail) {
 		return foodRepository.selectDietRecordList(memberEmail);
+	}
+
+	public int selectFoodRecord(String foodName, Integer mealtime, String recordDate, HttpSession session) {
+		//memberEmail
+		String memberEmail = (String) session.getAttribute("email");
+		
+		//dietRecordTime
+		String mt = "";
+        if(mealtime == 1) {
+        	mt = "아침";
+        }else if(mealtime == 2) {
+        	mt = "점심";
+        }else if(mealtime == 3) {
+        	mt = "저녁";
+        }else {
+        	mt = "간식";
+        }
+        
+		DietRecord dietRecord = new DietRecord();
+		dietRecord.setDietRecordRegdate(recordDate);
+		dietRecord.setMemberEmail(memberEmail);
+		dietRecord.setDietRecordTime(mt);
+		dietRecord.setFoodNutrientname(foodName);
+		
+		return foodRepository.selectFoodRecord(dietRecord);
+//		if(result < 1) {
+//			System.out.println("기존 기록 없음");
+//			return 0;
+//		} else {
+//			System.out.println("기존 기록 있음");
+//			return 1;
+//		}
 	}
 
 

@@ -12,10 +12,10 @@
 $(document).ready();
 var childWindow;
 var sf;
-
+var targetDiv;
 function openSelectFoodWindow(num) {
 	   var settings ='toolbar=no,directories=no,status=no,menubar=no,scrollbars=auto,resizable=yes,height=600,width=800,left=0,top=0';
-	   childWindow = window.open("FoodSearchWindow.gom","childWindow",settings);
+	   childWindow = window.open("food_dietRecordWindow.gom","childWindow",settings);
 	   childWindow.num = num;
 // 	   childWindow.document.getElementById("childText").value = document.getElementById("parentText").value;
 }
@@ -23,20 +23,20 @@ function openSelectFoodWindow(num) {
     
 function addFoodRow(selectedFood, num){
 	if(num==1){
-		var targetDiv = document.getElementById("targetBreakfast");
+		targetDiv = document.getElementById("targetBreakfast");
 	}else if(num==2){
-		var targetDiv = document.getElementById("targetLunch");
+		targetDiv = document.getElementById("targetLunch");
 	}else if(num==3){
-		var targetDiv = document.getElementById("targetDinner");
+		targetDiv = document.getElementById("targetDinner");
 	}else if(num==4){
-		var targetDiv = document.getElementById("targetSnack");
+		targetDiv = document.getElementById("targetSnack");
 	}
 	
 	sf = selectedFood.foodName;
 	console.log("selectedFood.foodName : " + sf);
 // 	var fndt = $.param(fName);
 	var str = "";
-	str += "<div>"+selectedFood.foodName+" "+selectedFood.carbo+" "+selectedFood.protein+" "+selectedFood.fat+" "+selectedFood.cal+"<input type='button' value='삭제' onclick='delRow(this,"+num+")' /></div><br>";
+	str += "<div id='addedRow'>"+selectedFood.foodName+"  "+selectedFood.carbo+"g  "+selectedFood.protein+"g  "+selectedFood.fat+"g  "+selectedFood.cal+"kcal  "+selectedFood.foodQuantity+"개  <input type='button' value='삭제' onclick='delRow(this,"+num+")' /></div><br>";
 	var addedDiv = document.createElement("div"); // 폼 생성
 	addedDiv.innerHTML  = str; // 폼 Div안에 HTML삽입
 	targetDiv.appendChild(addedDiv); // 삽입할 DIV에 생성한 폼 삽입

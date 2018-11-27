@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import category.FoodCatA;
 import category.FoodCatB;
@@ -298,32 +299,32 @@ public class FoodController {
     public String memberDietRecordList(Model model, HttpSession session) {
 	  List<DietRecord> dietRecordList = foodService.selectDietRecordList((String)session.getAttribute("email"));
 	  model.addAttribute("dietRecordList", dietRecordList);
-      model.addAttribute("iPage", "food/dietRecord.jsp");
+      model.addAttribute("iPage", "food/food_dietRecord.jsp");
       return "index";
    }
    
-   @RequestMapping(value="/FoodSearchWindow.gom", method=RequestMethod.GET)
+   @RequestMapping(value="/food_dietRecordWindow.gom", method=RequestMethod.GET)
    public String foodSearchWindow(Model model, HttpSession session) {
       //식단기록에 사용할 식품결제내역
       List<Food> orderedFoodList = foodService.selectOrderedFoodList((String)session.getAttribute("email"));
       model.addAttribute("orderedFoodList", orderedFoodList);
-      return "food/foodSearchWindow";
+      return "food/food_dietRecordWindow";
    }
    
    
-   @RequestMapping(value="/food_record.gom", method=RequestMethod.POST)
-   public String foodRecord(@RequestParam("selectOrderedFood")String selectOrderedFood, @RequestParam("mealtime")Integer mealtime, Model model, HttpSession session) {
-      System.out.println("cntlr foodRecord selectOrderedFood : " + selectOrderedFood);
-      System.out.println("cntlr foodRecord mealtime : " + mealtime);
+   @RequestMapping(value="/food_recordInsert.gom", method=RequestMethod.POST)
+   public String foodRecordInsert(@RequestParam("selectOrderedFood")String selectOrderedFood, @RequestParam("quantity")Integer quantity, @RequestParam("mealtime")Integer mealtime, Model model, HttpSession session) {
+//      System.out.println("cntlr foodRecordInsert selectOrderedFood : " + selectOrderedFood);
+//      System.out.println("cntlr foodRecordInsert mealtime : " + mealtime);
       String[] sof = selectOrderedFood.split(",");
 //      for(int i=0;i<sof.length;i++) {
 //          System.out.println(sof[i]+"   ["+i+"]");
 //      }
       
       int foodNo = Integer.parseInt(sof[5]);
-      System.out.println("cntlr foodRecord FoodNo : " + foodNo);
-      
-      foodService.insertDietRecord(selectOrderedFood, mealtime, session);
+      System.out.println("cntlr foodRecordInsert FoodNo : " + foodNo);
+      System.out.println("cntlr foodRecordInsert quantity : " + quantity);
+      foodService.insertDietRecord(selectOrderedFood, mealtime, quantity, session);
       
       
       return "index";
@@ -336,6 +337,23 @@ public class FoodController {
 	   System.out.println("cntlr foodRecordDelete foodName : " + foodName);
       foodService.deleteDietRecord(recordDate, mealtime, foodName, session);
       return "index";
+   }
+   
+   @RequestMapping(value="/food_recordDuplication.gom", method=RequestMethod.POST)
+   @ResponseBody
+   public String foodRecordDuplication(@RequestParam("selectOrderedFood")String selectOrderedFood, @RequestParam("mealtime")Integer mealtime,  @RequestParam("recordDate")String recordDate, Model model, HttpSession session) {
+	   System.out.println("cntlr foodRecordDuplication recordDate" + recordDate);
+	   System.out.println("cntlr foodRecordDuplication mealtime : " + mealtime);
+	   System.out.println("cntlr foodRecordDuplication selectOrderedFood : " + selectOrderedFood);
+	   String[] sof = selectOrderedFood.split(",");
+	   int result = foodService.selectFoodRecord(sof[0], mealtime, recordDate, session);
+		if(result < 1) {
+		System.out.println("기존 기록 없음");
+		return "true";
+	} else {
+		System.out.println("기존 기록 있음");
+		return "false";
+	}
    }
    
 }

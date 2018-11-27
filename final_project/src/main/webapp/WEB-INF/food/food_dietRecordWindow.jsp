@@ -17,6 +17,11 @@ console.log("자식창 전역변수 num : " + num);
 function setParentText(){
 //         opener.document.getElementById("parentText").value = document.getElementById("childText").value;
 	console.log("자식창 setParentText num : "+ num);
+	
+		var foodQuant = document.getElementById("foodQuantity").value
+// 		if(foodQuant == null){
+// 			foodQuant = 0;
+// 		}
         var selectedFoodValues = document.getElementById("selectOrderedFood").value.split(",");
         for (var i=0; i < selectedFoodValues.length; i++){
                var element = selectedFoodValues[i];
@@ -41,18 +46,60 @@ function setParentText(){
         	protein: protein,
         	fat: fat,
         	cal: cal,
-        	foodNo : foodNo
+        	foodNo : foodNo,
+        	foodQuantity : foodQuant
         }
         
-        if(num==1){
-        	opener.addFoodRow(selectedFood, num);
-        }else if(num==2){
-        	opener.addFoodRow(selectedFood, num);
-        }else if(num==3){
-        	opener.addFoodRow(selectedFood, num);
-        }else if(num==4){
-        	opener.addFoodRow(selectedFood, num);
-        }
+        var recordDate = opener.$("#recordDate").text();
+        
+//         var targetDivText = {};
+//         targetDivText = opener.$("#addedRow").text();
+//         alert(targetDivText);
+
+// 		var arrNumber = new Array();
+// 		for(var i=0;i<5;i++){
+// 		    arrNumber[i]=opener.$("#addedRow").text();
+// 		    alert(arrNumber[i]);
+// 		}
+//         var data2 = $("#frm").serialize();
+        
+//         $.ajax({
+//             type:"POST",
+//             url : "food_recordDuplication.gom",
+//             data : data2 + "&mealtime=" + num + "&recordDate=" + recordDate,
+//             async : false,
+//             success : function(result){
+//             			alert(result);
+//             		if(result=="true"){
+		            	if(num==1){
+		                	opener.addFoodRow(selectedFood, num);
+		                }else if(num==2){
+		                	opener.addFoodRow(selectedFood, num);
+		                }else if(num==3){
+		                	opener.addFoodRow(selectedFood, num);
+		                }else if(num==4){
+		                	opener.addFoodRow(selectedFood, num);
+		                }
+		            	
+		            	var data2 = $("#frm").serialize();
+		            	   //   alert(data2);
+		            		     $.ajax({
+		            		        type:"POST",
+		            		        url : "food_recordInsert.gom",
+		            		        data : data2 + "&mealtime=" + num + "&quantity=" + foodQuant,
+		            		        success : function()
+		            		              {                           
+		            		                 window.close();
+		            		              }
+		            		     });
+//             		}else{
+//             			alter("이미 기록된 식품입니다.");
+//             			return false;
+//             		}
+//                   }
+//          });
+        
+        
         
 //         var para = document.getElementById("selectOrderedFood").value;
    //   alert("pppppppppppppppppppppppppp : "+ para);
@@ -61,17 +108,7 @@ function setParentText(){
 //    		console.log(openerData);
    		
    		
-    	var data2 = $("#frm").serialize();
-   //   alert(data2);
-	     $.ajax({
-	        type:"POST",
-	        url : "food_record.gom",
-	        data : data2 + "&mealtime=" + num,
-	        success : function()
-	              {                           
-	                 window.close();
-	              }
-	     });
+    	
         
         
 }
@@ -103,6 +140,7 @@ function setParentText(){
                
              <%} %>
              </select>
+             <input type="number" id="foodQuantity" value="0"/>
          </div>
         </div>
       <br>
