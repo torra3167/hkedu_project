@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import category.FoodCatA;
 import category.FoodCatB;
 import category.FoodCatC;
+import model.DietRecord;
 import model.Food;
 import model.FoodAndApplication;
 import model.FoodReview;
@@ -430,14 +431,58 @@ public class FoodRepository extends AbstractRepository{
 		}
 	}
 
-//	public Food selectFoodByFoodNo(int foodNo) {
-//		sqlSession = getSqlSessionFactory().openSession();
-//		try {
-//		return (Food)sqlSession.selectOne(namespace + ".selectFoodByFoodNo", foodNo);
-//		} finally {
-//			sqlSession.close();
-//		}
-//	}
+	public Integer insertDietRecord(DietRecord dietRecord) {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			Integer result = sqlSession.insert(namespace + ".insertDietRecord", dietRecord);
+			System.out.println("repo insertDietRecord result : " + result);
+		
+			if(result > 0) {
+				sqlSession.commit();
+				
+			} else {
+				sqlSession.rollback();
+			}
+		
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public Integer deleteDietRecord(DietRecord dietRecord) {
+		sqlSession = getSqlSessionFactory().openSession();
+		Integer result = 0;
+		try {
+			result = sqlSession.update(namespace + ".deleteDietRecord", dietRecord);
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<DietRecord> selectDietRecordList(String memberEmail) {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			List<DietRecord> list =  sqlSession.selectList(namespace + ".selectDietRecordList", memberEmail);
+			System.out.println("repo selectDietRecordList list.size : " + list.size());
+		return list;
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+
+
 	
 	
 }

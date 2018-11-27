@@ -17,7 +17,7 @@
         <nav>
           <ul class="nav nav-justified">
             <li><a href="member_info.gom">내 정보</a></li>
-            <li><a href="#">식단 기록</a></li>
+            <li><a href="member_dietRecordList.gom">식단 기록</a></li>
             <li><a href="#">운동 기록</a></li>
             <li><a href="#">피드백</a></li>
             <li><a href="#">주문 내역</a></li>

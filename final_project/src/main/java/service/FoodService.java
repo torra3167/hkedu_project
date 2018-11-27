@@ -27,6 +27,7 @@ import command.FoodReviewReportWriteCommand;
 import command.FoodReviewUpdateCommand;
 import command.FoodReviewWriteCommand;
 import command.FoodUpdateCommand;
+import model.DietRecord;
 import model.Food;
 import model.FoodAndApplication;
 import model.FoodReview;
@@ -618,10 +619,83 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 		return foodOrderList;
 	}
 
-//	public Food selectFoodByFoodNo(int foodNo) {
-//		Food selectedFood = foodRepository.selectFoodByFoodNo(foodNo);
-//		return selectedFood;
-//	}
+	public void insertDietRecord(String selectOrderedFood, Integer mealtime, HttpSession session) {
+		System.out.println("svc insertDietRecord selectOrderedFood : " + selectOrderedFood);
+		String[] sof = selectOrderedFood.split(",");
+		for(int i=0;i<sof.length;i++) {
+		    System.out.println(sof[i]+"   ["+i+"]");
+		}
+//		foodName: foodName,
+//    	carbo: carbo,
+//    	protein: protein,
+//    	fat: fat,
+//    	cal: cal,
+//    	foodNo : foodNo
+	
+		//memberEmail
+		String memberEmail = (String) session.getAttribute("email");
+		
+		//dietRecordRegdate
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+        String dietRecordRegdate = simpleDateFormat.format(Calendar.getInstance().getTime());
+        System.out.println("svc insertDietRecord dietRecordRegdate : " + dietRecordRegdate);
+        
+        //dietRecordTime
+        String mt = "";
+        if(mealtime == 1) {
+        	mt = "아침";
+        }else if(mealtime == 2) {
+        	mt = "점심";
+        }else if(mealtime == 3) {
+        	mt = "저녁";
+        }else {
+        	mt = "간식";
+        }
+        
+		DietRecord dietRecord = new DietRecord(
+				dietRecordRegdate,
+				mt,
+				memberEmail,
+				sof[0]
+				);
+		int k = foodRepository.insertDietRecord(dietRecord);
+		if(k < 1) {
+			System.out.println("식단기록(전체식품) 등록 실패!");
+		} else {
+			System.out.println("식단기록(전체식품) 등록 성공!");
+		}
+	}
+
+	public void deleteDietRecord(String recordDate, Integer mealtime, String foodName, HttpSession session) {
+		//memberEmail
+		String memberEmail = (String) session.getAttribute("email");
+		
+		//dietRecordTime
+        String mt = "";
+        if(mealtime == 1) {
+        	mt = "아침";
+        }else if(mealtime == 2) {
+        	mt = "점심";
+        }else if(mealtime == 3) {
+        	mt = "저녁";
+        }else {
+        	mt = "간식";
+        }
+        
+        DietRecord dietRecord = new DietRecord(recordDate, mt, memberEmail, foodName);
+		int k = foodRepository.deleteDietRecord(dietRecord);
+		
+		if(k < 1) {
+			System.out.println("식단기록 삭제 실패");
+		} else {
+			System.out.println("식단기록 삭제 성공!");
+		}
+	}
+
+	public List<DietRecord> selectDietRecordList(String memberEmail) {
+		return foodRepository.selectDietRecordList(memberEmail);
+	}
+
 
 
 	
