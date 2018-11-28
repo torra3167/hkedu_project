@@ -5,7 +5,42 @@
 <cache></cache>
 
 
+<select id="selectCatANameByExerciseCatANumber" parameterType="int" resultType="ExerciseCatA">
+	select EXERCISE_CAT_A_NAME as exerciseCatAName
+	from EXERCISE_CAT_A
+	where EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber}
+</select>
 
+<resultMap type="ProgramExerciseExercise" id="programExerciseExerciseMap">
+	<result column="PRO_NO" jdbcType="BIGINT" property="proNo"/>
+	<result column="" jdbcType="VARCHAR" property="coachEmail"/>
+	<result column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail"/>
+	<result column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber"/>
+	<result column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>
+	<result column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>
+	<result column="EXERCISE_CONTENT" jdbcType="VARCHAR" property="exerciseContent"/>
+	<result column="EXERCISE_CAL" jdbcType="BIGINT" property="exerciseCal"/>
+</resultMap>
+
+<select id="selectProPayByMemberEmail" parameterType="String" resultMap="programExerciseExerciseMap">
+select e.exercise_content, e.exercise_cal, e.exercise_number, e.exercise_cat_a_number,
+e.exercise_cat_b_number
+from program_exercise pe, exercise e
+where pe.exercise_number = e.exercise_number
+and pro_no
+in (select pro_no from pro_pay where member_email = #{memberEmail})
+</select>
+
+<select id="selectExerciseByExerciseNumber" parameterType="int" resultType="Exercise">
+	select 
+	EXERCISE_NUMBER as exerciseNumber,
+	EXERCISE_CAT_A_NUMBER as exerciseCatANumber,
+	EXERCISE_CAT_B_NUMBER as exerciseCatBNumber,
+	EXERCISE_CONTENT as exerciseContent,
+	EXERCISE_CAL as exerciseCal
+	from exercise
+	where EXERCISE_NUMBER = #{exerciseNumber}
+</select>
 
 <!-- CAT A CAT B 넘버로 이름뽑아오기(리스트)  -->
 <select id="selectExerciseCatACatBList" resultMap="exerciseCatACatBMap" parameterType="ExerciseCatACatB">
@@ -39,7 +74,8 @@
 	set 
 	EXERCISE_CONTENT = #{exerciseContent},
 	EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber},
-	EXERCISE_CAT_B_NUMBER = #{exerciseCatBNumber}
+	EXERCISE_CAT_B_NUMBER = #{exerciseCatBNumber},
+	EXERCISE_CAL = #{exerciseCal}
 	where EXERCISE_NUMBER = #{exerciseNumber}
 	
 </update>
@@ -58,9 +94,9 @@
 <insert id="insertExercise" parameterType="Exercise">
 	insert into exercise
 	(EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER, 
-	 EXERCISE_CONTENT) 
+	 EXERCISE_CONTENT, EXERCISE_CAL)
 	values
-	(#{exerciseNumber}, #{exerciseCatANumber}, #{exerciseCatBNumber}, #{exerciseContent})
+	(#{exerciseNumber}, #{exerciseCatANumber}, #{exerciseCatBNumber}, #{exerciseContent}, #{exerciseCal})
 </insert>
 
 <resultMap id="exerciseCatACatBMap" type="ExerciseCatACatB">

@@ -18,19 +18,27 @@
 	<div><h3><strong>운동 정보수정</strong></h3></div>
 	<br>
 	<div class="container mt-3" >
-    <form:form commandName="member" action="member_info.gom" method="POST">
+    <form:form commandName="uploadCommand" action="exercise_detail.gom" method="POST">
+        
+        
         <div class="form-group">
-          <label>이메일</label>
-          <form:input path="coachEmail" class="form-control" value="${exercise.coachEmail}" readonly="true"/>
+          <label>운동 내용</label>
+          <form:input path="exerciseContent" class="form-control"/>
         </div>
+        
         <div class="form-group">
+          <label>운동 칼로리</label>
+          <form:input path="exerciseCal" class="form-control"/>
+        </div>
+        
+        <%-- <div class="form-group">
           <label>운동 이미지</label>
-          <form:input path="memberName" class="form-control" value=""/>
+          <form:input path="exercise" class="form-control" />
         </div>
         <div class="form-group">
           <label>운동 비디오</label>
-          <form:input path="memberPhone" class="form-control" value=""/>
-        </div>
+          <form:input path="memberPhone" class="form-control" />
+        </div> --%>
         
         <button type="submit" class="btn btn-primary" >정보 수정</button>
         <button type="button" class="btn btn-primary" onclick="history.go(-1);">뒤로가기</button>

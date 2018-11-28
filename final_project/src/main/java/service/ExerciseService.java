@@ -18,6 +18,7 @@ import command.UploadCommand;
 import command.UploadUpdateCommand;
 import model.Exercise;
 import model.ProgramExercise;
+import model.ProgramExerciseExercise;
 import model.Upload;
 import repository.ExerciseRepository;
 
@@ -47,7 +48,7 @@ public class ExerciseService {
 
 		// 운동
 		exercise = new Exercise(result, uploadCommand.getExerciseCatANumber(), uploadCommand.getExerciseCatBNumber(),
-				uploadCommand.getExerciseContent());
+				uploadCommand.getExerciseContent(), uploadCommand.getExerciseCal());
 
 		int j = er.insertExercise(exercise);
 
@@ -127,13 +128,13 @@ public class ExerciseService {
 	public void exerciseCategoryB(Model model) {
 		// TODO Auto-generated method stub
 		List<ExerciseCatB> list = er.exerciseCatBSelect();
-		model.addAttribute("exerciselist", list);
+		model.addAttribute("exerciseList", list);
 	}
 
 	public void exerciseCategoryA(ExerciseCatB bca, Model model) {
 		// TODO Auto-generated method stub
 		List<ExerciseCatA> list = er.exerciseCatASelect(bca);
-		model.addAttribute("exerciselist", list);
+		model.addAttribute("exerciseList", list);
 	}
 
 	public void exerciseList(Model model) {
@@ -204,7 +205,7 @@ public class ExerciseService {
 		//운동업데이트
 		exercise = new Exercise(exerciseUpdateCommand.getExerciseNumber(),
 				exerciseUpdateCommand.getExerciseCatANumber(), exerciseUpdateCommand.getExerciseCatBNumber(),
-				exerciseUpdateCommand.getExerciseContent());
+				exerciseUpdateCommand.getExerciseContent(), exerciseUpdateCommand.getExerciseCal());
 
 		int exerciseUpdateResult = er.updateExercise(exercise);
 
@@ -234,6 +235,21 @@ public class ExerciseService {
 			if (uploadUpdate < 1) {
 				System.out.println("업로드카테고리 업데이트실패!");
 			} 
+		
+	}
+
+	public void exerciseSelectOne(int exerciseNumber, Model model) {
+		// TODO Auto-generated method stub
+		
+		Exercise exercise = er.selectExerciseByExerciseNumber(exerciseNumber);
+		model.addAttribute("Exercise", exercise);
+	}
+
+	public void selectProPayByMemberEmail(String memberEmail, Model model) {
+		
+		List<ProgramExerciseExercise> peeResultList = er.selectProPayByMemberEmail(memberEmail);
+		
+		model.addAttribute("peeResultList", peeResultList);
 		
 	}
 

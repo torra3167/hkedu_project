@@ -4,6 +4,7 @@
     model.ProgramExerciseUpload, command.ProgramDetailCommand"%>
 
 <%
+	request.setCharacterEncoding("utf-8");
 	List<ProgramExerciseUpload> programExerciseUploadList = 
 	(List<ProgramExerciseUpload>) request.getAttribute("ProgramExerciseUpload");
 	String email = (String)session.getAttribute("email");
@@ -38,7 +39,7 @@
 				<th>프로그램 내용</th>
 				<th>가격</th>
 				<th>장바구니</th>
-				<% 	if((email.equals("admin") && programDetailCommand.getProStatus().equals("대기")) || (email.equals("admin") && programDetailCommand.getProStatus().equals("거절")) )  { %>
+				<% 	if((email.equals("admin") && programDetailCommand.getProStatus().equals("대기")) || (email.equals("admin") && programDetailCommand.getProStatus().equals("거절"))) { %>
 				<th><a href="program_approve.gom?proNo=<%=programDetailCommand.getProNo()%>"><button class="btn btn-primary">승인</button></a></th>
 				
 				
@@ -50,15 +51,16 @@
 				<td><%=programDetailCommand.getProNo()%></td>
 				<td><%=programDetailCommand.getProContent()%></td>	
 		        <td>가격: <%=programDetailCommand.getProPrice() %></td>
+		        <form action="program_cart_addlist.gom" method="post">
 				<td><button type="submit" class="btn btn-primary">장바구니 담기</button><td>
 				
+ 				<input type="hidden" name="proNo" value="<%=programDetailCommand.getProNo() %>">
+ 				</form>
 				<% 	if(email.equals("admin") && programDetailCommand.getProStatus().equals("대기"))  { %> 
 				<td>
 				<button class="btn btn-primary" onclick="rejectFunction();">반려</button></td>	
 				<% } %>
-		        <form action="program_cart_addlist.gom" method="post">
- 				<input type="hidden" name="proNo" value="<%=programDetailCommand.getProNo() %>">
- 				</form>
+		        
 				
 		</tr>
 		</table>
@@ -68,6 +70,7 @@
 
 					<th>운동 번호</th>
 					<th>운동내용</th>
+					<th>운동칼로리</th>
 					<th>운동카테고리A 번호</th>
 					<th>운동카테고리B 번호</th>
 					<th>업로드번호</th>
@@ -92,8 +95,10 @@
 				&exerciseContent=<%=programexerciseUpload.getExerciseContent()%>
 				&exerciseCatANumber=<%=programexerciseUpload.getExerciseCatANumber()%>
 				&exerciseCatBNumber=<%=programexerciseUpload.getExerciseCatBNumber()%>
-				"><%=programexerciseUpload.getExerciseContent()%></a></td>
-					<td><%=programexerciseUpload.getExerciseCatANumber()%></td>
+				&exerciseCal=<%=programexerciseUpload.getExerciseCal()%>">
+				<%=programexerciseUpload.getExerciseContent()%></a></td>
+					<td><%=programexerciseUpload.getExerciseCal()%></td>				
+ 					<td><%=programexerciseUpload.getExerciseCatANumber()%></td>
 					<td><%=programexerciseUpload.getExerciseCatBNumber()%></td>
 					<td><%=programexerciseUpload.getUploadNumber()%></td>
 					<td><%=programexerciseUpload.getUploadSize()%></td>

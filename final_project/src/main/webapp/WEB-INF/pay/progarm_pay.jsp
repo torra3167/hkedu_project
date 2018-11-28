@@ -31,7 +31,7 @@ table{border:3px solid black;}
 			</tr>
 		
 			<input type="hidden" name="proOrderNo" value="<%=proOrder.getProOrderNo() %>">	
-		
+			<input type="hidden" name="proNo" value="<%=proOrder.getProNo()%>">
 		
 
 			

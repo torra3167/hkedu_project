@@ -1,5 +1,7 @@
 package controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import category.ExerciseCatB;
 import command.ExerciseUpdateCommand;
 import command.UploadCommand;
 import command.UploadUpdateCommand;
+import model.ExerciseRecord;
 import service.ExerciseService;
 
 @Controller
@@ -19,6 +22,26 @@ public class ExerciseController {
 	@Autowired
 	private ExerciseService es;
 	
+	
+	@RequestMapping(value="/exercise_record_reg.gom", method=RequestMethod.GET)
+	public String exerciseRecordReg(ExerciseRecord exerciseRecord, Model model) {
+	    
+		
+		model.addAttribute("iPage", "exercise/exercise_record_reg.jsp");
+	    return "index";
+
+	}
+	
+	@RequestMapping(value="/exercise_record.gom", method=RequestMethod.GET)
+	public String exerciseRecord(ExerciseRecord exerciseRecord, Model model, HttpSession session) {
+	    
+		String memberEmail = (String)session.getAttribute("email");
+		es.selectProPayByMemberEmail(memberEmail, model);
+
+		model.addAttribute("iPage", "exercise/exercise_record.jsp");
+	    return "index";
+
+	}
 	
 	@RequestMapping(value="/upload_update.gom", method=RequestMethod.GET)
 	public String updateForm(UploadUpdateCommand uploadUpdateCommand, Model model) {
@@ -62,7 +85,7 @@ public class ExerciseController {
 	
 	@RequestMapping(value="/exercise_update.gom", method=RequestMethod.GET)
 	public String exerciseUpdate(ExerciseUpdateCommand exerciseUpdateCommand, Model model) {
-	    
+	    System.out.println("EXERCISE UPDATE CON");
 		es.exerciseCategoryB(model);
 		model.addAttribute("iPage", "exercise/exercise_update.jsp");
 		model.addAttribute("ExerciseUpdateCommand", exerciseUpdateCommand);

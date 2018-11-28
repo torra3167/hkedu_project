@@ -14,6 +14,7 @@ public class UploadUpdateCommand implements Serializable {
 	private String exerciseCatAName;
 	private String exerciseCatBName;
 	private String exerciseContent;
+	private int exerciseCal;
 	private MultipartFile uploadFile;
 	private String uploadOriginal;
 	private String uploadStored;
@@ -21,6 +22,12 @@ public class UploadUpdateCommand implements Serializable {
 	
 	
 	
+	public int getExerciseCal() {
+		return exerciseCal;
+	}
+	public void setExerciseCal(int exerciseCal) {
+		this.exerciseCal = exerciseCal;
+	}
 	public String getExerciseCatAName() {
 		return exerciseCatAName;
 	}

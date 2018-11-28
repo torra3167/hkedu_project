@@ -11,20 +11,43 @@ public class Exercise implements Serializable {
 	private int exerciseCatANumber;
 	private int exerciseCatBNumber;
 	private String exerciseContent;
+	private int exerciseCal;
 	
 
-	public Exercise(int exerciseNumber, int exerciseCatANumber, int exerciseCatBNumber, String exerciseContent) {
+	
+	
+	
+
+
+	public Exercise(int exerciseNumber, int exerciseCatANumber, int exerciseCatBNumber, String exerciseContent,
+			int exerciseCal) {
+		super();
 		this.exerciseNumber = exerciseNumber;
 		this.exerciseCatANumber = exerciseCatANumber;
 		this.exerciseCatBNumber = exerciseCatBNumber;
 		this.exerciseContent = exerciseContent;
+		this.exerciseCal = exerciseCal;
 	}
+
 
 
 
 	public Exercise() {}
 
 	
+
+	
+	public int getExerciseCal() {
+		return exerciseCal;
+	}
+
+
+
+	public void setExerciseCal(int exerciseCal) {
+		this.exerciseCal = exerciseCal;
+	}
+
+
 
 	public int getExerciseNumber() {
 		return exerciseNumber;

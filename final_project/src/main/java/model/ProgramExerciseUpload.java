@@ -9,6 +9,7 @@ public class ProgramExerciseUpload implements Serializable {
 	private String proContent;
 	private int proPrice;
 	private int exerciseNumber;
+	private int exerciseCal;
 	private int exerciseCatANumber;
 	private int exerciseCatBNumber;
 	private String exerciseContent;
@@ -20,6 +21,20 @@ public class ProgramExerciseUpload implements Serializable {
 	
 	
 	
+	public int getExerciseCal() {
+		return exerciseCal;
+	}
+
+
+
+
+	public void setExerciseCal(int exerciseCal) {
+		this.exerciseCal = exerciseCal;
+	}
+
+
+
+
 	public ProgramExerciseUpload() {
 		
 	}

@@ -11,10 +11,19 @@ public class UploadCommand implements Serializable {
 	private int exerciseCatANumber;
 	private int exerciseCatBNumber;
 	private String exerciseContent;
+	private int exerciseCal;
 	private List<MultipartFile> uploadImage;
 	private MultipartFile uploadVideo;
 			
 	
+	
+	
+	public int getExerciseCal() {
+		return exerciseCal;
+	}
+	public void setExerciseCal(int exerciseCal) {
+		this.exerciseCal = exerciseCal;
+	}
 	public List<MultipartFile> getUploadImage() {
 		return uploadImage;
 	}

@@ -18,6 +18,7 @@
 		<typeAlias type="model.MemberSurvey" alias="MemberSurvey"/>
 		<typeAlias type="model.Exercise" alias="Exercise"/>
 		<typeAlias type="model.Program" alias="Program"/>
+		<typeAlias type="model.ProgramExerciseExercise" alias="ProgramExerciseExercise"/>
 
 		<typeAlias type="model.Upload" alias="Upload"/>
 		<typeAlias type="model.ProgramExercise" alias="ProgramExercise"/>		

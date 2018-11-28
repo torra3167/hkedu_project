@@ -381,7 +381,10 @@ public class PayService {
         String regDate = sdf.format(Calendar.getInstance().getTime());
         proPay.setProPayDate(regDate);
 		
+        
+        
         ProOrder proOrder = (ProOrder)session.getAttribute("proOrder");
+        
         
         proPay.setCoachEmail(proOrder.getCoachEmail());
         proPay.setProPayDivide((String)session.getAttribute("FoodPayDivide"));

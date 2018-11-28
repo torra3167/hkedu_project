@@ -32,7 +32,6 @@ public class PayController {
 	@RequestMapping(value="/program_pay_success.gom", method=RequestMethod.POST)
 	public String programPaySuccess(ProPay proPay, Model model, HttpSession session) {
 		
-    	ProOrder proOrder = (ProOrder)session.getAttribute("proOrder");
 		
 		
 		
@@ -65,8 +64,8 @@ public class PayController {
 	@RequestMapping(value="/pro_order_list_insert.gom", method=RequestMethod.POST)
 	public String proOrderListInsert(ProOrder proOrder, @RequestParam(value="foodPayDivide") String foodPayDivide,  Model model, 
 			  HttpSession session) {
-		System.out.println("FOODORDER INSERT");
-		System.out.println(foodPayDivide);
+
+	
 		
 		//결제방법 세션저장
 		session.setAttribute("FoodPayDivide", foodPayDivide);

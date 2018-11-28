@@ -1,5 +1,6 @@
 package repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -11,6 +12,7 @@ import category.ExerciseCatB;
 
 import model.Exercise;
 import model.ProgramExercise;
+import model.ProgramExerciseExercise;
 import model.Upload;
 
 @Repository
@@ -200,6 +202,44 @@ public class ExerciseRepository extends AbstractRepository {
 		} finally {
 			sqlSession.close();
 		}
+	}
+
+	public Exercise selectExerciseByExerciseNumber(int exerciseNumber) {
+		sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+
+			Exercise exercise = 
+					(Exercise)sqlSession.selectOne(namespace + ".selectExerciseByExerciseNumber", exerciseNumber);
+			
+			return exercise;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<ProgramExerciseExercise> selectProPayByMemberEmail(String memberEmail) {
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+
+			List<ProgramExerciseExercise> peeList = 
+					sqlSession.selectList(namespace + ".selectProPayByMemberEmail", memberEmail);
+			
+			for(Object temp : peeList) {
+				ProgramExerciseExercise pee = (ProgramExerciseExercise)temp;
+			
+			ExerciseCatA exerciseCatA = 
+					(ExerciseCatA)sqlSession.selectOne(namespace + ".selectCatANameByExerciseCatANumber",pee.getExerciseCatANumber());
+			pee.setExerciseCatAName(exerciseCatA.getExerciseCatAName());
+			
+			}
+			return peeList;
+			
+		} finally {
+			sqlSession.close();
+		}
+		
 	}
 
 }

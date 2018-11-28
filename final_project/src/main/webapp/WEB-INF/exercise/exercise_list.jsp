@@ -47,6 +47,7 @@
 					<td><%=upload.getExerciseCatBNumber() %></td>
 					<td><%=upload.getUploadSize() %></td>
 					<td><%=upload.getUploadOriginal() %></td>
+				
 					
 					<% if(upload.getUploadDivide().equals("i"))  {%>
 					<td><img src="resource//<%=upload.getUploadStored() %>" width="80" height="80"></td>

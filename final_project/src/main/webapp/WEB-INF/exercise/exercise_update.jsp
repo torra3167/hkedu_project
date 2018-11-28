@@ -7,7 +7,7 @@
 
 <%
  	List list = (List)request.getAttribute("exerciseList");
-ExerciseUpdateCommand exerciseUpdateCommand = (ExerciseUpdateCommand)request.getAttribute("ExerciseUpdateCommand");
+	ExerciseUpdateCommand exerciseUpdateCommand = (ExerciseUpdateCommand)request.getAttribute("ExerciseUpdateCommand");
 %>
 <!DOCTYPE html>
 <html>
@@ -40,8 +40,7 @@ ExerciseUpdateCommand exerciseUpdateCommand = (ExerciseUpdateCommand)request.get
 <body>
 
 	<div class="container mt-3" style="max-width: 560px;">
-		<form:form commandName="exerciseUpdateCommand" 
-			action="exercise_update.gom" >
+		<form:form commandName="exerciseUpdateCommand" action="exercise_update.gom" >
 			
 			
 			<div class="form-group">
@@ -54,11 +53,16 @@ ExerciseUpdateCommand exerciseUpdateCommand = (ExerciseUpdateCommand)request.get
 				<form:input path="exerciseContent" class="form-control" />
 			</div>
 			
-			
-					<div class="form-group">
-					<label>운동 분류</label>
-				<select id="bca" name="exerciseCatBNumber" class="form-control"
-					onclick="javascript:aca();">
+			<div class="form-group">
+				<label>운동 칼로리</label>
+				<form:input path="exerciseCal" class="form-control" />
+			</div>
+
+
+			<div class="form-group">
+				<label>운동 분류</label> <select id="bca" name="exerciseCatBNumber"
+					class="form-control" onclick="javascript:aca();">
+					<option value="">--선택하세요--</option>
 					<%
 						for (Object temp : list) {
 								ExerciseCatB exerciseCatB = (ExerciseCatB) temp;
@@ -71,9 +75,11 @@ ExerciseUpdateCommand exerciseUpdateCommand = (ExerciseUpdateCommand)request.get
 					%>
 				</select>
 			</div>
-			
-		
-			<div id="aca" class="form-group"></div>			
+
+
+			<div id="aca" class="form-group">
+				<select class="form-control"></select>
+			</div>			
 			
 			<button type="submit" class="btn btn-primary">수정 완료</button>
 			<button type="reset" class="btn btn-primary">다시 작성</button>

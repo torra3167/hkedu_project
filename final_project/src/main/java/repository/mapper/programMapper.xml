@@ -122,6 +122,7 @@ where pf.food_no = f.food_no
 			<id property="proNo" column="PRO_NO" jdbcType="BIGINT"  />
 			<result property="proContent"  column="PRO_CONTENT" jdbcType="VARCHAR"  />						
 			<result property="proPrice"  column="PRO_PRICE" jdbcType="BIGINT"  />						
+			<result property="exerciseCal"  column="EXERCISE_CAL" jdbcType="BIGINT"  />						
 			<result property="exerciseContent" column="EXERCISE_CONTENT" jdbcType="VARCHAR"/>			
 			<result property="exerciseNumber" column="EXERCISE_NUMBER" jdbcType="BIGINT"/>
 			<result property="exerciseCatANumber" column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT"/>
@@ -135,7 +136,7 @@ where pf.food_no = f.food_no
 
 <!--프로그램이 조건인 운동 + 업로드 + 프로그램 -->
 <select id="selectProgramExerciseUpload" resultMap="programExerciseUploadMap" parameterType="int">
-select e.exercise_number, e.exercise_content, u.exercise_cat_a_number, u.exercise_cat_b_number, 
+select e.exercise_number, e.exercise_content, e.exercise_cal, u.exercise_cat_a_number, u.exercise_cat_b_number, 
 u.upload_number, u.upload_size, u.upload_original, u.upload_stored, u.upload_divide 
 from exercise e, upload u
 where u.exercise_number = e.exercise_number 
@@ -154,9 +155,10 @@ where pro_no = #{proNo})
 	<id column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>	
 	<id column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>	
 </resultMap>
+
 <!--프로그램운동출력  -->
 <select id="selectByProgramNumber" parameterType="int" resultMap="programExerciseMap">
-	select PRO_NO, COACH_EMAIL, EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER
+	select *
 	from program_exercise
 	where pro_no = #{proNo}
 </select>

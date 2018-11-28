@@ -41,6 +41,7 @@
 
 			<div class="form-group">
 				<select name="exerciseCatBNumber" id="bca" class="form-control" onclick="javascript:aca();">
+					<option value="">--선택하세요--</option>
 					<%
 						for (Object temp : exerciselist) {
 							ExerciseCatB exerciseCatB = (ExerciseCatB) temp;
@@ -54,7 +55,11 @@
 				</select>
 			</div>
 
-			<div id="aca" class="form-group"></div>
+			<div id="aca" class="form-group">
+			<select class="form-control">
+				
+			</select>
+			</div>
 			
         	
 			<div class="form-group">
@@ -68,6 +73,11 @@
 			<div class="form-group">
 				<label>운동 설명 </label> <input type="text" name="exerciseContent" class="form-control">
 			</div>
+			
+			<div class="form-group">
+				<label>운동 칼로리 </label> <input type="text" name="exerciseCal" class="form-control">
+			</div>
+			
 		
 			<button type="submit" class="btn btn-primary">등록</button>
 			<button type="reset" class="btn btn-primary">다시 작성</button>

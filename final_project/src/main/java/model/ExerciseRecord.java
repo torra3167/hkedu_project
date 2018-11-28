@@ -11,14 +11,16 @@ public class ExerciseRecord implements Serializable {
 	private String memberEmail;
 	private int proNo;
 	private String coachEmail;
-	private int exerciseNumber;
-	private int exerciseCatANumber;
-	private int exerciseCatBNumber;
 	private String exerciseRecordName;
 	private int exerciseRecordKg;
 	private int exerciseRecordTimes;
 	private int exerciseRecordWeight;
 	private String exerciseRecordRegdate;
+	
+	
+	public ExerciseRecord() {
+		super();
+	}
 	public int getExerciseRecordNo() {
 		return exerciseRecordNo;
 	}
@@ -42,24 +44,6 @@ public class ExerciseRecord implements Serializable {
 	}
 	public void setCoachEmail(String coachEmail) {
 		this.coachEmail = coachEmail;
-	}
-	public int getExerciseNumber() {
-		return exerciseNumber;
-	}
-	public void setExerciseNumber(int exerciseNumber) {
-		this.exerciseNumber = exerciseNumber;
-	}
-	public int getExerciseCatANumber() {
-		return exerciseCatANumber;
-	}
-	public void setExerciseCatANumber(int exerciseCatANumber) {
-		this.exerciseCatANumber = exerciseCatANumber;
-	}
-	public int getExerciseCatBNumber() {
-		return exerciseCatBNumber;
-	}
-	public void setExerciseCatBNumber(int exerciseCatBNumber) {
-		this.exerciseCatBNumber = exerciseCatBNumber;
 	}
 	public String getExerciseRecordName() {
 		return exerciseRecordName;
@@ -91,6 +75,7 @@ public class ExerciseRecord implements Serializable {
 	public void setExerciseRecordRegdate(String exerciseRecordRegdate) {
 		this.exerciseRecordRegdate = exerciseRecordRegdate;
 	}
+	
 	
 	
 	

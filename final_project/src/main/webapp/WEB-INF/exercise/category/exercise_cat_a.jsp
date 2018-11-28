@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*,category.*" %>
 <%
-	List list = (List)request.getAttribute("exerciselist");
+	List list = (List)request.getAttribute("exerciseList");
 %>
 <!DOCTYPE html>
 <html>
@@ -12,9 +12,8 @@
 </head>
 <body>
 <select id="aCategory" name="exerciseCatANumber" class="form-control" >
-<Script>
-<%-- 	alert("<%=list.size()%>");
- --%></Script>
+<option value="">--선택하세요--</option>
+ 	
 <% for(Object o : list) { 
 	ExerciseCatA exerciseCatA = (ExerciseCatA)o;
 %>

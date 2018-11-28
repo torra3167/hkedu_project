@@ -92,6 +92,11 @@
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
 				<li class="nav-item"><a class="nav-link"
+					href="exercise_record.gom">운동기록</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="program_list.gom">프로그램리스트</a></li>
+
+				<li class="nav-item"><a class="nav-link"
 					href="cart_list.gom">Cart</a></li>
 				
 				<li class="nav-item"><a class="nav-link"
