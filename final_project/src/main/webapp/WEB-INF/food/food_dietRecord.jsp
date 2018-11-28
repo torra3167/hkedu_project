@@ -1,7 +1,41 @@
+<%@page import="model.DietRecord"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="model.Food, java.util.*"%>
+    pageEncoding="UTF-8" import="model.*, java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+// 	DietRecord dietRecord = new DietRecord();
+// 	Food food = new Food();
+	
+// 	if((DietRecord)request.getAttribute("addedDietRecord") != null){
+// 	dietRecord	= (DietRecord)request.getAttribute("addedDietRecord");
+// 	food = (Food)request.getAttribute("addedFood");
+	
+// 	System.out.println("부모창 맨 위 getDietRecordNo  : " + dietRecord.getDietRecordNo());
+// 	System.out.println("부모창 맨 위 getFoodNo : " + food.getFoodNo());
+// 	}else{
+// 		System.out.println("부모창 dietRecord 맨 위 null");
+// 		System.out.println("부모창 food 맨위 null");
+// 	}
 
+	List<DietRecordFood> dietRecordFoodList = (List<DietRecordFood>)request.getAttribute("dietRecordFoodList");
+	List<DietRecordFood> breakfastList = new ArrayList<DietRecordFood>();
+	List<DietRecordFood> lunchList = new ArrayList<DietRecordFood>();
+	List<DietRecordFood> dinnerList = new ArrayList<DietRecordFood>();
+	List<DietRecordFood> snackList = new ArrayList<DietRecordFood>();
+	
+	for(Object temp : dietRecordFoodList){
+		DietRecordFood drs = (DietRecordFood)temp;
+		if(drs.getDietRecordTime().equals("아침")){
+			breakfastList.add(drs);
+		}else if(drs.getDietRecordTime().equals("점심")){
+			lunchList.add(drs);
+		}else if(drs.getDietRecordTime().equals("저녁")){
+			dinnerList.add(drs);
+		}else {
+			snackList.add(drs);
+		}
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +55,12 @@ function openSelectFoodWindow(num) {
 }
 	
     
+// function addFoodRow(selectedFood, num){
 function addFoodRow(selectedFood, num){
+	
+	console.log("부모창 addFoodRow selectedFood : " + selectedFood);	
+	console.log("부모창 addFoodRow num : " + num);	
+	
 	if(num==1){
 		targetDiv = document.getElementById("targetBreakfast");
 	}else if(num==2){
@@ -32,33 +71,59 @@ function addFoodRow(selectedFood, num){
 		targetDiv = document.getElementById("targetSnack");
 	}
 	
-	sf = selectedFood.foodName;
-	console.log("selectedFood.foodName : " + sf);
+// 	sf = selectedFood.foodName;
+// 	console.log("selectedFood.foodName : " + sf);
 // 	var fndt = $.param(fName);
 	var str = "";
-	str += "<div id='addedRow'>"+selectedFood.foodName+"  "+selectedFood.carbo+"g  "+selectedFood.protein+"g  "+selectedFood.fat+"g  "+selectedFood.cal+"kcal  "+selectedFood.foodQuantity+"개  <input type='button' value='삭제' onclick='delRow(this,"+num+")' /></div><br>";
-	var addedDiv = document.createElement("div"); // 폼 생성
-	addedDiv.innerHTML  = str; // 폼 Div안에 HTML삽입
-	targetDiv.appendChild(addedDiv); // 삽입할 DIV에 생성한 폼 삽입
+	console.log("부모창 str 밑에ㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔ");
+// 	str += "<div id='addedRow'>"+selectedFood.foodName+"  "+selectedFood.carbo+"g  "+selectedFood.protein+"g  "+selectedFood.fat+"g  "+selectedFood.cal+"kcal  "+selectedFood.foodQuantity+"개  <input type='button' value='삭제' onclick='delRow(this,"+num+")' /></div><br>";
+	
+	<%-- <% 
+	System.out.println("부모창 if문 위에 getDietRecordNo  : " + dietRecord.getDietRecordNo());
+	System.out.println("부모창 if문 위에 getFoodNo : " + food.getFoodNo());
+	if(dietRecord != null) { %>
+	alert("dietRecord != nulldietRecord != nulldietRecord != nulldietRecord != null");
+	<%
+	System.out.println("부모창 if문 아래 getDietRecordNo  : " + dietRecord.getDietRecordNo());
+	System.out.println("부모창 if문 아래 getFoodNo : " + food.getFoodNo());
+		if(food.getFoodNo() > 0){ %>
+		alert("food.getFoodNo() != 0food.getFoodNo() != 0food.getFoodNo() != 0food.getFoodNo() != 0"); --%>
+<%-- 		str += "<div id='addedRow'>"<%=food.getFoodName() %>"  "<%=food.getFoodCarbo() %>"g  "<%=food.getFoodProtein() %>"g  "<%=food.getFoodFat() %>"g  "<%=food.getFoodCal() %>"kcal  "<%=dietRecord.getFoodQuantity() %>"개  <input type='button' value='삭제' onclick='delRow(this,"<%=dietRecord.getDietRecordNo() %>")' /></div><br>"; --%>
+		var addedDiv = document.createElement("div"); // 폼 생성
+		addedDiv.innerHTML  = str; // 폼 Div안에 HTML삽입
+		targetDiv.appendChild(addedDiv); // 삽입할 DIV에 생성한 폼 삽입
+	<%-- <% }else{
+		System.out.println("부모창 if문 else getFoodNo : " + food.getFoodNo());
+	%>
+		alert("이미 입력한 식품입니다.");
+		return false;
+	<% }
+	  }else{
+		  System.out.println("부모창 dietRecord가 널이라고? : " + dietRecord);
+	  }
+			%> --%>
 }
           
-function delRow(obj, num){
+// function delRow(obj, num){
+function delRow(obj, dietRecordNo){
+	console.log("부모창 dietRecordNo : "+ dietRecordNo);
+
 	//recordDate
 	var recordDate = $("#recordDate").text();
-		     
-	var row = obj.parentNode.parentNode;
-    row.parentNode.removeChild(row);
 	
-    //targetNumber
-    console.log("targetNumber : "+  num);
+	$("#addedRow"+dietRecordNo+"").remove();
+// 	var row = obj.parentNode.parentNode.;
+//     row.parentNode.removeChild(row);
+	
     
     //foodName
-    console.log("foodName : " + sf);
+//     console.log("foodName : " + sf);
     
     $.ajax({
         type:"POST",
         url : "food_recordDelete.gom",
-        data : "recordDate="+recordDate+"&mealtime="+num+"&foodName="+sf,
+        data : "dietRecordNo="+dietRecordNo,
+//         data : "recordDate="+recordDate+"&mealtime="+num+"&foodName="+sf,
         success : function()
               {                 
         			console.log("ajax delete전송 성공");
@@ -84,44 +149,64 @@ function delRow(obj, num){
 			
 		
 </script>
-
+<!-- for(DietRecord temp : dietRecordList){ -->
+<!-- 		if(temp.getDietRecordTime().equals("아침")){ -->
+<!-- 			breakfastRecordList = temp; -->
+<!-- 		}else if(temp.getDietRecordTime().equals("점심")){ -->
+<!-- 			lunchRecordList = temp; -->
+<!-- 		}else if(temp.getDietRecordTime().equals("저녁")){ -->
+<!-- 			dinnerRecordList = temp; -->
+<!-- 		}else { -->
+<!-- 			snackRecordList = temp; -->
+<!-- 		} -->
+<!-- 	} -->
 </head>
 <body>
-<div id="baseForm" name="baseForm">
-	<div name="recordDate" id="recordDate">2018년 11월 27일</div>
+<div id="baseForm">
+	<div id="recordDate">2018년 11월 27일</div>
    <input type="hidden" id="count" name="count" value="0">
+   
    <h6>식품명 탄수화물 단백질 지방 칼로리</h6>
       <h6>아침식사</h6>
    <div id="targetBreakfast">
+   <% for(Object temp2 : breakfastList){ 
+	   DietRecordFood dietRecord = (DietRecordFood)temp2;
+   %>
+   		<div id="addedRow<%=dietRecord.getDietRecordNo() %>"><%=dietRecord.getFoodNutrientName() %>  <%=dietRecord.getFoodCarbo() %>g  <%=dietRecord.getFoodProtein() %>g  <%=dietRecord.getFoodFat() %>g  <%=dietRecord.getFoodCal() %>kcal  <%=dietRecord.getFoodQuantity() %>개  <input type='button' value='삭제' onclick='delRow(this,"<%=dietRecord.getDietRecordNo() %>")' /><br></div>
+   <%	} %>
    </div>
    <input type="button" value="식사 입력하기" onclick="openSelectFoodWindow(1)" />
    <br>
       <h6>점심식사</h6>
    <div id="targetLunch">
+   <% for(Object temp2 : lunchList){ 
+	   DietRecordFood dietRecord = (DietRecordFood)temp2;
+   %>
+   		<div id="addedRow<%=dietRecord.getDietRecordNo() %>"><%=dietRecord.getFoodNutrientName() %>  <%=dietRecord.getFoodCarbo() %>g  <%=dietRecord.getFoodProtein() %>g  <%=dietRecord.getFoodFat() %>g  <%=dietRecord.getFoodCal() %>kcal  <%=dietRecord.getFoodQuantity() %>개  <input type='button' value='삭제' onclick='delRow(this,"<%=dietRecord.getDietRecordNo() %>")' /><br></div>
+   <%	} %>
    </div>
    <input type="button" value="식사 입력하기" onclick="openSelectFoodWindow(2)" />
    <br>
       <h6>저녁식사</h6>
    <div id="targetDinner">
+   <% for(Object temp2 : dinnerList){ 
+	   DietRecordFood dietRecord = (DietRecordFood)temp2;
+   %>
+   		<div id="addedRow<%=dietRecord.getDietRecordNo() %>"><%=dietRecord.getFoodNutrientName() %>  <%=dietRecord.getFoodCarbo() %>g  <%=dietRecord.getFoodProtein() %>g  <%=dietRecord.getFoodFat() %>g  <%=dietRecord.getFoodCal() %>kcal  <%=dietRecord.getFoodQuantity() %>개  <input type='button' value='삭제' onclick='delRow(this,"<%=dietRecord.getDietRecordNo() %>")' /><br></div>
+   <%	} %>
    </div>
    <input type="button" value="식사 입력하기" onclick="openSelectFoodWindow(3)" />
    <br>
       <h6>간식</h6>
    <div id="targetSnack">
+   <% for(Object temp2 : snackList){ 
+	   DietRecordFood dietRecord = (DietRecordFood)temp2;
+   %>
+   		<div id="addedRow<%=dietRecord.getDietRecordNo() %>"><%=dietRecord.getFoodNutrientName() %>  <%=dietRecord.getFoodCarbo() %>g  <%=dietRecord.getFoodProtein() %>g  <%=dietRecord.getFoodFat() %>g  <%=dietRecord.getFoodCal() %>kcal  <%=dietRecord.getFoodQuantity() %>개  <input type='button' value='삭제' onclick='delRow(this,"<%=dietRecord.getDietRecordNo() %>")' /><br></div>
+   <%	} %>
    </div>
    <input type="button" value="간식 입력하기" onclick="openSelectFoodWindow(4)" /><br>
    <br>
-<!--    <input type="button" value="추가" onclick="addRow()"> -->
-<!--    <input type="button" value="삭제" onclick="delRow()"> -->
-<!--    <input type="submit" value="완료"> -->
-   
-<!--    <input type="button" value="식사 입력하기" onclick="openFoodSearchWindow()" /> -->
-<!--    자식창에 전달할 값 : <input type="text" id="parentText" name="parentText" value=""/> -->
-   <br>
-<!--     <input type="button" value="전달" onclick="setChildText()"> -->
-
-   <br>
-<!--    자식창에서 전달받은 값 : <input type="text" id="receiveFromChild" value=""/> -->
 </div>
 
 </body>

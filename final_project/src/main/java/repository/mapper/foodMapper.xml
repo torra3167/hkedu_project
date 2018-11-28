@@ -419,42 +419,76 @@
 	WHERE food_report_regdate = #{foodReportRegdate}
 </delete>
 
+
+
+
+
 <insert id="insertDietRecord" parameterType="DietRecord">
 		INSERT INTO diet_record(
-		diet_record_regdate, diet_record_time, member_email, food_nutrient_name, food_quantity
+		diet_record_no, member_email, food_nutrient_name, diet_record_regdate, diet_record_time, food_quantity
 		)
 		VALUES(
-		#{dietRecordRegdate}, #{dietRecordTime}, #{memberEmail}, #{foodNutrientname}, #{foodQuantity}
+		#{dietRecordNo}, #{memberEmail}, #{foodNutrientname}, #{dietRecordRegdate}, #{dietRecordTime}, #{foodQuantity}
 		)
 </insert>
 
-<delete id="deleteDietRecord" parameterType="DietRecord">
+<delete id="deleteDietRecord" parameterType="Integer">
 	DELETE
 	FROM diet_record
-	WHERE diet_record_regdate = #{dietRecordRegdate}
-	AND diet_record_time = #{dietRecordTime}
-	AND member_email = #{memberEmail}
-	AND food_nutrient_name = #{foodNutrientname}
+	WHERE diet_record_no = #{dietRecordNo}
 </delete>
 
-<resultMap type="DietRecord" id="selectDietRecordListMap">
-		<id column="diet_record_regdate" jdbcType="VARCHAR" property="dietRecordRegdate" />
-		<id column="diet_record_time" jdbcType="VARCHAR" property="dietRecordTime" />
+<resultMap type="DietRecord" id="selectFoodRecordMap">
+		<id column="diet_record_no" jdbcType="BIGINT" property="dietRecordNo" />
 		<id column="member_email" jdbcType="VARCHAR" property="memberEmail" />
 		<id column="food_nutrient_name" jdbcType="VARCHAR" property="foodNutrientname" />
+		<result column="diet_record_regdate" jdbcType="VARCHAR" property="dietRecordRegdate" />
+		<result column="diet_record_time" jdbcType="VARCHAR" property="dietRecordTime" />
 		<result column="food_quantity" jdbcType="BIGINT" property="foodQuantity" />
 </resultMap>
-
-<select id="selectDietRecordList" parameterType="String" resultMap="selectDietRecordListMap">
+<!-- <select id="selectFoodRecord" parameterType="DietRecord" resultMap="selectFoodRecordMap"> -->
+<select id="selectFoodRecord" parameterType="DietRecord" resultType="Integer">
 		SELECT
-		diet_record_regdate, diet_record_time, member_email, food_nutrient_name, food_quantity
+		count(diet_record_no)
 		FROM diet_record
-		WHERE member_email = #{memberEmail}
+		WHERE diet_record_regdate = #{dietRecordRegdate}
+		AND diet_record_time = #{dietRecordTime}
+		AND member_email = #{memberEmail}
+		AND food_nutrient_name = #{foodNutrientname}
 </select>
 
-<select id="selectFoodRecord" parameterType="DietRecord" resultMap="selectDietRecordListMap">
+
+<resultMap type="DietRecordFood" id="selectDietRecordFoodListMap">
+		<id column="diet_record_no" jdbcType="BIGINT" property="dietRecordNo" />
+		<id column="member_email" jdbcType="VARCHAR" property="memberEmail" />
+		<id column="food_nutrient_name" jdbcType="VARCHAR" property="foodNutrientName" />
+		<result column="diet_record_regdate" jdbcType="VARCHAR" property="dietRecordRegdate" />
+		<result column="diet_record_time" jdbcType="VARCHAR" property="dietRecordTime" />
+		<result column="food_quantity" jdbcType="BIGINT" property="foodQuantity" />
+		<result column="food_carbo" jdbcType="BIGINT" property="foodCarbo" />
+		<result column="food_protein" jdbcType="BIGINT" property="foodProtein" />
+		<result column="food_fat" jdbcType="BIGINT" property="foodFat" />
+		<result column="food_cal" jdbcType="BIGINT" property="foodCal" />
+</resultMap>
+
+<select id="selectDietRecordFoodList" parameterType="String" resultMap="selectDietRecordFoodListMap">
 		SELECT
-		diet_record_regdate, diet_record_time, member_email, food_nutrient_name, food_quantity
+		diet_record_no, member_email, food_nutrient_name, diet_record_regdate, diet_record_time, food_quantity, food_carbo, food_protein, food_fat, food_cal
+		FROM diet_record dr, food fd
+		WHERE dr.food_nutrient_name = fd.food_name AND member_email = #{memberEmail}
+        order by diet_record_no
+</select>
+
+
+
+<select id="selectDietRecordNo" resultType="Integer">
+		select count(diet_record_no)
+		from diet_record
+</select>
+
+<select id="selectDietRecord" parameterType="DietRecord" resultType="Integer">
+		SELECT
+		count(diet_record_no)
 		FROM diet_record
 		WHERE diet_record_regdate = #{dietRecordRegdate}
 		AND diet_record_time = #{dietRecordTime}

@@ -10,6 +10,7 @@ import category.FoodCatA;
 import category.FoodCatB;
 import category.FoodCatC;
 import model.DietRecord;
+import model.DietRecordFood;
 import model.Food;
 import model.FoodAndApplication;
 import model.FoodReview;
@@ -430,13 +431,23 @@ public class FoodRepository extends AbstractRepository{
 			sqlSession.close();
 		}
 	}
-
+	
+	
+	public Integer selectDietRecordNo() {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+		return (Integer)sqlSession.selectOne(namespace + ".selectDietRecordNo");
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 	public Integer insertDietRecord(DietRecord dietRecord) {
 		sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
 			Integer result = sqlSession.insert(namespace + ".insertDietRecord", dietRecord);
-//			System.out.println("repo insertDietRecord result : " + result);
+			System.out.println("repo insertDietRecord result : " + result);
 		
 			if(result > 0) {
 				sqlSession.commit();
@@ -451,11 +462,11 @@ public class FoodRepository extends AbstractRepository{
 		}
 	}
 
-	public Integer deleteDietRecord(DietRecord dietRecord) {
+	public Integer deleteDietRecord(Integer dietRecordNo) {
 		sqlSession = getSqlSessionFactory().openSession();
 		Integer result = 0;
 		try {
-			result = sqlSession.update(namespace + ".deleteDietRecord", dietRecord);
+			result = sqlSession.update(namespace + ".deleteDietRecord", dietRecordNo);
 			if(result > 0) {
 				sqlSession.commit();
 			} else {
@@ -467,11 +478,11 @@ public class FoodRepository extends AbstractRepository{
 		}
 	}
 
-	public List<DietRecord> selectDietRecordList(String memberEmail) {
+	public List<DietRecordFood> selectDietRecordFoodList(String memberEmail) {
 		sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
-			List<DietRecord> list =  sqlSession.selectList(namespace + ".selectDietRecordList", memberEmail);
+			List<DietRecordFood> list =  sqlSession.selectList(namespace + ".selectDietRecordFoodList", memberEmail);
 			System.out.println("repo selectDietRecordList list.size : " + list.size());
 		return list;
 		
@@ -483,11 +494,11 @@ public class FoodRepository extends AbstractRepository{
 	public int selectFoodRecord(DietRecord dietRecord) {
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-			Integer result = sqlSession.selectOne(namespace + ".selectFoodRecord", dietRecord);
-			if(result == null) {
-				result = 0;
-			}else {
+			Integer result = (Integer)sqlSession.selectOne(namespace + ".selectFoodRecord", dietRecord);
+			if(result > 0) {
 				result = 1;
+			}else {
+				result = 0;
 			}
 			System.out.println("repo selectFoodRecord result : " + result);
 		return result;
@@ -495,6 +506,25 @@ public class FoodRepository extends AbstractRepository{
 			sqlSession.close();
 		}
 	}
+
+	public Integer selectDietRecord(DietRecord dietRecord) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			Integer result =  (Integer)sqlSession.selectOne(namespace + ".selectDietRecord", dietRecord);
+			if(result > 0) {
+				result = 1;
+			}else {
+				result = 0;
+			}
+			System.out.println("repo selectDietRecord result : " + result);
+		return result;
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	
 
 
 

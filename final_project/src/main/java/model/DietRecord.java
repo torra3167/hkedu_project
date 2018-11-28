@@ -4,38 +4,33 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class DietRecord implements Serializable{
-	private String dietRecordRegdate;
-	private String dietRecordTime;
+	private int dietRecordNo;
 	private String memberEmail;
 	private String foodNutrientname;
+	private String dietRecordRegdate;
+	private String dietRecordTime;
 	private int foodQuantity;
 	
 	public DietRecord() {
 	}
 
-	public DietRecord(String dietRecordRegdate, String dietRecordTime, String memberEmail, String foodNutrientname,
-			int foodQuantity) {
-		this.dietRecordRegdate = dietRecordRegdate;
-		this.dietRecordTime = dietRecordTime;
+	public DietRecord(int dietRecordNo, String memberEmail, String foodNutrientname, String dietRecordRegdate,
+			String dietRecordTime, int foodQuantity) {
+		super();
+		this.dietRecordNo = dietRecordNo;
 		this.memberEmail = memberEmail;
 		this.foodNutrientname = foodNutrientname;
+		this.dietRecordRegdate = dietRecordRegdate;
+		this.dietRecordTime = dietRecordTime;
 		this.foodQuantity = foodQuantity;
 	}
 
-	public String getDietRecordRegdate() {
-		return dietRecordRegdate;
+	public int getDietRecordNo() {
+		return dietRecordNo;
 	}
 
-	public void setDietRecordRegdate(String dietRecordRegdate) {
-		this.dietRecordRegdate = dietRecordRegdate;
-	}
-
-	public String getDietRecordTime() {
-		return dietRecordTime;
-	}
-
-	public void setDietRecordTime(String dietRecordTime) {
-		this.dietRecordTime = dietRecordTime;
+	public void setDietRecordNo(int dietRecordNo) {
+		this.dietRecordNo = dietRecordNo;
 	}
 
 	public String getMemberEmail() {
@@ -54,6 +49,22 @@ public class DietRecord implements Serializable{
 		this.foodNutrientname = foodNutrientname;
 	}
 
+	public String getDietRecordRegdate() {
+		return dietRecordRegdate;
+	}
+
+	public void setDietRecordRegdate(String dietRecordRegdate) {
+		this.dietRecordRegdate = dietRecordRegdate;
+	}
+
+	public String getDietRecordTime() {
+		return dietRecordTime;
+	}
+
+	public void setDietRecordTime(String dietRecordTime) {
+		this.dietRecordTime = dietRecordTime;
+	}
+
 	public int getFoodQuantity() {
 		return foodQuantity;
 	}
@@ -61,6 +72,8 @@ public class DietRecord implements Serializable{
 	public void setFoodQuantity(int foodQuantity) {
 		this.foodQuantity = foodQuantity;
 	}
+
+
 
 
 }

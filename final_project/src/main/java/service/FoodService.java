@@ -1,7 +1,6 @@
 package service;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,6 +27,7 @@ import command.FoodReviewUpdateCommand;
 import command.FoodReviewWriteCommand;
 import command.FoodUpdateCommand;
 import model.DietRecord;
+import model.DietRecordFood;
 import model.Food;
 import model.FoodAndApplication;
 import model.FoodReview;
@@ -619,19 +619,31 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 		return foodOrderList;
 	}
 
-	public void insertDietRecord(String selectOrderedFood, Integer mealtime, Integer quantity, HttpSession session) {
+	
+	
+	public void insertDietRecord(String selectOrderedFood, Integer mealtime, Integer quantity, HttpSession session, Model model) {
 //		System.out.println("svc insertDietRecord selectOrderedFood : " + selectOrderedFood);
 		String[] sof = selectOrderedFood.split(",");
-		for(int i=0;i<sof.length;i++) {
-		    System.out.println(sof[i]+"   ["+i+"]");
-		}
+//		for(int i=0;i<sof.length;i++) {
+//		    System.out.println("svc insertDietRecord selectOrderedFood : " + sof[i]+"   ["+i+"]");
+//		}
+		
 //		foodName: foodName,
 //    	carbo: carbo,
 //    	protein: protein,
 //    	fat: fat,
 //    	cal: cal,
 //    	foodNo : foodNo
-	
+		
+		//dietRecordNo
+		Integer dietRecordNo = foodRepository.selectDietRecordNo();
+		System.out.println("svc insertDietRecord dietRecordNo : " + dietRecordNo);
+		if(dietRecordNo == 0) {
+			dietRecordNo = 1;
+		} else {
+			dietRecordNo = dietRecordNo + 1;
+		}
+		
 		//memberEmail
 		String memberEmail = (String) session.getAttribute("email");
 		
@@ -653,43 +665,29 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
         }
         
 		DietRecord dietRecord = new DietRecord(
-				dietRecordRegdate,
-				mt,
+				dietRecordNo,
 				memberEmail,
 				sof[0],
+				dietRecordRegdate,
+				mt,
 				quantity
 				);
-		int k = foodRepository.insertDietRecord(dietRecord);
-		if(k < 1) {
-			System.out.println("식단기록(전체식품) 등록 실패!");
+		
+		int result = foodRepository.selectDietRecord(dietRecord);
+		
+		System.out.println("svc insertDietRecord selectOrderedFood food3 : " + food);
+		if(result > 0) {
+			System.out.println("중복식단이다!");
 		} else {
+			foodRepository.insertDietRecord(dietRecord);
 			System.out.println("식단기록(전체식품) 등록 성공!");
 		}
+		session.setAttribute("recordInsertResult", result);
 	}
 
-	public void deleteDietRecord(String recordDate, Integer mealtime, String foodName, HttpSession session) {
-		//memberEmail
-		String memberEmail = (String) session.getAttribute("email");
+	public void deleteDietRecord(Integer dietRecordNo) {
 		
-		//dietRecordTime
-        String mt = "";
-        if(mealtime == 1) {
-        	mt = "아침";
-        }else if(mealtime == 2) {
-        	mt = "점심";
-        }else if(mealtime == 3) {
-        	mt = "저녁";
-        }else {
-        	mt = "간식";
-        }
-        
-        DietRecord dietRecord = new DietRecord();
-        dietRecord.setDietRecordRegdate(recordDate);
-        dietRecord.setDietRecordTime(mt);
-        dietRecord.setMemberEmail(memberEmail);
-        dietRecord.setFoodNutrientname(foodName);
-        
-		int k = foodRepository.deleteDietRecord(dietRecord);
+		int k = foodRepository.deleteDietRecord(dietRecordNo);
 		
 		if(k < 1) {
 			System.out.println("식단기록 삭제 실패");
@@ -698,8 +696,8 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 		}
 	}
 
-	public List<DietRecord> selectDietRecordList(String memberEmail) {
-		return foodRepository.selectDietRecordList(memberEmail);
+	public List<DietRecordFood> selectDietRecordFoodList(String memberEmail) {
+		return foodRepository.selectDietRecordFoodList(memberEmail);
 	}
 
 	public int selectFoodRecord(String foodName, Integer mealtime, String recordDate, HttpSession session) {

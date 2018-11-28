@@ -14,6 +14,14 @@
 $(document).ready();
 var num;
 console.log("자식창 전역변수 num : " + num);
+var gbl_data; // 전역변수 선언
+
+
+function windowClose(){
+	window.close();
+}
+
+
 function setParentText(){
 //         opener.document.getElementById("parentText").value = document.getElementById("childText").value;
 	console.log("자식창 setParentText num : "+ num);
@@ -50,11 +58,66 @@ function setParentText(){
         	foodQuantity : foodQuant
         }
         
-        var recordDate = opener.$("#recordDate").text();
+//         if(num==1){
+//         	opener.addFoodRow(selectedFood, num);
+//         }else if(num==2){
+//         	opener.addFoodRow(selectedFood, num);
+//         }else if(num==3){
+//         	opener.addFoodRow(selectedFood, num);
+//         }else if(num==4){
+//         	opener.addFoodRow(selectedFood, num);
+//         }
         
-//         var targetDivText = {};
-//         targetDivText = opener.$("#addedRow").text();
-//         alert(targetDivText);
+    	//insertRecord
+    	var data2 = $("#frm").serialize();
+    	
+    	var rs = "";
+    	
+    	var recordDate = "2019년 12월 11일";
+    	 $.ajax({
+          type:"POST",
+          url : "food_recordDuplication.gom",
+          async : false,
+          data : data2 + "&mealtime=" + num + "&recordDate=" + recordDate,
+          success : function(result){	//food_recordDuplication.gom에서 반환된 중복여부(result) 테스트 완료
+          			alert(result);
+	          		if(result=="true"){
+	          			alert("truetruetruetruetruetrue");
+	          			
+	          			
+	          			//아래  ajax실행되게 만들기.
+//	          	 	     $.ajax({
+//	         	        type:"POST",
+//	         	        url : "food_recordInsert.gom",
+//	         	        data : data2 + "&mealtime=" + num + "&quantity=" + foodQuant,
+//	         	        success : function()
+//	         	              {	
+//	         	                 window.close();
+//	         	              }
+//	         	     });
+	        	     console.log("window.close()뒤다");
+//	         	     opener.addFoodRow(selectedFood, num);
+//	                 var recordDate = opener.$("#recordDate").each();
+	                
+//	                 var targetDivText = opener.$("#addedRow").text();
+//	                 alert(targetDivText);
+	          			
+	          			
+	          			
+	          			
+// 	          			windowClose(); //함수로 window닫기 테스트 완료
+	          		}else{
+	          			alter("이미 기록된 식품입니다.");
+	//           			return false;
+	          		}
+                }
+       });
+
+
+    	
+    	
+    	
+
 
 // 		var arrNumber = new Array();
 // 		for(var i=0;i<5;i++){
@@ -63,41 +126,7 @@ function setParentText(){
 // 		}
 //         var data2 = $("#frm").serialize();
         
-//         $.ajax({
-//             type:"POST",
-//             url : "food_recordDuplication.gom",
-//             data : data2 + "&mealtime=" + num + "&recordDate=" + recordDate,
-//             async : false,
-//             success : function(result){
-//             			alert(result);
-//             		if(result=="true"){
-		            	if(num==1){
-		                	opener.addFoodRow(selectedFood, num);
-		                }else if(num==2){
-		                	opener.addFoodRow(selectedFood, num);
-		                }else if(num==3){
-		                	opener.addFoodRow(selectedFood, num);
-		                }else if(num==4){
-		                	opener.addFoodRow(selectedFood, num);
-		                }
-		            	
-		            	var data2 = $("#frm").serialize();
-		            	   //   alert(data2);
-		            		     $.ajax({
-		            		        type:"POST",
-		            		        url : "food_recordInsert.gom",
-		            		        data : data2 + "&mealtime=" + num + "&quantity=" + foodQuant,
-		            		        success : function()
-		            		              {                           
-		            		                 window.close();
-		            		              }
-		            		     });
-//             		}else{
-//             			alter("이미 기록된 식품입니다.");
-//             			return false;
-//             		}
-//                   }
-//          });
+//        
         
         
         

@@ -24,7 +24,7 @@ import command.FoodReviewReportWriteCommand;
 import command.FoodReviewUpdateCommand;
 import command.FoodReviewWriteCommand;
 import command.FoodUpdateCommand;
-import model.DietRecord;
+import model.DietRecordFood;
 import model.Food;
 import model.FoodAndApplication;
 import model.FoodReviewAndAnswer;
@@ -41,7 +41,7 @@ public class FoodController {
    public String foodList(Model model) {
       System.out.println("cntlr foodList");
       List<FoodAndApplication> foodAppliList = foodService.selectFoodList();
-      System.out.println("******************cntlr foodList foodAppliList.size() : " + foodAppliList.size());
+      System.out.println("cntlr foodList foodAppliList.size() : " + foodAppliList.size());
       model.addAttribute("foodAppliList", foodAppliList);
       model.addAttribute("iPage", "food/food_list.jsp");
       return "index";
@@ -296,9 +296,9 @@ public class FoodController {
    
    
    @RequestMapping(value="/member_dietRecordList.gom", method=RequestMethod.GET)
-    public String memberDietRecordList(Model model, HttpSession session) {
-	  List<DietRecord> dietRecordList = foodService.selectDietRecordList((String)session.getAttribute("email"));
-	  model.addAttribute("dietRecordList", dietRecordList);
+    public String memberDietRecordFoodList(Model model, HttpSession session) {
+	  List<DietRecordFood> dietRecordFoodList = foodService.selectDietRecordFoodList((String)session.getAttribute("email"));
+	  model.addAttribute("dietRecordFoodList", dietRecordFoodList);
       model.addAttribute("iPage", "food/food_dietRecord.jsp");
       return "index";
    }
@@ -320,25 +320,28 @@ public class FoodController {
 //      for(int i=0;i<sof.length;i++) {
 //          System.out.println(sof[i]+"   ["+i+"]");
 //      }
-      
       int foodNo = Integer.parseInt(sof[5]);
       System.out.println("cntlr foodRecordInsert FoodNo : " + foodNo);
       System.out.println("cntlr foodRecordInsert quantity : " + quantity);
-      foodService.insertDietRecord(selectOrderedFood, mealtime, quantity, session);
-      
-      
+      foodService.insertDietRecord(selectOrderedFood, mealtime, quantity, session, model);
+      List<DietRecordFood> dietRecordFoodList = foodService.selectDietRecordFoodList((String)session.getAttribute("email"));
+      model.addAttribute("dietRecordFoodList", dietRecordFoodList);
+      model.addAttribute("iPage", "food/food_dietRecord.jsp");
       return "index";
    }
    
    @RequestMapping(value="/food_recordDelete.gom", method=RequestMethod.POST)
-   public String foodRecordDelete(@RequestParam("recordDate")String recordDate, @RequestParam("mealtime")Integer mealtime, @RequestParam("foodName")String foodName, Model model, HttpSession session) {
-	   System.out.println("cntlr foodRecordDelete recordDate : " + recordDate);
-	   System.out.println("cntlr foodRecordDelete mealtime : " + mealtime);
-	   System.out.println("cntlr foodRecordDelete foodName : " + foodName);
-      foodService.deleteDietRecord(recordDate, mealtime, foodName, session);
+   public String foodRecordDelete(@RequestParam("dietRecordNo")Integer dietRecordNo, Model model, HttpSession session) {
+//   public String foodRecordDelete(@RequestParam("recordDate")String recordDate, @RequestParam("mealtime")Integer mealtime, @RequestParam("foodName")String foodName, Model model, HttpSession session) {
+//	   System.out.println("cntlr foodRecordDelete recordDate : " + recordDate);
+	   System.out.println("cntlr foodRecordDelete dietRecordNo : " + dietRecordNo);
+//	   System.out.println("cntlr foodRecordDelete mealtime : " + mealtime);
+//	   System.out.println("cntlr foodRecordDelete foodName : " + foodName);
+      foodService.deleteDietRecord(dietRecordNo);
       return "index";
    }
    
+   //식단 입력 중복여부 반환 메소드
    @RequestMapping(value="/food_recordDuplication.gom", method=RequestMethod.POST)
    @ResponseBody
    public String foodRecordDuplication(@RequestParam("selectOrderedFood")String selectOrderedFood, @RequestParam("mealtime")Integer mealtime,  @RequestParam("recordDate")String recordDate, Model model, HttpSession session) {
@@ -346,14 +349,17 @@ public class FoodController {
 	   System.out.println("cntlr foodRecordDuplication mealtime : " + mealtime);
 	   System.out.println("cntlr foodRecordDuplication selectOrderedFood : " + selectOrderedFood);
 	   String[] sof = selectOrderedFood.split(",");
+	   
 	   int result = foodService.selectFoodRecord(sof[0], mealtime, recordDate, session);
-		if(result < 1) {
-		System.out.println("기존 기록 없음");
-		return "true";
-	} else {
-		System.out.println("기존 기록 있음");
-		return "false";
-	}
+		if(result > 0) {
+			System.out.println("기존 기록 있음");
+			return "false";
+		} else {
+			System.out.println("기존 기록 없음");
+			return "true";
+		}
    }
+   
+
    
 }
