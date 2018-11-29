@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="model.ProgramExerciseExercise, java.util.List"%>
+	pageEncoding="UTF-8" import="model.ExerciseRec, java.util.List"%>
 	
 	<%
-	List<ProgramExerciseExercise> peeResultList = (List<ProgramExerciseExercise>)request.getAttribute("peeResultList");
 	String memberEmail = (String)session.getAttribute("email");
+	List<ExerciseRec> exerciseRecordList = (List<ExerciseRec>)request.getAttribute("exerciseRecordList");
 	%>
 <!DOCTYPE html>
 <html>
@@ -17,6 +17,12 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 </head>
 <body>
+<% if(exerciseRecordList == null || exerciseRecordList.isEmpty()) { %>
+	<h3>등록된 운동기록이 없습니다. 등록하기를 눌러 운동을 기록해보세요!</h3>
+	<a class="btn btn-primary" href="exercise_record_reg.gom" role="button">기록하기</a>
+	
+<% } else { %>
+
 	<div class="container">
 		<h3>이달의 체중 변화</h3>
 		
@@ -27,7 +33,8 @@
 		<table class="table table-striped text-center">
 			<thead>
 				<tr class="active">
-					<th>구매자이메일주소</th>
+					
+					<th>구매자이메일</th>
 					<th>프로그램번호</th>
 					<th>코치 이메일</th>
 					<th>수행한 운동 이름</th>
@@ -40,17 +47,25 @@
 			<tbody>
 				<tr>
 				<%
-					for(Object temp : peeResultList) {
-						ProgramExerciseExercise peeResult = (ProgramExerciseExercise)temp;
+					for(Object temp : exerciseRecordList) {
+						ExerciseRec exerciseRecord = (ExerciseRec)temp;
 				%>
-					<td>구매자이메일</td>
-					<td><%=peeResult.getProNo() %></td>
-					<td><%=peeResult.getCoachEmail() %></td>
-					<td><%=peeResult.getExerciseCatAName()%></td> 
-					<td><%=peeResult.getExerciseCatANumber()%></td> 
-			
-			<%} %>
+					<td><%=exerciseRecord.getMemberEmail() %></td>
+					<td><%=exerciseRecord.getProNo() %></td>
+					<td><%=exerciseRecord.getCoachEmail() %></td>
+					<td><%=exerciseRecord.getExerciseRecordName() %></td>
+					<td><%=exerciseRecord.getExerciseRecordKg() %></td>
+					<td><%=exerciseRecord.getExerciseRecordTimes() %></td>
+					<td><%=exerciseRecord.getExerciseRecordWeight() %></td>
+					<td><%=exerciseRecord.getExerciseRecordRegdate() %></td>
+					
+					<form>
+						<input type="text" name="exerciseRecordWeight" id="exerciseRecordWeight" value="<%=exerciseRecord.getExerciseRecordWeight() %>">
+						<input type="text" name="exerciseRecordRegdate" id="exerciseRecordRegdate" value="<%=exerciseRecord.getExerciseRecordRegdate() %>">
+					</form> 
 				</tr>
+			<%} %>
+				
 				
 				
 			</tbody>
@@ -60,28 +75,32 @@
 		
 	</div>
 
+<% } %>
 <script type="text/javascript">
-new Morris.Line({
-	  // ID of the element in which to draw the chart.
-	  element: 'myfirstchart',
-	  // Chart data records -- each entry in this array corresponds to a point on
-	  // the chart.
-	  data: [
-	    { x: '2018-12', weight: 40 },
-	    { x: '2019-01', weight: 30 },
-	    { x: '2019-02', weight: 20 },
-	    { x: '2019-03', weight: 40 },
-	    { x: '2019-04', weight: 80 }
-	  ],
-	  // The name of the data record attribute that contains x-values.
-	  xkey: 'x',
-	  // A list of names of data record attributes that contain y-values.
-	  ykeys: ['weight'],
-	  // Labels for the ykeys -- will be displayed when you hover over the
-	  // chart.
-	  labels: ['kg']
-	});
 
+	var weight = document.getElementById('exerciseRecordWeight');
+	var regDate = document.getElementById('exerciseRecordRegdate');
+	console.log(weight);
+	console.log(regDate);
+
+	new Morris.Line({
+		
+		// ID of the element in which to draw the chart.
+		element : 'myfirstchart',
+		// Chart data records -- each entry in this array corresponds to a point on
+		// the chart.
+		data : [ {
+			x : '2019-04',
+			무게 : 80
+		} ],
+		// The name of the data record attribute that contains x-values.
+		xkey : 'x',
+		// A list of names of data record attributes that contain y-values.
+		ykeys : [ '무게' ],
+		// Labels for the ykeys -- will be displayed when you hover over the
+		// chart.
+		labels : [ 'kg' ]
+	});
 </script>
 	
 </body>

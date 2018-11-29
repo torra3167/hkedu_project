@@ -52,7 +52,7 @@ public class PayRepository extends AbstractRepository {
 		Integer foodOrderReceiverResult = (Integer)sqlSession.insert(namespace + ".insertFoodOrderReceiver", foodOrderReceiver);
 		System.out.println("FoodOrderReceiverResult" + foodOrderReceiverResult);
 		
-
+		
 		//식품주문정보 인서트
 		Integer foodOrderResult = 0;
 		for(Object temp : foodOrderList) {

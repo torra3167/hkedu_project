@@ -17,8 +17,11 @@ import command.ExerciseUpdateCommand;
 import command.UploadCommand;
 import command.UploadUpdateCommand;
 import model.Exercise;
+import model.ExerciseExerciseCatA;
+import model.ExerciseRec;
+import model.ExerciseRecCommand;
+import model.ProPay;
 import model.ProgramExercise;
-import model.ProgramExerciseExercise;
 import model.Upload;
 import repository.ExerciseRepository;
 
@@ -245,12 +248,48 @@ public class ExerciseService {
 		model.addAttribute("Exercise", exercise);
 	}
 
-	public void selectProPayByMemberEmail(String memberEmail, Model model) {
+	public void selectProPayByMemberEmail(String memberEmail, Model model, ExerciseRecCommand exerciseRecCommand) {
 		
-		List<ProgramExerciseExercise> peeResultList = er.selectProPayByMemberEmail(memberEmail);
 		
-		model.addAttribute("peeResultList", peeResultList);
+		ExerciseRec exerciseRec = er.selectProPayByMemberEmail(memberEmail);
+		
+		if(exerciseRec != null) {
+			exerciseRecCommand.setCoachEmail(exerciseRec.getCoachEmail());
+			exerciseRecCommand.setMemberEmail(exerciseRec.getMemberEmail());
+			exerciseRecCommand.setProNo(exerciseRec.getProNo());
+			
+			
+			System.out.println("selectProPayByMemberEmail 성공");
+			model.addAttribute("exerciseRecCommand", exerciseRecCommand);
+		}
+		
+		List<ExerciseExerciseCatA> eecaList = er.selectExerciseExerciseCatANameByMemberEmail(memberEmail);
+		
+		if(eecaList != null) {
+			System.out.println("selectExerciseExerciseCatANameByMemberEmail 성공");
+			model.addAttribute("eecaList", eecaList);
+		} else {
+			System.out.println("등록한 기록이없습니다 + selectExerciseExerciseCatANameByMemberEmail");
+		}
+		
 		
 	}
+
+	public void selectExerciseRecordByMemberEmail(String memberEmail, Model model) {
+		// TODO Auto-generated method stub
+		
+		List<ExerciseRec> exerciseRecordList = er.selectExerciseRecordByMemberEmail(memberEmail);
+		model.addAttribute("exerciseRecordList", exerciseRecordList);
+		
+		
+	}
+
+	public void insertExerciseRec(ExerciseRecCommand exerciseRecCommand) {
+		// TODO Auto-generated method stub
+		
+		er.insertExerciseRec(exerciseRecCommand);
+	}
+
+	
 
 }

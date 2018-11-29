@@ -1,6 +1,5 @@
 package repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -9,10 +8,11 @@ import org.springframework.stereotype.Repository;
 import category.ExerciseCatA;
 import category.ExerciseCatACatB;
 import category.ExerciseCatB;
-
 import model.Exercise;
+import model.ExerciseExerciseCatA;
+import model.ExerciseRec;
+import model.ExerciseRecCommand;
 import model.ProgramExercise;
-import model.ProgramExerciseExercise;
 import model.Upload;
 
 @Repository
@@ -218,28 +218,98 @@ public class ExerciseRepository extends AbstractRepository {
 		}
 	}
 
-	public List<ProgramExerciseExercise> selectProPayByMemberEmail(String memberEmail) {
+	public ExerciseRec selectProPayByMemberEmail(String memberEmail) {
 		sqlSession = getSqlSessionFactory().openSession();
-		
+
 		try {
 
-			List<ProgramExerciseExercise> peeList = 
-					sqlSession.selectList(namespace + ".selectProPayByMemberEmail", memberEmail);
+			ExerciseRec exerciseRec = sqlSession.selectOne(namespace + ".selectProPayByMemberEmail",
+					memberEmail);
 			
-			for(Object temp : peeList) {
-				ProgramExerciseExercise pee = (ProgramExerciseExercise)temp;
-			
-			ExerciseCatA exerciseCatA = 
-					(ExerciseCatA)sqlSession.selectOne(namespace + ".selectCatANameByExerciseCatANumber",pee.getExerciseCatANumber());
-			pee.setExerciseCatAName(exerciseCatA.getExerciseCatAName());
-			
+			if(exerciseRec == null) {
+				System.out.println("selectProPayByMemberEmail 실패" );
 			}
-			return peeList;
 			
+			return exerciseRec;
+
 		} finally {
 			sqlSession.close();
 		}
 		
 	}
 
+	
+
+	public List<ExerciseExerciseCatA> selectExerciseExerciseCatANameByMemberEmail(String memberEmail) {
+		
+		sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+
+			List<ExerciseExerciseCatA> eecaList = 
+					sqlSession.selectList(namespace + ".selectExerciseExerciseCatANameByMemberEmail", memberEmail);
+			
+			for(int i = 0; i < eecaList.size(); i++) {
+				ExerciseExerciseCatA eeca = (ExerciseExerciseCatA)eecaList.get(i);
+			
+			ExerciseCatA exerciseCatA = 
+					(ExerciseCatA)sqlSession.selectOne(namespace + ".selectCatANameByExerciseCatANumber",eeca.getExerciseCatANumber());
+			eeca.setExerciseCatAName(exerciseCatA.getExerciseCatAName());
+			eecaList.get(i).setExerciseCatAName(exerciseCatA.getExerciseCatAName());
+			}
+			return eecaList;
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<ExerciseRec> selectExerciseRecordByMemberEmail(String memberEmail) {
+		sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+
+			List<ExerciseRec> exerciseRecList = sqlSession.selectList(namespace + ".selectExerciseRecordByMemberEmail",
+					memberEmail);
+
+			return exerciseRecList;
+
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public void insertExerciseRec(ExerciseRecCommand exerciseRecCommand) {
+		sqlSession = getSqlSessionFactory().openSession();
+		int result = 0;		
+		//멤버이메일, 프로그램번호, 코치이메일, 체중, 등록일
+		ExerciseRec exerciseRec = new ExerciseRec(exerciseRecCommand.getMemberEmail(), exerciseRecCommand.getProNo(), exerciseRecCommand.getCoachEmail(),
+				exerciseRecCommand.getExerciseRecordWeight(), exerciseRecCommand.getExerciseRecordRegdate());
+		
+		try {
+			
+		for(int i = 0; i < exerciseRecCommand.getExerciseRecordName().length; i++) {
+			
+			exerciseRec.setExerciseRecordName(exerciseRecCommand.getExerciseRecordName()[i]);
+			exerciseRec.setExerciseRecordKg(Integer.parseInt(exerciseRecCommand.getExerciseRecordKg()[i]));
+			exerciseRec.setExerciseRecordTimes(Integer.parseInt(exerciseRecCommand.getExerciseRecordTimes()[i]));
+			
+			Integer exerciseResult = sqlSession.insert(namespace + ".insertExerciseRec", exerciseRec);
+					
+					if(exerciseResult > 0) {
+						result++;
+					}
+			}
+		
+			if (result > 0) {
+				sqlSession.commit();
+				System.out.println(result + " insertExerciseRec");
+			} else {
+				sqlSession.rollback();
+			}
+		} finally {
+			sqlSession.close();
+
+		}
+	}
 }

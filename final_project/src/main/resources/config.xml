@@ -22,7 +22,9 @@
 
 		<typeAlias type="model.Upload" alias="Upload"/>
 		<typeAlias type="model.ProgramExercise" alias="ProgramExercise"/>		
+		<typeAlias type="model.ExerciseRec" alias="ExerciseRec"/>		
 		<typeAlias type="model.ExerciseUpload" alias="ExerciseUpload"/>		
+		<typeAlias type="model.ExerciseExerciseCatA" alias="ExerciseExerciseCatA"/>		
 		<typeAlias type="category.ExerciseCatA" alias="ExerciseCatA"/>
 		<typeAlias type="category.ExerciseCatB" alias="ExerciseCatB"/>
 		<typeAlias type="category.ExerciseCatACatB" alias="ExerciseCatACatB"/>

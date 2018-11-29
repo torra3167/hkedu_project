@@ -15,8 +15,6 @@
 <title>Insert title here</title>
 
 
-<link rel="stylesheet" href="#">
-
 
 </head>
 

@@ -4,6 +4,39 @@
 <mapper namespace="repository.mapper.exerciseMapper">
 <cache></cache>
 
+<insert id="insertExerciseRec" parameterType="ExerciseRec">
+	insert into exercise_rec
+	(EXERCISE_RECORD_NO, MEMBER_EMAIL, PRO_NO, COACH_EMAIL, EXERCISE_RECORD_NAME, EXERCISE_RECORD_KG, 
+	EXERCISE_RECORD_TIMES, EXERCISE_RECORD_WEIGHT, EXERCISE_RECORD_REGDATE)
+	values
+	(COUNT_NUMBER.NEXTVAL, #{memberEmail}, #{proNo}, #{coachEmail}, #{exerciseRecordName},
+	 #{exerciseRecordKg}, #{exerciseRecordTimes}, #{exerciseRecordWeight}, #{exerciseRecordRegdate})
+</insert>
+
+<select id="selectProPayByMemberEmail" parameterType="String" resultType="ExerciseRec">
+	select
+	MEMBER_EMAIL as memberEmail,
+    COACH_EMAIL as coachEmail,
+	PRO_NO as proNo
+	from pro_pay 
+	where member_email = #{memberEmail}
+	
+</select>
+
+<select id="selectExerciseRecordByMemberEmail" parameterType="String" resultType="ExerciseRec">
+ select 
+ EXERCISE_RECORD_NO as exerciseRecordNo,
+ MEMBER_EMAIL as memberEmail,
+ PRO_NO as proNo,
+ COACH_EMAIL as coachEmail,
+ EXERCISE_RECORD_NAME as exerciseRecordName,
+ EXERCISE_RECORD_KG as exerciseRecordKg,
+ EXERCISE_RECORD_TIMES as exerciseRecordTimes,
+ EXERCISE_RECORD_WEIGHT as exerciseRecordWeight,
+ EXERCISE_RECORD_REGDATE as exerciseRecordRegdate
+ from exercise_rec
+ where MEMBER_EMAIL = #{memberEmail}
+</select>
 
 <select id="selectCatANameByExerciseCatANumber" parameterType="int" resultType="ExerciseCatA">
 	select EXERCISE_CAT_A_NAME as exerciseCatAName
@@ -11,24 +44,53 @@
 	where EXERCISE_CAT_A_NUMBER = #{exerciseCatANumber}
 </select>
 
-<resultMap type="ProgramExerciseExercise" id="programExerciseExerciseMap">
+<!-- <resultMap type="ProgramExerciseExercise" id="programExerciseExerciseCollection">
 	<result column="PRO_NO" jdbcType="BIGINT" property="proNo"/>
-	<result column="" jdbcType="VARCHAR" property="coachEmail"/>
 	<result column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail"/>
 	<result column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber"/>
 	<result column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>
 	<result column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>
 	<result column="EXERCISE_CONTENT" jdbcType="VARCHAR" property="exerciseContent"/>
 	<result column="EXERCISE_CAL" jdbcType="BIGINT" property="exerciseCal"/>
+	
+	<collection property="programExercise" ofType="ProgramExercise">
+		<id column="PRO_NO" jdbcType="BIGINT" property="proNo" />
+		<result column="COACH_EMAIL" jdbcType="VARCHAR" property="coachEmail" />
+		<result column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber" />
+		<result column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber" />
+		<result column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber" />
+	</collection>
+</resultMap>
+ -->
+
+<resultMap id="exerciseMap" type="Exercise">
+	<id column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber"/>
+	<result column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>
+	<result column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>
+	<result column="EXERCISE_CONTENT" jdbcType="VARCHAR" property="exerciseContent"/>
+	<result column="EXERCISE_CAL" jdbcType="BIGINT" property="exerciseCal"/>
 </resultMap>
 
-<select id="selectProPayByMemberEmail" parameterType="String" resultMap="programExerciseExerciseMap">
-select e.exercise_content, e.exercise_cal, e.exercise_number, e.exercise_cat_a_number,
-e.exercise_cat_b_number
+<select id="selectExerciseExerciseCatANameByMemberEmail" parameterType="String" resultType="ExerciseExerciseCatA">
+<!-- select pe.coach_email, pe.pro_no, e.exercise_number, e.exercise_cat_a_number, 
+e.exercise_cat_b_number, e.exercise_cal, e.exercise_content  
 from program_exercise pe, exercise e
 where pe.exercise_number = e.exercise_number
 and pro_no
-in (select pro_no from pro_pay where member_email = #{memberEmail})
+in (select pro_no from pro_pay where member_email = #{memberEmail}) -->
+
+select
+EXERCISE_NUMBER as exerciseNumber,
+EXERCISE_CAT_A_NUMBER as exerciseCatANumber,
+EXERCISE_CAT_B_NUMBER as exerciseCatBNumber,
+EXERCISE_CONTENT as exerciseContent,
+EXERCISE_CAL as exerciseCal
+from exercise
+where exercise_number
+in (select exercise_number from program_exercise
+where pro_no 
+in (select pro_no from pro_pay 
+where member_email = #{memberEmail}))
 </select>
 
 <select id="selectExerciseByExerciseNumber" parameterType="int" resultType="Exercise">
@@ -129,6 +191,7 @@ in (select pro_no from pro_pay where member_email = #{memberEmail})
 	<result column="EXERCISE_CAT_A_NAME" jdbcType="VARCHAR" property="exerciseCatAName"/>	
 </resultMap>
 
+
 <select id="exerciseCatASelect" resultMap="exerciseCatAMap" parameterType="ExerciseCatB">
  select EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER, EXERCISE_CAT_A_NAME
  from EXERCISE_CAT_A
@@ -136,6 +199,11 @@ in (select pro_no from pro_pay where member_email = #{memberEmail})
 </select>
 
 <select id="selectExerciseNumber" resultType="Integer">
+	select COUNT_NUMBER.NEXTVAL
+	from dual
+</select>
+
+<select id="selectSequenceNumber" resultType="Integer">
 	select COUNT_NUMBER.NEXTVAL
 	from dual
 </select>

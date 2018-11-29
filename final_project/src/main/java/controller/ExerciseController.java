@@ -13,7 +13,8 @@ import category.ExerciseCatB;
 import command.ExerciseUpdateCommand;
 import command.UploadCommand;
 import command.UploadUpdateCommand;
-import model.ExerciseRecord;
+import model.ExerciseRec;
+import model.ExerciseRecCommand;
 import service.ExerciseService;
 
 @Controller
@@ -23,21 +24,38 @@ public class ExerciseController {
 	private ExerciseService es;
 	
 	
-	@RequestMapping(value="/exercise_record_reg.gom", method=RequestMethod.GET)
-	public String exerciseRecordReg(ExerciseRecord exerciseRecord, Model model) {
+	
+	@RequestMapping(value="/exercise_record_reg.gom", method=RequestMethod.POST)
+	public String exerciseRecordRegSubmit(ExerciseRecCommand exerciseRecCommand, Model model) {
+	    System.out.println("Exercise Record Reg POST");
 	    
+	    es.insertExerciseRec(exerciseRecCommand);
+	    return "redirect:/index";
+
+	}
+	
+	@RequestMapping(value="/exercise_record_reg.gom", method=RequestMethod.GET)
+	public String exerciseRecordReg(ExerciseRecCommand exerciseRecCommand, Model model, HttpSession session) {
+	    System.out.println("Exercise Record Reg GET");
+		String memberEmail = (String)session.getAttribute("email");
 		
+		es.selectProPayByMemberEmail(memberEmail, model, exerciseRecCommand);
+
 		model.addAttribute("iPage", "exercise/exercise_record_reg.jsp");
 	    return "index";
 
 	}
 	
 	@RequestMapping(value="/exercise_record.gom", method=RequestMethod.GET)
-	public String exerciseRecord(ExerciseRecord exerciseRecord, Model model, HttpSession session) {
-	    
+	public String exerciseRecord(ExerciseRec exerciseRecord, Model model, HttpSession session) {
+	    System.out.println("Exercise Record");
 		String memberEmail = (String)session.getAttribute("email");
-		es.selectProPayByMemberEmail(memberEmail, model);
+		
+		
+		es.selectExerciseRecordByMemberEmail(memberEmail, model);
+		
 
+		
 		model.addAttribute("iPage", "exercise/exercise_record.jsp");
 	    return "index";
 

@@ -1,48 +1,17 @@
 package model;
 
 import java.io.Serializable;
-import java.util.List;
 
 @SuppressWarnings("serial")
-public class ProgramExerciseExercise implements Serializable {
+public class ExerciseExerciseCatA implements Serializable {
 	
-	private int proNo;
-	private String coachEmail;
 	private int exerciseNumber;
 	private int exerciseCatANumber;
 	private int exerciseCatBNumber;
 	private String exerciseCatAName;
-	private int exerciseCal;
 	private String exerciseContent;
-	private List<ProgramExercise> programExercise;
+	private int exerciseCal;
 	
-	
-	
-	
-	public List<ProgramExercise> getProgramExercise() {
-		return programExercise;
-	}
-	public void setProgramExercise(List<ProgramExercise> programExercise) {
-		this.programExercise = programExercise;
-	}
-	public String getExerciseCatAName() {
-		return exerciseCatAName;
-	}
-	public void setExerciseCatAName(String exerciseCatAName) {
-		this.exerciseCatAName = exerciseCatAName;
-	}
-	public int getProNo() {
-		return proNo;
-	}
-	public void setProNo(int proNo) {
-		this.proNo = proNo;
-	}
-	public String getCoachEmail() {
-		return coachEmail;
-	}
-	public void setCoachEmail(String coachEmail) {
-		this.coachEmail = coachEmail;
-	}
 	public int getExerciseNumber() {
 		return exerciseNumber;
 	}
@@ -61,6 +30,12 @@ public class ProgramExerciseExercise implements Serializable {
 	public void setExerciseCatBNumber(int exerciseCatBNumber) {
 		this.exerciseCatBNumber = exerciseCatBNumber;
 	}
+	public String getExerciseCatAName() {
+		return exerciseCatAName;
+	}
+	public void setExerciseCatAName(String exerciseCatAName) {
+		this.exerciseCatAName = exerciseCatAName;
+	}
 	public String getExerciseContent() {
 		return exerciseContent;
 	}
@@ -73,10 +48,6 @@ public class ProgramExerciseExercise implements Serializable {
 	public void setExerciseCal(int exerciseCal) {
 		this.exerciseCal = exerciseCal;
 	}
-	
-	
-	
-	
-	
+
 	
 }
