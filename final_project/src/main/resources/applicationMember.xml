@@ -23,7 +23,8 @@
 <bean id="payS" class="service.PayService"></bean>
 <bean id="prs" class="service.ProReviewService"></bean>
 <bean id="prrs" class="service.ProReviewReportService"></bean>
-
+<bean id="emailService" class="service.EmailService"></bean>
+<bean id="adminService" class="service.AdminService"></bean>
 
 <!-- Repository  -->
 <bean id="memberRepository" class="repository.MemberRepository"></bean>
@@ -37,6 +38,8 @@
 <bean id="payR" class="repository.PayRepository"></bean>
 <bean id="prr" class="repository.ProReviewRepository"></bean>
 <bean id="prrr" class="repository.ProReviewReportRepository"></bean>
+<bean id="emailRepository" class="repository.EmailRepository"></bean>
+<bean id="adminRepository" class="repository.AdminRepository"></bean>
 
 
 </beans>

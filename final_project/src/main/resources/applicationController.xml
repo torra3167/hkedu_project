@@ -21,6 +21,6 @@
 <bean class="controller.CartController"></bean>
 <bean class="controller.ProReviewController"></bean>
 <bean class="controller.ProReviewReportController"></bean>
-<!-- <bean class="controller.EmailController"></bean>
- -->
+<bean class="controller.EmailController"></bean>
+<bean class="controller.AdminController"></bean>
 </beans>
