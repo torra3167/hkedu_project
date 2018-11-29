@@ -37,12 +37,9 @@ public class MemberService {
 	}
 
 	public String findID(FindIDCommand findIDCommand) {
-		member = new Member();
-		member.setMemberName(findIDCommand.getName());
 		System.out.println("MEMBERSERVICE FindID " + findIDCommand.getName());
-		member.setMemberPhone(findIDCommand.getPhone());
 		System.out.println("MEMBERSERVICE FindID " + findIDCommand.getPhone());
-		String i = memberRepository.selectByNameAndPhone(member);
+		String i = memberRepository.selectByNameAndPhone(findIDCommand);
 		return i;
 
 	}

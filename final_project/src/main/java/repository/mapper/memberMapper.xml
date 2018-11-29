@@ -53,10 +53,9 @@
 		select count(surv_no)
 		from survey
 	</select>
-	<select id="selectByNameAndPhone" resultType="String">
-		select MEMBER_EMAIL
-		as email from MEMBER where MEMBER_PHONE=#{phone} and
-		MEMBER_NAME=#{name}
+	<select id="selectByNameAndPhone" resultType="String" parameterType="FindIDCommand">
+		select MEMBER_EMAIL as email from MEMBER
+		where MEMBER_PHONE=#{phone} and MEMBER_NAME=#{name}
 		union
 		select SELLER_EMAIL as email from SELLER where
 		SELLER_PHONE=#{phone} and SELLER_NAME=#{name}

@@ -34,7 +34,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/coach_delete.gom", method = RequestMethod.GET)
 	public String memberListDelete(@RequestParam("email")String email, Model model, HttpSession session) {
-		model.addAttribute("iPage", "admin/member_delete.jsp");
+		model.addAttribute("iPage", "admin/coach_delete.jsp");
 		System.out.println("CONTROLLER memberListDelete "+email);
 		int result = adminService.coachDelete(email);
 		if (result > 0) {

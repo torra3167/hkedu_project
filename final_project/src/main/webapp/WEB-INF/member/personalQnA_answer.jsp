@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="../css/custom-1.css">
 </head>
 <body>
-<%--  <% if(id=="admin"){ %>  --%>
+	<% if(id.equals("admin")){ %>
  	<div class="container">
 		<form action="personalQna_answer.gom" method="post">
 			<div right="left">
@@ -30,9 +30,6 @@
 			</div>
 			<div>
 				<label>내용</label><br>
-				<!-- <select>
-					<option>
-				</select> -->
 				<textarea rows="20" cols="155" name="contents"></textarea>
 				<!-- <textarea class="autoSize" onkeydown="resize(this)" onkeyup="resize(this)" name="contents"></textarea>
 				<script>
@@ -46,12 +43,12 @@
 			<input type="reset" class="btn btn-secondary" value="다시 작성"/>
 		</form>	
 	</div>
-<%--  <%} if(id!="admin") {%> --%>
+ <%} else {%>
  <div class="container">
 		관리자 메뉴입니다. 로그인 후 이용해주십시오.<br>
 		<button type="button" value="메인으로" class="btn btn-primary" onclick="location.href='index'">메인으로</button>
 		<button type="button" value="로그인" class="btn btn-secondary" onclick="location.href='login.gom'">로그인</button>
 	</div>
-<%--  <%} %>  --%>
+  <%} %>
 </body>
 </html>

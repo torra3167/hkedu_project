@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import command.FindIDCommand;
 import model.Member;
 import model.MemberSurvey;
 
@@ -40,11 +41,11 @@ public class MemberRepository extends AbstractRepository {
 		}
 	}
 
-	public String selectByNameAndPhone(Member member) {
+	public String selectByNameAndPhone(FindIDCommand findIDCommand) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		String statement = namespace + ".selectByNameAndPhone";
 		try {
-			String email = sqlSession.selectOne(statement, member);
+			String email = sqlSession.selectOne(statement, findIDCommand);
 			System.out.println("MEMBERREPOSITORY SelectByNameAndPhone "+email);
 			return email;
 		} finally {
