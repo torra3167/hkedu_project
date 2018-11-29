@@ -3,6 +3,10 @@
 
 <mapper namespace="repository.mapper.foodMapper">
 	<cache></cache>
+	<select id="selectNo" resultType="Integer">
+		SELECT COUNT_NUMBER.NEXTVAL
+   		FROM dual
+	</select>
 	
 	 <select id="selectFoodListByCategoryA" resultMap="selectSellerFoodMap" parameterType="Integer">
 		select *
@@ -332,10 +336,10 @@
 	WHERE food_review_no = #{foodReviewNo}
 </delete>
 
-<select id="selectfoodReviewAnswerNo" resultType="Integer">
-		select count(food_review_answer_no)
-		from food_review_answer
-</select>
+<!-- <select id="selectfoodReviewAnswerNo" resultType="Integer"> -->
+<!-- 		select count(food_review_answer_no) -->
+<!-- 		from food_review_answer -->
+<!-- </select> -->
 
 
 <insert id="insertFoodReviewAnswer" parameterType="FoodReviewAnswer">
@@ -420,9 +424,6 @@
 </delete>
 
 
-
-
-
 <insert id="insertDietRecord" parameterType="DietRecord">
 		INSERT INTO diet_record(
 		diet_record_no, member_email, food_nutrient_name, diet_record_regdate, diet_record_time, food_quantity
@@ -479,12 +480,6 @@
         order by diet_record_no
 </select>
 
-
-
-<select id="selectDietRecordNo" resultType="Integer">
-		select count(diet_record_no)
-		from diet_record
-</select>
 
 <select id="selectDietRecord" parameterType="DietRecord" resultType="Integer">
 		SELECT

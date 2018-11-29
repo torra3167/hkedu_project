@@ -41,22 +41,12 @@ public class FoodRepository extends AbstractRepository{
 		}
 	}
 	
-	public Integer selectFoodNumber() {
-		sqlSession = getSqlSessionFactory().openSession();
-		
-		try {
-			
-		return (Integer)sqlSession.selectOne(namespace + ".selectFoodNumber");
-		
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
 	public Integer insertFood(Food food) {
 		sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
+			Integer foodNo = sqlSession.selectOne(namespace + ".selectNo");
+			food.setFoodNo(foodNo);
 			Integer result = sqlSession.insert(namespace + ".insertFood", food);
 			System.out.println("food REPO " + result);
 		
@@ -104,7 +94,6 @@ public class FoodRepository extends AbstractRepository{
 	}
 
 	public Food selectSellerFood(int foodNo) {
-		// TODO Auto-generated method stub
 		sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
@@ -117,7 +106,6 @@ public class FoodRepository extends AbstractRepository{
 	}
 
 	public Integer updateFood(Food food) {
-		// TODO Auto-generated method stub
 		sqlSession = getSqlSessionFactory().openSession();
 		Integer result = 0;
 		try {
@@ -167,22 +155,13 @@ public class FoodRepository extends AbstractRepository{
 	}
 
 
-	public Integer selectFoodReviewNo() {
-		sqlSession = getSqlSessionFactory().openSession();
-		
-		try {
-			
-		return (Integer)sqlSession.selectOne(namespace + ".selectFoodReviewNo");
-		
-		} finally {
-			sqlSession.close();
-		}
-	}
 
 	public int insertFoodReview(FoodReview foodReview) {
 		sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
+			Integer foodReviewNo = sqlSession.selectOne(namespace + ".selectNo");
+			foodReview.setFoodReviewNo(foodReviewNo);
 			Integer result = sqlSession.insert(namespace + ".insertFoodReview", foodReview);
 			System.out.println("repo insertFoodReview result : " + result);
 		
@@ -264,22 +243,24 @@ public class FoodRepository extends AbstractRepository{
 		}
 	}
 
-	public Integer selectfoodReviewAnswerNo() {
-		sqlSession = getSqlSessionFactory().openSession();
-		
-		try {
-			
-		return (Integer)sqlSession.selectOne(namespace + ".selectfoodReviewAnswerNo");
-		
-		} finally {
-			sqlSession.close();
-		}
-	}
+//	public Integer selectFoodReviewAnswerNo() {
+//		sqlSession = getSqlSessionFactory().openSession();
+//		
+//		try {
+//			
+//		return foodReviewAnswerNo;
+//		
+//		} finally {
+//			sqlSession.close();
+//		}
+//	}
 
 	public int insertFoodReviewAnswer(FoodReviewAnswer foodReviewAnswer) {
 		sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
+			Integer foodReviewAnswerNo = sqlSession.selectOne(namespace + ".selectNo");
+			foodReviewAnswer.setFoodReviewAnswerNo(foodReviewAnswerNo);
 			Integer result = sqlSession.insert(namespace + ".insertFoodReviewAnswer", foodReviewAnswer);
 			System.out.println("repo insertFoodReviewAnswer result : " + result);
 		
@@ -432,11 +413,34 @@ public class FoodRepository extends AbstractRepository{
 		}
 	}
 	
-	
-	public Integer selectDietRecordNo() {
+	public Integer selectDietRecord(DietRecord dietRecord) {
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-		return (Integer)sqlSession.selectOne(namespace + ".selectDietRecordNo");
+			Integer result =  (Integer)sqlSession.selectOne(namespace + ".selectDietRecord", dietRecord);
+			if(result > 0) {
+				result = 1;
+			}else {
+				result = 0;
+			}
+			System.out.println("repo selectDietRecord result : " + result);
+		return result;
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public int selectFoodRecord(DietRecord dietRecord) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			Integer result = (Integer)sqlSession.selectOne(namespace + ".selectFoodRecord", dietRecord);
+			if(result > 0) {
+				result = 1;
+			}else {
+				result = 0;
+			}
+			System.out.println("repo selectFoodRecord result : " + result);
+		return result;
 		} finally {
 			sqlSession.close();
 		}
@@ -446,17 +450,20 @@ public class FoodRepository extends AbstractRepository{
 		sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
+			Integer dietRecordNo = sqlSession.selectOne(namespace + ".selectNo");
+			dietRecord.setDietRecordNo(dietRecordNo);
 			Integer result = sqlSession.insert(namespace + ".insertDietRecord", dietRecord);
 			System.out.println("repo insertDietRecord result : " + result);
 		
 			if(result > 0) {
 				sqlSession.commit();
+				return dietRecordNo;
 				
 			} else {
 				sqlSession.rollback();
+				return 0;
 			}
-		
-			return result;
+			
 		} finally {
 			sqlSession.close();
 		}
@@ -491,38 +498,9 @@ public class FoodRepository extends AbstractRepository{
 		}
 	}
 
-	public int selectFoodRecord(DietRecord dietRecord) {
-		sqlSession = getSqlSessionFactory().openSession();
-		try {
-			Integer result = (Integer)sqlSession.selectOne(namespace + ".selectFoodRecord", dietRecord);
-			if(result > 0) {
-				result = 1;
-			}else {
-				result = 0;
-			}
-			System.out.println("repo selectFoodRecord result : " + result);
-		return result;
-		} finally {
-			sqlSession.close();
-		}
-	}
+	
 
-	public Integer selectDietRecord(DietRecord dietRecord) {
-		sqlSession = getSqlSessionFactory().openSession();
-		try {
-			Integer result =  (Integer)sqlSession.selectOne(namespace + ".selectDietRecord", dietRecord);
-			if(result > 0) {
-				result = 1;
-			}else {
-				result = 0;
-			}
-			System.out.println("repo selectDietRecord result : " + result);
-		return result;
-		
-		} finally {
-			sqlSession.close();
-		}
-	}
+	
 
 	
 

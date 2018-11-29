@@ -75,16 +75,6 @@ public class FoodService {
 	public void insertFood(FoodRegCommand foodRegCommand, HttpSession session) {
 		//System.out.println("service insertFood " + foodRegCommand.getFoodName());
 		
-		//foodNum
-		Integer foodNum = foodRepository.selectFoodNumber();
-		System.out.println("service insertFood FOOD NUMBER " + foodNum);
-		if(foodNum == 0) {
-			foodNum = 1;
-		} else {
-			foodNum = foodNum + 1;
-		}
-		System.out.println("service insertFood FOOD NUMBER " + foodNum);
-		foodRegCommand.setFoodNo(foodNum);
 		
 		//foodSellerEmail
 		String ai = (String) session.getAttribute("email");
@@ -100,25 +90,23 @@ public class FoodService {
 		try {
 			multiFile.transferTo(file);
 			
-			food = new Food(
-					foodNum,
-					ai,
-					foodRegCommand.getFoodCatANo(), 
-					foodRegCommand.getFoodCatBNo(), 
-					foodRegCommand.getFoodCatCNo(), 
-					foodRegCommand.getFoodName(),
-					foodRegCommand.getFoodQuant(),
-					foodRegCommand.getFoodExpiryDate(),
-					foodRegCommand.getFoodSale(),
-					foodRegCommand.getFoodPrice(),
-					foodRegCommand.getFoodCarbo(),
-					foodRegCommand.getFoodProtein(),
-					foodRegCommand.getFoodFat(),
-					foodRegCommand.getFoodCal(), 
-					multiFile.getSize(), 
-					originalFile, 
-					storedFileName
-					);
+			food = new Food();
+			food.setSellerEmail(ai);
+			food.setFoodCatANo(foodRegCommand.getFoodCatANo());
+			food.setFoodCatBNo(foodRegCommand.getFoodCatBNo());
+			food.setFoodCatCNo(foodRegCommand.getFoodCatCNo());
+			food.setFoodName(foodRegCommand.getFoodName());
+			food.setFoodQuant(foodRegCommand.getFoodQuant());
+			food.setFoodExpiryDate(foodRegCommand.getFoodExpiryDate());
+			food.setFoodSale(foodRegCommand.getFoodSale());
+			food.setFoodPrice(foodRegCommand.getFoodPrice());
+			food.setFoodCarbo(foodRegCommand.getFoodCarbo());
+			food.setFoodProtein(foodRegCommand.getFoodProtein());
+			food.setFoodFat(foodRegCommand.getFoodFat());
+			food.setFoodCal(foodRegCommand.getFoodCal());
+			food.setFoodSize(multiFile.getSize());
+			food.setFoodOriginal(originalFile);
+			food.setFoodStored(storedFileName);
 			System.out.println(food + " : FOOD");
 			
 			int k = foodRepository.insertFood(food);
@@ -243,16 +231,6 @@ public class FoodService {
 		System.out.println("svc insertFoodReview foodNo : " + foodReviewWriteCommand.getFoodNo());
 		System.out.println("svc insertFoodReview ReviewfoodName : " + foodReviewWriteCommand.getFoodReviewFoodName());
 		
-		//foodReviewNum
-			Integer foodReviewNo = foodRepository.selectFoodReviewNo();
-			System.out.println("svc insertFoodReview foodReviewNo1 : " + foodReviewNo);
-			if(foodReviewNo == 0) {
-				foodReviewNo = 1;
-			} else {
-				foodReviewNo = foodReviewNo + 1;
-			}
-			System.out.println("svc insertFoodReview foodReviewNo2 : " + foodReviewNo);
-		
 		//memberEmail
 			String memberEmail = (String) session.getAttribute("email");
 			
@@ -274,23 +252,21 @@ public class FoodService {
 			try {
 				multiFile.transferTo(file);
 				
-				foodReview = new FoodReview(
-						foodReviewNo,
-						memberEmail,
-						foodReviewWriteCommand.getFoodNo(),
-						foodReviewWriteCommand.getSellerEmail(),
-						foodReviewWriteCommand.getFoodCatANo(),
-						foodReviewWriteCommand.getFoodCatBNo(),
-						foodReviewWriteCommand.getFoodCatCNo(),
-						foodReviewWriteCommand.getFoodReviewRegdate(),
-						foodReviewWriteCommand.getFoodReviewFoodName(),
-						foodReviewWriteCommand.getFoodReviewTitle(),
-						foodReviewWriteCommand.getFoodReviewScore(),
-						foodReviewWriteCommand.getFoodReviewComment(),
-						multiFile.getSize(), 
-						originalFile, 
-						storedFileName
-				);
+				foodReview = new FoodReview();
+				foodReview.setMemberEmail(memberEmail);
+				foodReview.setFoodNo(foodReviewWriteCommand.getFoodNo());
+				foodReview.setSellerEmail(foodReviewWriteCommand.getSellerEmail());
+				foodReview.setFoodCatANo(foodReviewWriteCommand.getFoodCatANo());
+				foodReview.setFoodCatBNo(foodReviewWriteCommand.getFoodCatBNo());
+				foodReview.setFoodCatCNo(foodReviewWriteCommand.getFoodCatCNo());
+				foodReview.setFoodReviewRegdate(foodReviewWriteCommand.getFoodReviewRegdate());
+				foodReview.setFoodReviewFoodName(foodReviewWriteCommand.getFoodReviewFoodName());
+				foodReview.setFoodReviewTitle(foodReviewWriteCommand.getFoodReviewTitle());
+				foodReview.setFoodReviewScore(foodReviewWriteCommand.getFoodReviewScore());
+				foodReview.setFoodReviewComment(foodReviewWriteCommand.getFoodReviewComment());
+				foodReview.setFoodReviewSize(multiFile.getSize());
+				foodReview.setFoodReviewOriginal(originalFile);
+				foodReview.setFoodReviewStored(storedFileName);
 				System.out.println("svc insertFoodReview foodReview : " + foodReview);
 				
 				int k = foodRepository.insertFoodReview(foodReview);
@@ -411,16 +387,6 @@ public class FoodService {
 	public void insertFoodReviewAnswer(FoodReviewAnswerWriteCommand foodReviewAnswerWriteCommand) {
 		System.out.println("svc insertFoodReviewAnswer foodReviewNo" + foodReviewAnswerWriteCommand.getFoodReviewNo());
 		
-		//foodReviewAnswerNo
-		Integer foodReviewAnswerNo = foodRepository.selectfoodReviewAnswerNo();
-		System.out.println("svc insertFoodReviewAnswer foodReviewAnswerNo1 : " + foodReviewAnswerNo);
-		if(foodReviewAnswerNo == 0) {
-			foodReviewAnswerNo = 1;
-		} else {
-			foodReviewAnswerNo = foodReviewAnswerNo + 1;
-		}
-		System.out.println("svc insertFoodReviewAnswer foodReviewAnswerNo2 : " + foodReviewAnswerNo);
-		
 		//foodReviewRegdate
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
         String theTime = simpleDateFormat.format(Calendar.getInstance().getTime());
@@ -429,18 +395,17 @@ public class FoodService {
 		foodReviewAnswerWriteCommand.setFoodReviewAnswerRegdate(theTime);
 		System.out.println("svc insertFoodReviewAnswer FoodReviewAnswerRegdate : " + foodReviewAnswerWriteCommand.getFoodReviewAnswerRegdate());
 		
-		FoodReviewAnswer foodReviewAnswer = new FoodReviewAnswer(
-				foodReviewAnswerWriteCommand.getFoodReviewNo(),
-				foodReviewAnswerWriteCommand.getMemberEmail(),
-				foodReviewAnswerWriteCommand.getFoodNo(),
-				foodReviewAnswerWriteCommand.getSellerEmail(),
-				foodReviewAnswerNo,
-				foodReviewAnswerWriteCommand.getFoodCatANo(),
-				foodReviewAnswerWriteCommand.getFoodCatBNo(),
-				foodReviewAnswerWriteCommand.getFoodCatCNo(),
-				foodReviewAnswerWriteCommand.getFoodReviewAnswerContent(),
-				foodReviewAnswerWriteCommand.getFoodReviewAnswerRegdate()
-				);
+		FoodReviewAnswer foodReviewAnswer = new FoodReviewAnswer();
+		foodReviewAnswer.setFoodCatANo(foodReviewAnswerWriteCommand.getFoodCatANo());
+		foodReviewAnswer.setFoodCatBNo(foodReviewAnswerWriteCommand.getFoodCatBNo());
+		foodReviewAnswer.setFoodCatCNo(foodReviewAnswerWriteCommand.getFoodCatCNo());
+		foodReviewAnswer.setFoodReviewNo(foodReviewAnswerWriteCommand.getFoodReviewNo());
+		foodReviewAnswer.setMemberEmail(foodReviewAnswerWriteCommand.getMemberEmail());
+		foodReviewAnswer.setSellerEmail(foodReviewAnswerWriteCommand.getSellerEmail());
+		foodReviewAnswer.setFoodNo(foodReviewAnswerWriteCommand.getFoodNo());
+		foodReviewAnswer.setFoodReviewAnswerContent(foodReviewAnswerWriteCommand.getFoodReviewAnswerContent());
+		foodReviewAnswer.setFoodReviewAnswerRegdate(foodReviewAnswerWriteCommand.getFoodReviewAnswerRegdate());
+		
 		System.out.println("svc insertFoodReviewAnswer foodReviewAnswer : " + foodReviewAnswer);
 		
 		int k = foodRepository.insertFoodReviewAnswer(foodReviewAnswer);
@@ -619,90 +584,9 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 		return foodOrderList;
 	}
 
-	
-	
-	public void insertDietRecord(String selectOrderedFood, Integer mealtime, Integer quantity, HttpSession session, Model model) {
-//		System.out.println("svc insertDietRecord selectOrderedFood : " + selectOrderedFood);
-		String[] sof = selectOrderedFood.split(",");
-//		for(int i=0;i<sof.length;i++) {
-//		    System.out.println("svc insertDietRecord selectOrderedFood : " + sof[i]+"   ["+i+"]");
-//		}
-		
-//		foodName: foodName,
-//    	carbo: carbo,
-//    	protein: protein,
-//    	fat: fat,
-//    	cal: cal,
-//    	foodNo : foodNo
-		
-		//dietRecordNo
-		Integer dietRecordNo = foodRepository.selectDietRecordNo();
-		System.out.println("svc insertDietRecord dietRecordNo : " + dietRecordNo);
-		if(dietRecordNo == 0) {
-			dietRecordNo = 1;
-		} else {
-			dietRecordNo = dietRecordNo + 1;
-		}
-		
-		//memberEmail
-		String memberEmail = (String) session.getAttribute("email");
-		
-		//dietRecordRegdate
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
-        String dietRecordRegdate = simpleDateFormat.format(Calendar.getInstance().getTime());
-        System.out.println("svc insertDietRecord dietRecordRegdate : " + dietRecordRegdate);
-        
-        //dietRecordTime
-        String mt = "";
-        if(mealtime == 1) {
-        	mt = "아침";
-        }else if(mealtime == 2) {
-        	mt = "점심";
-        }else if(mealtime == 3) {
-        	mt = "저녁";
-        }else {
-        	mt = "간식";
-        }
-        
-		DietRecord dietRecord = new DietRecord(
-				dietRecordNo,
-				memberEmail,
-				sof[0],
-				dietRecordRegdate,
-				mt,
-				quantity
-				);
-		
-		int result = foodRepository.selectDietRecord(dietRecord);
-		
-		System.out.println("svc insertDietRecord selectOrderedFood food3 : " + food);
-		if(result > 0) {
-			System.out.println("중복식단이다!");
-		} else {
-			foodRepository.insertDietRecord(dietRecord);
-			System.out.println("식단기록(전체식품) 등록 성공!");
-		}
-		session.setAttribute("recordInsertResult", result);
-	}
-
-	public void deleteDietRecord(Integer dietRecordNo) {
-		
-		int k = foodRepository.deleteDietRecord(dietRecordNo);
-		
-		if(k < 1) {
-			System.out.println("식단기록 삭제 실패");
-		} else {
-			System.out.println("식단기록 삭제 성공!");
-		}
-	}
-
-	public List<DietRecordFood> selectDietRecordFoodList(String memberEmail) {
-		return foodRepository.selectDietRecordFoodList(memberEmail);
-	}
-
 	public int selectFoodRecord(String foodName, Integer mealtime, String recordDate, HttpSession session) {
 		//memberEmail
-		String memberEmail = (String) session.getAttribute("email");
+		String memberEmail = (String)session.getAttribute("email");
 		
 		//dietRecordTime
 		String mt = "";
@@ -731,6 +615,78 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 //			return 1;
 //		}
 	}
+	
+	public Integer insertDietRecord(String selectedOption, Integer mealtime, Integer quantity, HttpSession session, Model model) {
+//		System.out.println("svc insertDietRecord selectedOption : " + selectOrderedFood);
+		String[] sof = selectedOption.split(",");
+//		for(int i=0;i<sof.length;i++) {
+//		    System.out.println("svc insertDietRecord selectedOption : " + sof[i]+"   ["+i+"]");
+//		}
+		
+//		foodName: foodName,
+//    	carbo: carbo,
+//    	protein: protein,
+//    	fat: fat,
+//    	cal: cal,
+//    	foodNo : foodNo
+		
+		
+		//memberEmail
+		String memberEmail = (String) session.getAttribute("email");
+		
+		//dietRecordRegdate
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+        String dietRecordRegdate = simpleDateFormat.format(Calendar.getInstance().getTime());
+        System.out.println("svc insertDietRecord dietRecordRegdate : " + dietRecordRegdate);
+        
+        //dietRecordTime
+        String mt = "";
+        if(mealtime == 1) {
+        	mt = "아침";
+        }else if(mealtime == 2) {
+        	mt = "점심";
+        }else if(mealtime == 3) {
+        	mt = "저녁";
+        }else {
+        	mt = "간식";
+        }
+        
+		DietRecord dietRecord = new DietRecord();
+		dietRecord.setMemberEmail(memberEmail);
+		dietRecord.setFoodNutrientname(sof[0]);
+		dietRecord.setDietRecordRegdate(dietRecordRegdate);
+		dietRecord.setDietRecordTime(mt);
+		dietRecord.setFoodQuantity(quantity);
+		
+		int result = foodRepository.selectDietRecord(dietRecord);
+		int dietRecordNo = 0;
+		if(result > 0) {
+			System.out.println("중복식단이다!");
+		} else {
+			dietRecordNo = foodRepository.insertDietRecord(dietRecord);
+			System.out.println("svc insertDietRecord dietRecordNo : " + dietRecordNo);
+			System.out.println("식단기록(전체식품) 등록 성공!");
+		}
+//		session.setAttribute("insertedDietRecordNo", dietRecordNo);
+		return dietRecordNo;
+	}
+
+	public void deleteDietRecord(Integer dietRecordNo) {
+		
+		int k = foodRepository.deleteDietRecord(dietRecordNo);
+		
+		if(k < 1) {
+			System.out.println("식단기록 삭제 실패");
+		} else {
+			System.out.println("식단기록 삭제 성공!");
+		}
+	}
+
+	public List<DietRecordFood> selectDietRecordFoodList(String memberEmail) {
+		return foodRepository.selectDietRecordFoodList(memberEmail);
+	}
+
+	
 
 
 
