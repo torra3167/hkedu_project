@@ -3,7 +3,7 @@
 	<% int result=(Integer)request.getAttribute("result");
 		String email=(String)request.getParameter("email");
 	%>
-	<%@page import="javax.mail.internet.*"%>
+	<%@page import="javax.mail.internet.* "%>
 	<%@page import="javax.mail.*"%>	
 	<%@page import="javax.activation.*" %>
 	<%@page import="java.util.*" %>
