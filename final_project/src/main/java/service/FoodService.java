@@ -616,7 +616,7 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 //		}
 	}
 	
-	public Integer insertDietRecord(String selectedOption, Integer mealtime, Integer quantity, HttpSession session, Model model) {
+	public Integer insertDietRecord(String selectedOption, Integer mealtime, Integer quantity, String recordDate, HttpSession session, Model model) {
 //		System.out.println("svc insertDietRecord selectedOption : " + selectOrderedFood);
 		String[] sof = selectedOption.split(",");
 //		for(int i=0;i<sof.length;i++) {
@@ -635,9 +635,9 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 		String memberEmail = (String) session.getAttribute("email");
 		
 		//dietRecordRegdate
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
-        String dietRecordRegdate = simpleDateFormat.format(Calendar.getInstance().getTime());
-        System.out.println("svc insertDietRecord dietRecordRegdate : " + dietRecordRegdate);
+//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+//        String dietRecordRegdate = simpleDateFormat.format(Calendar.getInstance().getTime());
+//        System.out.println("svc insertDietRecord dietRecordRegdate : " + dietRecordRegdate);
         
         //dietRecordTime
         String mt = "";
@@ -654,25 +654,24 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 		DietRecord dietRecord = new DietRecord();
 		dietRecord.setMemberEmail(memberEmail);
 		dietRecord.setFoodNutrientname(sof[0]);
-		dietRecord.setDietRecordRegdate(dietRecordRegdate);
+		dietRecord.setDietRecordRegdate(recordDate);
 		dietRecord.setDietRecordTime(mt);
 		dietRecord.setFoodQuantity(quantity);
 		
-		int result = foodRepository.selectDietRecord(dietRecord);
-		int dietRecordNo = 0;
-		if(result > 0) {
-			System.out.println("중복식단이다!");
-		} else {
-			dietRecordNo = foodRepository.insertDietRecord(dietRecord);
+//		int result = foodRepository.selectDietRecord(dietRecord);
+//		int dietRecordNo = 0;
+//		if(result > 0) {
+//			System.out.println("중복식단이다!");
+//		} else {
+		int	dietRecordNo = foodRepository.insertDietRecord(dietRecord);
 			System.out.println("svc insertDietRecord dietRecordNo : " + dietRecordNo);
 			System.out.println("식단기록(전체식품) 등록 성공!");
-		}
+//		}
 //		session.setAttribute("insertedDietRecordNo", dietRecordNo);
 		return dietRecordNo;
 	}
 
 	public void deleteDietRecord(Integer dietRecordNo) {
-		
 		int k = foodRepository.deleteDietRecord(dietRecordNo);
 		
 		if(k < 1) {

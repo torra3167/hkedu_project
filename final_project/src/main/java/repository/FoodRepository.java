@@ -433,13 +433,18 @@ public class FoodRepository extends AbstractRepository{
 	public int selectFoodRecord(DietRecord dietRecord) {
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-			Integer result = (Integer)sqlSession.selectOne(namespace + ".selectFoodRecord", dietRecord);
+			System.out.println("repo test : " + dietRecord.getDietRecordRegdate());
+			System.out.println("repo test : " + dietRecord.getDietRecordTime());
+			System.out.println("repo test : " + dietRecord.getFoodNutrientname());
+			System.out.println("repo test : " + dietRecord.getMemberEmail());
+			Integer result = sqlSession.selectOne(namespace + ".selectFoodRecord", dietRecord);
+			System.out.println("repo selectFoodRecord result1 : " + result);
 			if(result > 0) {
-				result = 1;
+				result = 1;		//중복 = 1
 			}else {
 				result = 0;
 			}
-			System.out.println("repo selectFoodRecord result : " + result);
+			System.out.println("repo selectFoodRecord result2 : " + result);
 		return result;
 		} finally {
 			sqlSession.close();

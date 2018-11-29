@@ -321,25 +321,26 @@ public class FoodController {
 //   }
    
  //식단 입력 중복여부 반환 메소드
-//   @RequestMapping(value="/food_recordDuplication.gom", method=RequestMethod.POST)
-//   @ResponseBody
-//   public String foodRecordDuplication(@RequestParam("selectedOption")String selectedOption, @RequestParam("mealtime")Integer mealtime,  @RequestParam("recordDate")String recordDate, Model model, HttpSession session) {
-//	   System.out.println("cntlr foodRecordDuplication recordDate : " + recordDate);
-//	   System.out.println("cntlr foodRecordDuplication mealtime : " + mealtime);
-//	   System.out.println("cntlr foodRecordDuplication selectedOption : " + selectedOption);
-//	   String[] sof = selectedOption.split(",");
-//	   
-//	   int result = foodService.selectFoodRecord(sof[0], mealtime, recordDate, session);
-//		if(result > 0) {
-//			System.out.println("cntlr foodRecordDuplication 기존 기록 O");
-//			return "false";
-//		} else {
-//			System.out.println("cntlr foodRecordDuplication 기존 기록 X");
-//			return "true";
-//		}
-//   }
+   @RequestMapping(value="/food_recordDuplication.gom", method=RequestMethod.POST)
+   @ResponseBody
+   public String foodRecordDuplication(@RequestParam("selectedOption")String selectedOption, @RequestParam("mealtime")Integer mealtime,  @RequestParam("recordDate")String recordDate, Model model, HttpSession session) {
+	   System.out.println("cntlr foodRecordDuplication recordDate : " + recordDate);
+	   System.out.println("cntlr foodRecordDuplication mealtime : " + mealtime);
+	   System.out.println("cntlr foodRecordDuplication selectedOption : " + selectedOption);
+	   String[] sof = selectedOption.split(",");
+	   
+	   int result = foodService.selectFoodRecord(sof[0], mealtime, recordDate, session);
+		if(result == 1) {
+			System.out.println("cntlr foodRecordDuplication 중복 기록");
+			return "true";
+		} else {
+			System.out.println("cntlr foodRecordDuplication 중복 아님");
+			return "false";
+		}
+   }
    
    @RequestMapping(value="/food_recordInsert.gom", method=RequestMethod.POST)
+   @ResponseBody
    public String foodRecordInsert(@RequestParam("selectedOption")String selectedOption, @RequestParam("quantity")Integer quantity, @RequestParam("mealtime")Integer mealtime, @RequestParam("recordDate")String recordDate, Model model, HttpSession session) {
 //      System.out.println("cntlr foodRecordInsert selectOrderedFood : " + selectOrderedFood);
 //      System.out.println("cntlr foodRecordInsert mealtime : " + mealtime);
@@ -348,30 +349,26 @@ public class FoodController {
 //          System.out.println(sof[i]+"   ["+i+"]");
 //      }
       int foodNo = Integer.parseInt(sof[5]);
-      int dietRecordNo = 0;
-      	int result = foodService.selectFoodRecord(sof[0], mealtime, recordDate, session);
-		if(result > 0) {
-			System.out.println("cntlr foodRecordDuplication 기존 기록 O");
-		} else {
-			dietRecordNo = foodService.insertDietRecord(selectedOption, mealtime, quantity, session, model);
-			System.out.println("cntlr foodRecordDuplication 기존 기록 X");
-		}
-		
+//      int dietRecordNo = 0;
+////      	int result = foodService.selectFoodRecord(sof[0], mealtime, recordDate, session);
+//		if(result > 0) {
+//			System.out.println("cntlr foodRecordDuplication 기존 기록 O");
+//		} else {
+//			System.out.println("cntlr foodRecordDuplication 기존 기록 X");
+			String dietRecordNo = foodService.insertDietRecord(selectedOption, mealtime, quantity, recordDate, session, model).toString();
+//		}
+			
 //      List<DietRecordFood> dietRecordFoodList = foodService.selectDietRecordFoodList((String)session.getAttribute("email"));
 //      model.addAttribute("dietRecordFoodList", dietRecordFoodList);
-      model.addAttribute("dietRecordNo", dietRecordNo);
-      model.addAttribute("iPage", "food/food_dietRecord.jsp");
-      return "index";
+//      model.addAttribute("dietRecordNo", dietRecordNo);
+//      model.addAttribute("iPage", "food/food_dietRecord.jsp");
+      return dietRecordNo;
    }
    
    @RequestMapping(value="/food_recordDelete.gom", method=RequestMethod.POST)
-   public String foodRecordDelete(@RequestParam("dietRecordNo")Integer dietRecordNo, Model model, HttpSession session) {
-//   public String foodRecordDelete(@RequestParam("recordDate")String recordDate, @RequestParam("mealtime")Integer mealtime, @RequestParam("foodName")String foodName, Model model, HttpSession session) {
-//	   System.out.println("cntlr foodRecordDelete recordDate : " + recordDate);
-	   System.out.println("cntlr foodRecordDelete dietRecordNo : " + dietRecordNo);
-//	   System.out.println("cntlr foodRecordDelete mealtime : " + mealtime);
-//	   System.out.println("cntlr foodRecordDelete foodName : " + foodName);
-      foodService.deleteDietRecord(dietRecordNo);
+   public String foodRecordDelete(@RequestParam("drNum")Integer drNum, Model model, HttpSession session) {
+	   System.out.println("cntlr foodRecordDelete drNum : "+ drNum);
+      foodService.deleteDietRecord(drNum);
       return "index";
    }
    
