@@ -41,8 +41,17 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member_join.gom", method = RequestMethod.POST)
-	public String joinSubmit(MemberJoinCommand memberJoinCommand, Model model) {
+	public String joinSubmit(MemberJoinCommand memberJoinCommand, Model model, HttpServletRequest request) {
 		Integer result = null;
+		System.out.println(memberJoinCommand.getMemberEmail());
+		System.out.println(memberJoinCommand.getMemberName());
+		System.out.println(memberJoinCommand.getMemberPass());
+		System.out.println(memberJoinCommand.getMemberPhone());
+		System.out.println(memberJoinCommand.getMemberAddr1());
+		System.out.println(memberJoinCommand.getMemberAddr2());
+		System.out.println(memberJoinCommand.getMemberAddrNo());
+		System.out.println(memberJoinCommand.getMemberDivide());
+
 		System.out.println("CONTROLLER Join POST");
 		result = memberService.insertMember(memberJoinCommand);
 		if (result > 0) {
@@ -298,15 +307,25 @@ public class MemberController {
 			model.addAttribute("result", result);
 			return "index";
 		} else {
-			return "redirect:/index";
+			return "redirect:/memberEmailCheckindex";
 		}
 	}
 	
 	@ResponseBody
-    @RequestMapping(value = "/checkSignup", method = RequestMethod.POST)
+    @RequestMapping(value = "/memberEmailCheck.gom", method = RequestMethod.POST)
     public String checkSignup(HttpServletRequest request, Model model) {
-        String id = request.getParameter("id");
-        int rowcount = memberService.checkSignup(id);
+        String id = request.getParameter("emailMember");
+        int rowcount = memberService.selectByEmail(id);
         return String.valueOf(rowcount);
     }
+	
+	/*@ResponseBody
+	@RequestMapping(value="memberEmailCheck.gom", method=RequestMethod.POST)
+	public Integer memberEmailChk(HttpServletRequest request, Model model){
+		String email=request.getParameter("memberEmail");
+		int result=memberService.selectByEmail(email);
+		System.out.println(result);
+		model.addAttribute("result", result);
+		return result;
+	}*/
 }

@@ -28,8 +28,21 @@
           <label>나의 라이프스타일</label>
           <form:select path="survLifestyle" class="form-control">
                     <option value="" selected>--선택--</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
+                    <option value="불규칙한 식습관, 불규칙한 수면, 적은 운동량">불규칙한 식습관, 불규칙한 수면, 적은 운동량</option>
+                    <option value="불규칙한 식습관, 불규칙한 수면, 적당한 운동량">불규칙한 식습관, 불규칙한 수면, 적당한 운동량</option>
+                    <option value="불규칙한 식습관, 불규칙한 수면, 많은 운동량">불규칙한 식습관, 불규칙한 수면, 많은 운동량</option>
+                    
+                    <option value="불규칙한 식습관, 규칙적인 수면, 적은 운동량">불규칙한 식습관, 규칙적인 수면, 적은 운동량</option>
+                    <option value="불규칙한 식습관, 규칙적인 수면, 적당한 운동량">불규칙한 식습관, 규칙적인 수면, 적당한 운동량</option>
+                    <option value="불규칙한 식습관, 규칙적인 수면, 많은 운동량">불규칙한 식습관, 규칙적인 수면, 많은 운동량</option>
+                    
+                    <option value="규칙적인 식습관, 불규칙한 수면, 적은 운동량">규칙적인 식습관, 불규칙한 수면, 적은 운동량</option>
+                    <option value="규칙적인 식습관, 불규칙한 수면, 적당한 운동량">규칙적인 식습관, 불규칙한 수면, 적당한 운동량</option>
+                    <option value="규칙적인 식습관, 불규칙한 수면, 많은 운동량">규칙적인 식습관, 불규칙한 수면, 많은 운동량</option>
+                    
+                    <option value="규칙적인 식습관, 규칙적인 수면, 적은 운동량">규칙적인 식습관, 규칙적인 수면, 적은 운동량</option>
+                    <option value="규칙적인 식습관, 규칙적인 수면, 적당한 운동량">규칙적인 식습관, 규칙적인 수면, 적당한 운동량</option>
+                    <option value="규칙적인 식습관, 규칙적인 수면, 많은 운동량">규칙적인 식습관, 규칙적인 수면, 많은 운동량</option>
           </form:select>
         </div>
         <div class="form-group">

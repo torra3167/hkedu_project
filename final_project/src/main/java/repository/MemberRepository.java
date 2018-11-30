@@ -2,6 +2,9 @@ package repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.activation.CommandMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -180,7 +183,7 @@ public class MemberRepository extends AbstractRepository {
 		}
 	}
 
-	public int checkEmail(String id) {
+/*	public int checkEmail(String id) {
 		SqlSession sqlSession=getSqlSessionFactory().openSession();
 		String statement=namespace+".idChk";
 		System.out.println("MEMBERREPOSITORY checkEmail " + id);
@@ -193,6 +196,13 @@ public class MemberRepository extends AbstractRepository {
 		} finally {
 			sqlSession.close();
 		}
+	}*/
+	
+	public Integer selectByEmailChk(String email) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		String statement=namespace+".idChk";
+		int result=sqlSession.selectOne(statement, email);
+		return result;
 	}
 
 }

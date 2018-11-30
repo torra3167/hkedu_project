@@ -9,15 +9,17 @@ public class Seller implements Serializable{
 	private String sellerPhone;
 	private String sellerTerm;
 	private String sellerDivide;
+	private String sellerName;
 	
 	public Seller() {}
 
-	public Seller(String sellerEmail, String sellerPw, String sellerPhone, String sellerTerm, String sellerDivide) {
+	public Seller(String sellerEmail, String sellerPw, String sellerPhone, String sellerTerm, String sellerDivide, String sellerName) {
 		this.sellerEmail = sellerEmail;
 		this.sellerPw = sellerPw;
 		this.sellerPhone = sellerPhone;
 		this.sellerTerm = sellerTerm;
 		this.sellerDivide = sellerDivide;
+		this.sellerName=sellerName;
 	}
 	
 	
@@ -69,4 +71,13 @@ public class Seller implements Serializable{
 	public void setSellerDivide(String sellerDivide) {
 		this.sellerDivide = sellerDivide;
 	}
+
+	public String getSellerName() {
+		return sellerName;
+	}
+
+	public void setSellerName(String sellerName) {
+		this.sellerName = sellerName;
+	}
+	
 }

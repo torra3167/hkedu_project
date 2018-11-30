@@ -75,10 +75,11 @@ public class EmailController {
 	
 	@RequestMapping(value = "/changePW.gom", method = RequestMethod.POST)
 	public String changePWSubmit(ChangePWCommand changePWCommand, @RequestParam("app")String email, Model model) {
-		model.addAttribute("iPage", "login/changePW.jsp");
+		model.addAttribute("iPage", "login/changePW_success.jsp");
 		Integer result=emailService.changePW(changePWCommand);
 		System.out.println("controller changepw "+result);
 		model.addAttribute("email", email);
+		model.addAttribute("result", result);
 		return "index";
 	}
 	@RequestMapping(value = "/changePWMember.gom", method = RequestMethod.GET)

@@ -114,7 +114,7 @@
 	<delete id="deleteFromMemberList">
 		delete from MEMBER where MEMBER_EMAIL=#{email}
 	</delete>
-	<select id="idChk" parameterType="String" resultType="String">
-		select MEMBER_EMAIL from member where MEMBER_EMAIL=#{id}
+	<select id="idChk" parameterType="String" resultType="Integer">
+		<![CDATA[select count(MEMBER_EMAIL) as result from member where MEMBER_EMAIL=#{email}]]>
 	</select>
 </mapper>

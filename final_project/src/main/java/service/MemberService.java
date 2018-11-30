@@ -2,7 +2,9 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import javax.activation.CommandMap;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,8 +122,13 @@ public class MemberService {
 		return result;
 	}
 
-	public int checkSignup(String id) {
+/*	public int checkSignup(String id) {
 		int result=memberRepository.checkEmail(id);
+		return result;
+	}*/
+	
+	public int selectByEmail(String email) {
+		Integer result=memberRepository.selectByEmailChk(email);
 		return result;
 	}
 }
