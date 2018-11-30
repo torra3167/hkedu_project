@@ -22,5 +22,9 @@
 <bean class="controller.ProReviewController"></bean>
 <bean class="controller.ProReviewReportController"></bean>
 <bean class="controller.EmailController"></bean>
-<bean class="controller.AdminController"></bean>
+
+
+<!--채팅  -->
+<bean class="controller.ChatController" />
+<bean class="controller.WebSocketController" />
 </beans>

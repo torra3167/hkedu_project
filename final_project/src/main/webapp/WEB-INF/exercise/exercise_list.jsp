@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, model.Upload"%>
+	pageEncoding="UTF-8" import="java.util.*, model.UploadExerciseCatA"%>
 	
 	<%
     	List list = (List)request.getAttribute("Upload");
@@ -29,6 +29,7 @@
 					<th>운동 번호</th>
 					<th>운동 카테고리A</th>
 					<th>운동 카테고리B</th>
+					<th>운동 이름</th>
 					<th>운동 사이즈</th>
 					<th>운동 오리지널</th>
 					<th>운동 저장된</th>
@@ -37,14 +38,15 @@
 			</thead>
 			<tbody>
 			<% for(Object temp : list) {
-				Upload upload = (Upload)temp; %>
+				UploadExerciseCatA upload = (UploadExerciseCatA)temp; %>
 				<tr>
 					
 					
 					
-					 <td><a href="exercise_detail.gom?exerciseNumber=<%=upload.getExerciseNumber() %>"><%=upload.getExerciseNumber() %></a></td>
+					<td><a href="exercise_detail.gom?exerciseNumber=<%=upload.getExerciseNumber() %>"><%=upload.getExerciseNumber() %></a></td>
 					<td><%=upload.getExerciseCatANumber() %></td>
 					<td><%=upload.getExerciseCatBNumber() %></td>
+					<td><%=upload.getExerciseCatAName() %></td>
 					<td><%=upload.getUploadSize() %></td>
 					<td><%=upload.getUploadOriginal() %></td>
 				

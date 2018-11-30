@@ -20,9 +20,9 @@ import model.Exercise;
 import model.ExerciseExerciseCatA;
 import model.ExerciseRec;
 import model.ExerciseRecCommand;
-import model.ProPay;
 import model.ProgramExercise;
 import model.Upload;
+import model.UploadExerciseCatA;
 import repository.ExerciseRepository;
 
 public class ExerciseService {
@@ -142,7 +142,8 @@ public class ExerciseService {
 
 	public void exerciseList(Model model) {
 		// TODO Auto-generated method stub
-		List<Upload> list = er.exerciseList();
+		List<UploadExerciseCatA> list = er.exerciseList();
+		
 		model.addAttribute("Upload", list);
 	}
 
@@ -286,6 +287,8 @@ public class ExerciseService {
 
 	public void insertExerciseRec(ExerciseRecCommand exerciseRecCommand) {
 		// TODO Auto-generated method stub
+		
+		System.out.println(exerciseRecCommand.getExerciseRecordRegdate());
 		
 		er.insertExerciseRec(exerciseRecCommand);
 	}

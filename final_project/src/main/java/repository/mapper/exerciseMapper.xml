@@ -4,6 +4,10 @@
 <mapper namespace="repository.mapper.exerciseMapper">
 <cache></cache>
 
+<select id="selectExerciseCatNameByCatA" parameterType="int" resultType="String">
+ select exercise_cat_a_name from exercise_cat_a where exercise_cat_a_number = #{exerciseCatANumber}
+</select>
+
 <insert id="insertExerciseRec" parameterType="ExerciseRec">
 	insert into exercise_rec
 	(EXERCISE_RECORD_NO, MEMBER_EMAIL, PRO_NO, COACH_EMAIL, EXERCISE_RECORD_NAME, EXERCISE_RECORD_KG, 
@@ -231,7 +235,21 @@ where member_email = #{memberEmail}))
 	
 </resultMap>
 
-<select id="uploadList" resultMap="uploadMap">
+<resultMap type="model.UploadExerciseCatA" id="uploadExerciseCatAMap">
+
+	<id column="UPLOAD_NUMBER" jdbcType="BIGINT" property="uploadNumber"/>
+	<id column="EXERCISE_NUMBER" jdbcType="BIGINT" property="exerciseNumber"/>
+	<id column="EXERCISE_CAT_A_NUMBER" jdbcType="BIGINT" property="exerciseCatANumber"/>
+	<id column="EXERCISE_CAT_B_NUMBER" jdbcType="BIGINT" property="exerciseCatBNumber"/>	
+	<result column="UPLOAD_SIZE" jdbcType="BIGINT" property="uploadSize"/>	
+	<result column="UPLOAD_ORIGINAL" jdbcType="VARCHAR" property="uploadOriginal"/>	
+	<result column="UPLOAD_STORED" jdbcType="VARCHAR" property="uploadStored"/>	
+	<result column="UPLOAD_DIVIDE" jdbcType="VARCHAR" property="uploadDivide"/>	 
+	
+	
+</resultMap>
+
+<select id="uploadList" resultMap="uploadExerciseCatAMap">
 select UPLOAD_NUMBER, EXERCISE_NUMBER, EXERCISE_CAT_A_NUMBER, EXERCISE_CAT_B_NUMBER,
 UPLOAD_SIZE, UPLOAD_ORIGINAL, UPLOAD_STORED, UPLOAD_DIVIDE
 from upload

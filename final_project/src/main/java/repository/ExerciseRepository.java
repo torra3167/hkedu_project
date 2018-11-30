@@ -1,5 +1,6 @@
 package repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,6 +15,7 @@ import model.ExerciseRec;
 import model.ExerciseRecCommand;
 import model.ProgramExercise;
 import model.Upload;
+import model.UploadExerciseCatA;
 
 @Repository
 public class ExerciseRepository extends AbstractRepository {
@@ -78,12 +80,20 @@ public class ExerciseRepository extends AbstractRepository {
 		}
 	}
 
-	public List<Upload> exerciseList() {
+	public List<UploadExerciseCatA> exerciseList() {
 		sqlSession = getSqlSessionFactory().openSession();
 
 		try {
 
-			List<Upload> list = sqlSession.selectList(namespace + ".uploadList");
+			List<UploadExerciseCatA> list = sqlSession.selectList(namespace + ".uploadList");
+			
+			for(int i = 0; i < list.size(); i++) {
+				String exerciseCatAName = (String)sqlSession.selectOne(namespace + ".selectExerciseCatNameByCatA", 
+						list.get(i).getExerciseCatANumber());
+				
+				list.get(i).setExerciseCatAName(exerciseCatAName);
+				}
+			
 			return list;
 		} finally {
 			sqlSession.close();

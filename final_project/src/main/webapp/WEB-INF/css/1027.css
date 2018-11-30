@@ -26,28 +26,30 @@ body {
   text-align: center;
 }
 .carousel-item.item1 {
-  background-image: url('../images/music/playlist1.jpg');
+  background-image: url('../images/foodAd2.jpg');
   background-position: left center;
 }
 
 .carousel-item.item2 {
-  background-image: url('../images/music/playlist2.jpg');
+  background-image: url('../images/exerciseAd.jpg');
   background-position: center top;
 }
 
 .carousel-item.item3 {
-  background-image: url('../images/music/playlist3.jpg');
+  background-image: url('../images/foodAd.jpg');
   background-position: center center;
 }
 h5 {
-  font-size: 32px;
   color: white;
+  font-size: 32px;
   margin-bottom: 18px;
   font-weight: 300;
   margin-top:0;
 
 }
-
+.intro {
+	color: white;
+}
 
 
 

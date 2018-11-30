@@ -91,6 +91,7 @@ public class ProgramService {
 			String[] exerciseCatANames = exerciseCatAName.split("/");
 
 			List<ExerciseCatA> list = pr.selectCatByExerciseCatAName(exerciseCatANames);
+			
 			for (Object temp : list) {
 				ExerciseCatA categoryA = (ExerciseCatA) temp;
 				System.out.println(categoryA.getExerciseCatANumber() + " A");

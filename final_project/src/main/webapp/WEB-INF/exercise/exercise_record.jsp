@@ -54,18 +54,20 @@
 					<td><%=exerciseRecord.getProNo() %></td>
 					<td><%=exerciseRecord.getCoachEmail() %></td>
 					<td><%=exerciseRecord.getExerciseRecordName() %></td>
-					<td><%=exerciseRecord.getExerciseRecordKg() %></td>
-					<td><%=exerciseRecord.getExerciseRecordTimes() %></td>
-					<td><%=exerciseRecord.getExerciseRecordWeight() %></td>
+					<td><%=exerciseRecord.getExerciseRecordKg() %>kg</td>
+					<td><%=exerciseRecord.getExerciseRecordTimes() %>회</td>
+					<td><%=exerciseRecord.getExerciseRecordWeight() %>kg</td>
 					<td><%=exerciseRecord.getExerciseRecordRegdate() %></td>
 					
-					<form>
+					<%-- <form>
 						<input type="text" name="exerciseRecordWeight" id="exerciseRecordWeight" value="<%=exerciseRecord.getExerciseRecordWeight() %>">
 						<input type="text" name="exerciseRecordRegdate" id="exerciseRecordRegdate" value="<%=exerciseRecord.getExerciseRecordRegdate() %>">
-					</form> 
+					</form>  --%>
 				</tr>
-			<%} %>
 				
+				
+			<%} %>
+				<hr>
 				
 				
 			</tbody>
@@ -78,10 +80,10 @@
 <% } %>
 <script type="text/javascript">
 
-	var weight = document.getElementById('exerciseRecordWeight');
+	/* var weight = document.getElementById('exerciseRecordWeight');
 	var regDate = document.getElementById('exerciseRecordRegdate');
 	console.log(weight);
-	console.log(regDate);
+	console.log(regDate); */
 
 	new Morris.Line({
 		
@@ -89,17 +91,26 @@
 		element : 'myfirstchart',
 		// Chart data records -- each entry in this array corresponds to a point on
 		// the chart.
-		data : [ {
-			x : '2019-04',
-			무게 : 80
-		} ],
+		data : [ 
+			<% for(Object temp : exerciseRecordList)  { 
+				ExerciseRec exerciseRec = (ExerciseRec)temp;
+			%>
+			{ 	regDate: '<%=exerciseRec.getExerciseRecordRegdate()%>',
+				weight: '<%=exerciseRec.getExerciseRecordWeight()%>kg'			  	
+			},	
+			<% } %>
+			],
 		// The name of the data record attribute that contains x-values.
-		xkey : 'x',
+		xkey : 'regDate',
 		// A list of names of data record attributes that contain y-values.
-		ykeys : [ '무게' ],
+		ykeys :[ 'weight'],
 		// Labels for the ykeys -- will be displayed when you hover over the
 		// chart.
-		labels : [ 'kg' ]
+		hidehover: 'auto',
+		xmax : 'auto',
+		xmin : 'auto',
+		ymin : 'auto',
+		labels : ['체중']
 	});
 </script>
 	

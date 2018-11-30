@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.*, category.*" %>
     
     <%
-    	List exerciselist = (List)request.getAttribute("exerciselist");
+    	List exerciselist = (List)request.getAttribute("exerciseList");
     %>
 <html>
 <head>

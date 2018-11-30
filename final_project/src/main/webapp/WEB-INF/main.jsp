@@ -18,7 +18,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>	
 	
-<link rel="stylesheet" href="../css/1027.css">
+<link rel="stylesheet" href="css/1027.css">
 
 </head>
 
@@ -37,26 +37,26 @@
 
 				<div class="helper"></div>
 				<div class="intro" id="navi">
-					<h5>광고제목1</h5>
-					<p>광고한줄내용1</p>
-					<a href="#">링크이동1</a>
+					<h5>칼로리와 맛 그 무엇도 놓칠 수 없어!</h5>
+					<p>균형있고 맛있는 식단을 위한 선택</p>
+					<a href="#">식품관</a>
 				</div>
 			</div>
 			<div class="carousel-item item2">
 				<div class="helper"></div>
 				<div class="intro" id="navi">
-					<h5>광고제목2</h5>
-					<p>광고한줄내용2</p>
-					<a href="#">링크이동2</a>
+					<h5>흔들리면 모두 지방이다</h5>
+					<p>새로운 인생을 시작하세요!</p>
+					<a href="#">운동관</a>
 				</div>
 			</div>
 
 			<div class="carousel-item item3">
 				<div class="helper"></div>
 				<div class="intro" id="navi">
-					<h5>광고제목3</h5>
-					<p>광고한줄내용3</p>
-					<a href="#">링크이동3</a>
+					<h5>살은 빼고 싶지만 맛있게 먹고싶어..</h5>
+					<p>쉐프의 레시피 레시피 판다</p>
+					<a href="#">식품관</a>
 				</div>
 			</div>
 		</div>
@@ -108,6 +108,7 @@
 
 			</div>
 		</div>
+
 
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
 			<div id="box">

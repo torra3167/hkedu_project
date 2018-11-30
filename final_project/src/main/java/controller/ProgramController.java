@@ -79,7 +79,14 @@ public class ProgramController {
 		
 	}
 
-	
+	@RequestMapping(value = "/admin_program_list.gom", method = RequestMethod.GET)
+	public String adminProgramList(Model model) {
+
+		ps.programList(model);
+		model.addAttribute("iPage", "admin/admin_program_list.jsp");
+		return "index";
+
+	}
 	
 	@RequestMapping(value = "/program_list.gom", method = RequestMethod.GET)
 	public String programList(Model model) {

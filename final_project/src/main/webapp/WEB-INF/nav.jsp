@@ -32,7 +32,9 @@
 				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동관</a></li>
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
-				
+				<li class="nav-item"><a class="nav-link"
+					onclick="window.open('chatting.gom', '',
+						'width=400, height=500'); return false;">채팅</a></li>	
 					
 				<li class="nav-item">
 					<div class="dropdown">
@@ -51,6 +53,7 @@
 			<div class="navbar-nav ml-md-auto">
 				<a class="nav-item nav-link" href="seller_join.gom" >판매자가입</a> 
 				<a class="nav-item nav-link" href="member_join.gom" >회원가입</a> 
+				
 				<a class="nav-item nav-link" href="login.gom" >로그인</a> &nbsp;
 
 
@@ -94,7 +97,7 @@
 				<li class="nav-item"><a class="nav-link"
 					href="exercise_record.gom">운동기록</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="program_list.gom">프로그램리스트</a></li>
+					href="admin_program_list.gom">프로그램리스트</a></li>
 
 				<li class="nav-item"><a class="nav-link"
 					href="cart_list.gom">Cart</a></li>
@@ -104,7 +107,11 @@
 				
 				<li class="nav-item"><a class="nav-link"
 					href="program_cart_list.gom">프로그램Cart</a></li>	
+				<li class="nav-item"><a class="nav-link"
+					onclick="window.open('chatting.gom', '',
+						'width=400, height=500'); return false;">채팅</a></li>	
 				<li class="nav-item">
+				
 					<div class="dropdown show">
 						<a class="nav-link dropdown-toggle" id="dropdown"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -160,9 +167,8 @@
 			<ul class="nav navbar-nav">
 
 				<li class="nav-item"><a class="nav-link" href="food_list.gom">식품관</a></li>
-
 				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동리스트</a></li>
-				<li class="nav-item"><a class="nav-link" href="program_list.gom">프로그램리스트</a></li>
+				<li class="nav-item"><a class="nav-link" href="admin_program_list.gom">프로그램리스트</a></li>
 				<li class="nav-item"><a class="nav-link" href="pro_review_all_list.gom">프로그램올리뷰</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="cart_list.gom">일반Cart</a></li>
@@ -332,7 +338,7 @@
 							<a class="dropdown-item" href="food_reviewReportList.gom" >리뷰신고 관리</a>
 							<a class="dropdown-item" href="review_report_board.gom" >프로그램리뷰 신고 관리</a>
 							<a class="dropdown-item" href="seller_applicationList.gom" >입점신청서 관리</a>
-							<a class="dropdown-item" href="program_list.gom" >프로그램신청 관리</a>
+							<a class="dropdown-item" href="admin_program_list.gom" >프로그램신청 관리</a>
 						</div>
 					</div>
 				</li>				

@@ -20,6 +20,8 @@
 
 <body>
 	
+	
+	
 	<div class="container">
 	<h1 class="">프로그램 리스트</h1>
 		<table class="table table-striped text-center">
@@ -43,6 +45,36 @@
 			<tbody>
 			<% for(Object temp : list) {
 				Program program = (Program)temp; %>
+				<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+					<div id="box">
+					<a href="program_detail.gom?proNo=<%=program.getProNo() %>
+					&proContent=<%=program.getProContent()%>
+					&proPrice=<%=program.getProPrice()%>
+					&proStatus=<%=program.getProStatus()%>
+					">
+						<img class="d-block w-100" src="resource\\<%=program.getProStored() %>"
+							width="250" height="250" alt="Third slide">
+					</a>		
+							
+						<div id="info">
+					 <br> 
+					<%=program.getProName() %>
+					<br>
+					
+					<img src="images/d-day/dot.png"
+								width="20" height="20">
+					
+					<%=program.getCoachEmail() %>	
+					<br>		
+					가격 : <%=program.getProPrice() %>
+					</div>
+					
+					</div>
+				</div>
+
+
+
+
 				<tr>
 				
 					<td><%=program.getProNo() %></td>
