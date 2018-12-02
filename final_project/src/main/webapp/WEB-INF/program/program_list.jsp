@@ -52,6 +52,7 @@
 					&proContent=<%=program.getProContent()%>
 					&proPrice=<%=program.getProPrice()%>
 					&proStatus=<%=program.getProStatus()%>
+					&proStored=<%=program.getProStored()%>
 					">
 						<img class="d-block w-100" src="resource\\<%=program.getProStored() %>"
 							width="250" height="250" alt="Third slide">
@@ -79,6 +80,7 @@
 					&proContent=<%=program.getProContent()%>
 					&proPrice=<%=program.getProPrice()%>
 					&proStatus=<%=program.getProStatus()%>
+					&proStored=<%=program.getProStored()%>
 					"><%=program.getProName() %>
 					</a></td>
 					<td><%=program.getProRegdate() %></td>

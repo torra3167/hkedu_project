@@ -7,6 +7,7 @@ public class ProgramDetailCommand implements Serializable {
 	
 	private int proNo;
 	private String proContent;
+	private String proStored;
 	private String coachEmail;
 	private int exerciseNumber;
 	private int exerciseCatANumber;
@@ -22,6 +23,12 @@ public class ProgramDetailCommand implements Serializable {
 	
 	
 	
+	public String getProStored() {
+		return proStored;
+	}
+	public void setProStored(String proStored) {
+		this.proStored = proStored;
+	}
 	public String getProStatus() {
 		return proStatus;
 	}
