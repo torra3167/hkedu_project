@@ -30,6 +30,7 @@ import model.DietRecord;
 import model.DietRecordFood;
 import model.Food;
 import model.FoodAndApplication;
+import model.FoodNutrient;
 import model.FoodReview;
 import model.FoodReviewAndAnswer;
 import model.FoodReviewAnswer;
@@ -52,9 +53,9 @@ public class FoodService {
 	private FoodRepository foodRepository;
 	static final String filePath =
 //			"C:\\Users\\FUTURE\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 //			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
 	
 	
@@ -599,7 +600,6 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
         }else {
         	mt = "간식";
         }
-        
 		DietRecord dietRecord = new DietRecord();
 		dietRecord.setDietRecordRegdate(recordDate);
 		dietRecord.setMemberEmail(memberEmail);
@@ -681,9 +681,21 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 		}
 	}
 
-	public List<DietRecordFood> selectDietRecordFoodList(String memberEmail) {
-		return foodRepository.selectDietRecordFoodList(memberEmail);
+	public List<DietRecordFood> selectDietRecordFoodList(String memberEmail, String dateText) {
+		DietRecord dietRecord = new DietRecord();
+		dietRecord.setDietRecordRegdate(dateText);
+		dietRecord.setMemberEmail(memberEmail);
+		return foodRepository.selectDietRecordFoodList(dietRecord);
 	}
+
+	public List<FoodNutrient> selectFoodNutrientList() {
+		return foodRepository.selectFoodNutrientList();
+	}
+
+	public List<FoodNutrient> selectfoodNutListB(String foodNutrientCatName) {
+		return foodRepository.selectfoodNutListB(foodNutrientCatName);
+	}
+
 
 	
 

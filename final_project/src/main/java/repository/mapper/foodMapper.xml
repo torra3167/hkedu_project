@@ -135,44 +135,22 @@
 		order by food_no
 	</select>
 	
-	<select id="selectOrderedFoodList1" parameterType="String" resultMap="sellerFoodListMap">
-		SELECT 
-		f.food_no, f.seller_email, f.food_cat_a_no, f.food_cat_b_no, f.food_cat_c_no, food_name, food_quant, food_expiry_date,
-		food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size,
-		food_original, food_stored
-		FROM
-		food_pay fp, food_order fo, food f
-		WHERE 
-		fp.food_order_receiver_no = fo.food_order_receiver_no
-		AND fo.food_no = f.food_no
-		AND fp.member_email = #{memberEmail}
-		ORDER BY fp.food_pay_date
+	<select id="selectOrderedFoodList" parameterType="String" resultMap="sellerFoodListMap">
+		SELECT * 
+		FROM food
+		WHERE food_no in (
+			SELECT DISTINCT food_no 
+			FROM pro_food_pay pfp, pro_food_order pfo
+			WHERE pfp.pro_food_order_receiver_no  = pfo.pro_food_order_receiver_no
+			AND pfp.member_email = #{memberEmail}
+			UNION 
+			SELECT DISTINCT food_no
+			FROM food_pay fp, food_order fo
+			WHERE fp.food_order_receiver_no = fo.food_order_receiver_no
+			AND fp.member_email = #{memberEmail}
+		)
 	</select>
 	
-	
-	<select id="selectOrderedFoodList2" parameterType="String" resultMap="sellerFoodListMap">
-		SELECT 
-		f.food_no, f.seller_email, f.food_cat_a_no, f.food_cat_b_no, f.food_cat_c_no, food_name, food_quant, food_expiry_date,
-		food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size,
-		food_original, food_stored
-		FROM
-		pro_food_pay pfp, pro_food_order pfo, food f
-		WHERE 
-		pfp.pro_food_order_receiver_no  = pfo.pro_food_order_receiver_no 
-		AND pfo.food_no = f.food_no
-		AND pfp.member_email = 'member1'
-        ORDER BY pfp.pro_food_pay_date
-	</select>
-	
-<!-- 	<select id="selectFoodByFoodNo" parameterType="Integer" resultMap="sellerFoodListMap"> -->
-<!-- 		SELECT -->
-<!-- 		food_no, seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, food_name, food_quant, food_expiry_date, -->
-<!-- 		food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size, -->
-<!-- 		food_original, food_stored -->
-<!-- 		FROM -->
-<!-- 		food -->
-<!-- 		WHERE food_no = #{foodNo} -->
-<!-- 	</select> -->
 	
 	<resultMap type="Food" id="selectSellerFoodMap">
 		<id column="food_no" jdbcType="BIGINT" property="foodNo" />
@@ -336,10 +314,6 @@
 	WHERE food_review_no = #{foodReviewNo}
 </delete>
 
-<!-- <select id="selectfoodReviewAnswerNo" resultType="Integer"> -->
-<!-- 		select count(food_review_answer_no) -->
-<!-- 		from food_review_answer -->
-<!-- </select> -->
 
 
 <insert id="insertFoodReviewAnswer" parameterType="FoodReviewAnswer">
@@ -447,7 +421,7 @@
 		<result column="diet_record_time" jdbcType="VARCHAR" property="dietRecordTime" />
 		<result column="food_quantity" jdbcType="BIGINT" property="foodQuantity" />
 </resultMap>
-<!-- <select id="selectFoodRecord" parameterType="DietRecord" resultMap="selectFoodRecordMap"> -->
+
 <select id="selectFoodRecord" parameterType="DietRecord" resultType="Integer">
 		SELECT
 		count(diet_record_no)
@@ -472,12 +446,21 @@
 		<result column="food_cal" jdbcType="BIGINT" property="foodCal" />
 </resultMap>
 
-<select id="selectDietRecordFoodList" parameterType="String" resultMap="selectDietRecordFoodListMap">
+<select id="selectDietRecordFoodList" parameterType="DietRecord" resultMap="selectDietRecordFoodListMap">
 		SELECT
-		diet_record_no, member_email, food_nutrient_name, diet_record_regdate, diet_record_time, food_quantity, food_carbo, food_protein, food_fat, food_cal
+		diet_record_no, member_email, dr.food_nutrient_name, diet_record_regdate, diet_record_time, food_quantity, food_carbo, food_protein, food_fat, food_cal
 		FROM diet_record dr, food fd
-		WHERE dr.food_nutrient_name = fd.food_name AND member_email = #{memberEmail}
-        order by diet_record_no
+		WHERE dr.food_nutrient_name = fd.food_name
+		AND member_email = #{memberEmail}
+		AND diet_record_regdate = #{dietRecordRegdate}
+union
+SELECT
+		diet_record_no, member_email, dr.food_nutrient_name, diet_record_regdate, diet_record_time, food_quantity, fn.FOOD_NUTRIENT_CARB, FOOD_NUTRIENT_PROT, FOOD_NUTRIENT_FAT, FOOD_NUTRIENT_KCAL
+		FROM diet_record dr, FOOD_NUTRIENT fn
+		WHERE dr.food_nutrient_name = fn.food_nutrient_name
+		AND member_email = #{memberEmail}
+		AND diet_record_regdate = #{dietRecordRegdate}
+        order by food_nutrient_name
 </select>
 
 
@@ -490,5 +473,23 @@
 		AND member_email = #{memberEmail}
 		AND food_nutrient_name = #{foodNutrientname}
 </select>
+<resultMap type="FoodNutrient" id="selectFoodNutrientMap">
+		<id column="food_nutrient_name" jdbcType="VARCHAR" property="foodNutrientName" />
+		<result column="food_nutrient_cat_name" jdbcType="VARCHAR" property="foodNutrientCatName" />
+		<result column="food_nutrient_kcal" jdbcType="BIGINT" property="foodNutrientKcal" />
+		<result column="food_nutrient_carb" jdbcType="BIGINT" property="foodNutrientCarb" />
+		<result column="food_nutrient_prot" jdbcType="BIGINT" property="foodNutrientProt" />
+		<result column="food_nutrient_fat" jdbcType="BIGINT" property="foodNutrientFat" />
+</resultMap>
+<select id="selectFoodNutrientList" resultMap="selectFoodNutrientMap">
+		select DISTINCT food_nutrient_cat_name
+		from food_nutrient
+</select> 
+
+<select id="selectfoodNutListB" resultMap="selectFoodNutrientMap" parameterType="String">
+		select *
+		from food_nutrient
+		where food_nutrient_cat_name = #{foodNutrientCatName}
+</select> 
 
 </mapper>

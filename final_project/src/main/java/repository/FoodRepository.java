@@ -13,6 +13,7 @@ import model.DietRecord;
 import model.DietRecordFood;
 import model.Food;
 import model.FoodAndApplication;
+import model.FoodNutrient;
 import model.FoodReview;
 import model.FoodReviewAndAnswer;
 import model.FoodReviewAnswer;
@@ -391,20 +392,11 @@ public class FoodRepository extends AbstractRepository{
 		sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
-			List<Food> list1 =  sqlSession.selectList(namespace + ".selectOrderedFoodList1", memberEmail);
+			List<Food> foodOrderList =  sqlSession.selectList(namespace + ".selectOrderedFoodList", memberEmail);
 //			for(Object temp : list1) {
 //				 Food food = (Food)temp;
 //				 System.out.println("repo selectOrderedFoodList1 getFoodName : " + food.getFoodName());
 //			}
-			
-			List<Food> list2 = sqlSession.selectList(namespace + ".selectOrderedFoodList2", memberEmail);
-//			for(Object temp : list2) {
-//				 Food food = (Food)temp;
-//				 System.out.println("repo selectOrderedFoodList2 getFoodName : " + food.getFoodName());
-//			}
-			
-			List<Food> foodOrderList = new ArrayList<Food>(list1);
-			foodOrderList.addAll(list2);
 			System.out.println("repo selectOrderedFoodList foodOrderList.size : " + foodOrderList.size());
 			
 			return foodOrderList;
@@ -490,11 +482,11 @@ public class FoodRepository extends AbstractRepository{
 		}
 	}
 
-	public List<DietRecordFood> selectDietRecordFoodList(String memberEmail) {
+	public List<DietRecordFood> selectDietRecordFoodList(DietRecord dietRecord) {
 		sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
-			List<DietRecordFood> list =  sqlSession.selectList(namespace + ".selectDietRecordFoodList", memberEmail);
+			List<DietRecordFood> list =  sqlSession.selectList(namespace + ".selectDietRecordFoodList", dietRecord);
 			System.out.println("repo selectDietRecordList list.size : " + list.size());
 		return list;
 		
@@ -502,6 +494,31 @@ public class FoodRepository extends AbstractRepository{
 			sqlSession.close();
 		}
 	}
+
+	public List<FoodNutrient> selectFoodNutrientList() {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			List<FoodNutrient> list =  sqlSession.selectList(namespace + ".selectFoodNutrientList");
+			System.out.println("repo selectFoodNutrientList list.size : " + list.size());
+		return list;
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<FoodNutrient> selectfoodNutListB(String foodNutrientCatName) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			List<FoodNutrient> list =  sqlSession.selectList(namespace + ".selectfoodNutListB", foodNutrientCatName);
+			System.out.println("repo selectfoodNutListB list.size : " + list.size());
+		return list;
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 
 	
 
