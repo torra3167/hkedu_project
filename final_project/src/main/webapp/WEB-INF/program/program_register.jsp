@@ -110,8 +110,8 @@
 	   //alert(selIndex);
 	   //text1=$("#exerciseName2").val().replace(/\s/g,""); //앞,뒤,중간 모든 공백 없앰 
 	   text1=$("#exerciseName2").val();
-/* 	   alert(text1);
- */	   text11 = text1.split(','); 
+
+ 	   text11 = text1.split(','); 
 	   //alert(text11[0]);
 	   //alert(text11[1]);
 	   if(text11[1]==":::: 2차 분류 선택 ::::"){
@@ -135,15 +135,20 @@
 	}
 	function del1() {   
 		
+	 	
 	    var selIndex = $("#select_box2 option").index($("#select_box2 option:selected")); //선택된 값의 index   
 	    var hidden = document.getElementById('exerciseCatAName').value;
 	    var exerciseIndex = $("#select_box2 option:eq("+selIndex+")").text()+"/";
-	    alert($("#select_box2 option:eq("+selIndex+")").text());
-	    document.frm.exerciseCatAName.value = hidden.replace(exerciseIndex, "");
+	    splitArray = exerciseIndex.split(" > ");
+	    var splitOne = splitArray[1];
+	    splitOne.trim();
+	    /* console.log(hidden + "hidden");
+	    console.log(splitOne + " splitOne"); */
+	    
+	    document.getElementById('exerciseCatAName').value = hidden.replace(splitOne, '');
 	    $("#select_box2 option:eq("+selIndex+")").remove();   
-	    	
-	    /* alert(hidden);
-	    alert(selIndex); */
+	    
+	   
 	    
 	    
 
@@ -220,7 +225,9 @@
 	
 		<form name="frm" action="program_register.gom" enctype="multipart/form-data"
 			method="post">
-			<input type="text" name="exerciseCatAName" id="exerciseCatAName" value="" >
+			
+			<input type="text" name="exerciseCatAName" id="exerciseCatAName" value="">
+			<input type="text" name="selectedExerciseCatAName" id="selectedExerciseCatAName" value="">
 			 <div class="form-group">
                   
                      <select id="svSelect" class="form-control" name="exerciseName1" onChange="fillSelectFromArray1(this.form.exerciseName2,((this.selectedIndex == -1) ? null : exerciseInfo[this.selectedIndex]));">
@@ -236,11 +243,13 @@
   			</div>		 
             <div class="form-group">         
                      <select  class="form-control" name="exerciseName2" id="exerciseName2"  onChange="test1()" >
-                        
+                        <option value="">:::: 2차 분류 선택 ::::</option>
                      </select>
             </div>	        
 			<div class="form-group">
-                     <select class="form-control" name="select_box2" id="select_box2" onChange="del1()"></select>
+                     <select class="form-control" name="select_box2" id="select_box2" onChange="del1()">
+                     	<option value="">--선택된 상품--</option>
+                     </select>
                      
           			 
             </div>                  

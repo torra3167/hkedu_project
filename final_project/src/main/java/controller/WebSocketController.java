@@ -36,7 +36,7 @@ public class WebSocketController {
 			
 			userList.put(userId, session);
 			System.out.println(userId + "else USERID");
-			broadCast(userId+"님이 접속 하였습니다.   현재 접속자 수 : "+userList.size());
+			broadCast(userId+"님이 초대 되었습니다."  /* 현재 접속자 수 : +userList.size()*/ + "\n");
 		}	
 	}
 
@@ -51,7 +51,7 @@ public class WebSocketController {
 				logger.info("종료하려는 userId : "+key);
 				userList.remove(key, session);
 				logger.info("현재 접속자 : "+userList.size());
-				broadCast(key+"님께서 나가셨습니다.    현재 접속자("+userList.size()+")");
+				broadCast(key+"님께서 나가셨습니다.");
 			}
 		}	
 		

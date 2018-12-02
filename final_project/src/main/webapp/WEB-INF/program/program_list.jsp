@@ -19,9 +19,10 @@
 </head>
 
 <body>
-	
-	
-	
+
+<% if(list == null || list.size() == 0) { %>
+
+<% } else { %>
 	<div class="container">
 	<h1 class="">프로그램 리스트</h1>
 		<table class="table table-striped text-center">
@@ -68,15 +69,10 @@
 					<br>		
 					가격 : <%=program.getProPrice() %>
 					</div>
-					
+				
 					</div>
 				</div>
-
-
-
-
-				<tr>
-				
+				<tr>				
 					<td><%=program.getProNo() %></td>
 					<td><%=program.getCoachEmail() %></td>
 					<td><a href="program_detail.gom?proNo=<%=program.getProNo() %>
@@ -104,19 +100,7 @@
 
 		<hr>
 
-		<a class="btn btn-primary text-right" href="#" role="button">글쓰기</a>
-
-
-		<nav aria-label="Page navigation example ">
-			<ul class="pagination text-right">
-				<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-				<li class="page-item active"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">Next</a></li>
-			</ul>
-		</nav>
-
 	</div>
+	<% } %>
 </body>
 </html>

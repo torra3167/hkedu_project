@@ -14,7 +14,7 @@
 <body>
 		
 	<div class="container">
-	<h1 class="">프로그램 리스트</h1>
+	<h1 class="">프로그램 식품리스트</h1>
 		<table class="table table-striped text-center">
 			<thead>
 				<tr class="active">

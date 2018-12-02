@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="uservo" type="com.sangheon.groupware.vo.UserVo"/>
+		<typeAlias alias="boardvo" type="com.sangheon.groupware.vo.BoardVo"/>
+		<typeAlias alias="contentvo" type="com.sangheon.groupware.vo.ContentVo"/>
+		<typeAlias alias="messagevo" type="com.sangheon.groupware.vo.MessageVo"/>
+		<typeAlias alias="calendarvo" type="com.sangheon.groupware.vo.CalendarVo"/>
+    </typeAliases>	
+	
+	<mappers>
+		<mapper resource="mybatis/mappers/user.xml"/>
+		<mapper resource="mybatis/mappers/board.xml"/>
+		<mapper resource="mybatis/mappers/searchemployee.xml"/>
+		<mapper resource="mybatis/mappers/message.xml"/>
+		<mapper resource="mybatis/mappers/mypage.xml"/>
+		<mapper resource="mybatis/mappers/calendar.xml"/>
+	</mappers>
+	
+</configuration>

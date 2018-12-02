@@ -71,14 +71,10 @@
 					<th>운동 번호</th>
 					<th>운동내용</th>
 					<th>운동칼로리</th>
-					<th>운동카테고리A 번호</th>
-					<th>운동카테고리B 번호</th>
 					<th>업로드번호</th>
 					<th>사이즈</th>
-					<th>저장파일명</th>
-					<th>오리지널파일명</th>
+					<th>파일명</th>
 					<th>구분</th>
-					
 					
 				</tr>
 			</thead>
@@ -98,8 +94,6 @@
 				&exerciseCal=<%=programexerciseUpload.getExerciseCal()%>">
 				<%=programexerciseUpload.getExerciseContent()%></a></td>
 					<td><%=programexerciseUpload.getExerciseCal()%></td>				
- 					<td><%=programexerciseUpload.getExerciseCatANumber()%></td>
-					<td><%=programexerciseUpload.getExerciseCatBNumber()%></td>
 					<td><%=programexerciseUpload.getUploadNumber()%></td>
 					<td><%=programexerciseUpload.getUploadSize()%></td>
 					<td><a
@@ -111,7 +105,21 @@
 					&exerciseCatBNumber=<%=programexerciseUpload.getExerciseCatBNumber()%>
 					&uploadStored=<%=programexerciseUpload.getUploadStored()%>					
 					&uploadOriginal=<%=programexerciseUpload.getUploadOriginal()%>
-					"><img
+					">
+					
+					<% if(programexerciseUpload.getUploadDivide().equals("i"))  {%>
+					<td><img src="resource//<%=programexerciseUpload.getUploadStored() %>" width="80" height="80"></td>
+						
+					<%} %>
+					
+					<% if(programexerciseUpload.getUploadDivide().equals("v"))  {%>
+					<td><video width="340"
+						height="260" controls="controls" >
+						<source src="resource//<%=programexerciseUpload.getUploadStored() %>" type="video/mp4" />
+					</video>
+					<%} %>	
+					</td>
+					<img
 							src="http://localhost:8080/final_project/resource/<%=programexerciseUpload.getUploadStored()%>"
 							width="80" height="80"></a></td>
 					<td><%=programexerciseUpload.getUploadOriginal()%></td>

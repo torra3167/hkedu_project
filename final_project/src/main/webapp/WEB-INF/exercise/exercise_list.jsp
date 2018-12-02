@@ -27,12 +27,9 @@
 			<thead>
 				<tr class="active">
 					<th>운동 번호</th>
-					<th>운동 카테고리A</th>
-					<th>운동 카테고리B</th>
 					<th>운동 이름</th>
 					<th>운동 사이즈</th>
-					<th>운동 오리지널</th>
-					<th>운동 저장된</th>
+					<th>운동 파일명</th>
 					<th>운동 구분</th>
 				</tr>
 			</thead>
@@ -44,12 +41,8 @@
 					
 					
 					<td><a href="exercise_detail.gom?exerciseNumber=<%=upload.getExerciseNumber() %>"><%=upload.getExerciseNumber() %></a></td>
-					<td><%=upload.getExerciseCatANumber() %></td>
-					<td><%=upload.getExerciseCatBNumber() %></td>
 					<td><%=upload.getExerciseCatAName() %></td>
 					<td><%=upload.getUploadSize() %></td>
-					<td><%=upload.getUploadOriginal() %></td>
-				
 					
 					<% if(upload.getUploadDivide().equals("i"))  {%>
 					<td><img src="resource//<%=upload.getUploadStored() %>" width="80" height="80"></td>
