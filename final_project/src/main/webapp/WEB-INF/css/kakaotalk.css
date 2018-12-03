@@ -26,6 +26,7 @@ font-family: 'Noto Sans KR', sans-serif;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
   transition: width 0.3s ease;
   overflow-y: scroll;
+
 }
 
 .chat-header {
@@ -97,6 +98,7 @@ font-family: 'Noto Sans KR', sans-serif;
   padding: 7px 15px 7px 15px;
   float: left;
   clear: both;
+  margin-bottom: 5px;
 }
 
 .my-bubble {
@@ -105,6 +107,7 @@ font-family: 'Noto Sans KR', sans-serif;
   padding: 7px 15px 7px 15px;
   float: right;
   clear: both;
+  margin-bottom: 5px;
 }
 
 /* text box */

@@ -18,6 +18,9 @@
 </head>
 <body>
 <h1 align="center"> <font color ="black"><font size = 15> 주문서</font></font></h1>
+<div class="container">
+<div class="row">
+ <div class="col-12">
 
 
 
@@ -40,7 +43,7 @@
 
 	<tr>
 		<td><%=proOrder.getCoachEmail() %></td>
-		<td><%=proOrder.getProNo() %><img src="resource/<%=proOrder.getProOrderStored() %>" width="70" height="70"/></td>
+		<td><img src="resource/<%=proOrder.getProOrderStored() %>" width="70" height="70"/></td>
 		<td><%=proOrder.getProOrderName() %></td>
 		<td><%=proOrder.getProOrderTotal()%></td>
 		
@@ -52,16 +55,17 @@
 
 	</table>
 	
-        <div class="form-group">
+        <div class="form-group col-12">
           <label>결제총금액</label>
-          <input type="text" name="proOrderTotal" value="<%=proOrder.getProOrderTotal() %>" readonly="readonly">
+          
+          <input type="text" name="proOrderTotal" class="form-control" value="<%=proOrder.getProOrderTotal() %>" readonly="readonly">
         
        </div>
        	<%
 		
 	} 
   %>	
-        <div class="form-group">
+        <div class="form-group col-12">
 					<label>결제방법</label> <select name="foodPayDivide" class="form-control">
 						<option value="card" selected>카드결제</option>
 						<option value="cash">현금결제</option>
@@ -71,8 +75,9 @@
         <button type="button" class="btn btn-primary" onclick="history.go(-1);">뒤로가기</button>
 		
 	 </form:form>
-
-
+</div>
+</div>
+</div>
 
 </body>
 </html>

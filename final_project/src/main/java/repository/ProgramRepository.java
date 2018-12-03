@@ -13,6 +13,7 @@ import command.ProgramCommand;
 import model.Food;
 import model.FoodProFood;
 import model.ProFood;
+import model.ProReview;
 import model.Program;
 import model.ProgramExercise;
 import model.ProgramExerciseUpload;
@@ -315,6 +316,18 @@ public class ProgramRepository extends AbstractRepository {
 			 
 			 return result;
 			 
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<ProReview> selectProReviewListByProNo(int proNo) {
+		sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+
+			return sqlSession.selectList("repository.mapper.proReviewMapper.selectProReviewListByProNo", proNo);
+
 		} finally {
 			sqlSession.close();
 		}

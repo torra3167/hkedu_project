@@ -74,6 +74,7 @@ public class ProgramController {
 //		System.out.println(programDetailCommand.getProContent() + " PROCONTENT");
 		
 		model.addAttribute("iPage", "program/program_detail.jsp");
+		ps.selectProReviewListByProNo(programDetailCommand.getProNo(), model);
 		ps.programDetail(programDetailCommand, model);
 		return "index";
 		

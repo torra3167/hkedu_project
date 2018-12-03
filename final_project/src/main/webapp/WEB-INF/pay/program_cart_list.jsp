@@ -42,8 +42,11 @@
 
 <% if(programCartList == null){ %>
 <h1 align="center">상품이 존재하지 않습니다.</h1>
-
+<div class="container">
+	<div class="row">
+ <div class="col-12">
 <table class="table">
+	<thead class="thead-dark">
 		<tr>
 			<td>프로그램 판매자이메일</td>
 			<td>프로그램 상품이미지</td>
@@ -52,11 +55,18 @@
 			<td>프로그램 내용</td>
 		
 		</tr>
+	</thead>
 </table>
-
+</div>
+</div>
+</div>
 <% } else if(programCartList != null) { %>
 <h1 align="center"> <font color ="black"><font size = 15> 프로그램장바구니</font></font></h1>
+<div class="container">
+	<div class="row">
+ <div class="col-12">
 <table class="table">
+	<thead class="thead-dark">
 	<tr>
 		<td>프로그램 판매자이메일</td>
 		<td>프로그램 상품이미지</td>
@@ -65,6 +75,7 @@
 		<td>프로그램 내용</td>
 		<td><button class="btn-secondary"  onClick="javascript:itemDelete();" >삭제</button></td>	
 	</tr>
+	</thead>
 <form name="frm" id="frm" action="program_food_order_list.gom" method="post">	
 	<input type="hidden"  id="deleteNumbers" name="deleteNumbers">
 	<% 
@@ -98,7 +109,10 @@
 	</tr>
 	</form>
 </table>
-<% } %>
 
+<% } %>
+		</div>
+	</div>
+</div>
 </body>
 </html>

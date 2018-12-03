@@ -54,7 +54,9 @@
 
 <% if(cartList == null){ %>
 <h1 align="center">상품이 존재하지 않습니다.</h1>
-
+<div class="container">
+<div class="row">
+ <div class="col-12">
 <table class="table">
 		<tr>
 			<td>판매자이메일</td>
@@ -68,9 +70,15 @@
 			
 		</tr>
 </table>
+</div>
+</div>
+</div>
 
 <% } else if(cartList != null) { %>
 <h1 align="center"> <font color ="black"><font size = 15> 일반식품장바구니</font></font></h1>
+<div class="container">
+<div class="row">
+ <div class="col-12">
 <table class="table">
 	<tr>
 		<td>판매자이메일</td>
@@ -129,6 +137,8 @@
 	</form>
 </table>
 <% } %>
-
+</div>
+</div>
+</div>
 </body>
 </html>

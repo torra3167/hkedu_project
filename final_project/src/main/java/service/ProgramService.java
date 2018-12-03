@@ -18,6 +18,7 @@ import category.FoodCatC;
 import command.ProgramCommand;
 import command.ProgramDetailCommand;
 import model.FoodProFood;
+import model.ProReview;
 import model.Program;
 import model.ProgramExercise;
 import model.ProgramExerciseUpload;
@@ -32,8 +33,8 @@ public class ProgramService {
 	ProgramExercise programExercise;
 	MultipartFile multiFile;
 	static final String filePath = 
-			"C:\\Users\\FUTURE\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\FUTURE\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 //			"C:\\Users\\admin\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 			File file = new File(filePath);
 			
@@ -214,6 +215,11 @@ public class ProgramService {
 		program.setProNo(proNo);
 		program.setProDes(proDes);
 		int proUpdateRejectResult = pr.proUpdateReject(program);
+	}
+
+	public void selectProReviewListByProNo(int proNo, Model model) {
+		List<ProReview> proReviewList = pr.selectProReviewListByProNo(proNo);
+		model.addAttribute("proReviewList", proReviewList);
 	}
 
 }

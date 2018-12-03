@@ -34,17 +34,13 @@
 				height="50"> <span id="username"><%=memberEmail %></span>
 		</div>
 		<form>
-			<!-- 대화명 : <input id="nick" type="text" /><input id="login" type="button"
-				value="로그인" /> -->
 			<div id="monitor" class="chatbox" contentEditable="true">
 				<div class="user"><%=memberEmail%></div>
 			</div>
 			<div class="text-box">
 				
-				<textarea id="msg" placeholder="대화내용을 입력해주세요">
-					
-				</textarea>
-				<input id="send" type="button" value="전송" onClick="sendMsg()" /> 
+				<textarea id="msg" placeholder="대화내용을 입력해주세요"></textarea>
+				<input id="send" type="button" value="전송" onClick="sendMsg();" /> 
  				<!-- <input type="button" value="나가기" onClick="disConn()" /> -->
  		</div>
 		</form>
@@ -57,8 +53,9 @@
 
 	
 	/*pay관련오류  */
-/* 	var url = "ws://192.168.6.100:8080/controller/chat/";
- */	var url = "ws://192.168.0.6:8080/final_project/chat/";
+/*  	var url = "ws://192.168.6.100:8080/controller/chat/";
+ 	var url = "ws://192.168.0.6:8080/final_project/chat/"; */
+ 	var url = "ws://192.168.6.129:8080/final_project/chat/";
 	var webSocket = null;
 	var monitor = document.getElementById("monitor");
 	//접속 URL
@@ -86,8 +83,20 @@
 
 		//메시지 수신(client <- server)
 		webSocket.onmessage = function(e) {
-			console.log(e);
-			monitor.innerHTML += e.data + "<br/>";
+			console.log(e + "E");
+			console.log(e.data +"E.DATA");
+			
+			 if(e.data.indexOf('<%=memberEmail%>') != -1) {
+ 				
+				replacedData = e.data.replace('<%=memberEmail%> ', "");
+				replacedData = replacedData.replace('<br>',"")
+ 				monitor.innerHTML += '<div class="my-bubble">' + replacedData + '</div>' + "<br/>";
+ 				$('#monitor').scrollTop($('#monitor')[0].scrollHeight);
+			} else {
+<%-- 				replacedData = e.data.replace('<%=memberEmail%>', "");  --%>
+				monitor.innerHTML += '<div class="friend-bubble">' + e.data + '</div>' + "<br/>";
+				$('#monitor').scrollTop($('#monitor')[0].scrollHeight);
+			}  
 		}
 	});
 	
@@ -124,26 +133,17 @@
 	//메시지 전송(client -> server)
 	function sendMsg() {
 		var textVal = $('textarea').val();
-		/* if( $('textarea').val() !== '') {
-		       console.log( $('textarea').val() );
-		       $('textarea').val('');
-		       var message = $('<div>' + textVal + '</div>');
-		       message.addClass('my-bubble');
-		       $('.chatbox').append(message);
-		    } else {
-		       console.log("비어있음");
-		    } */
-		    var curDate = new Date();
-		    var curTime = curDate.getFullYear() + "-" + (curDate.getMonth() + 1) + "-" + curDate.getDate() + " " 
+		var nickname = $('nick').val();
+
+ 	    var curDate = new Date();
+	    var curTime = curDate.getFullYear() + "-" + (curDate.getMonth() + 1) + "-" + curDate.getDate() + " " 
 		    + curDate.getHours() + ":" + curDate.getMinutes();
-		    
-		    
-			webSocket.send(
-				'<br>'+
-				'<div class="my-bubble">' + textVal + '</div>' + '<br>'
-				+'<span class="time_date">'+ curTime +'</span>');
-			$("#msg").val("");
-	}
+		var userId = '<%=memberEmail%> ';
+			
+		    webSocket.send(userId + '<br>' + textVal + '<br />' + '<span class="time_date">'+curTime+'</span>');
+		   
+			$('#msg').val("");
+			}		
 </script>
 <script src="js/kakaotalk.js"></script>
 </html>

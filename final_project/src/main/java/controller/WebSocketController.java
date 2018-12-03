@@ -36,7 +36,9 @@ public class WebSocketController {
 			
 			userList.put(userId, session);
 			System.out.println(userId + "else USERID");
-			broadCast(userId+"님이 초대 되었습니다."  /* 현재 접속자 수 : +userList.size()*/ + "\n");
+			
+/*			String memberEmail = (String)httpSession.getAttribute("email");
+*/			broadCast(userId +"님이 입장 하셨습니다."  /* 현재 접속자 수 : +userList.size()*/ + "\n");
 		}	
 	}
 
@@ -79,6 +81,7 @@ public class WebSocketController {
 				logger.info("key : "+key);
 				Session session = userList.get(key);	
 				session.getBasicRemote().sendText(text);
+				System.out.println(session.getId() + "ID!!!");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

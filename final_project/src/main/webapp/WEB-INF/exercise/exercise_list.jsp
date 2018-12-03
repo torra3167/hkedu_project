@@ -12,11 +12,12 @@
 <meta charset="UTF-8">
 
 <title>Insert title here</title>
-
-
-<link rel="stylesheet" href="#">
-
-
+]
+<style type="text/css">
+	h1 {
+	text-align: cetner;
+	}
+</style>
 </head>
 
 <body>
@@ -68,19 +69,6 @@
 		</table>
 
 		<hr>
-
-		<a class="btn btn-primary text-right" href="#" role="button">글쓰기</a>
-
-
-		<nav aria-label="Page navigation example ">
-			<ul class="pagination text-right">
-				<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-				<li class="page-item active"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">Next</a></li>
-			</ul>
-		</nav>
 
 	</div>
 </body>

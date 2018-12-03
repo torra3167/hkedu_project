@@ -14,10 +14,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
-<script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 <script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
@@ -34,20 +33,26 @@
 			language : "kr"
 		});
 	});
+	
+	
 </script>
-
+<style type="text/css">
+	h1 {
+		text-align: center;
+	}
+</style>
 </head>
 <body>
+<div class="container">
+<div class="row">
+ <div class="col-12">
 
 	<div class="body">
-		<h5>운동기록 등록</h5>
+		<h1>운동기록 등록</h1>
 		<form:form commandName="exerciseRecCommand" action="exercise_record_reg.gom" >
 
 
-			<%-- <div class="form-group">
-				<label>운동기록번호</label>
-				<form:input path="exerciseRecordNo" class="form-control" readonly="true"/>
-			</div> --%>
+			
 
 			<div class="form-group">
 				<label>구매자이메일주소</label>
@@ -100,13 +105,16 @@
 	
 			</div>		
 		
-			<div class="form-group">
+			<div class="form-group text-center">
 				<button type="submit" class="btn btn-primary">등록하기</button>
 				<button type="reset" class="btn btn-primary">다시 작성</button>
 				<button type="button" class="btn btn-secondary" >취소</button>
 			</div>
 		</form:form>
 	</div>
+</div>
+</div>
+</div>	
 </body>
 <script type="text/javascript">
 (function($){

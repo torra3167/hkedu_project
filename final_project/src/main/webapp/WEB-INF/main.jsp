@@ -8,12 +8,9 @@
 <head>
 <title>INDEX</title>
 
-<link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css"
-	rel="stylesheet">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>	
-	
+
+
 <link rel="stylesheet" href="css/main.css">
 
 </head>
@@ -33,17 +30,17 @@
 
 				<div class="helper"></div>
 				<div class="intro" id="navi">
-					<h5>칼로리와 맛 그 무엇도 놓칠 수 없어</h5>
-					<p>균형있고 맛있는 식단을 위한 선택</p>
-					<a href="#">식품관</a>
+					<h5>흔들리면 모두 지방이에요</h5>
+					<p>새로운 인생을 시작하세요</p>
+					<a href="#">운동관</a>
 				</div>
 			</div>
 			<div class="carousel-item item2">
 				<div class="helper"></div>
 				<div class="intro" id="navi">
-					<h5>흔들리면 모두 지방이에요</h5>
-					<p>새로운 인생을 시작하세요</p>
-					<a href="#">운동관</a>
+					<h5>칼로리와 맛 그 무엇도 놓칠 수 없어</h5>
+					<p>균형있고 맛있는 식단을 위한 선택</p>
+					<a href="#">식품관</a>
 				</div>
 			</div>
 
@@ -79,7 +76,7 @@
 
 				<div class="alert alert-success alert-dismissible fade show"
 					role="alert">
-					<a href="#"><strong>식품관!</strong></a> 건강한 식생활을 시작해보세요!
+					<a href="#"><strong>#식품관!</strong></a> 건강한 식생활을 시작해보세요!
 					<button type="button" class="close" data-dismiss="success"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -144,7 +141,7 @@
 
 					<div class="alert alert-info alert-dismissible fade show"
 						role="alert">
-						<a href="program_list.gom"><strong>운동관!</strong></a> 전문코치와 함께 목표를 달성해보세요!
+						<a href="program_list.gom"><strong>#운동관!</strong></a> 전문코치와 함께 목표를 달성해보세요!
 						<button type="button" class="close" data-dismiss="info"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>

@@ -20,10 +20,12 @@
 <select id="selectProPayByMemberEmail" parameterType="String" resultType="ExerciseRec">
 	select
 	MEMBER_EMAIL as memberEmail,
-    COACH_EMAIL as coachEmail,
-	PRO_NO as proNo
-	from pro_pay 
-	where member_email = #{memberEmail}
+	COACH_EMAIL as coachEmail,
+	PRO_NO as proNo 
+	from (select * from pro_pay where member_email = #{memberEmail} order by pro_pay_date desc) 
+	where rownum = 1
+	
+	
 	
 </select>
 

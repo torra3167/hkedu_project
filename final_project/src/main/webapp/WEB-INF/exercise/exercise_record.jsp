@@ -73,7 +73,7 @@
 			</tbody>
 		</table>
 		<hr>
-		<a class="btn btn-primary" href="exercise_record_reg.gom" role="button">기록하기</a>
+		<a class="btn btn-primary text-right" href="exercise_record_reg.gom" role="button">기록하기</a>
 		
 	</div>
 

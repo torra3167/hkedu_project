@@ -22,12 +22,23 @@ table{border:3px solid black;}
 </style>
 </head>
 <body>
+
+
+
+<div class="container">
+<div class="row">
+<div class="col-12">
 <form action="program_pay_success.gom" method="post" >
-<table align="center" border="0" width =50% height=300 id="tborder">
+
+<table class="table table-striped text-center">
 <tr align="center">
 
 
-				<td colspan=2 id="border2"><font size=5>카드결제</font></td>
+				<td colspan=2 id="border2"><font size=5>카드결제</font>
+					<div class="display-td" >                            
+                            <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+                        </div>
+				</td>
 			</tr>
 		
 			<input type="hidden" name="proOrderNo" value="<%=proOrder.getProOrderNo() %>">	
@@ -58,7 +69,7 @@ table{border:3px solid black;}
 			
 			<tr>
 				<td id="border" align="center">CVC 번호 :</td>
-				<td id="border" align="left"><input type="text" name="proPayCardCvc" maxlength=4 size="8" 
+				<td id="border" align="left"><input type="text" name="proPayCardCvc" maxlength="4" size="12" 
 				placeholder="숫자3자리입력" /></td>
 			</tr>
 			
@@ -68,12 +79,20 @@ table{border:3px solid black;}
 				</td>
 			</tr>
 			<tr>
-				<td colspan=2 align="center" id="border2">
-				 <input type="button" value="취소" onclick=""/>&nbsp;&nbsp;&nbsp;&nbsp; 
-				<input type="submit" value="결제완료" />
+			
+				<td class="" colspan="2">
+				 	<button type="reset" value="취소" onclick="" class="btn btn-secondary">취소</button>
+					&nbsp;&nbsp;
+					<button type="submit" value="결제완료" class="btn btn-secondary">결제완료</button>
 				</td>
+				
 			</tr>
+			
+			</table>
 	</form>
-</table>
+
+</div>
+</div>
+</div>
 </body>
 </html>

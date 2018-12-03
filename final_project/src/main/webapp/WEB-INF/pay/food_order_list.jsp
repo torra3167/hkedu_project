@@ -17,7 +17,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1 align="center"> <font color ="black"><font size = 15> 주문서</font></font></h1>
+<div class="col-12">
+ 	<div class="col-12">
+<h1 align="center"><font color ="black"><font size = 15> 주문서</font></font></h1>
 
 
 
@@ -136,7 +138,8 @@
         <button type="button" class="btn btn-primary" onclick="history.go(-1);">뒤로가기</button>
 		
 	 </form:form>
-
+	</div>
+</div>
 
 
 </body>
