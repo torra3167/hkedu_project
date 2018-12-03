@@ -18,11 +18,10 @@
 	<jsp:include page="nav.jsp"></jsp:include>
 </div>
 <div>
-	<div class="container">
-		<div class="row">
+		
 	<jsp:include page="<%= iPage %>"></jsp:include>
-	</div>
-	</div>
+	
+	
 </div>
 <div>
 	<jsp:include page="footer.jsp"></jsp:include>

@@ -14,9 +14,15 @@ public class ChatController {
 	
 
 	@RequestMapping(value = "/chatting.gom", method = RequestMethod.GET)
-	public String home() {
+	public String chat() {
 		
 		return "chat/chat";
+	}
+	
+	@RequestMapping(value = "/message.gom", method = RequestMethod.GET)
+	public String message() {
+		
+		return "message/message";
 	}
 	
 }
