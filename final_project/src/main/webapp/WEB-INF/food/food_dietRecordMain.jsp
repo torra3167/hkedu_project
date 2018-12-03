@@ -6,6 +6,8 @@
 %>
 
 <%	
+	int calSum = 0;
+	
 	List<DietRecordFood> dietRecordFoodList = (List<DietRecordFood>)request.getAttribute("dietRecordFoodList");
 	List<DietRecordFood> breakfastList = new ArrayList<DietRecordFood>();
 	List<DietRecordFood> lunchList = new ArrayList<DietRecordFood>();
@@ -14,6 +16,7 @@
 	if(dietRecordFoodList != null){
 		for(Object temp : dietRecordFoodList){
 			DietRecordFood drs = (DietRecordFood)temp;
+			calSum += drs.getFoodCal();
 			if(drs.getDietRecordTime().equals("아침")){
 				breakfastList.add(drs);
 			}else if(drs.getDietRecordTime().equals("점심")){
@@ -25,7 +28,11 @@
 			}
 		}
 	}
+	int manCal = 2500;
+// 	int womanCal = 2000;
+	int recomCal = (int)((double)calSum/manCal*100);
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,9 +61,6 @@ $(function() {
 	});
 });
 
-
-
-
 </script>
 </head>
 <body>
@@ -69,7 +73,7 @@ $(function() {
       <input type="text" name="recordDate" id="recordDate" placeholder="<%=recDate%>"/>
     </li>
     <li class="nav-item col">
-      <a class="nav-link" href="food_dietRecordList.gom?dateText=<%=recDate%>" style="width:200px;color:gray;border:1px solid;">섭취 칼로리 : 0 kcal <br> 권장 %</a>
+      <a class="nav-link" href="food_dietRecordList.gom?dateText=<%=recDate%>" style="width:200px;color:gray;border:1px solid;">섭취 칼로리 : <%=calSum %> kcal <br>권장 칼로리 : <%=recomCal %> %</a>
     </li>
     <li class="nav-item col">
       <a class="nav-link" href="#마이페이지 정보변경(체중)으로" style="width:200px;color:gray;border:1px solid;">체중 : 67 kg<br>신장 : 177 cm</a>
@@ -98,6 +102,7 @@ $(function() {
       </tr>
     </thead>
   <% } %>
+  
     <tbody>
       <% for(Object temp2 : breakfastList){ 
 	   DietRecordFood dietRecord = (DietRecordFood)temp2;

@@ -39,12 +39,17 @@ public class AdminRepository extends AbstractRepository{
 		}
 	}
 
-	public void updateApplicationStatusApproval(String sellerEmail) {
-		System.out.println("repo updateApplicationStatusApproval sellerApplication " + sellerEmail);
+	public void updateAppliStatusAprov(String sellerEmail) {
+		System.out.println("repo updateAppliStatusAprov sellerApplication " + sellerEmail);
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-			sqlSession.selectOne(namespace + ".updateApplicationStatusApproval", sellerEmail);
 			
+			Integer result = sqlSession.update(namespace + ".updateAppliStatusAprov", sellerEmail);
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
 		} finally {
 			sqlSession.close();
 		}
@@ -54,8 +59,13 @@ public class AdminRepository extends AbstractRepository{
 		System.out.println("repo updateApplicationStatusReturn sellerApplication " + sellerApplication);
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-			sqlSession.selectOne(namespace + ".updateApplicationStatusReturn", sellerApplication);
 			
+			Integer result = sqlSession.update(namespace + ".updateApplicationStatusReturn", sellerApplication);
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
 		} finally {
 			sqlSession.close();
 		}

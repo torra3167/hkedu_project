@@ -17,7 +17,7 @@
 <div id="orderedBar">
 	<h6>주문한 식품 중 선택</h6>
 <div class="row">
-	<select class="form-control col-2" id="selectOrderedFood" name="selectOrderedFood" style="width:100px">
+	<select class="selectpicker col-2" id="selectOrderedFood" name="selectOrderedFood" style="width:100px">
 	<%
 	   for(Object temp : orderedFoodList){
 	      Food food = (Food)temp;
@@ -36,7 +36,7 @@
 <div id="nutCatBar">
 	<h6>일반 식품 중 선택</h6>
 <div class="row">
-	<select class="form-control col-2" id="selectNutrientFood" name="selectNutrientFood" style="width:100px" onclick="javascript:funcBcat();">
+	<select class="selectpicker col-2" id="selectNutrientFood" name="selectNutrientFood" style="width:100px" onclick="javascript:funcBcat();">
 	<%
 	   for(Object temp3 : frs){
 		   FoodNutrient frnt = (FoodNutrient)temp3;

@@ -12,12 +12,12 @@
 <body>
 <div id="nutBar">
 <div class="row">
-<select class="form-control col-4" id="catBNutFood" name="catBNutFood" style="width:100px">
+<select class="selectpicker col-2" id="catBNutFood" name="catBNutFood" style="width:100px">
 	<%
 	   for(Object temp2 : selectedfoodNutList){
 		   FoodNutrient fn = (FoodNutrient)temp2;
 	%>
-	  <option value="<%=fn.getFoodNutrientName()%>,<%=fn.getFoodNutrientCarb()%>,<%=fn.getFoodNutrientProt()%>,<%=fn.getFoodNutrientFat()%>,<%=fn.getFoodNutrientKcal()%>"><%=fn.getFoodNutrientName()%></option>
+	  <option value="<%=fn.getFoodNutrientName()%>,<%=fn.getFoodNutrientCarbo()%>,<%=fn.getFoodNutrientProtein()%>,<%=fn.getFoodNutrientFat()%>,<%=fn.getFoodNutrientCal()%>"><%=fn.getFoodNutrientName()%></option>
 	<%} %>
 	</select>
 	<input type="number" class="form-control col-1" id="nutQuantity" name="nutQuantity" value="1"/>

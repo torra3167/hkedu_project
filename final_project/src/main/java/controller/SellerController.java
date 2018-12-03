@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import category.FoodCatC;
 import command.SellerApplicationWriteCommand;
@@ -152,5 +153,16 @@ public class SellerController {
 			return "redirect:/index";
 		}
 		
-		
+		@RequestMapping(value="/seller_appliBnDuplication.gom", method=RequestMethod.POST)
+		@ResponseBody
+		public String sellerAppliBnDuplication(@RequestParam("applicBn")int applicBn) { 
+			int result = sellerService.selectAppliBn(applicBn);
+			String dup = "";
+			if(result>0) {
+				dup = "true";
+			}else {
+				dup = "false";
+			}
+			return dup;
+		}
 }

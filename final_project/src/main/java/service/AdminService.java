@@ -14,7 +14,7 @@ public class AdminService {
 	
 	
 	public void updateSellerDivideS(String sellerEmail) {
-		adminRepository.updateApplicationStatusApproval(sellerEmail);
+		adminRepository.updateAppliStatusAprov(sellerEmail);
 		int k = adminRepository.updateSellerDivideS(sellerEmail);
 		if(k < 1) {
 			System.out.println("입점신청서 승인 실패!");

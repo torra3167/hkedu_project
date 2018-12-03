@@ -446,6 +446,7 @@
 		<result column="food_cal" jdbcType="BIGINT" property="foodCal" />
 </resultMap>
 
+
 <select id="selectDietRecordFoodList" parameterType="DietRecord" resultMap="selectDietRecordFoodListMap">
 		SELECT
 		diet_record_no, member_email, dr.food_nutrient_name, diet_record_regdate, diet_record_time, food_quantity, food_carbo, food_protein, food_fat, food_cal
@@ -455,7 +456,7 @@
 		AND diet_record_regdate = #{dietRecordRegdate}
 union
 SELECT
-		diet_record_no, member_email, dr.food_nutrient_name, diet_record_regdate, diet_record_time, food_quantity, fn.FOOD_NUTRIENT_CARB, FOOD_NUTRIENT_PROT, FOOD_NUTRIENT_FAT, FOOD_NUTRIENT_KCAL
+		diet_record_no, member_email, dr.food_nutrient_name, diet_record_regdate, diet_record_time, food_quantity, fn.FOOD_NUTRIENT_CARBO, FOOD_NUTRIENT_PROTEIN, FOOD_NUTRIENT_FAT, FOOD_NUTRIENT_CAL
 		FROM diet_record dr, FOOD_NUTRIENT fn
 		WHERE dr.food_nutrient_name = fn.food_nutrient_name
 		AND member_email = #{memberEmail}
@@ -476,11 +477,13 @@ SELECT
 <resultMap type="FoodNutrient" id="selectFoodNutrientMap">
 		<id column="food_nutrient_name" jdbcType="VARCHAR" property="foodNutrientName" />
 		<result column="food_nutrient_cat_name" jdbcType="VARCHAR" property="foodNutrientCatName" />
-		<result column="food_nutrient_kcal" jdbcType="BIGINT" property="foodNutrientKcal" />
-		<result column="food_nutrient_carb" jdbcType="BIGINT" property="foodNutrientCarb" />
-		<result column="food_nutrient_prot" jdbcType="BIGINT" property="foodNutrientProt" />
+		<result column="FOOD_NUTRIENT_CAL" jdbcType="BIGINT" property="foodNutrientCal" />
+		<result column="FOOD_NUTRIENT_CARBO" jdbcType="BIGINT" property="foodNutrientCarbo" />
+		<result column="FOOD_NUTRIENT_PROTEIN" jdbcType="BIGINT" property="foodNutrientProtein" />
 		<result column="food_nutrient_fat" jdbcType="BIGINT" property="foodNutrientFat" />
 </resultMap>
+
+
 <select id="selectFoodNutrientList" resultMap="selectFoodNutrientMap">
 		select DISTINCT food_nutrient_cat_name
 		from food_nutrient

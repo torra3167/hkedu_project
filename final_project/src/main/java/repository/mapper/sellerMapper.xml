@@ -123,4 +123,10 @@
 	seller_email = #{sellerEmail}
 </update>
 
+<select id="selectAppliBn" resultType="Integer" parameterType="Integer">
+	SELECT count(seller_appli_no)
+	FROM seller_application
+	WHERE seller_appli_no = #{sellerAppliNo}
+</select>
+
 </mapper>
