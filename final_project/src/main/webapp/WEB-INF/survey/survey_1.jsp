@@ -23,12 +23,10 @@ function idChk(){
 		frm.submit();
 	}
 }
-</script>
-<script type="text/javascript">
     function bmi_calculator() {     //bmi와 적정체중 계산 함수
-        var height = document.getElementById('survHeight').val();   //키(cm)를 입력받음
+        var height = document.getElementById('survHeight').value;   //키(cm)를 입력받음
         var height_m_conversion = height / 100;     //cm to m
-        var weight = document.getElementById('survWeight').val(); //무게를 입력받음
+        var weight = document.getElementById('survWeight').value; //무게를 입력받음
         var user_BMI = weight / (height_m_conversion * height_m_conversion);    //BMI 계산 
         var user_BMI_decimal = Math.round(user_BMI * 10) / 10; //소수점 변환
         var healthy_weight = (height - 100) * 0.9;  //적정 체중 계산
@@ -44,7 +42,7 @@ function idChk(){
         } else if (user_BMI >= 30) {
             bmi_output = "당신의 BMI는 " + user_BMI_decimal + ", 고도비만이며 적정 체중은 " + healthy_weight + "kg 입니다.";
         }
-        document.getElementById('survBMI').value = user_BMI_demical;
+        document.getElementById('survBMI').value = user_BMI_decimal;
         return alert(bmi_output);       //리턴
     }
 </script>
@@ -60,7 +58,7 @@ function idChk(){
 				<label>체중</label> <form:input class="form-control" path="survWeight" id="survWeight" placeholder="kg"/>
 			</div>
 			<div class="form-group">
-				<label>BMI</label> <form:input class="form-control" path="survBMI" id="survBMI"/>
+				<label>BMI</label> <form:input class="form-control" path="survBMI" id="survBMI" readonly="true"/>
 				<button type="button" onclick="bmi_calculator();">BMI 계산</button>
 			</div>
 			<div class="form-group">
