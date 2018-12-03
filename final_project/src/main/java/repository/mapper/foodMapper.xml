@@ -495,4 +495,52 @@ SELECT
 		where food_nutrient_cat_name = #{foodNutrientCatName}
 </select> 
 
+<resultMap type="FoodOrderReceiverPay" id="selectFoodOrderStatisticsMap">
+		<id column="ROWNUM" jdbcType="BIGINT" property="rownum" />
+		<result column="food_order_name" jdbcType="VARCHAR" property="foodOrderName" />
+		<result column="food_order_quant" jdbcType="BIGINT" property="foodOrderQuant" />
+		<result column="food_pay_price" jdbcType="BIGINT" property="foodPayPrice" />
+		<result column="food_pay_date" jdbcType="VARCHAR" property="foodPayDate" />
+		<result column="food_quant" jdbcType="BIGINT" property="foodQuant" />
+</resultMap>
+	
+<select id="selectFoodOrderStatistics" parameterType="String" resultMap="selectFoodOrderStatisticsMap">
+	select rownum, A.*
+	from (select fo.food_order_name, fo.food_order_quant, fp.food_pay_price, fp.food_pay_date, f.FOOD_QUANT
+	from food_pay fp, food_order_receiver forr, food_order fo, food f
+	where fp.food_order_receiver_no = forr.food_order_receiver_no
+	AND forr.food_order_receiver_no = fo.food_order_receiver_no
+	AND fo.FOOD_NO = f.FOOD_NO
+	AND fo.seller_email = #{sellerEmail}
+	union
+	select pfo.PRO_FOOD_ORDER_NAME, pfo.PRO_FOOD_ORDER_QUANT, pfp.PRO_FOOD_PAY_PRICE, pfp.PRO_FOOD_PAY_DATE, f.FOOD_QUANT
+	from pro_food_pay pfp,  pro_food_order_receiver pfor,  pro_food_order pfo, food f
+	where pfp.PRO_FOOD_ORDER_RECEIVER_NO = pfor.PRO_FOOD_ORDER_RECEIVER_NO
+	AND pfor.PRO_FOOD_ORDER_RECEIVER_NO = pfo.PRO_FOOD_ORDER_RECEIVER_NO
+	AND pfo.FOOD_NO = f.FOOD_NO
+	AND pfo.SELLER_EMAIL = #{sellerEmail}
+	order by food_order_quant desc) A
+</select>
+
+<resultMap type="FoodOrder" id="selectSellerOrderedFoodListMap">
+		<id column="MEMBER_EMAIL" jdbcType="VARCHAR" property="memberEmail" />
+		<id column="FOOD_ORDER_RECEIVER_NO" jdbcType="BIGINT" property="foodOrderReceiverNo" />
+		<id column="FOOD_NO" jdbcType="BIGINT" property="foodNo" />
+		<id column="SELLER_EMAIL" jdbcType="VARCHAR" property="sellerEmail" />
+		<id column="FOOD_CAT_A_NO" jdbcType="BIGINT" property="foodCatANo" />
+		<id column="FOOD_CAT_B_NO" jdbcType="BIGINT" property="foodCatBNo" />
+		<id column="FOOD_CAT_C_NO" jdbcType="BIGINT" property="foodCatCNo" />
+		<result column="FOOD_ORDER_PRICE" jdbcType="BIGINT" property="foodOrderPrice" />
+		<result column="FOOD_ORDER_QUANT" jdbcType="BIGINT" property="foodOrderQuant" />
+		<result column="FOOD_ORDER_NAME" jdbcType="VARCHAR" property="foodOrderName" />
+		<result column="FOOD_ORDER_STORED" jdbcType="VARCHAR" property="foodOrderStored" />
+</resultMap>
+
+<select id="selectSellerOrderedFoodList" parameterType="String" resultMap="selectSellerOrderedFoodListMap">
+		select *
+		from food_order
+		where SELLER_EMAIL = #{sellerEmail}
+		order by food_order_receiver_no
+</select> 
+
 </mapper>

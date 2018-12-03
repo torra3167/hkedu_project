@@ -19,6 +19,8 @@ import command.SellerJoinCommand;
 import command.SellerUpdateCommand;
 import command.SellerWithdrawalCommand;
 import model.Food;
+import model.FoodOrder;
+import model.FoodOrderReceiverPay;
 import model.SellerApplication;
 import service.FoodService;
 import service.SellerService;
@@ -78,7 +80,6 @@ public class SellerController {
 		
 		@RequestMapping(value="/seller_menu.gom", method=RequestMethod.GET)
 		public String sellerMenu(Model model, HttpSession session) {
-			model.addAttribute("iPage", "seller/seller_menu.jsp");
 			//foodReg cate list
 			List<FoodCatC> list = foodService.dominoSelectC();
 			model.addAttribute("foodCat", list);
@@ -87,6 +88,16 @@ public class SellerController {
 			String sellerEmail = (String) session.getAttribute("email");
 			List<Food> FoodList = foodService.sellerFoodList(sellerEmail);
 			model.addAttribute("sellerFoodList", FoodList);
+			
+			//seller_orderBoard
+			List<FoodOrder> orderedFoodList = foodService.selectSellerOrderedFoodList(sellerEmail);
+			model.addAttribute("orderedFoodList", orderedFoodList);
+			
+			//food_orderStatistics
+			List<FoodOrderReceiverPay> fosList = foodService.selectFoodOrderStatistics(sellerEmail);
+			model.addAttribute("fosList", fosList);
+			
+			model.addAttribute("iPage", "seller/seller_menu.jsp");
 			return "index";
 		}
 		

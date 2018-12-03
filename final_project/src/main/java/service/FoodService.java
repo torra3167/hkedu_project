@@ -31,6 +31,8 @@ import model.DietRecordFood;
 import model.Food;
 import model.FoodAndApplication;
 import model.FoodNutrient;
+import model.FoodOrder;
+import model.FoodOrderReceiverPay;
 import model.FoodReview;
 import model.FoodReviewAndAnswer;
 import model.FoodReviewAnswer;
@@ -695,6 +697,15 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 	public List<FoodNutrient> selectfoodNutListB(String foodNutrientCatName) {
 		return foodRepository.selectfoodNutListB(foodNutrientCatName);
 	}
+
+	public List<FoodOrderReceiverPay> selectFoodOrderStatistics(String sellerEmail) {
+		return foodRepository.selectFoodOrderStatistics(sellerEmail);
+	}
+
+	public List<FoodOrder> selectSellerOrderedFoodList(String sellerEmail) {
+		return foodRepository.selectSellerOrderedFoodList(sellerEmail);
+	}
+
 
 
 	

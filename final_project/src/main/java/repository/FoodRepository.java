@@ -14,6 +14,8 @@ import model.DietRecordFood;
 import model.Food;
 import model.FoodAndApplication;
 import model.FoodNutrient;
+import model.FoodOrder;
+import model.FoodOrderReceiverPay;
 import model.FoodReview;
 import model.FoodReviewAndAnswer;
 import model.FoodReviewAnswer;
@@ -512,6 +514,30 @@ public class FoodRepository extends AbstractRepository{
 		try {
 			List<FoodNutrient> list =  sqlSession.selectList(namespace + ".selectfoodNutListB", foodNutrientCatName);
 			System.out.println("repo selectfoodNutListB list.size : " + list.size());
+		return list;
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<FoodOrderReceiverPay> selectFoodOrderStatistics(String sellerEmail) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			List<FoodOrderReceiverPay> list =  sqlSession.selectList(namespace + ".selectFoodOrderStatistics", sellerEmail);
+			System.out.println("repo selectFoodOrderStatistics list.size : " + list.size());
+		return list;
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<FoodOrder> selectSellerOrderedFoodList(String sellerEmail) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			List<FoodOrder> list =  sqlSession.selectList(namespace + ".selectSellerOrderedFoodList", sellerEmail);
+			System.out.println("repo selectSellerOrderedFoodList list.size : " + list.size());
 		return list;
 		
 		} finally {
