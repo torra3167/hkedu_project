@@ -74,7 +74,7 @@ public class MemberService {
 		survey = new MemberSurvey(memberSurveyCommand.getSurvNo(), memberSurveyCommand.getMemberEmail(), memberSurveyCommand.getSurvHeight(),
 				memberSurveyCommand.getSurvWeight(), memberSurveyCommand.getSurvEat(), memberSurveyCommand.getSurvBMI(),
 				memberSurveyCommand.getSurvSex(), memberSurveyCommand.getSurvAge(),
-				memberSurveyCommand.getSurvLifestyle(),	memberSurveyCommand.getSurvShape(),
+				memberSurveyCommand.getSurvLifestyle(), memberSurveyCommand.getSurveyDietPeriod(),	memberSurveyCommand.getSurvShape(),
 				memberSurveyCommand.getSurvDisease(), memberSurveyCommand.getSurvConcern(),
 				memberSurveyCommand.getSurvCause(), memberSurveyCommand.getSurvCareer());
 		
@@ -96,7 +96,7 @@ public class MemberService {
 	public Integer updateSurvey2(MemberSurveyCommand memberSurveyCommand) {
 		MemberSurvey memberSurvey = new MemberSurvey(
 				memberSurveyCommand.getMemberEmail(), memberSurveyCommand.getSurvSex(),
-				memberSurveyCommand.getSurvLifestyle(), memberSurveyCommand.getSurvShape(),
+				memberSurveyCommand.getSurvLifestyle(), memberSurveyCommand.getSurveyDietPeriod(), memberSurveyCommand.getSurvShape(),
 				memberSurveyCommand.getSurvDisease(), memberSurveyCommand.getSurvConcern(),
 				memberSurveyCommand.getSurvCause(), memberSurveyCommand.getSurvCareer());
 		

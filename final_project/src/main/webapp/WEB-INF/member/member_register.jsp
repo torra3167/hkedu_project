@@ -156,7 +156,7 @@
 				<div class="form-group">
 				<div class="form-group">
 				<label>우편번호</label>
-				<input class="form-control" id="memberAddrNo" name="memberAddrNo" placeholder="우편번호" readonly="true"/>
+				<input class="form-control" id="memberAddrNo" name="memberAddrNo" placeholder="우편번호" readonly="readonly"/>
 				<button type="button" class="btn btn-default" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">우편번호 찾기</button>
 				</div>
 				<div class="form-group">

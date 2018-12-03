@@ -58,7 +58,7 @@ function idChk(){
 				<label>체중</label> <form:input class="form-control" path="survWeight" id="survWeight" placeholder="kg"/>
 			</div>
 			<div class="form-group">
-				<label>BMI</label> <form:input class="form-control" path="survBMI" id="survBMI" readonly="true"/>
+				<label>BMI</label> <form:input class="form-control" path="survBMI" id="survBMI" readonly="true" value="신장과 키를 입력 후 버튼을 클릭하세요."/>
 				<button type="button" onclick="bmi_calculator();">BMI 계산</button>
 			</div>
 			<div class="form-group">
@@ -76,9 +76,13 @@ function idChk(){
 					<option value="간헐적 단식">간헐적 단식</option>
 				</select>
 			</div>
+			<div class="form-group">
+        	<label>다이어트 목표 기간</label> <select class="form-control" id="surveyDietPeriod" name="surveyDietPeriod">
+					<option value="0" selected>--선택--</option>
+				</select>
+        </div>
 			<form:hidden path="survSex" value=""/>
 			<form:hidden path="survLifestyle" value=""/>
-			<form:hidden path="survPhoto" value=""/>
 			<form:hidden path="survShape" value=""/>
 			<form:hidden path="survDisease" value=""/>
 			<form:hidden path="survConcern" value=""/>

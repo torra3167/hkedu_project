@@ -13,6 +13,7 @@ public class MemberSurvey implements Serializable {
 	private String survSex;
 	private int survAge;
 	private String survLifestyle;
+	private String surveyDietPeriod;
 	private String survShape;
 	private String survDisease;
 	private String survConcern;
@@ -22,22 +23,24 @@ public class MemberSurvey implements Serializable {
 	public MemberSurvey() {
 		
 	}
-	public MemberSurvey(String memberEmail, String survSex, String survLifestyle, String survShape,
+	
+	public MemberSurvey(String memberEmail, String survSex, String survLifestyle, String surveyDietPeriod, String survShape,
 			String survDisease, String survConcern, String survCause, String survCareer) {
 		super();
 		this.memberEmail=memberEmail;
 		this.survSex = survSex;
 		this.survLifestyle = survLifestyle;
+		this.surveyDietPeriod = surveyDietPeriod;
 		this.survShape = survShape;
 		this.survDisease = survDisease;
 		this.survConcern = survConcern;
 		this.survCause = survCause;
 		this.survCareer = survCareer;
 	}
-	
-	public MemberSurvey(int survNo, String memberEmail, int survHeight, int survWeight, String survEat, int survBMI,
-			String survSex, int survAge, String survLifestyle, String survShape, String survDisease,
-			String survConcern, String survCause, String survCareer) {
+
+	public MemberSurvey(int survNo, String memberEmail, int survHeight, int survWeight, String survEat,
+			int survBMI, String survSex, int survAge, String survLifestyle, String surveyDietPeriod, String survShape,
+			String survDisease, String survConcern, String survCause, String survCareer) {
 		super();
 		this.survNo = survNo;
 		this.memberEmail = memberEmail;
@@ -48,12 +51,15 @@ public class MemberSurvey implements Serializable {
 		this.survSex = survSex;
 		this.survAge = survAge;
 		this.survLifestyle = survLifestyle;
+		this.surveyDietPeriod = surveyDietPeriod;
 		this.survShape = survShape;
 		this.survDisease = survDisease;
 		this.survConcern = survConcern;
 		this.survCause = survCause;
 		this.survCareer = survCareer;
 	}
+
+
 
 	public int getSurvNo() {
 		return survNo;
@@ -138,5 +144,13 @@ public class MemberSurvey implements Serializable {
 	}
 	public void setSurvCareer(String survCareer) {
 		this.survCareer = survCareer;
+	}
+
+	public String getSurveyDietPeriod() {
+		return surveyDietPeriod;
+	}
+
+	public void setSurveyDietPeriod(String surveyDietPeriod) {
+		this.surveyDietPeriod = surveyDietPeriod;
 	}
 }

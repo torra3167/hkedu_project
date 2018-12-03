@@ -69,10 +69,6 @@
           <label>과거 운동 경력</label><br>
           <form:textarea path="survCareer" rows="5" cols="155" placeholder="과거에 해본 운동이 있으면 여기에 작성해주세요."></form:textarea>
         </div>
-        <div class="form-group">
-        	<label>내 전신 사진 파일 업로드</label><br>
-        	<form:input path="survPhoto" type="file" name="survPhoto" enctype="multipart/form-data"></form:input>
-        </div>
         <div class="form-button">
         <button type="submit" class="btn btn-primary">제출하기</button>
         <button type="reset" class="btn btn-secondary">다시 작성</button>

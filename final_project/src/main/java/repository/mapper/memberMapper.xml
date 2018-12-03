@@ -23,7 +23,7 @@
 		<result column="SURV_SEX" jdbcType="VARCHAR" property="survSex" />
 		<result column="SURV_AGE" jdbcType="BIGINT" property="survAge" />
 		<result column="SURV_LIFESTYLE" jdbcType="VARCHAR" property="survLifestyle" />
-		<result column="SURV_PHOTO" jdbcType="VARCHAR"	property="survPhoto" />
+		<result column="SURV_DIET_PERIOD" jdbcType="VARCHAR"	property="surveyDietPeriod" />
 		<result column="SURV_SHAPE" jdbcType="VARCHAR"	property="survShape" />
 		<result column="SURV_DISEASE" jdbcType="VARCHAR" property="survDisease" />
 		<result column="SURV_CONCERN" jdbcType="VARCHAR" property="survConcern" />
@@ -43,11 +43,11 @@
 		insert into
 		survey
 		(SURV_NO, MEMBER_EMAIL, SURV_HEIGHT, SURV_WEIGHT, SURV_EAT,
-		SURV_BMI, SURV_AGE)
+		SURV_BMI, SURV_AGE, SURV_DIET_PERIOD)
 		values
 		((select count(SURV_NO)+1 from survey ), #{memberEmail}, #{survHeight},
 		#{survWeight}, #{survEat},
-		#{survBMI}, #{survAge})
+		#{survBMI}, #{survAge}, #{surveyDietPeriod})
 	</insert>
 	<select id="selectSurveyNo" resultType="Integer">
 		select count(surv_no)
@@ -97,7 +97,6 @@
 		<set>
 			SURV_SEX=#{survSex},
 			SERV_LIFESTYLE=#{survLifestyle},
-			SURV_PHOTO=#{survPhoto},
 			SURV_SHAPE=#{survShape},
 			SURV_DISEASE=#{survDisease},
 			SURV_CONCERN=#{survConcern},

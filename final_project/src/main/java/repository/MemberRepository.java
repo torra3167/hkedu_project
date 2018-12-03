@@ -104,6 +104,7 @@ public class MemberRepository extends AbstractRepository {
 		System.out.println("MEMBERREPOSITORY Survey1Write " + survey.getSurvNo());
 		System.out.println("MEMBERREPOSITORY Survey1Write " + survey.getSurvHeight());
 		System.out.println("MEMBERREPOSITORY Survey1Write " + survey.getSurvWeight());
+		System.out.println("MEMBERREPOSITORY Survey1Write " + survey.getSurveyDietPeriod());
 		System.out.println("MEMBERREPOSITORY Survey1Write " + survey.getSurvEat());
 		System.out.println("MEMBERREPOSITORY Survey1Write " + survey.getSurvBMI());
 		System.out.println("MEMBERREPOSITORY Survey1Write " + survey.getSurvAge());
