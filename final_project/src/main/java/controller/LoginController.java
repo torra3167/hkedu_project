@@ -30,6 +30,8 @@ public class LoginController {
 		
 		session.setAttribute("sender", "kdahae1129@gmail.com");
 		
+		//프로그램리스트
+		ls.programList(model);
 		return "index";
 	}
 	
@@ -45,7 +47,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/login.gom", method=RequestMethod.POST )
-	public String CoachSubmit(LoginCommand loginCommand, Model model, 
+	public String loginSubmit(LoginCommand loginCommand, Model model, 
 			HttpSession session, HttpServletResponse response) {
 		/*System.out.println(loginCommand.getEmail());
 		System.out.println(loginCommand.getPw());*/
@@ -63,12 +65,12 @@ public class LoginController {
 		response.addCookie(cookie);
 		
 		
-		return "index";
+		return "redirect:/index";
 	}
 	
 	@RequestMapping(value="/logout.gom", method=RequestMethod.GET)
 	public String logout(HttpSession session) {		
 		session.invalidate();
-		return "index";
+		return "redirect:/index";
 	}
 }

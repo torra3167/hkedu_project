@@ -46,13 +46,13 @@
 					<td><%=upload.getUploadSize() %></td>
 					
 					<% if(upload.getUploadDivide().equals("i"))  {%>
-					<td><img src="resource//<%=upload.getUploadStored() %>" width="80" height="80"></td>
+					<td><img src="resource//<%=upload.getUploadStored() %>" width="240" height="150"></td>
 						
 					<%} %>
 					
 					<% if(upload.getUploadDivide().equals("v"))  {%>
-					<td><video width="640"
-						height="360" controls="controls" >
+					<td><video width="240"
+						height="150" controls="controls" >
 						<source src="resource//<%=upload.getUploadStored() %>" type="video/mp4" />
 					</video>
 					<%} %>	</td>

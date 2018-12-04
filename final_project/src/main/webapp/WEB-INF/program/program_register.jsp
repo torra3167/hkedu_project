@@ -2,14 +2,18 @@
 	pageEncoding="UTF-8" import="java.util.*, category.*"%>
 
 <%
-		List list = (List)request.getAttribute("foodCat");
+	List list = (List) request.getAttribute("foodCat");
 %>
 
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<style type="text/css">
+#foodNames {
+	font-weight: bold;
+}
+</style>
 <script type="text/javascript">
  exerciseInfo = new Array(
 	       
@@ -107,7 +111,6 @@
 	 
 	}
 	function test1(){ 
-	   //alert(selIndex);
 	   //text1=$("#exerciseName2").val().replace(/\s/g,""); //앞,뒤,중간 모든 공백 없앰 
 	   text1=$("#exerciseName2").val();
 
@@ -127,7 +130,7 @@
 	         }
 	      }
 	      if(text1.length > 0){   
-	    	  $("#select_box2").append("<option value='"+text1+"'  >"+text11[0] + " > " + text11[1]+"</option>");
+	    	  $("#select_box2").append("<option value='"+text1+"' style='font-weight: bold;'  >"+text11[0] + " > " + text11[1]+"</option>");
 	         document.frm.exerciseCatAName.value += text11[1] + "/"; 
 	      }                     
 	  
@@ -141,7 +144,6 @@
 	    var exerciseIndex = $("#select_box2 option:eq("+selIndex+")").text()+"/";
 	    splitArray = exerciseIndex.split(" > ");
 	    var splitOne = splitArray[1];
-	    splitOne.trim();
 	    /* console.log(hidden + "hidden");
 	    console.log(splitOne + " splitOne"); */
 	    
@@ -186,6 +188,7 @@
 				}
 			});		
 		}
+	
 	function selectedFoodFun(val) {
 		 var foodCategoryANum = document.getElementById('FCA').value;
 		 
@@ -217,42 +220,46 @@
 	 
 	 
 	
-</script>	
+</script>
 </head>
 <body>
 
-	<div class="container" style="max-width: 560px;">
-	
-		<form name="frm" action="program_register.gom" enctype="multipart/form-data"
-			method="post">
-			
-			<input type="text" name="exerciseCatAName" id="exerciseCatAName" value="">
-			<input type="text" name="selectedExerciseCatAName" id="selectedExerciseCatAName" value="">
-			 <div class="form-group">
-                  
-                     <select id="svSelect" class="form-control" name="exerciseName1" onChange="fillSelectFromArray1(this.form.exerciseName2,((this.selectedIndex == -1) ? null : exerciseInfo[this.selectedIndex]));">
-                        <option value = -1>-- 1차 분류 선택 --</option>
-                        <option value = 등  >등</option>
-                        <option value = 어깨  >어깨</option>
-                        <option value = 팔  >팔</option>
-                        <option value = 가슴  >가슴</option>
-                        <option value = 하체  >하체</option>
-                        <option value = 복근  >복근</option>
-                        <option value = 유산소 >유산소</option>
-  					 </select>
-  			</div>		 
-            <div class="form-group">         
-                     <select  class="form-control" name="exerciseName2" id="exerciseName2"  onChange="test1()" >
-                        <option value="">:::: 2차 분류 선택 ::::</option>
-                     </select>
-            </div>	        
+	<div class="container" >
+	<div class="row">
+	<div class="col-12">
+		<form name="frm" action="program_register.gom"
+			enctype="multipart/form-data" method="post">
+
+			<input type="hidden" name="exerciseCatAName" id="exerciseCatAName"
+				value=""> 
 			<div class="form-group">
-                     <select class="form-control" name="select_box2" id="select_box2" onChange="del1()">
-                     	<option value="">--선택된 상품--</option>
-                     </select>
-                     
-          			 
-            </div>                  
+
+				<select id="svSelect" class="form-control" name="exerciseName1"
+					onChange="fillSelectFromArray1(this.form.exerciseName2,((this.selectedIndex == -1) ? null : exerciseInfo[this.selectedIndex]));">
+					<option value=-1>:::: 1차 분류 선택 ::::</option>
+					<option value=등>등</option>
+					<option value=어깨>어깨</option>
+					<option value=팔>팔</option>
+					<option value=가슴>가슴</option>
+					<option value=하체>하체</option>
+					<option value=복근>복근</option>
+					<option value=유산소>유산소</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<select class="form-control" name="exerciseName2" id="exerciseName2"
+					onChange="test1()">
+					<option value="">:::: 2차 분류 선택 ::::</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<select class="form-control" name="select_box2" id="select_box2"
+					onChange="del1()" size="5">
+					
+				</select>
+
+
+			</div>
 			<div class="form-group">
 				<label>프로그램 이름</label> <input type="text" name="proName"
 					class="form-control">
@@ -261,7 +268,7 @@
 				<label>프로그램 설명 </label> <input type="text" name="proContent"
 					class="form-control">
 			</div>
-			
+
 			<div class="form-group">
 				<label>프로그램 가격 </label> <input type="text" name="proPrice"
 					class="form-control">
@@ -270,55 +277,65 @@
 				<label>프로그램 사진 </label> <input type="file" name="proImg"
 					class="form-control">
 			</div>
-			
+
 			<div class="form-group">
-				<label>프로그램 식품 </label> 
-				
+				<label>프로그램 식품 </label>
+
 			</div>
 
 			<div class="form-group">
-                  
-            <select id="FCC" name="foodCatCNo" onclick="javascript:funcBca();" class="form-control"> 
-            	<option value="">--선택하세요--</option>
-			  <% for(Object temp : list) {
-					FoodCatC acar = (FoodCatC)temp; %>
-				 	<option value="<%=acar.getFoodCatCNo() %>"> <%=acar.getFoodCatCName() %></option>
-				<% } %> 
-			</select>
-  			</div>		 
-            <div class="form-group" id="divBca" >         
-                     <select class="form-control">
-                        
-                     </select>
-            </div>	        
-			<div class="form-group" id="divAca" >
-                     <select class="form-control">
-                     
-                     </select>
-                     
-          			 
-            </div>
-            
-            <div class="form-group" id="selectedFood" >
-            <label>프로그램 식품 선택</label>
-                     <select class="form-control">
-                     
-                     </select>
-                     
-          			 
-            </div>    
-            <div class="form-group"  >
-            <label>선택된 프로그램 식품 </label>
-                   <input type="text" id="foodNos" name="foodNos"  class="form-control"> 
-                   <input type="text" id="foodNames" readonly="readonly" name="foodNames"  class="form-control"> 
-                     
-          			 
-            </div>  
-                
+
+				<select id="FCC" name="foodCatCNo" onclick="javascript:funcBca();"
+					class="form-control">
+					<option value="">--선택하세요--</option>
+					<%
+						for (Object temp : list) {
+							FoodCatC acar = (FoodCatC) temp;
+					%>
+					<option value="<%=acar.getFoodCatCNo()%>">
+						<%=acar.getFoodCatCName()%></option>
+					<%
+						}
+					%>
+				</select>
+			</div>
+			<div class="form-group" id="divBca">
+				<select class="form-control">
+
+				</select>
+			</div>
+			<div class="form-group" id="divAca">
+				<select class="form-control">
+
+				</select>
+
+
+			</div>
+
+			<div class="form-group" id="selectedFood">
+				<label>프로그램 식품 선택</label> <select class="form-control">
+
+				</select>
+
+
+			</div>
+			<div class="form-group">
+				<label>선택된 프로그램 식품 </label> <input type="hidden" id="foodNos"
+					name="foodNos" class="form-control">
+			
+				<select class="form-control" size="6"
+					name="foodNames" id="foodNames" >
+					
+				</select>
+
+			</div>
+
 
 			<button type="submit" class="btn btn-primary">메뉴 등록</button>
 			<button type="reset" class="btn btn-primary">다시 작성</button>
 		</form>
+		</div>
+	</div>
 	</div>
 </body>
 </html>

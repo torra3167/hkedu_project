@@ -39,7 +39,7 @@ public class MemberController {
 		result=memberService.insertMember(memberJoinCommand);
 		if(result>0) {
 			model.addAttribute("result", result);
-			return "index";
+			return "redirect:/index";
 		}else {
 			return "redirect:/index";
 		}
@@ -80,7 +80,7 @@ public class MemberController {
 		System.out.println("controller "+memberUpdateCommand.getMemberEmail());
 		if(result>0) {
 			model.addAttribute("result", result);
-			return "index";
+			return "redirect:/index";
 		}else {
 		return "redirect:/index";
 		}

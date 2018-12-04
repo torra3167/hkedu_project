@@ -1,11 +1,15 @@
 package service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import exception.IdPasswordNotMatchingException;
 import model.AuthInfo;
-
+import model.FoodAndApplication;
+import model.Program;
 import repository.LoginRepository;
 
 @Service
@@ -35,6 +39,19 @@ public class LoginService {
 		
 		
 
+		
+	}
+	
+	public void programList(Model model) {
+		// TODO Auto-generated method stub
+		List<Program> list = lr.programList();
+		model.addAttribute("Program", list);
+	}
+
+	public void selectFoodList(Model model) {
+		// TODO Auto-generated method stub
+		List<FoodAndApplication> foodAppliList = lr.selectFoodList();
+		model.addAttribute("foodAppliList", foodAppliList);
 		
 	}
 

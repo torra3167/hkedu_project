@@ -146,13 +146,14 @@ img {
 
 
 
-		<%
-			int i = 0;
-			for (Object temp : programExerciseUploadList) {
-				ProgramExerciseUpload programexerciseUpload = (ProgramExerciseUpload) temp;
-				i++;
-				if (i == 1) {
-		%>
+			<%
+				String  str = "";
+ 				String str1 = "";
+				for (Object temp : programExerciseUploadList) {
+					ProgramExerciseUpload programexerciseUpload = (ProgramExerciseUpload) temp;
+					str1 = programexerciseUpload.getExerciseContent();
+					if (!str.equals(str1) ) {
+			%>
 
 		<div class="card border-light mb-3">
 			<div class="card-header bg-primary text-white text-uppercase">
@@ -171,27 +172,29 @@ img {
 					if (programexerciseUpload.getUploadDivide().equals("v")) {
 			%>
 			<video width="100%" height="400" controls="controls"
-				autoplay="autoplay">
+				>
 				<source src="resource//<%=programexerciseUpload.getUploadStored()%>"
 					type="video/mp4" />
 			</video>
 			<%
 				}
 
-					if (i == 1) {
+					if (!str.equals(str1)) {
 			%>
 			<br>
-			<p id="card-p"><%=programexerciseUpload.getExerciseCal()%></p>
-			<p id="card-p"><%=programexerciseUpload.getExerciseContent()%></p>
-
+			<p id="card-p">칼로리: <%=programexerciseUpload.getExerciseCal()%>cal</p>
+			<p id="card-p">운동내용: <%=programexerciseUpload.getExerciseContent()%></p>
+				
 			<%
 				}
+					str = programexerciseUpload.getExerciseContent();
 			%>
 
-		</div>
+			
 		<%
 			}
 		%>
+		</div>
 
 		<div class="container">
 			<div class="row">
@@ -200,13 +203,17 @@ img {
 						<div class="card-header bg-primary text-white text-uppercase">
 							<i class="fa fa-comment"></i> Reviews
 						</div>
-						<div class="card-body">
+					</div>			
+				</div>
+			</div>
+		</div>					
 		 <% for(Object temp : proReviewList) {
 				ProReview proReview = (ProReview)temp; %>
-<div class="reviews col-12">
+				
+<div class="container">
+<div class="reviews">				
   <div class="row blockquote review-item col-12">
-    <div class="col-md-3 text-center">
-  
+    <div class="col-md-3 text-center"> 
       <img class="rounded-circle reviewer" src="resource\\<%=proReview.getProReviewStored() %>" width="80" height="80">
       <div class="caption">
       
@@ -236,23 +243,17 @@ img {
       &coachEmail=<%=proReview.getCoachEmail() %>
       "><button class="text-right btn btn-secondary">신고하기</button></a>
     </div>
-    
-      
-  </div>  
-  
-  	
-</div>
+	</div>	
+  </div> 
+	
+						
   <% } %>
-								<hr>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
-	</div>
+	</div>					
+				
+					
+				
+
 	<hr>
 </body>
 </html>

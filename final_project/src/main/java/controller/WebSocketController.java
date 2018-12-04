@@ -20,21 +20,21 @@ public class WebSocketController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	//왜 static 으로 만들었을까?
-	static HashMap<String, Session> userList = new HashMap<String, Session>();
+	static HashMap<String, Session> messageUserList = new HashMap<String, Session>();
 	
 	//서버 접속시
 	@OnOpen
 	public void onOpen(Session session, @PathParam("userId") String userId) {
 		//@PathParam 은 웹소켓에서 사용하는 @PathVariables		
 		//1. userId 가 중복되는지 확인
-		if(userList.get(userId) != null) {
+		if(messageUserList.get(userId) != null) {
 			logger.info("중복 발생");
 //			userId = "";
 			sendMsg(session,"사용중인 아이디 입니다.");
 		}else{//중복이 아닐 경우
 			logger.info("중복 아님");
 			
-			userList.put(userId, session);
+			messageUserList.put(userId, session);
 			System.out.println(userId + "else USERID");
 			
 /*			String memberEmail = (String)httpSession.getAttribute("email");
@@ -47,12 +47,12 @@ public class WebSocketController {
 	public void onClose(Session session) {			
 		String val = session.getId();//종료한 sessionId 확인
 		
-		Set<String>keys =  userList.keySet();
+		Set<String>keys =  messageUserList.keySet();
 		for(String key : keys) {		
-			if(val.equals(userList.get(key).getId())) {
+			if(val.equals(messageUserList.get(key).getId())) {
 				logger.info("종료하려는 userId : "+key);
-				userList.remove(key, session);
-				logger.info("현재 접속자 : "+userList.size());
+				messageUserList.remove(key, session);
+				logger.info("현재 접속자 : "+messageUserList.size());
 				broadCast(key+"님께서 나가셨습니다.");
 			}
 		}	
@@ -74,12 +74,12 @@ public class WebSocketController {
 	
 	//메시지 전체 전송
 	private void broadCast(String text){
-		logger.info("전달 대상 : "+userList.size());
-		Set<String>keys =  userList.keySet();
+		logger.info("전달 대상 : "+messageUserList.size());
+		Set<String>keys =  messageUserList.keySet();
 		try {			
 			for(String key : keys) {
 				logger.info("key : "+key);
-				Session session = userList.get(key);	
+				Session session = messageUserList.get(key);	
 				session.getBasicRemote().sendText(text);
 				System.out.println(session.getId() + "ID!!!");
 			}

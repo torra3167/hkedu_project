@@ -3,14 +3,11 @@ body{
 }
 
 .reviews{
-  padding: 15px;
-  max-width: 768px;
   margin: 0 auto;
 }
 
 .review-item{
   background-color: white;
-  padding: 15px;
   margin-bottom: 5px;
   box-shadow: 1px 1px 5px #343a40;
 }

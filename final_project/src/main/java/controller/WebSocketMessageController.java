@@ -32,6 +32,7 @@ public class WebSocketMessageController {
 			logger.info("중복ㄴㄴ");
 			userList.put(userId, session);
 			broadCast(userId + "쪽지 시작~");
+			
 		}
 	}
 
@@ -54,6 +55,8 @@ public class WebSocketMessageController {
 	//한명에게 메세지 보내기??
 	private void sendMessage(Session session, String message) {
 		// TODO Auto-generated method stub
+		System.out.println(message + " 한명message");
+		
 		broadCast(message);
 	}
 	
@@ -66,7 +69,7 @@ public class WebSocketMessageController {
 			for(String key : keys) {
 				Session session = userList.get(key);
 				session.getBasicRemote().sendText(message);
-				System.out.println(message + "메세지");
+				System.out.println(message + " 전체메세지");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

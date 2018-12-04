@@ -17,13 +17,13 @@
 	 
 	 
 	 
-	 alert(selectedFoodOne);
-	 document.frm.foodNos.value += splitedFood[0] + "/";
+/* 	 alert(selectedFoodOne);
+ */	 document.frm.foodNos.value += splitedFood[0] + "/";
 	 
 	 var catANos = document.getElementById('foodNos').value;	
 	
 	 document.frm.foodNames.value += splitedFood[1] + "/";
-
+	 $("#foodNames").append("<option  value='"+splitedFood[0]+"' style='font-weight: bold;'  >" + " # " + splitedFood[1]+"</option>");
 	
 }
 </script>
