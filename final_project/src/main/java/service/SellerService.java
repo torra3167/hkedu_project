@@ -195,6 +195,10 @@ public class SellerService {
 	public Integer selectAppliBn(int applicBn) {
 		return sellerRepository.selectAppliBn(applicBn);
 	}
+
+	public int selectSellerEmail(String sellerEmail) {
+		return sellerRepository.selectSellerEmail(sellerEmail);
+	}
 	
 	
 	

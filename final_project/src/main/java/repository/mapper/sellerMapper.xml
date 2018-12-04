@@ -129,4 +129,9 @@
 	WHERE seller_appli_no = #{sellerAppliNo}
 </select>
 
+<select id="selectSellerEmail" resultType="Integer" parameterType="String">
+	SELECT count(seller_email)
+	FROM seller
+	WHERE seller_email = #{sellerEmail}
+</select>
 </mapper>

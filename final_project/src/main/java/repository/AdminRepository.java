@@ -87,4 +87,21 @@ public class AdminRepository extends AbstractRepository{
 			sqlSession.close();
 		}
 	}
+
+	public int deleteSellerApplication(String sellerEmail) {
+		System.out.println("repo deleteSellerApplication sellerEmail" + sellerEmail);
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			String statement = namespace + ".deleteSellerApplication";
+			Integer result = sqlSession.delete(statement, sellerEmail);
+			if(result > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

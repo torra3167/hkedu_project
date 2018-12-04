@@ -94,8 +94,12 @@ public class SellerController {
 			model.addAttribute("orderedFoodList", orderedFoodList);
 			
 			//food_orderStatistics
-			List<FoodOrderReceiverPay> fosList = foodService.selectFoodOrderStatistics(sellerEmail);
-			model.addAttribute("fosList", fosList);
+			List<FoodOrderReceiverPay> fosDayList = foodService.selectFoodOrderStatDay(sellerEmail);
+			model.addAttribute("fosDayList", fosDayList);
+			List<FoodOrderReceiverPay> fosMonthList = foodService.selectFoodOrderStatMonth(sellerEmail);
+			model.addAttribute("fosMonthList", fosMonthList);
+			
+			
 			
 			model.addAttribute("iPage", "seller/seller_menu.jsp");
 			return "index";
@@ -168,6 +172,19 @@ public class SellerController {
 		@ResponseBody
 		public String sellerAppliBnDuplication(@RequestParam("applicBn")int applicBn) { 
 			int result = sellerService.selectAppliBn(applicBn);
+			String dup = "";
+			if(result>0) {
+				dup = "true";
+			}else {
+				dup = "false";
+			}
+			return dup;
+		}
+		
+		@RequestMapping(value="/seller_emailDuplication.gom", method=RequestMethod.POST)
+		@ResponseBody
+		public String sellerEmailDuplication(@RequestParam("sellerEmail")String sellerEmail) { 
+			int result = sellerService.selectSellerEmail(sellerEmail);
 			String dup = "";
 			if(result>0) {
 				dup = "true";

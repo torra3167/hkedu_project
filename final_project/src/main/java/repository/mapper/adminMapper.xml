@@ -67,5 +67,9 @@
 	seller_email = #{sellerEmail}
 </update>
 
-
+<delete id="deleteSellerApplication" parameterType="String">
+	DELETE
+	FROM seller_application
+	WHERE seller_email = #{sellerEmail}
+</delete>
 </mapper>

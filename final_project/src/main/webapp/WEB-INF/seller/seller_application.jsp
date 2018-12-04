@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <script type="text/javascript">
 var bnCheck = false;
-	function IdCheck(){
+	function idCheck(){
 		var applicBn = $("#sellerAppliBn").val();
 	
 		if(!applicBn){
@@ -34,10 +34,6 @@ var bnCheck = false;
 								alert("사용가능한 사업자번호입니다.");
 								bnCheck = true;
 							}
-							//사업자번호입력란에 손대면 bnCheck=false하기
-	// 						$('#insertPoint').html(result);
-	// 						btnGroup = document.getElementById('btnGroup');
-	// 						btnGroup.disabled = true;
 		            }
 		    });
 			
@@ -87,7 +83,7 @@ function checkVal(){
      <form:form id="frm" method="POST" action="seller_application.gom" enctype="multipart/form-data" commandName="sellerApplicationWriteCommand">
      	<div class="form-group">
 			<label>사업자 번호</label> <input type="text" id="sellerAppliBn" name="sellerAppliBn" class="form-control" value="" onkeydown="bnCheckFalse()">
-			<input type="button" class="btn btn-primary" name="sellerAppliBnDuplicate" value="중복 확인" onclick="IdCheck()">
+			<input type="button" class="btn btn-primary" name="sellerAppliBnDuplicate" value="중복 확인" onclick="idCheck()">
 		</div>
 		<div class="form-group">
 			<label>사업자 등록증 사본</label> <input type="file" id="sellerLicense" name="sellerLicense" class="form-control">

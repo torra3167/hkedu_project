@@ -521,11 +521,11 @@ public class FoodRepository extends AbstractRepository{
 		}
 	}
 
-	public List<FoodOrderReceiverPay> selectFoodOrderStatistics(String sellerEmail) {
+	public List<FoodOrderReceiverPay> selectFoodOrderStatDay(FoodOrderReceiverPay forpDay) {
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-			List<FoodOrderReceiverPay> list =  sqlSession.selectList(namespace + ".selectFoodOrderStatistics", sellerEmail);
-			System.out.println("repo selectFoodOrderStatistics list.size : " + list.size());
+			List<FoodOrderReceiverPay> list =  sqlSession.selectList(namespace + ".selectFoodOrderStatDay", forpDay);
+			System.out.println("repo selectFoodOrderStatDay list.size : " + list.size());
 		return list;
 		
 		} finally {
@@ -533,6 +533,18 @@ public class FoodRepository extends AbstractRepository{
 		}
 	}
 
+	public List<FoodOrderReceiverPay> selectFoodOrderStatMonth(FoodOrderReceiverPay forpMonth) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			List<FoodOrderReceiverPay> list =  sqlSession.selectList(namespace + ".selectFoodOrderStatMonth", forpMonth);
+			System.out.println("repo selectFoodOrderStatMonth list.size : " + list.size());
+		return list;
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 	public List<FoodOrder> selectSellerOrderedFoodList(String sellerEmail) {
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
@@ -544,6 +556,20 @@ public class FoodRepository extends AbstractRepository{
 			sqlSession.close();
 		}
 	}
+
+	public String selectMemberDivide(String memberEmail) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			String memberDivide =  sqlSession.selectOne(namespace + ".selectMemberDivide", memberEmail);
+			System.out.println("repo selectMemberDivide list.size : " + memberDivide);
+		return memberDivide;
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	
 
 
 	

@@ -20,7 +20,6 @@
 					<th>주문번호</th>
 					<th>식품명</th>
 					<th>구매자</th>
-					<th>주문일</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -32,7 +31,6 @@
 					<th><a href="#"><%=forp.getFoodOrderReceiverNo() %></a></th>
 					<th><a href="#"><%=forp.getFoodOrderName() %></a></th>
 					<th><a href="#"><%=forp.getMemberEmail() %></a></th>
-					<th>주문일</th>
 				</tr>
 			<% } %>
 			</tbody>

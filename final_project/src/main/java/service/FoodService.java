@@ -55,9 +55,9 @@ public class FoodService {
 	private FoodRepository foodRepository;
 	static final String filePath =
 //			"C:\\Users\\FUTURE\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 //			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-//			"C:\\Users\\HKEDU\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
-			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
+//			"C:\\Users\\hotelalpha\\Documents\\hkedu_project\\final_project\\src\\main\\webapp\\WEB-INF\\resource\\";
 	File file = new File(filePath);
 	
 	
@@ -698,16 +698,44 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 		return foodRepository.selectfoodNutListB(foodNutrientCatName);
 	}
 
-	public List<FoodOrderReceiverPay> selectFoodOrderStatistics(String sellerEmail) {
-		return foodRepository.selectFoodOrderStatistics(sellerEmail);
+	public List<FoodOrderReceiverPay> selectFoodOrderStatDay(String sellerEmail) {
+		FoodOrderReceiverPay forpDay = new FoodOrderReceiverPay();
+		
+		//foodPayDate(당일)
+		SimpleDateFormat simpleDateFormatDay = new SimpleDateFormat("%yyyy년 MM월 dd일%");
+        String foodPayDateToday = simpleDateFormatDay.format(Calendar.getInstance().getTime());
+        System.out.println("svc insertDietRecord foodPayDateToday : " + foodPayDateToday);
+		
+        forpDay.setSellerEmail(sellerEmail);
+        forpDay.setFoodPayDate(foodPayDateToday);
+        
+		return foodRepository.selectFoodOrderStatDay(forpDay);
 	}
+
+	public List<FoodOrderReceiverPay> selectFoodOrderStatMonth(String sellerEmail) {
+		FoodOrderReceiverPay forpMonth = new FoodOrderReceiverPay();
+		
+        //foodPayDate(당월)
+        SimpleDateFormat simpleDateFormatMonth = new SimpleDateFormat("%yyyy년 MM월%");
+        String foodPayDateThisMonth = simpleDateFormatMonth.format(Calendar.getInstance().getTime());
+        System.out.println("svc insertDietRecord foodPayDateThisMonth : " + foodPayDateThisMonth);
+        
+        
+        forpMonth.setSellerEmail(sellerEmail);
+        forpMonth.setFoodPayDate(foodPayDateThisMonth);
+        
+        
+		return foodRepository.selectFoodOrderStatMonth(forpMonth);
+	}
+
 
 	public List<FoodOrder> selectSellerOrderedFoodList(String sellerEmail) {
 		return foodRepository.selectSellerOrderedFoodList(sellerEmail);
 	}
 
-
-
+	public String selectMemberDivide(String memberEmail) {
+		return foodRepository.selectMemberDivide(memberEmail);
+	}
 	
 
 

@@ -33,25 +33,14 @@
 				<tr>
 					<td><%=food.getFoodNo() %></td>
 					<td><a href="seller_foodDetail.gom?foodNo=<%=food.getFoodNo() %>"><%=food.getFoodName() %></a></td>
-					<td><%=food.getFoodPrice() %></td>
-					<td><%=food.getFoodQuant() %></td>
-					<td><%=food.getFoodExpiryDate() %></td>
-					<td><img src="http://localhost:8080/final_project/resource/<%=food.getFoodStored() %>" width="80" height="80"></td>
+					<td><%=food.getFoodPrice() %>원</td>
+					<td><%=food.getFoodQuant() %>개</td>
+					<td><%=food.getFoodExpiryDate() %>까지</td>
+					<td><img src="http://localhost:8080//final_project//resource//<%=food.getFoodStored() %>" width="80" height="80"></td>
 				</tr>
 				<% } %>
 			</tbody>
 		</table>
-		
-		<hr>
-			<nav aria-label="Page navigation example">
-				<ul class="pagination justify-content-center mt-3">
-					<li class="page-item"><a class="page-link" href="#">이전</a></li>
-					<li class="page-item active"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">다음</a></li>
-				</ul>
-			</nav>
 	</div>
 </body>
 </html>

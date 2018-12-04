@@ -31,6 +31,8 @@ import model.FoodNutrient;
 import model.FoodReviewAndAnswer;
 import model.FoodReviewReport;
 import service.FoodService;
+import service.MemberService;
+import service.SellerService;
 
 @Controller
 public class FoodController {
@@ -125,12 +127,15 @@ public class FoodController {
    }
    
    @RequestMapping(value="/food_detail.gom", method=RequestMethod.GET)
-    public String foodDetail(@RequestParam("foodNo")int foodNo, Model model) {
+    public String foodDetail(@RequestParam("foodNo")int foodNo, Model model, HttpSession session) {
       System.out.println("cntlr foodDetail foodNo : " + foodNo);
       FoodAndApplication fa = foodService.selectFood(foodNo);
       model.addAttribute("fa", fa);
       List<FoodReviewAndAnswer> foodReviewAndAnswers = foodService.selectReviewAndAnswer(foodNo);
       model.addAttribute("foodReviewAndAnswers", foodReviewAndAnswers);
+      
+      String memberDivide = foodService.selectMemberDivide((String)session.getAttribute("email"));
+      model.addAttribute("memberDivide", memberDivide);
       model.addAttribute("iPage", "food/food_detail.jsp");
       return "index";
    }

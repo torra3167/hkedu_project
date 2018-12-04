@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<select id="FCA" name="foodCatANo" class="form-control" onchange="javascript:selectedFood(this);" >
+<select id="FCA" name="foodCatANo" class="form-control" > <!-- onchange="javascript:selectedFood(this);" -->
 <% for(Object o : list) { 
 	FoodCatA ccar = (FoodCatA)o;
 %>

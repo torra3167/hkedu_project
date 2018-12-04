@@ -502,23 +502,46 @@ SELECT
 		<result column="food_pay_price" jdbcType="BIGINT" property="foodPayPrice" />
 		<result column="food_pay_date" jdbcType="VARCHAR" property="foodPayDate" />
 		<result column="food_quant" jdbcType="BIGINT" property="foodQuant" />
+		<result column="seller_email" jdbcType="VARCHAR" property="sellerEmail" />
 </resultMap>
 	
-<select id="selectFoodOrderStatistics" parameterType="String" resultMap="selectFoodOrderStatisticsMap">
+<select id="selectFoodOrderStatDay" parameterType="FoodOrderReceiverPay" resultMap="selectFoodOrderStatisticsMap">
 	select rownum, A.*
-	from (select fo.food_order_name, fo.food_order_quant, fp.food_pay_price, fp.food_pay_date, f.FOOD_QUANT
+	from (select fo.food_order_name, fo.food_order_quant, fp.food_pay_price, fp.food_pay_date, f.FOOD_QUANT, fo.seller_email
 	from food_pay fp, food_order_receiver forr, food_order fo, food f
 	where fp.food_order_receiver_no = forr.food_order_receiver_no
 	AND forr.food_order_receiver_no = fo.food_order_receiver_no
 	AND fo.FOOD_NO = f.FOOD_NO
 	AND fo.seller_email = #{sellerEmail}
+    AND fp.food_pay_date LIKE #{foodPayDate}
 	union
-	select pfo.PRO_FOOD_ORDER_NAME, pfo.PRO_FOOD_ORDER_QUANT, pfp.PRO_FOOD_PAY_PRICE, pfp.PRO_FOOD_PAY_DATE, f.FOOD_QUANT
+	select pfo.PRO_FOOD_ORDER_NAME, pfo.PRO_FOOD_ORDER_QUANT, pfp.PRO_FOOD_PAY_PRICE, pfp.PRO_FOOD_PAY_DATE, f.FOOD_QUANT, pfo.seller_email
 	from pro_food_pay pfp,  pro_food_order_receiver pfor,  pro_food_order pfo, food f
 	where pfp.PRO_FOOD_ORDER_RECEIVER_NO = pfor.PRO_FOOD_ORDER_RECEIVER_NO
 	AND pfor.PRO_FOOD_ORDER_RECEIVER_NO = pfo.PRO_FOOD_ORDER_RECEIVER_NO
 	AND pfo.FOOD_NO = f.FOOD_NO
 	AND pfo.SELLER_EMAIL = #{sellerEmail}
+    AND pfp.pro_food_pay_date LIKE #{foodPayDate}
+	order by food_order_quant desc) A
+</select>
+
+<select id="selectFoodOrderStatMonth" parameterType="FoodOrderReceiverPay" resultMap="selectFoodOrderStatisticsMap">
+	select rownum, A.*
+	from (select fo.food_order_name, fo.food_order_quant, fp.food_pay_price, fp.food_pay_date, f.FOOD_QUANT, fo.seller_email
+	from food_pay fp, food_order_receiver forr, food_order fo, food f
+	where fp.food_order_receiver_no = forr.food_order_receiver_no
+	AND forr.food_order_receiver_no = fo.food_order_receiver_no
+	AND fo.FOOD_NO = f.FOOD_NO
+	AND fo.seller_email = #{sellerEmail}
+    AND fp.food_pay_date LIKE #{foodPayDate}
+	union
+	select pfo.PRO_FOOD_ORDER_NAME, pfo.PRO_FOOD_ORDER_QUANT, pfp.PRO_FOOD_PAY_PRICE, pfp.PRO_FOOD_PAY_DATE, f.FOOD_QUANT, pfo.seller_email
+	from pro_food_pay pfp,  pro_food_order_receiver pfor,  pro_food_order pfo, food f
+	where pfp.PRO_FOOD_ORDER_RECEIVER_NO = pfor.PRO_FOOD_ORDER_RECEIVER_NO
+	AND pfor.PRO_FOOD_ORDER_RECEIVER_NO = pfo.PRO_FOOD_ORDER_RECEIVER_NO
+	AND pfo.FOOD_NO = f.FOOD_NO
+	AND pfo.SELLER_EMAIL = #{sellerEmail}
+    AND pfp.pro_food_pay_date LIKE #{foodPayDate}
 	order by food_order_quant desc) A
 </select>
 
@@ -542,5 +565,12 @@ SELECT
 		where SELLER_EMAIL = #{sellerEmail}
 		order by food_order_receiver_no
 </select> 
+
+
+<select id="selectMemberDivide" resultType="String" parameterType="String">
+		select member_divide
+		from member
+		where member_email = #{memberEmail}
+</select>
 
 </mapper>

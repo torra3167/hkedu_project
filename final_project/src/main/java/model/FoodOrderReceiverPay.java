@@ -10,53 +10,77 @@ public class FoodOrderReceiverPay implements Serializable{
 	private int foodPayPrice;
 	private String foodPayDate;
 	private int foodQuant;
+	private String sellerEmail;
+	
 	public FoodOrderReceiverPay() {
 	}
+
 	public FoodOrderReceiverPay(int rownum, String foodOrderName, int foodOrderQuant, int foodPayPrice,
-			String foodPayDate, int foodQuant) {
+			String foodPayDate, int foodQuant, String sellerEmail) {
 		this.rownum = rownum;
 		this.foodOrderName = foodOrderName;
 		this.foodOrderQuant = foodOrderQuant;
 		this.foodPayPrice = foodPayPrice;
 		this.foodPayDate = foodPayDate;
 		this.foodQuant = foodQuant;
+		this.sellerEmail = sellerEmail;
 	}
+
 	public int getRownum() {
 		return rownum;
 	}
+
 	public void setRownum(int rownum) {
 		this.rownum = rownum;
 	}
+
 	public String getFoodOrderName() {
 		return foodOrderName;
 	}
+
 	public void setFoodOrderName(String foodOrderName) {
 		this.foodOrderName = foodOrderName;
 	}
+
 	public int getFoodOrderQuant() {
 		return foodOrderQuant;
 	}
+
 	public void setFoodOrderQuant(int foodOrderQuant) {
 		this.foodOrderQuant = foodOrderQuant;
 	}
+
 	public int getFoodPayPrice() {
 		return foodPayPrice;
 	}
+
 	public void setFoodPayPrice(int foodPayPrice) {
 		this.foodPayPrice = foodPayPrice;
 	}
+
 	public String getFoodPayDate() {
 		return foodPayDate;
 	}
+
 	public void setFoodPayDate(String foodPayDate) {
 		this.foodPayDate = foodPayDate;
 	}
+
 	public int getFoodQuant() {
 		return foodQuant;
 	}
+
 	public void setFoodQuant(int foodQuant) {
 		this.foodQuant = foodQuant;
 	}
-	
-	
+
+	public String getSellerEmail() {
+		return sellerEmail;
+	}
+
+	public void setSellerEmail(String sellerEmail) {
+		this.sellerEmail = sellerEmail;
+	}
+
+
 }

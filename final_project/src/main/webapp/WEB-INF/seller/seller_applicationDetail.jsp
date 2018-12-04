@@ -56,7 +56,9 @@
 		<button type="button" class="btn btn-primary" onclick="window.history.go(-1)">목록으로</button>
 		<%
 			}else if(loginDivide.equals("a") && !sellerApplication.getApplicationStatus().equals("대기")){
+				
 		%>
+		<button type="button" class="btn btn-danger" onclick="location.href='admin_sellerApplicationDelete.gom?sellerEmail=<%=sellerApplication.getSellerEmail() %>'">삭제</button>
 		<button type="button" class="btn btn-primary" onclick="window.history.go(-1)">목록으로</button>
 		<%
 			}else if(loginDivide.equals("w") && sellerApplication.getApplicationStatus().equals("승인")){

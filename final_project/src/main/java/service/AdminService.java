@@ -42,4 +42,14 @@ public class AdminService {
 		
 	}
 
+	public void deleteSellerApplication(String sellerEmail) {
+		int k = adminRepository.deleteSellerApplication(sellerEmail);
+		if(k < 1) {
+			System.out.println("입점신청서 삭제 실패!");
+		} else {
+			System.out.println("입점신청서 삭제 성공!");
+		}
+		
+	}
+
 }

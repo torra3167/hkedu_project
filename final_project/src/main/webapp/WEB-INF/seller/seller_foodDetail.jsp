@@ -16,7 +16,6 @@
 	crossorigin="anonymous">
 <script type="text/javascript">
 
- 
 </script>	
 </head>
 <body>
@@ -35,7 +34,7 @@
 			</div>
 			<div class="form-group">
 				<label>판매식품 이미지</label> <br>
-				<img alt="" src="resource/<%=food.getFoodStored() %>">
+				<img alt="" src="http://localhost:8080//final_project//resource//<%=food.getFoodStored() %>">
 			</div>
 			<div>
 			카테고리
