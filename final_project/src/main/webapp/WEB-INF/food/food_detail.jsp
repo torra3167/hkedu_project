@@ -106,8 +106,10 @@
 <br>
 <br>
     <h3>전체 구매후기</h3>
-    상품을 구매하신 분들이 작성하신 구매 후기입니다.
-        <a class="btn btn-primary mx-1 mt-2" href="food_reviewWrite.gom?foodNo=<%=foodAndApplication.getFoodNo() %>">등록하기</a>
+    <div>
+    	<a class="">상품을 구매하신 분들이 작성하신 구매 후기입니다.</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-primary" href="food_reviewWrite.gom?foodNo=<%=foodAndApplication.getFoodNo() %>">리뷰 등록</a>
+    </div>
       <% 
       	  if(foodReviewAndAnswers.size() > 0){
 	      	  for(Object temp : foodReviewAndAnswers){
@@ -116,32 +118,45 @@
 			    <div class="card bg-light mt-3">
 			        <div class="card-header bg-light">
 			          <div class="row">
-			            <div class="col-8 text-left"><%=foodReviewAndAnswer.getFoodReviewTitle() %>&nbsp;&nbsp;&nbsp;&nbsp;<small><%=foodReviewAndAnswer.getMemberEmail() %></small></div>
+			            <div class="col-6 text-left"><%=foodReviewAndAnswer.getFoodReviewTitle() %></div>
+			            <div class="col-2 text-left"><small><%=foodReviewAndAnswer.getMemberEmail() %></small></div>
 			            <div class="col-4 text-right"><%=foodReviewAndAnswer.getFoodReviewRegdate() %>
 			            </div>
 			          </div>
 			        </div>
 			        <div class="card-body">
-			          <p class="card-text"><%=foodReviewAndAnswer.getFoodReviewComment() %>
-			          </p>
 			          <img src="http://localhost:8080/final_project/resource/<%=foodReviewAndAnswer.getFoodReviewStored() %>" width="200" height="200">
-			          <div class="row">
-			            <div class="col-9 text-left">
-			            	<p><%=foodReviewAndAnswer.getFoodReviewScore() %></p>
-			            </div>
-			          </div>
+			          <p class="card-text"><%=foodReviewAndAnswer.getFoodReviewComment() %></p>
+			        </div>
+			          <div class="card-footer">
+				          <div class="row">
+				            <div class="col-8 text-left">
+				            	<p>점수 : <%=foodReviewAndAnswer.getFoodReviewScore() %></p>
+				            </div>
+				            <%	if(!loginEmail.equals(foodReviewAndAnswer.getMemberEmail())||loginEmail.equals("admin")){	%>    
+		         			<div class="col-2 text-right"><a class="btn btn-success" href="food_reviewAnswerWrite.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>&memberEmail=<%=foodReviewAndAnswer.getMemberEmail() %>">답변등록</a></div>
+				            <div class="col-2 text-right"><a class="btn btn-danger" href="food_reviewReportWrite.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>&memberEmail=<%=foodReviewAndAnswer.getMemberEmail() %>">리뷰신고</a></div>
+		         			<%	} else if(loginEmail.equals(foodReviewAndAnswer.getMemberEmail())||loginEmail.equals("admin")){	%>  
+		         			<div class="col-2 text-right"><a class="btn btn-success" href="food_reviewUpdate.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>">수정</a></div>
+				         	<div class="col-2 text-right"><a class="btn btn-danger" href="food_reviewDelete.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>">삭제</a></div>
+				          </div>
+				      
+				          <div class="row">
+				          	<div class="col-8"><p></p></div>
+				          	
+				          </div>
+				        
+			        <div class="row">
+			          		<div class="col-10"><p></p></div>
+				            
+				    </div>
+				    <%	} %>
 			        </div>
 			     </div>
 			     <%
 			     	answerButton = answerButton + 1;
 			     %>
-		         <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo<%=answerButton %>">답변 보기</button>
-		         <a class="btn btn-primary mx-1 mt-2" href="food_reviewAnswerWrite.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>&memberEmail=<%=foodReviewAndAnswer.getMemberEmail() %>">답변 등록</a>
-		         <a class="btn btn-danger ml-1 mt-2" href="food_reviewReportWrite.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>&memberEmail=<%=foodReviewAndAnswer.getMemberEmail() %>">리뷰 신고</a>
-		         <%	if(loginEmail.equals(foodReviewAndAnswer.getMemberEmail())||loginEmail.equals("admin")){	%>
-			         <a class="btn btn-primary ml-1 mt-2" href="food_reviewUpdate.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>">리뷰 수정</a>
-			         <a class="btn btn-danger ml-1 mt-2" href="food_reviewDelete.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>">리뷰 삭제</a>
-		         <%	} %>
+		         <button type="button" class="" data-toggle="collapse" data-target="#demo<%=answerButton %>">답변 보기</button>
 		      		<%
 		      			List<FoodReviewAnswer> foodReviewAnswers = foodReviewAndAnswer.getFoodReviewAnswers();
 		      			if(foodReviewAnswers.size() > 0){

@@ -17,6 +17,7 @@
 		<typeAlias type="model.DietRecordFood" alias="DietRecordFood"/>
 		<typeAlias type="model.FoodNutrient" alias="FoodNutrient"/>
 		<typeAlias type="model.FoodOrderReceiverPay" alias="FoodOrderReceiverPay"/>
+		<typeAlias type="model.FoodAppliReview" alias="FoodAppliReview"/>
 		<typeAlias type="model.AuthInfo" alias="AuthInfo"/>
 		<typeAlias type="model.Member" alias="Member"/>
 		<typeAlias type="model.MemberSurvey" alias="MemberSurvey"/>
