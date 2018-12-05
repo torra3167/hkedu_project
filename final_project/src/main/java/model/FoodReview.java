@@ -14,7 +14,7 @@ public class FoodReview implements Serializable {
 	private String foodReviewRegdate;
 	private String foodReviewFoodName;
 	private String foodReviewTitle;
-	private String foodReviewScore;
+	private int foodReviewScore;
 	private String foodReviewComment;
 	private Long foodReviewSize;
 	private String foodReviewOriginal;
@@ -23,7 +23,7 @@ public class FoodReview implements Serializable {
 	}
 	public FoodReview(int foodReviewNo, String memberEmail, int foodNo, String sellerEmail, int foodCatANo,
 			int foodCatBNo, int foodCatCNo, String foodReviewRegdate, String foodReviewFoodName, String foodReviewTitle,
-			String foodReviewScore, String foodReviewComment, Long foodReviewSize, String foodReviewOriginal,
+			int foodReviewScore, String foodReviewComment, Long foodReviewSize, String foodReviewOriginal,
 			String foodReviewStored) {
 		this.foodReviewNo = foodReviewNo;
 		this.memberEmail = memberEmail;
@@ -101,10 +101,10 @@ public class FoodReview implements Serializable {
 	public void setFoodReviewTitle(String foodReviewTitle) {
 		this.foodReviewTitle = foodReviewTitle;
 	}
-	public String getFoodReviewScore() {
+	public int getFoodReviewScore() {
 		return foodReviewScore;
 	}
-	public void setFoodReviewScore(String foodReviewScore) {
+	public void setFoodReviewScore(int foodReviewScore) {
 		this.foodReviewScore = foodReviewScore;
 	}
 	public String getFoodReviewComment() {
@@ -131,6 +131,7 @@ public class FoodReview implements Serializable {
 	public void setFoodReviewStored(String foodReviewStored) {
 		this.foodReviewStored = foodReviewStored;
 	}
+	
 	
 }
 

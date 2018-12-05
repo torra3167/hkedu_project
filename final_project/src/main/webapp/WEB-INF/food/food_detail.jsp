@@ -26,7 +26,7 @@
 <body>
     <div class="container">
     	<div class="row">
-    		<div class="col-sm-6"><img src="http://localhost:8080/final_project/resource/<%=foodAndApplication.getFoodStored() %>"></div>
+    		<div class="col-sm-6"><img src="http://localhost:8080//final_project//resource//<%=foodAndApplication.getFoodStored() %>"></div>
     		<div class="col-sm-6">
 	    		<h5><%=foodAndApplication.getStoreName() %></h5><!-- (업체명) -->
 	    		<h3><%=foodAndApplication.getFoodName() %></h3>
@@ -105,6 +105,8 @@
       	  if(foodReviewAndAnswers.size() > 0){
 	      	  for(Object temp : foodReviewAndAnswers){
 	    	  FoodReviewAndAnswer foodReviewAndAnswer =  (FoodReviewAndAnswer)temp;
+	    	  System.out.println("sadasdsad : "+foodReviewAndAnswer.getFoodReviewScore());
+	    	  
 	  %>
 			    <div class="card bg-light mt-3">
 			        <div class="card-header bg-light">
@@ -122,7 +124,13 @@
 			          <div class="card-footer">
 				          <div class="row">
 				            <div class="col-8 text-left">
-				            	<p>점수 : <%=foodReviewAndAnswer.getFoodReviewScore() %></p>
+				            <%
+				            	String stars = "";
+				            	for(int i=0; i<foodReviewAndAnswer.getFoodReviewScore(); i++){
+				            		stars += "★";
+				            	}
+				            %>
+				            	<p>점수 : <%=stars %></p>
 				            </div>
 				            <%	if(!loginEmail.equals(foodReviewAndAnswer.getMemberEmail())||loginEmail.equals("admin")){	%>    
 		         			<div class="col-2 text-right"><a class="btn btn-success" href="food_reviewAnswerWrite.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>&memberEmail=<%=foodReviewAndAnswer.getMemberEmail() %>">답변등록</a></div>

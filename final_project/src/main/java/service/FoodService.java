@@ -290,6 +290,7 @@ public class FoodService {
 	public List<FoodReviewAndAnswer> selectReviewAndAnswer(int foodNo) {
 		System.out.println("svc selectReviewAndAnswer foodNo : " + foodNo);
 		List<FoodReviewAndAnswer> foodReviewAndAnswers  = foodRepository.selectReviewAndAnswer(foodNo);
+		
 		for(Object temp : foodReviewAndAnswers) {
 			FoodReviewAndAnswer fraa = (FoodReviewAndAnswer)temp;
 			System.out.println("svc selectReviewAndAnswer selectReviewAndAnswer : " + fraa.getFoodReviewRegdate());

@@ -56,11 +56,11 @@
                 <div class="col-sm-8">
                   <label>총점</label>
                   <form:select path="foodReviewScore" class="form-control">
-                    <form:option value="★">★</form:option>
-                    <form:option value="★★">★★</form:option>
-                    <form:option value="★★★">★★★</form:option>
-                    <form:option value="★★★★">★★★★</form:option>
-                    <form:option value="★★★★★">★★★★★</form:option>
+                    <form:option value="1">★</form:option>
+                    <form:option value="2">★★</form:option>
+                    <form:option value="3">★★★</form:option>
+                    <form:option value="4">★★★★</form:option>
+                    <form:option value="5">★★★★★</form:option>
                   </form:select>
                 </div>
               </div>

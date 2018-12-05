@@ -15,14 +15,14 @@ public class FoodReviewUpdateCommand implements Serializable{
 	private int foodCatCNo;
 	private String foodReviewRegdate;
 	private String foodReviewFoodName;
-	private String foodReviewScore;
+	private int foodReviewScore;
 	private String foodReviewTitle;
 	private String foodReviewComment;
 	private MultipartFile foodReviewImage;
 	public FoodReviewUpdateCommand() {
 	}
 	public FoodReviewUpdateCommand(int foodReviewNo, String memberEmail, int foodNo, String sellerEmail, int foodCatANo,
-			int foodCatBNo, int foodCatCNo, String foodReviewRegdate, String foodReviewFoodName, String foodReviewScore,
+			int foodCatBNo, int foodCatCNo, String foodReviewRegdate, String foodReviewFoodName, int foodReviewScore,
 			String foodReviewTitle, String foodReviewComment, MultipartFile foodReviewImage) {
 		this.foodReviewNo = foodReviewNo;
 		this.memberEmail = memberEmail;
@@ -92,10 +92,10 @@ public class FoodReviewUpdateCommand implements Serializable{
 	public void setFoodReviewFoodName(String foodReviewFoodName) {
 		this.foodReviewFoodName = foodReviewFoodName;
 	}
-	public String getFoodReviewScore() {
+	public int getFoodReviewScore() {
 		return foodReviewScore;
 	}
-	public void setFoodReviewScore(String foodReviewScore) {
+	public void setFoodReviewScore(int foodReviewScore) {
 		this.foodReviewScore = foodReviewScore;
 	}
 	public String getFoodReviewTitle() {
@@ -116,6 +116,7 @@ public class FoodReviewUpdateCommand implements Serializable{
 	public void setFoodReviewImage(MultipartFile foodReviewImage) {
 		this.foodReviewImage = foodReviewImage;
 	}
+	
 	
 	
 }

@@ -274,7 +274,7 @@
 		<result column="food_review_regdate" jdbcType="DATE" property="foodReviewRegdate" />
 		<result column="food_review_food_name" jdbcType="VARCHAR" property="foodReviewFoodName" />
 		<result column="food_review_title" jdbcType="VARCHAR" property="foodReviewTitle" />
-		<result column="food_review_score" jdbcType="VARCHAR" property="foodReviewScore" />
+		<result column="food_review_score" jdbcType="BIGINT" property="foodReviewScore" />
 		<result column="food_review_comment" jdbcType="VARCHAR" property="foodReviewComment" />
 		<result column="food_review_size" jdbcType="BIGINT" property="foodReviewSize" />
 		<result column="food_review_original" jdbcType="VARCHAR" property="foodReviewOriginal" />
