@@ -3,6 +3,10 @@
 
 <mapper namespace="repository.mapper.memberMapper">
 	<cache></cache>
+	
+	<select id="selectAllSurvey" parameterType="String" resultMap="memberSurvey">
+		select * from survey where member_email = #{memberEmail}
+	</select>
 	<resultMap type="Member" id="memberMap">
 		<id column="MEMBER_EMAIL" jdbcType="VARCHAR" property="memberEmail" />
 		<result column="MEMBER_NAME" jdbcType="VARCHAR" property="memberName" />

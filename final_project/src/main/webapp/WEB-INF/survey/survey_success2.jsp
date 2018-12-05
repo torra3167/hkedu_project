@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="model.MemberSurvey, java.util.Calendar"%>
-    <%int result=Integer.parseInt(request.getAttribute("period").toString()); %>
-    <% Calendar cal=Calendar.getInstance();
-    int y=cal.get(cal.YEAR);
-    int m=cal.get(cal.MONTH);
-    int nBMI=Integer.parseInt(request.getAttribute("normal").toString());
-    int BMI=Integer.parseInt(request.getAttribute("BMI").toString());
+    <%
+    MemberSurvey memberSurvey = (MemberSurvey)request.getAttribute("memberSurvey");
+    int goalWeight = (Integer)request.getAttribute("goalWeight");
+    int monthlyDemandedWeight = (Integer)request.getAttribute("monthlyDemandedWeight");
+    int weight = memberSurvey.getSurvWeight();
+    int month = 0;
+	String monthDay = "";
     %>
 <!DOCTYPE html>
 <html>
@@ -38,23 +39,42 @@
           </div>
       <button type="button" class="btn btn-primary" onclick="location.href='index'">메인으로</button>
 
-</body>
-<script type="text/javascript">
+
+<script>
 new Morris.Line({
-    element: 'line-chart',
-    data: [
-      <%for(int i=1; i<=result; i++){%>
-    {y: '<%=y%>-<%=m%>', item1: '<%=BMI%>'},
-   <% 
-         /* int line=BMI-nBMI/result;
-         BMI=BMI-line; */
-      }%>
-    ],
-    xkey: 'y',
-    ykeys: ['item1'],
-    labels: ['Item 1'],
-    lineColors: ['#3c8dbc'],
-    hideHover: 'auto'
-  });
+	
+	// ID of the element in which to draw the chart.
+	element : 'line-chart',
+	// Chart data records -- each entry in this array corresponds to a point on
+	// the chart.
+	data : [ 
+		<% for(int i = 0; i <= Integer.parseInt(memberSurvey.getSurveyDietPeriod()); i++) { 
+			weight = weight - monthlyDemandedWeight;
+				month = i + 1;
+				if(month > 10){
+					monthDay = "0" + month;
+				}else{
+					monthDay =  month + "";
+				}
+		%>
+		{ 	regDate: '2019-' + <%=monthDay%>,
+			weight: '<%=weight %>' 	
+		},	
+		<% } %>
+		],
+	// The name of the data record attribute that contains x-values.
+	xkey : 'regDate',
+	// A list of names of data record attributes that contain y-values.
+	ykeys :[ 'weight'],
+	// Labels for the ykeys -- will be displayed when you hover over the
+	// chart.
+	hidehover: 'auto',
+	xmax : 'auto',
+	xmin : 'auto',
+	ymin : 'auto',
+	lineColors: ['#3c8dbc'],
+	labels : ['체중']
+});
 </script>
+</body>
 </html>
