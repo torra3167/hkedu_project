@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<% String email=(String)request.getAttribute("email"); %>
+<% String email=(String)session.getAttribute("email"); %>
 
 <!doctype html>
 
@@ -9,13 +9,16 @@
     <title>설문지</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/custom-1.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/custom-1.css">
   </head>
 
   <body>
     <div class="container mt-3">
-      <form:form commandName="memberSurveyCommand">
+    <div class="row">
+     <div class="col-12">
+     
+      <form:form commandName="memberSurveyCommand" action="member_write_survey2.gom">
       	<form:input path="memberEmail" type="hidden" value="<%= email %>"></form:input>
       	<div class="form-group">
           <label>성별</label>
@@ -50,8 +53,10 @@
           <label>선호하는 체형</label>
           <form:select path="survShape" class="selectpicker" data-style="btn-primary" >
                     <option value="" selected>--선택--</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
+                    <option value="마른근육형">마른근육형</option>
+                    <option value="슬림형">슬림형</option>
+                    <option value="근육질형">근육질형</option>
+                    
           </form:select>
         </div>
         <div class="form-group">
@@ -70,16 +75,16 @@
           <label>과거 운동 경력</label><br>
           <form:textarea path="survCareer" rows="5" cols="155" placeholder="과거에 해본 운동이 있으면 여기에 작성해주세요."></form:textarea>
         </div>
-        <div class="form-group">
-        	<label>내 전신 사진 파일 업로드</label><br>
-        	<form:input path="survPhoto" type="file" name="survPhoto" enctype="multipart/form-data"></form:input>
-        </div>
+        
         <div class="form-button">
         <button type="submit" class="btn btn-primary">제출하기</button>
         <button type="reset" class="btn btn-secondary">다시 작성</button>
         <button type="button" class="btn btn-secondary">뒤로가기</button>
         </div>
+        
       </form:form>
+      </div>
+    </div>
     </div>
   </body>
 </html>

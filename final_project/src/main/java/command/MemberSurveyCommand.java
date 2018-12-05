@@ -21,7 +21,18 @@ public class MemberSurveyCommand implements Serializable {
 	private String survConcern;
 	private String survCause;
 	private String survCareer;
+	private int healthyWeight;
 	
+	
+	
+	public int getHealthyWeight() {
+		return healthyWeight;
+	}
+
+	public void setHealthyWeight(int healthyWeight) {
+		this.healthyWeight = healthyWeight;
+	}
+
 	public MemberSurveyCommand() {
 		
 	}
@@ -61,98 +72,127 @@ public class MemberSurveyCommand implements Serializable {
 		this.survCareer = survCareer;
 	}
 
-
-
 	public int getSurvNo() {
 		return survNo;
 	}
+
 	public void setSurvNo(int survNo) {
 		this.survNo = survNo;
 	}
+
 	public String getMemberEmail() {
 		return memberEmail;
 	}
+
 	public void setMemberEmail(String memberEmail) {
 		this.memberEmail = memberEmail;
 	}
+
 	public int getSurvHeight() {
 		return survHeight;
 	}
+
 	public void setSurvHeight(int survHeight) {
 		this.survHeight = survHeight;
 	}
+
 	public int getSurvWeight() {
 		return survWeight;
 	}
+
 	public void setSurvWeight(int survWeight) {
 		this.survWeight = survWeight;
 	}
+
 	public String getSurvEat() {
 		return survEat;
 	}
+
 	public void setSurvEat(String survEat) {
 		this.survEat = survEat;
 	}
+
 	public int getSurvBMI() {
 		return survBMI;
 	}
+
 	public void setSurvBMI(int survBMI) {
 		this.survBMI = survBMI;
 	}
+
 	public String getSurvSex() {
 		return survSex;
 	}
+
 	public void setSurvSex(String survSex) {
 		this.survSex = survSex;
 	}
+
 	public int getSurvAge() {
 		return survAge;
 	}
+
 	public void setSurvAge(int survAge) {
 		this.survAge = survAge;
 	}
+
 	public String getSurvLifestyle() {
 		return survLifestyle;
 	}
+
 	public void setSurvLifestyle(String survLifestyle) {
 		this.survLifestyle = survLifestyle;
 	}
+
+	public String getSurveyDietPeriod() {
+		return surveyDietPeriod;
+	}
+
+	public void setSurveyDietPeriod(String surveyDietPeriod) {
+		this.surveyDietPeriod = surveyDietPeriod;
+	}
+
 	public String getSurvShape() {
 		return survShape;
 	}
+
 	public void setSurvShape(String survShape) {
 		this.survShape = survShape;
 	}
+
 	public String getSurvDisease() {
 		return survDisease;
 	}
+
 	public void setSurvDisease(String survDisease) {
 		this.survDisease = survDisease;
 	}
+
 	public String getSurvConcern() {
 		return survConcern;
 	}
+
 	public void setSurvConcern(String survConcern) {
 		this.survConcern = survConcern;
 	}
+
 	public String getSurvCause() {
 		return survCause;
 	}
+
 	public void setSurvCause(String survCause) {
 		this.survCause = survCause;
 	}
+
 	public String getSurvCareer() {
 		return survCareer;
 	}
+
 	public void setSurvCareer(String survCareer) {
 		this.survCareer = survCareer;
 	}
 
-    public String getSurveyDietPeriod() {
-        return surveyDietPeriod;
-    }
 
-    public void setSurveyDietPeriod(String surveyDietPeriod) {
-        this.surveyDietPeriod = surveyDietPeriod;
-    }
+
+	
 }

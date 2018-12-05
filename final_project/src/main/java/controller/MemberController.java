@@ -1,7 +1,5 @@
 package controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import command.FindIDCommand;
 import command.MemberJoinCommand;
@@ -188,8 +184,8 @@ public class MemberController {
 	@RequestMapping(value = "/member_write_survey1.gom", method = RequestMethod.GET)
 	public String Survey1Form(MemberSurveyCommand memberSurveyCommand, Model model, HttpSession session) {
 		model.addAttribute("iPage", "survey/survey_1.jsp");
-		model.addAttribute("memberSurveyCommand", memberSurveyCommand);
-		String email=(String)session.getAttribute("email");
+/*		model.addAttribute("memberSurveyCommand", memberSurveyCommand);
+*/		String email=(String)session.getAttribute("email");
 		model.addAttribute("email", email);
 		System.out.println("CONTROLLER Survey1 GET");
 		return "index";
@@ -197,29 +193,52 @@ public class MemberController {
 	
 	@RequestMapping(value = "/member_write_survey1.gom", method = RequestMethod.POST)
 	public String Survey1Submit(MemberSurveyCommand memberSurveyCommand, Model model, HttpServletRequest request, HttpSession session) {
+		
+		//
+		session.setAttribute("healthyWeight", memberSurveyCommand.getHealthyWeight());
+		
 		System.out.println("controller"+memberSurveyCommand.getMemberEmail());
-		model.addAttribute("iPage", "survey/survey_success.jsp");
 		System.out.println("CONTROLLER Survey1 POST "+request.getParameter("survNo"));
+		memberSurveyCommand.getHealthyWeight();
+		memberSurveyCommand.getSurvWeight();
+		
+		//정상체중도달
+		int goalWeight = (memberSurveyCommand.getSurvWeight() - memberSurveyCommand.getHealthyWeight());
+		int monthlyDemandedWeight = (int) ((double)goalWeight / Integer.parseInt(memberSurveyCommand.getSurveyDietPeriod()));
+		
+		System.out.println(memberSurveyCommand.getSurveyDietPeriod() + "memberSurvey.getSurveyDietPeriod()");
+		model.addAttribute("monthlyDemandedWeight",monthlyDemandedWeight);
+		model.addAttribute("goalWeight", goalWeight)
+		;
+		System.out.println(monthlyDemandedWeight + "monthlyDemandedWeight");
+		
 		String email=memberSurveyCommand.getMemberEmail();
-		String id=(String)session.getAttribute("email");
-		model.addAttribute("email",id);
-		if(email==null || email.equals("") ) {
-			System.out.println("email confirm");
-			memberSurveyCommand.setMemberEmail("1");
-		}
-		int i=Integer.parseInt(request.getParameter("surveyDietPeriod"));
-		Integer result = memberService.insertSurvey1(memberSurveyCommand);
-		System.out.println("aaaaaa" + result);
-		if (result > 0) {
-			model.addAttribute("result", result);
+		memberSurveyCommand.getSurvBMI();
+		
+		if(email.equals("1")) {
+			model.addAttribute("memberSurveyCommand", memberSurveyCommand);
+			
+			model.addAttribute("iPage", "survey/survey_success_notMember.jsp");
 			return "index";
 		} else {
-			return "redirect:/index";
+			Integer result = memberService.insertSurvey1(memberSurveyCommand);
+			
+			if (result > 0) {
+				model.addAttribute("iPage", "survey/survey_2.jsp");
+				return "index";
+				
+			} else {
+				return "redirect:/index";
+			}
 		}
+		
+
+
+		
 	}
 	
 	/*설문지 2*/
-	@RequestMapping(value = "/member_write_survey2.gom", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/member_write_survey2.gom", method = RequestMethod.GET)
 	public String Survey2Form(MemberSurveyCommand memberSurveyCommand, Model model, HttpSession session) {
 		model.addAttribute("iPage", "survey/survey_2.jsp");
 		System.out.println("CONTROLLER Survey2 GET");
@@ -227,31 +246,25 @@ public class MemberController {
 		model.addAttribute("email",email);
 		model.addAttribute("memberSurveyCommand", memberSurveyCommand);
 		return "index";
-	}
+	}*/
 	
 	@RequestMapping(value = "/member_write_survey2.gom", method = RequestMethod.POST)
-	public String Survey2Submit(MemberSurveyCommand memberSurveyCommand,MultipartHttpServletRequest fileRequest , Model model, HttpSession session,HttpServletRequest request) {
-		model.addAttribute("iPage", "survey/survey_success2.jsp");
-		String email=(String)session.getAttribute("email");
-		model.addAttribute("email", email);
-		System.out.println("CONTROLLER Survey2 POST "+request.getParameter("memberEmail"));
+	public String Survey2Submit(MemberSurveyCommand memberSurveyCommand, Model model, HttpSession session,HttpServletRequest request) {
+		
+		
+		System.out.println("CONTROLLER Survey2 POST "+memberSurveyCommand.getMemberEmail());
+		
 		Integer result=memberService.updateSurvey2(memberSurveyCommand);
-		System.out.println("controller "+result);
-		MultipartFile photo=fileRequest.getFile("survPhoto");
-		String uploadPath="";
-		String path="C:\\Users\\HKEDU\\Desktop\\업로드파일\\";
-		String original=photo.getOriginalFilename();
-		System.out.println("파일 업데이트 : "+original);
-		uploadPath=path+original;
-		try {
-			photo.transferTo(new File(uploadPath));
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
+		
+		MemberSurvey memberSurvey = memberService.selectAllSurvey(memberSurveyCommand.getMemberEmail(), model);
+		
+		int goalWeight = (memberSurvey.getSurvWeight() - Integer.parseInt((String) session.getAttribute("healthyWeight")));
+		int monthlyDemandedWeight = (int) ((double)goalWeight / Integer.parseInt(memberSurvey.getSurveyDietPeriod()));
 		if(result>0) {
-			model.addAttribute("result", result);
+			model.addAttribute("monthlyDemandedWeight",monthlyDemandedWeight);
+			model.addAttribute("goalWeight", goalWeight);
+			model.addAttribute("iPage", "survey/survey_success2.jsp");
 			return "index";
 		}else {
 			return "redirect:/index";

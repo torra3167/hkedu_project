@@ -2,11 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%
-	String email=(String)request.getAttribute("email");
+	String email=(String)session.getAttribute("email");
 	System.out.println("jsp "+email);
 	Integer result = 0;
  	if(email == null){
-		result = 1;
+		email = "1";
 	} 
 %>
 <!doctype html>
@@ -15,14 +15,14 @@
 <title>설문지</title>
 </head>
 <script type="text/javascript">
-function idChk(){
+<%-- function idChk(){
 	var frm=document.getElementById('frm');
 	if(<%=result%>==1){
-		window.location.href='http://localhost:8080/final_project/survey_success.gom';
+		location.href='http://localhost:8080/final_project/survey_success.gom';
 	}else{
 		frm.submit();
 	}
-}
+} --%>
     function bmi_calculator() {     //bmi와 적정체중 계산 함수
         var height = document.getElementById('survHeight').value;   //키(cm)를 입력받음
         var height_m_conversion = height / 100;     
@@ -30,6 +30,7 @@ function idChk(){
         var user_BMI = weight / (height_m_conversion * height_m_conversion);    
         var user_BMI_decimal = Math.round(user_BMI * 10) / 10; 
         var healthy_weight = (height - 100) * 0.9;  //적정 체중 계산
+        
         var bmi_output;     //리턴할 변수 선언
         if (user_BMI < 18.6) {      //케이스에 따라 선언한 변수에 안내문 대입
             bmi_output = "당신의 BMI는 " + user_BMI_decimal + ", 저체중이며 적정 체중은 " + healthy_weight + "kg 입니다.";
@@ -42,7 +43,11 @@ function idChk(){
         } else if (user_BMI >= 30) {
             bmi_output = "당신의 BMI는 " + user_BMI_decimal + ", 고도비만이며 적정 체중은 " + healthy_weight + "kg 입니다.";
         }
-        document.getElementById('survBMI').value = user_BMI_decimal;
+        document.getElementById('healthyWeight').value = Math.floor(healthy_weight);
+        document.getElementById('survBMI').value = Math.floor(user_BMI_decimal);
+        console.log(document.getElementById('survBMI').value);
+        console.log(document.getElementById('healthyWeight').value);
+        console.log('<%=email%>');
         return alert(bmi_output);       //리턴
     }
 </script>
@@ -51,6 +56,8 @@ function idChk(){
 		<form:form id="frm" action="member_write_survey1.gom" commandName="memberSurveyCommand" >
 <%-- 			<form:hidden path="survNo" value=""/>
  --%>			<form:hidden path="memberEmail" value="<%=email%>"/>
+ 				<form:hidden path="healthyWeight" name="healthyWeight" id="healthyWeight" value="" />
+ 				
 			<div class="form-group">
 				<label>신장</label> <form:input class="form-control" path="survHeight" id="survHeight" placeholder="cm"/>
 			</div>				
@@ -58,7 +65,7 @@ function idChk(){
 				<label>체중</label> <form:input class="form-control" path="survWeight" id="survWeight" placeholder="kg"/>
 			</div>
 			<div class="form-group">
-				<label>BMI</label> <form:input class="form-control" path="survBMI" id="survBMI" readonly="true" value="신장과 키를 입력 후 버튼을 클릭하세요."/>
+				<label>BMI</label> <form:input class="form-control" path="survBMI" id="survBMI" readonly="true" placeholder="신장과 키를 입력 후 버튼을 클릭하세요."/>
 			</div>
 			<button type="button" onclick="bmi_calculator();" class="btn btn-secondary">BMI 계산</button>
 			
@@ -80,10 +87,9 @@ function idChk(){
 			<div class="form-group">
             <label>다이어트 목표 기간</label> <select class="selectpicker form-control" data-style="btn-primary" id="surveyDietPeriod" name="surveyDietPeriod">
             	<option value="0" selected>--선택--</option>
-            	<option value="1" >1개월</option>
             	<option value="3" >3개월</option>
             	<option value="6" >6개월</option>
-             	<option value="12" >12개월</option>
+             	<option value="9" >9개월</option>
             	
                 </select>
         	</div>
@@ -94,7 +100,7 @@ function idChk(){
 			<form:hidden path="survConcern" value=""/> --%>
 			
 			
-			<button type="button" class="btn btn-primary" onclick="idChk();">완료</button>
+			<button type="submit" class="btn btn-primary" >완료</button>
 			<button type="reset" class="btn btn-secondary">다시 작성</button>
 			<button type="button" class="btn btn-secondary">뒤로가기</button>
 		</form:form>

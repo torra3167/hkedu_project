@@ -122,7 +122,7 @@
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
 			<div id="box">
 				<a href="program_detail.gom?proNo=<%=foodAppli.getFoodNo()%>">
-				<img class="d-block w-100" src="resource\\<%=foodAppli.getFoodStored() %>" alt="Third slide" >
+				<img class="d-block w-100" src="resource\\<%=foodAppli.getFoodStored() %>" alt="Third slide" width="300" height="200">
 				</a>
 				<div id="info">
 					<%=foodAppli.getFoodName() %> <br> <img src="images/d-day/dot.png"
@@ -141,7 +141,7 @@
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
 			<div id="box">
 				<a href="program_register.gom">
-				<img class="d-block w-100" src="images/404.png" alt="Third slide">
+				<img class="d-block w-100" src="images/404.png" alt="Third slide" width="300" height="200">
 				</a>
 				<div id="info">
 					식품을 등록해주세요 <br> <img src="images/d-day/dot.png"

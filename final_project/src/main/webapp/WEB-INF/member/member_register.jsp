@@ -151,16 +151,19 @@
 				</div>
 				<div class="form-group">
 					<label>비밀번호</label>
-					<div class="input-group">
-					<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+					<div class="form-group input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text"><i class="fa fa-lock fa-lg"></i></span>
+					</div>	
 					<input type="password" name="memberPass" id="memberPass" class="form-control" />
+					
 					</div>
 				</div>
 				<div class="form-group">
 				<label>이름</label>
 				<div class="form-group input-group">
     				<div class="input-group-prepend">
-		    		<span class="input-group-text"> <i class="fa fa-envelope"></i> </span></div>
+		    		<span class="input-group-text"> <i class="fa fa-user"></i> </span></div>
 					<input type="text" name="memberName" id="memberName" class="form-control" />
 				</div>
 				</div>

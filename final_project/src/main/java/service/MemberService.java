@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import command.FindIDCommand;
 import command.MemberJoinCommand;
@@ -131,5 +132,16 @@ public class MemberService {
 	public int selectByEmail(String email) {
 		Integer result=memberRepository.selectByEmailChk(email);
 		return result;
+	}
+
+	public MemberSurvey selectAllSurvey(String memberEmail, Model model) {
+		MemberSurvey memberSurvey = memberRepository.selectAllSurvey(memberEmail);
+	
+		if(memberSurvey != null) {
+			model.addAttribute("memberSurvey", memberSurvey);
+			return memberSurvey;
+		}
+		
+		return null;
 	}
 }
