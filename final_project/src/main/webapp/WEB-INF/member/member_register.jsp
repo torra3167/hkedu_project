@@ -130,12 +130,13 @@
 	}
 </script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<link rel="stylesheet" href="../css/custom-1.css">
+<link rel="stylesheet" href="css/custom-1.css">
 </head>
 <body>
-	<div class="container mt-3">
-		<div class="row jstify-content-center">
-			<form action="member_join.gom" method="post" id="memberRegister" name="Register1">
+	<div class="container">
+		<div class="row">
+		<div class="col-12">
+			<form action="member_join.gom" method="post" id="memberRegister" class="justify" name="Register1">
 				<div class="form-group">
 				
 					<label>이메일</label>
@@ -191,7 +192,7 @@
 				<div>
 					<input type="hidden" id="memberDivide" name="memberDivide" value="p" />
 				</div>
-				<div>
+				<div class="justify">
 					<button type="button" class="btn btn-primary" onclick="checkIt()">회원가입</button>
 					<button type="reset" class="btn btn-default">다시 작성</button>
 					<button type="button" class="btn btn-default" onclick="history.go(-1);">뒤로가기</button>
@@ -199,5 +200,6 @@
 			</form>
 		</div>
 	</div>
+</div>
 </body>
 </html>
