@@ -569,5 +569,18 @@ public class FoodRepository extends AbstractRepository{
 		}
 	}
 
+	public List<FoodAndApplication> selectCoachRecomFoodList(String memberEmail) {
+		System.out.println("repo selectCoachRecomFoodList memberEmail : "+memberEmail);
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			List<FoodAndApplication> coachRecomFoodList =  sqlSession.selectList(namespace + ".selectCoachRecomFoodList", memberEmail);
+			System.out.println("repo selectCoachRecomFoodList coachRecomFoodList.size : " + coachRecomFoodList.size());
+		return coachRecomFoodList;
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 	
 }

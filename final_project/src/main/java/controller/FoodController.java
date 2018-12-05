@@ -41,13 +41,16 @@ public class FoodController {
    private FoodService foodService;
    
    @RequestMapping(value="/food_list.gom", method=RequestMethod.GET)
-   public String foodList(Model model) {
+   public String foodList(Model model, HttpSession session) {
       System.out.println("cntlr foodList");
+      
       List<FoodAndApplication> foodAppliList = foodService.selectFoodList();
       System.out.println("cntlr foodList foodAppliList.size() : " + foodAppliList.size());
       model.addAttribute("foodAppliList", foodAppliList);
       
-      List<FoodAndApplication> foodAppliList2 = foodService.selectCoachRecomFoodList();
+      List<FoodAndApplication> coachRecomFoodList = foodService.selectCoachRecomFoodList(session);
+      model.addAttribute("coachRecomFoodList", coachRecomFoodList);
+      
       model.addAttribute("iPage", "food/food_list.jsp");
       return "index";
    }

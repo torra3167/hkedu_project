@@ -25,8 +25,7 @@
 		food_quant, food_sale,
 		food_price, food_carbo, food_protein, food_fat, food_cal, food_size, food_original, food_stored)
 		VALUES (#{foodNo}, #{sellerEmail}, #{foodCatANo}, #{foodCatBNo},
-		#{foodCatCNo}, #{foodName}, #{foodQuant},
-		#{foodOrigin}, #{foodSale}, #{foodPrice}, #{foodCarbo},
+		#{foodCatCNo}, #{foodName}, #{foodQuant}, #{foodSale}, #{foodPrice}, #{foodCarbo},
 		#{foodProtein}, #{foodFat}, #{foodCal}, #{foodSize}, #{foodOriginal}, #{foodStored})
 	</insert>
 	
@@ -228,6 +227,18 @@
 		FROM food f, seller_application sa
 		WHERE f.seller_email = sa.seller_email and f.food_no = #{foodNo}
 </select>
+
+<select id="selectCoachRecomFoodList" parameterType="String" resultMap="selectFoodListMap">
+		SELECT distinct f.food_no, f.seller_email, f.food_cat_a_no, f.food_cat_b_no, f.food_cat_c_no, f.food_name, f.food_quant, f.food_expiry_date, f.food_sale, f.food_price, f.food_carbo, f.food_protein, f.food_fat, f.food_size, f.food_original, f.food_stored,
+		sa.store_name, sa.store_telphone, sa.store_addr
+		FROM PRO_FOOD_ORDER pfo, pro_food_pay pfp, food f, seller_application sa
+		WHERE pfo.MEMBER_EMAIL = pfp.MEMBER_EMAIL
+		AND pfo.food_no = f.food_no
+		AND f.seller_email = sa.SELLER_EMAIL
+		AND pfp.member_email = #{memberEmail}
+		order by food_no
+</select>
+
 
 
 <select id="selectFoodReviewNo" resultType="Integer">

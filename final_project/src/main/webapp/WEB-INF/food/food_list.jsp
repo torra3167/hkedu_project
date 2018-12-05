@@ -2,7 +2,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, model.FoodAndApplication"%>
 <%
+	//전체식품
 	List<FoodAndApplication> foodAppliList = (List<FoodAndApplication>)request.getAttribute("foodAppliList");
+
+	//코치 추천 식품
+	List<FoodAndApplication> coachRecomFoodList = (List<FoodAndApplication>)request.getAttribute("coachRecomFoodList");
+	System.out.println("szie : "+coachRecomFoodList.size());
+// 	int tempNo = 0;
 %>
 <!DOCTYPE html>
 <html>
@@ -21,38 +27,43 @@
 <div class="container mt-3 mt-sm-5">
 <h5>코치 추천 식품</h5>
 <br>
+
+<div class="container">
 	<div class="row">
-	    <div class="col-md-4">
-	      <div class="">
-	      	<img class="card-img-top" src="#" alt="#"/>
-	        	<div class="card-block card">
-	         	<h6 class="card-text">아임웰</h6>
-	           <h4 class="card-title"><a href=#>신선한 샐러드 파우치</a></h4>
-	           <div class="regularPrice">10,000원</div>
-	           <h4 class="card-text">20% OFF</h4>
-	           <h4 class="card-text">8,000원</h4>
-	           <div class="row">
-	            <div class="col-6 text-left">★★★★★</div>
-	        </div>
-	        	</div>
-	      </div>
-	    </div>
-	    <div class="col-md-4">
-	      <div class="">
-	      	<img class="card-img-top" src="#" alt="#"/>
-	        	<div class="card-block card">
-	         	<h6 class="card-text">아임웰</h6>
-	           <h4 class="card-title"><a href=#>신선한 샐러드 파우치</a></h4>
-	           <div class="regularPrice">10,000원</div>
-	           <h4 class="card-text">20% OFF</h4>
-	           <h4 class="card-text">8,000원</h4>
-	           <div class="row">
-	            <div class="col-6 text-left">★★★★★</div>
-	        </div>
-	        	</div>
-	      </div>
-	    </div>
+<%-- 		<% for(int i=0; i<3; i++){
+			FoodAndApplication coachRecomFoodAppli = coachRecomFoodList.get(i);
+			%>
+		
+	      <% for(Object temp : coachRecomFoodList) {
+	        	FoodAndApplication coachRecomFoodAppli = (FoodAndApplication)temp;       
+	        	tempNo += 1;
+
+		  %> --%>
+		  <% for(int i=0; i<3; i++){
+			FoodAndApplication coachRecomFoodAppli = coachRecomFoodList.get(i);
+			%>
+                <div class="col-md-4">
+                  <div class="card">
+                        <a href="food_detail.gom?foodNo=<%=coachRecomFoodAppli.getFoodNo() %>"><img class="card-img-top" src="http://localhost:8080//final_project//resource//<%=coachRecomFoodAppli.getFoodStored() %>" style="width:100%"/></a>
+                        <div class="card-body">
+                        	<h6 class="card-text"><%=coachRecomFoodAppli.getStoreName() %></h6>
+                            <h4 class="card-title"><a href="food_detail.gom?foodNo=<%=coachRecomFoodAppli.getFoodNo() %>"><%=coachRecomFoodAppli.getFoodName() %></a></h4>
+                            <div class="regularPrice"><%=coachRecomFoodAppli.getFoodPrice() %>원</div>
+                            <h4 class="card-text"><%=coachRecomFoodAppli.getFoodSale() %>% OFF</h4>
+                            <%
+                                int salePrice = (int) (coachRecomFoodAppli.getFoodPrice() - (coachRecomFoodAppli.getFoodPrice() * (coachRecomFoodAppli.getFoodSale()*0.01)));
+                            %>
+                            <h4 class="card-text"><%=salePrice %>원</h4>
+                            <div class="row">
+                                <div class="col-6 text-left">★★★★★</div>
+                            </div>
+                        </div>
+                  </div>
+                </div>
+         <% } %>
+
 	</div>
+</div>
 	<br>
   	<br>
   	<hr>
@@ -81,7 +92,6 @@
 	<!-- Tab panes -->
 <div class="tab-content">
 		<div class="tab-pane container active" id="home">
-		
 			<div class="row">
 		      <% for(Object temp : foodAppliList) {
 	        	FoodAndApplication foodAppli = (FoodAndApplication)temp; %>

@@ -753,6 +753,11 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 	public String selectMemberDivide(String memberEmail) {
 		return foodRepository.selectMemberDivide(memberEmail);
 	}
+
+	public List<FoodAndApplication> selectCoachRecomFoodList(HttpSession session) {
+		String memberEmail = (String) session.getAttribute("email");
+		return foodRepository.selectCoachRecomFoodList(memberEmail);
+	}
 	
 
 
