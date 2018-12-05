@@ -23,12 +23,12 @@
 			<label>사업자 번호</label> <input type="text" name="sellerAppliBn" class="form-control" value="<%=sellerApplication.getSellerAppliBn() %>" readonly="readonly">
 		</div>
 		<div class="form-group">
-			<label>사업자 등록증 사본</label>
-			<img src="http://localhost:8080/final_project/resource/<%=sellerApplication.getSellerLicenseStored()%>">
+			<label>사업자 등록증 사본</label><br>
+			<img src="resource\\<%=sellerApplication.getSellerLicenseStored()%>" width="150" height="150">
 		</div>
 		<div class="form-group">
-			<label>영업 신고증 사본</label>
-			<img src="http://localhost:8080/final_project/resource/<%=sellerApplication.getSellerBrStored()%>">
+			<label>영업 신고증 사본</label><br>
+			<img src="resource\\<%=sellerApplication.getSellerBrStored()%>" width="150" height="150">
 		</div>
 		<div class="form-group">
 			<label>업체 이름</label> <input type="text" name="storeName" class="form-control" value="<%=sellerApplication.getStoreName() %>" readonly="readonly">

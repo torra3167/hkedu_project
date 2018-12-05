@@ -47,13 +47,13 @@ function idChk(){
     }
 </script>
 <body>
-	<div class="container mt-3">
-		<form:form id="frm" action="member_write_survey1.gom" commandName="memberSurveyCommand" method="POST">
+	<div class="container">
+		<form:form id="frm" action="member_write_survey1.gom" commandName="memberSurveyCommand" >
 <%-- 			<form:hidden path="survNo" value=""/>
  --%>			<form:hidden path="memberEmail" value="<%=email%>"/>
 			<div class="form-group">
 				<label>신장</label> <form:input class="form-control" path="survHeight" id="survHeight" placeholder="cm"/>
-			</div>
+			</div>				
 			<div class="form-group">
 				<label>체중</label> <form:input class="form-control" path="survWeight" id="survWeight" placeholder="kg"/>
 			</div>
