@@ -47,8 +47,8 @@ public class FoodController {
       System.out.println("cntlr foodList foodAppliList.size() : " + foodAppliList.size());
       model.addAttribute("foodAppliList", foodAppliList);
       
-      List<FoodAndApplication> foodAppliList2 = foodService.selectCoachRecomFoodList();
-      model.addAttribute("iPage", "food/food_list.jsp");
+/*      List<FoodAndApplication> foodAppliList2 = foodService.selectCoachRecomFoodList();
+*/      model.addAttribute("iPage", "food/food_list.jsp");
       return "index";
    }
    

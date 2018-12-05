@@ -132,8 +132,8 @@
 		</div>
 		<%
 		}
-		foodIndex = 4 - (programList.size() % 4);
-	
+		foodIndex = 4 - (foodAppliList.size() % 4);
+		System.out.println((foodAppliList.size() % 4));
 		if(foodIndex > 0) { 
 			for(int i = 0; i < foodIndex; i++) {
 
