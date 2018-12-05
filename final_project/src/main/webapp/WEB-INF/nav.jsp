@@ -329,8 +329,7 @@
 					href="pro_cart_list.gom">운동Cart</a></li>	
 				
 				<li class="nav-item"><a class="nav-link"
-					href="program_cart_list.gom">프로그램Cart</a></li>
-					
+					href="program_cart_list.gom">프로그램Cart</a></li>		
 				<li class="nav-item">
 					<div class="dropdown show">
 						<a class="nav-link dropdown-toggle" id="dropdown"
