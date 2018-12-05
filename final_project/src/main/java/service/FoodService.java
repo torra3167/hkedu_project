@@ -28,6 +28,7 @@ import command.FoodReviewReportWriteCommand;
 import command.FoodReviewUpdateCommand;
 import command.FoodReviewWriteCommand;
 import command.FoodUpdateCommand;
+import model.AvgReviewScore;
 import model.DietRecord;
 import model.DietRecordFood;
 import model.Food;
@@ -758,6 +759,10 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 	public List<FoodAndApplication> selectCoachRecomFoodList(HttpSession session) {
 		String memberEmail = (String) session.getAttribute("email");
 		return foodRepository.selectCoachRecomFoodList(memberEmail);
+	}
+
+	public List<AvgReviewScore> selectAvgReviewScore() {
+		return foodRepository.selectAvgReviewScore();
 	}
 	
 

@@ -1,14 +1,16 @@
 <%@page import="model.FoodAndApplication"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, model.FoodAndApplication"%>
+    pageEncoding="UTF-8" import="java.util.*, model.FoodAndApplication, model.AvgReviewScore"%>
 <%
 	//전체식품
 	List<FoodAndApplication> foodAppliList = (List<FoodAndApplication>)request.getAttribute("foodAppliList");
 
 	//코치 추천 식품
 	List<FoodAndApplication> coachRecomFoodList = (List<FoodAndApplication>)request.getAttribute("coachRecomFoodList");
-	System.out.println("szie : "+coachRecomFoodList.size());
-// 	int tempNo = 0;
+// 	System.out.println("size : "+coachRecomFoodList.size());
+	
+	//리뷰총점 평균값
+	List<AvgReviewScore> avgrsList = (List<AvgReviewScore>)request.getAttribute("avgrsList");
 %>
 <!DOCTYPE html>
 <html>
@@ -25,23 +27,22 @@
 </head>
 <body>
 <div class="container mt-3 mt-sm-5">
-<h5>코치 추천 식품</h5>
+<%if(!(coachRecomFoodList.size()>0)){ %>
+	<div class="card bg-light"><h6>프로그램을 구매하시면 회원님께 적합한 식품을 코치로부터 추천 받을 수 있습니다.</h6></div>
+<% }else{ %>
+	<h5>코치 추천 식품</h5>
 <br>
+<%} %>
 
 <div class="container">
 	<div class="row">
-<%-- 		<% for(int i=0; i<3; i++){
+		  <% for(int i=0; i<coachRecomFoodList.size(); i++){
 			FoodAndApplication coachRecomFoodAppli = coachRecomFoodList.get(i);
-			%>
-		
-	      <% for(Object temp : coachRecomFoodList) {
-	        	FoodAndApplication coachRecomFoodAppli = (FoodAndApplication)temp;       
-	        	tempNo += 1;
+			if(i==3){
+				break;
+			}
+		  %>
 
-		  %> --%>
-		  <% for(int i=0; i<3; i++){
-			FoodAndApplication coachRecomFoodAppli = coachRecomFoodList.get(i);
-			%>
                 <div class="col-md-4">
                   <div class="card">
                         <a href="food_detail.gom?foodNo=<%=coachRecomFoodAppli.getFoodNo() %>"><img class="card-img-top" src="http://localhost:8080//final_project//resource//<%=coachRecomFoodAppli.getFoodStored() %>" style="width:100%"/></a>
@@ -54,14 +55,26 @@
                                 int salePrice = (int) (coachRecomFoodAppli.getFoodPrice() - (coachRecomFoodAppli.getFoodPrice() * (coachRecomFoodAppli.getFoodSale()*0.01)));
                             %>
                             <h4 class="card-text"><%=salePrice %>원</h4>
+                            <%
+                            AvgReviewScore avgrs = new AvgReviewScore();
+                            int totalScore = 0;
+                            	for(Object tp : avgrsList){
+                            		avgrs = (AvgReviewScore)tp;
+                            		if(avgrs.getFoodNo()==coachRecomFoodAppli.getFoodNo()){
+                            			System.out.println("avffffff : "+avgrs.getAvgReviewScore()+"foodnum"+avgrs.getFoodNo());
+                            			totalScore += (int)avgrs.getAvgReviewScore();
+                            		System.out.println("totalScore : "+totalScore);
+                            %>
                             <div class="row">
-                                <div class="col-6 text-left">★★★★★</div>
+                                <div class="col-6 text-left"><%=totalScore %></div>
                             </div>
+		                            <% } 
+       	                    	} %>
                         </div>
                   </div>
                 </div>
          <% } %>
-
+	
 	</div>
 </div>
 	<br>

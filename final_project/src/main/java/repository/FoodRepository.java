@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import category.FoodCatA;
 import category.FoodCatB;
 import category.FoodCatC;
+import model.AvgReviewScore;
 import model.DietRecord;
 import model.DietRecordFood;
 import model.Food;
@@ -576,6 +577,19 @@ public class FoodRepository extends AbstractRepository{
 			List<FoodAndApplication> coachRecomFoodList =  sqlSession.selectList(namespace + ".selectCoachRecomFoodList", memberEmail);
 			System.out.println("repo selectCoachRecomFoodList coachRecomFoodList.size : " + coachRecomFoodList.size());
 		return coachRecomFoodList;
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<AvgReviewScore> selectAvgReviewScore() {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			List<AvgReviewScore> avgrsList =  sqlSession.selectList(namespace + ".selectAvgReviewScore");
+			System.out.println("repo selectCoachRecomFoodList avgrsList.size : " + avgrsList.size());
+			System.out.println("fffffffffffffffffffffffffffff" + avgrsList.get(0).getAvgReviewScore());
+		return avgrsList;
 		
 		} finally {
 			sqlSession.close();

@@ -24,6 +24,7 @@ import command.FoodReviewReportWriteCommand;
 import command.FoodReviewUpdateCommand;
 import command.FoodReviewWriteCommand;
 import command.FoodUpdateCommand;
+import model.AvgReviewScore;
 import model.DietRecordFood;
 import model.Food;
 import model.FoodAndApplication;
@@ -50,6 +51,9 @@ public class FoodController {
       
       List<FoodAndApplication> coachRecomFoodList = foodService.selectCoachRecomFoodList(session);
       model.addAttribute("coachRecomFoodList", coachRecomFoodList);
+      
+      List<AvgReviewScore> avgrsList = foodService.selectAvgReviewScore();
+      model.addAttribute("avgrsList", avgrsList);
       
       model.addAttribute("iPage", "food/food_list.jsp");
 
