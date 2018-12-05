@@ -22,11 +22,10 @@
 	<insert id="insertFood" parameterType="Food">
 		INSERT INTO food
 		(food_no, seller_email, food_cat_a_no, food_cat_b_no, food_cat_c_no, food_name,
-		food_quant, food_sale,
-		food_price, food_carbo, food_protein, food_fat, food_cal, food_size, food_original, food_stored)
+		food_quant, food_sale, food_price, food_carbo, food_protein, food_fat, food_cal, food_size, food_original, food_stored)
 		VALUES (#{foodNo}, #{sellerEmail}, #{foodCatANo}, #{foodCatBNo},
 		#{foodCatCNo}, #{foodName}, #{foodQuant},
-		#{foodOrigin}, #{foodSale}, #{foodPrice}, #{foodCarbo},
+		#{foodSale}, #{foodPrice}, #{foodCarbo},
 		#{foodProtein}, #{foodFat}, #{foodCal}, #{foodSize}, #{foodOriginal}, #{foodStored})
 	</insert>
 	
