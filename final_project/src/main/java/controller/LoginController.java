@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import command.LoginCommand;
 import model.AuthInfo;
-
+import model.FoodAndApplication;
 import service.LoginService;
 import service.SellerService;
 
@@ -32,6 +34,7 @@ public class LoginController {
 		
 		//프로그램리스트
 		ls.programList(model);
+		ls.selectFoodList(model);
 		return "index";
 	}
 	
