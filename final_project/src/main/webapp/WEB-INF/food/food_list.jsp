@@ -33,7 +33,6 @@
 	           <h4 class="card-text">8,000원</h4>
 	           <div class="row">
 	            <div class="col-6 text-left">★★★★★</div>
-	            <div class="col-6 text-right"><a href=#>상품후기 7</a></div>
 	        </div>
 	        	</div>
 	      </div>
@@ -49,7 +48,6 @@
 	           <h4 class="card-text">8,000원</h4>
 	           <div class="row">
 	            <div class="col-6 text-left">★★★★★</div>
-	            <div class="col-6 text-right"><a href=#>상품후기 7</a></div>
 	        </div>
 	        	</div>
 	      </div>
@@ -101,7 +99,6 @@
                             <h4 class="card-text"><%=salePrice %>원</h4>
                             <div class="row">
                                 <div class="col-6 text-left">★★★★★</div>
-                                <div class="col-6 text-right"><a href=#>상품후기 7</a></div>
                             </div>
                         </div>
                   </div>
@@ -133,7 +130,6 @@
 		                            <h4 class="card-text"><%=salePrice %>원</h4>
 		                            <div class="row">
 		                                <div class="col-6 text-left">★★★★★</div>
-		                                <div class="col-6 text-right"><a href=#>상품후기 7</a></div>
 		                            </div>
 		                        </div>
                   			</div>
@@ -168,7 +164,6 @@
 		                            <h4 class="card-text"><%=salePrice %>원</h4>
 		                            <div class="row">
 		                                <div class="col-6 text-left">★★★★★</div>
-		                                <div class="col-6 text-right"><a href=#>상품후기 7</a></div>
 		                            </div>
 		                        </div>
                   			</div>
@@ -204,7 +199,6 @@
 		                            <h4 class="card-text"><%=salePrice %>원</h4>
 		                            <div class="row">
 		                                <div class="col-6 text-left">★★★★★</div>
-		                                <div class="col-6 text-right"><a href=#>상품후기 7</a></div>
 		                            </div>
 		                        </div>
                   			</div>

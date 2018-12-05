@@ -82,7 +82,7 @@ function checkVal(){
 <div class="container mt-3" style="max-width: 560px;">
      <form:form id="frm" method="POST" action="seller_application.gom" enctype="multipart/form-data" commandName="sellerApplicationWriteCommand">
      	<div class="form-group">
-			<label>사업자 번호</label> <input type="text" id="sellerAppliBn" name="sellerAppliBn" class="form-control" value="" onkeydown="bnCheckFalse()">
+			<label>사업자 번호</label> <input type="text" id="sellerAppliBn" name="sellerAppliBn" class="form-control" value="" onkeydown="bnCheckFalse()" maxlength="10">
 			<input type="button" class="btn btn-primary" name="sellerAppliBnDuplicate" value="중복 확인" onclick="idCheck()">
 		</div>
 		<div class="form-group">

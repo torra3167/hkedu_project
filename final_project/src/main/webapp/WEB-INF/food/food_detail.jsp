@@ -116,7 +116,7 @@
 			          </div>
 			        </div>
 			        <div class="card-body">
-			          <img src="http://localhost:8080/final_project/resource/<%=foodReviewAndAnswer.getFoodReviewStored() %>" width="200" height="200">
+			          <img src="http://localhost:8080//final_project//resource//<%=foodReviewAndAnswer.getFoodReviewStored() %>" width="200" height="200">
 			          <p class="card-text"><%=foodReviewAndAnswer.getFoodReviewComment() %></p>
 			        </div>
 			          <div class="card-footer">
@@ -147,7 +147,7 @@
 			     <%
 			     	answerButton = answerButton + 1;
 			     %>
-		         <button type="button" class="" data-toggle="collapse" data-target="#demo<%=answerButton %>">답변 보기</button>
+		         <button type="button" class="card col bg-light" data-toggle="collapse" data-target="#demo<%=answerButton %>">답변 보기</button>
 		      		<%
 		      			List<FoodReviewAnswer> foodReviewAnswers = foodReviewAndAnswer.getFoodReviewAnswers();
 		      			if(foodReviewAnswers.size() > 0){
