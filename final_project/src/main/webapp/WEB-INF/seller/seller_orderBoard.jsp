@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="model.FoodOrder, java.util.*"%>
+<%
+	List<FoodOrder> orderedFoodList = (List<FoodOrder>)request.getAttribute("orderedFoodList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,42 +20,21 @@
 					<th>주문번호</th>
 					<th>식품명</th>
 					<th>구매자</th>
-					<th>주문일</th>
 				</tr>
 			</thead>
-			
 			<tbody>
+			<%
+				for(Object temp : orderedFoodList){
+					FoodOrder forp = (FoodOrder)temp;
+			%>
 				<tr class="active">
-					<th>1</th>
-					<th><a href="#">2</a></th>
-					<th>3</th>
-					<th>4</th>
+					<th><a href="#"><%=forp.getFoodOrderReceiverNo() %></a></th>
+					<th><a href="#"><%=forp.getFoodOrderName() %></a></th>
+					<th><a href="#"><%=forp.getMemberEmail() %></a></th>
 				</tr>
+			<% } %>
 			</tbody>
 		</table>
-		
-		<hr>
-		<div class="row justify-content-end ">
-			<form method="get" action="./index.jsp" class="form-inline mt-3">
-		        <select name="foodReviewDivide" class="form-control mx-1 mt-2">
-		          <option value="foodOrderReceiverNo">주문번호</option>
-		          <option value="foodName" class="foodName">식품명</option>
-		          <option value="memberName">구매자</option>
-		          <option value="foodPayDate">주문일</option>
-		        </select>
-		        <input type="text" name="search" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요.">
-		        <button type="submit" class="btn btn-primary mx-1 mt-2">검색</button>
-			</form>
-		</div>
-			<nav aria-label="Page navigation example">
-				<ul class="pagination justify-content-center mt-3">
-					<li class="page-item"><a class="page-link" href="#">이전</a></li>
-					<li class="page-item active"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">다음</a></li>
-				</ul>
-			</nav>
 	
 	</div>
 </body>

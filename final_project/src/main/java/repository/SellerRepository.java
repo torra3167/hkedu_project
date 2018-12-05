@@ -176,6 +176,30 @@ public class SellerRepository extends AbstractRepository{
 			sqlSession.close();
 		}		
 	}
+
+
+	public Integer selectAppliBn(int applicBn) {
+		System.out.println("repo selectAppliBn applicBn : " + applicBn);
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			Integer result = sqlSession.selectOne(namespace + ".selectAppliBn", applicBn);
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+
+	public int selectSellerEmail(String sellerEmail) {
+		System.out.println("repo selectSellerEmail sellerEmail : " + sellerEmail);
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			Integer result = sqlSession.selectOne(namespace + ".selectSellerEmail", sellerEmail);
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
 	
 	
 }

@@ -8,17 +8,9 @@
 	List<FoodReviewAndAnswer> foodReviewAndAnswers = (List<FoodReviewAndAnswer>)request.getAttribute("foodReviewAndAnswers");
 	//답변보기버튼 구분자
 	int answerButton = 0;
-	
-// 	for(Object temp : foodReviewAndAnswers) {
-// 		FoodReviewAndAnswer fraa = (FoodReviewAndAnswer)temp;
-// 		System.out.println("jsp selectReviewAndAnswer selectReviewAndAnswer : " + fraa.getFoodReviewRegdate());
-// 		List<FoodReviewAnswer> fra = fraa.getFoodReviewAnswers();
-// 		System.out.println("jsp selectReviewAndAnswer FoodReviewAnswers : " + fra.size());
-// 		for(Object temp2 : fra) {
-// 			FoodReviewAnswer foodReviewAnswer = (FoodReviewAnswer)temp2;
-// 			System.out.println("jsp selectReviewAndAnswer getFoodReviewAnswerRegdate : " + foodReviewAnswer.getFoodReviewAnswerRegdate());
-// 		}
-// 	}
+
+	String memberDivide = (String)request.getAttribute("memberDivide");
+	String loginEmail = (String)session.getAttribute("email");
 %>
     
 <!DOCTYPE html>
@@ -53,7 +45,6 @@
 			                	<input type="text" name="demandQty" class="form-control" maxlength="20">
 			              	</div>
 		              	</div>
-		              	<div>총 150,000원(8개)</div>
 						<input type="hidden" name="foodNo" value="<%=foodAndApplication.getFoodNo() %>">
 						
 						<button type="submit" class="btn btn-primary">장바구니 담기</button>
@@ -62,22 +53,34 @@
     	
     		</div>
     	</div>
-    	
-    	
-    	
-    	<hr>
-    	
-    	<div>
-    		<div>식품설명</div>
-    		<div>탄수화물 : <%=foodAndApplication.getFoodCarbo() %>g</div>
-    		<div>단백질 : <%=foodAndApplication.getFoodProtein() %>g</div>
-    		<div>지방 : <%=foodAndApplication.getFoodFat() %>g</div>
-    		<div>열량 : <%=foodAndApplication.getFoodCal() %>kcal</div>
-    		<div>유통기한 : <%=foodAndApplication.getFoodExpiryDate() %></div>
-    		<div>원산지 :<%=foodAndApplication.getFoodOrigin() %></div>
-    		<div>소비자상담관련 업체 연락처 <%=foodAndApplication.getStoreTelphone() %></div>
-    		<div>업체 주소 <%=foodAndApplication.getStoreAddr() %></div>
-    	</div>
+<!--     	<hr> -->
+<!--     	<div class="row"> -->
+<!--     	<table class="table-light col"> -->
+<!--     		<thead> -->
+<!--     			<tr><td colspan="2">식품 설명</td></tr> -->
+<!--     		</thead> -->
+<!--     		<tbody> -->
+<%--     			<tr><td>탄수화물 함량</td><td><%=foodAndApplication.getFoodCarbo() %>g</td></tr> --%>
+<%--     			<tr><td>단백질 함량</td><td><%=foodAndApplication.getFoodProtein() %>g</td></tr> --%>
+<%--     			<tr><td>지방 함량</td><td><%=foodAndApplication.getFoodFat() %>g</td></tr> --%>
+<%--     			<tr><td>열량</td><td><%=foodAndApplication.getFoodCal() %>kcal</td></tr> --%>
+<%--     			<tr><td>유통기한</td><td><%=foodAndApplication.getFoodExpiryDate() %></td></tr> --%>
+<%--     			<tr><td>소비자상담관련 업체 연락처</td><td><%=foodAndApplication.getStoreTelphone() %></td></tr> --%>
+<%--     			<tr><td>업체 주소</td><td><%=foodAndApplication.getStoreAddr() %></td></tr> --%>
+<!--     		</tbody> -->
+<!--     	</table> -->
+<!--     	</div> -->
+<br>
+<br>
+    	<ul class="list-group list-group-flush">
+			  <li class="list-group-item">탄수화물 함량 : <%=foodAndApplication.getFoodCarbo() %>g</li>
+			  <li class="list-group-item">단백질 함량 : <%=foodAndApplication.getFoodProtein() %>g</li>
+			  <li class="list-group-item">지방 함량 : <%=foodAndApplication.getFoodFat() %>g</li>
+			  <li class="list-group-item">열량 : <%=foodAndApplication.getFoodCal() %>kcal</li>
+			  <li class="list-group-item">유통기한 : <%=foodAndApplication.getFoodExpiryDate() %></li>
+			  <li class="list-group-item">소비자상담관련 연락처 : <%=foodAndApplication.getStoreTelphone() %></li>
+			  <li class="list-group-item">업체 주소 : <%=foodAndApplication.getStoreAddr() %></li>
+		</ul>
     	
     
 <!-- ------------------------------------------------------------------------------- -->  
@@ -90,19 +93,14 @@
 
   
     
-    <hr>
+<!--     <hr> -->
+<br>
+<br>
     <h3>전체 구매후기</h3>
-    상품을 구매하신 분들이 작성하신 구매 후기입니다.
-      <form method="#" action="#" class="form-inline mt-3">
-        <select name="lectureDivide" class="form-control mx-1 mt-2">
-          <option value="작성자">작성자</option>
-          <option value="식품명">제목</option>
-        </select>
-        <input type="text" name="search" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요.">
-        <a class="btn btn-primary mx-1 mt-2" href="food_reviewWrite.gom?foodNo=<%=foodAndApplication.getFoodNo() %>">등록하기</a>
-        
-        <button type="submit" class="btn btn-primary mx-1 mt-2">검색</button>
-      </form>
+    <div>
+    	<a class="">상품을 구매하신 분들이 작성하신 구매 후기입니다.</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-primary" href="food_reviewWrite.gom?foodNo=<%=foodAndApplication.getFoodNo() %>">리뷰 등록</a>
+    </div>
       <% 
       	  if(foodReviewAndAnswers.size() > 0){
 	      	  for(Object temp : foodReviewAndAnswers){
@@ -111,30 +109,45 @@
 			    <div class="card bg-light mt-3">
 			        <div class="card-header bg-light">
 			          <div class="row">
-			            <div class="col-8 text-left"><%=foodReviewAndAnswer.getFoodReviewTitle() %>&nbsp;&nbsp;&nbsp;&nbsp;<small><%=foodReviewAndAnswer.getMemberEmail() %></small></div>
+			            <div class="col-6 text-left"><%=foodReviewAndAnswer.getFoodReviewTitle() %></div>
+			            <div class="col-2 text-left"><small><%=foodReviewAndAnswer.getMemberEmail() %></small></div>
 			            <div class="col-4 text-right"><%=foodReviewAndAnswer.getFoodReviewRegdate() %>
 			            </div>
 			          </div>
 			        </div>
 			        <div class="card-body">
-			          <p class="card-text"><%=foodReviewAndAnswer.getFoodReviewComment() %>
-			          </p>
 			          <img src="http://localhost:8080/final_project/resource/<%=foodReviewAndAnswer.getFoodReviewStored() %>" width="200" height="200">
-			          <div class="row">
-			            <div class="col-9 text-left">
-			            	<p><%=foodReviewAndAnswer.getFoodReviewScore() %></p>
-			            </div>
-			          </div>
+			          <p class="card-text"><%=foodReviewAndAnswer.getFoodReviewComment() %></p>
+			        </div>
+			          <div class="card-footer">
+				          <div class="row">
+				            <div class="col-8 text-left">
+				            	<p>점수 : <%=foodReviewAndAnswer.getFoodReviewScore() %></p>
+				            </div>
+				            <%	if(!loginEmail.equals(foodReviewAndAnswer.getMemberEmail())||loginEmail.equals("admin")){	%>    
+		         			<div class="col-2 text-right"><a class="btn btn-success" href="food_reviewAnswerWrite.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>&memberEmail=<%=foodReviewAndAnswer.getMemberEmail() %>">답변등록</a></div>
+				            <div class="col-2 text-right"><a class="btn btn-danger" href="food_reviewReportWrite.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>&memberEmail=<%=foodReviewAndAnswer.getMemberEmail() %>">리뷰신고</a></div>
+		         			<%	} else if(loginEmail.equals(foodReviewAndAnswer.getMemberEmail())||loginEmail.equals("admin")){	%>  
+		         			<div class="col-2 text-right"><a class="btn btn-success" href="food_reviewUpdate.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>">수정</a></div>
+				         	<div class="col-2 text-right"><a class="btn btn-danger" href="food_reviewDelete.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>">삭제</a></div>
+				          </div>
+				      
+				          <div class="row">
+				          	<div class="col-8"><p></p></div>
+				          	
+				          </div>
+				        
+			        <div class="row">
+			          		<div class="col-10"><p></p></div>
+				            
+				    </div>
+				    <%	} %>
 			        </div>
 			     </div>
 			     <%
 			     	answerButton = answerButton + 1;
 			     %>
-		         <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo<%=answerButton %>">답변 보기</button>
-		         <a class="btn btn-primary mx-1 mt-2" href="food_reviewAnswerWrite.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>&memberEmail=<%=foodReviewAndAnswer.getMemberEmail() %>">답변 등록</a>
-		         <a class="btn btn-danger ml-1 mt-2" href="food_reviewReportWrite.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>&memberEmail=<%=foodReviewAndAnswer.getMemberEmail() %>">리뷰 신고</a>
-		         <a class="btn btn-primary ml-1 mt-2" href="food_reviewUpdate.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>&foodNo=<%=foodReviewAndAnswer.getFoodNo() %>">리뷰 수정</a>
-		         <a class="btn btn-danger ml-1 mt-2" href="food_reviewDelete.gom?foodReviewNo=<%=foodReviewAndAnswer.getFoodReviewNo() %>">리뷰 삭제</a>
+		         <button type="button" class="" data-toggle="collapse" data-target="#demo<%=answerButton %>">답변 보기</button>
 		      		<%
 		      			List<FoodReviewAnswer> foodReviewAnswers = foodReviewAndAnswer.getFoodReviewAnswers();
 		      			if(foodReviewAnswers.size() > 0){
@@ -175,14 +188,6 @@
 		        </div>
 			</div>
         <% } %>
-	    <ul class="pagination justify-content-center mt-3">
-	      <li class="page-item">
-	        <a class="page-link" href="#">이전</a>
-	      </li>
-	      <li class="page-item">
-	        <a class="page-link" href="#">다음</a>
-	      </li>
-	    </ul>
     </div>
   </body>
 </html>

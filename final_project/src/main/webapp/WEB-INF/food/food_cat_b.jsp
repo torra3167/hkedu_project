@@ -21,7 +21,6 @@
 		FoodCatB bcar = (FoodCatB)temp; %>
 	 	<option value="<%=bcar.getFoodCatBNo() %>"> <%=bcar.getFoodCatBName() %></option>
 	<% } %>
-	
-	</select>
+</select>
 </body>
 </html>

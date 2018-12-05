@@ -12,7 +12,7 @@
 	seller_email = #{sellerEmail}
 </update>
 
-<update id="updateApplicationStatusApproval" parameterType="String">
+<update id="updateAppliStatusAprov" parameterType="String">
 	UPDATE seller_application
 	SET
 	application_status = '승인',
@@ -67,5 +67,9 @@
 	seller_email = #{sellerEmail}
 </update>
 
-
+<delete id="deleteSellerApplication" parameterType="String">
+	DELETE
+	FROM seller_application
+	WHERE seller_email = #{sellerEmail}
+</delete>
 </mapper>

@@ -21,10 +21,7 @@ public class FoodOrder implements Serializable {
 	public FoodOrder() {
 	}
 	
-	
-	
 
-	//구매자이메일,식품번호,판매자이메일, 카테고리A,카테고리B,카테고리C, 가격, 갯수,식품이름, 이미지
 	public FoodOrder(String memberEmail, int foodNo, String sellerEmail, int foodCatANo, int foodCatBNo, int foodCatCNo,
 			int foodOrderPrice, int foodOrderQuant, String foodOrderName, String foodOrderStored) {
 		super();

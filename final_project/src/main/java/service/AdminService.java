@@ -14,7 +14,7 @@ public class AdminService {
 	
 	
 	public void updateSellerDivideS(String sellerEmail) {
-		adminRepository.updateApplicationStatusApproval(sellerEmail);
+		adminRepository.updateAppliStatusAprov(sellerEmail);
 		int k = adminRepository.updateSellerDivideS(sellerEmail);
 		if(k < 1) {
 			System.out.println("입점신청서 승인 실패!");
@@ -38,6 +38,16 @@ public class AdminService {
 			System.out.println("입점신청서 반려 실패!");
 		} else {
 			System.out.println("입점신청서 반려 성공!");
+		}
+		
+	}
+
+	public void deleteSellerApplication(String sellerEmail) {
+		int k = adminRepository.deleteSellerApplication(sellerEmail);
+		if(k < 1) {
+			System.out.println("입점신청서 삭제 실패!");
+		} else {
+			System.out.println("입점신청서 삭제 성공!");
 		}
 		
 	}

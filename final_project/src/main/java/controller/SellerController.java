@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import category.FoodCatC;
 import command.SellerApplicationWriteCommand;
@@ -18,6 +19,8 @@ import command.SellerJoinCommand;
 import command.SellerUpdateCommand;
 import command.SellerWithdrawalCommand;
 import model.Food;
+import model.FoodOrder;
+import model.FoodOrderReceiverPay;
 import model.SellerApplication;
 import service.FoodService;
 import service.SellerService;
@@ -77,7 +80,6 @@ public class SellerController {
 		
 		@RequestMapping(value="/seller_menu.gom", method=RequestMethod.GET)
 		public String sellerMenu(Model model, HttpSession session) {
-			model.addAttribute("iPage", "seller/seller_menu.jsp");
 			//foodReg cate list
 			List<FoodCatC> list = foodService.dominoSelectC();
 			model.addAttribute("foodCat", list);
@@ -86,6 +88,20 @@ public class SellerController {
 			String sellerEmail = (String) session.getAttribute("email");
 			List<Food> FoodList = foodService.sellerFoodList(sellerEmail);
 			model.addAttribute("sellerFoodList", FoodList);
+			
+			//seller_orderBoard
+			List<FoodOrder> orderedFoodList = foodService.selectSellerOrderedFoodList(sellerEmail);
+			model.addAttribute("orderedFoodList", orderedFoodList);
+			
+			//food_orderStatistics
+			List<FoodOrderReceiverPay> fosDayList = foodService.selectFoodOrderStatDay(sellerEmail);
+			model.addAttribute("fosDayList", fosDayList);
+			List<FoodOrderReceiverPay> fosMonthList = foodService.selectFoodOrderStatMonth(sellerEmail);
+			model.addAttribute("fosMonthList", fosMonthList);
+			
+			
+			
+			model.addAttribute("iPage", "seller/seller_menu.jsp");
 			return "index";
 		}
 		
@@ -152,5 +168,29 @@ public class SellerController {
 			return "redirect:/index";
 		}
 		
+		@RequestMapping(value="/seller_appliBnDuplication.gom", method=RequestMethod.POST)
+		@ResponseBody
+		public String sellerAppliBnDuplication(@RequestParam("applicBn")int applicBn) { 
+			int result = sellerService.selectAppliBn(applicBn);
+			String dup = "";
+			if(result>0) {
+				dup = "true";
+			}else {
+				dup = "false";
+			}
+			return dup;
+		}
 		
+		@RequestMapping(value="/seller_emailDuplication.gom", method=RequestMethod.POST)
+		@ResponseBody
+		public String sellerEmailDuplication(@RequestParam("sellerEmail")String sellerEmail) { 
+			int result = sellerService.selectSellerEmail(sellerEmail);
+			String dup = "";
+			if(result>0) {
+				dup = "true";
+			}else {
+				dup = "false";
+			}
+			return dup;
+		}
 }

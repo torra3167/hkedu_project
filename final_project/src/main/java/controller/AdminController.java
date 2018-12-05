@@ -39,6 +39,13 @@ public class AdminController {
 		return "redirect:/index";
 	}
 	
+	@RequestMapping(value="/admin_sellerApplicationDelete.gom", method=RequestMethod.GET)
+	public String adminSellerApplicationDelete(@RequestParam("sellerEmail")String sellerEmail, Model model) {
+		System.out.println("cntlr adminSellerApplicationDelete sellerEmail : " + sellerEmail);
+		adminService.deleteSellerApplication(sellerEmail);
+		return "redirect:/index";
+	}
 	
+//	
 	
 }

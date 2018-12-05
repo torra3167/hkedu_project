@@ -163,10 +163,10 @@ public class SellerService {
 	public List<SellerApplication> selectSellerApplicationList() {
 		List<SellerApplication> sellerApplicationList = sellerRepository.selectSellerApplicationList();  
 		
-		for(Object temp : sellerApplicationList) {
-			 SellerApplication sa = (SellerApplication)temp;
-			 System.out.println("svc selectSellerApplicationList getSellerBrOriginal : " + sa.getSellerBrOriginal());
-		}
+//		for(Object temp : sellerApplicationList) {
+//			 SellerApplication sa = (SellerApplication)temp;
+//			 System.out.println("svc selectSellerApplicationList getSellerBrOriginal : " + sa.getSellerBrOriginal());
+//		}
 		return sellerApplicationList;
 	}
 
@@ -189,6 +189,14 @@ public class SellerService {
 			sellerRepository.updateSellerDivide(seller);
 			session.setAttribute("divide", "ns");
 		}
+	}
+
+	public Integer selectAppliBn(int applicBn) {
+		return sellerRepository.selectAppliBn(applicBn);
+	}
+
+	public int selectSellerEmail(String sellerEmail) {
+		return sellerRepository.selectSellerEmail(sellerEmail);
 	}
 	
 	

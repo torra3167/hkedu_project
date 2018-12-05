@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8" import="java.text.SimpleDateFormat, java.util.Calendar"%>
 <% String email=request.getAttribute("email").toString(); %>
 
+<%
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+	String recordDate = simpleDateFormat.format(Calendar.getInstance().getTime());
+	System.out.println("MyPage : "+recordDate);
+%>
 
 <!DOCTYPE html>
 <html>
@@ -17,7 +22,7 @@
         <nav>
           <ul class="nav nav-justified">
             <li><a href="member_info.gom">내 정보</a></li>
-            <li><a href="#">식단 기록</a></li>
+            <li><a href="food_recordMain.gom?dateText=<%=recordDate %>">식단 기록</a></li>
             <li><a href="#">운동 기록</a></li>
             <li><a href="#">피드백</a></li>
             <li><a href="#">주문 내역</a></li>
@@ -38,7 +43,7 @@
         <div class="col-lg-4">
           <h2>오늘의 식사</h2>
           <p>1111</p>
-          <p><a class="btn btn-primary" href="#" role="button">기록하기 »</a></p>
+          <p><a class="btn btn-primary" href="food_recordMain.gom?dateText=<%=recordDate %>" role="button">기록하기 »</a></p>
         </div>
         <div class="col-lg-4">
           <h2>오늘의 운동</h2>
