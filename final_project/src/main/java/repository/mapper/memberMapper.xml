@@ -5,9 +5,9 @@
 	<cache></cache>
 	<resultMap type="Member" id="memberMap">
 		<id column="MEMBER_EMAIL" jdbcType="VARCHAR" property="memberEmail" />
-		<result column="MEMBER_NAME" jdbcType="VARCHAR"	property="memberName" />
+		<result column="MEMBER_NAME" jdbcType="VARCHAR" property="memberName" />
 		<result column="MEMBER_PHONE" jdbcType="VARCHAR" property="memberPhone" />
-		<result column="MEMBER_PASS" jdbcType="VARCHAR"	property="memberPass" />
+		<result column="MEMBER_PASS" jdbcType="VARCHAR" property="memberPass" />
 		<result column="MEMBER_ADDR1" jdbcType="VARCHAR" property="memberAddr1" />
 		<result column="MEMBER_ADDR2" jdbcType="VARCHAR" property="memberAddr2" />
 		<result column="MEMBER_ADDRNO" jdbcType="BIGINT" property="memberAddrNo" />
@@ -23,8 +23,8 @@
 		<result column="SURV_SEX" jdbcType="VARCHAR" property="survSex" />
 		<result column="SURV_AGE" jdbcType="BIGINT" property="survAge" />
 		<result column="SURV_LIFESTYLE" jdbcType="VARCHAR" property="survLifestyle" />
-		<result column="SURV_PHOTO" jdbcType="VARCHAR" property="survPhoto" />
-		<result column="SURV_SHAPE" jdbcType="VARCHAR" property="survShape" />
+		<result column="SURV_DIET_PERIOD" jdbcType="VARCHAR"    property="surveyDietPeriod" />
+		<result column="SURV_SHAPE" jdbcType="VARCHAR"	property="survShape" />
 		<result column="SURV_DISEASE" jdbcType="VARCHAR" property="survDisease" />
 		<result column="SURV_CONCERN" jdbcType="VARCHAR" property="survConcern" />
 		<result column="SURV_CAUSE" jdbcType="VARCHAR" property="survCause" />
@@ -33,29 +33,31 @@
 	<insert id="insertMember" parameterType="Member">
 		insert into
 		member
-			(MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_PASS,
-			MEMBER_ADDR1, MEMBER_ADDR2, MEMBER_ADDRNO, MEMBER_DIVIDE)
+		(MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_PASS,
+		MEMBER_ADDR1, MEMBER_ADDR2, MEMBER_ADDRNO, MEMBER_DIVIDE)
 		values
-			(#{memberEmail}, #{memberName}, #{memberPhone}, #{memberPass},
-			#{memberAddr1}, #{memberAddr2}, #{memberAddrNo}, #{memberDivide})
+		(#{memberEmail}, #{memberName}, #{memberPhone}, #{memberPass},
+		#{memberAddr1}, #{memberAddr2}, #{memberAddrNo}, #{memberDivide})
 	</insert>
 	<insert id="insertSurvey1" parameterType="MemberSurvey">
 		insert into
 		survey
-			(SURV_NO, MEMBER_EMAIL, SURV_HEIGHT, SURV_WEIGHT, SURV_EAT,
-			SURV_BMI, SURV_AGE)
+		(SURV_NO, MEMBER_EMAIL, SURV_HEIGHT, SURV_WEIGHT, SURV_EAT,
+		 SURV_BMI, SURV_AGE, SURV_DIET_PERIOD)
 		values
-			((select count(SURV_NO)+1 from survey ), #{memberEmail}, #{survHeight}, #{survWeight}, #{survEat},
-			#{survBMI}, #{survAge})
+		((select count(SURV_NO)+1 from survey ), #{memberEmail}, #{survHeight},
+		#{survWeight}, #{survEat}, #{survBMI}, #{survAge}, #{surveyDietPeriod})
 	</insert>
 	<select id="selectSurveyNo" resultType="Integer">
 		select count(surv_no)
 		from survey
 	</select>
-	<select id="selectByNameAndPhone" resultType="String">
-		select MEMBER_EMAIL as email from MEMBER where MEMBER_PHONE=#{phone} and MEMBER_NAME=#{name}
+	<select id="selectByNameAndPhone" resultType="String" parameterType="FindIDCommand">
+		select MEMBER_EMAIL as email from MEMBER
+		where MEMBER_PHONE=#{phone} and MEMBER_NAME=#{name}
 		union
-		select SELLER_EMAIL as email from SELLER where SELLER_PHONE=#{phone} and SELLER_NAME=#{name}
+		select SELLER_EMAIL as email from SELLER where
+		SELLER_PHONE=#{phone} and SELLER_NAME=#{name}
 	</select>
 	<select id="selectByEmail" parameterType="Member" resultMap="memberMap">
 		select MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_PASS,
@@ -80,7 +82,7 @@
 		delete from MEMBER where MEMBER_EMAIL=#{memberEmail}
 		and MEMBER_PASS=#{memberPass}
 	</delete>
-	<select id="selectSurvByEmail" parameterType="MemberSurvey" resultMap="memberSurvey">
+	<select id="selectSurvByEmail" parameterType="MemberSurvey"	resultMap="memberSurvey">
 		select
 		SURV_NO, MEMBER_EMAIL, SURV_HEIGHT, SURV_WEIGHT, SURV_BMI,
 		SURV_EAT, SURV_AGE
@@ -94,7 +96,6 @@
 		<set>
 			SURV_SEX=#{survSex},
 			SERV_LIFESTYLE=#{survLifestyle},
-			SURV_PHOTO=#{survPhoto},
 			SURV_SHAPE=#{survShape},
 			SURV_DISEASE=#{survDisease},
 			SURV_CONCERN=#{survConcern},
@@ -105,4 +106,13 @@
 			MEMBER_EMAIL=#{memberEmail}
 		</where>
 	</update>
+	<select id="memberList" resultMap="memberMap">
+		select MEMBER_EMAIL, MEMBER_NAME from member
+	</select>
+	<delete id="deleteFromMemberList">
+		delete from MEMBER where MEMBER_EMAIL=#{email}
+	</delete>
+	<select id="idChk" parameterType="String" resultType="Integer">
+		<![CDATA[select count(MEMBER_EMAIL) as result from member where MEMBER_EMAIL=#{email}]]>
+	</select>
 </mapper>

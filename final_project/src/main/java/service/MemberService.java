@@ -1,10 +1,14 @@
 package service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.activation.CommandMap;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import command.FindIDCommand;
 import command.MemberJoinCommand;
@@ -34,13 +38,10 @@ public class MemberService {
 		return result;
 	}
 
-	public String findID(FindIDCommand findIDCommand, Model model) {
-		member = new Member();
-		member.setMemberName(findIDCommand.getName());
+	public String findID(FindIDCommand findIDCommand) {
 		System.out.println("MEMBERSERVICE FindID " + findIDCommand.getName());
-		member.setMemberPhone(findIDCommand.getPhone());
 		System.out.println("MEMBERSERVICE FindID " + findIDCommand.getPhone());
-		String i = memberRepository.selectByNameAndPhone(member);
+		String i = memberRepository.selectByNameAndPhone(findIDCommand);
 		return i;
 
 	}
@@ -67,16 +68,16 @@ public class MemberService {
 		int result = memberRepository.deleteMember(member);
 		return result;
 	}
+	
 
 	public Integer insertSurvey1(MemberSurveyCommand memberSurveyCommand) {
 		System.out.println("memberSurveyCommand.getSurvEat()="+memberSurveyCommand.getSurvEat());
 		survey = new MemberSurvey(memberSurveyCommand.getSurvNo(), memberSurveyCommand.getMemberEmail(), memberSurveyCommand.getSurvHeight(),
 				memberSurveyCommand.getSurvWeight(), memberSurveyCommand.getSurvEat(), memberSurveyCommand.getSurvBMI(),
 				memberSurveyCommand.getSurvSex(), memberSurveyCommand.getSurvAge(),
-				memberSurveyCommand.getSurvLifestyle(), memberSurveyCommand.getSurvPhoto(),
-				memberSurveyCommand.getSurvShape(), memberSurveyCommand.getSurvDisease(),
-				memberSurveyCommand.getSurvConcern(), memberSurveyCommand.getSurvCause(),
-				memberSurveyCommand.getSurvCareer());
+                memberSurveyCommand.getSurvLifestyle(), memberSurveyCommand.getSurveyDietPeriod(), memberSurveyCommand.getSurvShape(),
+				memberSurveyCommand.getSurvDisease(), memberSurveyCommand.getSurvConcern(),
+				memberSurveyCommand.getSurvCause(), memberSurveyCommand.getSurvCareer());
 		
 		Integer i = memberRepository.insertSurvey1(survey);
 		if (i > 0) {
@@ -96,10 +97,10 @@ public class MemberService {
 	public Integer updateSurvey2(MemberSurveyCommand memberSurveyCommand) {
 		MemberSurvey memberSurvey = new MemberSurvey(
 				memberSurveyCommand.getMemberEmail(), memberSurveyCommand.getSurvSex(),
-				memberSurveyCommand.getSurvLifestyle(), memberSurveyCommand.getSurvPhoto(),
-				memberSurveyCommand.getSurvShape(), memberSurveyCommand.getSurvDisease(),
-				memberSurveyCommand.getSurvConcern(), memberSurveyCommand.getSurvCause(),
-				memberSurveyCommand.getSurvCareer());
+                memberSurveyCommand.getSurvLifestyle(), memberSurveyCommand.getSurveyDietPeriod(), memberSurveyCommand.getSurvShape(),
+				memberSurveyCommand.getSurvDisease(), memberSurveyCommand.getSurvConcern(),
+				memberSurveyCommand.getSurvCause(), memberSurveyCommand.getSurvCareer());
+		
 		Integer i=memberRepository.updateSurvey2(memberSurvey);
 		System.out.println("service "+i);
 		if(i>0) {
@@ -108,5 +109,27 @@ public class MemberService {
 			System.out.println("SURVEY UPDATE FALE");
 		}
 		return i;
+	}
+	public List<Member> memberList() {
+		List<Member> memberList=new ArrayList<Member>();
+		memberList=memberRepository.memberList();
+		System.out.println("MEMBERSERVICE MemberList");
+		return memberList;
+	}
+
+	public int deleteMemberList(String email) {
+		System.out.println("MEMBERSERVICE DeleteMemberList " + email);
+		int result = memberRepository.deleteMemberList(email);
+		return result;
+	}
+
+/*	public int checkSignup(String id) {
+		int result=memberRepository.checkEmail(id);
+		return result;
+	}*/
+	
+	public int selectByEmail(String email) {
+		Integer result=memberRepository.selectByEmailChk(email);
+		return result;
 	}
 }

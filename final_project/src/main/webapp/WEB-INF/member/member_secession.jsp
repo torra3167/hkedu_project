@@ -10,7 +10,7 @@
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<!-- function : 자동 로그인, 이메일/비밀번호 공란 체크 -->
+    <link rel="stylesheet" href="../css/custom-1.css">
 <body>
 <div class="container">
 		<div class="signInBox">

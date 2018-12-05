@@ -2,6 +2,8 @@ package command;
 
 import java.io.Serializable;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @SuppressWarnings("serial")
 public class MemberSurveyCommand implements Serializable {
 	private int survNo;
@@ -13,7 +15,7 @@ public class MemberSurveyCommand implements Serializable {
 	private String survSex;
 	private int survAge;
 	private String survLifestyle;
-	private String survPhoto;
+    private String surveyDietPeriod;
 	private String survShape;
 	private String survDisease;
 	private String survConcern;
@@ -24,13 +26,13 @@ public class MemberSurveyCommand implements Serializable {
 		
 	}
 	
-	public MemberSurveyCommand(String memberEmail, String survSex, String survLifestyle, String survPhoto, String survShape,
+    public MemberSurveyCommand(String memberEmail, String survSex, String survLifestyle, String surveyDietPeriod, String survShape,
 			String survDisease, String survConcern, String survCause, String survCareer) {
 		super();
 		this.memberEmail=memberEmail;
 		this.survSex = survSex;
 		this.survLifestyle = survLifestyle;
-		this.survPhoto = survPhoto;
+        this.surveyDietPeriod = surveyDietPeriod;
 		this.survShape = survShape;
 		this.survDisease = survDisease;
 		this.survConcern = survConcern;
@@ -38,9 +40,9 @@ public class MemberSurveyCommand implements Serializable {
 		this.survCareer = survCareer;
 	}
 
-	public MemberSurveyCommand(int survNo, String memberEmail, int survHeight, int survWeight, String survEat,
-			int survBMI, String survSex, int survAge, String survLifestyle, String survPhoto, String survShape,
-			String survDisease, String survConcern, String survCause, String survCareer) {
+    public MemberSurveyCommand(int survNo, String memberEmail, int survHeight, int survWeight, String survEat,
+            int survBMI, String survSex, int survAge, String survLifestyle, String surveyDietPeriod, String survShape,
+            String survDisease, String survConcern, String survCause, String survCareer) {
 		super();
 		this.survNo = survNo;
 		this.memberEmail = memberEmail;
@@ -51,7 +53,7 @@ public class MemberSurveyCommand implements Serializable {
 		this.survSex = survSex;
 		this.survAge = survAge;
 		this.survLifestyle = survLifestyle;
-		this.survPhoto = survPhoto;
+        this.surveyDietPeriod = surveyDietPeriod;
 		this.survShape = survShape;
 		this.survDisease = survDisease;
 		this.survConcern = survConcern;
@@ -115,12 +117,6 @@ public class MemberSurveyCommand implements Serializable {
 	public void setSurvLifestyle(String survLifestyle) {
 		this.survLifestyle = survLifestyle;
 	}
-	public String getSurvPhoto() {
-		return survPhoto;
-	}
-	public void setSurvPhoto(String survPhoto) {
-		this.survPhoto = survPhoto;
-	}
 	public String getSurvShape() {
 		return survShape;
 	}
@@ -151,4 +147,12 @@ public class MemberSurveyCommand implements Serializable {
 	public void setSurvCareer(String survCareer) {
 		this.survCareer = survCareer;
 	}
+
+    public String getSurveyDietPeriod() {
+        return surveyDietPeriod;
+    }
+
+    public void setSurveyDietPeriod(String surveyDietPeriod) {
+        this.surveyDietPeriod = surveyDietPeriod;
+    }
 }

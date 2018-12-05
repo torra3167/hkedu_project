@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <% String receiver=(String)request.getAttribute("receiver");
-	String id=(String)request.getAttribute("id");
-	String admin="admin";
+	String id=(String)session.getAttribute("email");
+	System.out.println("jsp "+id);
 	%>
 <!DOCTYPE html>
 <html>
@@ -15,24 +15,25 @@
 <link rel="stylesheet" href="../css/custom-1.css">
 </head>
 <body>
- <% if(id.equals(admin)){ %> 
+	<% if(id.equals("admin")){ %>
  	<div class="container">
 		<form action="personalQna_answer.gom" method="post">
 			<div right="left">
+			
+			<label>받는 사람</label>
 			<input type="hidden" name="sender" value="<%= id %>"/>
-				<label>받는 사람</label>
-				<input type="text" name="email" value=<%= receiver %> readonly="true"/><br>	
+			<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+			<input type="text" name="email" value=<%= receiver %> class="form-control" readonly="true"/><br>	
+            </span>
+				
 			</div>
 			<hr>
 			<div>
 				<label>제목</label>
-				<input type="text" class="titleBox" name="title" value="Re : <%= receiver %>님께서 문의하신 내용에 대한 답변입니다."/><br>
+				<input type="text" name="title" class="form-control" value="Re : <%= receiver %>님께서 문의하신 내용에 대한 답변입니다."/><br>
 			</div>
 			<div>
 				<label>내용</label><br>
-				<!-- <select>
-					<option>
-				</select> -->
 				<textarea rows="20" cols="155" name="contents"></textarea>
 				<!-- <textarea class="autoSize" onkeydown="resize(this)" onkeyup="resize(this)" name="contents"></textarea>
 				<script>
@@ -44,7 +45,7 @@
 			</div>
 			<input type="submit" class="btn btn-primary" value="전송"/>
 			<input type="reset" class="btn btn-secondary" value="다시 작성"/>
-		</form>
+		</form>	
 	</div>
  <%} else {%>
  <div class="container">
@@ -52,6 +53,6 @@
 		<button type="button" value="메인으로" class="btn btn-primary" onclick="location.href='index'">메인으로</button>
 		<button type="button" value="로그인" class="btn btn-secondary" onclick="location.href='login.gom'">로그인</button>
 	</div>
- <%} %> 
+  <%} %>
 </body>
 </html>

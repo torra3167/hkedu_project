@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/custom-1.css">
   </head>
 
   <body>
@@ -18,7 +19,7 @@
       	<form:input path="memberEmail" type="hidden" value="<%= email %>"></form:input>
       	<div class="form-group">
           <label>성별</label>
-          <form:select path="survSex" class="form-control">
+          <form:select path="survSex" class="selectpicker" data-style="btn-primary" >
                     <option value="" selected>--선택--</option>
                     <option value="여">여</option>
                     <option value="남">남</option>
@@ -26,15 +27,28 @@
         </div>
       <div class="form-group">
           <label>나의 라이프스타일</label>
-          <form:select path="survLifestyle" class="form-control">
+          <form:select path="survLifestyle" class="selectpicker" data-style="btn-primary" >
                     <option value="" selected>--선택--</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
+                    <option value="불규칙한 식습관, 불규칙한 수면, 적은 운동량">불규칙한 식습관, 불규칙한 수면, 적은 운동량</option>
+                    <option value="불규칙한 식습관, 불규칙한 수면, 적당한 운동량">불규칙한 식습관, 불규칙한 수면, 적당한 운동량</option>
+                    <option value="불규칙한 식습관, 불규칙한 수면, 많은 운동량">불규칙한 식습관, 불규칙한 수면, 많은 운동량</option>
+                    
+                    <option value="불규칙한 식습관, 규칙적인 수면, 적은 운동량">불규칙한 식습관, 규칙적인 수면, 적은 운동량</option>
+                    <option value="불규칙한 식습관, 규칙적인 수면, 적당한 운동량">불규칙한 식습관, 규칙적인 수면, 적당한 운동량</option>
+                    <option value="불규칙한 식습관, 규칙적인 수면, 많은 운동량">불규칙한 식습관, 규칙적인 수면, 많은 운동량</option>
+                    
+                    <option value="규칙적인 식습관, 불규칙한 수면, 적은 운동량">규칙적인 식습관, 불규칙한 수면, 적은 운동량</option>
+                    <option value="규칙적인 식습관, 불규칙한 수면, 적당한 운동량">규칙적인 식습관, 불규칙한 수면, 적당한 운동량</option>
+                    <option value="규칙적인 식습관, 불규칙한 수면, 많은 운동량">규칙적인 식습관, 불규칙한 수면, 많은 운동량</option>
+                    
+                    <option value="규칙적인 식습관, 규칙적인 수면, 적은 운동량">규칙적인 식습관, 규칙적인 수면, 적은 운동량</option>
+                    <option value="규칙적인 식습관, 규칙적인 수면, 적당한 운동량">규칙적인 식습관, 규칙적인 수면, 적당한 운동량</option>
+                    <option value="규칙적인 식습관, 규칙적인 수면, 많은 운동량">규칙적인 식습관, 규칙적인 수면, 많은 운동량</option>
           </form:select>
         </div>
         <div class="form-group">
           <label>선호하는 체형</label>
-          <form:select path="survShape" class="form-control">
+          <form:select path="survShape" class="selectpicker" data-style="btn-primary" >
                     <option value="" selected>--선택--</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -58,7 +72,7 @@
         </div>
         <div class="form-group">
         	<label>내 전신 사진 파일 업로드</label><br>
-        	<form:input path="survPhoto" type="file"></form:input>
+        	<form:input path="survPhoto" type="file" name="survPhoto" enctype="multipart/form-data"></form:input>
         </div>
         <div class="form-button">
         <button type="submit" class="btn btn-primary">제출하기</button>
