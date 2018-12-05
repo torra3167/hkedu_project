@@ -17,14 +17,14 @@
 	int thisMonthEtcStock = 0;
 	int thisMonthEtcSales = 0;
 	
-	FoodOrderReceiverPay todayForp1 = null;
-	FoodOrderReceiverPay todayForp2 = null;
-	FoodOrderReceiverPay todayForp3 = null;
+	FoodOrderReceiverPay todayForp1 = new FoodOrderReceiverPay();
+	FoodOrderReceiverPay todayForp2 = new FoodOrderReceiverPay();
+	FoodOrderReceiverPay todayForp3 = new FoodOrderReceiverPay();
 	FoodOrderReceiverPay todayEtcForp = new FoodOrderReceiverPay();
 	
-	FoodOrderReceiverPay thisMonthForp1 = null;
-	FoodOrderReceiverPay thisMonthForp2 = null;
-	FoodOrderReceiverPay thisMonthForp3 = null;
+	FoodOrderReceiverPay thisMonthForp1 = new FoodOrderReceiverPay();
+	FoodOrderReceiverPay thisMonthForp2 = new FoodOrderReceiverPay();
+	FoodOrderReceiverPay thisMonthForp3 = new FoodOrderReceiverPay();
 	FoodOrderReceiverPay thisMonthEtcForp = new FoodOrderReceiverPay();
 	
 	//today
