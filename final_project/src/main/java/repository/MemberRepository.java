@@ -1,10 +1,15 @@
 package repository;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.activation.CommandMap;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import command.FindIDCommand;
-import command.MemberSurveyCommand;
 import model.Member;
 import model.MemberSurvey;
 
@@ -39,11 +44,11 @@ public class MemberRepository extends AbstractRepository {
 		}
 	}
 
-	public String selectByNameAndPhone(Member member) {
+	public String selectByNameAndPhone(FindIDCommand findIDCommand) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		String statement = namespace + ".selectByNameAndPhone";
 		try {
-			String email = sqlSession.selectOne(statement, member);
+			String email = sqlSession.selectOne(statement, findIDCommand);
 			System.out.println("MEMBERREPOSITORY SelectByNameAndPhone "+email);
 			return email;
 		} finally {
@@ -149,6 +154,55 @@ public class MemberRepository extends AbstractRepository {
 		} finally {
 			sqlSession.close();
 		}
+	}
+	public List<Member> memberList(){
+		List<Member> memberList=new ArrayList<Member>();
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		String statement = namespace + ".memberList";
+		System.out.println("MEMBERREPOSITORY MemberList");
+		try {
+			memberList=sqlSession.selectList(statement);
+			return memberList;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public int deleteMemberList(String email) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		String statement=namespace+".deleteFromMemberList";
+		System.out.println("MEMBERREPOSITORY deleteMemberList " + email);
+		try {
+			Integer result = sqlSession.delete(statement, email);
+			if (result > 0) {
+				sqlSession.commit();
+			}
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+/*	public int checkEmail(String id) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		String statement=namespace+".idChk";
+		System.out.println("MEMBERREPOSITORY checkEmail " + id);
+		try {
+			Integer result = sqlSession.selectOne(statement, id);
+			if (result > 0) {
+				sqlSession.commit();
+			}
+			return result;
+		} finally {
+			sqlSession.close();
+		}
+	}*/
+	
+	public Integer selectByEmailChk(String email) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		String statement=namespace+".idChk";
+		int result=sqlSession.selectOne(statement, email);
+		return result;
 	}
 
 }
