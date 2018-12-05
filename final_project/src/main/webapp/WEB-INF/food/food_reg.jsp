@@ -47,9 +47,7 @@ function funcAca() {
 			success:function(result){
 				$('#divAca').html(result);	
 			}
-			,error:function(request,status,error){
-		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
-
+			
 	
 		});		
 	}
@@ -157,15 +155,19 @@ function checkVal(){
 				<label>판매식품 이미지</label> <input type="file" id="foodImage"  name="foodImage" class="form-control">
 			</div>
 			<div>
-			<select id="FCC" name="foodCatCNo" onclick="javascript:funcBca();"> 
+			<select id="FCC" name="foodCatCNo" onclick="javascript:funcBca();" class="form-control"> 
 				<% for(Object temp : list) {
 					FoodCatC acar = (FoodCatC)temp; %>
 				 	<option value="<%=acar.getFoodCatCNo() %>"> <%=acar.getFoodCatCName() %></option>
 				<% } %>
 			</select>
 			</div>
-			<div id="divBca"></div>		
-			<div id="divAca"></div>
+			<div id="divBca">
+				<select class="form-control"></select>
+			</div>		
+			<div id="divAca">
+				
+			</div>
 			<div class="form-group">
 				<label>판매할 식품 개수</label> <input type="text" id="foodQuant"  name="foodQuant" class="form-control">
 			</div>

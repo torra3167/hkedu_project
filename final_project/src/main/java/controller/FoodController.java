@@ -52,6 +52,7 @@ public class FoodController {
       model.addAttribute("coachRecomFoodList", coachRecomFoodList);
       
       model.addAttribute("iPage", "food/food_list.jsp");
+
       return "index";
    }
    

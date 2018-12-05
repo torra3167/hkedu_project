@@ -109,11 +109,9 @@
 			</div>
 			</div>
 	<% } else { %>
-
 	<%
-		
-		
-		int foodIndex = 1;
+
+		int foodIndex = 0;
 		
 		
 		for(int i = 0; i < foodAppliList.size(); i++) {
@@ -128,14 +126,14 @@
 				</a>
 				<div id="info">
 					<%=foodAppli.getFoodName() %> <br> <img src="images/d-day/dot.png"
-						width="20" height="20"><%=foodAppli.getFoodPrice() %>
+						width="20" height="20"><%=foodAppli.getFoodPrice() %>원
 				</div>
 			</div>
 		</div>
 		<%
 		}
-		foodIndex = 4 - (programList.size() % 4);
-	
+		foodIndex = 4 - (foodAppliList.size() % 4);
+		System.out.println((foodAppliList.size() % 4));
 		if(foodIndex > 0) { 
 			for(int i = 0; i < foodIndex; i++) {
 
@@ -155,8 +153,10 @@
 			
 		<% }
 			
-		} 
+		}
+		
 		} %>
+		
 
 		<!-- alert -->
 		<div class="container">
@@ -191,7 +191,7 @@
 			
 		</div>
 	 <% } else {
-		int index = 1;
+		int index = 0;
 		for(int i = 0; i < programList.size(); i++) {
 			
 			Program program = (Program)programList.get(i);

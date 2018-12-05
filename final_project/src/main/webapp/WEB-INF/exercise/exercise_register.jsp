@@ -75,7 +75,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label>운동 칼로리 </label> <input type="text" name="exerciseCal" class="form-control">
+				<label>운동 칼로리(kcal) </label> <input type="text" name="exerciseCal" class="form-control">
 			</div>
 			
 		

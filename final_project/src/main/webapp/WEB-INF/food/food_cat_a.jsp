@@ -12,6 +12,7 @@
 </head>
 <body>
 <select id="FCA" name="foodCatANo" class="form-control" > <!-- onchange="javascript:selectedFood(this);" -->
+<option value="">--선택하세요--</option>
 <% for(Object o : list) { 
 	FoodCatA ccar = (FoodCatA)o;
 %>
