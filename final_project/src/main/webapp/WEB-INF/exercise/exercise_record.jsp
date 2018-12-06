@@ -18,9 +18,10 @@
 </head>
 <body>
 <% if(exerciseRecordList == null || exerciseRecordList.isEmpty()) { %>
-	<h3>등록된 운동기록이 없습니다. 등록하기를 눌러 운동을 기록해보세요!</h3>
-	<a class="btn btn-primary" href="exercise_record_reg.gom" role="button">기록하기</a>
-	
+<div class="text-center">
+	<h3 style="text-align: center;">등록된 운동기록이 없습니다. 등록하기를 눌러 운동을 기록해보세요!</h3>
+	<a style="text-align: right;" class="btn btn-primary" href="exercise_record_reg.gom" role="button">기록하기</a>
+</div>	
 <% } else { %>
 
 	<div class="container">
