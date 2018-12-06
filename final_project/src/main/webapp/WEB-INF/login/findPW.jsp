@@ -10,7 +10,7 @@
 
 <script type="text/javascript">
 	function checkID() {
-		var frm = document.getElementById("findPW")
+		var frm = document.getElementById("findPW");
 		if (!frm.email.value) {
 			alert("이메일을 입력하세요.");
 			frm.email.focus();
@@ -28,12 +28,12 @@
 	<div class="container">
 
 		<div class="signInBox">
-			<form:form commandName="findIDCommand" id="findPW" class="form-signin">
+			<form:form commandName="findIDCommand" id="findPW" name="frm" class="form-signin">
 				<label>이메일</label>
-				<form:input path="email" name="email" id="email" class="form-control" placeholder="아이디로 사용하는 이메일을 입력해주세요." required="true" autofocus="true" />
+				<form:input path="email"  class="form-control" placeholder="아이디로 사용하는 이메일을 입력해주세요." required="true" autofocus="true" />
 				<br>
 				<label>연락처</label>
-				<form:input path="phone" name="phone" id="phone" class="form-control" placeholder="회원가입 시 입력한 연락처를 입력해주세요." required="true" />
+				<form:input path="phone"  class="form-control" placeholder="회원가입 시 입력한 연락처를 입력해주세요." required="true" />
 				<hr>
 				<div class="btn">
 					<form:button class="btn btn-primary" onclick="checkID();">찾기</form:button>

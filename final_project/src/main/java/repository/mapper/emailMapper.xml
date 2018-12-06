@@ -13,11 +13,12 @@
 		</where>
 	</select>
 
-	<select id="selectByEmail" resultType="String"	parameterType="command.FindIDCommand">
-		select member_email as email from member where member_email = #{email} and member_phone = #{phone} 
+	<select id="selectByEmail" resultType="String" parameterType="FindIDCommand">
+		select MEMBER_EMAIL from member where member_email = #{email} and member_phone = #{phone} 
 		union
-		select seller_email as email from seller where seller_email = #{email} and seller_phone = #{phone} 
+		select SELLER_EMAIL from seller where seller_email = #{email} and seller_phone = #{phone} 
 	</select>
+	
 	<select id="updatePWSelect" resultType="String">
 		select member_divide as divide from member where member_email = #{email}
 		union
