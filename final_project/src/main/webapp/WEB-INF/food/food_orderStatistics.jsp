@@ -95,6 +95,9 @@
 			<div class="col col-md-6"  style="border-style: ridge; border-width: 1px;">
 				<br>
 				<h3>당일 매출</h3><br>
+			<% if(fosDayList.size()==0){%>
+				<h5>당일 매출이 없습니다.</h5>
+			<% }else{ %>
 				<div class="row">
 					<h4 class="col-sm-6 text-left">총 판매량</h4>
 					<h4 class="col-sm-6 text-right"><%=todayTotalSalesStock %>개</h4>
@@ -107,11 +110,15 @@
 				 <% percent = (double)todayForp1.getFoodOrderQuant() / todayTotalSalesStock * 100; result = Math.round(percent*100)/100.0;%>
 					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="<%=result%>"aria-valuemin="0" aria-valuemax="100" style="width:<%=result%>%"><%=result%>%</div>
 				</div>
-				<a href="#" style="float:left"><%=todayForp2.getFoodOrderName() %></a><span style="float:right">판매량:<%=todayForp2.getFoodOrderQuant() %>개 / 재고:<%=todayForp2.getFoodQuant() %>개</span><br>
-				<% percent = (double)todayForp2.getFoodOrderQuant() / todayTotalSalesStock * 100; result = Math.round(percent*100)/100.0;%>
-				 <div class="progress">
-					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="<%=result%>"aria-valuemin="0" aria-valuemax="100" style="width:<%=result%>%"><%=result%>%</div>
-				</div>
+				<% if(todayForp2.getFoodOrderName()!=null){ %>
+					<a href="#" style="float:left"><%=todayForp2.getFoodOrderName() %></a><span style="float:right">판매량:<%=todayForp2.getFoodOrderQuant() %>개 / 재고:<%=todayForp2.getFoodQuant() %>개</span><br>
+					<% percent = (double)todayForp2.getFoodOrderQuant() / todayTotalSalesStock * 100; result = Math.round(percent*100)/100.0;%>
+					 <div class="progress">
+						<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="<%=result%>"aria-valuemin="0" aria-valuemax="100" style="width:<%=result%>%"><%=result%>%</div>
+					</div>
+				<% }else{
+				   } %>
+				<% if(todayForp3.getFoodOrderName()!=null){ %>
 				<a href="#" style="float:left"><%=todayForp3.getFoodOrderName() %></a><span style="float:right">판매량:<%=todayForp3.getFoodOrderQuant() %>개 / 재고:<%=todayForp3.getFoodQuant() %>개</span><br>
 				<% percent = (double)todayForp3.getFoodOrderQuant() / todayTotalSalesStock * 100; result = Math.round(percent*100)/100.0;%>
 				 <div class="progress">
@@ -122,6 +129,8 @@
 				 <div class="progress">
 					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="<%=result%>"aria-valuemin="0" aria-valuemax="100" style="width:<%=result%>%"><%=result%>%</div>
 				</div>
+				<% }else{
+				   } %>
 				<br>
 				<br>
 				<div class="row">
@@ -133,11 +142,15 @@
 				 <div class="progress">
 					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="<%=result%>"aria-valuemin="0" aria-valuemax="100" style="width:<%=result%>%"><%=result%>%</div>
 				</div>
+				<% if(todayForp2.getFoodOrderName()!=null){ %>
 				<a href="#" style="float:left"><%=todayForp2.getFoodOrderName() %></a><span style="float:right">매출액: <%=todayForp2.getFoodPayPrice() %>원</span><br>
 				<% percent = (double)todayForp2.getFoodPayPrice() / todayTotalSales * 100; result = Math.round(percent*100)/100.0;%>
 				 <div class="progress">
 					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="<%=result%>"aria-valuemin="0" aria-valuemax="100" style="width:<%=result%>%"><%=result%>%</div>
 				</div>
+				<% }else{
+				   } %>
+				<% if(todayForp3.getFoodOrderName()!=null){ %>
 				<a href="#" style="float:left"><%=todayForp3.getFoodOrderName() %></a><span style="float:right">매출액: <%=todayForp3.getFoodPayPrice() %>원</span><br>
 				<% percent = (double)todayForp3.getFoodPayPrice() / todayTotalSales * 100; result = Math.round(percent*100)/100.0;%>
 				 <div class="progress">
@@ -148,13 +161,19 @@
 				 <div class="progress">
 					<div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="<%=result%>"aria-valuemin="0" aria-valuemax="100" style="width:<%=result%>%"><%=result%>%</div>
 				</div>
+				<% }else{
+				   } %>
 				<br>
+			<%} %>
 			</div>
 			
 			
 			<div class="col col-md-6" style="border-style: ridge; border-width: 1px;">
 			<br>
 				<h3>당월 매출</h3><br>
+			<% if(fosMonthList.size()==0){%>
+				<h5>당월 매출이 없습니다.</h5>
+		  	 <%}else{ %>
 				<div class="row">
 					<h4 class="col-sm-6 text-left">총 판매량</h4>
 					<h4 class="col-sm-6 text-right"><%=thisMonthTotalSalesStock %>개</h4>
@@ -167,11 +186,15 @@
 				<div class="progress">
 					<div class="progress-bar progress-bar bg-primary" role="progressbar" aria-valuenow="<%=result%>"aria-valuemin="0" aria-valuemax="100" style="width:<%=result%>%"><%=result%>%</div>
 				</div>
+				<% if(thisMonthForp2.getFoodOrderName()!=null){ %>
 				<a href="#" style="float:left"><%=thisMonthForp2.getFoodOrderName() %></a><span style="float:right">판매량:<%=thisMonthForp2.getFoodOrderQuant() %>개 / 재고:<%=thisMonthForp2.getFoodQuant() %>개</span><br>
 				<% percent = (double)thisMonthForp2.getFoodOrderQuant() / thisMonthTotalSalesStock * 100; result = Math.round(percent*100)/100.0;%>
 				<div class="progress">
 					<div class="progress-bar progress-bar bg-primary" role="progressbar" aria-valuenow="<%=result%>"aria-valuemin="0" aria-valuemax="100" style="width:<%=result%>%"><%=result%>%</div>
 				</div>
+				<% }else{
+				   } %>
+				<% if(thisMonthForp3.getFoodOrderName()!=null){ %>
 				<a href="#" style="float:left"><%=thisMonthForp3.getFoodOrderName() %></a><span style="float:right">판매량:<%=thisMonthForp3.getFoodOrderQuant() %>개 / 재고:<%=thisMonthForp3.getFoodQuant() %>개</span><br>
 				<% percent = (double)thisMonthForp3.getFoodOrderQuant() / thisMonthTotalSalesStock * 100; result = Math.round(percent*100)/100.0;%>
 				<div class="progress">
@@ -182,6 +205,8 @@
 				 <div class="progress">
 					<div class="progress-bar progress-bar bg-primary" role="progressbar" aria-valuenow="<%=result%>"aria-valuemin="0" aria-valuemax="100" style="width:<%=result%>%"><%=result%>%</div>
 				</div>
+				<% }else{
+				   } %>
 				<br>
 				<br>
 				<div class="row">
@@ -193,11 +218,15 @@
 				 <div class="progress">
 					<div class="progress-bar progress-bar bg-primary" role="progressbar" aria-valuenow="<%=result%>"aria-valuemin="0" aria-valuemax="100" style="width:<%=result%>%"><%=result%>%</div>
 				</div>
+				<% if(thisMonthForp2.getFoodOrderName()!=null){ %>
 				<a href="#" style="float:left"><%=thisMonthForp2.getFoodOrderName() %></a><span style="float:right">매출액: <%=thisMonthForp2.getFoodPayPrice() %>원</span><br>
 				<% percent = (double)thisMonthForp2.getFoodPayPrice() / thisMonthTotalSales * 100; result = Math.round(percent*100)/100.0;%>
 				 <div class="progress">
 					<div class="progress-bar progress-bar bg-primary" role="progressbar" aria-valuenow="<%=result%>"aria-valuemin="0" aria-valuemax="100" style="width:<%=result%>%"><%=result%>%</div>
 				</div>
+				<% }else{
+				   } %>
+				<% if(thisMonthForp3.getFoodOrderName()!=null){ %>
 				<a href="#" style="float:left"><%=thisMonthForp3.getFoodOrderName() %></a><span style="float:right">매출액: <%=thisMonthForp3.getFoodPayPrice() %>원</span><br>
 				<% percent = (double)thisMonthForp3.getFoodPayPrice() / thisMonthTotalSales * 100; result = Math.round(percent*100)/100.0;%>
 				 <div class="progress">
@@ -208,7 +237,10 @@
 				 <div class="progress">
 					<div class="progress-bar progress-bar bg-primary" role="progressbar" aria-valuenow="<%=result%>"aria-valuemin="0" aria-valuemax="100" style="width:<%=result%>%"><%=result%>%</div>
 				</div>
+				<% }else{
+				   } %>
 				<br>
+			<%} %>
 			</div>
 		</div>
 </div>
