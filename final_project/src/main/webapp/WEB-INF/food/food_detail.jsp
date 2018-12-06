@@ -154,8 +154,9 @@
 			     </div>
 			     <%
 			     	answerButton = answerButton + 1;
-			     %>
+			     %> 
 		         <button type="button" class="card col bg-light" data-toggle="collapse" data-target="#demo<%=answerButton %>">답변 보기</button>
+		         <br>
 		      		<%
 		      			List<FoodReviewAnswer> foodReviewAnswers = foodReviewAndAnswer.getFoodReviewAnswers();
 		      			if(foodReviewAnswers.size() > 0){

@@ -41,7 +41,7 @@
 				<div class="intro" id="navi">
 					<h5>칼로리와 맛 그 무엇도 놓칠 수 없어</h5>
 					<p>균형있고 맛있는 식단을 위한 선택</p>
-					<a href="#">식품관</a>
+					<a href="food_list.gom">식품관</a>
 				</div>
 			</div>
 
