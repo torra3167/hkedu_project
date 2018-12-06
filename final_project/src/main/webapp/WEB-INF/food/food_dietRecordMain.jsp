@@ -72,7 +72,9 @@ $(function() {
 </script>
 </head>
 <body>
-<div class="container">
+<div class="container text-center">
+	<div class="row">
+	<div class="col-12">
   <h2>My Diet Diary</h2>
   <p>매일 식단을 기록해서 회원님의 신장과 체중에 적합한 권장 열량과 섭취 열량을 비교할 수 있습니다.</p>
   <p><small>* 날짜와 칼로리를 클릭하여 식단을 기록할 수 있습니다.</small></p>
@@ -94,7 +96,8 @@ $(function() {
   </ul>
   </div>
 </div>
-
+</div>
+</div>
 <!-- ----------------------------------------------------------------------- -->
 <div class="container">
   <h3>Diet Records</h3>

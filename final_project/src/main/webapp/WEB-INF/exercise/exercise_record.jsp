@@ -24,10 +24,10 @@
 </div>	
 <% } else { %>
 
-	<div class="container">
+	<div class="container text-center">
 		<h3>이달의 체중 변화</h3>
 		
-		<div id="myfirstchart" style="height: 250px;"></div>
+		<div id="myfirstchart" style="height: 300px;"></div>
 		
 		
 		<br>

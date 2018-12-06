@@ -622,9 +622,9 @@ SELECT
 </resultMap>
 
 <select id="selectMemberWeightHeight" parameterType="String" resultMap="selectMemberWeightHeightMap">
-		SELECT surv_height, surv_weight
-		FROM SURVEY
-		WHERE MEMBER_EMAIL=#{memberEmail}
+		select * 
+		from (select * from survey where member_email = #{memberEmail} order by surv_no desc)
+		where rownum = 1
 </select>
 
 </mapper>

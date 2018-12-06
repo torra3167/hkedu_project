@@ -202,14 +202,18 @@ function funcBcat() {
 </script>
 </head>
 <body>
+<div class="container text-center">
+<div class="row">
+<div class="col-12">
+
    <h2>식단 기록하기</h2>
    <div id="recordDate" style="color:black;font-size:20px;"><%=recDate %></div>
    <br>
 <div class="btn-group">
   <div class="btn-group">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="btnGroup" style="width:165px;">
-       식단 입력하기
-    </button>
+       식단 입력하기 
+    </button>&nbsp;&nbsp;
     <div class="dropdown-menu">
 	   <a class="dropdown-item" id="bfBtnDiv" onclick="recordBtn(1)">아침식사</a>
 	   <a class="dropdown-item" id="lcBtnDiv" onclick="recordBtn(2)">점심식사</a>
@@ -310,5 +314,8 @@ function funcBcat() {
    </tbody>
    
 </table>
+</div>
+</div>
+</div>
 </body>
 </html>

@@ -79,8 +79,8 @@
 				<form:input path="exerciseRecordName" class="form-control" readonly="true" value="<%=eeca.getExerciseCatAName() %>"/>
 			</div>
 			<div class="form-group">
-				<label>수행한 운동 무게</label>
-				<form:input path="exerciseRecordKg" class="form-control" />kg
+				<label>수행한 운동 무게(kg)</label>
+				<form:input path="exerciseRecordKg" class="form-control" />
 			</div>
 			<div class="form-group">
 				<label>수행한 운동 횟수</label>
@@ -93,7 +93,7 @@
 		<% } %>
 			
 			<div class="form-group">
-				<label>운동 기록 체중</label>
+				<label>운동 기록 체중(kg)</label>
 				<form:input path="exerciseRecordWeight" class="form-control" />
 			</div>
 		
