@@ -25,8 +25,9 @@
 	}
 </script>
 <body>
-	<div class="container">
-
+	<div class="container ">
+		<div class="row">
+		<div class="col-12">
 		<div class="signInBox">
 			<form:form commandName="findIDCommand" id="findID" class="form-signin">
 				<label>연락처</label>
@@ -35,12 +36,14 @@
 				<label>이름</label>
 				<form:input path="name" class="form-control" placeholder="이름" required="true" />
 				<hr>
-				<div class="btn">
+				<div class="btn text-center">
 					<form:button class="btn btn-primary" onclick="checkID();">찾기</form:button>
 					<form:button class="btn btn-primary" onclick="history.go(-1);">뒤로가기</form:button>
 					<form:button class="btn btn-primary" onclick="location.href='findPW.gom'">비밀번호 찾기</form:button>
 				</div>
 			</form:form>
+		</div>
+		</div>
 		</div>
 	</div>
 </body>

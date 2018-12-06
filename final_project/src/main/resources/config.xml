@@ -81,7 +81,8 @@
  		<mapper resource="repository/mapper/payMapper.xml"/>
  		<mapper resource="repository/mapper/cartMapper.xml"/>
   		<mapper resource="repository/mapper/adminMapper.xml"/>
- 	
+ 		<mapper resource="repository/mapper/emailMapper.xml"/>
+ 		
  	
  	</mappers>
 </configuration>

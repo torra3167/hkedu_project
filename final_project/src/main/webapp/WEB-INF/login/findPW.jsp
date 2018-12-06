@@ -26,7 +26,9 @@
 </script>
 <body>
 	<div class="container">
-
+	<div class="row">
+<div class="col-12">
+	
 		<div class="signInBox">
 			<form:form commandName="findIDCommand" id="findPW" name="frm" class="form-signin">
 				<label>이메일</label>
@@ -41,6 +43,8 @@
 				</div>
 			</form:form>
 		</div>
+	</div>
+	</div>
 	</div>
 </body>
 </html>

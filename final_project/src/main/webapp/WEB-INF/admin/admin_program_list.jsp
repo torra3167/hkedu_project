@@ -37,6 +37,7 @@
 					
 				<% 	if(email.equals("admin"))  { %>
 					<th>신청서 검토상태</th>
+					<th>신청</th>
 				<% } %>
 				</tr>
 			</thead>
@@ -56,7 +57,7 @@
 					"><%=program.getProName() %>
 					</a></td>
 					<td><%=program.getProRegdate() %></td>
-					<td><img src="http://localhost:8080/final_project/resource/<%=program.getProStored() %>" width="80" height="80"></td>
+					<td><img src="resource\\<%=program.getProStored() %>" width="80" height="80"></td>
 					<td><%=program.getProContent() %></td>
 					<td><%=program.getProPrice() %></td>
 					<td><a href="pro_review_write.gom?proNo=<%=program.getProNo() %>&coachEmail=<%=program.getCoachEmail() %>">리뷰작성</a></td>
@@ -74,18 +75,7 @@
 
 		<hr>
 
-		<a class="btn btn-primary text-right" href="#" role="button">글쓰기</a>
-
-
-		<nav aria-label="Page navigation example ">
-			<ul class="pagination text-right">
-				<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-				<li class="page-item active"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">Next</a></li>
-			</ul>
-		</nav>
+		
 
 	</div>
 </body>
