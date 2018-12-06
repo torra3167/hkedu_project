@@ -1,9 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.text.SimpleDateFormat, java.util.Calendar"%>
     
     <%
     	String divide = (String)session.getAttribute("divide");
     %>
+<%
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+    String recordDate = simpleDateFormat.format(Calendar.getInstance().getTime());
+    System.out.println("nav recordDate : "+recordDate);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,8 +101,9 @@
 				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동관</a></li>
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
+				<li class="nav-item"><a class="nav-link" href="food_recordMain.gom?dateText=<%=recordDate %>">식단 기록</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="exercise_record.gom">운동기록</a></li>
+					href="exercise_record.gom">운동 기록</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="program_list.gom">프로그램리스트</a></li>
 
@@ -128,8 +133,6 @@
 
 
 			<div class="navbar-nav ml-md-auto">
-				<a class="nav-item nav-link" href="member_myPage.gom" >마이페이지</a> 
-			 &nbsp;
 				<a class="nav-item nav-link" href="logout.gom" >로그아웃</a>
 				<a class="nav-item nav-link" href="member_withdrawal.gom" >탈퇴하기</a>
 			 
