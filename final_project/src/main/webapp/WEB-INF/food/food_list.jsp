@@ -64,8 +64,6 @@
 			                        <% AvgReviewScore avgrs = new AvgReviewScore();
 			                            int totalScore = 0;
 			                            String star = "☆";
-// 			                            if(avgrsList.size()==0){
-// 			                            }else{
 			                            	for(Object tp : avgrsList){
 			                            		avgrs = (AvgReviewScore)tp;
 			                            		if(avgrs.getFoodNo()==coachRecomFoodAppli.getFoodNo()){
@@ -77,7 +75,6 @@
 					               						} %>
 					                        <% } %>
 					                 	<% } %>
-<%-- 	       	                    	<% } %> --%>
 		                           <div class="row">
 		                                <div class="col-6 text-left"><%=star %></div>
 		                           </div>
@@ -134,8 +131,6 @@
 			                        <% AvgReviewScore avgrs = new AvgReviewScore();
 			                            int totalScore = 0;
 			                            String star = "☆";
-// 			                            if(avgrsList.size()==0){
-// 			                            }else{
 			                            	for(Object tp : avgrsList){
 			                            		avgrs = (AvgReviewScore)tp;
 			                            		if(avgrs.getFoodNo()==foodAppli.getFoodNo()){
@@ -147,7 +142,6 @@
 					               						} %>
 					                        <% } %>
 					                    <% } %>
-<%-- 		       	                    <% } %> --%>
 		                           <div class="row">
 		                                <div class="col-6 text-left"><%=star %></div>
 		                           </div>
@@ -182,8 +176,6 @@
 			                        <% AvgReviewScore avgrs = new AvgReviewScore();
 			                            int totalScore = 0;
 			                            String star = "☆";
-// 			                            if(avgrsList.size()==0){
-// 			                            }else{
 			                            	for(Object tp : avgrsList){
 			                            		avgrs = (AvgReviewScore)tp;
 			                            		if(avgrs.getFoodNo()==foodAppli.getFoodNo()){
@@ -195,7 +187,6 @@
 					               						} %>
 					                        <% } %>
 		       	                    	<% } %>
-<%-- 	       	                    	<% } %> --%>
 		                           <div class="row">
 		                                <div class="col-6 text-left"><%=star %></div>
 		                           </div>
@@ -232,8 +223,6 @@
 			                        <% AvgReviewScore avgrs = new AvgReviewScore();
 			                            int totalScore = 0;
 			                            String star = "☆";
-// 			                            if(avgrsList.size()==0){
-// 			                            }else{
 			                            	for(Object tp : avgrsList){
 			                            		avgrs = (AvgReviewScore)tp;
 			                            		if(avgrs.getFoodNo()==foodAppli.getFoodNo()){
@@ -245,7 +234,6 @@
 					               						} %>
 					                        <% } %>
 		       	                    	<% } %>
-<%-- 	       	                    	<% } %> --%>
 		                           <div class="row">
 		                                <div class="col-6 text-left"><%=star %></div>
 		                           </div>
@@ -283,8 +271,6 @@
 			                        <% AvgReviewScore avgrs = new AvgReviewScore();
 			                            int totalScore = 0;
 			                            String star = "☆";
-// 			                            if(avgrsList.size()==0){
-// 			                            }else{
 			                            	for(Object tp : avgrsList){
 			                            		avgrs = (AvgReviewScore)tp;
 			                            		if(avgrs.getFoodNo()==foodAppli.getFoodNo()){
@@ -296,7 +282,6 @@
 					               						} %>
 					                        <% } %>
 		       	                    	<% } %>
-<%-- 	       	                    	<% } %> --%>
 		                           <div class="row">
 		                                <div class="col-6 text-left"><%=star %></div>
 		                           </div>
