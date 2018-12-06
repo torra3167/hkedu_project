@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <% String email=(String)session.getAttribute("email");
+	if(email == null) {
+		email = "비회원";
+	}
 	%>
 <!DOCTYPE html>
 <html>
