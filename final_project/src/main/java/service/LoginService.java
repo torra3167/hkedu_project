@@ -50,9 +50,9 @@ public class LoginService {
 
 	public void selectFoodList(Model model) {
 		// TODO Auto-generated method stub
-		List<Food> foodList = lr.selectFoodList();
+		List<Food> foodList = lr.selectAllFoodList();
 		System.out.println(foodList.size() + "FOODLIST SIZE");
-		model.addAttribute("foodList", foodList);
+		model.addAttribute("selectedFoodList", foodList);
 		
 	}
 
