@@ -599,4 +599,28 @@ SELECT
 		order by food_no
 </select> 
 
+<resultMap type="MemberSurvey" id="selectMemberWeightHeightMap">
+		<id column="SURV_NO" jdbcType="BIGINT" property="survNo" />
+		<result column="MEMBER_EMAIL" jdbcType="VARCHAR" property="memberEmail" />
+		<result column="SURV_HEIGHT" jdbcType="BIGINT" property="survHeight" />
+		<result column="SURV_WEIGHT" jdbcType="BIGINT" property="survWeight" />
+		<result column="SURV_EAT" jdbcType="VARCHAR" property="survEat" />
+		<result column="SURV_BMI" jdbcType="BIGINT" property="survBMI" />
+		<result column="SURV_SEX" jdbcType="VARCHAR" property="survSex" />
+		<result column="SURV_AGE" jdbcType="BIGINT" property="survAge" />
+		<result column="SURV_LIFESTYLE" jdbcType="VARCHAR" property="survLifestyle" />
+		<result column="SURV_DIET_PERIOD" jdbcType="VARCHAR"    property="surveyDietPeriod" />
+		<result column="SURV_SHAPE" jdbcType="VARCHAR"	property="survShape" />
+		<result column="SURV_DISEASE" jdbcType="VARCHAR" property="survDisease" />
+		<result column="SURV_CONCERN" jdbcType="VARCHAR" property="survConcern" />
+		<result column="SURV_CAUSE" jdbcType="VARCHAR" property="survCause" />
+		<result column="SURV_CAREER" jdbcType="VARCHAR" property="survCareer" />
+</resultMap>
+
+<select id="selectMemberWeightHeight" parameterType="String" resultMap="selectMemberWeightHeightMap">
+		SELECT surv_height, surv_weight
+		FROM SURVEY
+		WHERE MEMBER_EMAIL=#{memberEmail}
+</select>
+
 </mapper>

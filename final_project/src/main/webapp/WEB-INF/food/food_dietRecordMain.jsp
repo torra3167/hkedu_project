@@ -3,6 +3,8 @@
 <%
 	String recDate = (String)request.getAttribute("dateText");
 	System.out.println("recordMain : "+recDate);
+	
+	MemberSurvey ms = (MemberSurvey)request.getAttribute("ms");
 %>
 
 <%	
@@ -28,9 +30,15 @@
 			}
 		}
 	}
+
 	int manCal = 2500;
-// 	int womanCal = 2000;
+	int reCal = 0;
 	int recomCal = (int)((double)calSum/manCal*100);
+	if(ms!=null){
+		reCal = (int)((ms.getSurvHeight()-100)*0.9)*35;
+	}else{
+		reCal = recomCal;
+	}
 %>
 
 <!DOCTYPE html>
@@ -67,16 +75,21 @@ $(function() {
 <div class="container">
   <h2>My Diet Diary</h2>
   <p>매일 식단을 기록해서 회원님의 신장과 체중에 적합한 권장 열량과 섭취 열량을 비교할 수 있습니다.</p>
+  <p><small>* 날짜와 칼로리를 클릭하여 식단을 기록할 수 있습니다.</small></p>
   <div class="row">
   <ul class="nav nav-pills">
     <li class="nav-item col">
       <input type="text" name="recordDate" id="recordDate" placeholder="<%=recDate%>"/>
     </li>
     <li class="nav-item col">
-      <a class="nav-link" href="food_dietRecordList.gom?dateText=<%=recDate%>" style="width:200px;color:gray;border:1px solid;">섭취 칼로리 : <%=calSum %> kcal <br>권장 칼로리 : <%=recomCal %> %</a>
+      <a class="nav-link" href="food_dietRecordList.gom?dateText=<%=recDate%>" style="width:200px;color:gray;border:1px solid;">섭취 칼로리 : <%=calSum %> kcal <br>권장 칼로리 : <%=reCal %> %</a>
     </li>
     <li class="nav-item col">
-      <a class="nav-link" href="#마이페이지 정보변경(체중)으로" style="width:200px;color:gray;border:1px solid;">체중 : 67 kg<br>신장 : 177 cm</a>
+    <%if(ms!=null){ %>
+    	<a class="nav-link" style="width:200px;color:gray;border:1px solid;">체중 : <%=ms.getSurvWeight() %> kg<br>신장 : <%=ms.getSurvHeight() %> cm</a>
+    <%}else{ %>
+    	<a class="nav-link" style="width:200px;color:gray;border:1px solid;">체중 : Survey 입력요망<br>신장 : Survey 입력요망</a>
+    <%} %>
     </li>
   </ul>
   </div>
