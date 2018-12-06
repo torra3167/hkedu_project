@@ -45,7 +45,6 @@ public class EmailController {
 	@RequestMapping(value = "/findPW.gom", method = RequestMethod.GET)
 	public String findPW(FindIDCommand findIDCommand, Model model, HttpSession session, HttpServletRequest request) {
 		model.addAttribute("iPage", "login/findPW.jsp");
-		model.addAttribute("find", new FindIDCommand());
 		return "index";
 	}
 	
