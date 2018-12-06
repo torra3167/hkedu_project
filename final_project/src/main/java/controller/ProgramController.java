@@ -68,6 +68,18 @@ public class ProgramController {
 		return "index";
 
 	}
+	@RequestMapping(value = "/admin_program_detail.gom", method = RequestMethod.GET)
+	public String adminProgramDetail(ProgramDetailCommand programDetailCommand, Model model ) {
+//		System.out.println(programDetailCommand.getProNo() + "PRONO by command! ");
+//		System.out.println(programDetailCommand.getProContent() + " PROCONTENT");
+		
+		model.addAttribute("iPage", "program/program_detail.jsp");
+		ps.selectProReviewListByProNo(programDetailCommand.getProNo(), model);
+		ps.programDetail(programDetailCommand, model);
+		return "index";
+		
+	}
+	
 	@RequestMapping(value = "/program_detail.gom", method = RequestMethod.GET)
 	public String programDetail(ProgramDetailCommand programDetailCommand, Model model ) {
 //		System.out.println(programDetailCommand.getProNo() + "PRONO by command! ");
