@@ -58,9 +58,11 @@
 		                            	int salePrice = (int) (coachRecomFoodAppli.getFoodPrice() - (coachRecomFoodAppli.getFoodPrice() * (coachRecomFoodAppli.getFoodSale()*0.01)));
 		                            %>
 		                            <h4 class="card-text"><%=salePrice %>원</h4>
-			                         <% AvgReviewScore avgrs = new AvgReviewScore();
+			                        <% AvgReviewScore avgrs = new AvgReviewScore();
 			                            int totalScore = 0;
 			                            String star = "☆";
+// 			                            if(avgrsList.size()==0){
+// 			                            }else{
 			                            	for(Object tp : avgrsList){
 			                            		avgrs = (AvgReviewScore)tp;
 			                            		if(avgrs.getFoodNo()==coachRecomFoodAppli.getFoodNo()){
@@ -71,7 +73,8 @@
 					                            			star += "★";
 					               						} %>
 					                        <% } %>
-		       	                    	<% } %>
+					                 	<% } %>
+<%-- 	       	                    	<% } %> --%>
 		                           <div class="row">
 		                                <div class="col-6 text-left"><%=star %></div>
 		                           </div>
@@ -125,9 +128,11 @@
 		                            	int salePrice = (int) (foodAppli.getFoodPrice() - (foodAppli.getFoodPrice() * (foodAppli.getFoodSale()*0.01)));
 		                            %>
 		                            <h4 class="card-text"><%=salePrice %>원</h4>
-			                         <% AvgReviewScore avgrs = new AvgReviewScore();
+			                        <% AvgReviewScore avgrs = new AvgReviewScore();
 			                            int totalScore = 0;
 			                            String star = "☆";
+// 			                            if(avgrsList.size()==0){
+// 			                            }else{
 			                            	for(Object tp : avgrsList){
 			                            		avgrs = (AvgReviewScore)tp;
 			                            		if(avgrs.getFoodNo()==foodAppli.getFoodNo()){
@@ -138,7 +143,8 @@
 					                            			star += "★";
 					               						} %>
 					                        <% } %>
-		       	                    	<% } %>
+					                    <% } %>
+<%-- 		       	                    <% } %> --%>
 		                           <div class="row">
 		                                <div class="col-6 text-left"><%=star %></div>
 		                           </div>
@@ -170,9 +176,11 @@
 		                            	int salePrice = (int) (foodAppli.getFoodPrice() - (foodAppli.getFoodPrice() * (foodAppli.getFoodSale()*0.01)));
 		                            %>
 		                            <h4 class="card-text"><%=salePrice %>원</h4>
-			                         <% AvgReviewScore avgrs = new AvgReviewScore();
+			                        <% AvgReviewScore avgrs = new AvgReviewScore();
 			                            int totalScore = 0;
 			                            String star = "☆";
+// 			                            if(avgrsList.size()==0){
+// 			                            }else{
 			                            	for(Object tp : avgrsList){
 			                            		avgrs = (AvgReviewScore)tp;
 			                            		if(avgrs.getFoodNo()==foodAppli.getFoodNo()){
@@ -184,6 +192,7 @@
 					               						} %>
 					                        <% } %>
 		       	                    	<% } %>
+<%-- 	       	                    	<% } %> --%>
 		                           <div class="row">
 		                                <div class="col-6 text-left"><%=star %></div>
 		                           </div>
@@ -217,9 +226,11 @@
 		                            	int salePrice = (int) (foodAppli.getFoodPrice() - (foodAppli.getFoodPrice() * (foodAppli.getFoodSale()*0.01)));
 		                            %>
 		                            <h4 class="card-text"><%=salePrice %>원</h4>
-			                         <% AvgReviewScore avgrs = new AvgReviewScore();
+			                        <% AvgReviewScore avgrs = new AvgReviewScore();
 			                            int totalScore = 0;
 			                            String star = "☆";
+// 			                            if(avgrsList.size()==0){
+// 			                            }else{
 			                            	for(Object tp : avgrsList){
 			                            		avgrs = (AvgReviewScore)tp;
 			                            		if(avgrs.getFoodNo()==foodAppli.getFoodNo()){
@@ -231,6 +242,7 @@
 					               						} %>
 					                        <% } %>
 		       	                    	<% } %>
+<%-- 	       	                    	<% } %> --%>
 		                           <div class="row">
 		                                <div class="col-6 text-left"><%=star %></div>
 		                           </div>
@@ -265,9 +277,11 @@
 		                            	int salePrice = (int) (foodAppli.getFoodPrice() - (foodAppli.getFoodPrice() * (foodAppli.getFoodSale()*0.01)));
 		                            %>
 		                            <h4 class="card-text"><%=salePrice %>원</h4>
-			                         <% AvgReviewScore avgrs = new AvgReviewScore();
+			                        <% AvgReviewScore avgrs = new AvgReviewScore();
 			                            int totalScore = 0;
 			                            String star = "☆";
+// 			                            if(avgrsList.size()==0){
+// 			                            }else{
 			                            	for(Object tp : avgrsList){
 			                            		avgrs = (AvgReviewScore)tp;
 			                            		if(avgrs.getFoodNo()==foodAppli.getFoodNo()){
@@ -279,6 +293,7 @@
 					               						} %>
 					                        <% } %>
 		       	                    	<% } %>
+<%-- 	       	                    	<% } %> --%>
 		                           <div class="row">
 		                                <div class="col-6 text-left"><%=star %></div>
 		                           </div>
