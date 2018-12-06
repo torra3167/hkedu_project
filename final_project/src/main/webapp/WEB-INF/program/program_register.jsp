@@ -192,15 +192,6 @@
 	function selectedFoodFun(val) {
 		 var foodCategoryANum = document.getElementById('FCA').value;
 		 
-		 
-		/*  for(int i = 0; i < selectedFoodList.size(); i++) {
-				Food tempFood = (Food) selectedFoodList.get(i);
-				
-				if(tempFood.getFoodNo() == foodCatANo) {
-					
-					
-		} */
-				
 		 $.ajax({
 				type:"POST",
 				url:"food_for_pro_food.gom",
@@ -320,11 +311,10 @@
 
 			</div>
 			<div class="form-group">
-				<label>선택된 프로그램 식품 </label> <input type="hidden" id="foodNos"
-					name="foodNos" class="form-control">
+				<label>선택된 프로그램 식품 </label> 
+				<input type="text" id="foodNos" name="foodNos" class="form-control">
 			
-				<select class="form-control" size="6"
-					name="foodNames" id="foodNames" >
+				<select class="form-control" size="6" name="foodNames" id="foodNames" >
 					
 				</select>
 

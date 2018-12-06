@@ -210,6 +210,10 @@
 		<result column="store_addr" jdbcType="VARCHAR" property="storeAddr" />
 </resultMap>
 
+<select id="selectAllFoodList" resultMap="selectSellerFoodMap">
+	select *
+	from food
+</select>
 	
 <select id="selectFoodList" resultMap="selectFoodListMap">
 		SELECT
