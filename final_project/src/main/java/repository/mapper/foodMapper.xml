@@ -589,11 +589,11 @@ SELECT
 
 <resultMap type="AvgReviewScore" id="selectAvgReviewScoreMap">
 		<result column="food_no" jdbcType="BIGINT" property="foodNo" />
-		<result column="avg_review_score" jdbcType="DOUBLE" property="avgReviewScore" />
+		<result column="avg_review_score" jdbcType="BIGINT" property="avgReviewScore" />
 </resultMap>
 
 <select id="selectAvgReviewScore" resultMap="selectAvgReviewScoreMap">
-		select FOOD_NO,ROUND(avg(FOOD_REVIEW_SCORE))
+		select FOOD_NO,ROUND(avg(FOOD_REVIEW_SCORE)) as avg_review_score
 		from food_review
 		group by food_no
 		order by food_no

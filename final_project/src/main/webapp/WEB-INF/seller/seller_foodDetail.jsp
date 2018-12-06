@@ -49,9 +49,6 @@
 				<label>식품 유통기한</label> <input type="text" name="foodExpiryDate" class="form-control" value="<%=food.getFoodExpiryDate() %>" readonly="true">
 			</div>
 			<div class="form-group">
-				<label>식품재료 원산지</label> <input type="text" name="foodOrigin" class="form-control" value="<%=food.getFoodOrigin() %>" readonly="true">
-			</div>
-			<div class="form-group">
 				<label>식품 탄수화물 함량(g)</label> <input type="text" name="foodCarbo" class="form-control" value="<%=food.getFoodCarbo() %>" readonly="true">
 			</div>
 			<div class="form-group">

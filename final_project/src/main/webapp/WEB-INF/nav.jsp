@@ -279,7 +279,7 @@
 			 <%
 				if(divide.equals("s")){
 			 %>
-				<a class="nav-item nav-link" href="seller_menu.gom" >판매자페이지</a> 
+				<a class="nav-item nav-link" href="seller_menu.gom" >판매자 전용메뉴</a> 
 			 &nbsp;
 			 <%	} %>
 				<a class="nav-item nav-link" href="logout.gom" >로그아웃</a>	
