@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
 </head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
 <script type="text/javascript">
 	function checkID() {
 		var frm = document.getElementById("findID")

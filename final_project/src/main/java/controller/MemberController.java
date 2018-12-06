@@ -262,7 +262,8 @@ public class MemberController {
 		
 		MemberSurvey memberSurvey = memberService.selectAllSurvey(memberSurveyCommand.getMemberEmail(), model);
 		
-		int goalWeight = (memberSurvey.getSurvWeight() - Integer.parseInt((String) session.getAttribute("healthyWeight")));
+		int healthyWeight = (Integer)session.getAttribute("healthyWeight");
+		int goalWeight = (memberSurvey.getSurvWeight() - healthyWeight);
 		int monthlyDemandedWeight = (int) ((double)goalWeight / Integer.parseInt(memberSurvey.getSurveyDietPeriod()));
 		if(result>0) {
 			model.addAttribute("monthlyDemandedWeight",monthlyDemandedWeight);

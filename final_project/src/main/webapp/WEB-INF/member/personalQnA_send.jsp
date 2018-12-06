@@ -61,10 +61,14 @@
 <title>1대 1 문의하기</title>
 <meta charset="utf-8">
 
-<link rel="stylesheet" href="css/custom-1.css">
 <style type="text/css">
 
 </style>
+<script type="text/javascript">
+function goMain() {
+	location.href="index";
+}
+</script>
 </head>
 <body>
 
@@ -72,10 +76,10 @@
 	<div class="container text-center">
 		<div class="row text-center">
 			<div class="col-12">
-				<div class="text-center board">
+				<div class="text-center">
 					문의가 정상적으로 발송되었습니다. <br>답변은 발신에 사용된 메일로 전송됩니다. <br>
-					<button type="button" value="메인으로" class="btn btn-primary float-1 "
-						onclick="location.href='index'">메인으로</button>
+					<button type="button" value="메인으로" class="btn btn-primary float-1"
+						onclick="goMain()">메인으로</button>
 				</div>
 			</div>
 		</div>

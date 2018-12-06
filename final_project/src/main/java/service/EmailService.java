@@ -23,7 +23,7 @@ public class EmailService {
 	}
 
 	public Integer findPW(FindIDCommand findIDCommand) {
-		FindIDCommand selectEmail = emailRepository.selectByEmail(findIDCommand);
+		String selectEmail = emailRepository.selectByEmail(findIDCommand);
 		/*String selectPhone = emailRepository.selectByPhone(phone);*/
 		System.out.println("EMAILSERVICE findPW "+selectEmail);
 		if (selectEmail == null) {

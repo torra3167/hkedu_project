@@ -11,7 +11,6 @@
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
 </head>
-<link rel="stylesheet" href="../css/custom-1.css">
 <body>
 	<%
 		if(email == null){

@@ -56,17 +56,18 @@
 <meta charset="UTF-8">
 <title>1대 1 문의하기</title>
 <meta charset="utf-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/custom-1.css">
+
 </head>
 <body>
-<div class="container">
-	<div class="board">
-	문의 답변이 정상적으로 발송되었습니다. <br>
-	<button type="button" value="메인으로" class="btn btn-primary float-1" onclick="location.href='index'">메인으로</button>
+	<div class="container">
+		<div class="row text-center">
+			<div class="col-12">
+
+				문의 답변이 정상적으로 발송되었습니다. <br>
+				<button type="button" value="메인으로" class="btn btn-primary float-1"
+					onclick="location.href='index'">메인으로</button>
+			</div>
+		</div>
 	</div>
-</div>
 </body>
 </html>

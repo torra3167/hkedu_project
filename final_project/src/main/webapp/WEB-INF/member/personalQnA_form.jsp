@@ -9,14 +9,21 @@
 <title>1대 1 문의하기</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/custom-1.css">
+<style type="text/css">
+/* .container {
+	margin-top: 10px;
+} */
+</style>
 </head>
 <body>
 
 	<div class="container">
 		<form action="personalQna.gom" method="post">
 			<%if(email==null){ %>
+			<br>
 				<div class="text-left"><p>문의 답변을 받을 이메일을 작성해주세요.</p></div>
 			<%} else { %>
+			<br>
 				<div class="text-left"><p>다른 주소로 문의를 전송하시려면 이메일 주소를 작성해주세요.</p></div>
 			<%}%>
 			<div right="left">
