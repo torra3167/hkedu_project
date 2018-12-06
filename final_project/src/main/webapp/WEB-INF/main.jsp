@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, model.Program, model.FoodAndApplication"%>
+	pageEncoding="UTF-8" import="java.util.*, model.Program, model.Food"%>
 
 
 <% 
 	List programList = (List) request.getAttribute("Program");
-	List foodAppliList = (List) request.getAttribute("foodAppliList");
+	List foodList = (List) request.getAttribute("foodList");
 %>
 <!DOCTYPE html>
 <html>
@@ -88,7 +88,7 @@
 <!--grid-->
 		<div class="container">
 		<div class="row">
-		<% if(foodAppliList == null) {
+		<% if(foodList.size() == 0) {
 			for(int i = 0; i < 4; i++) {
 		%>
 		
@@ -110,37 +110,39 @@
 			</div>
 	<% } else { %>
 	<%
-
 		int foodIndex = 0;
-		
-		
-		for(int i = 0; i < foodAppliList.size(); i++) {
+		if(foodList.size() >= 4) {
+			foodIndex = 4;
+		} else if(foodList.size() < 4) {
+			foodIndex = foodList.size();
+		}
+		for(int i = 0; i < foodIndex; i++) {
 			
-			FoodAndApplication foodAppli = (FoodAndApplication)foodAppliList.get(i);
+			Food food = (Food)foodList.get(i);
 
 		%>
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
 			<div id="box">
-				<a href="program_detail.gom?proNo=<%=foodAppli.getFoodNo()%>">
-				<img class="d-block w-100" src="resource\\<%=foodAppli.getFoodStored() %>" alt="Third slide" width="300" height="200">
+				<a href="food_detail.gom?foodNo=<%=food.getFoodNo() %>">
+				<img class="d-block w-100" src="resource\\<%=food.getFoodStored() %>" alt="Third slide" width="300" height="200">
 				</a>
 				<div id="info">
-					<%=foodAppli.getFoodName() %> <br> <img src="images/d-day/dot.png"
-						width="20" height="20"><%=foodAppli.getFoodPrice() %>원
+					<%=food.getFoodName() %> <br> <img src="images/d-day/dot.png"
+						width="20" height="20"><%=food.getFoodPrice() %>원
 				</div>
 			</div>
 		</div>
 		<%
 		}
-		foodIndex = 4 - (foodAppliList.size() % 4);
-		System.out.println((foodAppliList.size() % 4));
+		foodIndex = 4 - (foodList.size() % 4);
+		System.out.println((foodList.size() % 4) + "foodAppliList.size()");
 		if(foodIndex > 0) { 
 			for(int i = 0; i < foodIndex; i++) {
 
 		%>
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
 			<div id="box">
-				<a href="program_register.gom">
+				<a href="seller_menu.gom">
 				<img class="d-block w-100" src="images/404.png" alt="Third slide" width="300" height="200">
 				</a>
 				<div id="info">
@@ -201,7 +203,12 @@
 		%>
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
 			<div id="box">
-				<a href="program_detail.gom?proNo=<%=program.getProNo()%>">
+				<a href="program_detail.gom?proNo=<%=program.getProNo()%>
+					&proContent=<%=program.getProContent()%>
+					&proPrice=<%=program.getProPrice()%>
+					&proStatus=<%=program.getProStatus()%>
+					&proStored=<%=program.getProStored()%>
+					">
 				<img class="d-block w-100" src="resource\\<%=program.getProStored() %>" alt="Third slide" >
 				</a>
 				<div id="info">

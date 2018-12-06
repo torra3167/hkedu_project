@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 
 import exception.IdPasswordNotMatchingException;
 import model.AuthInfo;
-import model.FoodAndApplication;
+import model.Food;
 import model.Program;
 import repository.LoginRepository;
 
@@ -50,8 +50,8 @@ public class LoginService {
 
 	public void selectFoodList(Model model) {
 		// TODO Auto-generated method stub
-		List<FoodAndApplication> foodAppliList = lr.selectFoodList();
-		model.addAttribute("foodAppliList", foodAppliList);
+		List<Food> foodList = lr.selectFoodList();
+		model.addAttribute("foodList", foodList);
 		
 	}
 

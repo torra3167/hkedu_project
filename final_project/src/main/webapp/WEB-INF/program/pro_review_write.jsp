@@ -17,6 +17,9 @@
 
 </head>
 <body>
+	<div class="container">
+	<div class="row">
+	<div class="col-12">
 	<div class="modal" tabindex="-1" role="dialog">
 		<h5>프로그램리뷰 등록</h5>
 		<button type="button" class="close" data-dismiss="modal"
@@ -58,6 +61,10 @@
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 			</div>
 		</form:form>
+		</div>
+		</div>
+		</div>
+		
 	</div>
 </body>
 </html>

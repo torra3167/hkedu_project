@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import command.FindIDCommand;
 import model.AuthInfo;
+import model.Food;
 import model.FoodAndApplication;
 import model.Member;
 import model.Program;
@@ -42,10 +43,10 @@ public class LoginRepository extends AbstractRepository{
 		}
 	}
 
-	public List<FoodAndApplication> selectFoodList() {
+	public List<Food> selectFoodList() {
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
-		List<FoodAndApplication> list =  sqlSession.selectList("repository.mapper.foodMapper.selectFoodList");
+		List<Food> list =  sqlSession.selectList("repository.mapper.foodMapper.selectAllFoodList");
 		
 			return list;
 			
