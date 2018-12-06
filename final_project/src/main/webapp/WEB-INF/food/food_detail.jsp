@@ -26,7 +26,7 @@
 <body>
     <div class="container">
     	<div class="row">
-    		<div class="col-sm-6"><img src="http://localhost:8080//final_project//resource//<%=foodAndApplication.getFoodStored() %>"></div>
+    		<div class="col-sm-6 text-center"><img width="400" height="300" src="resource\\<%=foodAndApplication.getFoodStored() %>"></div>
     		<div class="col-sm-6">
 	    		<h5><%=foodAndApplication.getStoreName() %></h5><!-- (업체명) -->
 	    		<h3><%=foodAndApplication.getFoodName() %></h3>

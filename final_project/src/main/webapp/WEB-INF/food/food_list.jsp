@@ -24,6 +24,10 @@
     	 a:link { color: black; text-decoration: none;}
 		 a:visited { color: black; text-decoration: none;}
 		 a:hover { color: black; text-decoration: none;}
+		 
+		.card {
+			margin-bottom: 15px;
+		}
 	</style>
 </head>
 <body>
@@ -51,9 +55,8 @@
 
                 <div class="col-md-4">
                   			<div class="">
-		                         <a href="food_detail.gom?foodNo=<%=coachRecomFoodAppli.getFoodNo() %>"><img class="card-img-top" src="http://localhost:8080//final_project//resource//<%=coachRecomFoodAppli.getFoodStored() %>"/></a>
+		                         <a href="food_detail.gom?foodNo=<%=coachRecomFoodAppli.getFoodNo() %>"><img class="card-img-top" width="340" height="240" src="http://localhost:8080//final_project//resource//<%=coachRecomFoodAppli.getFoodStored() %>"/></a>
 		                        <div class="card-block card">
-		                            <h6 class="card-text"><%=coachRecomFoodAppli.getFoodStored() %></h6>
 		                            <h4 class="card-title"> <a href="food_detail.gom?foodNo=<%=coachRecomFoodAppli.getFoodNo() %>"><%=coachRecomFoodAppli.getFoodName() %></a></h4>
 		                            <div class="regularPrice"><%=coachRecomFoodAppli.getFoodPrice() %></div>
 		                            <h4 class="card-text"><%=coachRecomFoodAppli.getFoodSale() %>% OFF</h4>
@@ -118,9 +121,8 @@
 	        	FoodAndApplication foodAppli = (FoodAndApplication)temp; %>
                 <div class="col-md-4">
                   			<div class="">
-		                         <a href="food_detail.gom?foodNo=<%=foodAppli.getFoodNo() %>"><img class="card-img-top" src="http://localhost:8080//final_project//resource//<%=foodAppli.getFoodStored() %>"/></a>
+		                         <a href="food_detail.gom?foodNo=<%=foodAppli.getFoodNo() %>"><img class="card-img-top" width="340" height="240" src="http://localhost:8080//final_project//resource//<%=foodAppli.getFoodStored() %>"/></a>
 		                        <div class="card-block card">
-		                            <h6 class="card-text"><%=foodAppli.getFoodStored() %></h6>
 		                            <h4 class="card-title"> <a href="food_detail.gom?foodNo=<%=foodAppli.getFoodNo() %>"><%=foodAppli.getFoodName() %></a></h4>
 		                            <div class="regularPrice"><%=foodAppli.getFoodPrice() %></div>
 		                            <h4 class="card-text"><%=foodAppli.getFoodSale() %>% OFF</h4>
@@ -163,9 +165,8 @@
 	        %>
 	        			<div class="col-md-4">
                   			<div class="">
-		                         <a href="food_detail.gom?foodNo=<%=foodAppli.getFoodNo() %>"><img class="card-img-top" src="http://localhost:8080//final_project//resource//<%=foodAppli.getFoodStored() %>"/></a>
+		                         <a href="food_detail.gom?foodNo=<%=foodAppli.getFoodNo() %>"><img class="card-img-top" width="340" height="240" src="http://localhost:8080//final_project//resource//<%=foodAppli.getFoodStored() %>"/></a>
 		                        <div class="card-block card">
-		                            <h6 class="card-text"><%=foodAppli.getFoodStored() %></h6>
 		                            <h4 class="card-title"> <a href="food_detail.gom?foodNo=<%=foodAppli.getFoodNo() %>"><%=foodAppli.getFoodName() %></a></h4>
 		                            <div class="regularPrice"><%=foodAppli.getFoodPrice() %></div>
 		                            <h4 class="card-text"><%=foodAppli.getFoodSale() %>% OFF</h4>
@@ -210,9 +211,8 @@
 	        %>
 	        			<div class="col-md-4">
                   			<div class="">
-		                         <a href="food_detail.gom?foodNo=<%=foodAppli.getFoodNo() %>"><img class="card-img-top" src="resource\\<%=foodAppli.getFoodStored() %>"/></a>
+		                         <a href="food_detail.gom?foodNo=<%=foodAppli.getFoodNo() %>"><img class="card-img-top" width="340" height="240" src="resource\\<%=foodAppli.getFoodStored() %>"/></a>
 		                        <div class="card-block card">
-		                            <h6 class="card-text"><%=foodAppli.getFoodStored() %></h6>
 		                            <h4 class="card-title"> <a href="food_detail.gom?foodNo=<%=foodAppli.getFoodNo() %>"><%=foodAppli.getFoodName() %></a></h4>
 		                            <div class="regularPrice"><%=foodAppli.getFoodPrice() %></div>
 		                            <h4 class="card-text"><%=foodAppli.getFoodSale() %>% OFF</h4>
@@ -258,9 +258,8 @@
 	        %>
 	        			<div class="col-md-4">
                   			<div class="">
-		                         <a href="food_detail.gom?foodNo=<%=foodAppli.getFoodNo() %>"><img class="card-img-top" src="http://localhost:8080/final_project/resource/<%=foodAppli.getFoodStored() %>"/></a>
+		                         <a href="food_detail.gom?foodNo=<%=foodAppli.getFoodNo() %>"><img class="card-img-top" width="340" height="240" src="http://localhost:8080/final_project/resource/<%=foodAppli.getFoodStored() %>"/></a>
 		                        <div class="card-block card">
-		                            <h6 class="card-text"><%=foodAppli.getFoodStored() %></h6>
 		                            <h4 class="card-title"> <a href="food_detail.gom?foodNo=<%=foodAppli.getFoodNo() %>"><%=foodAppli.getFoodName() %></a></h4>
 		                            <div class="regularPrice"><%=foodAppli.getFoodPrice() %></div>
 		                            <h4 class="card-text"><%=foodAppli.getFoodSale() %>% OFF</h4>
