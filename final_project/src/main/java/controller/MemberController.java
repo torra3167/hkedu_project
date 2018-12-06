@@ -148,14 +148,17 @@ public class MemberController {
 
 	@RequestMapping(value = "/personalQna.gom", method = RequestMethod.POST)
 	public String personalQnaSubmit(Model model, HttpSession session, HttpServletRequest request) {
-		model.addAttribute("iPage", "member/personalQnA_send.jsp");
-		String email = (String) session.getAttribute("email");
-		String sender = request.getParameter("sender");
+		
+		
+		String senderEmail = request.getParameter("sender");
+/*		String email = (String) session.getAttribute("email");
 		if (email == null && sender != null) {
 			email = sender;
 		}
-		model.addAttribute("sender", email);
-		System.out.println("CONTROLLER PersonalQnA POST "+email);
+*/		
+		model.addAttribute("sender", senderEmail);
+		System.out.println("CONTROLLER PersonalQnA POST "+senderEmail);
+		model.addAttribute("iPage", "member/personalQnA_send.jsp");
 		return "index";
 	}
 	
