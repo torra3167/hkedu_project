@@ -29,7 +29,9 @@
 <body>
 <div class="container mt-3 mt-sm-5">
 <%if(!(coachRecomFoodList.size()>0)){ %>
-	<div class="card bg-light"><h6>프로그램을 구매하시면 회원님께 적합한 식품을 코치로부터 추천 받을 수 있습니다.</h6></div>
+	<div class="row">
+		<div class="card bg-light"><h6><a href="member_write_survey1.gom">프로그램을 구매하시면 회원님께 적합한 식품을 코치로부터 추천 받을 수 있습니다.</a></h6></div>
+	</div>
 <% }else{ %>
 	<h5>코치 추천 식품</h5>
 <br>
