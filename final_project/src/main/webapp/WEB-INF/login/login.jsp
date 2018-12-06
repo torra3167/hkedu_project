@@ -22,7 +22,7 @@
 				    <form:input path="email" class="form-control" placeholder="Enter email" />
 				  </div>
 				  <div class="form-group">
-				    <label for="exampleInputPassword1">Password <a href="/sessions/forgot_password">(forgot password)</a></label>
+				    <label for="exampleInputPassword1">Password</label>
 				   <form:password path="pw" class="form-control" placeholder="Password" />
 				  </div>
 				  

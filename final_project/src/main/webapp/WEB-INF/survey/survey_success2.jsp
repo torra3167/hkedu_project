@@ -21,7 +21,9 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 </head>
 <body>
-<div class="container mt-3">
+<div class="container">
+<div class="row">
+<div class="col-12">
      <p class="text-center bold"> 설문 작성이 완료되었습니다.</p><br>
       <div class="box-header with-border">
               <h1 class="box-title text-center">나의 목표</h1>
@@ -43,7 +45,9 @@
       <br>
       <br>
 		</div>
-
+</div>
+</div>
+</div>
 <script>
 new Morris.Line({
 	// ID of the element in which to draw the chart.

@@ -4,8 +4,10 @@
 
 <% 
 	List programList = (List) request.getAttribute("Program");
-	List foodList = (List) request.getAttribute("foodList");
-%>
+	List selectedFoodList = (List) request.getAttribute("selectedFoodList");
+	int foodIndex = 0;
+	int index = 0;
+	%>
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
@@ -88,16 +90,16 @@
 <!--grid-->
 		<div class="container">
 		<div class="row">
-		<% if(foodList.size() == 0) {
+		<% if(selectedFoodList.size() == 0 || selectedFoodList == null) {
 			for(int i = 0; i < 4; i++) {
 		%>
 		
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
 			<div id="box">
 				<a href="program_register.gom">
-				<img class="d-block w-100" src="images/404.png" alt="Third slide">
+				<img class="d-block w-100" style="height: 200px;" src="images/404.png" alt="Third slide">
 				</a>
-				<div id="info">
+				<div id="info" style="height: 100px;">
 					식품을 등록해주세요 <br> <img src="images/d-day/dot.png"
 						width="20" height="20">식품을 등록해주세요
 				</div>
@@ -108,17 +110,15 @@
 		 <% } %>
 			</div>
 			</div>
-	<% } else { %>
+	<% } else if(selectedFoodList.size() < 4) { %>
 	<%
-		int foodIndex = 0;
-		if(foodList.size() >= 4) {
-			foodIndex = 4;
-		} else if(foodList.size() < 4) {
-			foodIndex = foodList.size();
+		
+		 if(selectedFoodList.size() < 4) {
+			foodIndex = selectedFoodList.size();
 		}
 		for(int i = 0; i < foodIndex; i++) {
 			
-			Food food = (Food)foodList.get(i);
+			Food food = (Food)selectedFoodList.get(i);
 
 		%>
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
@@ -126,7 +126,7 @@
 				<a href="food_detail.gom?foodNo=<%=food.getFoodNo() %>">
 				<img class="d-block w-100" src="resource\\<%=food.getFoodStored() %>" alt="Third slide" width="300" height="200">
 				</a>
-				<div id="info">
+				<div id="info" style="height: 100px;">
 					<%=food.getFoodName() %> <br> <img src="images/d-day/dot.png"
 						width="20" height="20"><%=food.getFoodPrice() %>원
 				</div>
@@ -134,8 +134,8 @@
 		</div>
 		<%
 		}
-		foodIndex = 4 - (foodList.size() % 4);
-		System.out.println((foodList.size() % 4) + "foodAppliList.size()");
+		foodIndex = 4 - (selectedFoodList.size() % 4);
+		System.out.println((selectedFoodList.size() % 4) + "selectedFoodList.size()");
 		if(foodIndex > 0) { 
 			for(int i = 0; i < foodIndex; i++) {
 
@@ -145,7 +145,7 @@
 				<a href="seller_menu.gom">
 				<img class="d-block w-100" src="images/404.png" alt="Third slide" width="300" height="200">
 				</a>
-				<div id="info">
+				<div id="info" style="height: 100px;">
 					식품을 등록해주세요 <br> <img src="images/d-day/dot.png"
 						width="20" height="20">식품을 등록해주세요
 				</div>
@@ -157,9 +157,25 @@
 			
 		}
 		
-		} %>
+		} else if(selectedFoodList.size() > 4) { 
+		for(int i = 0; i < 4; i++) {
+			
+			Food food = (Food)selectedFoodList.get(i); %>
+			
+			<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+			<div id="box">
+				<a href="food_detail.gom?foodNo=<%=food.getFoodNo() %>">
+				<img class="d-block w-100" src="resource\\<%=food.getFoodStored() %>" alt="Third slide" width="300" height="200">
+				</a>
+				<div id="info" style="height: 100px;">
+					<%=food.getFoodName() %> <br> <img src="images/d-day/dot.png"
+						width="20" height="20"><%=food.getFoodPrice() %>원
+				</div>
+			</div>
+		</div>
+		<% }
+		}%>
 		
-
 		<!-- alert -->
 		<div class="container">
 			<div class="row">
@@ -178,28 +194,37 @@
 		</div>
 		
 		<!-- container -->
-		<%
-		if(programList == null) { %>
-			<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+	<div class="container">
+		<div class="row">
+		<% if(programList.size() == 0 || programList == null) {
+			for(int i = 0; i < 4; i++) {
+		%>
+		
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
 			<div id="box">
 				<a href="program_register.gom">
-				<img class="d-block w-100" src="images/404.png" alt="Third slide">
+				<img class="d-block w-100" src="images/404.png" alt="Third slide" style="height: 200px;" >
 				</a>
-				<div id="info">
+				<div id="info" style="height: 100px;">
 					프로그램을 등록해주세요 <br> <img src="images/d-day/dot.png"
 						width="20" height="20">프로그램을 등록해주세요
 				</div>
 			</div>
 			
-		</div>
-	 <% } else {
-		int index = 0;
-		for(int i = 0; i < programList.size(); i++) {
+		</div>		
+			
+		 <% } %>
+			
+	<% } else if(programList.size() < 4) { 
+	
+		
+		 if(programList.size() < 4) {
+			index = programList.size();
+		}
+		for(int i = 0; i < index; i++) {
 			
 			Program program = (Program)programList.get(i);
-			
-			
-		
+
 		%>
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
 			<div id="box">
@@ -209,40 +234,66 @@
 					&proStatus=<%=program.getProStatus()%>
 					&proStored=<%=program.getProStored()%>
 					">
-				<img class="d-block w-100" src="resource\\<%=program.getProStored() %>" alt="Third slide" >
+				<img class="d-block w-100" src="resource\\<%=program.getProStored() %>" alt="Third slide" width="300" height="200">
 				</a>
-				<div id="info">
+				<div id="info" style="height: 100px;">
 					<%=program.getProName() %> <br> <img src="images/d-day/dot.png"
-						width="20" height="20"><%=program.getProContent() %>
+						width="20" height="20"><%=program.getProPrice()  %>원
 				</div>
 			</div>
+			
 		</div>
 		<%
 		}
-		index = 4 - (programList.size() % 4);
-	
+		index  = 4 - (programList.size() % 4);
+		System.out.println((programList.size() % 4) + "programList.size()");
 		if(index > 0) { 
 			for(int i = 0; i < index; i++) {
-
+				
+				
 		%>
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
 			<div id="box">
 				<a href="program_register.gom">
-				<img class="d-block w-100" src="images/404.png" alt="Third slide">
+				<img class="d-block w-100" src="images/404.png" alt="Third slide" style="height: 200px;" >
 				</a>
-				<div id="info">
+				<div id="info" style="height: 100px;">
 					프로그램을 등록해주세요 <br> <img src="images/d-day/dot.png"
 						width="20" height="20">프로그램을 등록해주세요
 				</div>
 			</div>
 			
-		</div>
+		</div>		
 			
 		<% }
-			}  
-			}%>
-
-
+			
+		}
+		
+		} else if(programList.size() > 4) { 
+		for(int i = 0; i < 4; i++) {
+			
+			Program program = (Program)programList.get(i); %>
+			
+			<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+			<div id="box">
+				<a href="program_detail.gom?proNo=<%=program.getProNo()%>
+					&proContent=<%=program.getProContent()%>
+					&proPrice=<%=program.getProPrice()%>
+					&proStatus=<%=program.getProStatus()%>
+					&proStored=<%=program.getProStored()%>
+					">
+				<img class="d-block w-100" src="resource\\<%=program.getProStored() %>" alt="Third slide" width="300" height="200">
+				</a>
+				<div id="info" style="height: 100px;">
+					<%=program.getProName() %> <br> <img src="images/d-day/dot.png"
+						width="20" height="20"><%=program.getProPrice()  %>원
+				</div>
+			</div>
+		</div>
+		<% }
+		}%>
+</div>
+</div>
 </body>
 
 </html>

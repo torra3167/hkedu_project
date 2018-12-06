@@ -54,7 +54,6 @@
 					<div id="info" style="font-weight:normal;">
 						<ul>
 							<li><%=program.getProName()%></li>
-							<li><%=program.getProContent()%></li>
 							<li><%=program.getProPrice()%>원</li>
 							<li><a href="pro_review_write.gom?proNo=<%=program.getProNo()%>&coachEmail=<%=program.getCoachEmail()%>">
 			리뷰작성하기</a></li>

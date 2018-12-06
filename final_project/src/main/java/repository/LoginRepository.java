@@ -43,7 +43,7 @@ public class LoginRepository extends AbstractRepository{
 		}
 	}
 
-	public List<Food> selectFoodList() {
+	public List<Food> selectAllFoodList() {
 		sqlSession = getSqlSessionFactory().openSession();
 		try {
 		List<Food> list =  sqlSession.selectList("repository.mapper.foodMapper.selectAllFoodList");

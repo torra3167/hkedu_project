@@ -12,13 +12,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.includebody {
+		min-height: 700px;
+		
+	}
+</style>
 </head>
 <body>
 <div>
 	<jsp:include page="nav.jsp"></jsp:include>
 </div>
 
-<div>	
+<div class="includebody">	
 	<jsp:include page="<%=iPage %>"></jsp:include>
 </div>
 
