@@ -21,6 +21,7 @@ import model.FoodReview;
 import model.FoodReviewAndAnswer;
 import model.FoodReviewAnswer;
 import model.FoodReviewReport;
+import model.MemberSurvey;
 
 @Repository
 public class FoodRepository extends AbstractRepository{
@@ -590,6 +591,17 @@ public class FoodRepository extends AbstractRepository{
 			System.out.println("repo selectCoachRecomFoodList avgrsList.size : " + avgrsList.size());
 //			System.out.println("repo selectCoachRecomFoodList avgrsList.get(0).getAvgReviewScore() : " + avgrsList.get(0).getAvgReviewScore());
 		return avgrsList;
+		
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public MemberSurvey selectMemberWeightHeight(String memberEmail) {
+		sqlSession = getSqlSessionFactory().openSession();
+		try {
+			MemberSurvey ms =  sqlSession.selectOne(namespace + ".selectMemberWeightHeight", memberEmail);
+		return ms;
 		
 		} finally {
 			sqlSession.close();

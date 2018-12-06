@@ -40,6 +40,7 @@ import model.FoodReview;
 import model.FoodReviewAndAnswer;
 import model.FoodReviewAnswer;
 import model.FoodReviewReport;
+import model.MemberSurvey;
 import repository.FoodRepository;
 
 
@@ -763,6 +764,11 @@ System.out.println("svc insertFoodReviewReport foodReviewNo" + foodReviewReportW
 
 	public List<AvgReviewScore> selectAvgReviewScore() {
 		return foodRepository.selectAvgReviewScore();
+	}
+
+	public MemberSurvey selectMemberWeightHeight(HttpSession session) {
+		String memberEmail = (String)session.getAttribute("email");
+		return foodRepository.selectMemberWeightHeight(memberEmail);
 	}
 	
 

@@ -31,6 +31,7 @@ import model.FoodAndApplication;
 import model.FoodNutrient;
 import model.FoodReviewAndAnswer;
 import model.FoodReviewReport;
+import model.MemberSurvey;
 import service.FoodService;
 import service.MemberService;
 import service.SellerService;
@@ -379,6 +380,8 @@ public class FoodController {
 	   List<DietRecordFood> dietRecordFoodList = foodService.selectDietRecordFoodList((String)session.getAttribute("email"), dateText);
 	   model.addAttribute("dietRecordFoodList", dietRecordFoodList);
 	   model.addAttribute("dateText", dateText);
+	   MemberSurvey ms = foodService.selectMemberWeightHeight(session);
+	   model.addAttribute("ms", ms);
 	   model.addAttribute("iPage", "food/food_dietRecordMain.jsp");
       return "index";
    }
