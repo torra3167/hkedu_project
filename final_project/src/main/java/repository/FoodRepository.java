@@ -588,7 +588,7 @@ public class FoodRepository extends AbstractRepository{
 		try {
 			List<AvgReviewScore> avgrsList =  sqlSession.selectList(namespace + ".selectAvgReviewScore");
 			System.out.println("repo selectCoachRecomFoodList avgrsList.size : " + avgrsList.size());
-			System.out.println("fffffffffffffffffffffffffffff" + avgrsList.get(0).getAvgReviewScore());
+			System.out.println("repo selectCoachRecomFoodList avgrsList.get(0).getAvgReviewScore() : " + avgrsList.get(0).getAvgReviewScore());
 		return avgrsList;
 		
 		} finally {
