@@ -2,7 +2,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>      
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 
-    <link rel="stylesheet" href="../css/custom-1.css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +12,7 @@
 </head>
 <body>
 	<div class="container mt-3">
-		<div class="board">
+		<div class="">
 			<form:form commandName="member" action="member_pwdUpdate.gom" method="POST">
 				<div class="form-group">
 					<label>현재 비밀번호</label>

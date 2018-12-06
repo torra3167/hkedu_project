@@ -22,9 +22,9 @@
 </head>
 <body>
 <div class="container mt-3">
-      설문 작성이 완료되었습니다.<br>
+     <p class="text-center bold"> 설문 작성이 완료되었습니다.</p><br>
       <div class="box-header with-border">
-              <h3 class="box-title">나의 목표</h3>
+              <h1 class="box-title text-center">나의 목표</h1>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -37,12 +37,15 @@
             </div>
             <!-- /.box-body -->
           </div>
-      <button type="button" class="btn btn-primary" onclick="location.href='index'">메인으로</button>
-
+          <br>
+       <div class="text-center">
+      <button type="button" class="btn btn-primary " onclick="location.href='index'">메인으로</button>
+      <br>
+      <br>
+		</div>
 
 <script>
 new Morris.Line({
-	
 	// ID of the element in which to draw the chart.
 	element : 'line-chart',
 	// Chart data records -- each entry in this array corresponds to a point on

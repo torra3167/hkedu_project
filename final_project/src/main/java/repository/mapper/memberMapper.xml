@@ -5,7 +5,9 @@
 	<cache></cache>
 	
 	<select id="selectAllSurvey" parameterType="String" resultMap="memberSurvey">
-		select * from survey where member_email = #{memberEmail}
+		select * 
+		from (select * from survey where member_email = #{memberEmail} order by surv_no desc)
+		where rownum = 1
 	</select>
 	<resultMap type="Member" id="memberMap">
 		<id column="MEMBER_EMAIL" jdbcType="VARCHAR" property="memberEmail" />

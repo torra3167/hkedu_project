@@ -28,11 +28,11 @@ public class EmailRepository extends AbstractRepository {
 		}
 	}
 
-	public FindIDCommand selectByEmail(FindIDCommand findIDCommand) {
+	public String selectByEmail(FindIDCommand findIDCommand) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		String statement = namespace + ".selectByEmail";
 		try {
-			FindIDCommand selectEmail = (FindIDCommand) sqlSession.selectOne(statement, findIDCommand);
+			String selectEmail = (String) sqlSession.selectOne(statement, findIDCommand);
 			return selectEmail;
 		} finally {
 			sqlSession.close();
