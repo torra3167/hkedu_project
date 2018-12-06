@@ -135,7 +135,7 @@
 		<%
 		}
 		foodIndex = 4 - (foodList.size() % 4);
-		System.out.println((foodList.size() % 4) + "foodAppliList.size()");
+		System.out.println((foodList.size() % 4) + "foodList.size()");
 		if(foodIndex > 0) { 
 			for(int i = 0; i < foodIndex; i++) {
 
@@ -213,7 +213,7 @@
 				</a>
 				<div id="info">
 					<%=program.getProName() %> <br> <img src="images/d-day/dot.png"
-						width="20" height="20"><%=program.getProContent() %>
+						width="20" height="20"> <%=program.getProPrice() %>원
 				</div>
 			</div>
 		</div>
