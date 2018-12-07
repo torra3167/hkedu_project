@@ -118,7 +118,7 @@
 			          </div>
 			        </div>
 			        <div class="card-body">
-			          <img src="http://localhost:8080//final_project//resource//<%=foodReviewAndAnswer.getFoodReviewStored() %>" width="200" height="200">
+			          <img src="resource\\<%=foodReviewAndAnswer.getFoodReviewStored() %>" width="200" height="200">
 			          <p class="card-text"><%=foodReviewAndAnswer.getFoodReviewComment() %></p>
 			        </div>
 			          <div class="card-footer">

@@ -113,7 +113,7 @@
 					&uploadStored=<%=programexerciseUpload.getUploadStored()%>					
 					&uploadOriginal=<%=programexerciseUpload.getUploadOriginal()%>
 					"><img
-							src="http://localhost:8080/final_project/resource/<%=programexerciseUpload.getUploadStored()%>"
+							src="resource\\<%=programexerciseUpload.getUploadStored()%>"
 							width="80" height="80"></a></td>
 					<td><%=programexerciseUpload.getUploadOriginal()%></td>
 					<td><%=programexerciseUpload.getUploadDivide()%></td>

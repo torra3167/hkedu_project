@@ -56,7 +56,7 @@
 					"><%=program.getProName() %>
 					</a></td>
 					<td><%=program.getProRegdate() %></td>
-					<td><img src="http://localhost:8080/final_project/resource/<%=program.getProStored() %>" width="80" height="80"></td>
+					<td><img src="resource\\<%=program.getProStored() %>" width="80" height="80"></td>
 					<td><%=program.getProContent() %></td>
 					<td><%=program.getProPrice() %></td>
 					<td><a href="pro_review_write.gom?proNo=<%=program.getProNo() %>&coachEmail=<%=program.getCoachEmail() %>">리뷰작성</a></td>

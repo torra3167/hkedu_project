@@ -31,14 +31,13 @@
 		}
 	}
 
-	int manCal = 2500;
 	int reCal = 0;
-	int recomCal = (int)((double)calSum/manCal*100);
 	if(ms!=null){
 		reCal = (int)((ms.getSurvHeight()-100)*0.9)*35;
 	}else{
-		reCal = recomCal;
+		reCal = 2500;
 	}
+	int recomCal = (int)((double)calSum/reCal*100);
 %>
 
 <!DOCTYPE html>
@@ -84,7 +83,7 @@ $(function() {
       <input type="text" name="recordDate" id="recordDate" placeholder="<%=recDate%>"/>
     </li>
     <li class="nav-item col">
-      <a class="nav-link" href="food_dietRecordList.gom?dateText=<%=recDate%>" style="width:200px;color:gray;border:1px solid;">섭취 칼로리 : <%=calSum %> kcal <br>권장 칼로리 : <%=reCal %> %</a>
+      <a class="nav-link" href="food_dietRecordList.gom?dateText=<%=recDate%>" style="width:200px;color:gray;border:1px solid;">섭취 칼로리 : <%=calSum %> kcal <br>권장 칼로리 : <%=recomCal %> %</a>
     </li>
     <li class="nav-item col">
     <%if(ms!=null){ %>

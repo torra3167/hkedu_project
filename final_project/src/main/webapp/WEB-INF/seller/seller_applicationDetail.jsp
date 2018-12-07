@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-<h3>입점신청서 상세보기</h3>
+<h3 class="text-center">입점신청서 상세보기</h3>
 <div class="container mt-3" style="max-width: 560px;">
 		
      <form method="POST" action="admin_sellerApplicationReturn.gom">
