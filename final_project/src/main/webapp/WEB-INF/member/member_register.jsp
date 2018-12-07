@@ -71,8 +71,8 @@
 				},
 				success : function(result) {
 					if (result == 0) {
-						$('#emailMember').attr('disabled', true);
-						document.getElementById('memberEmail').value = memberEmail;
+					/* 	$('#emailMember').attr('disabled', true);
+						document.getElementById('emailMember').value = memberEmail; */
 						alert(memberEmail+"은 사용 가능한 아이디입니다.");
 					} else if (result == 1) {
 						alert("이미 존재하는 아이디입니다. 다른 아이디를 사용해주세요.");
@@ -144,7 +144,7 @@
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
 					 </div>
-					<input name="emailMember" type="email" class="form-control" id="emailMember" />
+					<input name="memberEmail" type="email" class="form-control" id="emailMember" />
 					<input name="memberEmail" type="hidden" class="form-control" id="memberEmail" />
 					</div>
 					<button type="button" id="checkbtn" name="checkbtn" class="btn btn-default">중복확인</button>

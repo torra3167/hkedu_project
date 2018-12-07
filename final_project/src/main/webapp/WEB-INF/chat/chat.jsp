@@ -55,7 +55,7 @@
 	/*pay관련오류  */
 /*  	var url = "ws://192.168.6.100:8080/controller/chat/";
  	var url = "ws://192.168.0.6:8080/final_project/chat/"; */
- 	var url = "ws://192.168.6.112:8080/final_project/chat/";
+ 	var url = "ws://192.168.6.101:8080/final_project/chat/";
 	var webSocket = null;
 	var monitor = document.getElementById("monitor");
 	//접속 URL

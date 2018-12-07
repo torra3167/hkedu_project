@@ -34,8 +34,7 @@
 		</div>
 		<div class="form-group">
 			<label>휴대폰번호</label> <form:input path="sellerPhone" class="form-control" />
-			<input type="button" class="btn btn-primary" name="sellerPhoneDuplicate" value="중복 확인" onclick="">
-		</div>
+ 		</div>
 		<button type="submit" class="btn btn-primary">확인</button>
 		<button type="reset" class="btn btn-primary">다시 작성</button>
 		<button type="button" class="btn btn-primary" onclick="location.href='seller_withdrawal.gom'">회원탈퇴</button>

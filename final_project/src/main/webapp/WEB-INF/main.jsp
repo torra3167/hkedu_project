@@ -90,7 +90,7 @@
 <!--grid-->
 		<div class="container">
 		<div class="row">
-		<% if(selectedFoodList.size() == 0 || selectedFoodList == null) {
+		<% if(selectedFoodList == null) {
 			for(int i = 0; i < 4; i++) {
 		%>
 		
@@ -135,8 +135,8 @@
 		<%
 		}
 		foodIndex = 4 - (selectedFoodList.size() % 4);
-		System.out.println((selectedFoodList.size() % 4) + "selectedFoodList.size()");
-		if(foodIndex > 0) { 
+/* 		System.out.println((selectedFoodList.size() % 4) + "selectedFoodList.size()");
+ */		if(foodIndex > 0) { 
 			for(int i = 0; i < foodIndex; i++) {
 
 		%>
@@ -196,7 +196,7 @@
 		<!-- container -->
 	<div class="container">
 		<div class="row">
-		<% if(programList.size() == 0 || programList == null) {
+		<% if(programList == null) {
 			for(int i = 0; i < 4; i++) {
 		%>
 		
@@ -246,8 +246,8 @@
 		<%
 		}
 		index  = 4 - (programList.size() % 4);
-		System.out.println((programList.size() % 4) + "programList.size()");
-		if(index > 0) { 
+/* 		System.out.println((programList.size() % 4) + "programList.size()");
+ */		if(index > 0) { 
 			for(int i = 0; i < index; i++) {
 				
 				

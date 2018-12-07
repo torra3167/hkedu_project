@@ -24,9 +24,7 @@
 	  <li class="nav-item">
 	    <a class="nav-link" data-toggle="tab" href="#menu3">등록식품 수정</a>
 	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" data-toggle="tab" href="#menu4">관리자 문의</a>
-	  </li>
+	 
 	</ul>
 	
 	<br>
@@ -45,9 +43,7 @@
 	  	<div class="tab-pane container fade" id="menu3">
 	  		<jsp:include page="seller_foodList.jsp"></jsp:include>
 	  	</div>
-	  	<div class="tab-pane container fade" id="menu4">
-	  		<jsp:include page="seller_contactAdmin.jsp"></jsp:include>
-		</div>  
+	  	
 	</div>
 </div>
 

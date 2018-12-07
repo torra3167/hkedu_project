@@ -30,7 +30,7 @@ public class MemberController {
 
 	/*회원가입*/
 	@RequestMapping(value = "/member_join.gom", method = RequestMethod.GET)
-	public String joinForm(Model model) {
+	public String joinForm(MemberJoinCommand memberJoinCommand, Model model) {
 		model.addAttribute("iPage", "member/member_register.jsp");
 		model.addAttribute("memberJoinCommand", new MemberJoinCommand());
 		System.out.println("CONTROLLER Join GET");

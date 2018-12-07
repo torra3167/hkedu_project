@@ -164,7 +164,7 @@ img {
 				}
 					if (programexerciseUpload.getUploadDivide().equals("i")) {
 			%>
-			<img src="resource//<%=programexerciseUpload.getUploadStored()%>"
+			<img src="resource\\<%=programexerciseUpload.getUploadStored()%>"
 				width="700" height="400">
 			<%
 				}
@@ -173,7 +173,7 @@ img {
 			%>
 			<video width="100%" height="400" controls="controls"
 				>
-				<source src="resource//<%=programexerciseUpload.getUploadStored()%>"
+				<source src="resource\\<%=programexerciseUpload.getUploadStored()%>"
 					type="video/mp4" />
 			</video>
 			<%

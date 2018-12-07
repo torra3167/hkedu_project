@@ -37,7 +37,7 @@
 
 			<ul class="nav navbar-nav">
 
-				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동관</a></li>
+				<li class="nav-item"><a class="nav-link" href="program_list.gom">운동관</a></li>
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
 				<li class="nav-item"><a class="nav-link" href="pro_review_all_list.gom">프로그램모든리뷰</a></li>		
@@ -99,7 +99,7 @@
 
 				<li class="nav-item"><a class="nav-link" href="food_list.gom">식품관</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동관</a></li>
+				<li class="nav-item"><a class="nav-link" href="program_list.gom">운동관</a></li>
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
 				<li class="nav-item"><a class="nav-link" href="food_recordMain.gom?dateText=<%=recordDate %>">식단 기록</a></li>
@@ -112,7 +112,7 @@
 					href="cart_list.gom">Cart</a></li>
 				
 				<li class="nav-item"><a class="nav-link"
-					href="pro_cart_list.gom">운동Cart</a></li>	
+					href="pro_cart_list.gom">운동식품Cart</a></li>	
 				
 				<li class="nav-item"><a class="nav-link"
 					href="program_cart_list.gom">프로그램Cart</a></li>	
@@ -180,7 +180,7 @@
 					href="cart_list.gom">일반Cart</a></li>
 					
 				<li class="nav-item"><a class="nav-link"
-					href="pro_cart_list.gom">운동Cart</a></li>
+					href="pro_cart_list.gom">운동식품Cart</a></li>
 				
 				<li class="nav-item"><a class="nav-link"
 					href="program_cart_list.gom">프로그램Cart</a></li>
@@ -241,14 +241,14 @@
 
 				<li class="nav-item"><a class="nav-link" href="food_list.gom">식품관</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동관</a></li>
+				<li class="nav-item"><a class="nav-link" href="program_list.gom">운동관</a></li>
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="cart_list.gom">일반Cart</a></li>
 				
 				<li class="nav-item"><a class="nav-link"
-					href="pro_cart_list.gom">운동Cart</a></li>	
+					href="pro_cart_list.gom">운동식품Cart</a></li>	
 					
 				<li class="nav-item"><a class="nav-link"
 					href="program_cart_list.gom">프로그램Cart</a></li>
@@ -319,14 +319,14 @@
 			<ul class="nav navbar-nav">
 
 				<li class="nav-item"><a class="nav-link" href="food_list.gom">식품관</a></li>
-				<li class="nav-item"><a class="nav-link" href="exercise_list.gom">운동관</a></li>
+				<li class="nav-item"><a class="nav-link" href="program_list.gom">운동관</a></li>
 				<li class="nav-item"><a class="nav-link" href="member_write_survey1.gom">내게 맞는
 						상품진단</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="cart_list.gom">Cart</a></li>
 				
 				<li class="nav-item"><a class="nav-link"
-					href="pro_cart_list.gom">운동Cart</a></li>	
+					href="pro_cart_list.gom">운동식품Cart</a></li>	
 				
 				<li class="nav-item"><a class="nav-link"
 					href="program_cart_list.gom">프로그램Cart</a></li>		
