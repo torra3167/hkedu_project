@@ -11,14 +11,14 @@
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
 </head>
-<link rel="stylesheet" href="../css/custom-1.css">
+<link rel="stylesheet" href="css/custom-1.css">
 <body>
 	<%
 		if(result == null){
 	%>
 	<div class="container">
 
-		<div class="message">아이디 변경에 실패했습니다. 다시 시도해주세요.</div>
+		<div class="message">비밀번호 변경에 실패했습니다. 다시 시도해주세요.</div>
 		<div class="btn">
 			<button type="button" class="btn btn-primary" onclick="history.go(-1);">뒤로 가기</button>
 			<button type="button" class="btn btn-primary" onclick="location.href='member_join.gom'">회원가입</button>

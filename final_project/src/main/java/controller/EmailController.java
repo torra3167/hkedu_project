@@ -82,7 +82,7 @@ public class EmailController {
 	}
 	@RequestMapping(value = "/changePWMember.gom", method = RequestMethod.GET)
 	public String changePWMember(ChangePWCommand changePWCommand, Model model, HttpSession session) {
-		model.addAttribute("iPage", "login/changePW.jsp");
+		model.addAttribute("iPage", "login/changePW_success.jsp");
 		String email=(String)session.getAttribute("email");
 		String id=(String)session.getAttribute("email");
 		model.addAttribute("id", id);

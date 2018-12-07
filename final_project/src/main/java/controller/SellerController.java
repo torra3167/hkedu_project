@@ -119,10 +119,10 @@ public class SellerController {
 			sellerWithdrawalCommand.setSellerPw(httpServletRequest.getParameter("sellerPw"));
 			int result = sellerService.deleteSeller(sellerWithdrawalCommand);
 			if(result>0) {
-				model.addAttribute("result", result);
-				session.invalidate();
-				model.addAttribute("iPage", "seller/seller_withdrawalResult.jsp");
-				return "index";
+/*				model.addAttribute("result", result);
+*/				session.invalidate();
+/*				model.addAttribute("iPage", "seller/seller_withdrawalResult.jsp");
+*/				return "redirect:/index";
 			}else {
 				return "redirect:/index";
 			}

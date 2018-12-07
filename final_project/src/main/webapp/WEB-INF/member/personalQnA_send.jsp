@@ -15,7 +15,7 @@
     	contents+="문의 제목 : "+sent+"<br>";
     	contents+="문의 내용 : <br>"+request.getParameter("contents")+"<br>";
     	contents+="<br><br>";
-    	contents+="문의에 답변하기 : http://localhost:8080/final_project/personalQna_answer.gom?app="+email;
+    	contents+="문의에 답변하기 : http://192.168.6.101:8080/final_project/personalQna_answer.gom?app="+email;
     	
     	/* form에서 받아온 값들 변수에 저장 */
     	

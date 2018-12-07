@@ -17,7 +17,7 @@
 		contents += "안녕하세요, " + email + " 계정의 비밀번호 변경 링크를 안내드립니다.<br>";
 		contents += "비밀번호는 타 사이트에서 사용하지 않는 것으로 변경 부탁드립니다.";
 		contents += "<br><br>";
-		contents += "비밀번호 변경 : http://localhost:8080/final_project/changePW.gom?app=" + email;
+		contents += "비밀번호 변경 : http://192.168.6.101:8080/final_project/changePW.gom?app=" + email;
 
 		/* form에서 받아온 값들 변수에 저장 */
 

@@ -16,6 +16,7 @@
 <body>
   <% for(Object temp : list) {
 				ProReview proReview = (ProReview)temp; %>
+<div class="container">
 <div class="reviews">
   <div class="row blockquote review-item">
     <div class="col-md-3 text-center">
@@ -53,7 +54,7 @@
       
   </div>  
   
-  	
+  	</div>
 </div>
   <% } %>
 </body>
